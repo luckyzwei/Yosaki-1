@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
@@ -306,25 +306,25 @@ public class StatusTable
                     {
                         float spcialAbilRatio = PlayerStats.GetSpecialAbilRatio();
 
-                        return level * 0.00001f * spcialAbilRatio;
+                        return level * 0.000015f * spcialAbilRatio;
                     }
                 case Cslash_memory:
                     {
                         float spcialAbilRatio = PlayerStats.GetSpecialAbilRatio();
 
-                        return level * 0.000008f * spcialAbilRatio;
+                        return level * 0.00001f * spcialAbilRatio;
                     }
                 case GiSlash_memory:
                     {
                         float spcialAbilRatio = PlayerStats.GetSpecialAbilRatio();
 
-                        return level * 0.000004f * spcialAbilRatio;
+                        return level * 0.000005f * spcialAbilRatio;
                     }
                 case Gum_memory:
                     {
                         float spcialAbilRatio = PlayerStats.GetSpecialAbilRatio();
 
-                        return level * 0.00000008f * spcialAbilRatio;
+                        return level * 0.00000009f * spcialAbilRatio;
                     }
                 #endregion
                 default:

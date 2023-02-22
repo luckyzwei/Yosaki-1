@@ -166,6 +166,7 @@ public class UiLevelPassCell : MonoBehaviour
 
         if (HasLevelPassProduct() == false)
         {
+            //PopupManager.Instance.ShowAlarmMessage($"여우패스{passInfo.passGrade + 1}이(가) 필요합니다!");
             if (passInfo.passGrade == 0)
             {
                 PopupManager.Instance.ShowAlarmMessage("여우패스1이 필요합니다!");
@@ -305,6 +306,14 @@ public class UiLevelPassCell : MonoBehaviour
             else if (passInfo.passGrade == 34)
             {
                 PopupManager.Instance.ShowAlarmMessage("여우패스35이 필요합니다!");
+            }
+            else if (passInfo.passGrade == 35)
+            {
+                PopupManager.Instance.ShowAlarmMessage("여우패스36이 필요합니다!");
+            }
+            else if (passInfo.passGrade == 36)
+            {
+                PopupManager.Instance.ShowAlarmMessage("여우패스37이 필요합니다!");
             }
 
 

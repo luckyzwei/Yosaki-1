@@ -150,4 +150,9 @@ public class UiChoboBoard : MonoBehaviour
             return 2;
         }
     }
+
+    public void OnClickUserGuideButton() 
+    {
+        Application.OpenURL("https://cafe.naver.com/yokiki/7151");
+    }
 }

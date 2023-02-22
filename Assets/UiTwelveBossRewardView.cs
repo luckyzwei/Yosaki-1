@@ -2614,7 +2614,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 노리개 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "아수라 노리개 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
@@ -2646,7 +2646,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 노리개 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "인드라 노리개 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
@@ -2678,7 +2678,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 노리개 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "아드라 노리개 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
@@ -3813,7 +3813,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "아수라 검 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
@@ -3845,7 +3845,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "인드라 검 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
@@ -3877,7 +3877,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "수미보스 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "아드라 검 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }

@@ -377,7 +377,7 @@ public class UiInventoryWeaponView : MonoBehaviour
 
                )
             {
-                suhoSinDescription.SetText($"수미산\n아수라와 인드라에서 획득!");
+                suhoSinDescription.SetText($"수미산\n아드라전에서 획득!");
             }
 
             foxNorigaeGetButton.SetActive(magicBookData.Id == 28);
