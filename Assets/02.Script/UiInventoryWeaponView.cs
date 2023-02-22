@@ -560,7 +560,7 @@ public class UiInventoryWeaponView : MonoBehaviour
                 || weaponData.Id == 71 || weaponData.Id == 72 || weaponData.Id == 73 || weaponData.Id == 74 || weaponData.Id == 75
                 || weaponData.Id == 76 || weaponData.Id == 77 || weaponData.Id == 78 || weaponData.Id == 79 || weaponData.Id == 80
                 || weaponData.Id == 81 || weaponData.Id == 82 || weaponData.Id == 83 || weaponData.Id == 84 || weaponData.Id == 85
-                || weaponData.Id == 86 || weaponData.Id == 90
+                || weaponData.Id == 86 || weaponData.Id == 87 || weaponData.Id == 88 || weaponData.Id == 89 || weaponData.Id == 90
 
                 )
             {
@@ -740,6 +740,11 @@ public class UiInventoryWeaponView : MonoBehaviour
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"수미산\n다문천왕에서 획득!");
+                }
+                else if (weaponData.Id == 87|| weaponData.Id == 88|| weaponData.Id == 89)
+                {
+                    weaponLockObject.gameObject.SetActive(state == 0);
+                    weaponLockDescription.SetText($"수미산\n아드라전에서 획득!");
                 }
 
                 //

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +23,8 @@ public class UiSkillCraftBoard : MonoBehaviour
         {
             if (skillTableDatas[i].SKILLCASTTYPE != SkillCastType.Player) continue;
             if (skillTableDatas[i].Skilltype == 4 || skillTableDatas[i].Skilltype == 5 ||
-                skillTableDatas[i].Skilltype == 6 || skillTableDatas[i].Skilltype == 7|| skillTableDatas[i].Skilltype == 8) continue;
+                skillTableDatas[i].Skilltype == 6 || skillTableDatas[i].Skilltype == 7|| skillTableDatas[i].Skilltype == 8
+                || skillTableDatas[i].Skilltype == 10) continue;
 
             var cell = Instantiate<UiMagicbookCraftCell>(craftCell, craftParent);
 
