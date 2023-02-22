@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -74,7 +74,7 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
         }).AddTo(disposables);
 
         //킬카운트 변경될때
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).AsObservable().Subscribe(e =>
         {
             if (this.gameObject.activeInHierarchy) 
             {
@@ -118,7 +118,7 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
 
     private void SetDescriptionText()
     {
-        descriptionText.SetText($"{Utils.ConvertBigNum(passInfo.require)}");
+        descriptionText.SetText($"{Utils.ConvertBigNum(passInfo.require)}일차");
     }
 
     public List<string> GetSplitData(string key)
@@ -136,7 +136,7 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("몹 처치가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
             return;
         }
 
@@ -157,7 +157,7 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("몹 처치가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
             return;
         }
 
@@ -186,9 +186,6 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
 
     private void GetFreeReward()
     {
-       
-
-
             //로컬
             ServerData.monthlyPassServerTable2.TableDatas[passInfo.rewardType_Free_Key].Value += $",{passInfo.id}";
             ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_Free, passInfo.rewardTypeValue_Free);
@@ -202,11 +199,6 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
 
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_Free);
             transactionList.Add(rewardTransactionValue);
-
-            //킬카운트
-            Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
@@ -230,11 +222,6 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_IAP);
             transactionList.Add(rewardTransactionValue);
 
-            //킬카운트
-            Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
-
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
             // LogManager.Instance.SendLogType("월간", "유료", $"{passInfo.id}");
@@ -242,6 +229,7 @@ public class UiMonthlyPassAttendCell2 : MonoBehaviour
 
             PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
         
+
     }
 
     private bool CanGetReward()

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,7 +18,7 @@ public class AttendCountIndicator : MonoBehaviour
     {
         ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).AsObservable().Subscribe(e =>
         {
-            killCountText.SetText($"월간 출석일 : {Utils.ConvertBigNum(e)}");
+            killCountText.SetText($"3월 출석일 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);
     }
 }
