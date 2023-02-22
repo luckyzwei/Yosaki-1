@@ -2047,58 +2047,57 @@ public static class ServerData
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 8;
                     break;
                 case Item_Type.MergePartyRaidRankFrame2:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_2;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_2;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 7;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 7;
                     break;
                 case Item_Type.MergePartyRaidRankFrame3:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_3;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_3;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 7;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 6;
                     break;
                 case Item_Type.MergePartyRaidRankFrame4:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_4;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_4;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 7;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 5;
                     break;
                 case Item_Type.MergePartyRaidRankFrame5:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_5;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_5;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 7;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 4;
                     break;
                 case Item_Type.MergePartyRaidRankFrame6_10:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_6_10;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_6_10;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 6;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 3;
                     break;
                 case Item_Type.MergePartyRaidRankFrame11_20:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_11_20;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_11_20;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 5;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 3;
                     break;
                 case Item_Type.MergePartyRaidRankFrame21_50:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_21_50;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_21_50;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 4;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 2;
                     break;
                 case Item_Type.MergePartyRaidRankFrame51_100:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_51_100;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_51_100;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 3;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 2;
                     break;
                 case Item_Type.MergePartyRaidRankFrame101_500:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_101_500;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_101_500;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 2;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 1;
                     break;
                 case Item_Type.MergePartyRaidRankFrame501_1000:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_501_1000;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_501_1000;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 1;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 1;
                     break;
                 case Item_Type.MergePartyRaidRankFrame1001_5000:
-                    ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_1001_5000;
-                    ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value += GameBalance.rankRewardTicket_1001_10000_relic_hell + GameBalance.rankRewardTicket_1001_10000_war_hell;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += GameBalance.murgePartyRaidRankRewardTicket_1001_5000;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.hellMark).Value = 0;
                     ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 9;
                     break;
@@ -2110,8 +2109,8 @@ public static class ServerData
             userInfoParam.Add(UserInfoTable.chatFrame, ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value);
 
             Param goodsParam = new Param();
-            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
-            goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
+            goodsParam.Add(GoodsTable.SumiFire, ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value);
+
 
             transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
