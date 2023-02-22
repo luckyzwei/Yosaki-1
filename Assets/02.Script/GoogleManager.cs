@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 #if UNITY_ANDROID
 using GooglePlayGames;

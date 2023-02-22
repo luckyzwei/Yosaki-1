@@ -319,7 +319,7 @@ public class UiCollectionEventCommonView : MonoBehaviour
 
             goodsParam.Add(GoodsTable.Event_Fall_Gold, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall_Gold).Value);
 
-            goodsParam.Add(itemKey, ServerData.goodsTable.GetTableData(itemKey).Value);
+            goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)tableData.Itemtype), ServerData.goodsTable.GetTableData((Item_Type)tableData.Itemtype).Value);
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         }

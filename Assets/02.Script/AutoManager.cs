@@ -261,6 +261,29 @@ public class AutoManager : Singleton<AutoManager>
 
                 }
             }
+            //무빙공격
+            else
+            {
+                //아드라검
+                if (ServerData.userInfoTable.TableDatas[UserInfoTable.getMovingAutoAttack].Value > 0)
+                {
+                    canAttack = true;
+
+                    int currentSelectedGroupId = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
+
+                    var selectedSkill = ServerData.skillServerTable.TableDatas[SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
+
+                    for (int i = 0; i < selectedSkill.Count; i++)
+                    {
+                        int skillIdx = selectedSkill[i].Value;
+
+                        if (skillIdx == -1) continue;
+
+                        PlayerSkillCaster.Instance.UseSkill(skillIdx);
+                    }
+                }
+                yield return null;
+            }
         }
     }
 

@@ -159,20 +159,19 @@ public class UiCollectionFallEventCell : MonoBehaviour
         }
 
 
-        int currentEventItemNum = (int)ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value;
+        int currentEventItemNum = (int)ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value;
 
         if (currentEventItemNum < tableData.Price)
         {
-            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_Fall)}이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_Collection)}이 부족합니다.");
             return;
         }
 
         PopupManager.Instance.ShowAlarmMessage("교환 완료");
 
         //로컬
-        ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value -= tableData.Price;
-
-        ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).Value += tableData.Price;
+        ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value -= tableData.Price;
+        ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).Value += tableData.Price;
 
 
 
@@ -277,7 +276,7 @@ public class UiCollectionFallEventCell : MonoBehaviour
 
             Param goodsParam = new Param();
 
-            goodsParam.Add(GoodsTable.Event_Fall, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value);
+            goodsParam.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
 
             goodsParam.Add(GoodsTable.Event_Fall_Gold, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall_Gold).Value);
 
@@ -292,11 +291,11 @@ public class UiCollectionFallEventCell : MonoBehaviour
             Param goodsParam = new Param();
 
 
-            goodsParam.Add(GoodsTable.Event_Fall, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value);
+            goodsParam.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
 
             goodsParam.Add(GoodsTable.Event_Fall_Gold, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall_Gold).Value);
 
-            goodsParam.Add(itemKey, ServerData.goodsTable.GetTableData(itemKey).Value);
+            goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)tableData.Itemtype), ServerData.goodsTable.GetTableData((Item_Type)tableData.Itemtype).Value);
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         }
@@ -308,7 +307,7 @@ public class UiCollectionFallEventCell : MonoBehaviour
             userInfoParam.Add(tableData.Exchangekey, ServerData.userInfoTable.TableDatas[tableData.Exchangekey].Value);
         }
 
-        userInfoParam.Add(UserInfoTable.usedFallCollectionCount, ServerData.userInfoTable.TableDatas[UserInfoTable.usedFallCollectionCount].Value);
+        userInfoParam.Add(UserInfoTable.usedCollectionCount, ServerData.userInfoTable.TableDatas[UserInfoTable.usedCollectionCount].Value);
 
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 

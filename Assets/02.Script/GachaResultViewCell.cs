@@ -76,7 +76,7 @@ public class GachaResultViewCell : MonoBehaviour
             PopupManager.Instance.ShowWhiteEffect();
        
 
-            openMask.color = CommonUiContainer.Instance.itemGradeColor[newGachaData.Id];
+            openMask.color = CommonUiContainer.Instance.itemGradeColor[newGachaData.Grade];
         }
     }
 }

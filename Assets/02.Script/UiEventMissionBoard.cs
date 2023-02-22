@@ -43,7 +43,7 @@ public class UiEventMissionBoard : MonoBehaviour
     private void Awake()
     {
         Initialize();
-        // CheckChrisEvent();
+       // CheckChrisEvent();
     }
     //private void CheckChrisEvent()
     //{
@@ -98,6 +98,7 @@ public class UiEventMissionBoard : MonoBehaviour
 
         for (int i = 0; i < tableData.Length; i++)
         {
+            if (tableData[i].EVENTMISSIONTYPE != EventMissionType.FIRST) continue;
             var cell = Instantiate<UiEventMissionCell>(missionCell, cellParent);
 
             cell.Initialize(tableData[i]);

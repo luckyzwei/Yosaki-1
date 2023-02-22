@@ -24,7 +24,7 @@ public class UiDoBoard : MonoBehaviour
     {
         scoreText.SetText($"최고 점수 : {Utils.ConvertBigNum(ServerData.userInfoTable.TableDatas[UserInfoTable.doScore].Value * GameBalance.BossScoreConvertToOrigin)}");
 
-        int grade = PlayerStats.GetSusanoGrade();
+        int grade = PlayerStats.GetDoGrade();
 
         if (grade != -1)
         {

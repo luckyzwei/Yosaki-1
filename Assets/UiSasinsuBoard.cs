@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -39,6 +39,12 @@ public class UiSasinsuBoard : MonoBehaviour
 
     [SerializeField]
     private int sasinIndex = 0;
+
+    [SerializeField]
+    private GameObject sasinsuObject;
+
+    [SerializeField]
+    private GameObject goldDragonObject;
     private void Start()
     {
         Initialize();
@@ -86,10 +92,16 @@ public class UiSasinsuBoard : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
             return;
         }
-        sasinIndex = select;
-        sasinsuRewardBoard.SetSasinIdx(sasinIndex);
-        Initialize();
 
+        sasinsuObject.SetActive(select < 4);
+        goldDragonObject.SetActive(select >= 4);
+
+        if (select < 4) 
+        {
+            sasinIndex = select;
+            sasinsuRewardBoard.SetSasinIdx(sasinIndex);
+            Initialize();
+        }
     }
     public void OnClickRewardButton()
     {

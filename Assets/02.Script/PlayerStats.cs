@@ -47,6 +47,7 @@ public enum StatusType
     HellHasValueUpgrade,
     SuperCritical6DamPer,//신수
     SuperCritical7DamPer,//수미베기
+    SumiHasValueUpgrade,
 }
 
 
@@ -1368,13 +1369,17 @@ public static class PlayerStats
 
         ret += GetSumiFireAbilHasEffect(StatusType.SuperCritical7DamPer);
 
+        ret += GetSuAbil(StatusType.SuperCritical7DamPer);
+
+        ret += GetStageRelicHasEffect(StatusType.SuperCritical7DamPer);
+
+        ret += GetRelicHasEffect(StatusType.SuperCritical7DamPer);
+
         ret += GetSumiTowerEffect(StatusType.SuperCritical7DamPer);
 
         ret += GetFoxCupAbilValue(GetCurrentFoxCupIdx(), 2);
 
         ret += ServerData.statusTable.GetStatusValue(StatusTable.Gum_memory);
-
-        ret += GetStageRelicHasEffect(StatusType.SuperCritical7DamPer);
 
         return ret;
     }
@@ -1389,6 +1394,8 @@ public static class PlayerStats
         ret += GetSasinsuStarAddValue();
 
         ret += GetFoxCupAbilValue(GetCurrentFoxCupIdx(), 1);
+
+        ret += GetStageRelicHasEffect(StatusType.SuperCritical6DamPer);
 
         return ret;
     }
@@ -1790,7 +1797,7 @@ public static class PlayerStats
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
 
-        ret = ret + (ret * GetSonAbilPlusValue());
+        ret = ret * (1 +  GetSonAbilPlusValue() + GetSonTransPlusValue());
 
         return ret;
     }
@@ -1903,10 +1910,10 @@ public static class PlayerStats
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
 
-        //if (statusType == StatusType.SuperCritical5DamPer)
-        //{
-        //    ret += GetDokebiFireHasAddValue() * currentLevel;
-        //}
+        if (statusType == StatusType.SuperCritical7DamPer)
+        {
+            ret += GetSumiFireHasAddValue() * currentLevel;
+        }
 
         return ret;
     }
@@ -2422,6 +2429,24 @@ public static class PlayerStats
 
         return grade;
     }
+    public static int GetSumiGrade()
+    {
+        int grade = -1;
+
+        var tableData = TableManager.Instance.sumiTable.dataArray;
+
+        var score = ServerData.userInfoTable.TableDatas[UserInfoTable.sumiScore].Value * GameBalance.BossScoreConvertToOrigin;
+
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            if (score >= tableData[i].Score)
+            {
+                grade = i;
+            }
+        }
+
+        return grade;
+    }
     public static int GetBlackGrade()
     {
         int grade = -1;
@@ -2532,12 +2557,48 @@ public static class PlayerStats
 
         return 0f;
     }
+    public static float GetSuAbil(StatusType type)
+    {
+
+        int grade = GetSumiGrade();
+
+        if (grade == -1) return 0f;
+
+        var tableData = TableManager.Instance.sumiTable.dataArray[grade];
+
+        if (type == StatusType.SuperCritical7DamPer)
+        {
+
+            return tableData.Abilvalue0;
+
+        }
+        //else if (type == StatusType.PenetrateDefense)
+        //{
+
+        //    return tableData.Abilvalue1;
+
+        //}
+
+        return 0f;
+    }
 
     public static float yeoRaeMarbleValue = 0.1f;
 
     public static float GetSonAbilPlusValue()
     {
         return yeoRaeMarbleValue * ServerData.goodsTable.GetTableData(GoodsTable.Ym).Value;
+    }
+    public static float SonTransAddValue = 10f;
+    public static float GetSonTransPlusValue()
+    {
+        if(ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value==1)
+        {
+            return SonTransAddValue;
+        }
+        else
+        {
+            return 0f;
+        }
     }
 
     public static float foxMaskPartialValue = 0.02f;
@@ -2890,8 +2951,6 @@ public static class PlayerStats
 
         ret += GetGradeTestAbilValue(StatusType.FlowerHasValueUpgrade);
 
-        ret += GetRingEquipAbilValue(StatusType.FlowerHasValueUpgrade);
-
         ret += GetPassiveSkill2Value(StatusType.FlowerHasValueUpgrade);
 
 
@@ -2903,8 +2962,6 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetGradeTestAbilValue(StatusType.HellHasValueUpgrade);
-
-        ret += GetRingEquipAbilValue(StatusType.HellHasValueUpgrade);
 
         ret += GetPassiveSkill2Value(StatusType.HellHasValueUpgrade);
 
@@ -2919,9 +2976,16 @@ public static class PlayerStats
 
         ret += GetGradeTestAbilValue(StatusType.DokebiFireHasValueUpgrade);
 
-        ret += GetRingEquipAbilValue(StatusType.DokebiFireHasValueUpgrade);
-
         ret += GetPassiveSkill2Value(StatusType.DokebiFireHasValueUpgrade);
+
+        return ret;
+    }
+    
+    public static float GetSumiFireHasAddValue()
+    {
+        float ret = 0f;
+
+        ret += GetSkillHasValue(StatusType.SumiHasValueUpgrade);
 
         return ret;
     }

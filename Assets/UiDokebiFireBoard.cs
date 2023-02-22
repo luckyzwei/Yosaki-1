@@ -153,6 +153,7 @@ public class UiDokebiFireBoard : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearDokebiFire, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

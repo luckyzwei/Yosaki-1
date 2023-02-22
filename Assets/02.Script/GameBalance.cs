@@ -73,7 +73,7 @@ public static class GameBalance
     public readonly static ObscuredInt sleepRewardMinValue = 600;
     //10시간
     public readonly static ObscuredInt sleepRewardMaxValue = 86400;
-    public readonly static ObscuredFloat sleepRewardRatio = 0.9f;
+    public readonly static ObscuredFloat sleepRewardRatio = 1f;
 
     public readonly static ObscuredFloat marbleSpawnProb = 1;
 
@@ -109,6 +109,19 @@ public static class GameBalance
     public readonly static ObscuredInt partyRaidRankRewardTicket_21_100 = 2500;
     public readonly static ObscuredInt partyRaidRankRewardTicket_101_1000 = 1500;
     public readonly static ObscuredInt partyRaidRankRewardTicket_1001_10000 = 1000;
+    
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_1 = 15000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_2 = 14000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_3 = 13000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_4 = 12000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_5 = 11000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_6_10 = 10000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_11_20 = 8000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_21_50 = 6000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_51_100 = 4000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_101_500 = 3000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_501_1000 = 2000;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_1001_5000 = 1000;
 
     public readonly static ObscuredInt rankRewardTicket_1_relic = 120;
     public readonly static ObscuredInt rankRewardTicket_2_relic = 110;
@@ -192,6 +205,8 @@ public static class GameBalance
     public readonly static ObscuredInt rankReward_200_500_new_boss = 800;
     public readonly static ObscuredInt rankReward_500_1000_new_boss = 600;
     public readonly static ObscuredInt rankReward_1000_3000_new_boss = 400;
+
+
 
     public readonly static ObscuredInt EventDropEndDay = 28;
     public readonly static ObscuredInt EventMakeEndDay = 28;
@@ -282,6 +297,9 @@ public static class GameBalance
     public static ObscuredInt passive2PointDivideNum = 10000;
 
     public static ObscuredInt shadowCostumeGetLevel = 12;
+   // public static ObscuredDouble sonGraduateScore = 100;
+    public static ObscuredDouble sonGraduateScore = 1E+88;
+
 
 
 

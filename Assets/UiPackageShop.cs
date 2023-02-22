@@ -86,6 +86,14 @@ public class UiPackageShop : MonoBehaviour
                         continue;
                     }
                 }
+                if (e.Current.Value.Productid == "snowmanset0" || e.Current.Value.Productid == "snowmanset1"|| e.Current.Value.Productid == "newyearset0" || e.Current.Value.Productid == "newyearset1")
+                {
+                    //currentserver가 3월이후(포함)
+                    if (ServerData.userInfoTable.currentServerTime.Month >= 3)
+                    {
+                        continue;
+                    }
+                }
 #if UNITY_EDITOR
 #else
 

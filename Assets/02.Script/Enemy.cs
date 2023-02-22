@@ -186,8 +186,10 @@ public class Enemy : PoolItem
         //눈사람
         GetEventItem();
 
-        //곶감
-       // GetSpringEventItem();
+        GetPeachItem();
+
+        //곶감 -> 봄나물
+        GetSpringEventItem();
 
         GetSulItem();
 
@@ -208,14 +210,21 @@ public class Enemy : PoolItem
 
     private void GetEventItem()
     {
-        if (ServerData.userInfoTable.CanSpawnEventItem() == false) return;
+        if (ServerData.userInfoTable.CanSpawnSnowManItem() == false) return;
 
         ServerData.goodsTable.GetEventItem(GameManager.Instance.CurrentStageData.Marbleamount);
+    }
+    
+    private void GetPeachItem()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 0) return;
+
+        ServerData.goodsTable.GetPeachItem(GameManager.Instance.CurrentStageData.Peachamount);
     }
 
     private void GetSpringEventItem() 
     {
-        if (ServerData.userInfoTable.CanSpawnGotGamEventItem() == false) return;
+        if (ServerData.userInfoTable.CanSpawnSpringEventItem() == false) return;
 
         ServerData.goodsTable.GetSpringEventItem(GameManager.Instance.CurrentStageData.Marbleamount);
     }

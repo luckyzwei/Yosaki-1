@@ -85,7 +85,7 @@ public class HellRelicDungeonManager : ContentsManagerBase
 
     private void EndGame()
     {
-        UpdateRank();
+        //UpdateRank();
 
         modeState = ModeState.End;
 

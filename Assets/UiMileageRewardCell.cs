@@ -217,7 +217,7 @@ public class UiMileageRewardCell : MonoBehaviour
 
             goodsParam.Add(GoodsTable.Mileage, ServerData.goodsTable.GetTableData(GoodsTable.Mileage).Value);
 
-            goodsParam.Add(itemKey, ServerData.goodsTable.GetTableData(itemKey).Value);
+            goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)tableData.Itemtype), ServerData.goodsTable.GetTableData((Item_Type)tableData.Itemtype).Value);
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         }

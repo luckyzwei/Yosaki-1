@@ -21,17 +21,20 @@ public class UiContentsExitButton : MonoBehaviour
         if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower2 || GameManager.contentsType == GameManager.ContentsType.DokebiTower ||
             GameManager.contentsType == GameManager.ContentsType.FoxMask || GameManager.contentsType == GameManager.ContentsType.Yum ||
             GameManager.contentsType == GameManager.ContentsType.Ok || GameManager.contentsType == GameManager.ContentsType.Do ||
+            GameManager.contentsType == GameManager.ContentsType.Sumi ||
             GameManager.contentsType == GameManager.ContentsType.GradeTest || GameManager.contentsType == GameManager.ContentsType.Sasinsu ||
             GameManager.contentsType == GameManager.ContentsType.SumisanTower
             )
         {
             return true;
         }
-        //산신령 & 서재 & 지키미 & 보도
+        //산신령 & 서재 & 지키미 & 보도 & 수미산 지키미 
         if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 57) ||
             (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 72) ||
             (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 82) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 83)
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 83) ||
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 92) ||
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 96)
             )
         {
             return true;
@@ -40,11 +43,14 @@ public class UiContentsExitButton : MonoBehaviour
         if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 85) ||
             (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 86) ||
             (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 87) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 88) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 92))
-
-
-
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 88) )
+        {
+            return true;
+        }
+        if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 93) ||
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 94) ||
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 95) ||
+            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 97) )
         {
             return true;
         }
@@ -110,6 +116,10 @@ public class UiContentsExitButton : MonoBehaviour
         {
             GameManager.Instance.LoadContents(GameManager.ContentsType.Do);
         }
+        else if (GameManager.contentsType == GameManager.ContentsType.Sumi)
+        {
+            GameManager.Instance.LoadContents(GameManager.ContentsType.Sumi);
+        }
         else if (GameManager.contentsType == GameManager.ContentsType.GradeTest)
         {
             GameManager.Instance.LoadContents(GameManager.ContentsType.GradeTest);
@@ -124,7 +134,12 @@ public class UiContentsExitButton : MonoBehaviour
             (GameManager.Instance.bossId == 86) ||
             (GameManager.Instance.bossId == 87) ||
             (GameManager.Instance.bossId == 88) ||
-               (GameManager.Instance.bossId == 92) 
+               (GameManager.Instance.bossId == 92) ||
+               (GameManager.Instance.bossId == 93) ||
+               (GameManager.Instance.bossId == 94) ||
+               (GameManager.Instance.bossId == 95) ||
+               (GameManager.Instance.bossId == 96) ||
+               (GameManager.Instance.bossId == 97) 
             
             )
             )

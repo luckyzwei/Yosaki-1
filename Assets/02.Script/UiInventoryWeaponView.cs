@@ -261,7 +261,11 @@ public class UiInventoryWeaponView : MonoBehaviour
             magicBookData.Id == 55 ||
             magicBookData.Id == 56 ||
             magicBookData.Id == 57 ||
-            magicBookData.Id == 58 
+            magicBookData.Id == 58 ||
+            magicBookData.Id == 59 ||
+            magicBookData.Id == 60 ||
+            magicBookData.Id == 61 ||
+            magicBookData.Id == 62 
             ));
         foxNorigaeGetButton.SetActive(false);
         
@@ -340,6 +344,12 @@ public class UiInventoryWeaponView : MonoBehaviour
             {
                 suhoSinDescription.SetText($"월간 패스\n2월 월간패스 보상에서 획득!");
             }
+            else if (
+                magicBookData.Id == 62
+                )
+            {
+                suhoSinDescription.SetText($"월간 패스\n3월 월간패스 보상에서 획득!");
+            }
 
             else if (
                magicBookData.Id == 51 ||
@@ -359,6 +369,15 @@ public class UiInventoryWeaponView : MonoBehaviour
                )
             {
                 suhoSinDescription.SetText($"수미산\n사천왕에서 획득!");
+            }
+            else if (
+               magicBookData.Id == 59 ||
+               magicBookData.Id == 60 ||
+               magicBookData.Id == 61
+
+               )
+            {
+                suhoSinDescription.SetText($"수미산\n아수라와 인드라에서 획득!");
             }
 
             foxNorigaeGetButton.SetActive(magicBookData.Id == 28);
@@ -541,7 +560,7 @@ public class UiInventoryWeaponView : MonoBehaviour
                 || weaponData.Id == 71 || weaponData.Id == 72 || weaponData.Id == 73 || weaponData.Id == 74 || weaponData.Id == 75
                 || weaponData.Id == 76 || weaponData.Id == 77 || weaponData.Id == 78 || weaponData.Id == 79 || weaponData.Id == 80
                 || weaponData.Id == 81 || weaponData.Id == 82 || weaponData.Id == 83 || weaponData.Id == 84 || weaponData.Id == 85
-                || weaponData.Id == 86
+                || weaponData.Id == 86 || weaponData.Id == 90
 
                 )
             {
@@ -552,190 +571,210 @@ public class UiInventoryWeaponView : MonoBehaviour
                     feelMul2Lock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 24)
+                else if (weaponData.Id == 24)
                 {
                     feelMul3Lock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 25)
+                else if (weaponData.Id == 25)
                 {
                     feelMul4Lock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 26)
+                else if (weaponData.Id == 26)
                 {
                     indraLock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 27)
+                else if (weaponData.Id == 27)
                 {
                     nataLock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 28)
+                else if (weaponData.Id == 28)
                 {
                     orochiLock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 29)
+                else if (weaponData.Id == 29)
                 {
                     feelPaeLock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 30)
+                else if (weaponData.Id == 30)
                 {
                     gumihoWeaponLock.gameObject.SetActive(state == 0);
                 }
-                if (weaponData.Id == 31 || weaponData.Id == 32)
+                else if (weaponData.Id == 31 || weaponData.Id == 32)
                 {
                     hellWeaponLock.gameObject.SetActive(state == 0);
                 }
 
-                if (weaponData.Id == 33)
+                else if (weaponData.Id == 33)
                 {
                     yeoRaeWeaponLock.gameObject.SetActive(state == 0);
                 }
-                if (weaponData.Id == 34)
+                else if (weaponData.Id == 34)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"요괴지옥\n강림도령에서 획득!");
                 }
-                if (weaponData.Id == 35)
+                else if (weaponData.Id == 35)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"요괴지옥\n지옥불꽃에서 획득!");
                 }
-                if (weaponData.Id == 36)
+                else if (weaponData.Id == 36)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"지옥 보스전\n일직차사에서 획득!");
                 }
-                if (weaponData.Id == 43)
+                else if (weaponData.Id == 43)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"천상계\n신선 개에서 획득!");
                 }
-                if (weaponData.Id == 44)
+                else if (weaponData.Id == 44)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"천상계\n신선 고양이에서 획득!");
                 }
 
-                if (weaponData.Id == 50)
+                else if (weaponData.Id == 50)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"천상계\n천둥오리에서 획득!");
                 }
-                if (weaponData.Id == 51)
+                else if (weaponData.Id == 51)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"천상계\n근두운에서 획득!");
                 }
-                if (weaponData.Id == 57)
+                else if (weaponData.Id == 57)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n혈량에서 획득!");
                 }
-                if (weaponData.Id == 58)
+                else if (weaponData.Id == 58)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n뇌량에서 획득!");
                 }
-                if (weaponData.Id == 59)
+                else if (weaponData.Id == 59)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n암량에서 획득!");
                 }
-                if (weaponData.Id == 63)
+                else if (weaponData.Id == 63)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n화량에서 획득!");
                 }
-                if (weaponData.Id == 64)
+                else if (weaponData.Id == 64)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n설량에서 획득!");
                 }
-                if (weaponData.Id == 65)
+                else if (weaponData.Id == 65)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n미량에서 획득!");
                 }
-                if (weaponData.Id == 66)
+                else if (weaponData.Id == 66)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n흑량에서 획득!");
                 }
                 //
-                if (weaponData.Id == 67)
+                else if (weaponData.Id == 67)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"사신수\n현무에서 획득!");
                 }
-                if (weaponData.Id == 68)
+                else if (weaponData.Id == 68)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"사신수\n백호에서 획득!");
                 }
-                if (weaponData.Id == 69)
+                else if (weaponData.Id == 69)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"사신수\n주작에서 획득!");
                 }
-                if (weaponData.Id == 70)
+                else if (weaponData.Id == 70)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"사신수\n청룡에서 획득!");
                 }
-                if (weaponData.Id == 77)
+                else if (weaponData.Id == 77)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n남량에서 획득!");
                 }
-                if (weaponData.Id == 78)
+                else if (weaponData.Id == 78)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n여량에서 획득!");
                 }
-                if (weaponData.Id == 79)
+                else if (weaponData.Id == 79)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"도깨비나라\n우량에서 획득!");
                 }
-                if (weaponData.Id == 80)
+                else if (weaponData.Id == 80)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"수미산\n지국천왕에서 획득!");
                 }
-                if (weaponData.Id == 84)
+                else if (weaponData.Id == 84)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"수미산\n광목천왕에서 획득!");
                 }
-                if (weaponData.Id == 85)
+                else if (weaponData.Id == 85)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"수미산\n증장천왕에서 획득!");
                 }
-                if (weaponData.Id == 86)
+                else if (weaponData.Id == 86)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"수미산\n다문천왕에서 획득!");
                 }
 
                 //
-                if (weaponData.Id == 45 || weaponData.Id == 46 || weaponData.Id == 47 || weaponData.Id == 48 || weaponData.Id == 49 ||
+                else if (weaponData.Id == 45 || weaponData.Id == 46 || weaponData.Id == 47 || weaponData.Id == 48 || weaponData.Id == 49 ||
                     weaponData.Id == 52 || weaponData.Id == 53 || weaponData.Id == 54 || weaponData.Id == 55 || weaponData.Id == 56 ||
                     weaponData.Id == 60 || weaponData.Id == 61 || weaponData.Id == 62 || weaponData.Id == 71 || weaponData.Id == 72
-                    || weaponData.Id == 73 || weaponData.Id == 74 || weaponData.Id == 75 || weaponData.Id == 76 || weaponData.Id == 82 || weaponData.Id == 83)
+                    || weaponData.Id == 73 || weaponData.Id == 74 || weaponData.Id == 75 || weaponData.Id == 76 || weaponData.Id == 82 || weaponData.Id == 83 )
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"십만대산\n추천보상으로 획득!");
                 }
-                if (weaponData.Id == 81)
+                else if (weaponData.Id == 81)
                 {
                     weaponLockObject.gameObject.SetActive(state == 0);
                     weaponLockDescription.SetText($"떡국 패스\n보상 교환에서 획득!");
+                }
+                else if (weaponData.Id == 87)
+                {
+                    weaponLockObject.gameObject.SetActive(state == 0);
+                    weaponLockDescription.SetText($"수미산\n아수라에서 획득!");
+                }
+                else if (weaponData.Id == 88)
+                {
+                    weaponLockObject.gameObject.SetActive(state == 0);
+                    weaponLockDescription.SetText($"수미산\n인드라에서 획득!");
+                }
+                else if (weaponData.Id == 89)
+                {
+                    weaponLockObject.gameObject.SetActive(state == 0);
+                    weaponLockDescription.SetText($"수미산\n아드라에서 획득!");
+                }
+                else if (weaponData.Id == 90)
+                {
+                    weaponLockObject.gameObject.SetActive(state == 0);
+                    weaponLockDescription.SetText($"바람개비 패스\n보상 교환에서 획득!");
                 }
 
             }
@@ -1287,6 +1326,12 @@ public class UiInventoryWeaponView : MonoBehaviour
     {
         if (weaponData != null)
         {
+            if (weaponData.WEAPONTYPE == WeaponType.View)
+            {
+                PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
+                return;
+            }
+            
             if (weaponData.Id >= 37 && weaponData.Id <= 42)
             {
                 PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
@@ -1321,6 +1366,12 @@ public class UiInventoryWeaponView : MonoBehaviour
                 return;
             }
             if (weaponData.Id >= 81 && weaponData.Id < 84)
+            {
+                PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
+                return;
+            }
+
+            if (weaponData.Id == 90)
             {
                 PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
                 return;

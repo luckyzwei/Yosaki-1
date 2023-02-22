@@ -16,9 +16,9 @@ public class UiFallEventUsedCollection : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).AsObservable().Subscribe(e =>
         {
-            usedCountText.SetText($"교환한 곶감 수 : {Utils.ConvertBigNum(e)}");
+            usedCountText.SetText($"교환한 봄나물 수 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);
     }
 }

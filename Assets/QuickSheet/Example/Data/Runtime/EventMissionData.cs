@@ -40,4 +40,8 @@ public class EventMissionData
   int dailymaxclear;
   public int Dailymaxclear { get {return dailymaxclear; } set { this.dailymaxclear = value;} }
   
+  [SerializeField]
+  EventMissionType eventmissiontype;
+  public EventMissionType EVENTMISSIONTYPE { get {return eventmissiontype; } set { this.eventmissiontype = value;} }
+  
 }

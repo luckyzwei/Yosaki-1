@@ -109,6 +109,7 @@ public class UiHellRewardCell : MonoBehaviour
         transactions.Add(ServerData.GetItemTypeTransactionValueForAttendance(type, (int)amount));
 
         EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearHell, 1);
+        EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearHell, 1);
         ServerData.SendTransaction(transactions, successCallBack: () =>
         {
             //LogManager.Instance.SendLogType("Son", "reward", tableData.Id.ToString());

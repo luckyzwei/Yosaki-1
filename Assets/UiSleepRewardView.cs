@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-
+using UniRx;
 public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
 {
     [SerializeField]
@@ -11,13 +11,35 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
 
     [SerializeField]
     private GameObject rootObject;
-
+    
     [SerializeField]
     private TextMeshProUGUI timeDescription;
+
+
+    [SerializeField]
+    private GameObject peachObject;
+
+    [SerializeField]
+    private GameObject snowObject;
+
+    [SerializeField]
+    private GameObject springObject;
 
     //[SerializeField]
     //private GameObject winterObject;
 
+    private void Start()
+    {
+        Subscribe();    
+    }
+    private void Subscribe()
+    {
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).AsObservable().Subscribe(e =>
+        {
+            peachObject.SetActive(e == 1);
+        }).AddTo(this);
+
+    }
     public void CheckReward()
     {
         if (SleepRewardReceiver.Instance.sleepRewardInfo == null) return;
@@ -38,22 +60,22 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         {
             if (ts.Days == 0)
             {
-                timeDescription.SetText($"{ts.Hours}시간 {ts.Minutes}분\n(최대 :{maxTimeString}시간)");
+                timeDescription.SetText($"{ts.Hours}시간 {ts.Minutes}분(최대 :{maxTimeString}시간)");
             }
             else
             {
-                timeDescription.SetText($"{ts.TotalHours}시간\n(최대 :{maxTimeString}시간)");
+                timeDescription.SetText($"{ts.TotalHours}시간(최대 :{maxTimeString}시간)");
             }
         }
         else
         {
             if (ts.Days == 0)
             {
-                timeDescription.SetText($"{ts.Minutes}분 {ts.Seconds}초\n(최대 :{maxTimeString}시간)");
+                timeDescription.SetText($"{ts.Minutes}분 {ts.Seconds}초(최대 :{maxTimeString}시간)");
             }
             else
             {
-                timeDescription.SetText($"{ts.TotalHours}시간\n(최대 :{maxTimeString}시간)");
+                timeDescription.SetText($"{ts.TotalHours}시간(최대 :{maxTimeString}시간)");
             }
         }
 
@@ -74,9 +96,14 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
 
         //요괴구슬
         rewards[5].SetText(Utils.ConvertBigNum(reward.yoguiMarble));
-        //이벤트
-        rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem));
-
+        if (ServerData.userInfoTable.CanSpawnSnowManItem())
+        {
+            rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem));
+        }
+        else//눈사람
+        {
+            snowObject.SetActive(false);
+        }
         //스테이지relic
         rewards[7].SetText(Utils.ConvertBigNum(reward.stageRelic));
 
@@ -84,6 +111,27 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         rewards[8].SetText(Utils.ConvertBigNum(reward.sulItem));
 
         rewards[9].SetText(Utils.ConvertBigNum(reward.springItem));
+        
+        //봄나물
+        if (ServerData.userInfoTable.CanSpawnSpringEventItem())
+        {
+
+            if (ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value <= 0)
+            {
+                rewards[10].SetText(Utils.ConvertBigNum(reward.eventItem));
+            }
+            else
+            {
+                rewards[10].SetText(Utils.ConvertBigNum(reward.eventItem * 2));
+            }
+        }
+        else
+        {
+            springObject.SetActive(false);
+        }
+
+        //복숭아
+        rewards[11].SetText(Utils.ConvertBigNum(reward.peachItem));
 
         SleepRewardReceiver.Instance.GetRewardSuccess();
     }

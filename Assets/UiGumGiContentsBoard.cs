@@ -113,6 +113,7 @@ public class UiGumGiContentsBoard : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

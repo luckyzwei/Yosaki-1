@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -197,6 +197,12 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.FourSkill2,
         GoodsTable.FourSkill3,
 
+        GoodsTable.FourSkill4,
+        GoodsTable.FourSkill5,
+        GoodsTable.FourSkill6,
+        GoodsTable.FourSkill7,
+        GoodsTable.FourSkill8,
+
         GoodsTable.c0,
         GoodsTable.c1,
         GoodsTable.c2,
@@ -205,6 +211,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.c5,
         GoodsTable.c6,
         GoodsTable.FoxMaskPartial,
+        GoodsTable.Event_Collection_All,
         GoodsTable.Event_Fall_Gold,
         GoodsTable.Event_NewYear,
         GoodsTable.Event_NewYear_All,
@@ -220,6 +227,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.SumiFireKey,
         GoodsTable.NewGachaEnergy,
         GoodsTable.DokebiBundle,
+        GoodsTable.SinsuRelic,
     };
 
     //SendQueue에서 저장

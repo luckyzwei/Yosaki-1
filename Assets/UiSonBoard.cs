@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -34,6 +34,11 @@ public class UiSonBoard : MonoBehaviour
     [SerializeField]
     private GameObject sonSkillBoard;
 
+    [SerializeField]
+    private GameObject transGameObject;
+    [SerializeField]
+    private GameObject transDescObject;
+
     private void Start()
     {
         Initialize();
@@ -59,6 +64,12 @@ public class UiSonBoard : MonoBehaviour
         ServerData.goodsTable.GetTableData(GoodsTable.Ym).AsObservable().Subscribe(amount =>
         {
             UpdateAbilText1(ServerData.statusTable.GetTableData(StatusTable.Son_Level).Value);
+        }).AddTo(this);
+
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).AsObservable().Subscribe(e =>
+        {
+            transGameObject.SetActive(e == 0);
+            transDescObject.SetActive(e == 1);
         }).AddTo(this);
     }
 
@@ -92,6 +103,8 @@ public class UiSonBoard : MonoBehaviour
     private void Initialize()
     {
         scoreText.SetText($"최고 점수 : {Utils.ConvertBigNum(ServerData.userInfoTable.TableDatas[UserInfoTable.sonScore].Value * GameBalance.BossScoreConvertToOrigin)}");
+
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1) return;
 
         var tableData = TableManager.Instance.SonReward.dataArray;
 
@@ -242,5 +255,30 @@ public class UiSonBoard : MonoBehaviour
     public void OnClickSkillButton()
     {
         sonSkillBoard.SetActive(true);
+    }
+    public void OnClickTransButton()
+    {
+
+
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.sonScore].Value * GameBalance.BossScoreConvertToOrigin < GameBalance.sonGraduateScore)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"데미지 1갈 이상일때 각성 가능!");
+        }
+        else
+        {
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
+                "각성시 부처님 손바닥에서 복숭아 획득이 더이상 불가능 합니다.\n" +
+                $"대신 복숭아 보유효과가 강화 되고({PlayerStats.SonTransAddValue * 100}%)\n" +
+                $"스테이지 일반 요괴 처치시 복숭아를 자동으로 획득 합니다.\n" +
+                "각성 하시겠습니까??", () =>
+              {
+
+                  ServerData.userInfoTable.TableDatas[UserInfoTable.graduateSon].Value = 1;
+                  ServerData.userInfoTable.UpData(UserInfoTable.graduateSon, false);
+                  PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
+
+              }, null);
+        }
+
     }
 }

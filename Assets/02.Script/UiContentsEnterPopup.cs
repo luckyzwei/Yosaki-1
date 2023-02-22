@@ -266,6 +266,7 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
               transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, clearCount);
+              EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, clearCount);
               ServerData.SendTransaction(transactionList,
                   successCallBack: () =>
                   {

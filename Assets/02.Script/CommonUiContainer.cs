@@ -1,4 +1,4 @@
-﻿using Spine.Unity;
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,7 +30,9 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_0,
         CommonString.ItemGrade_1, CommonString.ItemGrade_2, CommonString.ItemGrade_3, CommonString.ItemGrade_4_Skill, CommonString.ItemGrade_5_Skill,
         CommonString.ItemGrade_6_Skill, CommonString.ItemGrade_7_Skill, CommonString.ItemGrade_8_Skill, CommonString.ItemGrade_9_Skill, CommonString.ItemGrade_10_Skill,
-        CommonString.ItemGrade_11_Skill };
+        CommonString.ItemGrade_11_Skill,string.Empty,string.Empty,string.Empty,string.Empty,
+        string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,
+        string.Empty,CommonString.ItemGrade_12_Skill,string.Empty};
     public List<string> ItemGradeName_Skill => itemGradeName_Skill;
 
     private List<string> itemGradeName_NewGacha= new List<string>() { 
@@ -140,10 +142,14 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite SumisanNorigae1;
     public Sprite SumisanNorigae2;
     public Sprite SumisanNorigae3;
+    public Sprite SumisanNorigae4;
+    public Sprite SumisanNorigae5;
+    public Sprite SumisanNorigae6;
 
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
     public Sprite MonthNorigae2;
+    public Sprite MonthNorigae3;
     
     public Sprite DokebiHorn0;
     public Sprite DokebiHorn1;
@@ -197,6 +203,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite SumiFireKey;
     public Sprite NewGachaEnergy;
     public Sprite DokebiBundle;
+    public Sprite SinsuRelic;
 
     public List<SkeletonDataAsset> enemySpineAssets;
 
@@ -252,6 +259,9 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite SumisanWeapon1;
     public Sprite SumisanWeapon2;
     public Sprite SumisanWeapon3;
+    public Sprite SumisanWeapon4;
+    public Sprite SumisanWeapon5;
+    public Sprite SumisanWeapon6;
     
 
     public Sprite SasinsuWeapon0;
@@ -294,6 +304,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite RecommendWeapon20;
 
     public Sprite weapon81;
+    public Sprite weapon90;
 
     public Sprite Sun0;
     public Sprite Sun1;
@@ -318,6 +329,12 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite FourSkill1;
     public Sprite FourSkill2;
     public Sprite FourSkill3;
+
+    public Sprite FourSkill4;
+    public Sprite FourSkill5;
+    public Sprite FourSkill6;
+    public Sprite FourSkill7;
+    public Sprite FourSkill8;
 
     public Sprite HellMark0;
     public Sprite HellMark1;
@@ -612,6 +629,21 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.costume86:
                 return costumeThumbnail[86];
                 break;
+            case Item_Type.costume87:
+                return costumeThumbnail[87];
+                break;
+            case Item_Type.costume88:
+                return costumeThumbnail[88];
+                break;
+            case Item_Type.costume89:
+                return costumeThumbnail[89];
+                break;   
+            case Item_Type.costume90:
+                return costumeThumbnail[90];
+                break;
+            case Item_Type.costume91:
+                return costumeThumbnail[91];
+                break;
 
 
             case Item_Type.RankFrame1:
@@ -669,7 +701,30 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.PartyRaidRankFrame1001_10000:
                 return rankFrame[9];
                 break;
-
+            case Item_Type.MergePartyRaidRankFrame1:
+                return rankFrame[8];
+            case Item_Type.MergePartyRaidRankFrame2:
+                return rankFrame[7];
+            case Item_Type.MergePartyRaidRankFrame3:
+                return rankFrame[6];
+            case Item_Type.MergePartyRaidRankFrame4:
+                return rankFrame[5];
+            case Item_Type.MergePartyRaidRankFrame5:
+                return rankFrame[4];
+            case Item_Type.MergePartyRaidRankFrame6_10:
+                return rankFrame[3];
+            case Item_Type.MergePartyRaidRankFrame11_20:
+                return rankFrame[3];
+            case Item_Type.MergePartyRaidRankFrame21_50:
+                return rankFrame[2];
+            case Item_Type.MergePartyRaidRankFrame51_100:
+                return rankFrame[2];
+            case Item_Type.MergePartyRaidRankFrame101_500:
+                return rankFrame[1];
+            case Item_Type.MergePartyRaidRankFrame501_1000:
+                return rankFrame[1];
+            case Item_Type.MergePartyRaidRankFrame1001_5000:
+                return rankFrame[9];
 
             case Item_Type.RankFrame1_relic:
             case Item_Type.RankFrame2_relic:
@@ -881,7 +936,13 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 break;   
             case Item_Type.SumiFire:
                 return SumiFire;
+                break; 
+            
+            case Item_Type.SinsuRelic:
+                return SinsuRelic;
                 break;
+
+
             case Item_Type.NewGachaEnergy:
                 return NewGachaEnergy;
                 break;   
@@ -909,7 +970,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.Mileage:
                 return Mileage;
                 break;
-            case Item_Type.Event_Fall:
+            case Item_Type.Event_Collection:
                 return Event_Fall;
                 break;
             case Item_Type.Event_Fall_Gold:
@@ -1024,6 +1085,15 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.SumisanNorigae3:
                 return SumisanNorigae3;
                 break;
+            case Item_Type.SumisanNorigae4:
+                return SumisanNorigae4;
+                break;
+            case Item_Type.SumisanNorigae5:
+                return SumisanNorigae5;
+                break;
+            case Item_Type.SumisanNorigae6:
+                return SumisanNorigae6;
+                break;
             //
             case Item_Type.MonthNorigae0:
                 return MonthNorigae0;
@@ -1033,7 +1103,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 break;
             case Item_Type.MonthNorigae2:
                 return MonthNorigae2;
-                break;
+            case Item_Type.MonthNorigae3:
+                return MonthNorigae3;
             //
             //
             case Item_Type.DokebiHorn0:
@@ -1278,6 +1349,17 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return FourSkill3;
                 break;
             //
+            case Item_Type.FourSkill4:
+                return FourSkill4;
+            case Item_Type.FourSkill5:
+                return FourSkill5;
+            case Item_Type.FourSkill6:
+                return FourSkill6;
+            case Item_Type.FourSkill7:
+                return FourSkill7;
+            case Item_Type.FourSkill8:
+                return FourSkill8;
+            //
             case Item_Type.GangrimSkill:
                 return GangrimSkill;
                 break;
@@ -1353,6 +1435,15 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 break;
             case Item_Type.SumisanWeapon3:
                 return SumisanWeapon3;
+                break;
+            case Item_Type.SumisanWeapon4:
+                return SumisanWeapon4;
+                break;
+            case Item_Type.SumisanWeapon5:
+                return SumisanWeapon5;
+                break;
+            case Item_Type.SumisanWeapon6:
+                return SumisanWeapon6;
                 break;
 
             case Item_Type.SasinsuWeapon0:
@@ -1441,6 +1532,10 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 break;
             case Item_Type.weapon81:
                 return weapon81;
+                break;
+                
+            case Item_Type.weapon90:
+                return weapon90;
                 break;
 
             case Item_Type.gumiho0:

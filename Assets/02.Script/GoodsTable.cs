@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackEnd;
@@ -138,6 +138,12 @@ public class GoodsTable
     public static string FourSkill2 = "FS2";
     public static string FourSkill3 = "FS3";
 
+    public static string FourSkill4 = "FS4";
+    public static string FourSkill5 = "FS5";
+    public static string FourSkill6 = "FS6";
+    public static string FourSkill7 = "FS7";
+    public static string FourSkill8 = "FS8";
+
     public static string Fw = "Fw";
     public const string Cw = "Cw"; //천계꽃
 
@@ -149,10 +155,13 @@ public class GoodsTable
     public static string c5 = "c5"; //천계꽃
     public static string c6 = "c6"; //천계꽃
 
-    public static string Event_Fall = "Event_Fall"; //곶감
+    public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체
+    public static string Event_Collection_All = "Event_Collection_All0"; //봄나물 총 획득량
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
-    public static string Event_NewYear = "Event_NewYear"; //신년재화
-    public static string Event_NewYear_All = "Event_NewYear_All"; //신년재화 총수급량
+    public static string Event_NewYear = "Event_NewYear"; //떡국
+    public static string Event_NewYear_All = "Event_NewYear_All"; //신년재화 총생산량
+    public static string Event_Mission = "Event_Mission0"; //바람개비
+    public static string Event_Mission_All = "Event_Mission_All0"; //바람개비 총생산량(소급 위한)
 
     public static string FoxMaskPartial = "FoxMaskPartial"; //여우 탈 재화
     public static string SusanoTreasure = "ST"; // 악귀퇴치 재화
@@ -170,6 +179,7 @@ public class GoodsTable
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
     public static string DokebiBundle = "DB";
+    public static string SinsuRelic = "SinsuRelic";
 
 
 
@@ -291,6 +301,12 @@ public class GoodsTable
         {FourSkill2,0f},
         {FourSkill3,0f},
 
+        {FourSkill4,0f},
+        {FourSkill5,0f},
+        {FourSkill6,0f},
+        {FourSkill7,0f},
+        {FourSkill8,0f},
+
         {Fw,0f},
         {Cw,0f},
         //
@@ -303,10 +319,13 @@ public class GoodsTable
         {c5,0f},
         {c6,0f},
 
-        {Event_Fall,0f},
+        {Event_Collection,0f},
+        {Event_Collection_All,0f},
         {Event_Fall_Gold,0f},
         {Event_NewYear,0f},
         {Event_NewYear_All,0f},
+        {Event_Mission,0f},
+        {Event_Mission_All,0f},
         {FoxMaskPartial,0f},
 
         {DokebiFire,0f},
@@ -321,6 +340,7 @@ public class GoodsTable
         {SumiFireKey,0f},
         {NewGachaEnergy,0f},
         {DokebiBundle,0f},
+        {SinsuRelic,0f},
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -438,6 +458,23 @@ public class GoodsTable
             eventItemAddNum = 0;
         }
     }
+    static float peachItemAddNum = 0;
+    public void GetPeachItem(float amount)
+    {
+        peachItemAddNum += amount;
+
+        //100킬마다 얻게하기 위해서
+        if (peachItemAddNum < updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount)
+        {
+
+        }
+        else
+        {
+            
+            tableDatas[Peach].Value += (int)peachItemAddNum;
+            peachItemAddNum -= (int)peachItemAddNum;
+        }
+    }
     //
 
     public int GetFourSkillHasCount()
@@ -466,7 +503,7 @@ public class GoodsTable
     static int eventItemAddNum_Spring = 0;
     public void GetSpringEventItem(float amount)
     {
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Event_Fall)} 획득(+{(int)amount})");
+        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Event_Collection)} 획득(+{(int)amount})");
 
         eventItemAddNum_Spring += (int)amount;
 
@@ -477,7 +514,16 @@ public class GoodsTable
         else
         {
             //tableDatas[Event_Item_1].Value += eventItemAddNum_Spring;
-            tableDatas[Event_Fall].Value += eventItemAddNum_Spring;
+            tableDatas[Event_Collection].Value += eventItemAddNum_Spring;
+            //총획득량
+            if (ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value == 0)
+            {
+                tableDatas[Event_Collection_All].Value += eventItemAddNum_Spring;
+            }
+            else
+            {
+                tableDatas[Event_Collection].Value += eventItemAddNum_Spring;
+            }
             eventItemAddNum_Spring = 0;
         }
     }
@@ -718,7 +764,10 @@ public class GoodsTable
         goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
         goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
-
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        {
+            goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value);
+        }
         //if (ServerData.userInfoTable.CanSpawnEventItem())
         //{
         //    goodsParam.Add(GoodsTable.Event_Item_0, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_0).Value);
@@ -726,13 +775,18 @@ public class GoodsTable
 
         //goodsParam.Add(GoodsTable.Event_Item_1, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_1).Value);
 
-        if (ServerData.userInfoTable.CanSpawnGotGamEventItem())
+        if (ServerData.userInfoTable.CanSpawnSpringEventItem())
         {
-            goodsParam.Add(GoodsTable.Event_Fall, ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value);
+            goodsParam.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
+            if(ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value==0)
+            {
+                goodsParam.Add(GoodsTable.Event_Collection_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection_All).Value);
+            }
         }
-
-        goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
-
+        if(ServerData.userInfoTable.CanSpawnSnowManItem())
+        {
+            goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+        }
         goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
 
         goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
@@ -1008,6 +1062,31 @@ public class GoodsTable
                     return GoodsTable.FourSkill3;
                 }
                 
+            //   //
+            case Item_Type.FourSkill4:
+                {
+                    return GoodsTable.FourSkill4;
+                }
+                
+            case Item_Type.FourSkill5:
+                {
+                    return GoodsTable.FourSkill5;
+                }
+                
+            case Item_Type.FourSkill6:
+                {
+                    return GoodsTable.FourSkill6;
+                }
+                
+            case Item_Type.FourSkill7:
+                {
+                    return GoodsTable.FourSkill7;
+                }
+            case Item_Type.FourSkill8:
+                {
+                    return GoodsTable.FourSkill8;
+                }
+                
             //
             case Item_Type.GangrimSkill:
                 {
@@ -1072,6 +1151,10 @@ public class GoodsTable
             case Item_Type.SumiFire:
                 {
                     return GoodsTable.SumiFire;
+                } 
+            case Item_Type.SinsuRelic:
+                {
+                    return GoodsTable.SinsuRelic;
                 }
                 
             case Item_Type.NewGachaEnergy:
@@ -1093,9 +1176,391 @@ public class GoodsTable
                 {
                     return GoodsTable.SumiFireKey;
                 }
-                
+            case Item_Type.Event_Collection:
+                {
+                    return GoodsTable.Event_Collection;
+                }
+            case Item_Type.Event_Collection_All:
+                {
+                    return GoodsTable.Event_Collection_All;
+                }
+            case Item_Type.Event_Fall_Gold:
+                {
+                    return GoodsTable.Event_Fall_Gold;
+                }
             default:
                 return type.ToString();
+        }
+    }
+    public Item_Type ServerStringToItemType(string type)
+    {
+
+        if (GoodsTable.Gold == type)
+        {
+            return Item_Type.Gold;
+        }
+        else if (GoodsTable.Jade == type)
+        {
+            return Item_Type.Jade;
+        }
+        else if (GoodsTable.GrowthStone == type)
+        {
+            return Item_Type.GrowthStone;
+        }
+        else if (GoodsTable.Ticket == type)
+        {
+            return Item_Type.Ticket;
+        }
+
+        else if (GoodsTable.MarbleKey == type)
+        {
+            return Item_Type.Marble;
+        }
+
+        else if (GoodsTable.Songpyeon == type)
+        {
+            return Item_Type.Songpyeon;
+        }
+
+        else if (GoodsTable.RelicTicket == type)
+        {
+            return Item_Type.RelicTicket;
+        }
+
+        else if (GoodsTable.Event_Item_0 == type)
+        {
+            return Item_Type.Event_Item_0;
+        }
+
+
+        else if (GoodsTable.Event_Item_1 == type)
+        {
+            return Item_Type.Event_Item_1;
+        }
+
+        else if (GoodsTable.Event_Item_SnowMan == type)
+        {
+            return Item_Type.Event_Item_SnowMan;
+        }
+
+
+        else if (GoodsTable.SulItem == type)
+        {
+            return Item_Type.SulItem;
+        }
+
+
+        else if (GoodsTable.FeelMulStone == type)
+        {
+            return Item_Type.FeelMulStone;
+        }
+
+
+        else if (GoodsTable.Asura0 == type)
+        {
+            return Item_Type.Asura0;
+        }
+
+
+        else if (GoodsTable.Asura1 == type)
+        {
+            return Item_Type.Asura1;
+        }
+
+
+        else if (GoodsTable.Asura2 == type)
+        {
+            return Item_Type.Asura2;
+        }
+
+
+        else if (GoodsTable.Asura3 == type)
+        {
+            return Item_Type.Asura3;
+        }
+
+        else if (GoodsTable.Asura4 == type)
+        {
+            return Item_Type.Asura4;
+        }
+
+
+        else if (GoodsTable.Asura5 == type)
+        {
+            return Item_Type.Asura5;
+        }
+
+        else if (GoodsTable.Aduk == type)
+        {
+            return Item_Type.Aduk;
+        }
+
+
+        else if (GoodsTable.LeeMuGiStone == type)
+        {
+            return Item_Type.LeeMuGiStone;
+        }
+
+
+        //
+        else if (GoodsTable.SinSkill0 == type)
+        {
+            return Item_Type.SinSkill0;
+        }
+
+        else if (GoodsTable.SinSkill1 == type)
+        {
+            return Item_Type.SinSkill1;
+        }
+
+        else if (GoodsTable.SinSkill2 == type)
+        {
+            return Item_Type.SinSkill2;
+        }
+
+        else if (GoodsTable.SinSkill3 == type)
+        {
+            return Item_Type.SinSkill3;
+        }
+
+        else if (GoodsTable.NataSkill == type)
+        {
+            return Item_Type.NataSkill;
+        }
+
+        else if (GoodsTable.OrochiSkill == type)
+        {
+            return Item_Type.OrochiSkill;
+        }
+
+        //
+        else if (GoodsTable.Sun0 == type)
+        {
+            return Item_Type.Sun0;
+        }
+
+        else if (GoodsTable.Sun1 == type)
+        {
+            return Item_Type.Sun1;
+        }
+
+        else if (GoodsTable.Sun2 == type)
+        {
+            return Item_Type.Sun2;
+        }
+
+        else if (GoodsTable.Sun3 == type)
+        {
+            return Item_Type.Sun3;
+        }
+
+        else if (GoodsTable.Sun4 == type)
+        {
+            return Item_Type.Sun4;
+        }
+
+        //
+        else if (GoodsTable.Chun0 == type)
+        {
+            return Item_Type.Chun0;
+        }
+
+        else if (GoodsTable.Chun1 == type)
+        {
+            return Item_Type.Chun1;
+        }
+
+        else if (GoodsTable.Chun2 == type)
+        {
+            return Item_Type.Chun2;
+        }
+
+        else if (GoodsTable.Chun3 == type)
+        {
+            return Item_Type.Chun3;
+        }
+
+        else if (GoodsTable.Chun4 == type)
+        {
+            return Item_Type.Chun4;
+        }
+
+        else if (GoodsTable.DokebiSkill0 == type)
+        {
+            return Item_Type.DokebiSkill0;
+        }
+
+        else if (GoodsTable.DokebiSkill1 == type)
+        {
+            return Item_Type.DokebiSkill1;
+        }
+
+        else if (GoodsTable.DokebiSkill2 == type)
+        {
+            return Item_Type.DokebiSkill2;
+        }
+
+        else if (GoodsTable.DokebiSkill3 == type)
+        {
+            return Item_Type.DokebiSkill3;
+        }
+
+        else if (GoodsTable.DokebiSkill4 == type)
+        {
+            return Item_Type.DokebiSkill4;
+        }
+
+        //            //
+        else if (GoodsTable.FourSkill0 == type)
+        {
+            return Item_Type.FourSkill0;
+        }
+
+        else if (GoodsTable.FourSkill1 == type)
+        {
+            return Item_Type.FourSkill1;
+        }
+
+        else if (GoodsTable.FourSkill2 == type)
+        {
+            return Item_Type.FourSkill2;
+        }
+
+        else if (GoodsTable.FourSkill3 == type)
+        {
+            return Item_Type.FourSkill3;
+        }
+
+        //   //
+        else if (GoodsTable.FourSkill4 == type)
+        {
+            return Item_Type.FourSkill4;
+        }
+
+        else if (GoodsTable.FourSkill5 == type)
+        {
+            return Item_Type.FourSkill5;
+        }
+
+        else if (GoodsTable.FourSkill6 == type)
+        {
+            return Item_Type.FourSkill6;
+        }
+
+        else if (GoodsTable.FourSkill7 == type)
+        {
+            return Item_Type.FourSkill7;
+        }
+        else if (GoodsTable.FourSkill8 == type)
+        {
+            return Item_Type.FourSkill8;
+        }
+
+        //
+        else if (GoodsTable.GangrimSkill == type)
+        {
+            return Item_Type.GangrimSkill;
+        }
+
+        //
+
+        else if (GoodsTable.SmithFire == type)
+        {
+            return Item_Type.SmithFire;
+        }
+
+
+        else if (GoodsTable.StageRelic == type)
+        {
+            return Item_Type.StageRelic;
+        }
+
+
+        else if (GoodsTable.Peach == type)
+        {
+            return Item_Type.PeachReal;
+        }
+
+        else if (GoodsTable.GuildReward == type)
+        {
+            return Item_Type.GuildReward;
+        }
+
+        else if (GoodsTable.SwordPartial == type)
+        {
+            return Item_Type.SP;
+        }
+
+        else if (GoodsTable.Hel == type)
+        {
+            return Item_Type.Hel;
+        }
+
+        else if (GoodsTable.Ym == type)
+        {
+            return Item_Type.Ym;
+        }
+
+        else if (GoodsTable.Fw == type)
+        {
+            return Item_Type.Fw;
+        }
+
+
+        else if (GoodsTable.Cw == type)
+        {
+            return Item_Type.Cw;
+        }
+
+        else if (GoodsTable.DokebiFire == type)
+        {
+            return Item_Type.DokebiFire;
+        }
+
+        else if (GoodsTable.SumiFire == type)
+        {
+            return Item_Type.SumiFire;
+        }  
+        
+        else if (GoodsTable.SinsuRelic == type)
+        {
+            return Item_Type.SinsuRelic;
+        }
+
+        else if (GoodsTable.NewGachaEnergy == type)
+        {
+            return Item_Type.NewGachaEnergy;
+        }
+
+        else if (GoodsTable.DokebiBundle == type)
+        {
+            return Item_Type.DokebiBundle;
+        }
+
+        else if (GoodsTable.DokebiFireKey == type)
+        {
+            return Item_Type.DokebiFireKey;
+        }
+
+        else if (GoodsTable.SumiFireKey == type)
+        {
+            return Item_Type.SumiFireKey;
+        }
+        else if (GoodsTable.Event_Collection == type)
+        {
+            return Item_Type.Event_Collection;
+        }
+        else if (GoodsTable.Event_Collection_All == type)
+        {
+            return Item_Type.Event_Collection_All;
+        }
+        else if (GoodsTable.Event_Fall_Gold == type)
+        {
+            return Item_Type.Event_Fall_Gold;
+        }
+        else
+        {
+            return Item_Type.None;
         }
     }
 }

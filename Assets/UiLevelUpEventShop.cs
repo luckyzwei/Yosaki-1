@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -409,6 +409,38 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
                 }
                 break;
             //
+            //            //
+            case Item_Type.FourSkill4:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill4).Value += amount;
+                    param.Add(GoodsTable.FourSkill4, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill4).Value);
+                }
+                break;
+            case Item_Type.FourSkill5:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill5).Value += amount;
+                    param.Add(GoodsTable.FourSkill5, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill5).Value);
+                }
+                break;
+            case Item_Type.FourSkill6:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill6).Value += amount;
+                    param.Add(GoodsTable.FourSkill6, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill6).Value);
+                }
+                break;
+            case Item_Type.FourSkill7:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill0).Value += amount;
+                    param.Add(GoodsTable.FourSkill7, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill7).Value);
+                }
+                break;
+            case Item_Type.FourSkill8:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value += amount;
+                    param.Add(GoodsTable.FourSkill8, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value);
+                }
+                break;
+            //
             case Item_Type.GangrimSkill:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.GangrimSkill).Value += amount;
@@ -485,7 +517,15 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
                     ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += amount;
                     param.Add(GoodsTable.SumiFire, ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value);
                 }
+                break;  
+                
+            case Item_Type.SinsuRelic:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += amount;
+                    param.Add(GoodsTable.SinsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value);
+                }
                 break;
+
             case Item_Type.NewGachaEnergy:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value += amount;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -101,7 +101,14 @@ public class UiSkillDescriptionPopup : MonoBehaviour
             skillTableData.Id == 33||
             skillTableData.Id == 34||
             skillTableData.Id == 35||
-            skillTableData.Id == 36
+            skillTableData.Id == 36||
+
+            skillTableData.Id == 41||
+            skillTableData.Id == 42||
+            skillTableData.Id == 43||
+            skillTableData.Id == 44||
+            skillTableData.Id == 45
+
             )
         {
             if (skillTableData.Id == 15)
@@ -265,7 +272,54 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                     ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
                 }
             }
+            //
+
+            else if (skillTableData.Id == 41)
+            {
+                //도깨비검 5형 있을때
+                if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill4).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                }
+            }
+
+            else if (skillTableData.Id == 42)
+            {
+                //도깨비검 5형 있을때
+                if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill5).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                }
+            }
+
+            else if (skillTableData.Id == 43)
+            {
+                //도깨비검 5형 있을때
+                if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill6).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                }
+            }
+
+            else if (skillTableData.Id == 44)
+            {
+                //도깨비검 5형 있을때
+                if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill7).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                }
+            }
+
+            else if (skillTableData.Id == 45)
+            {
+                //도깨비검 5형 있을때
+                if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                }
+            }
         }
+
         //
 
         this.gameObject.SetActive(true);

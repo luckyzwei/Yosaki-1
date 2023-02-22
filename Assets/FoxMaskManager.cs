@@ -216,9 +216,15 @@ public class FoxMaskManager : ContentsManagerBase
 
         Param floorParam = new Param();
 
-        floorParam.Add(UserInfoTable.foxMask, ServerData.userInfoTable.GetTableData(UserInfoTable.foxMask).Value);
+        var foxScore = ServerData.userInfoTable.GetTableData(UserInfoTable.foxMask).Value;
+
+        floorParam.Add(UserInfoTable.foxMask, foxScore);
 
         transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, floorParam));
+        if ((int)foxScore >= 1)
+        {
+            ServerData.equipmentTable.ChangeEquip(EquipmentTable.FoxMask, (int)foxScore - 1);
+        }
 
         ServerData.SendTransaction(transactionList, successCallBack: () =>
         {

@@ -51,6 +51,7 @@ public class DokebiDungeonManager : ContentsManagerBase
     protected override void TimerEnd()
     {
         EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearOni, 1);
+        EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearOni, 1);
 
         base.TimerEnd();
 

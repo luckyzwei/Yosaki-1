@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -104,7 +104,13 @@ public static class Utils
                   type == Item_Type.costume82 ||
                   type == Item_Type.costume83 ||
                   type == Item_Type.costume84 ||
-                  type == Item_Type.costume85 
+                  type == Item_Type.costume85 ||
+                  type == Item_Type.costume86 ||
+                  type == Item_Type.costume87 ||
+                  type == Item_Type.costume88 ||
+                  type == Item_Type.costume89 ||
+                  type == Item_Type.costume90 ||
+                  type == Item_Type.costume91
                   ;
     }
     public static bool IsPetItem(this Item_Type type)
@@ -119,11 +125,15 @@ public static class Utils
     {
         return type == Item_Type.MonthNorigae0 ||
                 type == Item_Type.MonthNorigae1 ||
-                type == Item_Type.MonthNorigae2;
+                type == Item_Type.MonthNorigae2 ||
+                type == Item_Type.MonthNorigae3
+                ;
     }
     public static bool IsPassWeaponItem(this Item_Type type)
     {
-        return type == Item_Type.weapon81;
+        return type == Item_Type.weapon81 ||
+                type == Item_Type.weapon90
+            ;
     }
     public static bool IsGoodsItem(this Item_Type type)
     {
@@ -179,11 +189,12 @@ public static class Utils
                 type == Item_Type.DokebiNorigae8 ||
                 type == Item_Type.DokebiNorigae9 ||
 
-                type == Item_Type.SumisanNorigae0||
+                type == Item_Type.SumisanNorigae0 ||
 
                 type == Item_Type.MonthNorigae0 ||
                 type == Item_Type.MonthNorigae1 ||
                 type == Item_Type.MonthNorigae2 ||
+                type == Item_Type.MonthNorigae3 ||
 
 
                 type == Item_Type.DokebiHorn0 ||
@@ -218,13 +229,15 @@ public static class Utils
                 type == Item_Type.FoxMaskPartial ||
                 type == Item_Type.SusanoTreasure ||
                 type == Item_Type.Mileage ||
-                type == Item_Type.Event_Fall ||
+                type == Item_Type.Event_Collection ||
+                type == Item_Type.Event_Collection_All ||
                 type == Item_Type.Event_Fall_Gold ||
                 type == Item_Type.Event_NewYear ||
                 type == Item_Type.SumiFire ||
                 type == Item_Type.SumiFireKey ||
                 type == Item_Type.RelicTicket ||
-                type == Item_Type.NewGachaEnergy 
+                type == Item_Type.SinsuRelic ||
+                type == Item_Type.NewGachaEnergy
                 ;
     }
 
@@ -274,6 +287,7 @@ public static class Utils
             type == GameManager.ContentsType.Yum ||
             type == GameManager.ContentsType.Ok ||
             type == GameManager.ContentsType.Do ||
+            type == GameManager.ContentsType.Sumi ||
             type == GameManager.ContentsType.PartyRaid_Guild; //O
     }
     public static bool IsRankFrameItem(this Item_Type type)
@@ -283,6 +297,10 @@ public static class Utils
     public static bool IsPartyRaidRankFrameItem(this Item_Type type)
     {
         return type >= Item_Type.PartyRaidRankFrame1 && type <= Item_Type.PartyRaidRankFrame1001_10000;
+    }
+    public static bool IsMergePartyRaidRankFrameItem(this Item_Type type)
+    {
+        return type >= Item_Type.MergePartyRaidRankFrame1 && type <= Item_Type.MergePartyRaidRankFrame1001_5000;
     }
 
     public static bool IsRelicRewardItem(this Item_Type type)
@@ -432,7 +450,7 @@ public static class Utils
     }
 
     #region BigFloat
-    private static string[] goldUnitArr = new string[] { "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍", "갈", "라" };
+    private static string[] goldUnitArr = new string[] { "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍", "갈", "라", "가", "언" };
     private static double p = (double)Mathf.Pow(10, 4);
     private static List<double> numList = new List<double>();
     private static List<string> numStringList = new List<string>();

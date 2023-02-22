@@ -240,7 +240,7 @@ public class UiCollectionEventCell : MonoBehaviour
                 goodsParam.Add(GoodsTable.Event_Item_1, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_1).Value);
             }
 
-            goodsParam.Add(itemKey, ServerData.goodsTable.GetTableData(itemKey).Value);
+            goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)tableData.Itemtype), ServerData.goodsTable.GetTableData((Item_Type)tableData.Itemtype).Value);
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         }

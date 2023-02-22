@@ -1,4 +1,4 @@
-﻿using Cinemachine;
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -410,8 +410,12 @@ public class TwelveDungeonManager : ContentsManagerBase
                 twelveBossTable.Id == 88 ||
                 twelveBossTable.Id == 89 ||
                 twelveBossTable.Id == 90 ||
-                twelveBossTable.Id == 92
-
+                twelveBossTable.Id == 92 ||
+                twelveBossTable.Id == 93 ||
+                twelveBossTable.Id == 94 ||
+                twelveBossTable.Id == 95 ||
+                twelveBossTable.Id == 96 ||
+                twelveBossTable.Id == 97 
                 )
             {
                 remainSec *= 0.5f;

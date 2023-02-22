@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum EventMissionType
+{
+    FIRST,
+    SECOND,
+}
 public enum EventMissionKey
 {
     ClearBandit,//반딧불전
@@ -12,6 +16,18 @@ public enum EventMissionKey
     ClearChunFlower,//천계꽃 보상 ★
     ClearDokebiFire,//도깨비나라 보상 ★
     ClearSumiFire,//수미산 보상 ★
+
+    /////
+
+    S_ClearBandit,//반딧불전
+    S_ClearOni,//도깨비전
+    S_ClearFast,//빠른전투
+    S_ClearSwordPartial,//검조각 보상 ★
+    S_ClearHell,//불멸석 보상 ★
+    S_ClearChunFlower,//천계꽃 보상 ★
+    S_ClearDokebiFire,//도깨비나라 보상 ★
+    S_ClearSumiFire,//수미산 보상 ★
+    S_ClearSoulStone,//영혼석 보상
 }
 
 public static class EventMissionManager

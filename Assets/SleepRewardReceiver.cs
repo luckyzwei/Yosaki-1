@@ -29,9 +29,11 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         public readonly float stageRelic;
         public readonly float sulItem;
+        //눈사람,봄나물
         public readonly float springItem;
+        public readonly float peachItem;
 
-        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem)
+        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem)
         {
             this.gold = gold;
 
@@ -56,6 +58,8 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             this.sulItem = sulItem;
 
             this.springItem = springItem;
+
+            this.peachItem = peachItem;
         }
     }
 
@@ -143,14 +147,21 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         float sulItem = killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio * elapsedMinutes;
 
+        //눈사람, 봄나물
         float springItem = killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio * elapsedMinutes;
 
+        //복숭아
+        float peachItem = 0;
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        {
+            peachItem = killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+        }
         eventItem = springItem;
 
         float exp = killedEnemyPerMin * spawnedEnemyData.Exp * GameBalance.sleepRewardRatio * elapsedMinutes;
         exp += exp * expBuffRatio;
 
-        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble, yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds, killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem, springItem: springItem);
+        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble, yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds, killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem, springItem: springItem, peachItem: peachItem);
 
         UiSleepRewardView.Instance.CheckReward();
     }
@@ -176,15 +187,29 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //
         ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value += sleepRewardInfo.yoguiMarble;
 
-        if (ServerData.userInfoTable.CanSpawnEventItem())
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
         {
-            ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_0).Value += sleepRewardInfo.eventItem;
+            ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value += (int)sleepRewardInfo.peachItem;
         }
-
-        //  ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_1).Value += sleepRewardInfo.springItem;
-        ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += sleepRewardInfo.springItem;
-
-
+        //봄나물
+        if (ServerData.userInfoTable.CanSpawnSpringEventItem())
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value += sleepRewardInfo.springItem;
+            if (ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value == 0)
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection_All).Value += sleepRewardInfo.springItem;
+            }
+            else
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value += sleepRewardInfo.springItem;
+            }
+        }
+        //눈사람
+        if (ServerData.userInfoTable.CanSpawnSnowManItem())
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += sleepRewardInfo.springItem;
+        }
+        
         ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value += sleepRewardInfo.sulItem;
         ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value += sleepRewardInfo.stageRelic;
 
@@ -212,13 +237,27 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
         goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
 
-        if (ServerData.userInfoTable.CanSpawnEventItem())
-        {
-            goodsParam.Add(GoodsTable.Event_Item_0, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_0).Value);
-        }
+
 
         //   goodsParam.Add(GoodsTable.Event_Item_1, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_1).Value);
-        goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+        //goodsParam.Add(GoodsTable.Event_Mission, ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission).Value);
+        if (ServerData.userInfoTable.CanSpawnSpringEventItem())
+        {
+            goodsParam.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
+            if (ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value == 0)
+            { 
+                goodsParam.Add(GoodsTable.Event_Collection_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection_All).Value);
+            }
+        }
+        if(ServerData.userInfoTable.CanSpawnSnowManItem())
+        {
+            goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+        }
+        
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        {
+            goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value); 
+        }
 
         goodsParam.Add(GoodsTable.StageRelic, ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value);
         goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);

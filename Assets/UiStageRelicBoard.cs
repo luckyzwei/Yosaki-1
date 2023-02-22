@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,12 +9,11 @@ using UnityEngine.UI;
 public class UiStageRelicBoard : SingletonMono<UiStageRelicBoard>
 {
     [SerializeField]
-    private Transform cellParents;
-    [SerializeField]
-    private Transform cellParents_GoodsRelic;
+    private List<Transform> cellParents;
 
     [SerializeField]
-    private UiStageRelicCell uiRelicCell;
+    private List<UiStageRelicCell> uiRelicCell;
+
     [SerializeField]
     private UiStageRelicCell uiRelicCell_GoodsRelic;
 
@@ -44,7 +43,7 @@ public class UiStageRelicBoard : SingletonMono<UiStageRelicBoard>
 
         for (int i = 0; i < tableDatas.Length; i++)
         {
-            var cell = Instantiate<UiStageRelicCell>(string.IsNullOrEmpty(tableDatas[i].Requiregoods) ? uiRelicCell : uiRelicCell_GoodsRelic, string.IsNullOrEmpty(tableDatas[i].Requiregoods) ? cellParents : cellParents_GoodsRelic);
+            var cell = Instantiate<UiStageRelicCell>(uiRelicCell[tableDatas[i].Parentidx], cellParents[tableDatas[i].Parentidx]);
 
             cell.Initialize(tableDatas[i]);
         }

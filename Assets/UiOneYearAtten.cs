@@ -25,7 +25,7 @@ public class UiOneYearAtten : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).Value += 1000000;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).Value += 1000000;
         }
     }
 #endif
@@ -170,7 +170,7 @@ public class UiOneYearAtten : MonoBehaviour
 
     private bool CanGetReward(int require)
     {
-        int killCountTotal = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).Value;
+        int killCountTotal = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).Value;
         return killCountTotal >= require;
     }
     public bool HasReward(List<int> splitData, int id)

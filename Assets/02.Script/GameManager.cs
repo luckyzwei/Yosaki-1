@@ -49,6 +49,7 @@ public class GameManager : SingletonMono<GameManager>
         DayOfWeekDungeon,
 	    Online_Tower2,
 	 	OldDokebi2,
+	 	Sumi,
     }
     public bool SpawnMagicStone => IsNormalField;
     public bool IsNormalField => contentsType == ContentsType.NormalField;
@@ -276,6 +277,7 @@ public class GameManager : SingletonMono<GameManager>
             DailyMissionManager.UpdateDailyMission(DailyMissionKey.ClearBonusDungeon, 1);
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
         }
 
         if (type != ContentsType.NormalField)

@@ -239,7 +239,7 @@ public class UiMonthlyPassCell : MonoBehaviour
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "2월 노리개 획득!!", null);
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
-        }
+        }   
         else
         {
             //로컬

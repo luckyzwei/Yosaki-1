@@ -75,7 +75,7 @@ public class UiOneYearPassCell : MonoBehaviour
         }).AddTo(disposables);
 
         //킬카운트 변경될때
-        ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).AsObservable().Subscribe(e =>
         {
 
         }).AddTo(disposables);
@@ -135,7 +135,7 @@ public class UiOneYearPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("봄나물 교환 수가 부족합니다.");
             return;
         }
 
@@ -156,7 +156,7 @@ public class UiOneYearPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("봄나물 교환 수가 부족합니다.");
             return;
         }
 
@@ -173,7 +173,7 @@ public class UiOneYearPassCell : MonoBehaviour
         }
        else
         {
-            PopupManager.Instance.ShowAlarmMessage($"곶감 패스권이 필요합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"봄나물 패스권이 필요합니다.");
             return;
         }
         PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
@@ -181,7 +181,7 @@ public class UiOneYearPassCell : MonoBehaviour
 
     static public bool HasPassItem()
     {
-        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiFallEventPassBuyButton.fallPassKey].buyCount.Value > 0;
+        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value > 0;
 
         return hasIapProduct;
     }
@@ -242,7 +242,7 @@ public class UiOneYearPassCell : MonoBehaviour
 
     private bool CanGetReward()
     {
-        int killCountTotalBok = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).Value;
+        int killCountTotalBok = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).Value;
         return killCountTotalBok >= passInfo.require;
     }
     private void OnEnable()

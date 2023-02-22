@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -71,13 +71,34 @@ public class UiStageRelicCell : MonoBehaviour
         {
             var abilValue = PlayerStats.GetStageRelicHasEffect(abilType);
 
+            float totalLevel = ServerData.stageRelicServerTable.GetTotalStageRelicLevel();
+
             if (relicLocalData.Istotalskill == false)
             {
                 relicDescription.SetText($"{CommonString.GetStatusName(abilType)} {Utils.ConvertBigNum(abilValue * 100f)}%");
             }
             else
             {
-                relicDescription.SetText($"{CommonString.GetStatusName(abilType)} {abilValue * 100f}%");
+                if (abilType == StatusType.SuperCritical6DamPer)
+                {
+                    if (ServerData.goodsTable.GetTableData(relicLocalData.Requiregoods).Value >= relicLocalData.Requiregoodsvalue)
+                    {
+                        float superCritical6Value = relicLocalData.Abilvalue * totalLevel * 100f;
+
+                        superCritical6Value *= PlayerStats.GetStageAddValue();
+
+                        relicDescription.SetText($"{CommonString.GetStatusName(abilType)} {superCritical6Value}%");
+                    }
+                    else
+                    {
+                        relicDescription.SetText($"{CommonString.GetStatusName(abilType)} 0%");
+                    }
+                }
+                else
+                {
+                    relicDescription.SetText($"{CommonString.GetStatusName(abilType)} {abilValue * 100f}%");
+                }
+
             }
         }
         else

@@ -31,7 +31,7 @@ public class UiCollectionEventFall : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.goodsTable.GetTableData(GoodsTable.Event_Fall).Value += 1000000;
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value += 1000000;
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {

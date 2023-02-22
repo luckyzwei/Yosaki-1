@@ -65,6 +65,7 @@ public static class CommonString
     public static string ItemGrade_9_Skill = "신선검";
     public static string ItemGrade_10_Skill = "천계검";
     public static string ItemGrade_11_Skill = "도깨비검";
+    public static string ItemGrade_12_Skill = "금강검";
 
     public static string GoldItemName = "골드";
     public static string BonusSpinCoin = "복주머니 뽑기권";
@@ -229,6 +230,11 @@ public static class CommonString
             case Item_Type.costume84: return TableManager.Instance.Costume.dataArray[84].Name;
             case Item_Type.costume85: return TableManager.Instance.Costume.dataArray[85].Name;
             case Item_Type.costume86: return TableManager.Instance.Costume.dataArray[86].Name;
+            case Item_Type.costume87: return TableManager.Instance.Costume.dataArray[87].Name;
+            case Item_Type.costume88: return TableManager.Instance.Costume.dataArray[88].Name;
+            case Item_Type.costume89: return TableManager.Instance.Costume.dataArray[89].Name;
+            case Item_Type.costume90: return TableManager.Instance.Costume.dataArray[90].Name;
+            case Item_Type.costume91: return TableManager.Instance.Costume.dataArray[91].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -331,6 +337,12 @@ public static class CommonString
             case Item_Type.FourSkill1: return "사천왕 기술2";
             case Item_Type.FourSkill2: return "사천왕 기술3";
             case Item_Type.FourSkill3: return "사천왕 기술4";
+
+            case Item_Type.FourSkill4: return "사천왕 기술5";
+            case Item_Type.FourSkill5: return "사천왕 기술6";
+            case Item_Type.FourSkill6: return "사천왕 기술7";
+            case Item_Type.FourSkill7: return "사천왕 기술8";
+            case Item_Type.FourSkill8: return "사천왕 기술9";
             //
             case Item_Type.OrochiTooth0: return "오로치 이빨1";
             case Item_Type.OrochiTooth1: return "오로치 이빨2";
@@ -369,10 +381,13 @@ public static class CommonString
             case Item_Type.du: return "저승 명부";
             case Item_Type.Fw: return "분홍 꽃";
             case Item_Type.Cw: return "천계 꽃";
-            case Item_Type.Event_Fall: return "곶감";
+            case Item_Type.Event_Collection: return "봄나물";
+            case Item_Type.Event_Collection_All: return "봄나물 총 획득량";
             case Item_Type.Event_Fall_Gold: return "황금 곶감";
             case Item_Type.Event_NewYear: return "떡국";
             case Item_Type.Event_NewYear_All: return "떡국 총 획득량";
+            case Item_Type.Event_Mission: return "바람개비";
+            case Item_Type.Event_Mission_All: return "바람개비 총 획득량";
             case Item_Type.FoxMaskPartial: return "나무조각";
             case Item_Type.DokebiFire: return "도깨비불";
             case Item_Type.DokebiFireKey: return "도깨비불 소탕권";
@@ -381,6 +396,7 @@ public static class CommonString
             case Item_Type.MonthNorigae0: return "12월 월간 노리개";
             case Item_Type.MonthNorigae1: return "1월 월간 노리개";
             case Item_Type.MonthNorigae2: return "2월 월간 노리개";
+            case Item_Type.MonthNorigae3: return "3월 월간 노리개";
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
@@ -388,7 +404,10 @@ public static class CommonString
             case Item_Type.SumiFireKey: return "수미꽃 소탕권";
             case Item_Type.NewGachaEnergy: return "영혼석";
             case Item_Type.weapon81: return "설날 외형 무기";
+            case Item_Type.weapon90: return "바람개비 외형 무기";
             case Item_Type.DokebiBundle: return "도깨비 보물상자";
+
+            case Item_Type.SinsuRelic: return "황룡의 여의주";
 
         }
 
@@ -579,6 +598,8 @@ public static class CommonString
             case StatusType.DokebiFireHasValueUpgrade:
                 return "도깨비 불 레벨당 귀신베기 피해량 증가(%)";
                 break;
+            case StatusType.SumiHasValueUpgrade:
+                return "수미꽃 레벨당 금강베기 피해량 증가(%)";
         }
 
         return "등록필요";

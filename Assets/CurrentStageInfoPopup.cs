@@ -40,7 +40,10 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         desc += $"{CommonString.GetItemName(Item_Type.StageRelic)} : {Utils.ConvertBigNum(stageData.Relicspawnamount)}\n";
         desc += $"보스체력 : {Utils.ConvertBigNum(enemyTableData.Hp * enemyTableData.Bosshpratio)}\n";
         desc += $"보스공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower * enemyTableData.Bossattackratio)}";
-
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)
+        {
+            desc += $"\n요괴 1000마리당 복숭아 획득량 : {stageData.Peachamount * 1000}";
+        }
         description.SetText(desc);
     }
 }

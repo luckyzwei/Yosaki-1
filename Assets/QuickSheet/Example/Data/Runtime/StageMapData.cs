@@ -80,4 +80,8 @@ public class StageMapData
   int newgachaenegy;
   public int Newgachaenegy { get {return newgachaenegy; } set { this.newgachaenegy = value;} }
   
+  [SerializeField]
+  float peachamount;
+  public float Peachamount { get {return peachamount; } set { this.peachamount = value;} }
+  
 }

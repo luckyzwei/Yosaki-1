@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -68,7 +68,7 @@ public enum Item_Type
     KirinNorigae,
     Kirin_Pet,
     IndraPower,
-    Event_Item_SnowMan,
+    Event_Item_SnowMan, //눈사람
     NataWeapon,
     RabitNorigae,
     RabitPet,
@@ -109,7 +109,7 @@ public enum Item_Type
     ChunSun0,
     ChunSun1,
     ChunSun2,
-    Event_Fall,
+    Event_Collection,//봄나물
     Event_Fall_Gold,
     ChunNorigae3,
     ChunNorigae4,
@@ -245,6 +245,19 @@ public enum Item_Type
     PartyRaidRankFrame21_100 = 866,
     PartyRaidRankFrame101_1000 = 867,
     PartyRaidRankFrame1001_10000 = 868,
+
+    MergePartyRaidRankFrame1 = 870,
+    MergePartyRaidRankFrame2 = 871,
+    MergePartyRaidRankFrame3 = 872,
+    MergePartyRaidRankFrame4 = 873,
+    MergePartyRaidRankFrame5 = 874,
+    MergePartyRaidRankFrame6_10 = 875,
+    MergePartyRaidRankFrame11_20 = 876,
+    MergePartyRaidRankFrame21_50 = 877,
+    MergePartyRaidRankFrame51_100 = 878,
+    MergePartyRaidRankFrame101_500 = 879,
+    MergePartyRaidRankFrame501_1000 = 880,
+    MergePartyRaidRankFrame1001_5000 = 881,
 
     //1000~1100 무기
     weapon0 = 1000,
@@ -414,6 +427,13 @@ public enum Item_Type
 
     costume86 = 1287, //그림자동굴
 
+    costume87 = 1288, //수미산추가보스
+    costume88 = 1289, //수미산추가보스
+    costume89 = 1290, //수미산추가보스
+
+    costume90 = 1291, //봄나물 머슴호연
+    costume91 = 1292, //3월 월간외형2
+
     pet0 = 1301,
     pet1 = 1302,
     pet2 = 1303,
@@ -512,11 +532,17 @@ public enum Item_Type
     SumisanWeapon1 = 7121,
     SumisanWeapon2 = 7122,
     SumisanWeapon3 = 7123,
+    SumisanWeapon4 = 7124,
+    SumisanWeapon5 = 7125,
+    SumisanWeapon6 = 7126,
 
     SumisanNorigae0 = 7130,
     SumisanNorigae1 = 7131,
     SumisanNorigae2 = 7132,
     SumisanNorigae3 = 7133,
+    SumisanNorigae4 = 7134,
+    SumisanNorigae5 = 7135,
+    SumisanNorigae6 = 7136,
 
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
@@ -550,7 +576,8 @@ public enum Item_Type
     MonthNorigae1 = 8601,
     weapon81 = 8602,
     MonthNorigae2 = 8603,
-
+    weapon90 = 8604,//바람개비무기
+    MonthNorigae3 = 8605, // 월간노리개
 
     Chun0 = 8700, // 천계기술
     Chun1 = 8701,
@@ -567,10 +594,20 @@ public enum Item_Type
     FourSkill0 = 8720, //사천왕기술
     FourSkill1 = 8721, 
     FourSkill2 = 8722, 
-    FourSkill3 = 8723, 
+    FourSkill3 = 8723,
 
-    Event_NewYear = 8800,
+    FourSkill4 = 8724, //사천왕 유저기술
+    FourSkill5 = 8725,
+    FourSkill6 = 8726,
+    FourSkill7 = 8727,
+    FourSkill8 = 8728,
+
+    Event_NewYear = 8800, //떡국
     Event_NewYear_All = 8801, // 총 습득량
+    
+    Event_Mission = 8802,//바람개비
+    Event_Mission_All = 8803, // 총 습득량
+    Event_Collection_All =8804,//봄나물 총습득량
 
     Mileage = 9000,
     DokebiFire = 9001,
@@ -584,6 +621,8 @@ public enum Item_Type
     SumiFireKey = 9009,
     NewGachaEnergy = 9010,
     DokebiBundle = 9011,
+
+    SinsuRelic = 9012,
 }
 //
 public class DropItem : PoolItem

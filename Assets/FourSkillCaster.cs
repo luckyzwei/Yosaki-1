@@ -4,7 +4,7 @@ using System.Linq;
 using UniRx;
 using UnityEngine;
 
-public class FourSkillCaster : SingletonMono<SonSkillCaster>
+public class FourSkillCaster : SingletonMono<FourSkillCaster>
 {
     public Transform skillSpawnPos;
 

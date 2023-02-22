@@ -157,6 +157,7 @@ public class UiDayOfWeekDungeonBoard : MonoBehaviour
 
             DailyMissionManager.UpdateDailyMission(DailyMissionKey.ClearBonusDungeon, 10);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

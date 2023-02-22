@@ -42,11 +42,12 @@ public class EnemyHitObject : MonoBehaviour
     private void SetPercentValueByBossId()
     {
         if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && (GameManager.Instance.bossId == 57 ||
-            GameManager.Instance.bossId == 72 || GameManager.Instance.bossId == 82 || GameManager.Instance.bossId == 83 || GameManager.Instance.bossId == 92))
+            GameManager.Instance.bossId == 72 || GameManager.Instance.bossId == 82 || GameManager.Instance.bossId == 83 || GameManager.Instance.bossId == 92 || GameManager.Instance.bossId == 96
+            ))
         {
             this.percentDamage = 1f;
         }
-        
+
         else if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && (
          //선녀들
          GameManager.Instance.bossId == 58 ||
@@ -57,13 +58,13 @@ public class EnemyHitObject : MonoBehaviour
          GameManager.Instance.bossId == 63 ||
          GameManager.Instance.bossId == 64 ||
          // 도깨비들
-         GameManager.Instance.bossId == 75 || 
+         GameManager.Instance.bossId == 75 ||
          GameManager.Instance.bossId == 76 ||
          GameManager.Instance.bossId == 77 ||
          GameManager.Instance.bossId == 78 ||
          GameManager.Instance.bossId == 79 ||
          GameManager.Instance.bossId == 80 ||
-         GameManager.Instance.bossId == 81 
+         GameManager.Instance.bossId == 81
          //
          ))
         {

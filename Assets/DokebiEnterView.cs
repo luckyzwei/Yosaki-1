@@ -181,6 +181,7 @@ public class DokebiEnterView : MonoBehaviour
              transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
              transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
              EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearOni, clearCount);
+             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearOni, clearCount);
              ServerData.SendTransaction(transactions, successCallBack: () =>
              {
                  PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Dokebi)} {rewardNum * clearCount}개 획득!");

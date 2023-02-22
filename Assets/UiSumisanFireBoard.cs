@@ -152,6 +152,7 @@ public class UiSumisanFireBoard : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
             
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

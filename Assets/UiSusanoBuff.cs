@@ -18,6 +18,7 @@ public class UiSusanoBuff : SingletonMono<UiSusanoBuff>
         if (GameManager.contentsType == GameManager.ContentsType.Ok) return;
         if (GameManager.contentsType == GameManager.ContentsType.Yum) return;
         if (GameManager.contentsType == GameManager.ContentsType.Do) return;
+        if (GameManager.contentsType == GameManager.ContentsType.Sumi) return;
         if (GameManager.contentsType == GameManager.ContentsType.Sasinsu) return;
         if (GameManager.contentsType == GameManager.ContentsType.Online_Tower) return;
         if (GameManager.contentsType == GameManager.ContentsType.GradeTest) return;
@@ -43,8 +44,12 @@ public class UiSusanoBuff : SingletonMono<UiSusanoBuff>
             GameManager.Instance.bossId == 88 ||
             GameManager.Instance.bossId == 89 ||
             GameManager.Instance.bossId == 90 ||
-            GameManager.Instance.bossId == 92
-            //도깨비 지킴이
+            GameManager.Instance.bossId == 92 ||
+            GameManager.Instance.bossId == 93 ||
+            GameManager.Instance.bossId == 94 ||
+            GameManager.Instance.bossId == 95 ||
+            GameManager.Instance.bossId == 96 ||    //도깨비 지킴이
+            GameManager.Instance.bossId == 97       //황룡
 
             )) return;
 

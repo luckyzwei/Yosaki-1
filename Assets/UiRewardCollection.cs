@@ -47,6 +47,9 @@ public class UiRewardCollection : MonoBehaviour
     private GameObject Bandi0;
     [SerializeField]
     private GameObject Bandi1;
+    
+    [SerializeField]
+    private GameObject SonObject;
 
     private void Start()
     {
@@ -83,6 +86,11 @@ public class UiRewardCollection : MonoBehaviour
         ServerData.userInfoTable.GetTableData(UserInfoTable.relicKillCount).AsObservable().Subscribe(e =>
         {
             newGachaButton.interactable = e >= 25000;
+        }).AddTo(this);
+
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).AsObservable().Subscribe(e =>
+        {
+            SonObject.SetActive(e == 0);
         }).AddTo(this);
     }
 
@@ -139,6 +147,7 @@ public class UiRewardCollection : MonoBehaviour
                     });
 
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, clearCount);
+                EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, clearCount);
 
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{clearCount}회 소탕 완료!\n{CommonString.GetItemName(Item_Type.Jade)} {rewardNumJade}개\n{CommonString.GetItemName(Item_Type.Marble)} {rewardNumMarble}개 획득!", null);
                 SoundManager.Instance.PlaySound("GoldUse");
@@ -210,6 +219,7 @@ public class UiRewardCollection : MonoBehaviour
             DailyMissionManager.UpdateDailyMission(DailyMissionKey.ClearBonusDungeon, 10);
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
@@ -282,6 +292,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearOni, clearCount);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearOni, clearCount);
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
 
@@ -337,6 +348,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
@@ -383,6 +395,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearChunFlower, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearChunFlower, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
@@ -474,6 +487,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearDokebiFire, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
@@ -515,6 +529,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
@@ -563,6 +578,7 @@ public class UiRewardCollection : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
+            EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSoulStone, 1);
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {amount}개 획득!", null);

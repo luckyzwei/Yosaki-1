@@ -16,7 +16,7 @@ public class UiOneYearKillIndicator : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(UserInfoTable.usedFallCollectionCount).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.usedCollectionCount).AsObservable().Subscribe(e =>
         {
             killCountText.SetText($"처치 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);

@@ -68,4 +68,8 @@ public class StageRelicData
   bool istotalskill;
   public bool Istotalskill { get {return istotalskill; } set { this.istotalskill = value;} }
   
+  [SerializeField]
+  int parentidx;
+  public int Parentidx { get {return parentidx; } set { this.parentidx = value;} }
+  
 }

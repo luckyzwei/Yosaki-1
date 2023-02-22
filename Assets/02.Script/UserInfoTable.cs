@@ -132,10 +132,11 @@ public class UserInfoTable
 
 
 
-    //6월월간
+    //짝수 월간훈련(Monthlypass)
     public const string killCountTotal = "k14";
-    //7월월간
-    public const string killCountTotal2 = "k13";
+    //홀수 월간훈련(Monthlypass2)
+    public const string killCountTotal2 = "k15";
+    public const string monthAttendCount = "mac";
     public const string killCountTotalChild = "fal"; //가을훈련
     public const string killCountTotalWinterPass = "KillCountWinterPass"; //가을훈련
     public const string killCountTotalSeason = "ks1"; //혹한기 다음거
@@ -144,7 +145,7 @@ public class UserInfoTable
     public const string attenCountChuSeok = "kchu";
     public const string attenCountSeason = "as1";
 
-    public const string usedFallCollectionCount = "ufc"; //곶감사용
+    public const string usedCollectionCount = "ufc0"; //곶감사용 => 봄나물 사용
     public const string usedSnowManCollectionCount = "usc"; //눈사람사용
 
 
@@ -169,6 +170,7 @@ public class UserInfoTable
     public const string yumScore = "yumScore";
     public const string okScore = "okScore";
     public const string doScore = "doScore";
+    public const string sumiScore = "sumiScore";
     public const string sleepRewardSavedTime = "sleepRewardSavedTime";
     public const string buffAwake = "buffAwake";
     public const string petAwake = "petAwake";
@@ -190,13 +192,10 @@ public class UserInfoTable
 
     public const string sendPetExp = "sendPetExp";
 
-    public const string exchangeCount = "ex_0";
-    public const string exchangeCount_1 = "ex_1";
-    public const string exchangeCount_2 = "ex_2";
-    public const string exchangeCount_3 = "ex_3";
-    public const string exchangeCount_4 = "ex_4";
-    public const string exchangeCount_5 = "ex_5";
-    public const string exchangeCount_6 = "ex_6";
+    public const string exchangeCount = "ec_0";
+    public const string exchangeCount_1 = "ec_1";
+    public const string exchangeCount_2 = "ec_2";
+    public const string exchangeCount_3 = "ec_3";
 
     public const string snow_exchangeCount_0 = "co0";
     public const string snow_exchangeCount_1 = "co1";
@@ -232,6 +231,11 @@ public class UserInfoTable
     public const string ny_ex_3 = "ny_ex_3";
     public const string ny_ex_4 = "ny_ex_4";
     public const string ny_ex_5 = "ny_ex_5";
+    public const string eventMission0_0 = "em_0_0";
+    public const string eventMission0_1 = "em_0_1";
+    public const string eventMission0_2 = "em_0_2";
+    public const string eventMission0_3 = "em_0_3";
+    public const string eventMission0_4 = "em_0_4";
 
     public const string nickNameChange = "nickNameChange";
     public const string getPetHome = "gph";
@@ -244,6 +248,10 @@ public class UserInfoTable
     public const string dailySleepRewardReceiveCount = "dss";
 
     public const string getFoxCup = "gfc";
+
+    public const string graduateSon = "GS";
+    public const string getMovingAutoAttack = "GMAA";
+
 
     public double currentServerDate;
     public double attendanceUpdatedTime;
@@ -343,6 +351,8 @@ public class UserInfoTable
         {DokebiFireClear,0f},
         {DayOfWeekClear,0f},
         {getFoxCup,0f},
+        {graduateSon,0f},
+        {getMovingAutoAttack,0f},
 
 
         {yomul0_buff,0f},
@@ -358,12 +368,13 @@ public class UserInfoTable
 
         {yomul5_buff,0f},
         {killCountTotal2,0f},
+        {monthAttendCount,1f},
         {killCountTotalChild,0f},
         {killCountTotalWinterPass,0f},
         {killCountTotalSeason,0f},
         {attenCountBok,1f},
         {attenCountSpring,1f},
-        {usedFallCollectionCount,0f},
+        {usedCollectionCount,0f},
         {usedSnowManCollectionCount,0f},
         {attenCountChuSeok,1f},
         {attenCountSeason,1f},
@@ -376,6 +387,7 @@ public class UserInfoTable
         {yumScore,0f},
         {okScore,0f},
         {doScore,0f},
+        {sumiScore,0f},
         {sleepRewardSavedTime,0f},
         {yomul7_buff,0f},
         {attendanceCount_100Day,1f},
@@ -405,9 +417,6 @@ public class UserInfoTable
         {exchangeCount_1,0},
         {exchangeCount_2,0},
         {exchangeCount_3,0},
-        {exchangeCount_4,0},
-        {exchangeCount_5,0},
-        {exchangeCount_6,0},
 
         {monthreset,0},
         {refundFox,0},
@@ -439,6 +448,11 @@ public class UserInfoTable
         {ny_ex_4,0},
         {ny_ex_5,0},
 
+        {eventMission0_0,0},
+        {eventMission0_1,0},
+        {eventMission0_2,0},
+        {eventMission0_3,0},
+        {eventMission0_4,0},
 
         {nickNameChange,0},
         {getPetHome,0},
@@ -851,6 +865,7 @@ public class UserInfoTable
         if (monthChanged)
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
         }
         //두번타는거 방지
         if (attendanceUpdatedTime != day)
@@ -866,6 +881,7 @@ public class UserInfoTable
             ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountBok).Value++;
             ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountChuSeok).Value++;
             ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountSeason).Value++;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value++;
 
             if (ServerData.iapServerTable.TableDatas[UserInfoTable.oakpensionAttendance].buyCount.Value > 0f)
             {
@@ -938,6 +954,7 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.attenCountBok, ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountBok).Value);
         userInfoParam.Add(UserInfoTable.attenCountChuSeok, ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountChuSeok).Value);
         userInfoParam.Add(UserInfoTable.attenCountSeason, ServerData.userInfoTable.GetTableData(UserInfoTable.attenCountSeason).Value);
+        userInfoParam.Add(UserInfoTable.monthAttendCount, ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value);
 
         userInfoParam.Add(UserInfoTable.oakpensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.oakpensionAttendance).Value);
         userInfoParam.Add(UserInfoTable.marblepensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.marblepensionAttendance).Value);
@@ -998,8 +1015,11 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.yomul5_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul5_buff).Value);
         userInfoParam.Add(UserInfoTable.yomul6_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul6_buff).Value);
         userInfoParam.Add(UserInfoTable.yomul7_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul7_buff).Value);
-        userInfoParam.Add(UserInfoTable.nickNameChange, ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value);
-
+        if (monthChanged)
+        { 
+            userInfoParam.Add(UserInfoTable.nickNameChange, ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value);
+            userInfoParam.Add(UserInfoTable.monthAttendCount, ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value);
+        }
 
         //채팅 테두리 초기화
         if (weekChanged)
@@ -1160,19 +1180,18 @@ public class UserInfoTable
         return tableDatas[removeAd].Value == 1;
     }
 
-    public bool CanSpawnEventItem()
+    //2월28일까지
+    public bool CanSpawnSnowManItem()
     {
-        if (currentServerTime.Month == 11) return true;
-        if (currentServerTime.Month == 12) return true;
-        if (currentServerTime.Month == 1) return true;
-        if (currentServerTime.Month == 2) return true;
+        
+        if (currentServerTime.Month < 3) return true;
 
         return false;
     }
-
-    public bool CanSpawnGotGamEventItem()
+    //4월30일까지
+    public bool CanSpawnSpringEventItem()
     {
-        if (currentServerTime.Month == 12 && currentServerTime.Day < 30) return true;
+        if (currentServerTime.Month < 5) return true;
 
         return false;
     }
@@ -1289,9 +1308,9 @@ public class UserInfoTable
     public bool IsMonthlyPass2()
     {
 #if UNITY_EDITOR
-        return false;
+        return true;
 #endif
-        //홀수 달의 경우 true
+        //홀수 달의 경우 true , true면 MonthlyPass2
         return (currentServerTime.Month % 2) == 1;
     }
 

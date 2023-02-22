@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -346,15 +346,18 @@ public class SkillServerTable
 
             return originLevel;
         }
-        else if(tableData.SKILLCASTTYPE == SkillCastType.Son)
+        else if (tableData.SKILLCASTTYPE == SkillCastType.Son)
         {
             return ServerData.statusTable.GetTableData(StatusTable.Son_Level).Value - tableData.Sonunlocklevel;
         }
         //사천왕
-        else
+        else if (tableData.SKILLCASTTYPE == SkillCastType.Four)
         {
-            return ServerData.goodsTable.GetFourSkillHasCount() - tableData.Sonunlocklevel;
+            //return ServerData.goodsTable.GetFourSkillHasCount() - tableData.Sonunlocklevel;
+            return (int)(ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value * 0.1f);
         }
+
+        return 0;
 
     }
 
@@ -368,8 +371,7 @@ public class SkillServerTable
 
         int plusAddValue = 0;
 
-        if (tableData.Skilltype == 0 || tableData.Skilltype == 1 || tableData.Skilltype == 2 || tableData.Skilltype == 4 ||
-            tableData.Skilltype == 5 || tableData.Skilltype == 6 || tableData.Skilltype == 7|| tableData.Skilltype == 8)
+        if (tableData.SKILLCASTTYPE == SkillCastType.Player)
         {
             plusAddValue = ServerData.statusTable.GetTableData(StatusTable.Skill0_AddValue).Value;
             plusAddValue += ServerData.statusTable.GetTableData(StatusTable.Skill1_AddValue).Value;

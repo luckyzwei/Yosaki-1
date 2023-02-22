@@ -550,7 +550,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
             return;
         }
 
-        if (Utils.HasBadWord(roomNameInput_make.text) || roomNameInput_make.text.Contains(CommonString.GuildText) || roomNameInput_make.text.Contains(CommonString.PartyTowerText))
+        if (Utils.HasBadWord(roomNameInput_make.text) || roomNameInput_make.text.Contains(CommonString.GuildText) || roomNameInput_make.text.Contains(CommonString.PartyTowerText)
+            || roomNameInput_make.text.Contains(CommonString.PartyTower2Text))
         {
             PopupManager.Instance.ShowAlarmMessage($"부적절한 이름이 포함되어 있습니다.");
             return;
@@ -1495,6 +1496,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
     public bool IsNormalBoss()
     {
         return IsGuildBoss() == false && IsPartyTowerBoss() == false;
+
     }
 
     public bool IsAllPlayerEnd()

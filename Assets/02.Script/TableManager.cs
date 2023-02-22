@@ -675,6 +675,14 @@ public class TableManager : SingletonMono<TableManager>
     public monthpass2 MonthlyPass2 => monthlyPass2;
 
     [SerializeField]
+    private MonthlyPassAttend monthlyPassAttend;
+    public MonthlyPassAttend MonthlyPassAttend => monthlyPassAttend;
+
+    [SerializeField]
+    private MonthlyPassAttend2 monthlyPassAttend2;
+    public MonthlyPassAttend2 MonthlyPassAttend2 => monthlyPassAttend2;
+
+    [SerializeField]
     private SonReward sonReward;
 
     public SonReward SonReward => sonReward;
@@ -734,6 +742,7 @@ public class TableManager : SingletonMono<TableManager>
     public OkTable okTable;
     public YumTable yumTable;
     public DoTable doTable;
+    public SumiTable sumiTable;
     //사신수
     public SasinsuTable sasinsuTable;
 
@@ -765,6 +774,7 @@ public class TableManager : SingletonMono<TableManager>
     public FoxCup foxCup;
     public DayOfWeekDungeon dayOfWeekDungeon;
     public CostumeCollection costumeCollection;
+    public ChoboTable choboTable;
     public TwoCave twoCave;
     public SpringAtten springAtten;
 

@@ -143,10 +143,15 @@ public class MonthlyPassServerTable
     public static string MonthlypassFreeReward = "f8";
     public static string MonthlypassAdReward = "a8";
 
+    public static string MonthlypassAttendFreeReward = "af8";
+    public static string MonthlypassAttendAdReward = "aa8";
+
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
         { MonthlypassFreeReward,string.Empty},
-        { MonthlypassAdReward,string.Empty}
+        { MonthlypassAdReward,string.Empty},
+        { MonthlypassAttendFreeReward,string.Empty},
+        { MonthlypassAttendAdReward,string.Empty}
     };
 
     private ReactiveDictionary<string, ReactiveProperty<string>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<string>>();
@@ -258,13 +263,18 @@ public class MonthlyPassServerTable2
     public const string tableName = "MonthlyPass2";
 
 
-    public static string MonthlypassFreeReward = "f12";
-    public static string MonthlypassAdReward = "a12";
+    public static string MonthlypassFreeReward = "f13";
+    public static string MonthlypassAdReward = "a13";
+
+    public static string MonthlypassAttendFreeReward = "af13";
+    public static string MonthlypassAttendAdReward = "aa13";
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
         { MonthlypassFreeReward,string.Empty},
-        { MonthlypassAdReward,string.Empty}
+        { MonthlypassAdReward,string.Empty},
+        { MonthlypassAttendFreeReward,string.Empty},
+        { MonthlypassAttendAdReward,string.Empty}
     };
 
     private ReactiveDictionary<string, ReactiveProperty<string>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<string>>();
@@ -1010,9 +1020,9 @@ public class OneYearPassServerTable
     public const string tableName = "onePass";
 
 
-    //2022가을 사용중
-    public static string childFree = "f4";
-    public static string childAd = "a4";
+    //2023 봄나물 사용중
+    public static string childFree = "f5";
+    public static string childAd = "a5";
 
     //2022눈사람 사용중
     public static string childFree_Snow = "fn0";
