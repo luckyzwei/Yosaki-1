@@ -85,7 +85,7 @@ public class HellRelicDungeonManager : ContentsManagerBase
 
     private void EndGame()
     {
-        //UpdateRank();
+        UpdateRank();
 
         modeState = ModeState.End;
 
@@ -111,7 +111,7 @@ public class HellRelicDungeonManager : ContentsManagerBase
 
             ServerData.userInfoTable.UpData(UserInfoTable.hellRelicKillCount, false);
 
-            RankManager.Instance.UpdateRelic_Score(enemyDeadCount.Value);
+            //RankManager.Instance.UpdateRelic_Score(enemyDeadCount.Value);
 
             //보상용
             var yeoraeData = ServerData.bossServerTable.TableDatas["b53"];
