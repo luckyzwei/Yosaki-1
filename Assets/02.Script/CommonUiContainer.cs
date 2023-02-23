@@ -702,27 +702,27 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return rankFrame[9];
                 break;
             case Item_Type.MergePartyRaidRankFrame1:
-                return rankFrame[8];
+                return HellMark7;
             case Item_Type.MergePartyRaidRankFrame2:
-                return rankFrame[7];
+                return HellMark7;
             case Item_Type.MergePartyRaidRankFrame3:
-                return rankFrame[6];
+                return HellMark7;
             case Item_Type.MergePartyRaidRankFrame4:
-                return rankFrame[5];
+                return HellMark7;
             case Item_Type.MergePartyRaidRankFrame5:
-                return rankFrame[4];
+                return HellMark7;
             case Item_Type.MergePartyRaidRankFrame6_10:
-                return rankFrame[3];
+                return HellMark6;
             case Item_Type.MergePartyRaidRankFrame11_20:
-                return rankFrame[3];
+                return HellMark4;
             case Item_Type.MergePartyRaidRankFrame21_50:
-                return rankFrame[2];
+                return HellMark3;
             case Item_Type.MergePartyRaidRankFrame51_100:
-                return rankFrame[2];
+                return HellMark1;
             case Item_Type.MergePartyRaidRankFrame101_500:
-                return rankFrame[1];
+                return HellMark5;
             case Item_Type.MergePartyRaidRankFrame501_1000:
-                return rankFrame[1];
+                return HellMark0;
             case Item_Type.MergePartyRaidRankFrame1001_5000:
                 return rankFrame[9];
 
