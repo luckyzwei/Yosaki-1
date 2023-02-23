@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UniRx;
@@ -133,51 +133,51 @@ public class UiPostView : MonoBehaviour
             {
                 case Item_Type.MergePartyRaidRankFrame1:
                     title.SetText("십만대산 개인 랭킹보상(1위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_1}개\n채팅 아이콘(1등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_1}개\n채팅 아이콘(1등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame2:
                     title.SetText("십만대산 개인 랭킹보상(2위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_2}개\n채팅 아이콘(2등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_2}개\n채팅 아이콘(2등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame3:
                     title.SetText("십만대산 개인 랭킹보상(3위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_3}개\n채팅 아이콘(3등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_3}개\n채팅 아이콘(3등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame4:
                     title.SetText("십만대산 개인 랭킹보상(4위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_4}개\n채팅 아이콘(4등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_4}개\n채팅 아이콘(4등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame5:
                     title.SetText("십만대산 개인 랭킹보상(5위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_5}개\n채팅 아이콘(5등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_5}개\n채팅 아이콘(5등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame6_10:
                     title.SetText("십만대산 개인 랭킹보상(6~10위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_6_20}개\n채팅 아이콘(6등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_6_10}개\n채팅 아이콘(6등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame11_20:
                     title.SetText("십만대산 개인 랭킹보상(11~20위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_6_20}개\n채팅 아이콘(6등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_11_20}개\n채팅 아이콘(6등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame21_50:
                     title.SetText("십만대산 개인 랭킹보상(21~50위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_21_100}개\n채팅 아이콘(7등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_21_50}개\n채팅 아이콘(7등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame51_100:
                     title.SetText("십만대산 개인 랭킹보상(51~100위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_21_100}개\n채팅 아이콘(7등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_51_100}개\n채팅 아이콘(7등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame101_500:
                     title.SetText("십만대산 개인 랭킹보상(101~500위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_101_1000}개\n채팅 아이콘(8등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_101_500}개\n채팅 아이콘(8등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame501_1000:
                     title.SetText("십만대산 개인 랭킹보상(501~1000위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_101_1000}개\n채팅 아이콘(8등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_501_1000}개\n채팅 아이콘(8등급)");
                     break;
                 case Item_Type.MergePartyRaidRankFrame1001_5000:
                     title.SetText("십만대산 개인 랭킹보상(1001~5000위)");
-                    description.SetText($"{CommonString.GetItemName(Item_Type.DokebiFire)} {GameBalance.partyRaidRankRewardTicket_1001_10000}개\n채팅 아이콘(9등급)");
+                    description.SetText($"{CommonString.GetItemName(Item_Type.SumiFire)} {GameBalance.murgePartyRaidRankRewardTicket_1001_5000}개\n채팅 아이콘(9등급)");
                     break;
             }
         }
