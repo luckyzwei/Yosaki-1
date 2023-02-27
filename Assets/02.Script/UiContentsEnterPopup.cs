@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
@@ -243,6 +243,12 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"처치 <color=yellow>{killCount}</color>로 <color=yellow>{clearCount}회</color> 소탕 합니까?\n{CommonString.GetItemName(Item_Type.Jade)} {killCount * GameBalance.bonusDungeonGemPerEnemy * (GameBalance.bandiPlusStageJadeValue * Mathf.Max(1000f, (int)Mathf.Floor((float)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value+2)) / GameBalance.bandiPlusStageDevideValue) * clearCount}개\n{CommonString.GetItemName(Item_Type.Marble)} {killCount * GameBalance.bonusDungeonMarblePerEnemy * clearCount * (GameBalance.bandiPlusStageMarbleValue * (int)Mathf.Floor(Mathf.Max(1000f, (float)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value+2)) / GameBalance.bandiPlusStageDevideValue)}개", () =>
           {
+              if (ServerData.userInfoTable.GetTableData(UserInfoTable.bonusDungeonEnterCount).Value >= GameBalance.bonusDungeonEnterCount)
+              {
+                  PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 소탕할 수 없습니다.");
+                  return;
+              }
+
               enterButton.interactable = false;
 
               int stageValue = (GameBalance.bandiPlusStageMarbleValue * Mathf.Max(1000,(int)Mathf.Floor((float)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value)+2) / GameBalance.bandiPlusStageDevideValue);

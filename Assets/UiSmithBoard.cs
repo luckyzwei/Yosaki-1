@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
@@ -118,6 +118,12 @@ public class UiSmithBoard : MonoBehaviour
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{score}개 획득 합니까?\n<color=red>(하루 한번만 획득 가능)</color>", () =>
          {
+             if (ServerData.userInfoTable.TableDatas[UserInfoTable.getSmith].Value == 1)
+             {
+                 PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.SmithFire)}은 하루에 한번만 획득 가능합니다!");
+                 return;
+             }
+
              ServerData.userInfoTable.TableDatas[UserInfoTable.getSmith].Value = 1;
              ServerData.goodsTable.GetTableData(GoodsTable.SmithFire).Value += score;
 

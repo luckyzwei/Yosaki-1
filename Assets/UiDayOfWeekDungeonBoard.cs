@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -137,6 +137,12 @@ public class UiDayOfWeekDungeonBoard : MonoBehaviour
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{score * multipleValue}개 획득 합니까?", () =>
         {
+            if (ServerData.userInfoTable.GetTableData(UserInfoTable.getDayOfWeek).Value == 1)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"요일 보상은 하루에 한번만 획득 가능합니다!");
+                return;
+            }
+
             ServerData.userInfoTable.GetTableData(UserInfoTable.getDayOfWeek).Value = 1;
   
 

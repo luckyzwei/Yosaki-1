@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
@@ -98,6 +98,12 @@ public class UiGumGiContentsBoard : MonoBehaviour
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{score}개 획득 합니까?\n<color=red>(하루 한번만 획득 가능)</color>\n{CommonString.GetItemName(Item_Type.DokebiTreasure)}로 추가획득 : {Utils.GetDokebiTreasureAddValue()}", () =>
         {
+            if (ServerData.userInfoTable.TableDatas[UserInfoTable.getGumGi].Value == 1)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.SP)}은 하루에 한번만 획득 가능합니다!");
+                return;
+            }
+
             ServerData.userInfoTable.TableDatas[UserInfoTable.getGumGi].Value = 1;
             ServerData.goodsTable.GetTableData(GoodsTable.SwordPartial).Value += score + Utils.GetDokebiTreasureAddValue();
 

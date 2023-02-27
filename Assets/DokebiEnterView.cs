@@ -160,6 +160,14 @@ public class DokebiEnterView : MonoBehaviour
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Dokebi)} <color=yellow>{defeatCount}</color>개로 <color=yellow>{clearCount}회</color> 소탕 합니까?", () =>
          {
+             int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value;
+
+             if (currentEnterCount >= GameBalance.dokebiEnterCount)
+             {
+                 PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 소탕할 수 없습니다.");
+                 return;
+             }
+
              GuideMissionManager.UpdateGuideMissionClear(GuideMissionKey.ClearOni);
 
              int rewardNum = defeatCount;
