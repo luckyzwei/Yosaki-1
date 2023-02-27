@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -73,6 +73,23 @@ public class UiFastSleepRewardBoard : MonoBehaviour
 
     private void RewardRoutine()
     {
+        double currentSleepTime = ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value;
+
+        if (currentSleepTime >= GameBalance.sleepRewardMaxValue)
+        {
+            PopupManager.Instance.ShowAlarmMessage("휴식 보상이 최대 입니다.\n먼저 휴식 보상을 사용 해 주세요!");
+            return;
+        }
+
+        int rewardedCount = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.dailySleepRewardReceiveCount].Value;
+
+        if (rewardedCount >= GameBalance.fastSleepRewardMaxCount)
+        {
+            PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 받으실 수 없습니다.");
+            return;
+        }
+
+
         button.interactable = false;
         waitDescription.SetActive(true);
 
