@@ -45,6 +45,8 @@ public static class CommonString
     public static string ItemGrade_22 = "도깨비";
     public static string ItemGrade_23 = "사신수";
     public static string ItemGrade_24 = "수미산";
+    public static string ItemGrade_25 = "사흉수";
+    public static string ItemGrade_26 = "보물";
     public static string ItemGrade_5_Norigae = "신물";
     public static string ItemGrade_6_Norigae = "영물";
     public static string ItemGrade_7_Norigae = "영물";
@@ -56,6 +58,7 @@ public static class CommonString
     public static string ItemGrade_13_Norigae = "천상계";
     public static string ItemGrade_22_Norigae = "도깨비";
     public static string ItemGrade_24_Norigae = "수미산";
+    public static string ItemGrade_26_Norigae = "보물";
 
     public static string ItemGrade_4_Skill = "주작";
     public static string ItemGrade_5_Skill = "청룡";
@@ -235,6 +238,10 @@ public static class CommonString
             case Item_Type.costume89: return TableManager.Instance.Costume.dataArray[89].Name;
             case Item_Type.costume90: return TableManager.Instance.Costume.dataArray[90].Name;
             case Item_Type.costume91: return TableManager.Instance.Costume.dataArray[91].Name;
+            case Item_Type.costume92: return TableManager.Instance.Costume.dataArray[92].Name;
+            case Item_Type.costume93: return TableManager.Instance.Costume.dataArray[93].Name;
+            case Item_Type.costume94: return TableManager.Instance.Costume.dataArray[94].Name;
+            case Item_Type.costume95: return TableManager.Instance.Costume.dataArray[95].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -399,8 +406,10 @@ public static class CommonString
             case Item_Type.MonthNorigae3: return "3월 월간 노리개";
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
+            case Item_Type.SahyungTreasure: return "사흉구슬";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
             case Item_Type.SumiFire: return "수미꽃";
+            case Item_Type.Tresure: return "도적단 보물";
             case Item_Type.SumiFireKey: return "수미꽃 소탕권";
             case Item_Type.NewGachaEnergy: return "영혼석";
             case Item_Type.weapon81: return "설날 외형 무기";
@@ -408,6 +417,7 @@ public static class CommonString
             case Item_Type.DokebiBundle: return "도깨비 보물상자";
 
             case Item_Type.SinsuRelic: return "황룡의 여의주";
+            case Item_Type.EventDice: return "이벤트 주사위";
 
         }
 
@@ -471,135 +481,100 @@ public static class CommonString
         {
             case StatusType.AttackAddPer:
                 return "공격력 증가(%)";
-                break;
             case StatusType.CriticalProb:
                 return "크리티컬 확률(%)";
-                break;
             case StatusType.CriticalDam:
                 return "크리티컬 데미지(%)";
-                break;
             case StatusType.SkillCoolTime:
                 return "기술 시전 속도(%)";
-                break;
             case StatusType.SkillDamage:
                 return "추가 기술 데미지(%)";
-                break;
             case StatusType.MoveSpeed:
                 return $"이동 속도 증가";
-                break;
             case StatusType.DamBalance:
                 return "최소데미지 보정(%)";
-                break;
             case StatusType.HpAddPer:
                 return "체력 증가(%)";
-                break;
             case StatusType.MpAddPer:
                 return "마력 증가(%)";
-                break;
             case StatusType.GoldGainPer:
                 return "골드 획득 증가(%)";
-                break;
             case StatusType.ExpGainPer:
                 return "경험치 획득 증가(%)";
-                break;
             case StatusType.AttackAdd:
                 return "공격력";
-                break;
             case StatusType.Hp:
                 return "체력";
-                break;
             case StatusType.Mp:
                 return "마력";
-                break;
             case StatusType.HpRecover:
                 return "5초당 체력 회복(%)";
-                break;
             case StatusType.MpRecover:
                 return "5초당 마력 회복(%)";
-                break;
             case StatusType.MagicStoneAddPer:
                 return "수련의돌 추가 획득(%)";
-                break;
             case StatusType.Damdecrease:
                 return "피해 감소(%)";
-                break;
             case StatusType.IgnoreDefense:
                 return "방어력 무시";
-                break;
             case StatusType.PenetrateDefense:
                 return "초과 방어력당 추가 피해량(%)";
-                break;
             case StatusType.DashCount:
                 return "순보 횟수";
-                break;
             case StatusType.DropAmountAddPer:
                 return "몬스터 전리품 수량 증가(%)";
-                break;
             case StatusType.BossDamAddPer:
                 return "보스 데미지 증가(%)";
-                break;
             case StatusType.SkillAttackCount:
                 return "기술 타격 횟수 증가";
-                break;
             case StatusType.SuperCritical1Prob:
                 return "천공베기 확률(%)";
-                break;
             case StatusType.SuperCritical1DamPer:
                 return "천공베기 피해(%)";
-                break;
             case StatusType.MarbleAddPer:
                 return "여우구슬 추가 획득(%)";
-                break;
             case StatusType.SuperCritical2DamPer:
                 return "필멸 피해(%)";
-                break;
             case StatusType.growthStoneUp:
                 return "수련의돌 추가 획득";
-                break;
             case StatusType.WeaponHasUp:
                 return "무기 보유효과 강화";
-                break;
             case StatusType.NorigaeHasUp:
                 return "노리개 보유효과 강화";
-                break;
             case StatusType.PetEquipHasUp:
                 return "환수장비 보유효과 강화";
-                break;
             case StatusType.PetEquipProbUp:
                 return "환수장비 강화확률 증가";
-                break;
             case StatusType.DecreaseBossHp:
                 return "스테이지 보스 체력 감소(%)";
-                break;
             case StatusType.SuperCritical3DamPer:
                 return "지옥베기 피해(%)";
-                break;
             case StatusType.SuperCritical4DamPer:
                 return "천상베기 피해(%)";
-                break;
             case StatusType.MonthBuff:
                 return "월간훈련 버프";
-                break;
             case StatusType.FlowerHasValueUpgrade:
                 return "천계 꽃 레벨당 천상베기 피해량 증가(%)";
-                break;
             case StatusType.HellHasValueUpgrade:
                 return "지옥불꽃 레벨당 지옥베기 피해량 증가(%)";
-                break;
             case StatusType.SuperCritical5DamPer:
                 return "귀신베기 피해(%)";
-                break;
             case StatusType.SuperCritical6DamPer:
                 return "신수베기 피해(%)";
-                break;
             case StatusType.SuperCritical7DamPer:
                 return "금강베기 피해(%)";
-                break;
             case StatusType.DokebiFireHasValueUpgrade:
                 return "도깨비 불 레벨당 귀신베기 피해량 증가(%)";
-                break;
             case StatusType.SumiHasValueUpgrade:
                 return "수미꽃 레벨당 금강베기 피해량 증가(%)";
+            case StatusType.SuperCritical8DamPer:
+                return "하단전베기 피해(%)";
+            case StatusType.SuperCritical9DamPer:
+                return "흉수베기 피해(%)";   
+            case StatusType.SuperCritical10DamPer:
+                return "섬광베기 피해(%)"; 
+            case StatusType.NorigaeGoldAbilUp:
+                return "노리개 기본무공 강화효과(%)";
         }
 
         return "등록필요";

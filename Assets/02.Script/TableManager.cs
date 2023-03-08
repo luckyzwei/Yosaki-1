@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UniRx;
+using UnityEngine.Serialization;
 
 public class TableManager : SingletonMono<TableManager>
 {
-    [SerializeField]
-    private EnemyTable enemyTable;
+    [SerializeField] private EnemyTable enemyTable;
     public EnemyTable EnemyTable => enemyTable;
 
     private Dictionary<int, EnemyTableData> enemyData = null;
+
     public Dictionary<int, EnemyTableData> EnemyData
     {
         get
@@ -34,10 +35,10 @@ public class TableManager : SingletonMono<TableManager>
     }
 
 
-    [SerializeField]
-    private SkillTable skillTable;
+    [SerializeField] private SkillTable skillTable;
     public SkillTable SkillTable => skillTable;
     private Dictionary<int, SkillTableData> skillData = null;
+
     public Dictionary<int, SkillTableData> SkillData
     {
         get
@@ -59,10 +60,10 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private NewGachaTable newGachaTable;
+    [SerializeField] private NewGachaTable newGachaTable;
     public NewGachaTable NewGachaTable => newGachaTable;
     private Dictionary<int, NewGachaTableData> newGachaData = null;
+
     public Dictionary<int, NewGachaTableData> NewGachaData
     {
         get
@@ -84,11 +85,11 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private Weapon weaponTable;
+    [SerializeField] private Weapon weaponTable;
     public Weapon WeaponTable => weaponTable;
 
     private Dictionary<int, WeaponData> weaponData = null;
+
     public Dictionary<int, WeaponData> WeaponData
     {
         get
@@ -121,11 +122,11 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private StageMap stageMapTable;
+    [SerializeField] private StageMap stageMapTable;
     public StageMap StageMapTable => stageMapTable;
 
     private Dictionary<int, StageMapData> stageMapData = null;
+
     public Dictionary<int, StageMapData> StageMapData
     {
         get
@@ -134,6 +135,7 @@ public class TableManager : SingletonMono<TableManager>
             return stageMapData;
         }
     }
+
     public int GetLastStageIdx()
     {
         return stageMapTable.dataArray[stageMapTable.dataArray.Length - 1].Id;
@@ -156,12 +158,12 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private DailyMission dailyMission;
+    [SerializeField] private DailyMission dailyMission;
 
     public DailyMission DailyMission => dailyMission;
 
     private Dictionary<int, DailyMissionData> dailyMissionDatas;
+
     public Dictionary<int, DailyMissionData> DailyMissionDatas
     {
         get
@@ -179,12 +181,13 @@ public class TableManager : SingletonMono<TableManager>
             return dailyMissionDatas;
         }
     }
-    [SerializeField]
-    private EventMission eventMission;
+
+    [SerializeField] private EventMission eventMission;
 
     public EventMission EventMission => eventMission;
 
     private Dictionary<int, EventMissionData> eventMissionDatas;
+
     public Dictionary<int, EventMissionData> EventMissionDatas
     {
         get
@@ -202,12 +205,13 @@ public class TableManager : SingletonMono<TableManager>
             return eventMissionDatas;
         }
     }
-    [SerializeField]
-    private GuideMission guideMission;
+
+    [SerializeField] private GuideMission guideMission;
 
     public GuideMission GuideMission => guideMission;
 
     private Dictionary<int, GuideMissionData> guideMissionDatas;
+
     public Dictionary<int, GuideMissionData> GuideMissionDatas
     {
         get
@@ -228,12 +232,11 @@ public class TableManager : SingletonMono<TableManager>
     //
 
 
-
-    [SerializeField]
-    private StatusSetting statusTable;
+    [SerializeField] private StatusSetting statusTable;
     public StatusSetting StatusTable => statusTable;
 
     private Dictionary<string, StatusSettingData> statusDatas;
+
     public Dictionary<string, StatusSettingData> StatusDatas
     {
         get
@@ -252,10 +255,10 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private WeaponEffect weaponEffectTable;
+    [SerializeField] private WeaponEffect weaponEffectTable;
 
     private Dictionary<int, WeaponEffectData> weaponEffectDatas;
+
     public Dictionary<int, WeaponEffectData> WeaponEffectDatas
     {
         get
@@ -274,10 +277,10 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private MagicBook magicBookTable;
+    [SerializeField] private MagicBook magicBookTable;
     public MagicBook MagicBookTable => magicBookTable;
     private Dictionary<int, MagicBookData> magicBoocDatas;
+
     public Dictionary<int, MagicBookData> MagicBoocDatas
     {
         get
@@ -307,11 +310,11 @@ public class TableManager : SingletonMono<TableManager>
         return null;
     }
 
-    [SerializeField]
-    private PetTable petTable;
+    [SerializeField] private PetTable petTable;
     public PetTable PetTable => petTable;
 
     private Dictionary<int, PetTableData> petDatas;
+
     public Dictionary<int, PetTableData> PetDatas
     {
         get
@@ -327,20 +330,18 @@ public class TableManager : SingletonMono<TableManager>
 
             return petDatas;
         }
-
     }
 
-    [SerializeField]
-    private LevelPass levelPass;
+    [SerializeField] private LevelPass levelPass;
 
     public LevelPass LevelPass => levelPass;
 
-    [SerializeField]
-    private Costume costume;
+    [SerializeField] private Costume costume;
 
     public Costume Costume => costume;
 
     private Dictionary<int, CostumeData> costumeData;
+
     public Dictionary<int, CostumeData> CostumeData
     {
         get
@@ -359,12 +360,12 @@ public class TableManager : SingletonMono<TableManager>
     }
 
 
-    [SerializeField]
-    private CostumeAbility costumeAbility;
+    [SerializeField] private CostumeAbility costumeAbility;
 
     public CostumeAbility CostumeAbility => costumeAbility;
 
     private Dictionary<int, CostumeAbilityData> costumeAbilityData;
+
     public Dictionary<int, CostumeAbilityData> CostumeAbilityData
     {
         get
@@ -419,12 +420,12 @@ public class TableManager : SingletonMono<TableManager>
         return costumeList;
     }
 
-    [SerializeField]
-    private BossTable bossTable;
+    [SerializeField] private BossTable bossTable;
     public BossTable BossTable => bossTable;
 
 
     private Dictionary<int, BossTableData> bossTableData;
+
     public Dictionary<int, BossTableData> BossTableData
     {
         get
@@ -442,11 +443,11 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private TowerTable towerTable;
+    [SerializeField] private TowerTable towerTable;
     public TowerTable TowerTable => towerTable;
 
     private Dictionary<int, TowerTableData> towerTableData;
+
     public Dictionary<int, TowerTableData> TowerTableData
     {
         get
@@ -466,11 +467,11 @@ public class TableManager : SingletonMono<TableManager>
     }
     //
 
-    [SerializeField]
-    private TowerTable2 towerTable2;
+    [SerializeField] private TowerTable2 towerTable2;
     public TowerTable2 TowerTable2 => towerTable2;
 
     private Dictionary<int, TowerTable2Data> towerTableData2;
+
     public Dictionary<int, TowerTable2Data> TowerTableData2
     {
         get
@@ -491,12 +492,11 @@ public class TableManager : SingletonMono<TableManager>
     //
 
 
-
-    [SerializeField]
-    private DailyPass dailyPass;
+    [SerializeField] private DailyPass dailyPass;
     public DailyPass DailyPass => dailyPass;
 
     private Dictionary<int, DailyPassData> dailyPassData;
+
     public Dictionary<int, DailyPassData> DailyPassData
     {
         get
@@ -513,22 +513,19 @@ public class TableManager : SingletonMono<TableManager>
 
             return dailyPassData;
         }
-
     }
 
-    [SerializeField]
-    private BonusRoulette bonusRoulette;
+    [SerializeField] private BonusRoulette bonusRoulette;
     public BonusRoulette BonusRoulette => bonusRoulette;
 
-    [SerializeField]
-    private OldDokebiBonusRoulette oldDokebiBonusRoulette;
+    [SerializeField] private OldDokebiBonusRoulette oldDokebiBonusRoulette;
     public OldDokebiBonusRoulette OldDokebiBonusRoulette => oldDokebiBonusRoulette;
 
-    [SerializeField]
-    private InAppPurchase inAppPurchase;
+    [SerializeField] private InAppPurchase inAppPurchase;
     public InAppPurchase InAppPurchase => inAppPurchase;
 
     private Dictionary<string, InAppPurchaseData> inAppPurchaseData;
+
     public Dictionary<string, InAppPurchaseData> InAppPurchaseData
     {
         get
@@ -549,65 +546,54 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private LoadingTip loadingTip;
+    [SerializeField] private LoadingTip loadingTip;
     public LoadingTip LoadingTip => loadingTip;
 
-    [SerializeField]
-    private BadWord badWord;
+    [SerializeField] private BadWord badWord;
     public BadWord BadWord => badWord;
 
-    [SerializeField]
-    private AttendanceReward attendanceReward;
+    [SerializeField] private AttendanceReward attendanceReward;
     public AttendanceReward AttendanceReward => attendanceReward;
 
-    [SerializeField]
-    private WingTable wingTable;
+    [SerializeField] private WingTable wingTable;
 
     public WingTable WingTable => wingTable;
 
     public int WingMaxValue => wingTable.dataArray[wingTable.dataArray.Length - 1].Requirejump;
 
-    [SerializeField]
-    private BuffTable buffTable;
+    [SerializeField] private BuffTable buffTable;
 
     public BuffTable BuffTable => buffTable;
 
-    [SerializeField]
-    private PassiveSkill passiveSkill;
+    [SerializeField] private PassiveSkill passiveSkill;
 
     public PassiveSkill PassiveSkill => passiveSkill;
 
-    [SerializeField]
-    private PassiveSkill2 passiveSkill2;
+    [SerializeField] private PassiveSkill2 passiveSkill2;
 
     public PassiveSkill2 PassiveSkill2 => passiveSkill2;
 
-    [SerializeField]
-    private MarbleTable marbleTable;
+    [SerializeField] private MarbleTable marbleTable;
 
     public MarbleTable MarbleTable => marbleTable;
 
-    [SerializeField]
-    private Dokebi dokebiTable;
+    [SerializeField] private Dokebi dokebiTable;
 
     public Dokebi DokebiTable => dokebiTable;
 
-    [SerializeField]
-    private DokebiRewardTable dokebiRewardTable;
+    [SerializeField] private DokebiRewardTable dokebiRewardTable;
     public DokebiRewardTable DokebiRewardTable => dokebiRewardTable;
 
-    [SerializeField]
-    private TwelveBossTable twelveBossTable;
+    [SerializeField] private TwelveBossTable twelveBossTable;
 
     public TwelveBossTable TwelveBossTable => twelveBossTable;
 
-    [SerializeField]
-    private TitleTable titleTable;
+    [SerializeField] private TitleTable titleTable;
 
     public TitleTable TitleTable => titleTable;
 
     private Dictionary<int, List<TitleTableData>> titleAbils;
+
     public Dictionary<int, List<TitleTableData>> TitleAbils
     {
         get
@@ -631,92 +617,73 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
-    [SerializeField]
-    private YomulAbil yomulAbilTable;
+    [SerializeField] private YomulAbil yomulAbilTable;
     public YomulAbil YomulAbilTable => yomulAbilTable;
 
-    [SerializeField]
-    private ChuseokEvent chuseokEventTable;
+    [SerializeField] private ChuseokEvent chuseokEventTable;
 
     public ChuseokEvent ChuseokEventTable => chuseokEventTable;
 
-    [SerializeField]
-    private YoguiSogulTable yoguisogulTable;
+    [SerializeField] private YoguiSogulTable yoguisogulTable;
 
     public YoguiSogulTable YoguisogulTable => yoguisogulTable;
 
-    [SerializeField]
-    private OldDokebi2Table oldDokebiTable;
+    [SerializeField] private OldDokebi2Table oldDokebiTable;
 
     public OldDokebi2Table OldDokebiTable => oldDokebiTable;
 
-    [SerializeField]
-    private PetEquipment petEquipment;
+    [SerializeField] private PetEquipment petEquipment;
     public PetEquipment PetEquipment => petEquipment;
 
 
-    [SerializeField]
-    private MonthlyPass monthlyPass;
+    [SerializeField] private MonthlyPass monthlyPass;
     public MonthlyPass MonthlyPass => monthlyPass;
 
-    [SerializeField]
-    private RelicTable rericTable;
+    [SerializeField] private RelicTable rericTable;
 
     public RelicTable RelicTable => rericTable;
 
 
-    [SerializeField]
-    private StageRelic stageRelic;
+    [SerializeField] private StageRelic stageRelic;
 
     public StageRelic StageRelic => stageRelic;
 
-    [SerializeField]
-    private monthpass2 monthlyPass2;
+    [SerializeField] private monthpass2 monthlyPass2;
     public monthpass2 MonthlyPass2 => monthlyPass2;
 
-    [SerializeField]
-    private MonthlyPassAttend monthlyPassAttend;
+    [SerializeField] private MonthlyPassAttend monthlyPassAttend;
     public MonthlyPassAttend MonthlyPassAttend => monthlyPassAttend;
 
-    [SerializeField]
-    private MonthlyPassAttend2 monthlyPassAttend2;
+    [SerializeField] private MonthlyPassAttend2 monthlyPassAttend2;
     public MonthlyPassAttend2 MonthlyPassAttend2 => monthlyPassAttend2;
 
-    [SerializeField]
-    private SonReward sonReward;
+    [SerializeField] private SonReward sonReward;
 
     public SonReward SonReward => sonReward;
 
-    [SerializeField]
-    private SonAbil sonAbil;
+    [SerializeField] private SonAbil sonAbil;
 
     public SonAbil SonAbil => sonAbil;
 
-    [SerializeField]
-    private Attendance100 attendanceReward_100;
+    [SerializeField] private Attendance100 attendanceReward_100;
     public Attendance100 AttendanceReward_100 => attendanceReward_100;
 
-    [SerializeField]
-    private IosCoupon iosCoupon;
+    [SerializeField] private IosCoupon iosCoupon;
 
     public IosCoupon IosCoupon => iosCoupon;
 
-    [SerializeField]
-    private GuildRewardTable guildRewardTable;
+    [SerializeField] private GuildRewardTable guildRewardTable;
 
     public GuildRewardTable GuildRewardTable => guildRewardTable;
 
-    [SerializeField]
-    private GuildLevel guildLevel;
+    [SerializeField] private GuildLevel guildLevel;
 
     public GuildLevel GuildLevel => guildLevel;
 
-    [SerializeField]
-    private SeolPass seolPass;
+    [SerializeField] private SeolPass seolPass;
     public SeolPass SeolPass => seolPass;
 
-    [SerializeField]
-    private SulPass sulPass;
+    [SerializeField] private SulPass sulPass;
     public SulPass SulPass => sulPass;
 
     public SmithTable smithTable;
@@ -733,8 +700,7 @@ public class TableManager : SingletonMono<TableManager>
     public DokebiHorn DokebiHorn;
     public CaveBelt CaveBelt;
 
-    [SerializeField]
-    private SummerCollection summerCollection;
+    [SerializeField] private SummerCollection summerCollection;
 
     public SummerCollection SummerCollection => summerCollection;
 
@@ -742,7 +708,9 @@ public class TableManager : SingletonMono<TableManager>
     public OkTable okTable;
     public YumTable yumTable;
     public DoTable doTable;
+
     public SumiTable sumiTable;
+
     //사신수
     public SasinsuTable sasinsuTable;
 
@@ -777,11 +745,14 @@ public class TableManager : SingletonMono<TableManager>
     public ChoboTable choboTable;
     public TwoCave twoCave;
     public SpringAtten springAtten;
-
+    public TowerTable6 gyungRockTowerTable;
+    public DolPass dolPass;
+    public NorigaeJewel norigaeJewel;
+    public TresureAbilBase tresureAbilBase;
 }
 
 
 public enum CommonTableEventType
 {
-    SnowMan, Namul, Wind , DdukGuk
+    SnowMan, Namul, Wind, DdukGuk
 }

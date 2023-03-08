@@ -84,4 +84,8 @@ public class StageMapData
   float peachamount;
   public float Peachamount { get {return peachamount; } set { this.peachamount = value;} }
   
+  [SerializeField]
+  float helamount;
+  public float Helamount { get {return helamount; } set { this.helamount = value;} }
+  
 }

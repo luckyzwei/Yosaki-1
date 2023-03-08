@@ -10,22 +10,26 @@ public enum WeaponType
 {
     Basic,
     Normal,
-    Hell,
+    HasEffectOnly,
     View,
 }
 public enum MagicBookType
 {
     Basic,
-    Normal,
-    Hell,
     View,
+    Normal,
 }
 public enum RingType
 {
     Basic,
-    Normal,
-    Hell,
     View,
+    Normal,
+}
+
+public enum PetType
+{
+    Basic,
+    Special,
 }
 
 

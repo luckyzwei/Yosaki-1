@@ -223,11 +223,14 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.DokebiFireEnhance,
         GoodsTable.DokebiTreasure,
         GoodsTable.SusanoTreasure,
+        GoodsTable.SahyungTreasure,
         GoodsTable.SumiFire,
         GoodsTable.SumiFireKey,
         GoodsTable.NewGachaEnergy,
         GoodsTable.DokebiBundle,
         GoodsTable.SinsuRelic,
+        GoodsTable.EventDice,
+        GoodsTable.Tresure,
     };
 
     //SendQueue에서 저장

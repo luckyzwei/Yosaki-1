@@ -17,7 +17,22 @@ public class BossServerData
         return $"{idx},{score.Value},{rewardedId.Value}";
     }
 }
-
+public enum TimeType
+{
+    //60
+    Normal,
+    //30
+    Half,
+}
+public enum NotImmuneType
+{
+    //Susano + Dokebi 
+    Normal,
+    //Dokebi
+    Susano,
+    // x 
+    Dokebi
+}
 public class BossServerTable
 {
     public static string Indate;

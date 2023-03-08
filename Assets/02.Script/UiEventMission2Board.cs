@@ -22,22 +22,13 @@ public class UiEventMission2Board : MonoBehaviour
     private void CheckEventEnd()
     {
         var severTime = ServerData.userInfoTable.currentServerTime;
-#if UNITY_EDITOR
-#else
-        if (severTime.Month == 1 && severTime.Day < 20)
-        {
-            this.gameObject.SetActive(false);
-            PopupManager.Instance.ShowAlarmMessage("1월 20일 부터 이벤트 시작!");
-            return;
-        }
-#endif
-        if (severTime.Month >= 3)
+
+        if (severTime.Month >= 5)
         {
             this.gameObject.SetActive(false);
             PopupManager.Instance.ShowAlarmMessage("이벤트가 종료됐습니다.");
             return;
         }
-
     }
 
     private void Awake()

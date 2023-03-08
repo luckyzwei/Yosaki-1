@@ -257,7 +257,9 @@ public class GumGiManager : SingletonMono<GumGiManager>
         if (modeState.Value != ModeState.End)
         {
             enemyDeadCount.Value++;
-            currentWaveAnim.SetTrigger(PlayStr);
+            if(currentWaveAnim!=null)
+            {currentWaveAnim.SetTrigger(PlayStr);}
+            
         }
 
 

@@ -8,38 +8,37 @@ using UnityEngine.UI;
 
 public class UiHellFireBoard : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
-    [SerializeField]
-    private UiHellRewardCell cellPrefab;
+    [SerializeField] private UiHellRewardCell cellPrefab;
 
-    [SerializeField]
-    private Transform cellParents;
+    [SerializeField] private Transform cellParents;
 
-    [SerializeField]
-    private TextMeshProUGUI sonLevelText;
+    [SerializeField] private TextMeshProUGUI sonLevelText;
 
-    [SerializeField]
-    private TextMeshProUGUI sonAbilText1;
+    [SerializeField] private TextMeshProUGUI sonAbilText1;
 
     private List<UiHellRewardCell> rewardCells = new List<UiHellRewardCell>();
+
+    [SerializeField] private GameObject transGameObject;
+    [SerializeField] private GameObject transDescObject;
+
+    [SerializeField] private TextMeshProUGUI hellAwakeAbilDescription;
+
 
     private void Start()
     {
         Initialize();
         Subscribe();
-      
     }
 
-   
+
     private void Subscribe()
     {
         ServerData.goodsTable.GetTableData(GoodsTable.Hel).AsObservable().Subscribe(level =>
         {
             sonLevelText.SetText($"LV : {level}");
             UpdateAbilText1((int)level);
-
         }).AddTo(this);
 
 
@@ -48,6 +47,11 @@ public class UiHellFireBoard : MonoBehaviour
             UpdateAbilText1((int)ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
         }).AddTo(this);
 
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).AsObservable().Subscribe(e =>
+        {
+            transGameObject.SetActive(e == 0);
+            transDescObject.SetActive(e == 1);
+        }).AddTo(this);
     }
 
     private void UpdateAbilText1(int currentLevel)
@@ -62,7 +66,8 @@ public class UiHellFireBoard : MonoBehaviour
 
             if (type == StatusType.AttackAddPer)
             {
-                abilDesc += $"{CommonString.GetStatusName(type)} {Utils.ConvertBigNum(PlayerStats.GetHellAbilHasEffect(type))}\n";
+                abilDesc +=
+                    $"{CommonString.GetStatusName(type)} {Utils.ConvertBigNum(PlayerStats.GetHellAbilHasEffect(type))}\n";
             }
             else
             {
@@ -77,7 +82,13 @@ public class UiHellFireBoard : MonoBehaviour
 
     private void Initialize()
     {
-        scoreText.SetText($"최고 점수 : {Utils.ConvertBigNum(ServerData.userInfoTable.TableDatas[UserInfoTable.hellScore].Value * GameBalance.BossScoreConvertToOrigin)}");
+        hellAwakeAbilDescription.SetText(($"지옥불꽃 효과 {PlayerStats.HelTransAddValue * 100f}% 강화됨"));
+
+        
+        scoreText.SetText(
+            $"최고 점수 : {Utils.ConvertBigNum(ServerData.userInfoTable.TableDatas[UserInfoTable.hellScore].Value * GameBalance.BossScoreConvertToOrigin)}");
+
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0) return;
 
         var tableData = TableManager.Instance.hellReward.dataArray;
 
@@ -90,7 +101,8 @@ public class UiHellFireBoard : MonoBehaviour
             rewardCells.Add(cell);
         }
     }
-
+    
+    
     public void OnClickEnterButton()
     {
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () =>
@@ -101,7 +113,8 @@ public class UiHellFireBoard : MonoBehaviour
 
     public void OnClickAllReceiveButton()
     {
-        double score = ServerData.userInfoTable.TableDatas[UserInfoTable.hellScore].Value * GameBalance.BossScoreConvertToOrigin;
+        double score = ServerData.userInfoTable.TableDatas[UserInfoTable.hellScore].Value *
+                       GameBalance.BossScoreConvertToOrigin;
 
         var tableData = TableManager.Instance.hellReward.dataArray;
 
@@ -140,7 +153,8 @@ public class UiHellFireBoard : MonoBehaviour
 
             Param rewardParam = new Param();
 
-            rewardParam.Add(EtcServerTable.hellReward, ServerData.etcServerTable.TableDatas[EtcServerTable.hellReward].Value);
+            rewardParam.Add(EtcServerTable.hellReward,
+                ServerData.etcServerTable.TableDatas[EtcServerTable.hellReward].Value);
 
             transactions.Add(TransactionValue.SetUpdate(EtcServerTable.tableName, EtcServerTable.Indate, rewardParam));
 
@@ -198,9 +212,29 @@ public class UiHellFireBoard : MonoBehaviour
         //{
         //    PopupManager.Instance.ShowAlarmMessage("받을 수 있는 보상이 없습니다.");
         //}
-
     }
 
+    public void OnClickTransButton()
+    {
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.hellScore].Value * GameBalance.BossScoreConvertToOrigin <
+            GameBalance.helGraduateScore)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"데미지 1000갈 이상일때 각성 가능!");
+        }
+        else
+        {
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
+                "각성시 지옥불꽃에서 불멸석 획득이 더이상 불가능 합니다.\n" +
+                $"대신 불멸석 보유효과가 강화 되고({PlayerStats.HelTransAddValue * 100}%)\n" +
+                $"스테이지 일반 요괴 처치시 불멸석을 자동으로 획득 합니다.\n" +
+                "각성 하시겠습니까??", () =>
+                {
+                    ServerData.userInfoTable.TableDatas[UserInfoTable.graduateHel].Value = 1;
+                    ServerData.userInfoTable.UpData(UserInfoTable.graduateHel, false);
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
+                }, null);
+        }
+    }
 #if UNITY_EDITOR
     private void Update()
     {

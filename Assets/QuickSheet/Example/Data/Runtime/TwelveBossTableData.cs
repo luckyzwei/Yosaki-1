@@ -72,4 +72,12 @@ public class TwelveBossTableData
   string[] cutstring = new string[0];
   public string[] Cutstring { get {return cutstring; } set { this.cutstring = value;} }
   
+  [SerializeField]
+  TimeType timetype;
+  public TimeType TIMETYPE { get {return timetype; } set { this.timetype = value;} }
+  
+  [SerializeField]
+  NotImmuneType notimmunetype;
+  public NotImmuneType NOTIMMUNETYPE { get {return notimmunetype; } set { this.notimmunetype = value;} }
+  
 }

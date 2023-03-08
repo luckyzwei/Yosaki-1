@@ -230,6 +230,7 @@ public static class GameBalance
 
 
     public readonly static ObscuredInt DailyRelicTicketGetCount = 3;
+    public readonly static ObscuredInt DailyEventDiceGetCount = 1;
 
     public readonly static ObscuredInt DokebiKeyUseCount = 5;
     public readonly static ObscuredInt StageRelicUnlockLevel = 3000;
@@ -299,6 +300,7 @@ public static class GameBalance
     public static ObscuredInt shadowCostumeGetLevel = 12;
    // public static ObscuredDouble sonGraduateScore = 100;
     public static ObscuredDouble sonGraduateScore = 1E+88;
+    public static ObscuredDouble helGraduateScore = 1E+91;
 
 
 

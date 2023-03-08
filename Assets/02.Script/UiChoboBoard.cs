@@ -10,6 +10,7 @@ using BackEnd;
 public enum HelpType{
     Goods,
     Contents,
+    System,
 }
 public class UiChoboBoard : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class UiChoboBoard : MonoBehaviour
     private Transform goodsCellParent;
     [SerializeField]
     private Transform contentsCellParent;
+    [SerializeField]
+    private Transform systemCellParent;
 
     private List<ChoboLeftCell> choboLeftCellList = new List<ChoboLeftCell>();
 
@@ -88,6 +91,10 @@ public class UiChoboBoard : MonoBehaviour
             else if(stageDatas[i].HELPTYPE == HelpType.Contents)
             {
                 choboLeftCellList.Add(Instantiate<ChoboLeftCell>(choboLeftCellPrefab, contentsCellParent));
+            }
+            else if(stageDatas[i].HELPTYPE == HelpType.System)
+            {
+                choboLeftCellList.Add(Instantiate<ChoboLeftCell>(choboLeftCellPrefab, systemCellParent));
             }
         }
             for (int i = 0; i < choboLeftCellList.Count; i++)

@@ -11,7 +11,7 @@ public class UiConsumableItemView : MonoBehaviour
     private string goodsId;
 
     [SerializeField]
-    private ObscuredInt price;
+    private ObscuredFloat price;
 
     [SerializeField]
     private ObscuredInt amount;

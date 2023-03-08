@@ -110,7 +110,11 @@ public static class Utils
                   type == Item_Type.costume88 ||
                   type == Item_Type.costume89 ||
                   type == Item_Type.costume90 ||
-                  type == Item_Type.costume91
+                  type == Item_Type.costume91 ||
+                  type == Item_Type.costume92 ||
+                  type == Item_Type.costume93 ||
+                  type == Item_Type.costume94 ||
+                  type == Item_Type.costume95
                   ;
     }
     public static bool IsPetItem(this Item_Type type)
@@ -164,6 +168,10 @@ public static class Utils
                 type == Item_Type.SasinsuPet1 ||
                 type == Item_Type.SasinsuPet2 ||
                 type == Item_Type.SasinsuPet3 ||
+                type == Item_Type.SahyungPet0 ||
+                type == Item_Type.SahyungPet1 ||
+                type == Item_Type.SahyungPet2 ||
+                type == Item_Type.SahyungPet3 ||
                 type == Item_Type.RabitPet ||
                 type == Item_Type.RabitNorigae ||
                 type == Item_Type.YeaRaeNorigae ||
@@ -228,16 +236,20 @@ public static class Utils
                 type == Item_Type.DokebiFireKey ||
                 type == Item_Type.FoxMaskPartial ||
                 type == Item_Type.SusanoTreasure ||
+                type == Item_Type.SahyungTreasure ||
                 type == Item_Type.Mileage ||
                 type == Item_Type.Event_Collection ||
                 type == Item_Type.Event_Collection_All ||
                 type == Item_Type.Event_Fall_Gold ||
                 type == Item_Type.Event_NewYear ||
+                type == Item_Type.Event_Mission ||
                 type == Item_Type.SumiFire ||
                 type == Item_Type.SumiFireKey ||
                 type == Item_Type.RelicTicket ||
                 type == Item_Type.SinsuRelic ||
-                type == Item_Type.NewGachaEnergy
+                type == Item_Type.NewGachaEnergy||
+                type == Item_Type.EventDice||
+                type == Item_Type.Tresure
                 ;
     }
 

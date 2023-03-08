@@ -175,11 +175,15 @@ public class GoodsTable
     public static string HellPowerUp = "HellPowerUp";
     public static string DokebiTreasure = "DT";
     public static string DokebiFireEnhance = "DFE";
+    public static string SahyungTreasure = "SahyungTreasure";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
     public static string DokebiBundle = "DB";
     public static string SinsuRelic = "SinsuRelic";
+    
+    public static string EventDice = "EventDice";
+    public static string Tresure = "Tresure";
 
 
 
@@ -335,12 +339,16 @@ public class GoodsTable
         {Mileage,0f},
         {HellPowerUp,0f},
         {DokebiTreasure,0f},
+        {SahyungTreasure,0f},
         {SusanoTreasure,0f},
         {SumiFire,0f},
         {SumiFireKey,0f},
         {NewGachaEnergy,0f},
         {DokebiBundle,0f},
         {SinsuRelic,0f},
+        
+        {EventDice,0f},
+        {Tresure,0f},
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -464,7 +472,7 @@ public class GoodsTable
         peachItemAddNum += amount;
 
         //100킬마다 얻게하기 위해서
-        if (peachItemAddNum < updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount)
+        if (peachItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount, 1))
         {
 
         }
@@ -473,6 +481,24 @@ public class GoodsTable
             
             tableDatas[Peach].Value += (int)peachItemAddNum;
             peachItemAddNum -= (int)peachItemAddNum;
+        }
+    }
+    //
+    static float helItemAddNum = 0;
+    public void GetHelItem(float amount)
+    {
+        helItemAddNum += amount;
+
+        //1개 획득할때마다 얻게하기 위해서
+        if (helItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Helamount,1))
+        {
+
+        }
+        else
+        {
+            
+            tableDatas[Hel].Value += (int)helItemAddNum;
+            helItemAddNum -= (int)helItemAddNum;
         }
     }
     //
@@ -764,9 +790,13 @@ public class GoodsTable
         goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
         goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
-        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)
         {
             goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value);
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
+        {
+            goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
         }
         //if (ServerData.userInfoTable.CanSpawnEventItem())
         //{
@@ -1151,10 +1181,19 @@ public class GoodsTable
             case Item_Type.SumiFire:
                 {
                     return GoodsTable.SumiFire;
+                }   
+            case Item_Type.Tresure:
+                {
+                    return GoodsTable.Tresure;
                 } 
             case Item_Type.SinsuRelic:
                 {
                     return GoodsTable.SinsuRelic;
+                }
+                
+            case Item_Type.EventDice:
+                {
+                    return GoodsTable.EventDice;
                 }
                 
             case Item_Type.NewGachaEnergy:
@@ -1525,6 +1564,10 @@ public class GoodsTable
         else if (GoodsTable.SinsuRelic == type)
         {
             return Item_Type.SinsuRelic;
+        }
+        else if (GoodsTable.EventDice == type)
+        {
+            return Item_Type.EventDice;
         }
 
         else if (GoodsTable.NewGachaEnergy == type)

@@ -387,12 +387,16 @@ public class SeolPassServerTable
 
 
     public static string MonthlypassFreeReward = "free";
-    public static string MonthlypassAdReward = "ad";
+    public static string MonthlypassAdReward = "ad";  
+    public static string MonthlypassFreeReward_dol = "free_d";
+    public static string MonthlypassAdReward_dol = "ad_d";
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
         { MonthlypassFreeReward,string.Empty},
-        { MonthlypassAdReward,string.Empty}
+        { MonthlypassAdReward,string.Empty},
+        { MonthlypassFreeReward_dol,string.Empty},
+        { MonthlypassAdReward_dol,string.Empty}
     };
 
     private ReactiveDictionary<string, ReactiveProperty<string>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<string>>();

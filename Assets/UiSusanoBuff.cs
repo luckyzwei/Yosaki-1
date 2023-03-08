@@ -26,32 +26,15 @@ public class UiSusanoBuff : SingletonMono<UiSusanoBuff>
         if (GameManager.contentsType == GameManager.ContentsType.OldDokebi2) return;
         if (GameManager.contentsType == GameManager.ContentsType.Online_Tower2) return;
         //산신령
-        if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon &&
-            (GameManager.Instance.bossId == 57 ||
-            GameManager.Instance.bossId == 72 || // 서재
-            GameManager.Instance.bossId == 75 ||//도깨비나라
-            GameManager.Instance.bossId == 76 ||
-            GameManager.Instance.bossId == 77 ||
-            GameManager.Instance.bossId == 78 ||
-            GameManager.Instance.bossId == 79 ||
-            GameManager.Instance.bossId == 80 ||
-            GameManager.Instance.bossId == 81 ||
-            GameManager.Instance.bossId == 82 ||
-            GameManager.Instance.bossId == 83 ||
-            GameManager.Instance.bossId == 85 ||
-            GameManager.Instance.bossId == 86 ||
-            GameManager.Instance.bossId == 87 ||
-            GameManager.Instance.bossId == 88 ||
-            GameManager.Instance.bossId == 89 ||
-            GameManager.Instance.bossId == 90 ||
-            GameManager.Instance.bossId == 92 ||
-            GameManager.Instance.bossId == 93 ||
-            GameManager.Instance.bossId == 94 ||
-            GameManager.Instance.bossId == 95 ||
-            GameManager.Instance.bossId == 96 ||    //도깨비 지킴이
-            GameManager.Instance.bossId == 97       //황룡
-
-            )) return;
+        
+        if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)
+        {
+            var twelveBossTableData = TableManager.Instance.TwelveBossTable.dataArray[GameManager.Instance.bossId];
+            if (twelveBossTableData.NOTIMMUNETYPE == NotImmuneType.Susano)
+            {
+                return;
+            }
+        }
 
 
         int susanoGrade = PlayerStats.GetSusanoGrade();

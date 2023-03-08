@@ -385,6 +385,7 @@ public class RankManager : SingletonMono<RankManager>
 
     public void UpdateBoss_Score(double score)
     {
+        return;
         if (UpdateRank() == false) return;
 
         if (score == 0) return;

@@ -104,7 +104,7 @@ public class UiSonBoard : MonoBehaviour
     {
         scoreText.SetText($"최고 점수 : {Utils.ConvertBigNum(ServerData.userInfoTable.TableDatas[UserInfoTable.sonScore].Value * GameBalance.BossScoreConvertToOrigin)}");
 
-        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1) return;
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value >0) return;
 
         var tableData = TableManager.Instance.SonReward.dataArray;
 

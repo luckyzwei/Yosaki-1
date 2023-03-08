@@ -71,7 +71,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
         while (e.MoveNext())
         {
 
-            if (e.Current.Value.Grade == 18 || e.Current.Value.Grade == 20|| e.Current.Value.Grade == 23)
+            if (e.Current.Value.WEAPONTYPE == WeaponType.View)
             {
                 //유료 외형무기 등급
                 if (e.Current.Value.Grade == 18)
@@ -83,7 +83,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                     weaponViewContainer.Add(view);
                 }
                 //추천용 무기
-                if (e.Current.Value.Grade == 20)
+                else if (e.Current.Value.Grade == 20)
                 {
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent_Recommend);
 
@@ -92,6 +92,9 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                     weaponViewContainer.Add(view);
 
                 }
+            }
+            else if(e.Current.Value.WEAPONTYPE==WeaponType.HasEffectOnly)
+            {
                 //사신수 무기
                 if (e.Current.Value.Grade == 23)
                 {
@@ -102,9 +105,18 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                     weaponViewContainer.Add(view);
 
                 }
+                //사흉수 무기
+                else if (e.Current.Value.Grade == 25)
+                {
+                    UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent_Sasinsu);
 
+                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+
+                    weaponViewContainer.Add(view);
+
+                }
             }
-            else
+            else if (e.Current.Value.WEAPONTYPE == WeaponType.Basic)
             {
                 UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, viewParentWeapon);
 
@@ -112,6 +124,17 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
                 weaponViewContainer.Add(view);
             }
+            else if (e.Current.Value.WEAPONTYPE == WeaponType.Normal)
+            {
+         
+                    UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, viewParentWeapon);
+
+                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+
+                    weaponViewContainer.Add(view);
+            }
+
+     
 
 
         }
@@ -179,10 +202,11 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
         while (e.MoveNext())
         {
-            //이무기는 생성X
-            if (e.Current.Value.Id >= 28) break;
-            if (e.Current.Value.Id >= 12 && e.Current.Value.Id <= 23) continue;
-
+            // //이무기는 생성X
+            // if (e.Current.Value.Id >= 28) break;
+            // if (e.Current.Value.Id >= 12 && e.Current.Value.Id <= 23) continue;
+            if(e.Current.Value.PETTYPE!=PetType.Basic) continue;
+            
             var petView = Instantiate<UiPetView>(uiPetViewPrefeab, petViewParent);
 
             petView.Initialize(e.Current.Value);

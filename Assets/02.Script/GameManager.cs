@@ -50,6 +50,8 @@ public class GameManager : SingletonMono<GameManager>
 	    Online_Tower2,
 	 	OldDokebi2,
 	 	Sumi,
+        GyungRockTower,
+        NorigaeSoul
     }
     public bool SpawnMagicStone => IsNormalField;
     public bool IsNormalField => contentsType == ContentsType.NormalField;
@@ -69,6 +71,7 @@ public class GameManager : SingletonMono<GameManager>
     public ObscuredInt dokebiIdx { get; private set; }
 
     public ContentsType lastContentsType { get; private set; } = ContentsType.NormalField;
+    public ContentsType lastContentsType2 { get; private set; } = ContentsType.NormalField;
 
     private bool firstInit = true;
 
@@ -283,10 +286,12 @@ public class GameManager : SingletonMono<GameManager>
         if (type != ContentsType.NormalField)
         {
             lastContentsType = type;
+            lastContentsType2 = type;
         }
 
         contentsType = type;
-
+        
+        
         ChangeScene();
     }
     private static bool firstLoad = true;
@@ -331,4 +336,5 @@ public class GameManager : SingletonMono<GameManager>
     {
         return currentMapIdx.Value == 0;
     }
+
 }

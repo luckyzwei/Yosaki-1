@@ -122,16 +122,21 @@ public class UiPetHomeView : MonoBehaviour
         skeletonGraphic.Initialize(true);
         skeletonGraphic.SetMaterialDirty();
 
-        if (idx >= 15)
+        if (idx >= 15&&idx<=23)
         {
             skeletonGraphic.transform.localScale = new Vector3(0.4f, 0.4f, 1f);
             skeletonGraphic.transform.localPosition = new Vector3(-8f, -86.5f, 1f);
         }
 
-        if (idx >= 24 && idx <= 27)
+        else if (idx >= 24 && idx <= 27)
         {
             skeletonGraphic.transform.localScale = new Vector3(1f, 1f, 1f);
             skeletonGraphic.transform.localPosition = new Vector3(-8f, -145f, 1f);
+        }
+        else if (idx >= 28 && idx <= 31)
+        {
+            skeletonGraphic.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
+            skeletonGraphic.transform.localPosition = new Vector3(-8f, -86.5f, 1f);
         }
     }
 

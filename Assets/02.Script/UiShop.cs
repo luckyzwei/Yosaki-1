@@ -404,12 +404,25 @@ public class UiShop : SingletonMono<UiShop>
                     ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += amount;
                     param.Add(GoodsTable.SumiFire, ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value);
                 }
+                break;   
+            
+            case Item_Type.Tresure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += amount;
+                    param.Add(GoodsTable.Tresure, ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value);
+                }
                 break;    
             
             case Item_Type.SinsuRelic:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += amount;
                     param.Add(GoodsTable.SinsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value);
+                }
+                break;  
+            case Item_Type.EventDice:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += amount;
+                    param.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
                 }
                 break;  
             
@@ -444,6 +457,12 @@ public class UiShop : SingletonMono<UiShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value += amount;
                     param.Add(GoodsTable.SusanoTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value);
+                }
+                break; 
+            case Item_Type.SahyungTreasure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += amount;
+                    param.Add(GoodsTable.SahyungTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value);
                 }
                 break; 
             case Item_Type.Event_Collection:

@@ -23,38 +23,45 @@ public class UiContentsExitButton : MonoBehaviour
             GameManager.contentsType == GameManager.ContentsType.Ok || GameManager.contentsType == GameManager.ContentsType.Do ||
             GameManager.contentsType == GameManager.ContentsType.Sumi ||
             GameManager.contentsType == GameManager.ContentsType.GradeTest || GameManager.contentsType == GameManager.ContentsType.Sasinsu ||
-            GameManager.contentsType == GameManager.ContentsType.SumisanTower
+            GameManager.contentsType == GameManager.ContentsType.SumisanTower||
+            GameManager.contentsType == GameManager.ContentsType.GyungRockTower
             )
         {
             return true;
         }
-        //산신령 & 서재 & 지키미 & 보도 & 수미산 지키미 
-        if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 57) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 72) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 82) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 83) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 92) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 96)
-            )
+
+        if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)
         {
-            return true;
+            var tableData = TableManager.Instance.TwelveBossTable.dataArray[GameManager.Instance.bossId];
+            //악귀퇴치 등의 이뮨을 무시하는 컨텐츠라면.
+            if (tableData.NOTIMMUNETYPE != NotImmuneType.Normal)
+            {
+                return true;
+            }
         }
-        //도깨비 보스 & 수미산 사천왕
-        if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 85) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 86) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 87) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 88) )
+
+        switch (GameManager.contentsType)
         {
-            return true;
+            //산신령 & 서재 & 지키미 & 보도 & 수미산 지키미 
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 57:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 72:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 82:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 83:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 92:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 96:
+            //도깨비 보스 & 수미산 사천왕
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 85:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 86:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 87:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 88:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 93:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 94:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 95:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 97:
+                return true;
+            default:
+                return false;
         }
-        if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 93) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 94) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 95) ||
-            (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon && GameManager.Instance.bossId == 97) )
-        {
-            return true;
-        }
-        return false;
     }
     public void OnClickExitButton()
     {
@@ -125,24 +132,7 @@ public class UiContentsExitButton : MonoBehaviour
             GameManager.Instance.LoadContents(GameManager.ContentsType.GradeTest);
         }
 
-        else if ((GameManager.contentsType == GameManager.ContentsType.TwelveDungeon) && (
-            (GameManager.Instance.bossId == 57) ||
-            (GameManager.Instance.bossId == 72) ||
-            (GameManager.Instance.bossId == 82) ||
-            (GameManager.Instance.bossId == 83) ||
-            (GameManager.Instance.bossId == 85) ||
-            (GameManager.Instance.bossId == 86) ||
-            (GameManager.Instance.bossId == 87) ||
-            (GameManager.Instance.bossId == 88) ||
-               (GameManager.Instance.bossId == 92) ||
-               (GameManager.Instance.bossId == 93) ||
-               (GameManager.Instance.bossId == 94) ||
-               (GameManager.Instance.bossId == 95) ||
-               (GameManager.Instance.bossId == 96) ||
-               (GameManager.Instance.bossId == 97) 
-            
-            )
-            )
+        else if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)
         {
             GameManager.Instance.LoadContents(GameManager.ContentsType.TwelveDungeon);
         }
@@ -156,6 +146,10 @@ public class UiContentsExitButton : MonoBehaviour
         else if (GameManager.contentsType == GameManager.ContentsType.SumisanTower)
         {
             GameManager.Instance.LoadContents(GameManager.ContentsType.SumisanTower);
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.GyungRockTower)
+        {
+            GameManager.Instance.LoadContents(GameManager.ContentsType.GyungRockTower);
         }
         else
         {

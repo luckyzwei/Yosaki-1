@@ -78,18 +78,10 @@ public class UiPackageShop : MonoBehaviour
             }
             else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Event3)
             {
-                if (e.Current.Value.Productid == "chris0" || e.Current.Value.Productid == "chris1")
-                {
-                    if (ServerData.userInfoTable.currentServerTime.Month == 1 &&
-                        ServerData.userInfoTable.currentServerTime.Day >= 6)
-                    {
-                        continue;
-                    }
-                }
-                if (e.Current.Value.Productid == "snowmanset0" || e.Current.Value.Productid == "snowmanset1"|| e.Current.Value.Productid == "newyearset0" || e.Current.Value.Productid == "newyearset1")
+                if (e.Current.Value.Productid == "pinwheelset0")
                 {
                     //currentserver가 3월이후(포함)
-                    if (ServerData.userInfoTable.currentServerTime.Month >= 3)
+                    if (ServerData.userInfoTable.currentServerTime.Month >= 5)
                     {
                         continue;
                     }

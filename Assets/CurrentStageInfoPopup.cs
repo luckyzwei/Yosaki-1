@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
@@ -20,7 +21,19 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
     {
         ShowInfoPopup(false);
 
-        SetDescription();
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).AsObservable().Subscribe(e =>
+        {
+            SetDescription();
+        }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).AsObservable().Subscribe(e =>
+        {
+            SetDescription();
+        }).AddTo(this);
     }
 
     private void SetDescription()
@@ -42,7 +55,11 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         desc += $"보스공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower * enemyTableData.Bossattackratio)}";
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)
         {
-            desc += $"\n요괴 1000마리당 복숭아 획득량 : {stageData.Peachamount * 1000}";
+            desc += $"\n요괴 500마리당 복숭아 획득량 : {stageData.Peachamount * 1000}";
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
+        {
+            desc += $"\n요괴 500마리당 불멸석 획득량 : {stageData.Helamount * 1000}";
         }
         description.SetText(desc);
     }

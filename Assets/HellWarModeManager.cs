@@ -229,7 +229,7 @@ public class HellWarModeManager : ContentsManagerBase
 
             ServerData.userInfoTable.UpData(UserInfoTable.hellWarScore, false);
 
-            //RankManager.Instance.UpdateBoss_Score(reqValue);
+            RankManager.Instance.UpdateBoss_Score(reqValue);
         }
 
 

@@ -9,7 +9,7 @@ using BackEnd;
 
 public enum PetGetType
 {
-    Ad, Gem, Shop, Evolution, Sasinsu
+    Ad, Gem, Shop, Evolution, Sasinsu,Sahyungsu
 }
 
 public class UiPetView : MonoBehaviour
@@ -142,10 +142,7 @@ public class UiPetView : MonoBehaviour
 
         tutorialObject.SetActive(petData.PETGETTYPE == PetGetType.Gem && petData.Price == 0f);
 
-        normalPetObject.SetActive(petData.Id < 12 || petData.Id == 14 || petData.Id == 15 ||
-            petData.Id == 16 || petData.Id == 17 || petData.Id == 18 || petData.Id == 19 || petData.Id == 20
-            || petData.Id == 21 || petData.Id == 22 || petData.Id == 23 || petData.Id == 24 || petData.Id == 25
-            || petData.Id == 26 || petData.Id == 27);
+        normalPetObject.SetActive(petData.Id != 12 || petData.Id != 13);
 
         if (leemugiPetObject != null)
             leemugiPetObject.SetActive(petData.Id == 12);
@@ -506,6 +503,18 @@ public class UiPetView : MonoBehaviour
                 buttonDescription.SetText($"사신수 별자리\n컨텐츠에서 획득!");
             }
         }
+        else if (petData.PETGETTYPE == PetGetType.Sahyungsu)
+        {
+            //보유
+            if (petServerData.hasItem.Value == 1)
+            {
+                buttonDescription.SetText("장착하기");
+            }
+            else
+            {
+                buttonDescription.SetText($"사흉수 \n컨텐츠에서 획득!");
+            }
+        }
 
     }
 
@@ -640,6 +649,18 @@ public class UiPetView : MonoBehaviour
                         BuyPetRoutine();
                     }
                 }
+            }
+        }
+        else if (petData.PETGETTYPE == PetGetType.Sahyungsu)
+        {
+            if (petServerData.hasItem.Value == 1)
+            {
+                ServerData.equipmentTable.ChangeEquip(EquipmentTable.Pet, petData.Id);
+            }
+            //미보유
+            else
+            {
+               PopupManager.Instance.ShowAlarmMessage($"사흉수 컨텐츠 {petData.Name}에서 획득 가능!");
             }
         }
 

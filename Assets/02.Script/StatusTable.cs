@@ -12,7 +12,6 @@ public enum StatusWhere
 }
 
 
-
 public class StatusTable
 {
     public static string Indate;
@@ -66,57 +65,53 @@ public class StatusTable
     public const string LeeMuGi = "LeeMuGi";
 
 
-
     private Dictionary<string, int> tableSchema = new Dictionary<string, int>()
     {
-        {Level,1},
-        {SkillPoint,GameBalance.SkillPointGet},
-        {Skill2Point,0},
-        {StatPoint,0},
-        {Memory,0},
-
-        {AttackLevel_Gold,0},
-        {CriticalLevel_Gold,0},
-        {CriticalDamLevel_Gold,0},
-        {HpLevel_Gold,0},
-        {MpLevel_Gold,0},
-        {HpRecover_Gold,0},
-        {MpRecover_Gold,0},
+        { Level, 1 },
+        { SkillPoint, GameBalance.SkillPointGet },
+        { Skill2Point, 0 },
+        { StatPoint, 0 },
+        { Memory, 0 },
+        { AttackLevel_Gold, 0 },
+        { CriticalLevel_Gold, 0 },
+        { CriticalDamLevel_Gold, 0 },
+        { HpLevel_Gold, 0 },
+        { MpLevel_Gold, 0 },
+        { HpRecover_Gold, 0 },
+        { MpRecover_Gold, 0 },
 
         //스텟초기화도 같이추가해
-        {IntLevelAddPer_StatPoint,0},
-        {CriticalLevel_StatPoint,0},
-        {CriticalDamLevel_StatPoint,0},
-        {HpPer_StatPoint,0},
-        {MpPer_StatPoint,0},
+        { IntLevelAddPer_StatPoint, 0 },
+        { CriticalLevel_StatPoint, 0 },
+        { CriticalDamLevel_StatPoint, 0 },
+        { HpPer_StatPoint, 0 },
+        { MpPer_StatPoint, 0 },
         //스텟초기화도 같이추가해
 
-        {DamageBalance_memory,0},
-        {SkillDamage_memory,0},
-        {SkillCoolTime_memory,0},
-        {CriticalLevel_memory,0},
-        {CriticalDamLevel_memory,0},
-        {IgnoreDefense_memory,0},
-        {BossDamage_memory,0},
-        {GoldGain_memory,0},
-        {ExpGain_memory,0},
-        {Son_Level,0},
-        {PetEquip_Level,0},
-        {ChunSlash_memory,0},
-        {PetAwakeLevel,0},
-        {FeelSlash_memory,0},
-
-        {ZSlash_memory,0},
-        {Cslash_memory,0},
-        {GiSlash_memory,0},
-        {Gum_memory,0},
-
-        {Skill0_AddValue,0},
-        {Skill1_AddValue,0},
-        {Skill2_AddValue,0},
-        {SkillAdPoint,0},
-        {FeelMul,0},
-        {LeeMuGi,0},
+        { DamageBalance_memory, 0 },
+        { SkillDamage_memory, 0 },
+        { SkillCoolTime_memory, 0 },
+        { CriticalLevel_memory, 0 },
+        { CriticalDamLevel_memory, 0 },
+        { IgnoreDefense_memory, 0 },
+        { BossDamage_memory, 0 },
+        { GoldGain_memory, 0 },
+        { ExpGain_memory, 0 },
+        { Son_Level, 0 },
+        { PetEquip_Level, 0 },
+        { ChunSlash_memory, 0 },
+        { PetAwakeLevel, 0 },
+        { FeelSlash_memory, 0 },
+        { ZSlash_memory, 0 },
+        { Cslash_memory, 0 },
+        { GiSlash_memory, 0 },
+        { Gum_memory, 0 },
+        { Skill0_AddValue, 0 },
+        { Skill1_AddValue, 0 },
+        { Skill2_AddValue, 0 },
+        { SkillAdPoint, 0 },
+        { FeelMul, 0 },
+        { LeeMuGi, 0 },
     };
 
     private Dictionary<string, ReactiveProperty<int>> tableDatas = new Dictionary<string, ReactiveProperty<int>>();
@@ -145,10 +140,12 @@ public class StatusTable
     {
         return tableDatas[key];
     }
+
     public float GetStatusValue(string key)
     {
         return GetStatusValue(key, tableDatas[key].Value);
     }
+
     public float GetStatusValue(string key, float level)
     {
         if (TableManager.Instance.StatusDatas.TryGetValue(key, out var data))
@@ -156,11 +153,14 @@ public class StatusTable
             switch (key)
             {
                 #region Gold
+
                 case AttackLevel_Gold:
                     {
-                        float goldAbilRatio = PlayerStats.GetGoldAbilRatio();
+                        float goldAbilRatio = PlayerStats.GetGoldAbilAddRatio();
 
-                        return (Mathf.Pow(level, 1.07f) * 2f + 10) * goldAbilRatio;
+                        float goldAbilRatio_Soul = PlayerStats.GetNorigaeSoulGradeValue();
+
+                        return (Mathf.Pow(level, 1.07f) * 2f + 10) * goldAbilRatio * goldAbilRatio_Soul;
                     }
                     break;
                 case CriticalLevel_Gold:
@@ -170,9 +170,11 @@ public class StatusTable
                     break;
                 case CriticalDamLevel_Gold:
                     {
-                        float goldAbilRatio = PlayerStats.GetGoldAbilRatio();
+                        float goldAbilRatio = PlayerStats.GetGoldAbilAddRatio();
+                            
+                        float goldAbilRatio_Soul = PlayerStats.GetNorigaeSoulGradeValue();
 
-                        return level * 0.01f * goldAbilRatio;
+                        return level * 0.01f * goldAbilRatio * goldAbilRatio_Soul;
                     }
                     break;
 
@@ -197,8 +199,11 @@ public class StatusTable
                         return level * 0.0001f;
                     }
                     break;
+
                 #endregion
+
                 #region Stat
+
                 case IntLevelAddPer_StatPoint:
                     {
                         return level * 0.03f * GameBalance.forestValue;
@@ -248,8 +253,11 @@ public class StatusTable
                         return level * 0.005f;
                     }
                     break;
+
                 #endregion
+
                 #region Memory
+
                 case DamageBalance_memory:
                     {
                         return level * 0.002f;
@@ -326,7 +334,9 @@ public class StatusTable
 
                         return level * 0.00000009f * spcialAbilRatio;
                     }
+
                 #endregion
+
                 default:
                     {
                         return 0f;
@@ -384,102 +394,99 @@ public class StatusTable
         tableDatas.Clear();
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), callback =>
-         {
-             // 이후 처리
-             if (callback.IsSuccess() == false)
-             {
-                 Debug.LogError("LoadStatusFailed");
-                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry, Initialize);
-                 return;
-             }
+        {
+            // 이후 처리
+            if (callback.IsSuccess() == false)
+            {
+                Debug.LogError("LoadStatusFailed");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry,
+                    Initialize);
+                return;
+            }
 
-             var rows = callback.Rows();
+            var rows = callback.Rows();
 
-             //맨처음 초기화
-             if (rows.Count <= 0)
-             {
-                 Param defultValues = new Param();
+            //맨처음 초기화
+            if (rows.Count <= 0)
+            {
+                Param defultValues = new Param();
 
-                 var e = tableSchema.GetEnumerator();
+                var e = tableSchema.GetEnumerator();
 
-                 while (e.MoveNext())
-                 {
-                     defultValues.Add(e.Current.Key, e.Current.Value);
-                     tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(e.Current.Value));
-                 }
+                while (e.MoveNext())
+                {
+                    defultValues.Add(e.Current.Key, e.Current.Value);
+                    tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(e.Current.Value));
+                }
 
-                 var bro = Backend.GameData.Insert(tableName, defultValues);
+                var bro = Backend.GameData.Insert(tableName, defultValues);
 
-                 if (bro.IsSuccess() == false)
-                 {
-                     // 이후 처리
-                     ServerData.ShowCommonErrorPopup(bro, Initialize);
-                     return;
-                 }
-                 else
-                 {
+                if (bro.IsSuccess() == false)
+                {
+                    // 이후 처리
+                    ServerData.ShowCommonErrorPopup(bro, Initialize);
+                    return;
+                }
+                else
+                {
+                    var jsonData = bro.GetReturnValuetoJSON();
+                    if (jsonData.Keys.Count > 0)
+                    {
+                        Indate = jsonData[0].ToString();
+                    }
 
-                     var jsonData = bro.GetReturnValuetoJSON();
-                     if (jsonData.Keys.Count > 0)
-                     {
+                    // data.
+                    // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
+                }
 
-                         Indate = jsonData[0].ToString();
+                return;
+            }
+            //나중에 칼럼 추가됐을때 업데이트
+            else
+            {
+                Param defultValues = new Param();
+                int paramCount = 0;
 
-                     }
+                JsonData data = rows[0];
 
-                     // data.
-                     // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
-                 }
+                if (data.Keys.Contains(ServerData.inDate_str))
+                {
+                    Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
+                }
 
-                 return;
-             }
-             //나중에 칼럼 추가됐을때 업데이트
-             else
-             {
-                 Param defultValues = new Param();
-                 int paramCount = 0;
+                var e = tableSchema.GetEnumerator();
 
-                 JsonData data = rows[0];
+                for (int i = 0; i < data.Keys.Count; i++)
+                {
+                    while (e.MoveNext())
+                    {
+                        if (data.Keys.Contains(e.Current.Key))
+                        {
+                            //값로드
+                            var value = data[e.Current.Key][ServerData.format_Number].ToString();
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(Int32.Parse(value)));
+                        }
+                        else
+                        {
+                            defultValues.Add(e.Current.Key, e.Current.Value);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(e.Current.Value));
+                            paramCount++;
+                        }
+                    }
+                }
 
-                 if (data.Keys.Contains(ServerData.inDate_str))
-                 {
-                     Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
-                 }
+                if (paramCount != 0)
+                {
+                    var bro = Backend.GameData.Update(tableName, Indate, defultValues);
 
-                 var e = tableSchema.GetEnumerator();
-
-                 for (int i = 0; i < data.Keys.Count; i++)
-                 {
-                     while (e.MoveNext())
-                     {
-                         if (data.Keys.Contains(e.Current.Key))
-                         {
-                             //값로드
-                             var value = data[e.Current.Key][ServerData.format_Number].ToString();
-                             tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(Int32.Parse(value)));
-                         }
-                         else
-                         {
-                             defultValues.Add(e.Current.Key, e.Current.Value);
-                             tableDatas.Add(e.Current.Key, new ReactiveProperty<int>(e.Current.Value));
-                             paramCount++;
-                         }
-                     }
-                 }
-
-                 if (paramCount != 0)
-                 {
-                     var bro = Backend.GameData.Update(tableName, Indate, defultValues);
-
-                     if (bro.IsSuccess() == false)
-                     {
-                         ServerData.ShowCommonErrorPopup(bro, Initialize);
-                         return;
-                     }
-                 }
-
-             }
-         });
+                    if (bro.IsSuccess() == false)
+                    {
+                        ServerData.ShowCommonErrorPopup(bro, Initialize);
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     public void UpData(string key, bool localOnly)
@@ -500,6 +507,7 @@ public class StatusTable
             Debug.Log($"Status {key} is not exist");
             return;
         }
+
         tableDatas[key].Value = data;
 
         if (localOnly == false)

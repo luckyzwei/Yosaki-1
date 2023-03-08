@@ -43,4 +43,7 @@ public class NewAttendanceLockMask : MonoBehaviour
             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "출석 시작!!", null);
         });
     }
+    
+    
+
 }

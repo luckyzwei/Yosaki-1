@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -264,8 +264,7 @@ public class AutoManager : Singleton<AutoManager>
             //무빙공격
             else
             {
-                //아드라검
-                if (ServerData.userInfoTable.TableDatas[UserInfoTable.getMovingAutoAttack].Value > 0)
+                if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx5].Value >= 10)
                 {
                     canAttack = true;
 

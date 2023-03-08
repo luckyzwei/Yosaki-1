@@ -32,8 +32,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //눈사람,봄나물
         public readonly float springItem;
         public readonly float peachItem;
+        public readonly float helItem;
 
-        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem)
+        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem, float helItem)
         {
             this.gold = gold;
 
@@ -60,6 +61,8 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             this.springItem = springItem;
 
             this.peachItem = peachItem;
+            
+            this.helItem = helItem;
         }
     }
 
@@ -118,7 +121,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             plusSpawnNum += 5;
         }
-
+#if UNITY_EDITOR
+        plusSpawnNum = 71;
+#endif
 
             float spawnEnemyNumPerSec = (float)((platformNum * stageTableData.Spawnamountperplatform) + plusSpawnNum) / spawnInterval;
 
@@ -152,16 +157,22 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         //복숭아
         float peachItem = 0;
-        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value >0)
         {
             peachItem = killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+        }
+        //복숭아
+        float helItem = 0;
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value >0)
+        {
+            helItem = killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes;
         }
         eventItem = springItem;
 
         float exp = killedEnemyPerMin * spawnedEnemyData.Exp * GameBalance.sleepRewardRatio * elapsedMinutes;
         exp += exp * expBuffRatio;
 
-        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble, yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds, killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem, springItem: springItem, peachItem: peachItem);
+        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble, yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds, killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem, springItem: springItem, peachItem: peachItem, helItem: helItem);
 
         UiSleepRewardView.Instance.CheckReward();
     }
@@ -187,9 +198,13 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //
         ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value += sleepRewardInfo.yoguiMarble;
 
-        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value >0)
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value += (int)sleepRewardInfo.peachItem;
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value >0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value += (int)sleepRewardInfo.helItem;
         }
         //봄나물
         if (ServerData.userInfoTable.CanSpawnSpringEventItem())
@@ -254,9 +269,14 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
         }
         
-        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 1)
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value >0)
         {
             goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value); 
+        }
+
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value >0)
+        {
+            goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value); 
         }
 
         goodsParam.Add(GoodsTable.StageRelic, ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value);

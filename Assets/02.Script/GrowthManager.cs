@@ -1,4 +1,4 @@
-﻿using BackEnd;
+using BackEnd;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,10 +74,21 @@ public class GrowthManager : SingletonMono<GrowthManager>
 
     public void GetExp(float exp, bool useEffect = true, bool syncToServer = true, bool isSleep = false)
     {
-        if (accumLevel > 50000)
+        if (isSleep) 
         {
-            return;
+            if (accumLevel > 50000)
+            {
+                return;
+            }
         }
+        else 
+        {
+            if (accumLevel > 1234)
+            {
+                return;
+            }
+        }
+
 
 
         exp += exp * expValue;

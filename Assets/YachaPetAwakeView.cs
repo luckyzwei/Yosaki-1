@@ -7,20 +7,15 @@ using TMPro;
 
 public class YachaPetAwakeView : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject awakeButton;
+    [SerializeField] private GameObject awakeButton;
 
-    [SerializeField]
-    private GameObject levelUpObjects;
+    [SerializeField] private GameObject levelUpObjects;
 
-    [SerializeField]
-    private TextMeshProUGUI levelDescription;
+    [SerializeField] private TextMeshProUGUI levelDescription;
 
-    [SerializeField]
-    private TextMeshProUGUI levelText;
+    [SerializeField] private TextMeshProUGUI levelText;
 
-    [SerializeField]
-    private TextMeshProUGUI priceText;
+    [SerializeField] private TextMeshProUGUI priceText;
 
     private void Start()
     {
@@ -59,7 +54,8 @@ public class YachaPetAwakeView : MonoBehaviour
 
         if (ServerData.goodsTable.GetTableData(GoodsTable.MonkeyStone).Value == 0)
         {
-            PopupManager.Instance.ShowAlarmMessage($"십이지신(신) 최종 보상 {CommonString.GetItemName(Item_Type.MonkeyStone)}이 필요합니다.");
+            PopupManager.Instance.ShowAlarmMessage(
+                $"십이지신(신) 최종 보상 {CommonString.GetItemName(Item_Type.MonkeyStone)}이 필요합니다.");
             return;
         }
 
@@ -98,10 +94,35 @@ public class YachaPetAwakeView : MonoBehaviour
         }
 
         syncRoutine = CoroutineExecuter.Instance.StartCoroutine(SyncRoutine());
-
     }
+
+    public void OnClickLevelUpButton_100()
+    {
+        float currentGrowthStoneAmount = ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value;
+
+        float upgradePrice = GameBalance.AwakePetUpgradePrice * 100f;
+        
+        if (currentGrowthStoneAmount < upgradePrice)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GrowthStone)}이 부족합니다.");
+            return;
+        }
+
+        ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= upgradePrice;
+        
+        ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 100;
+
+        if (syncRoutine != null)
+        {
+            CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
+        }
+
+        syncRoutine = CoroutineExecuter.Instance.StartCoroutine(SyncRoutine());
+    }
+
     private Coroutine syncRoutine;
     private WaitForSeconds delay = new WaitForSeconds(0.3f);
+
     private IEnumerator SyncRoutine()
     {
         yield return delay;
@@ -112,16 +133,17 @@ public class YachaPetAwakeView : MonoBehaviour
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
 
         Param statusParam = new Param();
-        statusParam.Add(StatusTable.PetAwakeLevel, ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value);
+        statusParam.Add(StatusTable.PetAwakeLevel,
+            ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value);
 
 
         transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         transactions.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
 
         ServerData.SendTransaction(transactions, successCallBack: () =>
-          {
-              //   LogManager.Instance.SendLogType("PetAwake", "S", ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value.ToString());
-          });
+        {
+            //   LogManager.Instance.SendLogType("PetAwake", "S", ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value.ToString());
+        });
     }
 
     public void OnClickLevelUpButton_All()
@@ -138,7 +160,8 @@ public class YachaPetAwakeView : MonoBehaviour
 
         amount = (float)System.Math.Truncate(amount);
 
-        ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= (GameBalance.AwakePetUpgradePrice * (int)amount);
+        ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -=
+            (GameBalance.AwakePetUpgradePrice * (int)amount);
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 1 * (int)amount;
 
         if (syncRoutine != null)
@@ -147,7 +170,6 @@ public class YachaPetAwakeView : MonoBehaviour
         }
 
         syncRoutine = CoroutineExecuter.Instance.StartCoroutine(SyncRoutine());
-
     }
 
 
@@ -171,4 +193,3 @@ public class YachaPetAwakeView : MonoBehaviour
     }
 #endif
 }
-

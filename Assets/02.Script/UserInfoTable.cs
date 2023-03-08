@@ -30,7 +30,8 @@ public class UserInfoTable
     public const string currentFloorIdx = "currentFloorIdx";
     public const string currentFloorIdx2 = "cf2";
     public const string currentFloorIdx3 = "cf3";
-    public const string currentFloorIdx4 = "cf4";
+    public const string currentFloorIdx4 = "cf4"; //우마왕
+    public const string currentFloorIdx5 = "cf5"; //경락마사지
 
     public const string receiveReviewReward = "receiveReviewReward";
 
@@ -57,6 +58,7 @@ public class UserInfoTable
     public const string attendanceCount = "ac1";
     public const string attendanceCount_100Day = "attendanceCount_100Day";
     public const string attendanceCount_Seol = "atten_Seol";
+    public const string attendanceCount_Dol = "atten_Dol";
 
     public const string marbleAwake = "marbleAwake";
     public const string resetStat = "resetStat";
@@ -166,6 +168,7 @@ public class UserInfoTable
     public const string hellScore = "hels";
     public const string chunClear = "chun";
     public const string susanoScore = "susa";
+    public const string norigaeScore = "nss";
     public const string gradeScore = "grade";
     public const string yumScore = "yumScore";
     public const string okScore = "okScore";
@@ -236,6 +239,7 @@ public class UserInfoTable
     public const string eventMission0_2 = "em_0_2";
     public const string eventMission0_3 = "em_0_3";
     public const string eventMission0_4 = "em_0_4";
+    public const string eventMission0_5 = "em_0_5";
 
     public const string nickNameChange = "nickNameChange";
     public const string getPetHome = "gph";
@@ -250,6 +254,7 @@ public class UserInfoTable
     public const string getFoxCup = "gfc";
 
     public const string graduateSon = "GS";
+    public const string graduateHel = "GH";
     public const string getMovingAutoAttack = "GMAA";
 
 
@@ -276,6 +281,7 @@ public class UserInfoTable
         {currentFloorIdx2,0f},
         {currentFloorIdx3,0f},
         {currentFloorIdx4,0f},
+        {currentFloorIdx5,0f},
         {receiveReviewReward,0f},
         {dailyEnemyKillCount,0f},
         {dailyTicketBuyCount,0f},
@@ -352,6 +358,7 @@ public class UserInfoTable
         {DayOfWeekClear,0f},
         {getFoxCup,0f},
         {graduateSon,0f},
+        {graduateHel,0f},
         {getMovingAutoAttack,0f},
 
 
@@ -383,6 +390,7 @@ public class UserInfoTable
         {hellWarScore,0f},
         {catScore,0f},
         {susanoScore,0f},
+        {norigaeScore,0f},
         {gradeScore,0f},
         {yumScore,0f},
         {okScore,0f},
@@ -400,6 +408,7 @@ public class UserInfoTable
         {SendGuildPoint,0},
         {cockAwake,0},
         {attendanceCount_Seol,1},
+        {attendanceCount_Dol,1},
         {dogAwake,0},
         {basicPackRefund,0},
         {skillInitialized,0},
@@ -453,6 +462,7 @@ public class UserInfoTable
         {eventMission0_2,0},
         {eventMission0_3,0},
         {eventMission0_4,0},
+        {eventMission0_5,0},
 
         {nickNameChange,0},
         {getPetHome,0},
@@ -1018,7 +1028,6 @@ public class UserInfoTable
         if (monthChanged)
         { 
             userInfoParam.Add(UserInfoTable.nickNameChange, ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value);
-            userInfoParam.Add(UserInfoTable.monthAttendCount, ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value);
         }
 
         //채팅 테두리 초기화
@@ -1086,9 +1095,12 @@ public class UserInfoTable
         //티켓
         ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value += GameBalance.DailyRelicTicketGetCount;
 
+        //주사위
+        ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += GameBalance.DailyEventDiceGetCount;
         Param goodsParam = new Param();
 
         goodsParam.Add(GoodsTable.RelicTicket, ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value);
+        goodsParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
 
 
 

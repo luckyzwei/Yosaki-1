@@ -187,6 +187,8 @@ public class Enemy : PoolItem
         GetEventItem();
 
         GetPeachItem();
+        GetHelItem();
+        
 
         //곶감 -> 봄나물
         GetSpringEventItem();
@@ -220,6 +222,12 @@ public class Enemy : PoolItem
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value == 0) return;
 
         ServerData.goodsTable.GetPeachItem(GameManager.Instance.CurrentStageData.Peachamount);
+    }
+    private void GetHelItem()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value == 0) return;
+
+        ServerData.goodsTable.GetHelItem(GameManager.Instance.CurrentStageData.Helamount);
     }
 
     private void GetSpringEventItem() 

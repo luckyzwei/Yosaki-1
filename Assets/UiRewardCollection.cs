@@ -50,6 +50,8 @@ public class UiRewardCollection : MonoBehaviour
     
     [SerializeField]
     private GameObject SonObject;
+    [SerializeField]
+    private GameObject HelObject;
 
     private void Start()
     {
@@ -91,6 +93,10 @@ public class UiRewardCollection : MonoBehaviour
         ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).AsObservable().Subscribe(e =>
         {
             SonObject.SetActive(e == 0);
+        }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).AsObservable().Subscribe(e =>
+        {
+            HelObject.SetActive(e == 0);
         }).AddTo(this);
     }
 

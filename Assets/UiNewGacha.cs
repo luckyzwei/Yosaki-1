@@ -86,9 +86,9 @@ public class UiNewGacha : MonoBehaviour
     }
 
 
-    private bool CanGacha(int price)
+    private bool CanGacha(float price)
     {
-        int currentBlueStoneNum = (int)ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value;
+        float currentBlueStoneNum = ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value;
         return currentBlueStoneNum >= price;
     }
 

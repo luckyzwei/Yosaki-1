@@ -442,6 +442,9 @@ public static class ServerData
             case Item_Type.SusanoTreasure:
                 ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value += rewardValue;
                 break;
+            case Item_Type.SahyungTreasure:
+                ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += rewardValue;
+                break;
 
             case Item_Type.Hel:
                 ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value += rewardValue;
@@ -463,10 +466,17 @@ public static class ServerData
                 break;
             case Item_Type.SumiFire:
                 ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += rewardValue;
+                break;   
+            case Item_Type.Tresure:
+                ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += rewardValue;
                 break;
 
             case Item_Type.SinsuRelic:
                 ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += rewardValue;
+                break;
+
+            case Item_Type.EventDice:
+                ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += rewardValue;
                 break;
 
             case Item_Type.DokebiFireKey:
@@ -612,6 +622,10 @@ public static class ServerData
             case Item_Type.costume89:
             case Item_Type.costume90:
             case Item_Type.costume91:
+            case Item_Type.costume92:
+            case Item_Type.costume93:
+            case Item_Type.costume94:
+            case Item_Type.costume95:
                 ServerData.costumeServerTable.TableDatas[type.ToString()].hasCostume.Value = true;
                 break;
             case Item_Type.weapon81:
@@ -761,6 +775,10 @@ public static class ServerData
             case Item_Type.costume89:
             case Item_Type.costume90:
             case Item_Type.costume91:
+            case Item_Type.costume92:
+            case Item_Type.costume93:
+            case Item_Type.costume94:
+            case Item_Type.costume95:
                 string costumeKey = type.ToString();
                 passParam.Add(costumeKey, ServerData.costumeServerTable.TableDatas[costumeKey].ConvertToString());
                 return TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate, passParam);
@@ -828,6 +846,14 @@ public static class ServerData
 
             case Item_Type.SinsuRelic:
                 passParam.Add(GoodsTable.SinsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
+            case Item_Type.EventDice:
+                passParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);   
+            
+            case Item_Type.Tresure:
+                passParam.Add(GoodsTable.Tresure, ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
 
             case Item_Type.SumiFire:
@@ -1289,6 +1315,11 @@ public static class ServerData
                 param.Add(GoodsTable.SusanoTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
+            case Item_Type.SahyungTreasure:
+                ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += amount;
+                param.Add(GoodsTable.SahyungTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
             case Item_Type.Mileage:
                 ServerData.goodsTable.GetTableData(GoodsTable.Mileage).Value += amount;
                 param.Add(GoodsTable.Mileage, ServerData.goodsTable.GetTableData(GoodsTable.Mileage).Value);
@@ -1297,6 +1328,16 @@ public static class ServerData
             case Item_Type.SinsuRelic:
                 ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += amount;
                 param.Add(GoodsTable.SinsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
+            case Item_Type.EventDice:
+                ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += amount;
+                param.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            
+     case Item_Type.Tresure:
+                ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += amount;
+                param.Add(GoodsTable.Tresure, ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.SumiFire:
@@ -2596,8 +2637,14 @@ public static class ServerData
                 case Item_Type.SinsuRelic:
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += amount;
                     break;
+                case Item_Type.EventDice:
+                    ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += amount;
+                    break;
                 case Item_Type.Event_Collection_All:
                     ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection_All).Value += amount;
+                    break;   
+                case Item_Type.Tresure:
+                    ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += amount;
                     break;
 
 
@@ -2649,6 +2696,9 @@ public static class ServerData
 
                 case Item_Type.DokebiTreasure:
                     ServerData.goodsTable.GetTableData(GoodsTable.DokebiTreasure).Value += amount;
+                    break;
+                case Item_Type.SahyungTreasure:
+                    ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += amount;
                     break;
                 case Item_Type.DokebiFireEnhance:
                     ServerData.goodsTable.GetTableData(GoodsTable.DokebiFireEnhance).Value += amount;

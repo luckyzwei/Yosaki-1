@@ -371,60 +371,7 @@ public class TwelveDungeonManager : ContentsManagerBase
 
         if (twelveBossTable != null)
         {
-            if (
-                twelveBossTable.Id == 15 ||
-                twelveBossTable.Id == 16 ||
-                twelveBossTable.Id == 17 ||
-                twelveBossTable.Id == 18 ||
-                twelveBossTable.Id == 20 ||
-                twelveBossTable.Id == 52 ||
-                twelveBossTable.Id == 54 ||
-                twelveBossTable.Id == 56 ||
-                twelveBossTable.Id == 57 ||
-                twelveBossTable.Id == 58 ||
-                twelveBossTable.Id == 59 ||
-                twelveBossTable.Id == 60 ||
-                twelveBossTable.Id == 61 ||
-                twelveBossTable.Id == 62 ||
-                twelveBossTable.Id == 63 ||
-                twelveBossTable.Id == 64 ||
-                twelveBossTable.Id == 66 ||
-                twelveBossTable.Id == 67 ||
-                twelveBossTable.Id == 69 ||
-                twelveBossTable.Id == 70 ||
-                twelveBossTable.Id == 71 ||
-                twelveBossTable.Id == 72 ||
-                twelveBossTable.Id == 75 ||
-                twelveBossTable.Id == 76 ||
-                twelveBossTable.Id == 77 ||
-                twelveBossTable.Id == 78 ||
-                twelveBossTable.Id == 79 ||
-                twelveBossTable.Id == 80 ||
-                twelveBossTable.Id == 81 ||
-                twelveBossTable.Id == 82 ||
-                twelveBossTable.Id == 83 ||
-                twelveBossTable.Id == 84 ||
-                twelveBossTable.Id == 85 ||
-                twelveBossTable.Id == 86 ||
-                twelveBossTable.Id == 87 ||
-                twelveBossTable.Id == 88 ||
-                twelveBossTable.Id == 89 ||
-                twelveBossTable.Id == 90 ||
-                twelveBossTable.Id == 92 ||
-                twelveBossTable.Id == 93 ||
-                twelveBossTable.Id == 94 ||
-                twelveBossTable.Id == 95 ||
-                twelveBossTable.Id == 96 ||
-                twelveBossTable.Id == 97 
-                )
-            {
-                remainSec *= 0.5f;
-            }
-            else if (twelveBossTable.Id >= 30 && twelveBossTable.Id <= 38)
-            {
-                remainSec *= 0.5f;
-            }
-            else if (twelveBossTable.Id >= 40 && twelveBossTable.Id <= 50)
+            if (twelveBossTable.TIMETYPE == TimeType.Half)
             {
                 remainSec *= 0.5f;
             }

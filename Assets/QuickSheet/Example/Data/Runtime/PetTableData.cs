@@ -116,4 +116,8 @@ public class PetTableData
   float getrewardvalue1;
   public float Getrewardvalue1 { get {return getrewardvalue1; } set { this.getrewardvalue1 = value;} }
   
+  [SerializeField]
+  PetType pettype;
+  public PetType PETTYPE { get {return pettype; } set { this.pettype = value;} }
+  
 }

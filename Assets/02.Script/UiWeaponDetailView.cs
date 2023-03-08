@@ -571,7 +571,9 @@ public class UiWeaponDetailView : MonoBehaviour
                 PopupManager.Instance.ShowAlarmMessage("최대레벨 입니다.");
                 return;
             }
-
+#if UNITY_EDITOR
+            levelUpPrice = 0;
+#endif
             if (currentMagicStoneAmount < levelUpPrice)
             {
                 PopupManager.Instance.ShowAlarmMessage("수련의돌이 부족합니다.");

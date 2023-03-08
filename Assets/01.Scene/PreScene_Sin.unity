@@ -1843,6 +1843,11 @@ MonoBehaviour:
   choboTable: {fileID: 11400000, guid: ece7d98f71fdfac4680d959ba53db4ae, type: 2}
   twoCave: {fileID: 11400000, guid: 3b62ca0c41a10674c9b5f98f370b5d41, type: 2}
   springAtten: {fileID: 11400000, guid: c6b21b636eae1524e85456257e7553be, type: 2}
+  gyungRockTowerTable: {fileID: 11400000, guid: f06c9e1c868f2d844b9020f6cb226d70,
+    type: 2}
+  dolPass: {fileID: 11400000, guid: ce482b64c869c2a4b93b2e2f55caccf2, type: 2}
+  norigaeJewel: {fileID: 11400000, guid: efac2326afe9f7546870aab4b206570d, type: 2}
+  tresureAbilBase: {fileID: 11400000, guid: 55f904ca4d35c7c4cadaf2f7bb4c0e9a, type: 2}
 --- !u!224 &1672999882 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3778453797765526293, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -1961,6 +1966,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 66c0a6145a0e31e4ea213b4ce93f5a9c, type: 3}
   - {fileID: 21300000, guid: 76047a9d35e3f234e94b0b238e2c7d34, type: 3}
   - {fileID: 21300000, guid: 6d331f281d46eed4285d169abd68841c, type: 3}
+  - {fileID: 21300000, guid: 09df15c9c357b3b4883d4209ec91809f, type: 3}
+  - {fileID: 21300000, guid: 3783fd68fdf27ba44937cc9488134736, type: 3}
   itemGradeColor:
   - {r: 0.42352945, g: 0.34117648, b: 0.24705884, a: 1}
   - {r: 0.36862746, g: 0.8000001, b: 0.23529413, a: 1}
@@ -1987,6 +1994,8 @@ MonoBehaviour:
   - {r: 0.47450984, g: 0, b: 1, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0.66366214, g: 0.13866144, b: 0.7169812, a: 1}
+  - {r: 0, g: 0, b: 0, a: 1}
+  - {r: 0, g: 0.43529415, b: 0.4784314, a: 1}
   costumeThumbnail:
   - {fileID: 21300000, guid: e1fdee06b1ace764e99a14c848a213ad, type: 3}
   - {fileID: 21300000, guid: be316b91f67a3bc458b47904aec3c83a, type: 3}
@@ -2080,6 +2089,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c2d7e98ea1909444fb5b896c83c5cde5, type: 3}
   - {fileID: 21300000, guid: 4b14a9a2b9fa6ef4d92ccceb31445740, type: 3}
   - {fileID: 21300000, guid: 2dd20dd9d09f716429321e72a4058d7c, type: 3}
+  - {fileID: 21300000, guid: 0b78049667d818a459c10b1e6755a69f, type: 3}
+  - {fileID: 21300000, guid: 890b043888079fb48b15af68a78e7132, type: 3}
+  - {fileID: 21300000, guid: 150dd8e4b4293a84fb1f5b4c391dadb1, type: 3}
+  - {fileID: 21300000, guid: bb7f0b1e35d6da94bbc926fbcab62eee, type: 3}
   rankFrame:
   - {fileID: 21300000, guid: 180b014bbd854ff4c8d26a3bc3108a29, type: 3}
   - {fileID: 21300000, guid: 045aff0737bd68d449d44a4a9bb5b849, type: 3}
@@ -2198,6 +2211,10 @@ MonoBehaviour:
   SumisanNorigae4: {fileID: 21300000, guid: ac39d88ac2636f649a6e7122fcdd1032, type: 3}
   SumisanNorigae5: {fileID: 21300000, guid: d0365b1fecb55794592886620ba3fbf9, type: 3}
   SumisanNorigae6: {fileID: 21300000, guid: 95efdb5d24af336448d57c962587dd97, type: 3}
+  ThiefNorigae0: {fileID: 21300000, guid: d50fff60660391f429d28cb67ad02f6e, type: 3}
+  ThiefNorigae1: {fileID: 21300000, guid: 0627474c4fe46db489be7d5c02ab16b3, type: 3}
+  ThiefNorigae2: {fileID: 21300000, guid: 65f63d1fd7acef34693bb886f664f481, type: 3}
+  ThiefNorigae3: {fileID: 21300000, guid: 2c9f2df9c5e261940a577e608539f7bb, type: 3}
   MonthNorigae0: {fileID: 21300000, guid: b8e4966468cd428418fa5447c72fabe7, type: 3}
   MonthNorigae1: {fileID: 21300000, guid: 534227b3d8d3ed346912306890c7d5ee, type: 3}
   MonthNorigae2: {fileID: 21300000, guid: e5a11b2c900be0a478a8bef1cd907e2d, type: 3}
@@ -2229,6 +2246,10 @@ MonoBehaviour:
   SasinsuPet1: {fileID: 21300000, guid: 151e46cd1b2bc5d4a88060061e454022, type: 3}
   SasinsuPet2: {fileID: 21300000, guid: a618eeb468d93a547b884ac99c72ce4a, type: 3}
   SasinsuPet3: {fileID: 21300000, guid: 0e2b7788e98dfa947b25f98f81c08557, type: 3}
+  SahyungPet0: {fileID: 21300000, guid: 310f9d12ff5e64d40b211e1de598f18f, type: 3}
+  SahyungPet1: {fileID: 21300000, guid: 398afb046f53b134d8f5dbdbe3108704, type: 3}
+  SahyungPet2: {fileID: 21300000, guid: 5e56e40ad667d51439ebefb2fd40e475, type: 3}
+  SahyungPet3: {fileID: 21300000, guid: c022a89640e104a42b61d0bfdb520391, type: 3}
   Hel: {fileID: 21300000, guid: c7d03bb15fb453547ad2ff4daed7704c, type: 3}
   YeoMarble: {fileID: 21300000, guid: 6498147ea05f8e34798fdc10a5f6ab66, type: 3}
   du: {fileID: 21300000, guid: acf360076936dc34f9368e60902cb253, type: 3}
@@ -2245,11 +2266,14 @@ MonoBehaviour:
   DokebiTreasure: {fileID: 21300000, guid: fb72a99c9750ffd4680fff92c82a5257, type: 3}
   DokebiFireEnhance: {fileID: 21300000, guid: 0c31b2d7b31d5dd41bc8efb258fda795, type: 3}
   SusanoTreasure: {fileID: 21300000, guid: e6003eb4cf98f1045b30517e1f0e4a32, type: 3}
+  SahyungTreasure: {fileID: 21300000, guid: 5eafe4bb3025a5c4ca15663a26f57f39, type: 3}
   SumiFire: {fileID: 21300000, guid: 717b0c3f3e20a0c40a1bb756cc7c8a37, type: 3}
+  Tresure: {fileID: 21300000, guid: c46bacf669867ab49972c7977a30b0f2, type: 3}
   SumiFireKey: {fileID: 21300000, guid: f56de93e9b3508c4f8cad40db0d52d67, type: 3}
   NewGachaEnergy: {fileID: 21300000, guid: 9b3fb5643279b8d4892d74d675004783, type: 3}
   DokebiBundle: {fileID: 21300000, guid: 9503904add1118c4ab34afba1f0ccdbd, type: 3}
   SinsuRelic: {fileID: 21300000, guid: b42f2f574639adb4ea943e5f6e4c38c4, type: 3}
+  EventDice: {fileID: 21300000, guid: 7d7ecd5bea1b6dd4093b17216da70a44, type: 3}
   enemySpineAssets:
   - {fileID: 11400000, guid: d43e1532e76e82d498f78f121b929a76, type: 2}
   - {fileID: 11400000, guid: d43e1532e76e82d498f78f121b929a76, type: 2}
@@ -2323,10 +2347,18 @@ MonoBehaviour:
   SumisanWeapon4: {fileID: 21300000, guid: 9ea12b10e2e4dee41ba07583a4595be3, type: 3}
   SumisanWeapon5: {fileID: 21300000, guid: 616dc483f9b418e43997b1c50a7c712d, type: 3}
   SumisanWeapon6: {fileID: 21300000, guid: 283cc84132f8d7a42a4be6277ccd9f7a, type: 3}
+  ThiefWeapon0: {fileID: 21300000, guid: fd69ef9c215b1d042bdc71ad34f57a5d, type: 3}
+  ThiefWeapon1: {fileID: 21300000, guid: 57a21678b94efb040a6d90c392ba164d, type: 3}
+  ThiefWeapon2: {fileID: 21300000, guid: 628c198cbf406114d998170c23461136, type: 3}
+  ThiefWeapon3: {fileID: 21300000, guid: 601665f71c1ac514cb648d0493212e3a, type: 3}
   SasinsuWeapon0: {fileID: 21300000, guid: 67dd94ade483c4b44aee5c156d25a693, type: 3}
   SasinsuWeapon1: {fileID: 21300000, guid: 17c3ac1d97cc67943950cbc2949bc16b, type: 3}
   SasinsuWeapon2: {fileID: 21300000, guid: 9b70f07332df7224bb73e780ecab54e5, type: 3}
   SasinsuWeapon3: {fileID: 21300000, guid: 367d8c373c0e5ad4381e0bdee0776527, type: 3}
+  SahyungWeapon0: {fileID: 21300000, guid: 563bc991d1b944f48b3f225b60e21ec1, type: 3}
+  SahyungWeapon1: {fileID: 21300000, guid: e6bd6ed84a19ce743a44cf5494aa20d4, type: 3}
+  SahyungWeapon2: {fileID: 21300000, guid: 1f5264fb11cf5544eab4d5563de2e26f, type: 3}
+  SahyungWeapon3: {fileID: 21300000, guid: d7936e14266b8ce42aa86bc5147eb744, type: 3}
   NataSkill: {fileID: 21300000, guid: ffb2316e10d65634eb2778da8e86bfc8, type: 3}
   OrochiSkill: {fileID: 21300000, guid: bb0a7d588821a834289dc833bb262371, type: 3}
   GangrimSkill: {fileID: 21300000, guid: 14eb64f14abdfc54ebbbb7c6705f1e6f, type: 3}
@@ -2590,6 +2622,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 391a28f726aa4cd42bd7645ea43c4ba5, type: 2}
   - {fileID: 11400000, guid: 02c5713a6ce54e54c8ec05795e9a0abb, type: 2}
   - {fileID: 11400000, guid: 5573d070de4c1c740b25b80b5ee85d8f, type: 2}
+  - {fileID: 11400000, guid: 55485f92ba8f09b43b625fb31f21beae, type: 2}
+  - {fileID: 11400000, guid: 578cd24a277d4f04baf362a1b81bc7b5, type: 2}
+  - {fileID: 11400000, guid: 4a81bdd89934a1044befdc2b039aade8, type: 2}
+  - {fileID: 11400000, guid: b8e65144dc9ceab4a8600a15bf5ea52d, type: 2}
   petCostumeList:
   - {fileID: 11400000, guid: 3d9145f3f8361c944acb6cd70679d6e2, type: 2}
   - {fileID: 11400000, guid: 206e7bbe5e49e2f4bb8859c83698d1d7, type: 2}
@@ -2619,6 +2655,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 94c4b3de15cdc7f4ab275a867348306e, type: 2}
   - {fileID: 11400000, guid: 74774b8e1726595439cdc45404fd4577, type: 2}
   - {fileID: 11400000, guid: 9810e7bc966b3f24dbcfd0457c554464, type: 2}
+  - {fileID: 11400000, guid: 8287ba2ac6c5a904ea4f0a039c94ae58, type: 2}
+  - {fileID: 11400000, guid: ee6840b72534b8444954738442e455b8, type: 2}
+  - {fileID: 11400000, guid: 9cb1881dd5eb97247a41d609862973fc, type: 2}
+  - {fileID: 11400000, guid: ac90ade9a549cbb42a4db51e45c4f787, type: 2}
   wingList:
   - {fileID: 1824337048444021639, guid: fa4281d5278f08f4bb6cfbef4bcd93fa, type: 3}
   - {fileID: 8084249260456971432, guid: 40b10dbb47e87d746a73b03ca26b9cfd, type: 3}
@@ -3577,7 +3617,7 @@ PrefabInstance:
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}
       propertyPath: editorLoginId
-      value: clone6
+      value: a_8846847867697156085
       objectReference: {fileID: 0}
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}

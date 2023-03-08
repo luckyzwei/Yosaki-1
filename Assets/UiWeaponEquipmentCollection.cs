@@ -55,9 +55,23 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
             var cell = Instantiate<UiWeaponCollectionView>(weaponCollectionViewPrefab, cellParent);
 
             cell.Initialize(tableData[i]);
+            //사신수와 사흉수
+            if (tableData[i].WEAPONTYPE == WeaponType.HasEffectOnly)
+            {
+                //사흉수 위치변경
+                if (tableData[i].Id == 91 || tableData[i].Id == 92 || tableData[i].Id == 93 || tableData[i].Id == 94)
+                {
+                    cell.gameObject.transform.SetSiblingIndex(i - 56);
+                }
+            }
         }
+        
     }
+    
+    private void SetTransform()
+    {
 
+    }
     private void UpdateDescription()
     {
         SetAbilText();

@@ -116,4 +116,8 @@ public class WeaponData
   float collectioneffectvalue;
   public float Collectioneffectvalue { get {return collectioneffectvalue; } set { this.collectioneffectvalue = value;} }
   
+  [SerializeField]
+  string acquiredescription;
+  public string Acquiredescription { get {return acquiredescription; } set { this.acquiredescription = value;} }
+  
 }

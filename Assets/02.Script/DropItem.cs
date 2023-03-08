@@ -433,6 +433,12 @@ public enum Item_Type
 
     costume90 = 1291, //봄나물 머슴호연
     costume91 = 1292, //3월 월간외형2
+    
+    costume92 = 1293, // 도적 외형0
+    costume93 = 1294, // 도적 외형1
+    costume94 = 1295, // 도적 외형2
+    costume95 = 1296, // 도적 외형3
+    
 
     pet0 = 1301,
     pet1 = 1302,
@@ -515,6 +521,16 @@ public enum Item_Type
     SasinsuPet2 = 7052,
     SasinsuPet3 = 7053,
 
+    SahyungWeapon0 = 7060,
+    SahyungWeapon1 = 7061,
+    SahyungWeapon2 = 7062,
+    SahyungWeapon3 = 7063,
+
+    SahyungPet0 = 7070,
+    SahyungPet1 = 7071,
+    SahyungPet2 = 7072,
+    SahyungPet3 = 7073,
+
     DokebiHorn0 = 7100,
     DokebiHorn1 = 7101,
     DokebiHorn2 = 7102,
@@ -544,6 +560,17 @@ public enum Item_Type
     SumisanNorigae5 = 7135,
     SumisanNorigae6 = 7136,
 
+    
+    ThiefWeapon0 = 7140,
+    ThiefWeapon1 = 7141,
+    ThiefWeapon2 = 7142,
+    ThiefWeapon3 = 7143,
+    
+    ThiefNorigae0 = 7150,
+    ThiefNorigae1 = 7151,
+    ThiefNorigae2 = 7152,
+    ThiefNorigae3 = 7153,
+    
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
     RecommendWeapon2 = 8002,
@@ -623,6 +650,9 @@ public enum Item_Type
     DokebiBundle = 9011,
 
     SinsuRelic = 9012,
+    SahyungTreasure = 9013,
+    EventDice = 9014,
+    Tresure = 9015,
 }
 //
 public class DropItem : PoolItem

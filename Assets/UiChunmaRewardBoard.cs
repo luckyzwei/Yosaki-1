@@ -48,6 +48,4 @@ public class UiChunmaRewardBoard : MonoBehaviour
 
         bossContentsView_Recommend.Initialize(TableManager.Instance.TwelveBossTable.dataArray[68]);
     }
-
-
 }
