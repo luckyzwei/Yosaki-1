@@ -11,10 +11,10 @@ public class UiConsumableItemView : MonoBehaviour
     private string goodsId;
 
     [SerializeField]
-    private ObscuredFloat price;
+    private float price;
 
     [SerializeField]
-    private ObscuredInt amount;
+    private float amount;
 
     [SerializeField]
     private TextMeshProUGUI nameText;

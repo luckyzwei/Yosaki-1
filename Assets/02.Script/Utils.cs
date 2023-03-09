@@ -12,6 +12,7 @@ public static class Utils
     {
         return (self & flag) == flag;
     }
+
     public static bool IsSet(this ManagerDescriptionType self, ManagerDescriptionType flag)
     {
         return (self & flag) == flag;
@@ -20,237 +21,272 @@ public static class Utils
     public static bool IsCostumeItem(this Item_Type type)
     {
         return type == Item_Type.costume0 ||
-                  type == Item_Type.costume1 ||
-                  type == Item_Type.costume2 ||
-                  type == Item_Type.costume3 ||
-                  type == Item_Type.costume4 ||
-                  type == Item_Type.costume5 ||
-                  type == Item_Type.costume6 ||
-                  type == Item_Type.costume7 ||
-                  type == Item_Type.costume8 ||
-                  type == Item_Type.costume9 ||
-                  type == Item_Type.costume10 ||
-                  type == Item_Type.costume11 ||
-                  type == Item_Type.costume12 ||
-                  type == Item_Type.costume13 ||
-                  type == Item_Type.costume14 ||
-                  type == Item_Type.costume15 ||
-                  type == Item_Type.costume16 ||
-                  type == Item_Type.costume17 ||
-                  type == Item_Type.costume18 ||
-                  type == Item_Type.costume19 ||
-                  type == Item_Type.costume20 ||
-                  type == Item_Type.costume21 ||
-                  type == Item_Type.costume22 ||
-                  type == Item_Type.costume23 ||
-                  type == Item_Type.costume24 ||
-                  type == Item_Type.costume25 ||
-                  type == Item_Type.costume26 ||
-                  type == Item_Type.costume27 ||
-                  type == Item_Type.costume28 ||
-                  type == Item_Type.costume29 ||
-                  type == Item_Type.costume30 ||
-                  type == Item_Type.costume31 ||
-                  type == Item_Type.costume32 ||
-                  type == Item_Type.costume33 ||
-                  type == Item_Type.costume34 ||
-                  type == Item_Type.costume35 ||
-                  type == Item_Type.costume36 ||
-                  type == Item_Type.costume37 ||
-                  type == Item_Type.costume38 ||
-                  type == Item_Type.costume39 ||
-                  type == Item_Type.costume40 ||
-                  type == Item_Type.costume41 ||
-                  type == Item_Type.costume42 ||
-                  type == Item_Type.costume43 ||
-                  type == Item_Type.costume44 ||
-                  type == Item_Type.costume45 ||
-                  type == Item_Type.costume46 ||
-                  type == Item_Type.costume47 ||
-                  type == Item_Type.costume48 ||
-                  type == Item_Type.costume49 ||
-                  type == Item_Type.costume50 ||
-                  type == Item_Type.costume51 ||
-                  type == Item_Type.costume52 ||
-                  type == Item_Type.costume53 ||
-                  type == Item_Type.costume54 ||
-                  type == Item_Type.costume55 ||
-                  type == Item_Type.costume56 ||
-                  type == Item_Type.costume57 ||
-                  type == Item_Type.costume58 ||
-                  type == Item_Type.costume59 ||
-                  type == Item_Type.costume60 ||
-                  type == Item_Type.costume61 ||
-                  type == Item_Type.costume62 ||
-                  type == Item_Type.costume63 ||
-                  type == Item_Type.costume64 ||
-                  type == Item_Type.costume65 ||
-                  type == Item_Type.costume66 ||
-                  type == Item_Type.costume67 ||
-                  type == Item_Type.costume68 ||
-                  type == Item_Type.costume69 ||
-                  type == Item_Type.costume70 ||
-                  type == Item_Type.costume71 ||
-                  type == Item_Type.costume72 ||
-                  type == Item_Type.costume73 ||
-                  type == Item_Type.costume74 ||
-                  type == Item_Type.costume75 ||
-                  type == Item_Type.costume76 ||
-                  type == Item_Type.costume77 ||
-                  type == Item_Type.costume78 ||
-                  type == Item_Type.costume79 ||
-                  type == Item_Type.costume80 ||
-                  type == Item_Type.costume81 ||
-                  type == Item_Type.costume82 ||
-                  type == Item_Type.costume83 ||
-                  type == Item_Type.costume84 ||
-                  type == Item_Type.costume85 ||
-                  type == Item_Type.costume86 ||
-                  type == Item_Type.costume87 ||
-                  type == Item_Type.costume88 ||
-                  type == Item_Type.costume89 ||
-                  type == Item_Type.costume90 ||
-                  type == Item_Type.costume91 ||
-                  type == Item_Type.costume92 ||
-                  type == Item_Type.costume93 ||
-                  type == Item_Type.costume94 ||
-                  type == Item_Type.costume95
-                  ;
+               type == Item_Type.costume1 ||
+               type == Item_Type.costume2 ||
+               type == Item_Type.costume3 ||
+               type == Item_Type.costume4 ||
+               type == Item_Type.costume5 ||
+               type == Item_Type.costume6 ||
+               type == Item_Type.costume7 ||
+               type == Item_Type.costume8 ||
+               type == Item_Type.costume9 ||
+               type == Item_Type.costume10 ||
+               type == Item_Type.costume11 ||
+               type == Item_Type.costume12 ||
+               type == Item_Type.costume13 ||
+               type == Item_Type.costume14 ||
+               type == Item_Type.costume15 ||
+               type == Item_Type.costume16 ||
+               type == Item_Type.costume17 ||
+               type == Item_Type.costume18 ||
+               type == Item_Type.costume19 ||
+               type == Item_Type.costume20 ||
+               type == Item_Type.costume21 ||
+               type == Item_Type.costume22 ||
+               type == Item_Type.costume23 ||
+               type == Item_Type.costume24 ||
+               type == Item_Type.costume25 ||
+               type == Item_Type.costume26 ||
+               type == Item_Type.costume27 ||
+               type == Item_Type.costume28 ||
+               type == Item_Type.costume29 ||
+               type == Item_Type.costume30 ||
+               type == Item_Type.costume31 ||
+               type == Item_Type.costume32 ||
+               type == Item_Type.costume33 ||
+               type == Item_Type.costume34 ||
+               type == Item_Type.costume35 ||
+               type == Item_Type.costume36 ||
+               type == Item_Type.costume37 ||
+               type == Item_Type.costume38 ||
+               type == Item_Type.costume39 ||
+               type == Item_Type.costume40 ||
+               type == Item_Type.costume41 ||
+               type == Item_Type.costume42 ||
+               type == Item_Type.costume43 ||
+               type == Item_Type.costume44 ||
+               type == Item_Type.costume45 ||
+               type == Item_Type.costume46 ||
+               type == Item_Type.costume47 ||
+               type == Item_Type.costume48 ||
+               type == Item_Type.costume49 ||
+               type == Item_Type.costume50 ||
+               type == Item_Type.costume51 ||
+               type == Item_Type.costume52 ||
+               type == Item_Type.costume53 ||
+               type == Item_Type.costume54 ||
+               type == Item_Type.costume55 ||
+               type == Item_Type.costume56 ||
+               type == Item_Type.costume57 ||
+               type == Item_Type.costume58 ||
+               type == Item_Type.costume59 ||
+               type == Item_Type.costume60 ||
+               type == Item_Type.costume61 ||
+               type == Item_Type.costume62 ||
+               type == Item_Type.costume63 ||
+               type == Item_Type.costume64 ||
+               type == Item_Type.costume65 ||
+               type == Item_Type.costume66 ||
+               type == Item_Type.costume67 ||
+               type == Item_Type.costume68 ||
+               type == Item_Type.costume69 ||
+               type == Item_Type.costume70 ||
+               type == Item_Type.costume71 ||
+               type == Item_Type.costume72 ||
+               type == Item_Type.costume73 ||
+               type == Item_Type.costume74 ||
+               type == Item_Type.costume75 ||
+               type == Item_Type.costume76 ||
+               type == Item_Type.costume77 ||
+               type == Item_Type.costume78 ||
+               type == Item_Type.costume79 ||
+               type == Item_Type.costume80 ||
+               type == Item_Type.costume81 ||
+               type == Item_Type.costume82 ||
+               type == Item_Type.costume83 ||
+               type == Item_Type.costume84 ||
+               type == Item_Type.costume85 ||
+               type == Item_Type.costume86 ||
+               type == Item_Type.costume87 ||
+               type == Item_Type.costume88 ||
+               type == Item_Type.costume89 ||
+               type == Item_Type.costume90 ||
+               type == Item_Type.costume91 ||
+               type == Item_Type.costume92 ||
+               type == Item_Type.costume93 ||
+               type == Item_Type.costume94 ||
+               type == Item_Type.costume95
+            ;
     }
+
     public static bool IsPetItem(this Item_Type type)
     {
         return type == Item_Type.pet0 ||
-                  type == Item_Type.pet1 ||
-                  type == Item_Type.pet2 ||
-                  type == Item_Type.pet3;
+               type == Item_Type.pet1 ||
+               type == Item_Type.pet2 ||
+               type == Item_Type.pet3;
     }
 
     public static bool IsPassNorigaeItem(this Item_Type type)
     {
         return type == Item_Type.MonthNorigae0 ||
-                type == Item_Type.MonthNorigae1 ||
-                type == Item_Type.MonthNorigae2 ||
-                type == Item_Type.MonthNorigae3
-                ;
+               type == Item_Type.MonthNorigae1 ||
+               type == Item_Type.MonthNorigae2 ||
+               type == Item_Type.MonthNorigae3
+            ;
     }
+
     public static bool IsPassWeaponItem(this Item_Type type)
     {
         return type == Item_Type.weapon81 ||
-                type == Item_Type.weapon90
+               type == Item_Type.weapon90
             ;
     }
+
+    // public static bool IsRegainableItem(this Item_Type type)
+    // {
+    //     return type == Item_Type.WeaponUpgradeStone || //힘의증표
+    //          type == Item_Type.YomulExchangeStone || //탐욕증표
+    //          type == Item_Type.TigerBossStone || //강함
+    //          type == Item_Type.RabitBossStone || 
+    //          type == Item_Type.DragonBossStone || 
+    //          type == Item_Type.SnakeStone || 
+    //          type == Item_Type.HorseStone || 
+    //          type == Item_Type.SheepStone || 
+    //          type == Item_Type.MonkeyStone || 
+    //          type == Item_Type.CockStone || 
+    //          type == Item_Type.DogStone || 
+    //          type == Item_Type.PigStone || 
+    //          
+    //         type ==   Item_Type.gumiho0||
+    //         type == Item_Type.gumiho1||
+    //         type == Item_Type.gumiho2||
+    //         type == Item_Type.gumiho3||
+    //         type == Item_Type.gumiho4||
+    //         type == Item_Type.gumiho5||
+    //         type == Item_Type.gumiho6||
+    //         type == Item_Type.gumiho7||
+    //         type == Item_Type.gumiho8||
+    //          
+    //      type ==   Item_Type.Asura0||
+    //      type ==   Item_Type.Asura1||
+    //      type ==   Item_Type.Asura2||
+    //      type ==   Item_Type.Asura3||
+    //      type ==   Item_Type.Asura4||
+    //      type ==   Item_Type.Asura5||
+    //          
+    //      type ==  Item_Type.Indra0||
+    //      type ==    Item_Type.Indra1||
+    //      type ==    Item_Type.Indra2||
+    //      type ==    Item_Type.IndraPower||
+    //          
+    //          
+    //          
+    // }
+
     public static bool IsGoodsItem(this Item_Type type)
     {
         return type == Item_Type.Gold ||
-                type == Item_Type.Jade ||
-                type == Item_Type.GrowthStone ||
-                type == Item_Type.Marble ||
-                type == Item_Type.Ticket ||
-                type == Item_Type.Songpyeon ||
-                type == Item_Type.Event_Item_0 ||
-                type == Item_Type.Event_Item_1 ||
-                type == Item_Type.PeachReal ||
-                type == Item_Type.SP ||
-                type == Item_Type.Hae_Norigae ||
-                type == Item_Type.Hae_Pet ||
-                type == Item_Type.Sam_Pet ||
-                type == Item_Type.Sam_Norigae ||
-                type == Item_Type.KirinNorigae ||
-                type == Item_Type.Kirin_Pet ||
-                type == Item_Type.DogNorigae ||
-                type == Item_Type.DogPet ||
-                type == Item_Type.ChunMaPet ||
-                type == Item_Type.ChunPet0 ||
-                type == Item_Type.ChunPet1 ||
-                type == Item_Type.ChunPet2 ||
-                type == Item_Type.ChunPet3 ||
-                type == Item_Type.SasinsuPet0 ||
-                type == Item_Type.SasinsuPet1 ||
-                type == Item_Type.SasinsuPet2 ||
-                type == Item_Type.SasinsuPet3 ||
-                type == Item_Type.SahyungPet0 ||
-                type == Item_Type.SahyungPet1 ||
-                type == Item_Type.SahyungPet2 ||
-                type == Item_Type.SahyungPet3 ||
-                type == Item_Type.RabitPet ||
-                type == Item_Type.RabitNorigae ||
-                type == Item_Type.YeaRaeNorigae ||
-                type == Item_Type.GangrimNorigae ||
-
-                type == Item_Type.ChunNorigae0 ||
-                type == Item_Type.ChunNorigae1 ||
-                type == Item_Type.ChunNorigae2 ||
-                type == Item_Type.ChunNorigae3 ||
-                type == Item_Type.ChunNorigae4 ||
-                type == Item_Type.ChunNorigae5 ||
-                type == Item_Type.ChunNorigae6 ||
-
-                type == Item_Type.DokebiNorigae0 ||
-                type == Item_Type.DokebiNorigae1 ||
-                type == Item_Type.DokebiNorigae2 ||
-                type == Item_Type.DokebiNorigae3 ||
-                type == Item_Type.DokebiNorigae4 ||
-                type == Item_Type.DokebiNorigae5 ||
-                type == Item_Type.DokebiNorigae6 ||
-
-                type == Item_Type.DokebiNorigae7 ||
-                type == Item_Type.DokebiNorigae8 ||
-                type == Item_Type.DokebiNorigae9 ||
-
-                type == Item_Type.SumisanNorigae0 ||
-
-                type == Item_Type.MonthNorigae0 ||
-                type == Item_Type.MonthNorigae1 ||
-                type == Item_Type.MonthNorigae2 ||
-                type == Item_Type.MonthNorigae3 ||
-
-
-                type == Item_Type.DokebiHorn0 ||
-                type == Item_Type.DokebiHorn1 ||
-                type == Item_Type.DokebiHorn2 ||
-                type == Item_Type.DokebiHorn3 ||
-                type == Item_Type.DokebiHorn4 ||
-                type == Item_Type.DokebiHorn5 ||
-                type == Item_Type.DokebiHorn6 ||
-                type == Item_Type.DokebiHorn7 ||
-                type == Item_Type.DokebiHorn8 ||
-                type == Item_Type.DokebiHorn9 ||
-
-                type == Item_Type.ChunSun0 ||
-                type == Item_Type.ChunSun1 ||
-                type == Item_Type.ChunSun2 ||
-
-                type == Item_Type.YeaRaeWeapon ||
-                type == Item_Type.GangrimWeapon ||
-                type == Item_Type.HaeWeapon ||
-                type == Item_Type.SmithFire ||
-                type == Item_Type.Event_Item_SnowMan ||
-                type == Item_Type.MihoNorigae ||
-                type == Item_Type.MihoWeapon ||
-                type == Item_Type.ChunMaNorigae ||
-                type == Item_Type.Hel || type == Item_Type.Ym ||
-                type == Item_Type.du ||
-                type == Item_Type.Fw ||
-                type == Item_Type.Cw ||
-                type == Item_Type.DokebiFire ||
-                type == Item_Type.DokebiFireKey ||
-                type == Item_Type.FoxMaskPartial ||
-                type == Item_Type.SusanoTreasure ||
-                type == Item_Type.SahyungTreasure ||
-                type == Item_Type.Mileage ||
-                type == Item_Type.Event_Collection ||
-                type == Item_Type.Event_Collection_All ||
-                type == Item_Type.Event_Fall_Gold ||
-                type == Item_Type.Event_NewYear ||
-                type == Item_Type.Event_Mission ||
-                type == Item_Type.SumiFire ||
-                type == Item_Type.SumiFireKey ||
-                type == Item_Type.RelicTicket ||
-                type == Item_Type.SinsuRelic ||
-                type == Item_Type.NewGachaEnergy||
-                type == Item_Type.EventDice||
-                type == Item_Type.Tresure
-                ;
+               type == Item_Type.Jade ||
+               type == Item_Type.GrowthStone ||
+               type == Item_Type.Marble ||
+               type == Item_Type.Ticket ||
+               type == Item_Type.Songpyeon ||
+               type == Item_Type.Event_Item_0 ||
+               type == Item_Type.Event_Item_1 ||
+               type == Item_Type.PeachReal ||
+               type == Item_Type.SP ||
+               type == Item_Type.Hae_Norigae ||
+               type == Item_Type.Hae_Pet ||
+               type == Item_Type.Sam_Pet ||
+               type == Item_Type.Sam_Norigae ||
+               type == Item_Type.KirinNorigae ||
+               type == Item_Type.Kirin_Pet ||
+               type == Item_Type.DogNorigae ||
+               type == Item_Type.DogPet ||
+               type == Item_Type.ChunMaPet ||
+               type == Item_Type.ChunPet0 ||
+               type == Item_Type.ChunPet1 ||
+               type == Item_Type.ChunPet2 ||
+               type == Item_Type.ChunPet3 ||
+               type == Item_Type.SasinsuPet0 ||
+               type == Item_Type.SasinsuPet1 ||
+               type == Item_Type.SasinsuPet2 ||
+               type == Item_Type.SasinsuPet3 ||
+               type == Item_Type.SahyungPet0 ||
+               type == Item_Type.SahyungPet1 ||
+               type == Item_Type.SahyungPet2 ||
+               type == Item_Type.SahyungPet3 ||
+               type == Item_Type.RabitPet ||
+               type == Item_Type.RabitNorigae ||
+               type == Item_Type.YeaRaeNorigae ||
+               type == Item_Type.GangrimNorigae ||
+               type == Item_Type.ChunNorigae0 ||
+               type == Item_Type.ChunNorigae1 ||
+               type == Item_Type.ChunNorigae2 ||
+               type == Item_Type.ChunNorigae3 ||
+               type == Item_Type.ChunNorigae4 ||
+               type == Item_Type.ChunNorigae5 ||
+               type == Item_Type.ChunNorigae6 ||
+               type == Item_Type.DokebiNorigae0 ||
+               type == Item_Type.DokebiNorigae1 ||
+               type == Item_Type.DokebiNorigae2 ||
+               type == Item_Type.DokebiNorigae3 ||
+               type == Item_Type.DokebiNorigae4 ||
+               type == Item_Type.DokebiNorigae5 ||
+               type == Item_Type.DokebiNorigae6 ||
+               type == Item_Type.DokebiNorigae7 ||
+               type == Item_Type.DokebiNorigae8 ||
+               type == Item_Type.DokebiNorigae9 ||
+               type == Item_Type.SumisanNorigae0 ||
+               type == Item_Type.MonthNorigae0 ||
+               type == Item_Type.MonthNorigae1 ||
+               type == Item_Type.MonthNorigae2 ||
+               type == Item_Type.MonthNorigae3 ||
+               type == Item_Type.DokebiHorn0 ||
+               type == Item_Type.DokebiHorn1 ||
+               type == Item_Type.DokebiHorn2 ||
+               type == Item_Type.DokebiHorn3 ||
+               type == Item_Type.DokebiHorn4 ||
+               type == Item_Type.DokebiHorn5 ||
+               type == Item_Type.DokebiHorn6 ||
+               type == Item_Type.DokebiHorn7 ||
+               type == Item_Type.DokebiHorn8 ||
+               type == Item_Type.DokebiHorn9 ||
+               type == Item_Type.ChunSun0 ||
+               type == Item_Type.ChunSun1 ||
+               type == Item_Type.ChunSun2 ||
+               type == Item_Type.YeaRaeWeapon ||
+               type == Item_Type.GangrimWeapon ||
+               type == Item_Type.HaeWeapon ||
+               type == Item_Type.SmithFire ||
+               type == Item_Type.Event_Item_SnowMan ||
+               type == Item_Type.MihoNorigae ||
+               type == Item_Type.MihoWeapon ||
+               type == Item_Type.ChunMaNorigae ||
+               type == Item_Type.Hel || type == Item_Type.Ym ||
+               type == Item_Type.du ||
+               type == Item_Type.Fw ||
+               type == Item_Type.Cw ||
+               type == Item_Type.DokebiFire ||
+               type == Item_Type.DokebiFireKey ||
+               type == Item_Type.FoxMaskPartial ||
+               type == Item_Type.SusanoTreasure ||
+               type == Item_Type.SahyungTreasure ||
+               type == Item_Type.Mileage ||
+               type == Item_Type.Event_Collection ||
+               type == Item_Type.Event_Collection_All ||
+               type == Item_Type.Event_Fall_Gold ||
+               type == Item_Type.Event_NewYear ||
+               type == Item_Type.Event_Mission ||
+               type == Item_Type.SumiFire ||
+               type == Item_Type.SumiFireKey ||
+               type == Item_Type.RelicTicket ||
+               type == Item_Type.SinsuRelic ||
+               type == Item_Type.NewGachaEnergy ||
+               type == Item_Type.EventDice ||
+               type == Item_Type.Tresure
+            ;
     }
 
     public static bool IsStatusItem(this Item_Type type)
@@ -289,27 +325,30 @@ public static class Utils
     public static bool IsBossContents(this GameManager.ContentsType type)
     {
         return type == GameManager.ContentsType.Boss || //O
-            type == GameManager.ContentsType.TwelveDungeon || //O
-            type == GameManager.ContentsType.Son || //O
-            type == GameManager.ContentsType.FoxMask || //O
-            type == GameManager.ContentsType.Susano || //O
-            type == GameManager.ContentsType.Hell || //O
-            type == GameManager.ContentsType.HellWarMode || //O
-            type == GameManager.ContentsType.PartyRaid || //O
-            type == GameManager.ContentsType.Yum ||
-            type == GameManager.ContentsType.Ok ||
-            type == GameManager.ContentsType.Do ||
-            type == GameManager.ContentsType.Sumi ||
-            type == GameManager.ContentsType.PartyRaid_Guild; //O
+               type == GameManager.ContentsType.TwelveDungeon || //O
+               type == GameManager.ContentsType.Son || //O
+               type == GameManager.ContentsType.FoxMask || //O
+               type == GameManager.ContentsType.Susano || //O
+               type == GameManager.ContentsType.Hell || //O
+               type == GameManager.ContentsType.HellWarMode || //O
+               type == GameManager.ContentsType.PartyRaid || //O
+               type == GameManager.ContentsType.Yum ||
+               type == GameManager.ContentsType.Ok ||
+               type == GameManager.ContentsType.Do ||
+               type == GameManager.ContentsType.Sumi ||
+               type == GameManager.ContentsType.PartyRaid_Guild; //O
     }
+
     public static bool IsRankFrameItem(this Item_Type type)
     {
         return type >= Item_Type.RankFrame1 && type <= Item_Type.RankFrame1001_10000;
     }
+
     public static bool IsPartyRaidRankFrameItem(this Item_Type type)
     {
         return type >= Item_Type.PartyRaidRankFrame1 && type <= Item_Type.PartyRaidRankFrame1001_10000;
     }
+
     public static bool IsMergePartyRaidRankFrameItem(this Item_Type type)
     {
         return type >= Item_Type.MergePartyRaidRankFrame1 && type <= Item_Type.MergePartyRaidRankFrame1001_5000;
@@ -343,8 +382,8 @@ public static class Utils
     public static bool IsGuildRewardItem(this Item_Type type)
     {
         return (type >= Item_Type.RankFrame1_guild && type <= Item_Type.RankFrame101_1000_guild) ||
-            (type >= Item_Type.RankFrame1guild_new && type <= Item_Type.RankFrame51_100_guild_new) ||
-            (type >= Item_Type.RankFrameParty1guild_new && type <= Item_Type.RankFrameParty51_100_guild_new)
+               (type >= Item_Type.RankFrame1guild_new && type <= Item_Type.RankFrame51_100_guild_new) ||
+               (type >= Item_Type.RankFrameParty1guild_new && type <= Item_Type.RankFrameParty51_100_guild_new)
             ;
     }
 
@@ -352,6 +391,7 @@ public static class Utils
     {
         return type >= Item_Type.RankFrame1_boss_new && type <= Item_Type.RankFrame1000_3000_boss_new;
     }
+
     public static bool IsRealGangChulItem(this Item_Type type)
     {
         return type >= Item_Type.RankFrame1_boss_GangChul && type <= Item_Type.RankFrame1000_3000_boss_GangChul;
@@ -379,6 +419,7 @@ public static class Utils
                 pivot -= inputDatas[i];
             }
         }
+
         return 0;
     }
 
@@ -398,24 +439,29 @@ public static class Utils
 
     public static Rect GetWorldBounds(this BoxCollider2D boxCollider2D)
     {
-        float worldRight = boxCollider2D.transform.TransformPoint(boxCollider2D.offset + new Vector2(boxCollider2D.size.x * 0.5f, 0)).x;
-        float worldLeft = boxCollider2D.transform.TransformPoint(boxCollider2D.offset - new Vector2(boxCollider2D.size.x * 0.5f, 0)).x;
+        float worldRight = boxCollider2D.transform
+            .TransformPoint(boxCollider2D.offset + new Vector2(boxCollider2D.size.x * 0.5f, 0)).x;
+        float worldLeft = boxCollider2D.transform
+            .TransformPoint(boxCollider2D.offset - new Vector2(boxCollider2D.size.x * 0.5f, 0)).x;
 
-        float worldTop = boxCollider2D.transform.TransformPoint(boxCollider2D.offset + new Vector2(0, boxCollider2D.size.y * 0.5f)).y;
-        float worldBottom = boxCollider2D.transform.TransformPoint(boxCollider2D.offset - new Vector2(0, boxCollider2D.size.y * 0.5f)).y;
+        float worldTop = boxCollider2D.transform
+            .TransformPoint(boxCollider2D.offset + new Vector2(0, boxCollider2D.size.y * 0.5f)).y;
+        float worldBottom = boxCollider2D.transform
+            .TransformPoint(boxCollider2D.offset - new Vector2(0, boxCollider2D.size.y * 0.5f)).y;
 
         return new Rect(
             worldLeft,
             worldBottom,
             worldRight - worldLeft,
             worldTop - worldBottom
-            );
+        );
     }
 
     public static string ListToString(List<string> list)
     {
         return String.Join(", ", list.ToArray());
     }
+
     public static List<string> StringToList(string data)
     {
         return data.Split(',').ToList();
@@ -440,7 +486,8 @@ public static class Utils
 
         Calendar calenderCalc = CultureInfo.CurrentCulture.Calendar;
 
-        return calenderCalc.GetWeekOfYear(currentDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday) - calenderCalc.GetWeekOfYear(startDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
+        return calenderCalc.GetWeekOfYear(currentDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday) -
+               calenderCalc.GetWeekOfYear(startDate, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
     }
 
     public static float SmallFloatToDecimalFloat(float _float, int essenceNum = 1)
@@ -462,11 +509,18 @@ public static class Utils
     }
 
     #region BigFloat
-    private static string[] goldUnitArr = new string[] { "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍", "갈", "라", "가", "언" };
+
+    private static string[] goldUnitArr = new string[]
+    {
+        "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
+        "갈", "라", "가", "언"
+    };
+
     private static double p = (double)Mathf.Pow(10, 4);
     private static List<double> numList = new List<double>();
     private static List<string> numStringList = new List<string>();
     private static string zeroString = "0";
+
     public static string ConvertBigNum(double data)
     {
 #if UNITY_EDITOR
@@ -491,8 +545,7 @@ public static class Utils
         {
             numList.Add((value % p));
             value /= p;
-        }
-        while (value >= 1);
+        } while (value >= 1);
 
         string retStr = "";
 
@@ -532,8 +585,8 @@ public static class Utils
 #endif
             return retStr;
         }
-
     }
+
     #endregion
 
     public static void RestartApplication()
@@ -552,10 +605,12 @@ public static class Utils
 
             AndroidJavaObject pm = currentActivity.Call<AndroidJavaObject>("getPackageManager");
             AndroidJavaObject intent = pm.Call<AndroidJavaObject>("getLaunchIntentForPackage", Application.identifier);
-            intent.Call<AndroidJavaObject>("setFlags", 0x20000000);//Intent.FLAG_ACTIVITY_SINGLE_TOP
+            intent.Call<AndroidJavaObject>("setFlags", 0x20000000); //Intent.FLAG_ACTIVITY_SINGLE_TOP
 
             AndroidJavaClass pendingIntent = new AndroidJavaClass("android.app.PendingIntent");
-            AndroidJavaObject contentIntent = pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent, 0x8000000); //PendingIntent.FLAG_UPDATE_CURRENT = 134217728 [0x8000000]
+            AndroidJavaObject contentIntent =
+                pendingIntent.CallStatic<AndroidJavaObject>("getActivity", currentActivity, 0, intent,
+                    0x8000000); //PendingIntent.FLAG_UPDATE_CURRENT = 134217728 [0x8000000]
             AndroidJavaObject alarmManager = currentActivity.Call<AndroidJavaObject>("getSystemService", "alarm");
             AndroidJavaClass system = new AndroidJavaClass("java.lang.System");
             long currentTime = system.CallStatic<long>("currentTimeMillis");
@@ -598,7 +653,8 @@ public static class Utils
 
     public static bool IsPartyTowerMaxFloor(int idx)
     {
-        return ServerData.userInfoTable.TableDatas[UserInfoTable.partyTowerFloor].Value == TableManager.Instance.towerTableMulti.dataArray.Length;
+        return ServerData.userInfoTable.TableDatas[UserInfoTable.partyTowerFloor].Value ==
+               TableManager.Instance.towerTableMulti.dataArray.Length;
     }
 
     public static class EnumUtil<T>

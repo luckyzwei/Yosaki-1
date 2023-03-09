@@ -31,8 +31,6 @@ public class UiDolPassCell : MonoBehaviour
     [SerializeField]
     private GameObject lockIcon_Free;
 
-    [SerializeField] private Button freeButton;
-    [SerializeField] private Button adButton;
     
     [SerializeField]
     private GameObject lockIcon_Ad;
@@ -66,7 +64,6 @@ public class UiDolPassCell : MonoBehaviour
         {
             bool rewarded = HasReward(passInfo.rewardType_Free_Key, passInfo.id);
             rewardedObject_Free.SetActive(rewarded);
-            freeButton.enabled = CanGetReward();
         }).AddTo(disposables);
 
         //광고보상 데이터 변경시
@@ -74,15 +71,16 @@ public class UiDolPassCell : MonoBehaviour
         {
             bool rewarded = HasReward(passInfo.rewardType_IAP_Key, passInfo.id);
             rewardedObject_Ad.SetActive(rewarded);
-            adButton.enabled = CanGetReward();
         }).AddTo(disposables);
 
         //킬카운트 변경될때
         ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount_Dol).AsObservable().Subscribe(e =>
         {
-            lockIcon_Free.SetActive(!CanGetReward());
-            lockIcon_Ad.SetActive(!CanGetReward());
-            gaugeImage.SetActive(CanGetReward());
+            bool canGetReward = CanGetReward();
+            
+            lockIcon_Free.SetActive(!canGetReward);
+            lockIcon_Ad.SetActive(!canGetReward);
+            
         }).AddTo(disposables);
     }
 

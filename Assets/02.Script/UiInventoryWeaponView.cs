@@ -403,6 +403,65 @@ public class UiInventoryWeaponView : MonoBehaviour
             weaponLockObject.gameObject.SetActive(state == 0);
             weaponLockDescription.SetText($"{weaponData.Acquiredescription}");
 
+            if (weaponData.Id == 23)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                feelMul2Lock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 24)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                feelMul3Lock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 25)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                feelMul4Lock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 26)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                indraLock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 27)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                nataLock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 28)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                orochiLock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 29)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                feelPaeLock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 30)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                gumihoWeaponLock.gameObject.SetActive(state == 0);
+            }
+            else if (weaponData.Id == 31 || weaponData.Id == 32)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                hellWeaponLock.gameObject.SetActive(state == 0);
+            }
+
+            else if (weaponData.Id == 33)
+            {
+                weaponLockObject.gameObject.SetActive(false);
+                yeoRaeWeaponLock.gameObject.SetActive(state == 0);
+            }
+            
 
         }
         else if (magicBookData != null)
