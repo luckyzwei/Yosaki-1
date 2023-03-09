@@ -408,7 +408,7 @@ public class UserInfoTable
         {SendGuildPoint,0},
         {cockAwake,0},
         {attendanceCount_Seol,1},
-        {attendanceCount_Dol,1},
+        {attendanceCount_Dol,0},
         {dogAwake,0},
         {basicPackRefund,0},
         {skillInitialized,0},
