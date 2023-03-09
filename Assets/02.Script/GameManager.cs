@@ -78,6 +78,10 @@ public class GameManager : SingletonMono<GameManager>
     public void ResetLastContents()
     {
         lastContentsType = ContentsType.NormalField;
+        
+    }    public void ResetLastContents2()
+    {
+        lastContentsType2 = ContentsType.NormalField;
     }
     public void SetBossId(int bossId)
     {

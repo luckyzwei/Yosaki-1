@@ -237,5 +237,6 @@ public class UiContentsPopup2 : MonoBehaviour
             
                 
         }
+        GameManager.Instance.ResetLastContents2();
     }
 }
