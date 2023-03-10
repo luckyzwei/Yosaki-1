@@ -10,11 +10,9 @@ public class UiConsumableItemView : MonoBehaviour
     [SerializeField]
     private string goodsId;
 
-    [SerializeField]
-    private float price;
+    private float price_e =100;
 
-    [SerializeField]
-    private float amount;
+    private float amount_2 = 10000;
 
     [SerializeField]
     private TextMeshProUGUI nameText;
@@ -39,12 +37,12 @@ public class UiConsumableItemView : MonoBehaviour
 
         if (priceText != null)
         {
-            priceText.SetText($"{price}개");
+            priceText.SetText($"{price_e}개");
         }
 
         if (amountText != null)
         {
-            amountText.SetText($"{amount}개");
+            amountText.SetText($"{amount_2}개");
         }
     }
 
@@ -52,7 +50,7 @@ public class UiConsumableItemView : MonoBehaviour
     {
         var currentBlueStone = ServerData.goodsTable.GetTableData(GoodsTable.Jade);
 
-        if (currentBlueStone.Value < price)
+        if (currentBlueStone.Value < price_e)
         {
             PopupManager.Instance.ShowAlarmMessage($"옥이 부족합니다.");
             return;
@@ -67,9 +65,9 @@ public class UiConsumableItemView : MonoBehaviour
         }
 
         //로컬
-        data.Value += amount;
+        data.Value += amount_2;
 
-        ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= price;
+        ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= price_e;
         //서버 업데이트
 
         if (syncRoutine != null)
