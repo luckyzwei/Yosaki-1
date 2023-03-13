@@ -1227,6 +1227,116 @@ public class GoodsTable
                 {
                     return GoodsTable.Event_Fall_Gold;
                 }
+            //
+            case Item_Type.WeaponUpgradeStone:
+                {
+                    return GoodsTable.WeaponUpgradeStone;
+                }
+            case Item_Type.YomulExchangeStone:
+                {
+                    return GoodsTable.YomulExchangeStone;
+                }
+            case Item_Type.TigerBossStone:
+                {
+                    return GoodsTable.TigerStone;
+                }
+            case Item_Type.RabitBossStone:
+                {
+                    return GoodsTable.RabitStone;
+                }
+            case Item_Type.DragonBossStone:
+                {
+                    return GoodsTable.DragonStone;
+                }
+            case Item_Type.SnakeStone:
+                {
+                    return GoodsTable.SnakeStone;
+                }
+            case Item_Type.HorseStone:
+                {
+                    return GoodsTable.HorseStone;
+                }
+            case Item_Type.SheepStone:
+                {
+                    return GoodsTable.SheepStone;
+                }
+            case Item_Type.MonkeyStone:
+                {
+                    return GoodsTable.MonkeyStone;
+                }   
+            case Item_Type.CockStone:
+                {
+                    return GoodsTable.CockStone;
+                }     
+            case Item_Type.DogStone:
+                {
+                    return GoodsTable.DogStone;
+                }    
+            case Item_Type.PigStone:
+                {
+                    return GoodsTable.PigStone;
+                }
+        
+            //
+            case Item_Type.gumiho0:
+                {
+                    return GoodsTable.gumiho0;
+                }
+            case Item_Type.gumiho1:
+                {
+                    return GoodsTable.gumiho1;
+                }
+            case Item_Type.gumiho2:
+                {
+                    return GoodsTable.gumiho2;
+                }
+            case Item_Type.gumiho3:
+                {
+                    return GoodsTable.gumiho3;
+                }
+            case Item_Type.gumiho4:
+                {
+                    return GoodsTable.gumiho4;
+                }
+            case Item_Type.gumiho5:
+                {
+                    return GoodsTable.gumiho5;
+                }
+            case Item_Type.gumiho6:
+                {
+                    return GoodsTable.gumiho6;
+                }
+            case Item_Type.gumiho7:
+                {
+                    return GoodsTable.gumiho7;
+                }
+            case Item_Type.gumiho8:
+                {
+                    return GoodsTable.gumiho8;
+                }
+            //
+            case Item_Type.Indra0:
+                {
+                    return GoodsTable.Indra0;
+                }
+
+            case Item_Type.Indra1:
+                {
+                    return GoodsTable.Indra1;
+                }
+
+            case Item_Type.Indra2:
+                {
+                    return GoodsTable.Indra2;
+                }
+
+            case Item_Type.IndraPower:
+                {
+                    return GoodsTable.IndraPower;
+                }
+
+            
+            
             default:
                 return type.ToString();
         }

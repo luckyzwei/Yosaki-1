@@ -143,46 +143,40 @@ public static class Utils
             ;
     }
 
-    // public static bool IsRegainableItem(this Item_Type type)
-    // {
-    //     return type == Item_Type.WeaponUpgradeStone || //힘의증표
-    //          type == Item_Type.YomulExchangeStone || //탐욕증표
-    //          type == Item_Type.TigerBossStone || //강함
-    //          type == Item_Type.RabitBossStone || 
-    //          type == Item_Type.DragonBossStone || 
-    //          type == Item_Type.SnakeStone || 
-    //          type == Item_Type.HorseStone || 
-    //          type == Item_Type.SheepStone || 
-    //          type == Item_Type.MonkeyStone || 
-    //          type == Item_Type.CockStone || 
-    //          type == Item_Type.DogStone || 
-    //          type == Item_Type.PigStone || 
-    //          
-    //         type ==   Item_Type.gumiho0||
-    //         type == Item_Type.gumiho1||
-    //         type == Item_Type.gumiho2||
-    //         type == Item_Type.gumiho3||
-    //         type == Item_Type.gumiho4||
-    //         type == Item_Type.gumiho5||
-    //         type == Item_Type.gumiho6||
-    //         type == Item_Type.gumiho7||
-    //         type == Item_Type.gumiho8||
-    //          
-    //      type ==   Item_Type.Asura0||
-    //      type ==   Item_Type.Asura1||
-    //      type ==   Item_Type.Asura2||
-    //      type ==   Item_Type.Asura3||
-    //      type ==   Item_Type.Asura4||
-    //      type ==   Item_Type.Asura5||
-    //          
-    //      type ==  Item_Type.Indra0||
-    //      type ==    Item_Type.Indra1||
-    //      type ==    Item_Type.Indra2||
-    //      type ==    Item_Type.IndraPower||
-    //          
-    //          
-    //          
-    // }
+    public static bool IsRegainableItem(this Item_Type type)
+    {
+        return type == Item_Type.WeaponUpgradeStone || //힘의증표
+               type == Item_Type.YomulExchangeStone || //탐욕증표
+               type == Item_Type.TigerBossStone || //강함
+               type == Item_Type.RabitBossStone ||
+               type == Item_Type.DragonBossStone ||
+               type == Item_Type.SnakeStone ||
+               type == Item_Type.HorseStone ||
+               type == Item_Type.SheepStone ||
+               type == Item_Type.MonkeyStone ||
+               type == Item_Type.CockStone ||
+               type == Item_Type.DogStone ||
+               type == Item_Type.PigStone ||
+               type == Item_Type.gumiho0 ||
+               type == Item_Type.gumiho1 ||
+               type == Item_Type.gumiho2 ||
+               type == Item_Type.gumiho3 ||
+               type == Item_Type.gumiho4 ||
+               type == Item_Type.gumiho5 ||
+               type == Item_Type.gumiho6 ||
+               type == Item_Type.gumiho7 ||
+               type == Item_Type.gumiho8 ||
+               type == Item_Type.Asura0 ||
+               type == Item_Type.Asura1 ||
+               type == Item_Type.Asura2 ||
+               type == Item_Type.Asura3 ||
+               type == Item_Type.Asura4 ||
+               type == Item_Type.Asura5 ||
+               type == Item_Type.Indra0 ||
+               type == Item_Type.Indra1 ||
+               type == Item_Type.Indra2 ||
+               type == Item_Type.IndraPower;
+    }
 
     public static bool IsGoodsItem(this Item_Type type)
     {

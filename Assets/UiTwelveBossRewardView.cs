@@ -5,6 +5,7 @@ using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 using static UiTwelveRewardPopup;
 
@@ -116,31 +117,98 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
             bool rewarded = rewards.Contains(rewardInfo.idx.ToString());
 
-            rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
+            if (IsRegainableItem() == false)
+            {
+                rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
 
-            rewardedIcon.SetActive(rewarded);
+                rewardedIcon.SetActive(rewarded);
+            }
+            else
+            {
+                Item_Type type = (Item_Type)rewardInfo.rewardType;
+                string typeStr = ServerData.goodsTable.ItemTypeToServerString(type);
+
+                bool hasGoods = false;
+
+                if (ServerData.goodsTable.TableDatas.ContainsKey((typeStr)) == true)
+                {
+                    hasGoods = ServerData.goodsTable.TableDatas[typeStr].Value != 0;
+
+                    rewardButtonDescription.SetText(rewarded && hasGoods ? "완료" : "받기");
+
+                    rewardedIcon.SetActive(rewarded && hasGoods);
+                }
+                else
+                {
+                    rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
+
+                    rewardedIcon.SetActive(rewarded);
+                }
+            }
         }).AddTo(disposable);
+    }
+
+    private bool IsRegainableItem()
+    {
+        Item_Type type = (Item_Type)rewardInfo.rewardType;
+        string typeStr = ServerData.goodsTable.ItemTypeToServerString(type);
+
+        //키 잘못된경우
+        if (ServerData.goodsTable.TableDatas.ContainsKey((typeStr)) == false)
+        {
+            Debug.LogError(($"{type} cast to string is failed"));
+            return false;
+        }
+
+        return Utils.IsRegainableItem((type));
     }
 
     public void OnClickGetButton()
     {
+        Item_Type type = (Item_Type)rewardInfo.rewardType;
+
         if (rewardInfo.currentDamage < rewardInfo.damageCut)
         {
             PopupManager.Instance.ShowAlarmMessage("최대 피해량이 부족 합니다.");
             return;
         }
 
-        var rewards = bossServerData.rewardedId.Value.Split(BossServerTable.rewardSplit).ToList();
 
-        if (rewards.Contains(rewardInfo.idx.ToString()))
+        if (IsRegainableItem() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
-            return;
+            var rewards = bossServerData.rewardedId.Value.Split(BossServerTable.rewardSplit).ToList();
+
+            if (rewards.Contains(rewardInfo.idx.ToString()))
+            {
+                PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
+                return;
+            }
+        }
+        else
+        {
+            string typeStr = ServerData.goodsTable.ItemTypeToServerString(type);
+
+            bool hasGoods2 = false;
+
+            var rewards = bossServerData.rewardedId.Value.Split(BossServerTable.rewardSplit).ToList();
+
+            if (ServerData.goodsTable.TableDatas.ContainsKey((typeStr)) == true)
+            {
+                hasGoods2 = ServerData.goodsTable.TableDatas[typeStr].Value != 0;
+            }
+
+            if (rewards.Contains(rewardInfo.idx.ToString()))
+            {
+                if (hasGoods2 == true)
+                {
+                    PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
+                    return;
+                }
+            }
         }
 
         rewardButton.interactable = false;
 
-        Item_Type type = (Item_Type)rewardInfo.rewardType;
 
         if (type == Item_Type.DogPet)
         {
@@ -3005,7 +3073,8 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
             magicBookParam.Add("magicBook64", ServerData.magicBookTable.TableDatas["magicBook64"].ConvertToString());
 
-            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+            transactions.Add(
+                TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
 
             //
             Param bossParam = new Param();
@@ -3037,7 +3106,8 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
             magicBookParam.Add("magicBook65", ServerData.magicBookTable.TableDatas["magicBook65"].ConvertToString());
 
-            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+            transactions.Add(
+                TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
 
             //
             Param bossParam = new Param();
@@ -3069,7 +3139,8 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
             magicBookParam.Add("magicBook66", ServerData.magicBookTable.TableDatas["magicBook66"].ConvertToString());
 
-            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+            transactions.Add(
+                TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
 
             //
             Param bossParam = new Param();
