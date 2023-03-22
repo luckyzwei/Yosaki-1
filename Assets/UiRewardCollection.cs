@@ -2,7 +2,6 @@ using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
-using UnityEditor.U2D.Sprites;
 using UnityEngine;
 using UnityEngine.UI;
 
