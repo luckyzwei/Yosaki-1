@@ -60,6 +60,7 @@ public class EquipmentTable
 
     public static string CaveBelt = "CaveBelt";
     public static string CaveBeltView = "CaveBeltView";
+    public static string SuhoAnimal = "SA";
 
     private Dictionary<string, int> tableSchema = new Dictionary<string, int>()
     {
@@ -82,6 +83,7 @@ public class EquipmentTable
         {DokebiHornView,-1},
         {CaveBelt,-1},
         {CaveBeltView,-1},
+        {SuhoAnimal,-1},
     };
 
     private ReactiveDictionary<string, ReactiveProperty<int>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<int>>();

@@ -749,6 +749,11 @@ public class TableManager : SingletonMono<TableManager>
     public DolPass dolPass;
     public NorigaeJewel norigaeJewel;
     public TresureAbilBase tresureAbilBase;
+    public RoyalTombTowerTable royalTombTowerTable;
+    public SuhopetTable suhoPetTable;
+    public AdRewardTable adRewardTable;
+    public NewSemesterPass newSemesterPass;
+    public TowerTable7 sinsuTower;
 }
 
 

@@ -38,6 +38,11 @@ public class MagicBookIndicator : MonoBehaviour
     private void Subscribe()
     {
         ServerData.equipmentTable.TableDatas[EquipmentTable.MagicBook_View].AsObservable().Subscribe(WhenMagicBookEquipInfoChanged).AddTo(this);
+        
+        // SettingData.norigaeSize.AsObservable().Subscribe(e =>
+        // {
+        //     magicBookIcon.transform.localScale = e == 0 ? Vector3.one * 0.4f : Vector3.one * 0.2f;
+        // }).AddTo(this);
     }
     private void WhenMagicBookEquipInfoChanged(int idx)
     {

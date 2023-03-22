@@ -77,7 +77,12 @@ public class UiGumGiContentsBoard : MonoBehaviour
 
     public void OnClickEnterSoulButton_Sansilryung()
     {
-        PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+        PopupManager.Instance.ShowYesNoPopup("알림", "입장 할까요?", () =>
+        {
+            GameManager.Instance.LoadContents(ContentsType.TwelveDungeon);
+            GameManager.Instance.SetBossId(57);
+            enterButton.interactable = false;
+        }, () => { });
     }
 
     public void OnClickGetFireButton()

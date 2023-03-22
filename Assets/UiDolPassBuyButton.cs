@@ -90,6 +90,9 @@ public class UiDolPassBuyButton : MonoBehaviour
 
         if (tableData.Productid != monthPassKey) return;
 
+        ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += GameBalance.DolPassDiceRefundValue;
+        ServerData.goodsTable.UpData(GoodsTable.EventDice, false);
+        
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 
         ServerData.iapServerTable.TableDatas[tableData.Productid].buyCount.Value++;

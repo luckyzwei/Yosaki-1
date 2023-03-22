@@ -64,6 +64,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
         MakePetBoard();
     }
 
+    
     private void MakeWeaponBoard()
     {
         var e = TableManager.Instance.WeaponData.GetEnumerator();

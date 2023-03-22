@@ -25,6 +25,7 @@ public class UiSusanoBuff : SingletonMono<UiSusanoBuff>
         if (GameManager.contentsType == GameManager.ContentsType.SumisanTower) return;
         if (GameManager.contentsType == GameManager.ContentsType.OldDokebi2) return;
         if (GameManager.contentsType == GameManager.ContentsType.Online_Tower2) return;
+        if (GameManager.contentsType == GameManager.ContentsType.RoyalTombTower) return;
         //산신령
         
         if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)

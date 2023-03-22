@@ -273,6 +273,8 @@ public class InfiniteTowerManager : ContentsManagerBase
     {
         yield return new WaitForSeconds(0.5f);
 
+        GameManager.Instance.SetLastContentsType2(GameManager.contentsType);
+        
         if (UiLastContentsFunc.AutoInfiniteTower)
         {
             retryFunc?.Invoke();

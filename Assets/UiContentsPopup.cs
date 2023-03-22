@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 
 public class UiContentsPopup : MonoBehaviour
@@ -9,26 +10,48 @@ public class UiContentsPopup : MonoBehaviour
     private UiBossContentsView bossContentsView;
 
     [SerializeField]
-    private GameObject bandit1;
+    private List<GameObject> bandit1;
 
     [SerializeField]
-    private GameObject bandit2;
+    private List<GameObject> bandit2;
 
     [SerializeField]
-    private GameObject tower1;
+    private List<GameObject> tower1;
 
     [SerializeField]
-    private GameObject tower2;
+    private List<GameObject> tower2;
 
     [SerializeField]
-    private TextMeshProUGUI banditDescription;
+    private List<GameObject> tower3;
+
+    [SerializeField]
+    private List<TextMeshProUGUI> banditDescription;
 
     void Start()
     {
         bossContentsView.Initialize(TableManager.Instance.BossTable.dataArray[0]);
 
-        tower1.SetActive(ServerData.userInfoTable.IsLastFloor() == false);
-        tower2.SetActive(ServerData.userInfoTable.IsLastFloor());
+        tower1.ForEach(e => e.gameObject.SetActive(ServerData.userInfoTable.IsLastFloor() == false));
+        tower2.ForEach(e => e.gameObject.SetActive(ServerData.userInfoTable.IsLastFloor() && ServerData.userInfoTable.IsLastFloor2() == false));
+        tower3.ForEach(e => e.gameObject.SetActive(ServerData.userInfoTable.IsLastFloor2()));
+
+        Subscribe();
+    }
+
+    [SerializeField]
+    private GameObject newUi;
+
+    [SerializeField]
+    private GameObject oldUi;
+
+    private void Subscribe()
+    {
+        SettingData.newUi.AsObservable().Subscribe(e =>
+        {
+            newUi.SetActive(e == 1);
+
+            oldUi.SetActive(e == 0);
+        }).AddTo(this);
     }
 
 
@@ -41,10 +64,10 @@ public class UiContentsPopup : MonoBehaviour
     {
         int level = ServerData.statusTable.GetTableData(StatusTable.Level).Value;
         int requireLv = GameBalance.banditUpgradeLevel;
-        bandit1.SetActive(level < requireLv);
-        bandit2.SetActive(level >= requireLv);
+        bandit1.ForEach(e => e.SetActive(level < requireLv));
+        bandit2.ForEach(e => e.SetActive(level >= requireLv));
 
-        banditDescription.SetText($"레벨 {Utils.ConvertBigNum(GameBalance.banditUpgradeLevel)}에 대왕반딧불전 해금!");
+        banditDescription.ForEach(e => e.SetText($"레벨 {Utils.ConvertBigNum(GameBalance.banditUpgradeLevel)}에 대왕반딧불전 해금!"));
     }
 
     private void OnDisable()

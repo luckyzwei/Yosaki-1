@@ -10,10 +10,13 @@ public class UiTopRankerCell : MonoBehaviour
 {
     [SerializeField]
     private SkeletonGraphic costumeGraphic;
+
     [SerializeField]
     private SkeletonGraphic petGraphic;
+
     [SerializeField]
     private TextMeshProUGUI nickName;
+
     [SerializeField]
     private TextMeshProUGUI rankText;
 
@@ -22,6 +25,7 @@ public class UiTopRankerCell : MonoBehaviour
 
     [SerializeField]
     private Image weapon;
+
     [SerializeField]
     private Image magicBook;
 
@@ -73,6 +77,9 @@ public class UiTopRankerCell : MonoBehaviour
     [SerializeField]
     private BoneFollowerGraphic boneFollowerGraphic_Weapon;
 
+    [SerializeField]
+    private Image suhoAnimal;
+
     public void UpdatePartyRaidScore(double topRankerScore = 0, bool fightEnd = false, bool retireGame = false)
     {
         if (topRankerScoreText != null)
@@ -104,13 +111,23 @@ public class UiTopRankerCell : MonoBehaviour
         }
     }
 
-    public void Initialize(string nickName, string rankText, int costumeId, int petId, int weaponId, int magicBookId, int gumgiIdx, string guildName, int maskIdx, int hornIdx)
+    public void Initialize(string nickName, string rankText, int costumeId, int petId, int weaponId, int magicBookId, int gumgiIdx, string guildName, int maskIdx, int hornIdx, int suhoAnimal)
     {
         this.recNickName = nickName;
         this.nickName.SetText(nickName);
         this.rankText.SetText(rankText);
         SetCostumeSpine(costumeId);
         SetPetSpine(petId);
+
+        if (this.suhoAnimal != null)
+        {
+            this.suhoAnimal.enabled = suhoAnimal != -1;
+            
+            if (suhoAnimal != -1)
+            {
+                this.suhoAnimal.sprite = CommonResourceContainer.GetSuhoAnimalSprite(suhoAnimal);
+            }
+        }
 
         this.guildName.gameObject.SetActive(string.IsNullOrEmpty(guildName) == false);
         this.guildName.SetText($"({guildName})");
@@ -173,7 +190,6 @@ public class UiTopRankerCell : MonoBehaviour
             {
                 weapon.transform.position = new Vector3(-1.4f, 128.4f, 0);
                 weapon.transform.rotation = Quaternion.Euler(0f, 0f, 94f);
-
             }
         }
         else
@@ -192,7 +208,6 @@ public class UiTopRankerCell : MonoBehaviour
         }
 
 
-
         magicBook.gameObject.SetActive(magicBookId != -1);
 
         if (Utils.IsBirdNorigae(magicBookId))
@@ -203,7 +218,6 @@ public class UiTopRankerCell : MonoBehaviour
         else
         {
             magicBook.GetComponent<Animator>().enabled = true;
-
         }
 
         if (magicBookId != -1)
@@ -260,7 +274,7 @@ public class UiTopRankerCell : MonoBehaviour
         if (kickButton != null)
         {
             kickButton.gameObject.SetActive(PhotonNetwork.IsMasterClient &&
-                !Utils.GetOriginNickName(PlayerData.Instance.NickName).Equals(Utils.GetOriginNickName(nickName)));
+                                            !Utils.GetOriginNickName(PlayerData.Instance.NickName).Equals(Utils.GetOriginNickName(nickName)));
         }
 
         if (masterText != null)
@@ -300,13 +314,10 @@ public class UiTopRankerCell : MonoBehaviour
         PartyRaidManager.Instance.NetworkManager.SendRecommend(recNickName);
 
         partyRaidRecommendButton.SetActive(false);
-
-
     }
 
     private void SetPetSpine(int idx)
     {
-
         if (idx == -1)
         {
             petGraphic.gameObject.SetActive(false);
@@ -378,7 +389,6 @@ public class UiTopRankerCell : MonoBehaviour
         petGraphic.skeletonDataAsset = CommonUiContainer.Instance.petCostumeList[idx];
         petGraphic.Initialize(true);
         petGraphic.SetMaterialDirty();
-
     }
 
     private void SetCostumeSpine(int idx)

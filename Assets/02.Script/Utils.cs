@@ -115,7 +115,12 @@ public static class Utils
                type == Item_Type.costume92 ||
                type == Item_Type.costume93 ||
                type == Item_Type.costume94 ||
-               type == Item_Type.costume95
+               type == Item_Type.costume95||
+               type == Item_Type.costume96||
+               type == Item_Type.costume97||
+               type == Item_Type.costume98||
+               type == Item_Type.costume99||
+               type == Item_Type.costume100
             ;
     }
 
@@ -132,7 +137,8 @@ public static class Utils
         return type == Item_Type.MonthNorigae0 ||
                type == Item_Type.MonthNorigae1 ||
                type == Item_Type.MonthNorigae2 ||
-               type == Item_Type.MonthNorigae3
+               type == Item_Type.MonthNorigae3||
+               type == Item_Type.MonthNorigae4
             ;
     }
 
@@ -175,7 +181,27 @@ public static class Utils
                type == Item_Type.Indra0 ||
                type == Item_Type.Indra1 ||
                type == Item_Type.Indra2 ||
-               type == Item_Type.IndraPower;
+               type == Item_Type.IndraPower ||
+
+               type == Item_Type.h0 ||
+               type == Item_Type.h1 ||
+               type == Item_Type.h2 ||
+               type == Item_Type.h3 ||
+               type == Item_Type.h4 ||
+               type == Item_Type.h5 ||
+               type == Item_Type.h6 ||
+               type == Item_Type.h7 ||
+               type == Item_Type.h8 ||
+               type == Item_Type.h9 ||
+
+               type == Item_Type.c0 ||
+               type == Item_Type.c1 ||
+               type == Item_Type.c2 ||
+               type == Item_Type.c3 ||
+               type == Item_Type.c4 ||
+               type == Item_Type.c5 ||
+               type == Item_Type.c6;
+
     }
 
     public static bool IsGoodsItem(this Item_Type type)
@@ -237,6 +263,7 @@ public static class Utils
                type == Item_Type.MonthNorigae1 ||
                type == Item_Type.MonthNorigae2 ||
                type == Item_Type.MonthNorigae3 ||
+               type == Item_Type.MonthNorigae4 ||
                type == Item_Type.DokebiHorn0 ||
                type == Item_Type.DokebiHorn1 ||
                type == Item_Type.DokebiHorn2 ||
@@ -267,6 +294,7 @@ public static class Utils
                type == Item_Type.FoxMaskPartial ||
                type == Item_Type.SusanoTreasure ||
                type == Item_Type.SahyungTreasure ||
+               type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
                type == Item_Type.Event_Collection ||
                type == Item_Type.Event_Collection_All ||
@@ -279,6 +307,8 @@ public static class Utils
                type == Item_Type.SinsuRelic ||
                type == Item_Type.NewGachaEnergy ||
                type == Item_Type.EventDice ||
+               type == Item_Type.SuhoPetFeed ||
+               type == Item_Type.SuhoPetFeedClear ||
                type == Item_Type.Tresure
             ;
     }

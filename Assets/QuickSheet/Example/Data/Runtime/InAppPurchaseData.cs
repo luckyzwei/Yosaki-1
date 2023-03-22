@@ -33,8 +33,8 @@ public class InAppPurchaseData
   public int[] Rewardtypes { get {return rewardtypes; } set { this.rewardtypes = value;} }
   
   [SerializeField]
-  int[] rewardvalues = new int[0];
-  public int[] Rewardvalues { get {return rewardvalues; } set { this.rewardvalues = value;} }
+  float[] rewardvalues = new float[0];
+  public float[] Rewardvalues { get {return rewardvalues; } set { this.rewardvalues = value;} }
   
   [SerializeField]
   BuyType buytype;

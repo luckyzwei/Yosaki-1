@@ -15,6 +15,7 @@ public static class CommonResourceContainer
     private static List<Sprite> dragonBall;
     private static List<Sprite> foxCup;
     private static List<Sprite> chunIcons;
+    private static List<Sprite> SuhoAnimal;
 
     public static Sprite GetRandomWeaponSprite()
     {
@@ -63,6 +64,35 @@ public static class CommonResourceContainer
             return null;
         }
     }
+    
+    public static Sprite GetSuhoAnimalSprite(int idx)
+    {
+        if (SuhoAnimal == null)
+        {
+            var weaponIcons = Resources.LoadAll<Sprite>("SuhoAnimal/");
+            SuhoAnimal = weaponIcons.ToList();
+
+
+            SuhoAnimal.Sort((a, b) =>
+            {
+                if (int.Parse(a.name) < int.Parse(b.name)) return -1;
+
+                return 1;
+
+            });
+        }
+
+        if (idx < SuhoAnimal.Count)
+        {
+            return SuhoAnimal[idx];
+        }
+        else
+        {
+            Debug.LogError($"SuhoAnimal icon {idx} is not exist");
+            return null;
+        }
+    }
+    
     public static Sprite GetRingSprite(int idx)
     {
         if (ringSprites == null)

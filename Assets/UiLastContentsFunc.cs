@@ -16,6 +16,7 @@ public class UiLastContentsFunc : MonoBehaviour
     private bool resetState = false;
 
     public static bool AutoInfiniteTower = false;
+    public static bool AutoInfiniteTower2 = false;
 
     void Start()
     {

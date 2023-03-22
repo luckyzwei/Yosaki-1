@@ -47,14 +47,28 @@ public class UiHellTowerResult : MonoBehaviour
                 stageChangeText.SetText("재도전");
                 return "시간초과!";
             case ContentsState.Clear:
-                if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value < (TableManager.Instance.towerTable3.dataArray.Length))
+                switch (GameManager.contentsType)
                 {
-                    stageChangeText.SetText("다음 스테이지");
+                    case GameManager.ContentsType.DokebiTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value < (TableManager.Instance.towerTable3.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.DokebiTower:
+                        stageChangeButton.SetActive(false);
+                        break;
+                    case GameManager.ContentsType.RoyalTombTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.RoyalTombFloorIdx).Value < (TableManager.Instance.royalTombTowerTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.RoyalTombTower:
+                        stageChangeButton.SetActive(false);
+                        break;
+                    case GameManager.ContentsType.SinsuTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx6).Value < (TableManager.Instance.sinsuTower.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.SinsuTower:
+                        stageChangeButton.SetActive(false);
+                        break;
                 }
-                else
-                {
-                    stageChangeButton.SetActive(false);
-                }
+                
                 return "클리어!!";
         }
 

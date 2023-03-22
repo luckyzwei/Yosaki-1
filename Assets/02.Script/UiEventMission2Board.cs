@@ -16,6 +16,11 @@ public class UiEventMission2Board : MonoBehaviour
 
     private void OnEnable()
     {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
+        {
+            string key = TableManager.Instance.EventMissionDatas[(int)EventMissionKey.S_ClearChunFlower].Stringid;
+            ServerData.eventMissionTable.UpdateMissionClearToCount(key, 1);
+        }    
         CheckEventEnd();
     }
 

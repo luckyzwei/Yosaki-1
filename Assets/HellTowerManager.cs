@@ -15,7 +15,7 @@ public class HellTowerManager : ContentsManagerBase
 
     private List<Enemy> spawnedEnemyList = new List<Enemy>();
 
-    //null ÀÏ¶§ Å¬¸®¾î ¸øÇÑ°Å
+    //null ì¼ë•Œ í´ë¦¬ì–´ ëª»í•œê±°
     private List<RewardData> rewardDatas;
 
     [SerializeField]
@@ -62,13 +62,13 @@ public class HellTowerManager : ContentsManagerBase
     }
     #endregion
 
-    //Á¾·áÁ¶°Ç
+    //ì¢…ë£Œì¡°ê±´
     #region EndConditions
     private void EnemyDeadCallBack(Enemy enemy)
     {
         spawnedEnemyList.Remove(enemy);
 
-        //ÀüºÎ Ã³Ä¡ÇÔ
+        //ì „ë¶€ ì²˜ì¹˜í•¨
         if (spawnedEnemyList.Count == 0)
         {
             contentsState.Value = (int)ContentsState.Clear;
@@ -77,7 +77,7 @@ public class HellTowerManager : ContentsManagerBase
     }
     private void WhenPlayerDead()
     {
-        //Å¬¸®¾î µÆÀ»¶§ Á×Áö ¾Ê°Ô
+        //í´ë¦¬ì–´ ëì„ë•Œ ì£½ì§€ ì•Šê²Œ
         if (contentsState.Value != (int)ContentsState.Fight) return;
 
         //  UiLastContentsFunc.AutoInfiniteTower2 = false;
@@ -105,7 +105,7 @@ public class HellTowerManager : ContentsManagerBase
     {
         if (state == (int)ContentsState.Clear)
         {
-            //¹İµå½Ã Á¡¼öÀü¼Û¸ÕÀú
+            //ë°˜ë“œì‹œ ì ìˆ˜ì „ì†¡ë¨¼ì €
             SendScore();
 
             SetClear();
@@ -125,16 +125,16 @@ public class HellTowerManager : ContentsManagerBase
 
     private void EndInfiniteTower()
     {
-        //¸÷ ²¨ÁÜ
+        //ëª¹ êº¼ì¤Œ
         spawnedEnemyList.ForEach(e => e.gameObject.SetActive(false));
 
-        //Å¸ÀÌ¸Ó Á¾·á
+        //íƒ€ì´ë¨¸ ì¢…ë£Œ
         if (contentsState.Value != (int)ContentsState.TimerEnd)
         {
             StopTimer();
         }
 
-        //º¸»óÆË¾÷
+        //ë³´ìƒíŒì—…
         ShowResultPopup();
     }
 
@@ -142,7 +142,7 @@ public class HellTowerManager : ContentsManagerBase
 
     private void ShowResultPopup()
     {
-        //Å¬¸®¾î ÆË¾÷Ãâ·Â
+        //í´ë¦¬ì–´ íŒì—…ì¶œë ¥
         uiInfinityTowerResult.gameObject.SetActive(true);
         uiInfinityTowerResult.Initialize((ContentsState)(int)contentsState.Value, rewardDatas);
         //
@@ -207,7 +207,7 @@ public class HellTowerManager : ContentsManagerBase
 
     private void SetClear()
     {
-        //º¸»óÁö±Ş
+        //ë³´ìƒì§€ê¸‰
         int currentFloor = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value;
 
         var TowerTableData3 = TableManager.Instance.towerTable3.dataArray[currentFloor];
@@ -222,7 +222,7 @@ public class HellTowerManager : ContentsManagerBase
 
         HashSet<int> syncDataList = new HashSet<int>();
 
-        //µ¥ÀÌÅÍ Àû¿ë(·ÎÄÃ)
+        //ë°ì´í„° ì ìš©(ë¡œì»¬)
         for (int i = 0; i < rewardDatas.Count; i++)
         {
             if (syncDataList.Contains((int)rewardDatas[i].itemType) == true)
@@ -237,12 +237,12 @@ public class HellTowerManager : ContentsManagerBase
 
             ServerData.AddLocalValue(rewardDatas[i].itemType, rewardDatas[i].amount);
 
-            //¼­¹ö Æ®·¢Àè¼Ç
+            //ì„œë²„ íŠ¸ë™ì­ì…˜
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)rewardDatas[i].itemType);
             transactionList.Add(rewardTransactionValue);
         }
 
-        //´Ü°è»ó½Â
+        //ë‹¨ê³„ìƒìŠ¹
         ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value++;
 
         Param floorParam = new Param();

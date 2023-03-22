@@ -88,4 +88,8 @@ public class StageMapData
   float helamount;
   public float Helamount { get {return helamount; } set { this.helamount = value;} }
   
+  [SerializeField]
+  float chunfloweramount;
+  public float Chunfloweramount { get {return chunfloweramount; } set { this.chunfloweramount = value;} }
+  
 }

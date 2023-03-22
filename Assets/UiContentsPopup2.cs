@@ -26,6 +26,9 @@ public class UiContentsPopup2 : MonoBehaviour
         SumisanBoard,
         SahyungsuBoard,
         UiThiefBoard,
+        SmithBoard,
+        SuhoAnimal,
+        SinsuTower,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -33,10 +36,18 @@ public class UiContentsPopup2 : MonoBehaviour
     private List <UiContentsEnterButton> uiContentsEnterButtons;
     void Start()
     {
+        
         GameManager.ContentsType type = GameManager.Instance.lastContentsType2;
         int id = GameManager.Instance.bossId;
         switch (type)
         {
+            case GameManager.ContentsType.InfiniteTower:
+                UiContentsEnterPopup.Instance.Initialize(type,0);
+                break;
+            case GameManager.ContentsType.InfiniteTower2:
+                UiContentsEnterPopup.Instance.Initialize(type,0);
+                break;
+                
             case  GameManager.ContentsType.RelicDungeon:
                 lastBoards[(int)ContentsBoard.UiRelicBoard].SetActive(true);
                 break;
@@ -187,6 +198,9 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 103:
                     case 104:
                     case 105:
+                    case 106:
+                    case 107:
+                    case 108:
                         lastBoards[(int)ContentsBoard.UiThiefBoard].SetActive(true);
                     break;
                 }
@@ -234,9 +248,22 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.SumisanTower:
                 lastBoards[(int)ContentsBoard.SumisanBoard].SetActive(true);
                 break;
-            
-                
+            case GameManager.ContentsType.RoyalTombTower :
+                lastBoards[(int)ContentsBoard.UiThiefBoard].SetActive(true);
+                break;    
+            case GameManager.ContentsType.Smith :
+            case GameManager.ContentsType.SmithTree :
+                lastBoards[(int)ContentsBoard.SmithBoard].SetActive(true);
+                break;   
+            case GameManager.ContentsType.SuhoAnimal :
+                lastBoards[(int)ContentsBoard.SuhoAnimal].SetActive(true);
+                break;  
+            case GameManager.ContentsType.SinsuTower :
+                lastBoards[(int)ContentsBoard.SinsuTower].SetActive(true);
+                break;
+
         }
+        
         GameManager.Instance.ResetLastContents2();
     }
 }

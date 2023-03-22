@@ -21,6 +21,8 @@ public class UiGuideMissionBoard : MonoBehaviour
     private void Awake()
     {
         Initialize();
+        
+        UiTutorialManager.Instance.SetClear(TutorialStep.ClickYorinMission);
     }
 
     private void Initialize()

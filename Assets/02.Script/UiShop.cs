@@ -97,7 +97,7 @@ public class UiShop : SingletonMono<UiShop>
         for (int i = 0; i < tableData.Rewardtypes.Length; i++)
         {
             Item_Type rewardType = (Item_Type)tableData.Rewardtypes[i];
-            int rewardAmount = tableData.Rewardvalues[i];
+            var rewardAmount = tableData.Rewardvalues[i];
 
             if (rewardType.IsGoodsItem())
             {
@@ -202,7 +202,7 @@ public class UiShop : SingletonMono<UiShop>
         IAPManager.Instance.SendLog("상품 구매후 수령 성공", currentItemIdx);
     }
 
-    public void AddGoodsParam(ref Param param, Item_Type type, int amount)
+    public void AddGoodsParam(ref Param param, Item_Type type, float amount)
     {
         if (param == null)
         {
@@ -393,6 +393,20 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
                 }
                 break;  
+            
+            case Item_Type.SuhoPetFeed:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value += amount;
+                    param.Add(GoodsTable.SuhoPetFeed, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value);
+                }
+                break;   
+            case Item_Type.SuhoPetFeedClear:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value += amount;
+                    param.Add(GoodsTable.SuhoPetFeedClear, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value);
+                }
+                break;  
+            
             case Item_Type.Mileage:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.Mileage).Value += amount;
@@ -463,6 +477,12 @@ public class UiShop : SingletonMono<UiShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += amount;
                     param.Add(GoodsTable.SahyungTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value);
+                }
+                break;   
+            case Item_Type.SinsuMarble:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SinsuMarble).Value += amount;
+                    param.Add(GoodsTable.SinsuMarble, ServerData.goodsTable.GetTableData(GoodsTable.SinsuMarble).Value);
                 }
                 break; 
             case Item_Type.Event_Collection:
@@ -768,7 +788,7 @@ public class UiShop : SingletonMono<UiShop>
         }
     }
 
-    public void AddCostumeParam(ref Param param, Item_Type type, int amount)
+    public void AddCostumeParam(ref Param param, Item_Type type, float amount)
     {
         if (param == null)
         {
@@ -788,7 +808,7 @@ public class UiShop : SingletonMono<UiShop>
         param.Add(key, serverData.ConvertToString());
     }
 
-    public void AddPetParam(ref Param param, Item_Type type, int amount)
+    public void AddPetParam(ref Param param, Item_Type type, float amount)
     {
         if (param == null)
         {

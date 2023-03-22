@@ -144,6 +144,10 @@ public class UiPensionItemCell : MonoBehaviour
         {
             itemType = Item_Type.NewGachaEnergy;
         }
+        else if (pensionKey == "suhopetfeedclearpension")
+        {
+            itemType = Item_Type.SuhoPetFeedClear;
+        }
         else
         {
             itemType = Item_Type.SmithFire;

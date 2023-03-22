@@ -23,8 +23,6 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
             {
                 case GameManager.ContentsType.NorigaeSoul:
                 case GameManager.ContentsType.GumGiSoul:
-                case GameManager.ContentsType.Smith:
-                case GameManager.ContentsType.SmithTree:
                 case GameManager.ContentsType.GumGi:
                 case GameManager.ContentsType.GyungRockTower:
                     return;

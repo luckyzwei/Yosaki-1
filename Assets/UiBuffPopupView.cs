@@ -347,14 +347,22 @@ public class UiBuffPopupView : MonoBehaviour
 
         }
 
+        
+        var serverTime = ServerData.userInfoTable.currentServerTime;
+        
         //월간패스 유료버프
         if (buffTableData.Stringid.Equals("ma11"))
         {
+            #if UNITY_EDITOR
+            string description = $"{serverTime.Month + 1}월 월간 패스권이 필요합니다.";
+            #else
+                string description = $"{serverTime.Month}월 월간 패스권이 필요 합니다.";
+            #endif
             if (ServerData.userInfoTable.IsMonthlyPass2()) 
             {
                 if (ServerData.iapServerTable.TableDatas[UiMonthPassBuyButton2.monthPassKey].buyCount.Value == 0)
                 {
-                    PopupManager.Instance.ShowAlarmMessage("3월 월간 패스권이 필요 합니다.");
+                    PopupManager.Instance.ShowAlarmMessage(description);
                     return;
                 }
             }
@@ -362,12 +370,22 @@ public class UiBuffPopupView : MonoBehaviour
             {
                 if (ServerData.iapServerTable.TableDatas[UiMonthPassBuyButton.monthPassKey].buyCount.Value == 0)
                 {
-                    PopupManager.Instance.ShowAlarmMessage("2월 월간 패스권이 필요 합니다.");
+                    PopupManager.Instance.ShowAlarmMessage(description);
                     return;
                 }
             }
         }
 
+        //새학기 유료버프
+        if (buffTableData.Stringid.Equals("season1"))
+        {
+            if (ServerData.iapServerTable.TableDatas[UiSeasonPassBuyButton.seasonPassKey].buyCount.Value == 0)
+            {
+                PopupManager.Instance.ShowAlarmMessage("새학기 훈련 패스권이 필요 합니다.");
+                return;
+            }
+
+        }
         //혹한기 패스 유료버프
         if (buffTableData.Stringid.Equals("season3"))
         {

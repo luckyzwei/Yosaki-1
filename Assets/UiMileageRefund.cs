@@ -20,6 +20,8 @@ public class UiMileageRefund : MonoBehaviour
     void Start()
     {
         RefundRoutine();
+        
+        DolPassRefundRoutine();
     }
 
     private void RefundRoutine()
@@ -30,7 +32,7 @@ public class UiMileageRefund : MonoBehaviour
             return;
         }
 
-        int mileageTotalNum = 0;
+        float mileageTotalNum = 0;
 
         string description = string.Empty;
 
@@ -48,7 +50,7 @@ public class UiMileageRefund : MonoBehaviour
 
                     if (buyCount == 0) continue;
 
-                    int mileageNum = localTableData[i].Rewardvalues[j] * buyCount;
+                    var mileageNum = localTableData[i].Rewardvalues[j] * buyCount;
 
                     mileageTotalNum += mileageNum;
 
@@ -93,5 +95,42 @@ public class UiMileageRefund : MonoBehaviour
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "마일리지 소급 완료!", null);
             });
         }
+    }
+    private void DolPassRefundRoutine()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.dolPassRefund).Value != 0)
+        {
+            return;
+        }
+
+        if (ServerData.iapServerTable.TableDatas["dolpass"].buyCount.Value < 1)
+        {
+            //돌패스 구매 x
+            ServerData.userInfoTable.GetTableData(UserInfoTable.dolPassRefund).Value = 1;
+            ServerData.userInfoTable.UpData(UserInfoTable.dolPassRefund, false);
+            return;
+        }
+        
+
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += GameBalance.DolPassDiceRefundValue;
+        ServerData.userInfoTable.GetTableData(UserInfoTable.dolPassRefund).Value = 1;
+
+        Param goodsParam = new Param();
+        goodsParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
+
+        Param userInfoParam = new Param();
+        userInfoParam.Add(UserInfoTable.dolPassRefund, ServerData.userInfoTable.GetTableData(UserInfoTable.dolPassRefund).Value);
+
+        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"주사위 총 {GameBalance.DolPassDiceRefundValue}개 소급됨\n" +
+                                                                        $"주사위 소급 완료!", null);
+        });
+        
     }
 }

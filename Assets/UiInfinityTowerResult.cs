@@ -26,7 +26,7 @@ public class UiInfinityTowerResult : MonoBehaviour
     public void Initialize(ContentsState state, List<RewardData> rewardDatas) 
     {
         resultText.SetText(GetTitleText(state));
-        NextStageButtonTextChange(state);
+        //NextStageButtonTextChange(state);
         successObject.SetActive(state == ContentsState.Clear);
         failObject.SetActive(state != ContentsState.Clear);
 

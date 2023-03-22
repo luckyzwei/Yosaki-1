@@ -1113,7 +1113,7 @@ public class UiInventoryWeaponView : MonoBehaviour
 
             
 #if UNITY_EDITOR
-            levelUpPrice = 0;
+            //levelUpPrice = 0;
 #endif
             
             if (ServerData.magicBookTable.TableDatas[magicBookData.Stringid].level.Value >= magicBookData.Maxlevel)

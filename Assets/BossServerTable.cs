@@ -23,6 +23,8 @@ public enum TimeType
     Normal,
     //30
     Half,
+    //15
+    Quarter,
 }
 public enum NotImmuneType
 {
@@ -175,6 +177,26 @@ public class BossServerTable
     public List<int> GetGuildBossRewardedIdxList()
     {
         var rewards = ServerData.bossServerTable.TableDatas["boss12"].rewardedId.Value
+            .Split(BossServerTable.rewardSplit)
+            .Where(e => string.IsNullOrEmpty(e) == false)
+            .Select(e => int.Parse(e))
+            .ToList();
+
+        return rewards;
+    }
+    public List<int> GetGangChulBossRewardedIdxList()
+    {
+        var rewards = ServerData.bossServerTable.TableDatas["boss20"].rewardedId.Value
+            .Split(BossServerTable.rewardSplit)
+            .Where(e => string.IsNullOrEmpty(e) == false)
+            .Select(e => int.Parse(e))
+            .ToList();
+
+        return rewards;
+    }
+    public List<int> GetHellRelicRewardedIdxList()
+    {
+        var rewards = ServerData.bossServerTable.TableDatas["b53"].rewardedId.Value
             .Split(BossServerTable.rewardSplit)
             .Where(e => string.IsNullOrEmpty(e) == false)
             .Select(e => int.Parse(e))

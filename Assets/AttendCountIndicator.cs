@@ -18,7 +18,9 @@ public class AttendCountIndicator : MonoBehaviour
     {
         ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).AsObservable().Subscribe(e =>
         {
-            killCountText.SetText($"3월 출석일 : {Utils.ConvertBigNum(e)}");
+            var serverTime = ServerData.userInfoTable.currentServerTime;
+            
+            killCountText.SetText($"{serverTime.Month}월 출석일 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);
     }
 }

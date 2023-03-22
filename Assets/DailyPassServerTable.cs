@@ -140,11 +140,11 @@ public class MonthlyPassServerTable
     public const string tableName = "MonthlyPass";
 
 
-    public static string MonthlypassFreeReward = "f8";
-    public static string MonthlypassAdReward = "a8";
+    public static string MonthlypassFreeReward = "f9";
+    public static string MonthlypassAdReward = "a9";
 
-    public static string MonthlypassAttendFreeReward = "af8";
-    public static string MonthlypassAttendAdReward = "aa8";
+    public static string MonthlypassAttendFreeReward = "af9";
+    public static string MonthlypassAttendAdReward = "aa9";
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
@@ -752,6 +752,8 @@ public class ColdSeasonPassServerTable
 
     public static string coldseasonFree = "f2";
     public static string coldseasonAd = "a2";
+    public static string seasonFree = "f3";
+    public static string seasonAd = "a3";
 
     public static string coldseasonFree_Atten = "fa2";
 
@@ -759,7 +761,9 @@ public class ColdSeasonPassServerTable
     {
         { coldseasonFree,string.Empty},
         { coldseasonAd,string.Empty},
-        { coldseasonFree_Atten,string.Empty}
+        { coldseasonFree_Atten,string.Empty},
+        { seasonFree,string.Empty},
+        { seasonAd,string.Empty}
 
     };
 

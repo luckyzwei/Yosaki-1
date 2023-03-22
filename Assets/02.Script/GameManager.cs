@@ -51,7 +51,10 @@ public class GameManager : SingletonMono<GameManager>
 	 	OldDokebi2,
 	 	Sumi,
         GyungRockTower,
-        NorigaeSoul
+        NorigaeSoul,
+        RoyalTombTower,
+        SuhoAnimal,
+        SinsuTower,
     }
     public bool SpawnMagicStone => IsNormalField;
     public bool IsNormalField => contentsType == ContentsType.NormalField;
@@ -66,6 +69,7 @@ public class GameManager : SingletonMono<GameManager>
     public ReactiveCommand whenSceneChanged = new ReactiveCommand();
 
     public ObscuredInt bossId { get; private set; }
+    public ObscuredInt suhoAnimalId { get; private set; }
     public ObscuredInt currentTowerId { get; private set; }
 
     public ObscuredInt dokebiIdx { get; private set; }
@@ -86,6 +90,13 @@ public class GameManager : SingletonMono<GameManager>
     public void SetBossId(int bossId)
     {
         this.bossId = bossId;
+
+        RandomizeKey();
+    }
+    
+    public void SetSuhoAnimalBossId(int bossId)
+    {
+        this.suhoAnimalId = bossId;
 
         RandomizeKey();
     }
@@ -290,13 +301,18 @@ public class GameManager : SingletonMono<GameManager>
         if (type != ContentsType.NormalField)
         {
             lastContentsType = type;
-            lastContentsType2 = type;
+            SetLastContentsType2(type);
         }
 
         contentsType = type;
         
         
         ChangeScene();
+    }
+
+    public void SetLastContentsType2(ContentsType type)
+    {
+        lastContentsType2 = type;
     }
     private static bool firstLoad = true;
     private void ChangeScene()

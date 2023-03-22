@@ -116,6 +116,13 @@ public class UiInfinityRankBoard : MonoBehaviour
                         {
                             hornIdx = int.Parse(splitData[8]);
                         }
+                        
+                        int suhoAnimal = -1;
+
+                        if (splitData.Length >= 10)
+                        {
+                            suhoAnimal = int.Parse(splitData[9]);
+                        }
 
 
                         Color color1 = Color.white;
@@ -141,7 +148,7 @@ public class UiInfinityRankBoard : MonoBehaviour
                         {
                             guildName = splitData[7];
                         }
-                        rankViewContainer[i].Initialize($"{rank}", $"{nickName}", $"지하 {level + 1}층", rank, costumeId, petId, weaponId, magicBookId, gumgiIdx,guildName, maskIdx,hornIdx);
+                        rankViewContainer[i].Initialize($"{rank}", $"{nickName}", $"지하 {level + 1}층", rank, costumeId, petId, weaponId, magicBookId, gumgiIdx,guildName, maskIdx,hornIdx,suhoAnimal);
                     }
                     else
                     {

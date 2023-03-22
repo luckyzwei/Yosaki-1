@@ -188,6 +188,9 @@ public class AgentHpController : MonoBehaviour
         //도깨비참수 데미지
         value += value * PlayerStats.GetSuperCritical5DamPer();
 
+        //수호베기
+        value += value * PlayerStats.GetSuperCritical11DamPer();
+        
         //신수베기 데미지
         value += value * PlayerStats.GetSuperCritical6DamPer();
         

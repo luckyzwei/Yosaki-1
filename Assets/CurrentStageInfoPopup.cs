@@ -34,6 +34,10 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         {
             SetDescription();
         }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).AsObservable().Subscribe(e =>
+        {
+            SetDescription();
+        }).AddTo(this);
     }
 
     private void SetDescription()
@@ -60,6 +64,10 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
             desc += $"\n요괴 500마리당 불멸석 획득량 : {stageData.Helamount * 1000}";
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
+        {
+            desc += $"\n요괴 500마리당 천계꽃 획득량 : {stageData.Chunfloweramount * 1000}";
         }
         description.SetText(desc);
     }

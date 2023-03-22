@@ -242,6 +242,11 @@ public static class CommonString
             case Item_Type.costume93: return TableManager.Instance.Costume.dataArray[93].Name;
             case Item_Type.costume94: return TableManager.Instance.Costume.dataArray[94].Name;
             case Item_Type.costume95: return TableManager.Instance.Costume.dataArray[95].Name;
+            case Item_Type.costume96: return TableManager.Instance.Costume.dataArray[96].Name;
+            case Item_Type.costume97: return TableManager.Instance.Costume.dataArray[97].Name;
+            case Item_Type.costume98: return TableManager.Instance.Costume.dataArray[98].Name;
+            case Item_Type.costume99: return TableManager.Instance.Costume.dataArray[99].Name;
+            case Item_Type.costume100: return TableManager.Instance.Costume.dataArray[100].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -404,6 +409,7 @@ public static class CommonString
             case Item_Type.MonthNorigae1: return "1월 월간 노리개";
             case Item_Type.MonthNorigae2: return "2월 월간 노리개";
             case Item_Type.MonthNorigae3: return "3월 월간 노리개";
+            case Item_Type.MonthNorigae4: return "4월 월간 노리개";
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
             case Item_Type.SahyungTreasure: return "사흉구슬";
@@ -418,11 +424,13 @@ public static class CommonString
 
             case Item_Type.SinsuRelic: return "황룡의 여의주";
             case Item_Type.EventDice: return "이벤트 주사위";
+            case Item_Type.SuhoPetFeed: return "수호환";
+            case Item_Type.SuhoPetFeedClear: return "수호환 소탕권";
+            case Item_Type.SinsuMarble: return "사신수구슬";
 
         }
 
         return "미등록";
-
     }
 
     public static string GetHellMarkAbilName(int grade)
@@ -572,7 +580,10 @@ public static class CommonString
             case StatusType.SuperCritical9DamPer:
                 return "흉수베기 피해(%)";   
             case StatusType.SuperCritical10DamPer:
-                return "섬광베기 피해(%)"; 
+                return "섬광베기 피해(%)";  
+            
+            case StatusType.SuperCritical11DamPer:
+                return "수호베기 피해(%)"; 
             case StatusType.NorigaeGoldAbilUp:
                 return "노리개 기본무공 강화효과(%)";
         }

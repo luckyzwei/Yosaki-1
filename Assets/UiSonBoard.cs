@@ -174,7 +174,9 @@ public class UiSonBoard : MonoBehaviour
               //    LogManager.Instance.SendLogType("Son", "Level", ServerData.statusTable.GetTableData(StatusTable.Son_Level).Value.ToString());
           });
     }
-
+    
+    
+    
     public void OnClickAllReceiveButton()
     {
         double score = ServerData.userInfoTable.TableDatas[UserInfoTable.sonScore].Value * GameBalance.BossScoreConvertToOrigin;

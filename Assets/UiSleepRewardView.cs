@@ -20,6 +20,8 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
     private GameObject peachObject;
     [SerializeField]
     private GameObject helObject;
+    [SerializeField]
+    private GameObject chunObject;
 
     [SerializeField]
     private GameObject snowObject;
@@ -44,6 +46,10 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).AsObservable().Subscribe(e =>
         {
             helObject.SetActive(e == 1);
+        }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).AsObservable().Subscribe(e =>
+        {
+            chunObject.SetActive(e == 1);
         }).AddTo(this);
 
     }
@@ -141,6 +147,8 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         rewards[11].SetText(Utils.ConvertBigNum(reward.peachItem));
         //불멸석
         rewards[12].SetText(Utils.ConvertBigNum(reward.helItem));
+        //불멸석
+        rewards[13].SetText(Utils.ConvertBigNum(reward.chunItem));
 
         SleepRewardReceiver.Instance.GetRewardSuccess();
     }

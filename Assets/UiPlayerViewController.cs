@@ -49,7 +49,10 @@ public class UiPlayerViewController : MonoBehaviour
     private GameObject showFoxCup;
 
     [SerializeField]
-    private GameObject showRingEffect;
+    private GameObject showRingEffect; 
+    
+    [SerializeField]
+    private GameObject suhoAnimal;
     void Start()
     {
         Subscribe();
@@ -141,6 +144,11 @@ public class UiPlayerViewController : MonoBehaviour
         SettingData.showRingEffect.AsObservable().Subscribe(e =>
         {
             showRingEffect.gameObject.SetActive(e == 1);
+        }).AddTo(this);   
+        
+        SettingData.norigaeSize.AsObservable().Subscribe(e =>
+        {
+            suhoAnimal.gameObject.SetActive(e == 1);
         }).AddTo(this);
     }
 

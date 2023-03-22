@@ -184,6 +184,9 @@ public class GoodsTable
     
     public static string EventDice = "EventDice";
     public static string Tresure = "Tresure";
+    public static string SuhoPetFeed = "SuhoPetFeed";
+    public static string SuhoPetFeedClear = "SPFC";
+    public static string SinsuMarble = "SinsuMarble";
 
 
 
@@ -349,6 +352,9 @@ public class GoodsTable
         
         {EventDice,0f},
         {Tresure,0f},
+        {SuhoPetFeed,0f},
+        {SuhoPetFeedClear,0f},
+        {SinsuMarble,0f},
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -499,6 +505,25 @@ public class GoodsTable
             
             tableDatas[Hel].Value += (int)helItemAddNum;
             helItemAddNum -= (int)helItemAddNum;
+        }
+    }
+    //
+    //
+    static float chunItemAddNum = 0;
+    public void GetChunItem(float amount)
+    {
+        chunItemAddNum += amount;
+
+        //1개 획득할때마다 얻게하기 위해서
+        if (chunItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Chunfloweramount,1))
+        {
+
+        }
+        else
+        {
+            
+            tableDatas[Cw].Value += (int)chunItemAddNum;
+            chunItemAddNum -= (int)chunItemAddNum;
         }
     }
     //
@@ -797,6 +822,10 @@ public class GoodsTable
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
             goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
+        {
+            goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value);
         }
         //if (ServerData.userInfoTable.CanSpawnEventItem())
         //{
@@ -1173,9 +1202,13 @@ public class GoodsTable
                     return GoodsTable.Cw;
                 }
                 
-            case Item_Type.DokebiFire:
+            case Item_Type.SuhoPetFeed:
                 {
-                    return GoodsTable.DokebiFire;
+                    return GoodsTable.SuhoPetFeed;
+                } 
+            case Item_Type.SuhoPetFeedClear:
+                {
+                    return GoodsTable.SuhoPetFeedClear;
                 }
                 
             case Item_Type.SumiFire:
@@ -1664,6 +1697,14 @@ public class GoodsTable
         else if (GoodsTable.DokebiFire == type)
         {
             return Item_Type.DokebiFire;
+        }   
+        else if (GoodsTable.SuhoPetFeed == type)
+        {
+            return Item_Type.SuhoPetFeed;
+        }  
+        else if (GoodsTable.SuhoPetFeedClear == type)
+        {
+            return Item_Type.SuhoPetFeedClear;
         }
 
         else if (GoodsTable.SumiFire == type)

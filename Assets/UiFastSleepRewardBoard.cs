@@ -20,6 +20,11 @@ public class UiFastSleepRewardBoard : MonoBehaviour
     [SerializeField]
     private GameObject waitDescription;
 
+    [SerializeField]
+    private GameObject allReceiveButton;
+
+    [SerializeField] private List<UiAdRewardCell> _adRewardCells;
+
     private void Start()
     {
         Subscribe();
@@ -29,7 +34,6 @@ public class UiFastSleepRewardBoard : MonoBehaviour
     {
         ServerData.userInfoTable.TableDatas[UserInfoTable.dailySleepRewardReceiveCount].AsObservable().Subscribe(e =>
         {
-
             if (e == 0)
             {
                 buttonDescription.SetText($"무료 받기\n{e}/{GameBalance.fastSleepRewardMaxCount}");
@@ -38,7 +42,6 @@ public class UiFastSleepRewardBoard : MonoBehaviour
             {
                 buttonDescription.SetText($"보상 받기\n{e}/{GameBalance.fastSleepRewardMaxCount}");
             }
-
         }).AddTo(this);
     }
 
@@ -69,6 +72,23 @@ public class UiFastSleepRewardBoard : MonoBehaviour
         {
             RewardRoutine();
         }
+    }
+
+    
+    public void OnClickAllReceiveButton()
+    {
+        if (ServerData.iapServerTable.TableDatas["removead"].buyCount.Value == 0)
+        {
+            PopupManager.Instance.ShowAlarmMessage("광고제거가 필요합니다.");
+            return;
+        }
+
+        foreach (var adRewardCell in _adRewardCells)
+        {
+            adRewardCell.OnClickExchangeButton(false);
+        }
+
+        PopupManager.Instance.ShowAlarmMessage("모두 받기 완료!");
     }
 
     private void RewardRoutine()

@@ -144,6 +144,58 @@ public class UiDolPassSystem : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage($"주사위 {diceNum} 획득!");
         });
     }
+    public void OnClickAllDice()
+    {
+        if (ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value < 1)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.EventDice)}가 부족합니다.");
+            return;
+        }
+        diceParticle.gameObject.SetActive((true));
+        diceParticle.Play();
+        var amount = ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value;
+        var diceNumAmount = 0;
+        for (int i = 0; i < amount; i++)
+        {
+            //2,4,6
+            int diceNum =  Random.Range(0, 3);
+            switch (diceNum)
+            {
+                case 0:
+                    diceNum = 2;
+                    diceNumAmount += diceNum;
+                    diceImage.sprite = diceSprites[0];
+                    break;
+                case 1:
+                    diceNum = 4;
+                    diceNumAmount += diceNum;
+                    diceImage.sprite = diceSprites[1];
+                    break;
+                case 2:
+                    diceNum = 6;
+                    diceNumAmount += diceNum;
+                    diceImage.sprite = diceSprites[2];
+                    break;
+            }
+        }
+        ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value-=amount;
+        ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount_Dol).Value += diceNumAmount;
+        List<TransactionValue> transactionList = new List<TransactionValue>();
+
+        Param goodsParam = new Param();
+        goodsParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
+
+        Param userinfoParam = new Param();
+        userinfoParam.Add(UserInfoTable.attendanceCount_Dol, ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount_Dol).Value);
+
+        transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userinfoParam));
+
+        ServerData.SendTransaction(transactionList, successCallBack: () =>
+        {
+            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,$"주사위 {amount}개 사용\n 주사위 눈 {diceNumAmount}획득!", null);
+        });
+    }
     
     public void OnClickAllReceiveButton()
     {

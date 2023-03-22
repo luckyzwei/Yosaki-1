@@ -152,6 +152,10 @@ public class UiPensionObjectView : MonoBehaviour
         {
             itemType = Item_Type.NewGachaEnergy;
         }
+        else if (pensionKey == "suhopetfeedclearpension")
+        {
+            itemType = Item_Type.SuhoPetFeedClear;
+        }
 
         List<TransactionValue> transactions = new List<TransactionValue>();
 

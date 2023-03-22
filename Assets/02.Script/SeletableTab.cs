@@ -8,27 +8,36 @@ public class SeletableTab : MonoBehaviour
 {
     [SerializeField]
     private List<Image> tabs;
+
     [SerializeField]
     private List<TextMeshProUGUI> tabTexts;
+
     [SerializeField]
     private List<GameObject> objects;
 
     [SerializeField]
     private Color enableColor = Color.white;
+
     [SerializeField]
     private Color disableColor = Color.grey;
 
     [SerializeField]
     private Color enableColor_text = Color.white;
+
     [SerializeField]
     private Color disableColor_text = Color.grey;
 
     [SerializeField]
     private bool useButtonColor = true;
 
+    [SerializeField] private bool initDefaultSetting = true;
+
     private void Awake()
     {
-        SetDefault();
+        if (initDefaultSetting)
+        {
+            SetDefault();
+        }
     }
 
     private void SetDefault()
@@ -67,5 +76,4 @@ public class SeletableTab : MonoBehaviour
             objects[i].gameObject.SetActive(i == select);
         }
     }
-
 }

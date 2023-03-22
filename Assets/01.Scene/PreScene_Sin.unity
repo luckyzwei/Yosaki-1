@@ -1848,6 +1848,12 @@ MonoBehaviour:
   dolPass: {fileID: 11400000, guid: ce482b64c869c2a4b93b2e2f55caccf2, type: 2}
   norigaeJewel: {fileID: 11400000, guid: efac2326afe9f7546870aab4b206570d, type: 2}
   tresureAbilBase: {fileID: 11400000, guid: 55f904ca4d35c7c4cadaf2f7bb4c0e9a, type: 2}
+  royalTombTowerTable: {fileID: 11400000, guid: 3a0d35aa83c615d4ea3f823fb1c7d437,
+    type: 2}
+  suhoPetTable: {fileID: 11400000, guid: fb78b895fbcfca94182dec4a19ad4769, type: 2}
+  adRewardTable: {fileID: 11400000, guid: d30db78f72c6a5e4ca4c54d62a695e51, type: 2}
+  newSemesterPass: {fileID: 11400000, guid: 3f3b06f2604f01d4cb2c8d525c2393fb, type: 2}
+  sinsuTower: {fileID: 11400000, guid: cc506b7d5738c724c8511beadcb8f28b, type: 2}
 --- !u!224 &1672999882 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3778453797765526293, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -1904,6 +1910,36 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8958496337002748421}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1856218202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856218203}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1856218203
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856218202}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 618.6922, y: 335.81076, z: -31.963066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 29
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1918971819
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,6 +2129,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 890b043888079fb48b15af68a78e7132, type: 3}
   - {fileID: 21300000, guid: 150dd8e4b4293a84fb1f5b4c391dadb1, type: 3}
   - {fileID: 21300000, guid: bb7f0b1e35d6da94bbc926fbcab62eee, type: 3}
+  - {fileID: 21300000, guid: 6912b9a83a9145a4abd548e3870dce10, type: 3}
+  - {fileID: 21300000, guid: 633efc90577bee4478fed34fa993d644, type: 3}
+  - {fileID: 21300000, guid: 0a677264c21a4c84083a0d943714d210, type: 3}
+  - {fileID: 21300000, guid: d960554906bfbdf4b8745e4dd4959b3e, type: 3}
+  - {fileID: 21300000, guid: aed3414cbc59a874b8f1724da8315302, type: 3}
   rankFrame:
   - {fileID: 21300000, guid: 180b014bbd854ff4c8d26a3bc3108a29, type: 3}
   - {fileID: 21300000, guid: 045aff0737bd68d449d44a4a9bb5b849, type: 3}
@@ -2215,10 +2256,14 @@ MonoBehaviour:
   ThiefNorigae1: {fileID: 21300000, guid: 0627474c4fe46db489be7d5c02ab16b3, type: 3}
   ThiefNorigae2: {fileID: 21300000, guid: 65f63d1fd7acef34693bb886f664f481, type: 3}
   ThiefNorigae3: {fileID: 21300000, guid: 2c9f2df9c5e261940a577e608539f7bb, type: 3}
+  NinjaNorigae0: {fileID: 21300000, guid: cb3c11753ec6b30418d6642ef9c979bf, type: 3}
+  NinjaNorigae1: {fileID: 21300000, guid: 1a7fea9736d943847a6bf819d709b555, type: 3}
+  NinjaNorigae2: {fileID: 21300000, guid: 96edee91aa14b0e41852ee7e1c11e6e9, type: 3}
   MonthNorigae0: {fileID: 21300000, guid: b8e4966468cd428418fa5447c72fabe7, type: 3}
   MonthNorigae1: {fileID: 21300000, guid: 534227b3d8d3ed346912306890c7d5ee, type: 3}
   MonthNorigae2: {fileID: 21300000, guid: e5a11b2c900be0a478a8bef1cd907e2d, type: 3}
   MonthNorigae3: {fileID: 21300000, guid: 814e0ca3caa223e41a5854b0de226c6b, type: 3}
+  MonthNorigae4: {fileID: 21300000, guid: 6a5d07b563b244a44b794c34546f0184, type: 3}
   DokebiHorn0: {fileID: 21300000, guid: 92f9f58d12795c74ba90cc7fbf939313, type: 3}
   DokebiHorn1: {fileID: 21300000, guid: 6b45cec8b763a8a4dbe42106090790b3, type: 3}
   DokebiHorn2: {fileID: 21300000, guid: b9a7ada2415dc2c41af80d8e59d7a05c, type: 3}
@@ -2258,9 +2303,11 @@ MonoBehaviour:
   Event_Fall: {fileID: 21300000, guid: 5ab2824b6a27d1c4fb0a913402f088ae, type: 3}
   Event_Fall_Gold: {fileID: 21300000, guid: 1d092eb7a781a5b48b0afc61e1055f11, type: 3}
   Event_XMas: {fileID: 21300000, guid: 88013ee1676187b4db84e6314715c079, type: 3}
-  Event_Mission: {fileID: 0}
+  Event_Mission: {fileID: 21300000, guid: 1f8c887606a5d274ba859c15a44a7262, type: 3}
   FoxMaskPartial: {fileID: 21300000, guid: 3a533ea12e235f34c933c4c952e86390, type: 3}
   DokebiFire: {fileID: 21300000, guid: 49f456d0b10e5274dbc4098b38cadbbf, type: 3}
+  SuhoPetFeed: {fileID: 21300000, guid: e3f66f5a2cd608142b2c1faefaf4bd5e, type: 3}
+  SuhoPetFeedClear: {fileID: 21300000, guid: 49a06a82731c9bb4aa5e2195cc4d5896, type: 3}
   Mileage: {fileID: 21300000, guid: 1828831b1893ae547a81572d1224ecdd, type: 3}
   HellPower: {fileID: 21300000, guid: dc75d41bb39cfa94780b8c1b220128e9, type: 3}
   DokebiFireKey: {fileID: 21300000, guid: 15383cbd3e8dd3747bb9b2effef6d2ee, type: 3}
@@ -2268,6 +2315,7 @@ MonoBehaviour:
   DokebiFireEnhance: {fileID: 21300000, guid: 0c31b2d7b31d5dd41bc8efb258fda795, type: 3}
   SusanoTreasure: {fileID: 21300000, guid: e6003eb4cf98f1045b30517e1f0e4a32, type: 3}
   SahyungTreasure: {fileID: 21300000, guid: 5eafe4bb3025a5c4ca15663a26f57f39, type: 3}
+  SinsuMarble: {fileID: 21300000, guid: 23007cfe7b23eba45be70d9a01d71571, type: 3}
   SumiFire: {fileID: 21300000, guid: 717b0c3f3e20a0c40a1bb756cc7c8a37, type: 3}
   Tresure: {fileID: 21300000, guid: c46bacf669867ab49972c7977a30b0f2, type: 3}
   SumiFireKey: {fileID: 21300000, guid: f56de93e9b3508c4f8cad40db0d52d67, type: 3}
@@ -2352,6 +2400,9 @@ MonoBehaviour:
   ThiefWeapon1: {fileID: 21300000, guid: 57a21678b94efb040a6d90c392ba164d, type: 3}
   ThiefWeapon2: {fileID: 21300000, guid: 628c198cbf406114d998170c23461136, type: 3}
   ThiefWeapon3: {fileID: 21300000, guid: 601665f71c1ac514cb648d0493212e3a, type: 3}
+  NinjaWeapon0: {fileID: 21300000, guid: 8ca5889b03c89a84993b5ae13b8c37a3, type: 3}
+  NinjaWeapon1: {fileID: 21300000, guid: 4da7a83df1b986c44af6a167bee97d7b, type: 3}
+  NinjaWeapon2: {fileID: 21300000, guid: cf323c72d816a4b489846852fd6abc46, type: 3}
   SasinsuWeapon0: {fileID: 21300000, guid: 67dd94ade483c4b44aee5c156d25a693, type: 3}
   SasinsuWeapon1: {fileID: 21300000, guid: 17c3ac1d97cc67943950cbc2949bc16b, type: 3}
   SasinsuWeapon2: {fileID: 21300000, guid: 9b70f07332df7224bb73e780ecab54e5, type: 3}
@@ -2627,6 +2678,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 578cd24a277d4f04baf362a1b81bc7b5, type: 2}
   - {fileID: 11400000, guid: 4a81bdd89934a1044befdc2b039aade8, type: 2}
   - {fileID: 11400000, guid: b8e65144dc9ceab4a8600a15bf5ea52d, type: 2}
+  - {fileID: 11400000, guid: 56691f785eef6134eb8ea04d95290439, type: 2}
+  - {fileID: 11400000, guid: 33b4d31b425fc624d993ecaae9ec4ba3, type: 2}
+  - {fileID: 11400000, guid: 958b7fb71cc892b419c79031c2a6e138, type: 2}
+  - {fileID: 11400000, guid: 9b9511d0dbeec7a4fa356ae5165fe5c9, type: 2}
+  - {fileID: 11400000, guid: e3acebe4ff0ac9e46a6223d917766b26, type: 2}
   petCostumeList:
   - {fileID: 11400000, guid: 3d9145f3f8361c944acb6cd70679d6e2, type: 2}
   - {fileID: 11400000, guid: 206e7bbe5e49e2f4bb8859c83698d1d7, type: 2}
@@ -2687,8 +2743,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6195cb1a7347b87428bef6dee9baf0f1, type: 3}
   - {fileID: 21300000, guid: 503025854e9c5bf41abc9e2453618f19, type: 3}
   - {fileID: 21300000, guid: a9942daf048df784d8772a4132a22988, type: 3}
-  - {fileID: 21300000, guid: e7ca86cf5932b564cb95975149e482b5, type: 3}
-  - {fileID: 21300000, guid: e7ca86cf5932b564cb95975149e482b5, type: 3}
+  - {fileID: 21300000, guid: 145b633eb60a6be49ab5f3e7d2239bd6, type: 3}
+  - {fileID: 21300000, guid: 145b633eb60a6be49ab5f3e7d2239bd6, type: 3}
   - {fileID: 21300000, guid: cb552e23aba3661428354f8dac1beb93, type: 3}
   - {fileID: 21300000, guid: cb552e23aba3661428354f8dac1beb93, type: 3}
   - {fileID: 21300000, guid: c2d97b38a9ecd8541b39d3c850145f38, type: 3}
@@ -3618,7 +3674,7 @@ PrefabInstance:
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}
       propertyPath: editorLoginId
-      value: a_8846847867697156085
+      value: sff22f2f2f
       objectReference: {fileID: 0}
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}

@@ -44,7 +44,6 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
         {
             rootObject.SetActive(false);
             PopupManager.Instance.ShowAlarmMessage($"모든 환수장비가 최대 레벨 이어야 합니다.(각성 장비 제외)");
-
         }
         else
         {
@@ -92,7 +91,6 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
                 StatusType abilType = (StatusType)tableDatas[i].Abiltype1;
 
                 desc += $" {CommonString.GetStatusName(abilType)} : {tableDatas[i].Leveladdvalue1 * (abilType.IsPercentStat() ? 100f : 1f)}";
-
             }
 
             if (tableDatas[i].Leveladdvalue2 != 0)
@@ -112,20 +110,12 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
     {
         ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).AsObservable().Subscribe(currentAwake =>
         {
-
             awakeDescription.SetText($"현재강화도 + {currentAwake}강");
 
             UpdateAwakeProb();
-
         }).AddTo(this);
 
-        ServerData.userInfoTable.GetTableData(UserInfoTable.smithExp).AsObservable().Subscribe(e =>
-        {
-
-            UpdateAwakeProb();
-
-        }).AddTo(this);
-
+        ServerData.userInfoTable.GetTableData(UserInfoTable.smithExp).AsObservable().Subscribe(e => { UpdateAwakeProb(); }).AddTo(this);
     }
 
     private void UpdateAwakeProb()
@@ -248,15 +238,16 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
             statusParam.Add(StatusTable.PetEquip_Level, ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value);
             transactions.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
 
+            LogManager.Instance.SendLogType("PetEquip", "all", $"pref {ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value - upgradableNum} +{upgradableNum}");
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
+                LogManager.Instance.SendLogType("PetEquip", "complete", "complete");
+
                 upgradeBlockMask.SetActive(false);
 
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"+{upgradableNum} 강화 성공!", null);
-
-                LogManager.Instance.SendLogType("PetEquip", "all", $"pref {ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value - upgradableNum} +{upgradableNum}");
-
+                
                 int currentDragonBall = PlayerStats.GetCurrentDragonIdx();
 
                 int currentFoxCup = PlayerStats.GetCurrentFoxCupIdx();
@@ -270,10 +261,7 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
                 {
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "여우 호리병 단계 상승!", null);
                 }
-
             });
-
-
         }, null);
     }
     //
@@ -318,25 +306,20 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
 #endif
 
         ServerData.SendTransaction(transactions, successCallBack: () =>
-          {
-              if (upgradeBlockMask != null)
-              {
-                  upgradeBlockMask.SetActive(false);
-              }
+        {
+            if (upgradeBlockMask != null)
+            {
+                upgradeBlockMask.SetActive(false);
+            }
 
-              if (awakeSuccess)
-              {
-                  PopupManager.Instance.ShowAlarmMessage("강화 성공!");
-              }
-              else
-              {
-                  PopupManager.Instance.ShowAlarmMessage("강화 실패!");
-              }
-
-
-          });
+            if (awakeSuccess)
+            {
+                PopupManager.Instance.ShowAlarmMessage("강화 성공!");
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("강화 실패!");
+            }
+        });
     }
-
-
-
 }

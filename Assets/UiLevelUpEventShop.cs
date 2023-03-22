@@ -80,7 +80,7 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
         for (int i = 0; i < tableData.Rewardtypes.Length; i++)
         {
             Item_Type rewardType = (Item_Type)tableData.Rewardtypes[i];
-            int rewardAmount = tableData.Rewardvalues[i];
+            var rewardAmount = tableData.Rewardvalues[i];
 
             if (rewardType.IsGoodsItem())
             {
@@ -119,7 +119,7 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
           });
     }
 
-    public void AddGoodsParam(ref Param param, Item_Type type, int amount)
+    public void AddGoodsParam(ref Param param, Item_Type type, float amount)
     {
         if (param == null)
         {
@@ -510,6 +510,18 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += amount;
                     param.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
+                }
+                break;   
+            case Item_Type.SuhoPetFeed:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value += amount;
+                    param.Add(GoodsTable.SuhoPetFeed, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value);
+                }
+                break;   
+            case Item_Type.SuhoPetFeedClear:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value += amount;
+                    param.Add(GoodsTable.SuhoPetFeedClear, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value);
                 }
                 break;   
             case Item_Type.SumiFire:

@@ -10,63 +10,48 @@ using System.Linq;
 
 public class UiSkillDescriptionPopup : MonoBehaviour
 {
-    [SerializeField]
-    private Image skillIcon;
+    [SerializeField] private Image skillIcon;
 
-    [SerializeField]
-    private TextMeshProUGUI skillName;
+    [SerializeField] private TextMeshProUGUI skillName;
 
-    [SerializeField]
-    private TextMeshProUGUI skillDesc;
+    [SerializeField] private TextMeshProUGUI skillDesc;
 
-    [SerializeField]
-    private TextMeshProUGUI skillAbility;
+    [SerializeField] private TextMeshProUGUI skillAbility;
 
     private SkillTableData skillTableData;
 
-    [SerializeField]
-    private Button levelUpButton;
+    [SerializeField] private Button levelUpButton;
 
-    [SerializeField]
-    private Image awakeButton;
+    [SerializeField] private Image awakeButton;
 
-    [SerializeField]
-    private TextMeshProUGUI awakeButtonDescription;
+    [SerializeField] private TextMeshProUGUI awakeButtonDescription;
 
-    [SerializeField]
-    private WeaponView weaponView;
+    [SerializeField] private WeaponView weaponView;
 
-    [SerializeField]
-    private TextMeshProUGUI levelDescription;
+    [SerializeField] private TextMeshProUGUI levelDescription;
 
-    [SerializeField]
-    private TextMeshProUGUI awakeDescription;
+    [SerializeField] private TextMeshProUGUI awakeDescription;
 
-    [SerializeField]
-    private TextMeshProUGUI levelupButtonDescription;
+    [SerializeField] private TextMeshProUGUI levelupButtonDescription;
 
-    [SerializeField]
-    private TextMeshProUGUI awakeText;
+    [SerializeField] private TextMeshProUGUI awakeText;
 
     private string lvTextFormat = "LV : {0}/{1}<color=yellow>(+{2} 강화됨)</color>";
 
     private CompositeDisposable disposables = new CompositeDisposable();
 
-    [SerializeField]
-    private UiSkillSlotSettingBoard uiSkillSlotSettingBoard;
+    [SerializeField] private UiSkillSlotSettingBoard uiSkillSlotSettingBoard;
 
-    [SerializeField]
-    private Button equipButton;
+    [SerializeField] private Button equipButton;
 
-    [SerializeField]
-    private TextMeshProUGUI hasEffectDesc;
+    [SerializeField] private TextMeshProUGUI hasEffectDesc;
 
-    [SerializeField]
-    private GameObject tutorialObject;
+    [SerializeField] private GameObject tutorialObject;
 
     public void OnClickEquipButton()
     {
-        int skillAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id].Value;
+        int skillAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id]
+            .Value;
 
         if (skillAwakeNum == 0)
         {
@@ -83,54 +68,55 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         //신수스킬용
         if (
             skillTableData.Id == 15 ||
-            skillTableData.Id == 16|| 
-            skillTableData.Id == 17 || 
-            skillTableData.Id == 20 || 
-            skillTableData.Id == 21||
-            skillTableData.Id == 22||
-            skillTableData.Id == 23||
-            skillTableData.Id == 24||
-            skillTableData.Id == 25||
-            skillTableData.Id == 26||
-            skillTableData.Id == 27||
-            skillTableData.Id == 28||
-            skillTableData.Id == 29||
-            skillTableData.Id == 30||
-            skillTableData.Id == 31||
-            skillTableData.Id == 32||
-            skillTableData.Id == 33||
-            skillTableData.Id == 34||
-            skillTableData.Id == 35||
-            skillTableData.Id == 36||
-
-            skillTableData.Id == 41||
-            skillTableData.Id == 42||
-            skillTableData.Id == 43||
-            skillTableData.Id == 44||
+            skillTableData.Id == 16 ||
+            skillTableData.Id == 17 ||
+            skillTableData.Id == 20 ||
+            skillTableData.Id == 21 ||
+            skillTableData.Id == 22 ||
+            skillTableData.Id == 23 ||
+            skillTableData.Id == 24 ||
+            skillTableData.Id == 25 ||
+            skillTableData.Id == 26 ||
+            skillTableData.Id == 27 ||
+            skillTableData.Id == 28 ||
+            skillTableData.Id == 29 ||
+            skillTableData.Id == 30 ||
+            skillTableData.Id == 31 ||
+            skillTableData.Id == 32 ||
+            skillTableData.Id == 33 ||
+            skillTableData.Id == 34 ||
+            skillTableData.Id == 35 ||
+            skillTableData.Id == 36 ||
+            skillTableData.Id == 41 ||
+            skillTableData.Id == 42 ||
+            skillTableData.Id == 43 ||
+            skillTableData.Id == 44 ||
             skillTableData.Id == 45
-
-            )
+        )
         {
             if (skillTableData.Id == 15)
             {
                 if (ServerData.goodsTable.GetTableData(GoodsTable.SinSkill2).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 16)
             {
                 if (ServerData.goodsTable.GetTableData(GoodsTable.SinSkill3).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 17)
             {
                 //흑룡 있을때
-                if (ServerData.costumeServerTable.TableDatas["costume27"].hasCostume.Value==true)
+                if (ServerData.costumeServerTable.TableDatas["costume27"].hasCostume.Value == true)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 20)
@@ -138,17 +124,19 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.NataSkill).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
-            } 
+            }
             else if (skillTableData.Id == 21)
             {
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.OrochiSkill).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
-            }  
+            }
             //
             //
 
@@ -157,7 +145,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Sun0).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 23)
@@ -165,7 +154,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Sun1).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 24)
@@ -173,7 +163,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Sun2).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 25)
@@ -181,7 +172,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Sun3).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 26)
@@ -189,7 +181,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //흑룡 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Sun4).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 27)
@@ -197,7 +190,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //천계검 1형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Chun0).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 28)
@@ -205,7 +199,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //천계검 2형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Chun1).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 29)
@@ -213,7 +208,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //천계검 3형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Chun2).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 30)
@@ -221,7 +217,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //천계검 4형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Chun3).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 31)
@@ -229,7 +226,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //천계검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.Chun4).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 32)
@@ -237,7 +235,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 1형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.DokebiSkill0).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 33)
@@ -245,7 +244,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 2형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.DokebiSkill1).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 34)
@@ -253,7 +253,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 3형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.DokebiSkill2).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 35)
@@ -261,7 +262,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 4형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.DokebiSkill3).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             else if (skillTableData.Id == 36)
@@ -269,7 +271,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.DokebiSkill4).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
             //
@@ -279,7 +282,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill4).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
 
@@ -288,7 +292,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill5).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
 
@@ -297,7 +302,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill6).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
 
@@ -306,7 +312,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill7).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
 
@@ -315,7 +322,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value != 0)
                 {
-                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value = 1;
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
                 }
             }
         }
@@ -353,7 +361,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
     private void UpdateUi()
     {
         string desc = string.Empty;
-        desc += $"데미지 : {(ServerData.skillServerTable.GetSkillDamagePer(skillTableData.Id, applySkillDamAbility: false) * 100f).ToString("F1")}% -> {(ServerData.skillServerTable.GetSkillDamagePer(skillTableData.Id, 1, applySkillDamAbility: false) * 100f).ToString("F1")}%\n";
+        desc +=
+            $"데미지 : {(ServerData.skillServerTable.GetSkillDamagePer(skillTableData.Id, applySkillDamAbility: false) * 100f).ToString("F1")}% -> {(ServerData.skillServerTable.GetSkillDamagePer(skillTableData.Id, 1, applySkillDamAbility: false) * 100f).ToString("F1")}%\n";
         desc += $"기술 시전 속도 : {skillTableData.Cooltime}\n";
         desc += $"타겟수 : {skillTableData.Targetcount}\n";
         desc += $"히트수 : {skillTableData.Hitcount}\n";
@@ -369,33 +378,40 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         disposables.Clear();
 
         //스킬 각성시
-        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id].AsObservable().Subscribe(WhenSkillAwake).AddTo(disposables);
+        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id].AsObservable()
+            .Subscribe(WhenSkillAwake).AddTo(disposables);
 
         //스킬 레벨업시
-        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].AsObservable().Subscribe(WhenSkillUpgraded).AddTo(disposables);
+        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].AsObservable()
+            .Subscribe(WhenSkillUpgraded).AddTo(disposables);
 
-        if (skillTableData.Skilltype == 0 || skillTableData.Skilltype == 1 || skillTableData.Skilltype == 2 || skillTableData.Skilltype == 4)
+        if (skillTableData.Skilltype == 0 || skillTableData.Skilltype == 1 || skillTableData.Skilltype == 2 ||
+            skillTableData.Skilltype == 4)
         {
             ServerData.statusTable.GetTableData(StatusTable.Skill0_AddValue).AsObservable().Subscribe(e =>
             {
-                WhenSkillUpgraded(ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
+                WhenSkillUpgraded(
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
             }).AddTo(disposables);
 
             ServerData.statusTable.GetTableData(StatusTable.Skill1_AddValue).AsObservable().Subscribe(e =>
             {
-                WhenSkillUpgraded(ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
+                WhenSkillUpgraded(
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
             }).AddTo(disposables);
 
             ServerData.statusTable.GetTableData(StatusTable.Skill2_AddValue).AsObservable().Subscribe(e =>
             {
-                WhenSkillUpgraded(ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
+                WhenSkillUpgraded(
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel][skillTableData.Id].Value);
             }).AddTo(disposables);
         }
 
         var weaponData = TableManager.Instance.WeaponData[skillTableData.Awakeweaponidx];
 
         // DatabaseManager.weaponTable.TableDatas[weaponData.Stringid].amount.AsObservable().Subscribe(WhenAwakeWeaponAmountChanged).AddTo(disposables);
-        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].AsObservable().Subscribe(WhenAwakeWeaponAmountChanged).AddTo(disposables);
+        ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].AsObservable()
+            .Subscribe(WhenAwakeWeaponAmountChanged).AddTo(disposables);
 
 
         int hasCount = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value;
@@ -405,7 +421,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
     private void WhenAwakeWeaponAmountChanged(int amount)
     {
-        int skillAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id].Value;
+        int skillAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id]
+            .Value;
 
         //최초에는 1개로 스킬 배울수있음.
         if (skillAwakeNum == 0)
@@ -414,7 +431,6 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         }
         else
         {
-
             awakeButtonDescription.SetText($"{amount}/{skillTableData.Awakeweaponreqcount}");
         }
     }
@@ -431,15 +447,15 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
         equipButton.interactable = awakeNum != 0;
 
-        if(((StatusType)skillTableData.Haseffecttype).IsPercentStat())
+        if (((StatusType)skillTableData.Haseffecttype).IsPercentStat())
         {
-        hasEffectDesc.SetText($"보유효과 : {CommonString.GetStatusName((StatusType)skillTableData.Haseffecttype)} {Utils.SmallFloatToDecimalFloat(awakeNum * skillTableData.Haseffectvalue*100f,2)}%\n(기술 각성시 보유 효과가 증가합니다))");
-
+            hasEffectDesc.SetText(
+                $"보유효과 : {CommonString.GetStatusName((StatusType)skillTableData.Haseffecttype)} {Utils.SmallFloatToDecimalFloat(awakeNum * skillTableData.Haseffectvalue * 100f, 2)}%\n(기술 각성시 보유 효과가 증가합니다))");
         }
         else
         {
-
-        hasEffectDesc.SetText($"보유효과 : {CommonString.GetStatusName((StatusType)skillTableData.Haseffecttype)} {awakeNum * skillTableData.Haseffectvalue}\n(기술 각성시 보유 효과가 증가합니다))");
+            hasEffectDesc.SetText(
+                $"보유효과 : {CommonString.GetStatusName((StatusType)skillTableData.Haseffecttype)} {awakeNum * skillTableData.Haseffectvalue}\n(기술 각성시 보유 효과가 증가합니다))");
         }
     }
 
@@ -454,8 +470,7 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         int maxLevel = ServerData.skillServerTable.GetSkillMaxLevel(skillTableData.Id);
         int addValue = 0;
 
-        if (skillTableData.Skilltype == 0 || skillTableData.Skilltype == 1 || skillTableData.Skilltype == 2 || skillTableData.Skilltype == 4 || skillTableData.Skilltype == 5
-            || skillTableData.Skilltype == 6 || skillTableData.Skilltype == 7|| skillTableData.Skilltype == 8)
+        if (skillTableData.SKILLCASTTYPE == SkillCastType.Player)
         {
             addValue = ServerData.statusTable.GetTableData(StatusTable.Skill0_AddValue).Value;
             addValue += ServerData.statusTable.GetTableData(StatusTable.Skill1_AddValue).Value;
@@ -493,6 +508,7 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
     private Coroutine SyncRoutine;
     private WaitForSeconds syncWaitTime = new WaitForSeconds(2.0f);
+
     private void SyncServerRoutine()
     {
         if (SyncRoutine != null)
@@ -579,7 +595,6 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
     private IEnumerator SyncDataRoutine()
     {
-
         yield return syncWaitTime;
 
         //데이터 싱크
@@ -592,8 +607,10 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         statusParam.Add(StatusTable.SkillPoint, ServerData.statusTable.GetTableData(StatusTable.SkillPoint).Value);
         transactionList.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
         //스킬레벨
-        skillParam.Add(SkillServerTable.SkillLevel, ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel].Select(e => e.Value).ToList());
-        transactionList.Add(TransactionValue.SetUpdate(SkillServerTable.tableName, SkillServerTable.Indate, skillParam));
+        skillParam.Add(SkillServerTable.SkillLevel,
+            ServerData.skillServerTable.TableDatas[SkillServerTable.SkillLevel].Select(e => e.Value).ToList());
+        transactionList.Add(TransactionValue.SetUpdate(SkillServerTable.tableName, SkillServerTable.Indate,
+            skillParam));
 
         ServerData.SendTransaction(transactionList);
 
@@ -602,10 +619,10 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
     public void OnClickAwakeButton()
     {
- 
         // UiTutorialManager.Instance.SetClear(TutorialStep._10_GetSkill);
 
-        int currentAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id].Value;
+        int currentAwakeNum = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillAwakeNum][skillTableData.Id]
+            .Value;
         int maxAwakeNum = skillTableData.Awakemaxnum;
 
         if (currentAwakeNum >= maxAwakeNum)
@@ -614,7 +631,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
             return;
         }
 
-        int skillAmount = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value;
+        int skillAmount = ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id]
+            .Value;
         //로컬 데이터 갱신
         if (currentAwakeNum != 0 && skillAmount < skillTableData.Awakeweaponreqcount)
         {
@@ -638,7 +656,8 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         }
         else
         {
-            ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value -= skillTableData.Awakeweaponreqcount;
+            ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value -=
+                skillTableData.Awakeweaponreqcount;
         }
 
         UiTutorialManager.Instance.SetClear(TutorialStep.LearnSkill);
@@ -663,9 +682,11 @@ public class UiSkillDescriptionPopup : MonoBehaviour
         {
             skillAmountSyncData.Add(ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][i].Value);
         }
+
         skillParam.Add(SkillServerTable.SkillHasAmount, skillAmountSyncData);
 
-        transactionList.Add(TransactionValue.SetUpdate(SkillServerTable.tableName, SkillServerTable.Indate, skillParam));
+        transactionList.Add(TransactionValue.SetUpdate(SkillServerTable.tableName, SkillServerTable.Indate,
+            skillParam));
 
 
         ServerData.SendTransaction(transactionList);
@@ -674,12 +695,10 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
         //일일미션
         DailyMissionManager.UpdateDailyMission(DailyMissionKey.SkillAwake, 1);
-        
     }
 
     private void OnDisable()
     {
         disposables.Dispose();
     }
-
 }

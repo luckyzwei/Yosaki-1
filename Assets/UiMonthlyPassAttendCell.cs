@@ -118,7 +118,7 @@ public class UiMonthlyPassAttendCell : MonoBehaviour
 
     private void SetDescriptionText()
     {
-        descriptionText.SetText($"{Utils.ConvertBigNum(passInfo.require)}");
+        descriptionText.SetText($"{Utils.ConvertBigNum(passInfo.require)}일차");
     }
 
     public List<string> GetSplitData(string key)

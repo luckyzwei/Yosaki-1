@@ -22,13 +22,14 @@ public class UiChunFlowerBoard : MonoBehaviour
     public TextMeshProUGUI getButtonDesc;
 
 
+    [SerializeField] private GameObject transGameObject;
+    [SerializeField] private GameObject transDescObject;
+
     private void Start()
     {
         Initialize();
         Subscribe();
         SetFlowerReward();
-
-
     }
 
     //기능 보류
@@ -36,18 +37,15 @@ public class UiChunFlowerBoard : MonoBehaviour
     {
         //chunFlowerReward.Initialize(TableManager.Instance.TwelveBossTable.dataArray[65]);
     }
+
     private void OnEnable()
     {
         UpdateAbilText1((int)ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value);
     }
+
     private void Subscribe()
     {
-        ServerData.goodsTable.GetTableData(GoodsTable.Cw).AsObservable().Subscribe(level =>
-        {
-            sonLevelText.SetText($"LV : {level}");
-            UpdateAbilText1((int)level);
-
-        }).AddTo(this);
+        ServerData.goodsTable.GetTableData(GoodsTable.Cw).AsObservable().Subscribe(level => { UpdateAbilUi(); }).AddTo(this);
 
         ServerData.userInfoTable.TableDatas[UserInfoTable.getFlower].AsObservable().Subscribe(e =>
         {
@@ -55,6 +53,21 @@ public class UiChunFlowerBoard : MonoBehaviour
 
             getButtonDesc.SetText(e == 0 ? "획득" : "오늘 획득함");
         }).AddTo(this);
+
+
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).AsObservable().Subscribe(e =>
+        {
+            transGameObject.SetActive(e < 1);
+            transDescObject.SetActive(e >= 1);
+            UpdateAbilUi();
+        }).AddTo(this);
+    }
+
+    private void UpdateAbilUi()
+    {
+        float level = ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value;
+        sonLevelText.SetText($"LV : {level}");
+        UpdateAbilText1((int)level);
     }
 
     private void UpdateAbilText1(int currentLevel)
@@ -89,10 +102,7 @@ public class UiChunFlowerBoard : MonoBehaviour
 
     public void OnClickEnterButton()
     {
-        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () =>
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.ChunFlower);
-        }, () => { });
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () => { GameManager.Instance.LoadContents(GameManager.ContentsType.ChunFlower); }, () => { });
     }
 
 
@@ -146,10 +156,28 @@ public class UiChunFlowerBoard : MonoBehaviour
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearChunFlower, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearChunFlower, 1);
 
-            ServerData.SendTransaction(transactions, successCallBack: () =>
-            {
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Cw)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null);
-            });
+            ServerData.SendTransaction(transactions, successCallBack: () => { PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Cw)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null); });
         }, null);
+    }
+
+    public void OnClickTransButton()
+    {
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.flowerClear].Value < GameBalance.flowerGraduateScore)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"처치 수 {GameBalance.flowerGraduateScore} 이상일때 각성 가능!");
+        }
+        else
+        {
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
+                "각성시 하늘 꽃밭에서 천계꽃 획득이 더이상 불가능 합니다.\n" +
+                $"대신 천계꽃 보유효과가 강화 되고({PlayerStats.ChunTransAddValue * 100}%)\n" +
+                $"스테이지 일반 요괴 처치시 천계꽃을 자동으로 획득 합니다.\n" +
+                "각성 하시겠습니까??", () =>
+                {
+                    ServerData.userInfoTable.TableDatas[UserInfoTable.graduateChun].Value = 1;
+                    ServerData.userInfoTable.UpData(UserInfoTable.graduateChun, false);
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
+                }, null);
+        }
     }
 }

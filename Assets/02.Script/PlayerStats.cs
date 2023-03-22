@@ -36,7 +36,11 @@ public enum StatusType
     SuperCritical2DamPer, //필멸
 
     //Smith
-    growthStoneUp, WeaponHasUp, NorigaeHasUp, PetEquipHasUp, PetEquipProbUp,
+    growthStoneUp,
+    WeaponHasUp,
+    NorigaeHasUp,
+    PetEquipHasUp,
+    PetEquipProbUp,
     DecreaseBossHp,
     OneYearBuff,
     SuperCritical3DamPer, //지옥
@@ -53,6 +57,7 @@ public enum StatusType
     SuperCritical9DamPer, //흉수베기 
     SuperCritical10DamPer, //도적베기 
     NorigaeGoldAbilUp, //노리개 장착효과중 기본무공 효과 버프 
+    SuperCritical11DamPer, //수호동물베기 
 }
 
 
@@ -87,6 +92,7 @@ public static class PlayerStats
         double gyungRock = GetSuperCritical8DamPer();
         double saHung = GetSuperCritical9DamPer();
         double doJuk = GetSuperCritical10DamPer();
+        double suho = GetSuperCritical11DamPer();
 
         double totalPower =
             ((baseAttack + baseAttack * baseAttackPer)
@@ -108,6 +114,7 @@ public static class PlayerStats
         totalPower += totalPower * hellDam;
         totalPower += (totalPower * chunSangDam);
         totalPower += (totalPower * dokebiDam);
+        totalPower += (totalPower * suho);
         totalPower += (totalPower * sinsuDam);
         totalPower += (totalPower * saHung);
         totalPower += (totalPower * sumiDam);
@@ -927,19 +934,19 @@ public static class PlayerStats
         switch (status)
         {
             case StatusType.ExpGainPer:
-                {
-                    return 100f;
-                }
+            {
+                return 100f;
+            }
                 break;
             case StatusType.MagicStoneAddPer:
-                {
-                    return 200f;
-                }
+            {
+                return 200f;
+            }
                 break;
             case StatusType.MarbleAddPer:
-                {
-                    return 50f;
-                }
+            {
+                return 50f;
+            }
                 break;
         }
 
@@ -957,19 +964,19 @@ public static class PlayerStats
         switch (status)
         {
             case StatusType.ExpGainPer:
-                {
-                    return 150f;
-                }
+            {
+                return 150f;
+            }
                 break;
             case StatusType.MagicStoneAddPer:
-                {
-                    return 400f;
-                }
+            {
+                return 400f;
+            }
                 break;
             case StatusType.MarbleAddPer:
-                {
-                    return 100f;
-                }
+            {
+                return 100f;
+            }
                 break;
         }
 
@@ -985,19 +992,19 @@ public static class PlayerStats
         switch (status)
         {
             case StatusType.ExpGainPer:
-                {
-                    return 200f;
-                }
+            {
+                return 200f;
+            }
                 break;
             case StatusType.MagicStoneAddPer:
-                {
-                    return 500f;
-                }
+            {
+                return 500f;
+            }
                 break;
             case StatusType.MarbleAddPer:
-                {
-                    return 200f;
-                }
+            {
+                return 200f;
+            }
                 break;
         }
 
@@ -1015,19 +1022,19 @@ public static class PlayerStats
         switch (status)
         {
             case StatusType.ExpGainPer:
-                {
-                    return 150f;
-                }
+            {
+                return 150f;
+            }
                 break;
             case StatusType.MagicStoneAddPer:
-                {
-                    return 400f;
-                }
+            {
+                return 400f;
+            }
                 break;
             case StatusType.MarbleAddPer:
-                {
-                    return 100f;
-                }
+            {
+                return 100f;
+            }
                 break;
         }
 
@@ -1043,19 +1050,19 @@ public static class PlayerStats
         switch (status)
         {
             case StatusType.ExpGainPer:
-                {
-                    return 200f;
-                }
+            {
+                return 200f;
+            }
                 break;
             case StatusType.MagicStoneAddPer:
-                {
-                    return 500f;
-                }
+            {
+                return 500f;
+            }
                 break;
             case StatusType.MarbleAddPer:
-                {
-                    return 200f;
-                }
+            {
+                return 200f;
+            }
                 break;
         }
 
@@ -1480,12 +1487,45 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetWeaponEquipPercentValue(StatusType.SuperCritical10DamPer);
-        
+
         ret += GetMagicBookEquipPercentValue(StatusType.SuperCritical10DamPer);
-        
+
         ret += GetTresureAbilHasEffect(StatusType.SuperCritical10DamPer);
 
         return ret;
+    }
+
+    private static float superCritical11Value = -1;
+
+    public static void ResetSuperCritical11CalculatedValue()
+    {
+        superCritical11Value = -1;
+    }
+
+    public static float GetSuperCritical11DamPer()
+    {
+        if (superCritical11Value == -1)
+        {
+            superCritical11Value = 0;
+            
+            var tableData = TableManager.Instance.suhoPetTable.dataArray;
+
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                var serverData = ServerData.suhoAnimalServerTable.TableDatas[tableData[i].Stringid];
+
+                if (serverData.hasItem.Value == 0) continue;
+
+                int currentLevel = serverData.level.Value;
+
+                superCritical11Value += tableData[i].Abilvalue[currentLevel];
+            }
+        }
+        
+        //막아둠일단
+        //return 0f;
+
+        return superCritical11Value;
     }
 
     public static float GetSuperCritical6DamPer()
@@ -1499,6 +1539,8 @@ public static class PlayerStats
         ret += GetFoxCupAbilValue(GetCurrentFoxCupIdx(), 1);
 
         ret += GetStageRelicHasEffect(StatusType.SuperCritical6DamPer);
+        
+        ret += GetSinsuTreasureAbilPlusValue();
 
         return ret;
     }
@@ -1954,18 +1996,18 @@ public static class PlayerStats
 
     public static float GetChunAbilHasEffect(StatusType statusType, int addLevel = 0)
     {
-        float ret = 0f;
+        var ret = 0f;
 
         var tableDatas = TableManager.Instance.chunAbilBase.dataArray;
 
-        int currentLevel = (int)ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value + addLevel;
+        var currentLevel = (int)ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value + addLevel;
 
-        for (int i = 0; i < tableDatas.Length; i++)
+        for (var i = 0; i < tableDatas.Length; i++)
         {
             if (currentLevel < tableDatas[i].Unlocklevel) continue;
             if (statusType != (StatusType)tableDatas[i].Abiltype) continue;
 
-            int calculatedLevel = currentLevel - tableDatas[i].Unlocklevel;
+            var calculatedLevel = currentLevel - tableDatas[i].Unlocklevel;
 
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
@@ -1975,14 +2017,13 @@ public static class PlayerStats
             if (IsChunFlowerDamageEnhance())
             {
                 ret += 0.000015f * currentLevel;
-
-                //0.01       1퍼
-                //0.0001 0.01퍼
-                //0.000015 0.0015퍼
             }
 
             ret += GetChunFlowerHasAddValue() * currentLevel;
         }
+
+        var chunTransAddValue = GetChunTransPlusValue();
+        ret = (ret * chunTransAddValue);
 
         return ret;
     }
@@ -2042,7 +2083,7 @@ public static class PlayerStats
 
         return ret;
     }
-    
+
     public static float GetTresureAbilHasEffect(StatusType statusType, int addLevel = 0)
     {
         if (ServerData.statusTable.GetTableData(StatusTable.Level).Value < 2000000) return 0f;
@@ -2062,7 +2103,7 @@ public static class PlayerStats
 
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
-        
+
         return ret;
     }
 
@@ -2226,65 +2267,65 @@ public static class PlayerStats
         switch (type)
         {
             case StatusType.AttackAddPer:
+            {
+                if (ServerData.goodsTable.GetTableData(asuraKey0).Value == 0)
                 {
-                    if (ServerData.goodsTable.GetTableData(asuraKey0).Value == 0)
-                    {
-                        return 0f;
-                    }
-
-                    return asura0Value;
+                    return 0f;
                 }
+
+                return asura0Value;
+            }
                 break;
             case StatusType.IgnoreDefense:
+            {
+                if (ServerData.goodsTable.GetTableData(asuraKey1).Value == 0)
                 {
-                    if (ServerData.goodsTable.GetTableData(asuraKey1).Value == 0)
-                    {
-                        return 0f;
-                    }
-
-                    return asura1Value;
+                    return 0f;
                 }
+
+                return asura1Value;
+            }
                 break;
             case StatusType.SuperCritical1DamPer:
+            {
+                if (ServerData.goodsTable.GetTableData(asuraKey2).Value == 0)
                 {
-                    if (ServerData.goodsTable.GetTableData(asuraKey2).Value == 0)
-                    {
-                        return 0f;
-                    }
-
-                    return asura2Value;
+                    return 0f;
                 }
+
+                return asura2Value;
+            }
                 break;
             case StatusType.SuperCritical2DamPer:
+            {
+                float ret = 0f;
+
+                if (ServerData.goodsTable.GetTableData(asuraKey3).Value == 0)
                 {
-                    float ret = 0f;
-
-                    if (ServerData.goodsTable.GetTableData(asuraKey3).Value == 0)
-                    {
-                    }
-                    else
-                    {
-                        ret += asura3Value;
-                    }
-
-                    if (ServerData.goodsTable.GetTableData(asuraKey4).Value == 0)
-                    {
-                    }
-                    else
-                    {
-                        ret += asura4Value;
-                    }
-
-                    if (ServerData.goodsTable.GetTableData(asuraKey5).Value == 0)
-                    {
-                    }
-                    else
-                    {
-                        ret += asura5Value;
-                    }
-
-                    return ret;
                 }
+                else
+                {
+                    ret += asura3Value;
+                }
+
+                if (ServerData.goodsTable.GetTableData(asuraKey4).Value == 0)
+                {
+                }
+                else
+                {
+                    ret += asura4Value;
+                }
+
+                if (ServerData.goodsTable.GetTableData(asuraKey5).Value == 0)
+                {
+                }
+                else
+                {
+                    ret += asura5Value;
+                }
+
+                return ret;
+            }
                 break;
         }
 
@@ -2296,32 +2337,32 @@ public static class PlayerStats
         switch (type)
         {
             case StatusType.IgnoreDefense:
+            {
+                float ret = 0f;
+
+                if (ServerData.goodsTable.GetTableData(indraKey0).Value != 0)
                 {
-                    float ret = 0f;
-
-                    if (ServerData.goodsTable.GetTableData(indraKey0).Value != 0)
-                    {
-                        ret += indra0Value;
-                    }
-
-                    if (ServerData.goodsTable.GetTableData(indraKey1).Value != 0)
-                    {
-                        ret += indra1Value;
-                    }
-
-                    return ret;
+                    ret += indra0Value;
                 }
+
+                if (ServerData.goodsTable.GetTableData(indraKey1).Value != 0)
+                {
+                    ret += indra1Value;
+                }
+
+                return ret;
+            }
                 break;
 
             case StatusType.PenetrateDefense:
+            {
+                if (ServerData.goodsTable.GetTableData(indraKey2).Value == 0)
                 {
-                    if (ServerData.goodsTable.GetTableData(indraKey2).Value == 0)
-                    {
-                        return 0f;
-                    }
-
-                    return indra2Value;
+                    return 0f;
                 }
+
+                return indra2Value;
+            }
                 break;
         }
 
@@ -2333,21 +2374,21 @@ public static class PlayerStats
         switch (type)
         {
             case StatusType.PenetrateDefense:
+            {
+                float ret = 0f;
+
+                if (ServerData.goodsTable.GetTableData(orochi0).Value != 0)
                 {
-                    float ret = 0f;
-
-                    if (ServerData.goodsTable.GetTableData(orochi0).Value != 0)
-                    {
-                        ret += orochi0Value;
-                    }
-
-                    if (ServerData.goodsTable.GetTableData(orochi1).Value != 0)
-                    {
-                        ret += orochi1Value;
-                    }
-
-                    return ret;
+                    ret += orochi0Value;
                 }
+
+                if (ServerData.goodsTable.GetTableData(orochi1).Value != 0)
+                {
+                    ret += orochi1Value;
+                }
+
+                return ret;
+            }
                 break;
         }
 
@@ -2361,19 +2402,19 @@ public static class PlayerStats
         switch (type)
         {
             case StatusType.AttackAddPer:
-                {
-                    return petLevel * 0.1f;
-                }
+            {
+                return petLevel * 0.1f;
+            }
                 break;
             case StatusType.ExpGainPer:
-                {
-                    return petLevel * 0.01f;
-                }
+            {
+                return petLevel * 0.01f;
+            }
                 break;
             case StatusType.GoldGainPer:
-                {
-                    return petLevel * 0.01f;
-                }
+            {
+                return petLevel * 0.01f;
+            }
                 break;
         }
 
@@ -2831,6 +2872,32 @@ public static class PlayerStats
         }
     }
 
+    public static float ChunTransAddValue = 2f;
+
+    public static float GetChunTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
+        {
+            return ChunTransAddValue;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
+
+    public static float GetGumSoulTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateGumSoul).Value > 0)
+        {
+            return GameBalance.GumSoulGraduatePlusValue;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
+
     public static float foxMaskPartialValue = 0.02f;
 
     public static float GetFoxMaskAbilPlusValue()
@@ -2866,11 +2933,20 @@ public static class PlayerStats
     }
 
     public static float sahyungUpgradeValue = 0.03f;
+    public static float sinSuUpgradeValue = 0.03f;
 
     public static float GetSahyungTreasureAbilPlusValue()
     {
         return sahyungUpgradeValue * ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value;
-    } //
+    } 
+    
+    public static float GetSinsuTreasureAbilPlusValue()
+    {
+        return sinSuUpgradeValue * ServerData.goodsTable.GetTableData(GoodsTable.SinsuMarble).Value;
+    } 
+    
+    
+    //
     //public static float GetTwoCaveExpAbilPlusValue()
     //{
     //    string bossKey = "b91";
@@ -2951,34 +3027,34 @@ public static class PlayerStats
         switch (abilIdx)
         {
             case 0:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue0;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue0;
+            }
                 break;
             case 1:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue1;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue1;
+            }
                 break;
             case 2:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue2;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue2;
+            }
                 break;
             case 3:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue3;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue3;
+            }
                 break;
             case 4:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue4;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue4;
+            }
                 break;
             case 5:
-                {
-                    return TableManager.Instance.foxCup.dataArray[idx].Abilvalue5;
-                }
+            {
+                return TableManager.Instance.foxCup.dataArray[idx].Abilvalue5;
+            }
                 break;
         }
 
@@ -3013,7 +3089,7 @@ public static class PlayerStats
             addValue2 = TableManager.Instance.chunMarkAbil.dataArray[6].Abiladdvalue;
         }
 
-        return kt * gumgiSoulAbilValue + (addValue * 0.01f) + addValue2;
+        return (kt * gumgiSoulAbilValue + (addValue * 0.01f) + addValue2) * GetGumSoulTransPlusValue();
     }
 
     public static bool IsChunQuickMoveAwake()

@@ -141,7 +141,7 @@ public class UiCollectionEventCellSummer : MonoBehaviour
 
         if (currentEventItemNum < tableData.Price)
         {
-            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_Item_SnowMan)}가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_Item_SnowMan)}이 부족합니다.");
             return;
         }
 

@@ -43,7 +43,8 @@ public class AutoManager : Singleton<AutoManager>
 
         int currentSelectedGroupId = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
 
-        var selectedSkill = ServerData.skillServerTable.TableDatas[SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
+        var selectedSkill =
+            ServerData.skillServerTable.TableDatas[SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
 
         for (int i = 0; i < selectedSkill.Count; i++)
         {
@@ -52,7 +53,7 @@ public class AutoManager : Singleton<AutoManager>
             if (skillIdx != -1 &&
                 SkillCoolTimeManager.HasSkillCooltime(skillIdx) == false &&
                 SkillCoolTimeManager.registeredSkillIdx[i].Value == 1
-                )
+               )
             {
                 skillQueue.Add(skillIdx);
             }
@@ -106,6 +107,7 @@ public class AutoManager : Singleton<AutoManager>
     WaitForEndOfFrame updateTick = new WaitForEndOfFrame();
 
     private bool needToUpDown = false;
+
     private IEnumerator AutoPlayRoutine()
     {
         while (true)
@@ -149,7 +151,8 @@ public class AutoManager : Singleton<AutoManager>
             else if (UiMoveStick.Instance.nowTouching == false)
             {
                 //타겟이랑 거리가 멀때 이동
-                if (Vector3.Distance(playerTr.transform.position, currentTarget.transform.position) > moveDistMax && (SkillCoolTimeManager.moveAutoValue.Value == 1))
+                if (Vector3.Distance(playerTr.transform.position, currentTarget.transform.position) > moveDistMax &&
+                    (SkillCoolTimeManager.moveAutoValue.Value == 1))
                 {
                     canAttack = false;
 
@@ -171,7 +174,7 @@ public class AutoManager : Singleton<AutoManager>
                         float yDist = Mathf.Abs(playerTr.transform.position.y - currentTarget.transform.position.y);
 
                         //위아래 체크
-                        needToUpDown =/* xDist < jumpWidth && */yDist > jumpHeight;
+                        needToUpDown = /* xDist < jumpWidth && */yDist > jumpHeight;
 
                         //박치기 꺼둠
                         //bool needToHorizontalJump = xDist > horizontalJumpDistance;
@@ -226,8 +229,6 @@ public class AutoManager : Singleton<AutoManager>
                     //    int Horizontal = currentTarget.transform.position.x > playerTr.transform.position.x ? 1 : -1;
                     //    UiMoveStick.Instance.SetHorizontalAxsis(Horizontal);
                     //}
-
-
                 }
                 else
                 {
@@ -241,12 +242,17 @@ public class AutoManager : Singleton<AutoManager>
                         UiMoveStick.Instance.SetHorizontalAxsis(0);
                     }
 
-                    PlayerMoveController.Instance.SetMoveDirection(isEnemyOnRight ? MoveDirection.Right : MoveDirection.Left);
+                    PlayerMoveController.Instance.SetMoveDirection(isEnemyOnRight
+                        ? MoveDirection.Right
+                        : MoveDirection.Left);
 
 
-                    int currentSelectedGroupId = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
+                    int currentSelectedGroupId =
+                        (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
 
-                    var selectedSkill = ServerData.skillServerTable.TableDatas[SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
+                    var selectedSkill =
+                        ServerData.skillServerTable.TableDatas[
+                            SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
 
                     for (int i = 0; i < selectedSkill.Count; i++)
                     {
@@ -258,7 +264,6 @@ public class AutoManager : Singleton<AutoManager>
                     }
 
                     yield return null;
-
                 }
             }
             //무빙공격
@@ -268,9 +273,12 @@ public class AutoManager : Singleton<AutoManager>
                 {
                     canAttack = true;
 
-                    int currentSelectedGroupId = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
+                    int currentSelectedGroupId =
+                        (int)ServerData.userInfoTable.TableDatas[UserInfoTable.selectedSkillGroupId].Value;
 
-                    var selectedSkill = ServerData.skillServerTable.TableDatas[SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
+                    var selectedSkill =
+                        ServerData.skillServerTable.TableDatas[
+                            SkillServerTable.GetSkillGroupKey(currentSelectedGroupId)];
 
                     for (int i = 0; i < selectedSkill.Count; i++)
                     {
@@ -281,6 +289,7 @@ public class AutoManager : Singleton<AutoManager>
                         PlayerSkillCaster.Instance.UseSkill(skillIdx);
                     }
                 }
+
                 yield return null;
             }
         }
@@ -320,10 +329,11 @@ public class AutoManager : Singleton<AutoManager>
             spawnedEnemyList.Sort((a, b) =>
             {
                 if (Vector3.Distance(a.transform.position, playerTr.transform.position) <
-                Vector3.Distance(b.transform.position, playerTr.transform.position))
+                    Vector3.Distance(b.transform.position, playerTr.transform.position))
                 {
                     return -1;
                 }
+
                 return 1;
             });
         }
@@ -345,6 +355,12 @@ public class AutoManager : Singleton<AutoManager>
         {
             var spawnedEnemy = MapInfo.Instance.SpawnedEnemyList;
 
+            if (spawnedEnemy == null || spawnedEnemy.Count == 0)
+            {
+                currentTarget = null;
+                return;
+            }
+
             SortEnemy(spawnedEnemy);
 
             //보스 우선
@@ -365,7 +381,8 @@ public class AutoManager : Singleton<AutoManager>
                 currentTarget = spawnedEnemy[0].transform;
             }
         }
-        else if (GameManager.contentsType == GameManager.ContentsType.FireFly || GameManager.contentsType == GameManager.ContentsType.Dokebi)
+        else if (GameManager.contentsType == GameManager.ContentsType.FireFly ||
+                 GameManager.contentsType == GameManager.ContentsType.Dokebi)
         {
             currentTarget = GetPoolTarget();
         }
@@ -458,7 +475,7 @@ public class AutoManager : Singleton<AutoManager>
         return neariestTarget;
     }
 
-    public void StartAutoWithDelay() 
+    public void StartAutoWithDelay()
     {
         CoroutineExecuter.Instance.StartCoroutine(AutoSkillRoutine());
     }

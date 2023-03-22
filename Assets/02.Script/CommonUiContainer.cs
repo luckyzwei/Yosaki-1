@@ -153,10 +153,15 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite ThiefNorigae2;
     public Sprite ThiefNorigae3;
 
+    public Sprite NinjaNorigae0;
+    public Sprite NinjaNorigae1;
+    public Sprite NinjaNorigae2;
+    
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
     public Sprite MonthNorigae2;
     public Sprite MonthNorigae3;
+    public Sprite MonthNorigae4;
     
     public Sprite DokebiHorn0;
     public Sprite DokebiHorn1;
@@ -207,6 +212,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite Event_Mission;
     public Sprite FoxMaskPartial;
     public Sprite DokebiFire;
+    public Sprite SuhoPetFeed;
+    public Sprite SuhoPetFeedClear;
     public Sprite Mileage;
     public Sprite HellPower;
     public Sprite DokebiFireKey;
@@ -214,6 +221,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite DokebiFireEnhance;
     public Sprite SusanoTreasure;
     public Sprite SahyungTreasure;
+    public Sprite SinsuMarble;
     public Sprite SumiFire;
     public Sprite Tresure;
     public Sprite SumiFireKey;
@@ -284,6 +292,10 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite ThiefWeapon1;
     public Sprite ThiefWeapon2;
     public Sprite ThiefWeapon3;
+        
+    public Sprite NinjaWeapon0;
+    public Sprite NinjaWeapon1;
+    public Sprite NinjaWeapon2;
     
 
     public Sprite SasinsuWeapon0;
@@ -379,16 +391,20 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         {
             case Item_Type.Gold:
                 return gold;
-                break;
+
+
             case Item_Type.Jade:
                 return blueStone;
-                break;
+
+
             case Item_Type.GrowthStone:
                 return magicStone;
-                break;
+
+
             case Item_Type.Memory:
                 return memory;
-                break;
+
+
             case Item_Type.Ticket:
                 return ticket;
             case Item_Type.Marble:
@@ -403,343 +419,346 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return costumeThumbnail[3];
             case Item_Type.costume4:
                 return costumeThumbnail[4];
-                break;
+
+
             case Item_Type.costume8:
                 return costumeThumbnail[8];
-                break;
+
+
             case Item_Type.costume11:
                 return costumeThumbnail[11];
-                break;
+
+
             case Item_Type.costume12:
                 return costumeThumbnail[12];
-                break;
+
+
             case Item_Type.costume13:
                 return costumeThumbnail[13];
-                break;
+
+
             case Item_Type.costume14:
                 return costumeThumbnail[14];
-                break;
+
+
             case Item_Type.costume15:
                 return costumeThumbnail[15];
-                break;
+
+
             case Item_Type.costume16:
                 return costumeThumbnail[16];
-                break;
+
+
             case Item_Type.costume17:
                 return costumeThumbnail[17];
-                break;
+
+
             case Item_Type.costume18:
                 return costumeThumbnail[18];
-                break;
+
+
             case Item_Type.costume19:
                 return costumeThumbnail[19];
-                break;
+
+
             case Item_Type.costume20:
                 return costumeThumbnail[20];
-                break;
+
+
             case Item_Type.costume21:
                 return costumeThumbnail[21];
-                break;
+
+
             case Item_Type.costume22:
                 return costumeThumbnail[22];
-                break;
+
+
 
             case Item_Type.costume23:
                 return costumeThumbnail[23];
-                break;
+
+
 
             case Item_Type.costume24:
                 return costumeThumbnail[24];
-                break;
+
+
 
             case Item_Type.costume25:
                 return costumeThumbnail[25];
-                break;
+
+
 
             case Item_Type.costume26:
                 return costumeThumbnail[26];
-                break;
+
+
 
             case Item_Type.costume27:
                 return costumeThumbnail[27];
-                break;
+
+
 
             case Item_Type.costume28:
                 return costumeThumbnail[28];
-                break;
+
+
 
 
             case Item_Type.costume29:
                 return costumeThumbnail[29];
-                break;
+
+
 
             case Item_Type.costume30:
                 return costumeThumbnail[30];
-                break;
+
+
             case Item_Type.costume31:
                 return costumeThumbnail[31];
-                break;
+
+
 
             case Item_Type.costume32:
                 return costumeThumbnail[32];
-                break;
+
+
 
             case Item_Type.costume33:
                 return costumeThumbnail[33];
-                break;
+
+
 
             case Item_Type.costume34:
                 return costumeThumbnail[34];
-                break;
+
+
 
             case Item_Type.costume35:
                 return costumeThumbnail[35];
-                break;
+
+
             case Item_Type.costume36:
                 return costumeThumbnail[36];
-                break;
+
+
 
             case Item_Type.costume37:
                 return costumeThumbnail[37];
-                break;
+
+
 
             case Item_Type.costume38:
                 return costumeThumbnail[38];
-                break;
+
+
             case Item_Type.costume39:
                 return costumeThumbnail[39];
-                break;
+
+
             case Item_Type.costume40:
                 return costumeThumbnail[40];
-                break;
+
+
             case Item_Type.costume41:
                 return costumeThumbnail[41];
-                break;
             case Item_Type.costume42:
                 return costumeThumbnail[42];
-                break;
             case Item_Type.costume43:
                 return costumeThumbnail[43];
-                break;
             case Item_Type.costume44:
                 return costumeThumbnail[44];
-                break;
             case Item_Type.costume45:
                 return costumeThumbnail[45];
-                break;
             case Item_Type.costume46:
                 return costumeThumbnail[46];
-                break;
             case Item_Type.costume47:
                 return costumeThumbnail[47];
-                break;
             case Item_Type.costume48:
                 return costumeThumbnail[48];
-                break;
             case Item_Type.costume49:
                 return costumeThumbnail[49];
-                break;
             case Item_Type.costume50:
                 return costumeThumbnail[50];
-                break;
-
             case Item_Type.costume51:
                 return costumeThumbnail[51];
-                break;
-
             case Item_Type.costume52:
                 return costumeThumbnail[52];
-                break;
             case Item_Type.costume53:
                 return costumeThumbnail[53];
-                break;
             case Item_Type.costume54:
                 return costumeThumbnail[54];
-                break;
             case Item_Type.costume55:
                 return costumeThumbnail[55];
-                break;
 
             //
             case Item_Type.costume56:
                 return costumeThumbnail[56];
-                break;
             case Item_Type.costume57:
                 return costumeThumbnail[57];
-                break;
             case Item_Type.costume58:
                 return costumeThumbnail[58];
-                break;
 
             case Item_Type.costume59:
                 return costumeThumbnail[59];
-                break;
             case Item_Type.costume60:
                 return costumeThumbnail[60];
-                break;
             case Item_Type.costume61:
                 return costumeThumbnail[61];
-                break;
             //
             case Item_Type.costume62:
                 return costumeThumbnail[62];
-                break;
             case Item_Type.costume63:
                 return costumeThumbnail[63];
-                break;
             case Item_Type.costume64:
                 return costumeThumbnail[64];
-                break;
             case Item_Type.costume65:
                 return costumeThumbnail[65];
-                break;
             case Item_Type.costume66:
                 return costumeThumbnail[66];
-                break;
             case Item_Type.costume67:
                 return costumeThumbnail[67];
-                break;
             case Item_Type.costume68:
                 return costumeThumbnail[68];
-                break;
             case Item_Type.costume69:
                 return costumeThumbnail[69];
-                break;
             case Item_Type.costume70:
                 return costumeThumbnail[70];
-                break;
             case Item_Type.costume71:
                 return costumeThumbnail[71];
-                break;
             case Item_Type.costume72:
                 return costumeThumbnail[72];
-                break;
             case Item_Type.costume73:
                 return costumeThumbnail[73];
-                break;
             case Item_Type.costume74:
                 return costumeThumbnail[74];
-                break;
             case Item_Type.costume75:
                 return costumeThumbnail[75];
-                break;  
             case Item_Type.costume76:
                 return costumeThumbnail[76];
-                break;   
             case Item_Type.costume77:
                 return costumeThumbnail[77];
-                break;
             case Item_Type.costume78:
                 return costumeThumbnail[78];
-                break;  
             case Item_Type.costume79:
                 return costumeThumbnail[79];
-                break;   
             case Item_Type.costume80:
                 return costumeThumbnail[80];
-                break;
             case Item_Type.costume81:
                 return costumeThumbnail[81];
-                break;
             case Item_Type.costume82:
                 return costumeThumbnail[82];
-                break;
             case Item_Type.costume83:
                 return costumeThumbnail[83];
-                break;
             case Item_Type.costume84:
                 return costumeThumbnail[84];
-                break;
             case Item_Type.costume85:
                 return costumeThumbnail[85];
-                break;
             case Item_Type.costume86:
                 return costumeThumbnail[86];
-                break;
             case Item_Type.costume87:
                 return costumeThumbnail[87];
-                break;
             case Item_Type.costume88:
                 return costumeThumbnail[88];
-                break;
             case Item_Type.costume89:
                 return costumeThumbnail[89];
-                break;   
             case Item_Type.costume90:
                 return costumeThumbnail[90];
-                break;
             case Item_Type.costume91:
                 return costumeThumbnail[91];
-                break;
             case Item_Type.costume92:
                 return costumeThumbnail[92];
-                break;
             case Item_Type.costume93:
                 return costumeThumbnail[93];
-                break;
             case Item_Type.costume94:
                 return costumeThumbnail[94];
-                break;
             case Item_Type.costume95:
                 return costumeThumbnail[95];
-                break;
+            case Item_Type.costume96:
+                return costumeThumbnail[96];
+            case Item_Type.costume97:
+                return costumeThumbnail[97];
+            case Item_Type.costume98:
+                return costumeThumbnail[98];
+            case Item_Type.costume99:
+                return costumeThumbnail[99];
+            case Item_Type.costume100:
+                return costumeThumbnail[100];
 
 
             case Item_Type.RankFrame1:
                 return rankFrame[8];
-                break;
+
+
             case Item_Type.RankFrame2:
                 return rankFrame[7];
-                break;
+
+
             case Item_Type.RankFrame3:
                 return rankFrame[6];
-                break;
+
+
             case Item_Type.RankFrame4:
                 return rankFrame[5];
-                break;
+
+
             case Item_Type.RankFrame5:
                 return rankFrame[4];
-                break;
+
+
             case Item_Type.RankFrame6_20:
                 return rankFrame[3];
-                break;
+
+
             case Item_Type.RankFrame21_100:
                 return rankFrame[2];
-                break;
+
+
             case Item_Type.RankFrame101_1000:
                 return rankFrame[1];
-                break;
+
+
             case Item_Type.RankFrame1001_10000:
                 return rankFrame[9];
-                break;
+
+
 
             case Item_Type.PartyRaidRankFrame1:
                 return rankFrame[8];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame2:
                 return rankFrame[7];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame3:
                 return rankFrame[6];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame4:
                 return rankFrame[5];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame5:
                 return rankFrame[4];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame6_20:
                 return rankFrame[3];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame21_100:
                 return rankFrame[2];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame101_1000:
                 return rankFrame[1];
-                break;
+
+
             case Item_Type.PartyRaidRankFrame1001_10000:
                 return rankFrame[9];
-                break;
+
+
             case Item_Type.MergePartyRaidRankFrame1:
                 return HellMark7;
             case Item_Type.MergePartyRaidRankFrame2:
@@ -775,7 +794,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame101_1000_relic:
             case Item_Type.RankFrame1001_10000_relic:
                 return relicEnter;
-                break;
+
+
 
             case Item_Type.RankFrame1_relic_hell:
             case Item_Type.RankFrame2_relic_hell:
@@ -787,7 +807,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame101_1000_relic_hell:
             case Item_Type.RankFrame1001_10000_relic_hell:
                 return Hel;
-                break;
+
+
             case Item_Type.RankFrame1_2_war_hell: { return HellMark7; }break;
             case Item_Type.RankFrame3_5_war_hell: { return HellMark6; } break;
             case Item_Type.RankFrame6_20_war_hell: { return HellMark5; } break;
@@ -807,7 +828,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame101_1000_miniGame:
             case Item_Type.RankFrame1001_10000_miniGame:
                 return MiniGameTicket;
-                break;
+
+
 
             case Item_Type.RankFrame1_new_miniGame:
             case Item_Type.RankFrame2_new_miniGame:
@@ -819,7 +841,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame101_1000_new_miniGame:
             case Item_Type.RankFrame1001_10000_new_miniGame:
                 return MiniGameTicket2;
-                break;
+
+
 
             case Item_Type.RankFrame1_guild:
             case Item_Type.RankFrame2_guild:
@@ -830,7 +853,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame21_100_guild:
             case Item_Type.RankFrame101_1000_guild:
                 return GuildReward;
-                break;
+
+
 
             case Item_Type.RankFrame1guild_new:
             case Item_Type.RankFrame2guild_new:
@@ -841,7 +865,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame21_50_guild_new:
             case Item_Type.RankFrame51_100_guild_new:
                 return GuildReward;
-                break;
+
+
 
             case Item_Type.RankFrameParty1guild_new:
             case Item_Type.RankFrameParty2guild_new:
@@ -852,7 +877,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrameParty21_50_guild_new:
             case Item_Type.RankFrameParty51_100_guild_new:
                 return GuildReward;
-                break;
+
+
 
             case Item_Type.RankFrame1_boss_new:
             case Item_Type.RankFrame2_boss_new:
@@ -870,7 +896,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame1000_3000_boss_new:
 
                 return Peach;
-                break;
+
+
             case Item_Type.RankFrame1_boss_GangChul:
             case Item_Type.RankFrame2_boss_GangChul:
             case Item_Type.RankFrame3_boss_GangChul:
@@ -887,331 +914,449 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.RankFrame1000_3000_boss_GangChul:
 
                 return Cw;
-                break;
+
+
 
             case Item_Type.WeaponUpgradeStone:
                 return WeaponUpgradeStone;
-                break;
+
+
             case Item_Type.YomulExchangeStone:
                 return YomulExchangeStone;
-                break;
+
+
             case Item_Type.Songpyeon:
                 return Songpyeon;
-                break;
+
+
             case Item_Type.TigerBossStone:
                 return TigerBossStone;
             case Item_Type.RabitBossStone:
                 return RabitBossStone;
             case Item_Type.DragonBossStone:
                 return DragonBossStone;
-                break;
+
+
             case Item_Type.SnakeStone:
                 return SnakeStone;
-                break;
+
+
             case Item_Type.HorseStone:
                 return HorseStone;
-                break;
+
+
             case Item_Type.SheepStone:
                 return SheepStone;
-                break;
+
+
             case Item_Type.CockStone:
                 return CockStone;
-                break;
+
+
             case Item_Type.DogStone:
                 return DogStone;
-                break;
+
+
             case Item_Type.PigStone:
                 return PigStone;
-                break;
+
+
             case Item_Type.MonkeyStone:
                 return MonkeyStone;
-                break;
+
+
             case Item_Type.MiniGameReward:
                 return MiniGameTicket;
-                break;
+
+
             case Item_Type.MiniGameReward2:
                 return MiniGameTicket2;
-                break;
+
+
             case Item_Type.Relic:
                 return relic;
-                break;
+
+
             case Item_Type.RelicTicket:
                 return relicEnter;
-                break;
+
+
             case Item_Type.Event_Item_0:
                 return EventCollection;
-                break;
+
+
             case Item_Type.StageRelic:
                 return StageRelic;
-                break;
+
+
 
             case Item_Type.PeachReal:
                 return Peach;
-                break;
+
+
 
             case Item_Type.SP:
                 return SwordPartial;
-                break;
+
+
 
             case Item_Type.Hel:
                 return Hel;
-                break;
+
+
 
             case Item_Type.Ym:
                 return YeoMarble;
-                break;
+
+
 
             case Item_Type.Fw:
                 return Fw;
-                break;
+
+
             case Item_Type.Cw:
                 return Cw;
-                break; 
+
+ 
             case Item_Type.FoxMaskPartial:
                 return FoxMaskPartial;
-                break;
+
+
             case Item_Type.DokebiFire:
-                return DokebiFire;
-                break;   
+                return DokebiFire; 
+            case Item_Type.SuhoPetFeed:
+                return SuhoPetFeed;    
+            case Item_Type.SuhoPetFeedClear:
+                return SuhoPetFeedClear;
+
+   
             case Item_Type.SumiFire:
                 return SumiFire;
-                break; 
+
+ 
             case Item_Type.Tresure:
                 return Tresure;
-                break; 
+
+ 
             
             case Item_Type.SinsuRelic:
                 return SinsuRelic;
-                break;
+
+
             case Item_Type.EventDice:
                 return EventDice;
-                break;
+
+
 
 
             case Item_Type.NewGachaEnergy:
                 return NewGachaEnergy;
-                break;   
+
+   
             case Item_Type.DokebiBundle:
                 return DokebiBundle;
-                break;   
+
+   
             case Item_Type.HellPower:
                 return HellPower;
-                break;  
+
+  
             case Item_Type.DokebiTreasure:
                 return DokebiTreasure;
-                break;
+
+
             case Item_Type.DokebiFireEnhance:
                 return DokebiFireEnhance;
-                break; 
+
+ 
             case Item_Type.SusanoTreasure:
                 return SusanoTreasure;
-                break; 
+
+ 
             case Item_Type.SahyungTreasure:
-                return SahyungTreasure;
-                break; 
+                return SahyungTreasure;    
+            
+            case Item_Type.SinsuMarble:
+                return SinsuMarble;
+
+ 
             case Item_Type.DokebiFireKey:
                 return DokebiFireKey;
-                break; 
+
+ 
             case Item_Type.SumiFireKey:
                 return SumiFireKey;
-                break;
+
+
             case Item_Type.Mileage:
                 return Mileage;
-                break;
+
+
             case Item_Type.Event_Collection:
                 return Event_Fall;
-                break;
+
+
             case Item_Type.Event_Fall_Gold:
                 return Event_Fall_Gold;
-                break;
+
+
             case Item_Type.Event_NewYear:
                 return Event_XMas;
-                break;
+
+
             case Item_Type.Event_Mission:
                 return Event_Mission;
-                break;
+
+
 
             case Item_Type.du:
                 return du;
-                break;
+
+
 
             case Item_Type.Hae_Norigae:
                 return HaeNorigae;
-                break;
+
+
 
             case Item_Type.Hae_Pet:
                 return HaePet;
-                break;
+
+
 
             case Item_Type.Sam_Norigae:
                 return SamNorigae;
-                break;
+
+
 
             case Item_Type.KirinNorigae:
                 return KirinNorigae;
-                break;
+
+
             case Item_Type.DogNorigae:
                 return DogNorigae;
-                break;
+
+
             case Item_Type.RabitNorigae:
                 return RabitNorigae;
-                break;
+
+
             case Item_Type.YeaRaeNorigae:
                 return YeaRaeNorigae;
-                break;
+
+
             case Item_Type.GangrimNorigae:
                 return GangrimNorigae;
-                break;
+
+
 
             case Item_Type.ChunNorigae0:
                 return ChunNorigae0;
-                break;
+
+
 
             case Item_Type.ChunNorigae1:
                 return ChunNorigae1;
-                break;
+
+
 
             case Item_Type.ChunNorigae2:
                 return ChunNorigae2;
-                break;
+
+
 
             case Item_Type.ChunNorigae3:
                 return ChunNorigae3;
-                break;
+
+
 
             case Item_Type.ChunNorigae4:
                 return ChunNorigae4;
-                break;
+
+
 
             case Item_Type.ChunNorigae5:
                 return ChunNorigae5;
-                break;
+
+
 
             case Item_Type.ChunNorigae6:
                 return ChunNorigae6;
-                break;
+
+
             //
             case Item_Type.DokebiNorigae0:
                 return DokebiNorigae0;
-                break;
+
+
             case Item_Type.DokebiNorigae1:
                 return DokebiNorigae1;
-                break;
+
+
             case Item_Type.DokebiNorigae2:
                 return DokebiNorigae2;
-                break;
+
+
             case Item_Type.DokebiNorigae3:
                 return DokebiNorigae3;
-                break;
+
+
             case Item_Type.DokebiNorigae4:
                 return DokebiNorigae4;
-                break;
+
+
             case Item_Type.DokebiNorigae5:
                 return DokebiNorigae5;
-                break;
+
+
             case Item_Type.DokebiNorigae6:
                 return DokebiNorigae6;
-                break;
+
+
             //
             case Item_Type.DokebiNorigae7:
                 return DokebiNorigae7;
-                break;
+
+
             case Item_Type.DokebiNorigae8:
                 return DokebiNorigae8;
-                break;
+
+
             case Item_Type.DokebiNorigae9:
                 return DokebiNorigae9;
-                break;
+
+
             //
             
             case Item_Type.SumisanNorigae0:
                 return SumisanNorigae0;
-                break;
+
+
             case Item_Type.SumisanNorigae1:
                 return SumisanNorigae1;
-                break;
+
+
             case Item_Type.SumisanNorigae2:
                 return SumisanNorigae2;
-                break;
+
+
             case Item_Type.SumisanNorigae3:
                 return SumisanNorigae3;
-                break;
+
+
             case Item_Type.SumisanNorigae4:
                 return SumisanNorigae4;
-                break;
+
+
             case Item_Type.SumisanNorigae5:
                 return SumisanNorigae5;
-                break;
+
+
             case Item_Type.SumisanNorigae6:
                 return SumisanNorigae6;
-                break;
+
+
             case Item_Type.ThiefNorigae0:
                 return ThiefNorigae0;
-                break;
+
+
             case Item_Type.ThiefNorigae1:
                 return ThiefNorigae1;
-                break;
+
+
             case Item_Type.ThiefNorigae2:
                 return ThiefNorigae2;
-                break;
+
+
             case Item_Type.ThiefNorigae3:
                 return ThiefNorigae3;
-                break;
+
+
+            //
+            
+            case Item_Type.NinjaNorigae0:
+                return NinjaNorigae0;
+
+
+            case Item_Type.NinjaNorigae1:
+                return NinjaNorigae1;
+
+
+            case Item_Type.NinjaNorigae2:
+                return NinjaNorigae2;
+
+
             //
             case Item_Type.MonthNorigae0:
                 return MonthNorigae0;
-                break;
+
+
             case Item_Type.MonthNorigae1:
                 return MonthNorigae1;
-                break;
+
+
             case Item_Type.MonthNorigae2:
                 return MonthNorigae2;
             case Item_Type.MonthNorigae3:
                 return MonthNorigae3;
+            case Item_Type.MonthNorigae4:
+                return MonthNorigae4;
             //
             //
             case Item_Type.DokebiHorn0:
                 return DokebiHorn0;
-                break;
+
+
             case Item_Type.DokebiHorn1:
                 return DokebiHorn1;
-                break;
+
+
             case Item_Type.DokebiHorn2:
                 return DokebiHorn2;
-                break;
+
+
             case Item_Type.DokebiHorn3:
                 return DokebiHorn3;
-                break;
+
+
             case Item_Type.DokebiHorn4:
                 return DokebiHorn4;
-                break;
+
+
             case Item_Type.DokebiHorn5:
                 return DokebiHorn5;
-                break;
+
+
             case Item_Type.DokebiHorn6:
                 return DokebiHorn6;
 
             case Item_Type.DokebiHorn7:
                 return DokebiHorn7;
-                break;
+
+
             case Item_Type.DokebiHorn8:
                 return DokebiHorn8;
-                break;
+
+
             case Item_Type.DokebiHorn9:
                 return DokebiHorn9;
-                break;
+
+
             //
             case Item_Type.ChunSun0:
                 return ChunSun0;
-                break;
+
+
 
             case Item_Type.ChunSun1:
                 return ChunSun1;
-                break;
+
+
 
             case Item_Type.ChunSun2:
                 return ChunSun2;
-                break;
+
+
 
 
             //
@@ -1219,210 +1364,273 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
 
             case Item_Type.GangrimWeapon:
                 return GangrimWeapon;
-                break;   
+
+   
             
             case Item_Type.YeaRaeWeapon:
                 return YeaRaeWeapon;
-                break;
+
+
 
             case Item_Type.HaeWeapon:
                 return HaeWeapon;
-                break;
+
+
 
             case Item_Type.Sam_Pet:
                 return SamPet;
-                break;
+
+
             case Item_Type.Kirin_Pet:
                 return Kirin_Pet;
-                break;
+
+
             case Item_Type.RabitPet:
                 return RabitPet;
-                break;
+
+
             case Item_Type.DogPet:
                 return DogPet;
-                break;
+
+
 
             case Item_Type.ChunMaPet:
                 return ChunMaPet;
-                break;
+
+
             case Item_Type.ChunPet0:
                 return ChunPet0;
-                break;
+
+
             case Item_Type.ChunPet1:
                 return ChunPet1;
-                break;
+
+
             case Item_Type.ChunPet2:
                 return ChunPet2;
-                break;
+
+
             case Item_Type.ChunPet3:
                 return ChunPet3;
-                break;
+
+
             case Item_Type.SasinsuPet0:
                 return SasinsuPet0;
-                break;
+
+
             case Item_Type.SasinsuPet1:
                 return SasinsuPet1;
-                break;
+
+
             case Item_Type.SasinsuPet2:
                 return SasinsuPet2;
-                break;
+
+
             case Item_Type.SasinsuPet3:
                 return SasinsuPet3;
-                break;
+
+
             case Item_Type.SahyungPet0:
                 return SahyungPet0;
-                break;
+
+
             case Item_Type.SahyungPet1:
                 return SahyungPet1;
-                break;
+
+
             case Item_Type.SahyungPet2:
                 return SahyungPet2;
-                break;
+
+
             case Item_Type.SahyungPet3:
                 return SahyungPet3;
-                break;
+
+
 
             case Item_Type.GuildReward:
                 return GuildReward;
-                break;
+
+
             case Item_Type.SulItem:
                 return SulItem;
-                break;
+
+
             case Item_Type.SmithFire:
                 return SmithFire;
-                break;
+
+
             case Item_Type.FeelMulStone:
                 return FeelMulStone;
-                break;
+
+
 
             case Item_Type.Asura0:
                 return AsuraHand0;
-                break;
+
+
             case Item_Type.Asura1:
                 return AsuraHand1;
-                break;
+
+
             case Item_Type.Asura2:
                 return AsuraHand2;
-                break;
+
+
             case Item_Type.Asura3:
                 return AsuraHand3;
-                break;
+
+
             case Item_Type.Asura4:
                 return AsuraHand4;
-                break;
+
+
             case Item_Type.Asura5:
                 return AsuraHand5;
-                break;
+
+
             //
             case Item_Type.Indra0:
                 return Indra0;
-                break;
+
+
             case Item_Type.Indra1:
                 return Indra1;
-                break;
+
+
             case Item_Type.Indra2:
                 return Indra2;
-                break;
+
+
             case Item_Type.IndraPower:
                 return IndraPower;
-                break;
+
+
 
             case Item_Type.OrochiTooth0:
                 return OrochiTooth0;
-                break;
+
+
             case Item_Type.OrochiTooth1:
                 return OrochiTooth1;
-                break;
+
+
 
             //
             case Item_Type.Aduk:
                 return Aduk;
-                break;
+
+
             case Item_Type.Event_Item_1:
                 return springIcon;
-                break;
+
+
             case Item_Type.Event_Item_SnowMan:
                 return Event_Item_SnowMan;
-                break;
+
+
             //
             case Item_Type.SinSkill0:
                 return SinSkill0;
-                break;
+
+
             case Item_Type.SinSkill1:
                 return SinSkill1;
-                break;
+
+
             case Item_Type.SinSkill2:
                 return SinSkill2;
-                break;
+
+
             case Item_Type.NataSkill:
                 return NataSkill;
-                break;
+
+
             case Item_Type.OrochiSkill:
                 return OrochiSkill;
-                break;
+
+
             //
             case Item_Type.Sun0:
                 return Sun0;
-                break;
+
+
             case Item_Type.Sun1:
                 return Sun1;
-                break;
+
+
             case Item_Type.Sun2:
                 return Sun2;
-                break;
+
+
             case Item_Type.Sun3:
                 return Sun3;
-                break;
+
+
             case Item_Type.Sun4:
                 return Sun4;
-                break;
+
+
             //
             case Item_Type.Chun0:
                 return Chun0;
-                break;
+
+
             case Item_Type.Chun1:
                 return Chun1;
-                break;
+
+
             case Item_Type.Chun2:
                 return Chun2;
-                break;
+
+
             case Item_Type.Chun3:
                 return Chun3;
-                break;
+
+
             case Item_Type.Chun4:
                 return Chun4;
-                break;
+
+
             //
             //
             case Item_Type.DokebiSkill0:
                 return DokebiSkill0;
-                break;
+
+
             case Item_Type.DokebiSkill1:
                 return DokebiSkill1;
-                break;
+
+
             case Item_Type.DokebiSkill2:
                 return DokebiSkill2;
-                break;
+
+
             case Item_Type.DokebiSkill3:
                 return DokebiSkill3;
-                break;
+
+
             case Item_Type.DokebiSkill4:
                 return DokebiSkill4;
-                break;
+
+
             //
             //
             case Item_Type.FourSkill0:
                 return FourSkill0;
-                break;
+
+
             case Item_Type.FourSkill1:
                 return FourSkill1;
-                break;
+
+
             case Item_Type.FourSkill2:
                 return FourSkill2;
-                break;
+
+
             case Item_Type.FourSkill3:
                 return FourSkill3;
-                break;
+
+
             //
             case Item_Type.FourSkill4:
                 return FourSkill4;
@@ -1437,114 +1645,149 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             //
             case Item_Type.GangrimSkill:
                 return GangrimSkill;
-                break;
+
+
             case Item_Type.SinSkill3:
                 return SinSkill3;
-                break;
+
+
             case Item_Type.LeeMuGiStone:
                 return LeeMuGiStone;
-                break;
+
+
             case Item_Type.IndraWeapon:
                 return IndraWeapon;
-                break;
+
+
             case Item_Type.NataWeapon:
                 return NataWeapon;
-                break;
+
+
             case Item_Type.OrochiWeapon:
                 return OrochiWeapon;
-                break;
+
+
 
             case Item_Type.MihoWeapon:
                 return MihoWeapon;
-                break;
+
+
             case Item_Type.ChunWeapon0:
                 return ChunWeapon0;
-                break;
+
+
             case Item_Type.ChunWeapon1:
                 return ChunWeapon1;
-                break;
+
+
             case Item_Type.ChunWeapon2:
                 return ChunWeapon2;
-                break;
+
+
             case Item_Type.ChunWeapon3:
                 return ChunWeapon3;
-                break;
+
+
             case Item_Type.DokebiWeapon0:
                 return DokebiWeapon0;
-                break;
+
+
             case Item_Type.DokebiWeapon1:
                 return DokebiWeapon1;
-                break;
+
+
             case Item_Type.DokebiWeapon2:
                 return DokebiWeapon2;
-                break;
+
+
             case Item_Type.DokebiWeapon3:
                 return DokebiWeapon3;
-                break;
+
+
             case Item_Type.DokebiWeapon4:
                 return DokebiWeapon4;
-                break;
+
+
             case Item_Type.DokebiWeapon5:
                 return DokebiWeapon5;
-                break;
+
+
             case Item_Type.DokebiWeapon6:
                 return DokebiWeapon6;
-                break;
+
+
             case Item_Type.DokebiWeapon7:
                 return DokebiWeapon7;
-                break;
+
+
             case Item_Type.DokebiWeapon8:
                 return DokebiWeapon8;
-                break;
+
+
             case Item_Type.DokebiWeapon9:
                 return DokebiWeapon9;
-                break;
+
+
             case Item_Type.SumisanWeapon0:
                 return SumisanWeapon0;
-                break;
+
+
             case Item_Type.SumisanWeapon1:
                 return SumisanWeapon1;
-                break;
+
+
             case Item_Type.SumisanWeapon2:
                 return SumisanWeapon2;
-                break;
+
+
             case Item_Type.SumisanWeapon3:
                 return SumisanWeapon3;
-                break;
+
+
             case Item_Type.SumisanWeapon4:
                 return SumisanWeapon4;
-                break;
+
+
             case Item_Type.SumisanWeapon5:
                 return SumisanWeapon5;
-                break;
+
+
             case Item_Type.SumisanWeapon6:
                 return SumisanWeapon6;
-                break;
+
+
             case Item_Type.ThiefWeapon0:
                 return ThiefWeapon0;
-                break;
             case Item_Type.ThiefWeapon1:
                 return ThiefWeapon1;
-                break;
             case Item_Type.ThiefWeapon2:
                 return ThiefWeapon2;
-                break;
             case Item_Type.ThiefWeapon3:
                 return ThiefWeapon3;
-                break;
+
+            case Item_Type.NinjaWeapon0:
+                return NinjaWeapon0;
+            case Item_Type.NinjaWeapon1:
+                return NinjaWeapon1;
+            case Item_Type.NinjaWeapon2:
+                return NinjaWeapon2;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;
-                break;
+
+
             case Item_Type.SasinsuWeapon1:
                 return SasinsuWeapon1;
-                break;
+
+
             case Item_Type.SasinsuWeapon2:
                 return SasinsuWeapon2;
-                break;
+
+
             case Item_Type.SasinsuWeapon3:
                 return SasinsuWeapon3;
-                break;
+
+
                 
             case Item_Type.SahyungWeapon0:
                 return SahyungWeapon0;
@@ -1557,82 +1800,107 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
 
             case Item_Type.MihoNorigae:
                 return MihoNorigae;
-                break;
+
+
 
             case Item_Type.ChunMaNorigae:
                 return ChunMaNorigae;
-                break;
+
+
 
             case Item_Type.RecommendWeapon0:
                 return RecommendWeapon0;
-                break;
+
+
             case Item_Type.RecommendWeapon1:
                 return RecommendWeapon1;
-                break;
+
+
             case Item_Type.RecommendWeapon2:
                 return RecommendWeapon2;
-                break;
+
+
             case Item_Type.RecommendWeapon3:
                 return RecommendWeapon3;
-                break;
+
+
             case Item_Type.RecommendWeapon4:
                 return RecommendWeapon4;
-                break;
+
+
             case Item_Type.RecommendWeapon5:
                 return RecommendWeapon5;
-                break;
+
+
             case Item_Type.RecommendWeapon6:
                 return RecommendWeapon6;
-                break;
+
+
             case Item_Type.RecommendWeapon7:
                 return RecommendWeapon7;
-                break;
+
+
             case Item_Type.RecommendWeapon8:
                 return RecommendWeapon8;
-                break;
+
+
             case Item_Type.RecommendWeapon9:
                 return RecommendWeapon9;
-                break;
+
+
             case Item_Type.RecommendWeapon10:
                 return RecommendWeapon10;
-                break;
+
+
             case Item_Type.RecommendWeapon11:
                 return RecommendWeapon11;
-                break;
+
+
             case Item_Type.RecommendWeapon12:
                 return RecommendWeapon12;
-                break;   
+
+   
             case Item_Type.RecommendWeapon13:
                 return RecommendWeapon13;
-                break;
+
+
             case Item_Type.RecommendWeapon14:
                 return RecommendWeapon14;
-                break;
+
+
             case Item_Type.RecommendWeapon15:
                 return RecommendWeapon15;
-                break;
+
+
             case Item_Type.RecommendWeapon16:
                 return RecommendWeapon16;
-                break;
+
+
             case Item_Type.RecommendWeapon17:
                 return RecommendWeapon17;
-                break;
+
+
             case Item_Type.RecommendWeapon18:
                 return RecommendWeapon18;
-                break;
+
+
             case Item_Type.RecommendWeapon19:
                 return RecommendWeapon19;
-                break;
+
+
             case Item_Type.RecommendWeapon20:
                 return RecommendWeapon20;
-                break;
+
+
             case Item_Type.weapon81:
                 return weapon81;
-                break;
+
+
                 
             case Item_Type.weapon90:
                 return weapon90;
-                break;
+
+
 
             case Item_Type.gumiho0:
             case Item_Type.gumiho1:
@@ -1644,7 +1912,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.gumiho7:
             case Item_Type.gumiho8:
                 return MihoTail;
-                break;
+
+
 
             case Item_Type.h0: return CommonResourceContainer.GetHellIconSprite(0);
             case Item_Type.h1: return CommonResourceContainer.GetHellIconSprite(1);
@@ -1657,7 +1926,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.h8: return CommonResourceContainer.GetHellIconSprite(8);
             case Item_Type.h9:
                 return CommonResourceContainer.GetHellIconSprite(9);
-                break;
+
+
 
             case Item_Type.c0: return CommonResourceContainer.GetChunIconSprite(0);
             case Item_Type.c1: return CommonResourceContainer.GetChunIconSprite(1);
@@ -1667,7 +1937,8 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             case Item_Type.c5: return CommonResourceContainer.GetChunIconSprite(5);
             case Item_Type.c6:
                 return CommonResourceContainer.GetChunIconSprite(6);
-                break;
+
+
 
         }
 

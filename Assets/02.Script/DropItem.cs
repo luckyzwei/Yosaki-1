@@ -439,12 +439,18 @@ public enum Item_Type
     costume94 = 1295, // 도적 외형2
     costume95 = 1296, // 도적 외형3
     
+    costume96 = 1297, // 닌자 외형0
+    costume97 = 1298, // 닌자 외형1
+    costume98 = 1299, // 닌자 외형2
+    costume99 = 1300, // 새학기
+    
 
     pet0 = 1301,
     pet1 = 1302,
     pet2 = 1303,
     pet3 = 1304,
 
+    costume100 = 1400, //백호 호연    
 
 
     gumiho0 = 5000,
@@ -571,6 +577,14 @@ public enum Item_Type
     ThiefNorigae2 = 7152,
     ThiefNorigae3 = 7153,
     
+    NinjaWeapon0 = 7160,
+    NinjaWeapon1 = 7161,
+    NinjaWeapon2 = 7162,
+    
+    NinjaNorigae0 = 7170,
+    NinjaNorigae1 = 7171,
+    NinjaNorigae2 = 7172,
+    
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
     RecommendWeapon2 = 8002,
@@ -605,6 +619,7 @@ public enum Item_Type
     MonthNorigae2 = 8603,
     weapon90 = 8604,//바람개비무기
     MonthNorigae3 = 8605, // 월간노리개
+    MonthNorigae4 = 8606, // 월간노리개
 
     Chun0 = 8700, // 천계기술
     Chun1 = 8701,
@@ -653,6 +668,9 @@ public enum Item_Type
     SahyungTreasure = 9013,
     EventDice = 9014,
     Tresure = 9015,
+    SuhoPetFeed = 9016,
+    SuhoPetFeedClear = 9017,
+    SinsuMarble = 9018
 }
 //
 public class DropItem : PoolItem

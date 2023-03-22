@@ -43,6 +43,10 @@ public class EventMissionTable
     {
         tableDatas[key].clearCount.Value += amount;
     } 
+    public void UpdateMissionClearToCount(string key, int amount)
+    {
+        tableDatas[key].clearCount.Value = amount;
+    } 
     public void UpdateMissionRewardCount(string key, int amount)
     {
         tableDatas[key].rewardCount.Value += amount;

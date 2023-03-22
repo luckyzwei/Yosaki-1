@@ -230,6 +230,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.SinsuRelic,
         GoodsTable.EventDice,
         GoodsTable.Tresure,
+        GoodsTable.SinsuMarble,
     };
 
     //SendQueue에서 저장

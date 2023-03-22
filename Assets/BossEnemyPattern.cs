@@ -31,6 +31,8 @@ public class BossEnemyPattern : BossEnemyBase
 
     [SerializeField]
     private List<AlarmHitObject> RandomHit3;
+    [SerializeField]
+    private List<GameObject> gameObjects;
 
     private void Start()
     {
@@ -49,7 +51,16 @@ public class BossEnemyPattern : BossEnemyBase
     {
         CustomHitList[index].AttackStart();
     }
+
+    public void EnableRandomGameObject()
+    {
+        gameObjects[UnityEngine.Random.Range(0, gameObjects.Count)].SetActive(true);
+    }
     
+    public void EnableGameObject(int _index)
+    {
+        gameObjects[_index].SetActive(true);
+    }
     private IEnumerator AttackRoutine()
     {
         UpdateBossDamage();

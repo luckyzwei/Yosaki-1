@@ -99,6 +99,16 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
             OnClickEnterButton();
         }
+        else if (type == ContentsType.InfiniteTower2 && UiLastContentsFunc.AutoInfiniteTower2)
+        {
+            if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx2].Value == 301)
+            {
+                UiLastContentsFunc.AutoInfiniteTower2 = false;
+                return;
+            }
+
+            OnClickEnterButton();
+        }
 
         //if (type == ContentsType.InfiniteTower2 && UiLastContentsFunc.AutoInfiniteTower2)
         //{
@@ -147,7 +157,7 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
         if (currentBlueStone < GameBalance.contentsEnterprice)
         {
-            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}이 부족합니다.");
             return;
         }
 
@@ -191,7 +201,7 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
         if (currentBlueStone < GameBalance.contentsEnterprice)
         {
-            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}이 부족합니다.");
             return;
         }
 

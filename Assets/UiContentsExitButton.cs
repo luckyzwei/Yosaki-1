@@ -24,7 +24,9 @@ public class UiContentsExitButton : MonoBehaviour
             GameManager.contentsType == GameManager.ContentsType.Sumi ||
             GameManager.contentsType == GameManager.ContentsType.GradeTest || GameManager.contentsType == GameManager.ContentsType.Sasinsu ||
             GameManager.contentsType == GameManager.ContentsType.SumisanTower||
-            GameManager.contentsType == GameManager.ContentsType.GyungRockTower
+            GameManager.contentsType == GameManager.ContentsType.GyungRockTower||
+            GameManager.contentsType == GameManager.ContentsType.RoyalTombTower ||
+            GameManager.contentsType == GameManager.ContentsType.SinsuTower 
             )
         {
             return true;
@@ -90,11 +92,16 @@ public class UiContentsExitButton : MonoBehaviour
         //        GameManager.Instance.LoadContents(GameManager.ContentsType.InfiniteTower);
         //    }
         //}
+        //다음스테이지가 있는 타워인 경우
         if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower2)
         {
             if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value < (TableManager.Instance.TowerTable2.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.InfiniteTower2);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
             }
         }
         else if (GameManager.contentsType == GameManager.ContentsType.DokebiTower)
@@ -102,62 +109,56 @@ public class UiContentsExitButton : MonoBehaviour
             if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value < (TableManager.Instance.towerTable3.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.DokebiTower);
+            }  
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
             }
         }
         else if (GameManager.contentsType == GameManager.ContentsType.FoxMask)
         {
-            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxMask).Value < (TableManager.Instance.FoxMask.dataArray.Length))
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxMask).Value <
+                (TableManager.Instance.FoxMask.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.FoxMask);
             }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
         }
-        else if (GameManager.contentsType == GameManager.ContentsType.Yum)
+        else if (GameManager.contentsType == GameManager.ContentsType.RoyalTombTower)
         {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.Yum);
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.RoyalTombFloorIdx).Value <
+                (TableManager.Instance.royalTombTowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.RoyalTombTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
         }
-        else if (GameManager.contentsType == GameManager.ContentsType.Ok)
+        else if (GameManager.contentsType == GameManager.ContentsType.SinsuTower)
         {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.Ok);
-        }
-        else if (GameManager.contentsType == GameManager.ContentsType.Do)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.Do);
-        }
-        else if (GameManager.contentsType == GameManager.ContentsType.Sumi)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.Sumi);
-        }
-        else if (GameManager.contentsType == GameManager.ContentsType.GradeTest)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.GradeTest);
-        }
-
-        else if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.TwelveDungeon);
-        }
-
-        //사신수
-        else if (GameManager.contentsType == GameManager.ContentsType.Sasinsu)
-        {
-            GameManager.Instance.SetBossId(GameManager.Instance.bossId);
-            GameManager.Instance.LoadContents(GameManager.ContentsType.Sasinsu);
-        }
-        else if (GameManager.contentsType == GameManager.ContentsType.SumisanTower)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.SumisanTower);
-        }
-        else if (GameManager.contentsType == GameManager.ContentsType.GyungRockTower)
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.GyungRockTower);
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx6).Value <
+                (TableManager.Instance.sinsuTower.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.SinsuTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
         }
         else
         {
+            var type = GameManager.contentsType;
+            GameManager.Instance.LoadContents(type);
             if (buttonRootObject != null)
             {
                 buttonRootObject.SetActive(false);
             }
-            return;
         }
 
 

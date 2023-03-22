@@ -73,6 +73,7 @@ public static class GameBalance
     public readonly static ObscuredInt sleepRewardMinValue = 600;
     //10시간
     public readonly static ObscuredInt sleepRewardMaxValue = 86400;
+    public readonly static ObscuredInt oneDayConvertMin = 1440;
     public readonly static ObscuredFloat sleepRewardRatio = 1f;
 
     public readonly static ObscuredFloat marbleSpawnProb = 1;
@@ -301,8 +302,16 @@ public static class GameBalance
    // public static ObscuredDouble sonGraduateScore = 100;
     public static ObscuredDouble sonGraduateScore = 1E+88;
     public static ObscuredDouble helGraduateScore = 1E+91;
+    public static ObscuredDouble flowerGraduateScore = 2200;
+    
+    public static ObscuredDouble GumSoulGraduateScore = 9000; // 졸업하는 수치
+    public static ObscuredDouble GumSoulFixedScore = 11000; //  졸업시 고정되는 수치.
+    public static ObscuredFloat GumSoulGraduatePlusValue = 2f; 
+    
+    public static ObscuredInt DailyPetFeedClearGetValue = 2;
+    public static ObscuredInt DolPassDiceRefundValue = 20;
 
-
+    
 
 
     public static List<float> warMarkAbils = new List<float>() { 0f, 400f, 500f, 600f, 700f, 800f, 900f, 1000f };

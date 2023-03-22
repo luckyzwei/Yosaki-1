@@ -27,6 +27,7 @@ public class EtcServerTable
     public const string CostumeCollectionAdReward = "CCAR";
     public const string GuideMissionReward = "GMR";
     public const string GuideMissionClear = "GMC";
+    public const string AdReward = "AdReward";
 
 
     private Dictionary<string, ReactiveProperty<string>> tableSchema = new Dictionary<string, ReactiveProperty<string>>()
@@ -46,6 +47,7 @@ public class EtcServerTable
         {CostumeCollectionAdReward,new ReactiveProperty<string>(string.Empty)},
         {GuideMissionReward,new ReactiveProperty<string>(string.Empty)},
         {GuideMissionClear,new ReactiveProperty<string>(string.Empty)},
+        {AdReward,new ReactiveProperty<string>(string.Empty)},
     };
 
     private Dictionary<string, ReactiveProperty<string>> tableDatas = new Dictionary<string, ReactiveProperty<string>>();
@@ -65,6 +67,12 @@ public class EtcServerTable
     public bool YoguiSoguilRewarded(int stageId)
     {
         var rewards = tableDatas[yoguiSogulReward].Value.Split(BossServerTable.rewardSplit).ToList();
+
+        return rewards.Contains(stageId.ToString());
+    }
+    public bool AdRewardRewarded(int stageId)
+    {
+        var rewards = tableDatas[AdReward].Value.Split(BossServerTable.rewardSplit).ToList();
 
         return rewards.Contains(stageId.ToString());
     }

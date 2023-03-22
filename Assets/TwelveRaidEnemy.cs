@@ -79,7 +79,7 @@ public class TwelveRaidEnemy : BossEnemyBase
             GameManager.Instance.bossId == 37 ||
             GameManager.Instance.bossId == 38 ||
             GameManager.Instance.bossId == 39
-            )
+           )
         {
             if (samDam < double.MaxValue * 0.25)
             {
@@ -91,17 +91,16 @@ public class TwelveRaidEnemy : BossEnemyBase
             enemyHitObjects.ForEach(e => e.SetDamage(samDam));
         }
         else if (GameManager.Instance.bossId == 40 ||
-            GameManager.Instance.bossId == 41 ||
-            GameManager.Instance.bossId == 42 ||
-            GameManager.Instance.bossId == 43 ||
-            GameManager.Instance.bossId == 44 ||
-            GameManager.Instance.bossId == 45 ||
-            GameManager.Instance.bossId == 46 ||
-            GameManager.Instance.bossId == 47 ||
-            GameManager.Instance.bossId == 48 ||
-            GameManager.Instance.bossId == 49
-
-            )
+                 GameManager.Instance.bossId == 41 ||
+                 GameManager.Instance.bossId == 42 ||
+                 GameManager.Instance.bossId == 43 ||
+                 GameManager.Instance.bossId == 44 ||
+                 GameManager.Instance.bossId == 45 ||
+                 GameManager.Instance.bossId == 46 ||
+                 GameManager.Instance.bossId == 47 ||
+                 GameManager.Instance.bossId == 48 ||
+                 GameManager.Instance.bossId == 49
+                )
         {
             if (hellDam < double.MaxValue * 0.25)
             {
@@ -155,9 +154,21 @@ public class TwelveRaidEnemy : BossEnemyBase
         {
             var bossTableData = TableManager.Instance.TwelveBossTable.dataArray[GameManager.Instance.bossId];
 
-            double ratio = TwelveDungeonManager.Instance.GetComponent<TwelveDungeonManager>().GetDamagedAmount() / bossTableData.Hp;
+            double ratio = 0f;
 
-            double damage = Mathf.Lerp(bossTableData.Attackpowermin, bossTableData.Attackpowermax, Mathf.Min(1f, (float)ratio));
+            if (TwelveDungeonManager.Instance != null)
+            {
+                ratio = TwelveDungeonManager.Instance.GetComponent<TwelveDungeonManager>().GetDamagedAmount() /
+                        bossTableData.Hp;
+            }
+            //수호동물 등
+            else
+            {
+                ratio = 1;
+            }
+
+            double damage = Mathf.Lerp(bossTableData.Attackpowermin, bossTableData.Attackpowermax,
+                Mathf.Min(1f, (float)ratio));
 
             hitObject.SetDamage(damage);
 
@@ -183,7 +194,6 @@ public class TwelveRaidEnemy : BossEnemyBase
 
     private IEnumerator AttackRoutine()
     {
-
         UpdateBossDamage();
         //선딜
         yield return new WaitForSeconds(2.0f);
@@ -206,7 +216,6 @@ public class TwelveRaidEnemy : BossEnemyBase
                 else
                 {
                     yield return StartCoroutine(GuildBossHit(attackInterval_Real));
-
                 }
             }
             else if (attackType == 1)
@@ -267,7 +276,6 @@ public class TwelveRaidEnemy : BossEnemyBase
 
     private IEnumerator PlayAttackAnim_Nata()
     {
-
         skeletonAnimation.AnimationName = "attack2";
         yield return new WaitForSeconds(1.5f);
         skeletonAnimation.AnimationName = "idle";
@@ -301,7 +309,6 @@ public class TwelveRaidEnemy : BossEnemyBase
     {
         if (HitList_1.Count == 0 && horizontalHit != null)
         {
-
             horizontalHit.AttackStart();
         }
 
@@ -386,7 +393,6 @@ public class TwelveRaidEnemy : BossEnemyBase
 
     private IEnumerator GuildBossHit(float delay)
     {
-
         StartCoroutine(PlaySoundDelay(1f, "BossSkill3"));
 
         PlayRandomHits_Guild();
@@ -398,6 +404,7 @@ public class TwelveRaidEnemy : BossEnemyBase
 
     private int idx2 = 0;
     private int idx3 = 0;
+
     private void PlayRandomHits_Guild()
     {
         int rankIdx = Random.Range(0, RandomHit.Count);

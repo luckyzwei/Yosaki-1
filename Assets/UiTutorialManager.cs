@@ -28,7 +28,8 @@ public enum TutorialStep
     PlayFireFly = 16384,//★
     BuyTicket = 32768,//★
     PlayCatContents = 65536,//★
-    Clear = 131072,//★
+    ClickYorinMission = 131072,//★
+    Clear = 262144,//★
 }
 
 public class UiTutorialManager : SingletonMono<UiTutorialManager>
@@ -121,7 +122,7 @@ public class UiTutorialManager : SingletonMono<UiTutorialManager>
 
     public void OnClickReward()
     {
-        if ((TutorialStep)tutorialStep.Value == TutorialStep.PlayCatContents)
+        if ((TutorialStep)tutorialStep.Value == TutorialStep.ClickYorinMission)
         {
             PopupManager.Instance.ShowReviewPopup();
         }
@@ -220,6 +221,9 @@ public class UiTutorialManager : SingletonMono<UiTutorialManager>
                 break;
             case TutorialStep.PlayCatContents:
                 return "오른쪽 상단 <color=yellow>요괴 사냥</color> 메뉴에서\n고양이 요괴전을 플레이 해보세요";
+                break;
+            case TutorialStep.ClickYorinMission:
+                return "오른쪽 상단 메뉴 -> 보상에서 요린이 임무를 확인 해 주세요!";
                 break;
             //case TutorialStep.GetSleepReward:
             //    return "왼쪽 중단의 오프라인 휴식 보상을\n획득 해보세요!";

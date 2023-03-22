@@ -27,4 +27,9 @@ public class MiniEnemyController : MonoBehaviour
             }
         }
     }
+
+    public void GameObjectStop()
+    {
+        this.gameObject.SetActive(false);
+    }
 }

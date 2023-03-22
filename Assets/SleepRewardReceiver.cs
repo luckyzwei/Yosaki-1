@@ -3,6 +3,7 @@ using CodeStage.AntiCheat.ObscuredTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
@@ -33,8 +34,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         public readonly float springItem;
         public readonly float peachItem;
         public readonly float helItem;
+        public readonly float chunItem;
 
-        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem, float helItem)
+        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem, float helItem,float chunItem)
         {
             this.gold = gold;
 
@@ -63,6 +65,8 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             this.peachItem = peachItem;
             
             this.helItem = helItem;
+            
+            this.chunItem = chunItem;
         }
     }
 
@@ -167,12 +171,21 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             helItem = killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes;
         }
+        float chunItem = 0;
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value >0)
+        {
+            chunItem = killedEnemyPerMin * stageTableData.Chunfloweramount * GameBalance.sleepRewardRatio * elapsedMinutes;
+        }
         eventItem = springItem;
 
         float exp = killedEnemyPerMin * spawnedEnemyData.Exp * GameBalance.sleepRewardRatio * elapsedMinutes;
         exp += exp * expBuffRatio;
 
-        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble, yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds, killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem, springItem: springItem, peachItem: peachItem, helItem: helItem);
+        this.sleepRewardInfo = new SleepRewardInfo(gold: gold, jade: jade, GrowthStone: GrowthStone, marble: marble,
+            yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds,
+            killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount *
+                             GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem,
+            springItem: springItem, peachItem: peachItem, helItem: helItem, chunItem: chunItem);
 
         UiSleepRewardView.Instance.CheckReward();
     }
@@ -205,6 +218,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value >0)
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value += (int)sleepRewardInfo.helItem;
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value >0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value += (int)sleepRewardInfo.chunItem;
         }
         //봄나물
         if (ServerData.userInfoTable.CanSpawnSpringEventItem())
@@ -243,6 +260,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value += sleepRewardInfo.killCount;
+        ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value += sleepRewardInfo.killCount;
         //ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value += sleepRewardInfo.killCount;
 
         Param goodsParam = new Param();
@@ -278,6 +296,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value); 
         }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value >0)
+        {
+            goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value); 
+        }
 
         goodsParam.Add(GoodsTable.StageRelic, ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value);
         goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
@@ -298,6 +320,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //userInfoParam.Add(UserInfoTable.killCountTotalChild, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalWinterPass, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value);
+        userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value);
         // userInfoParam.Add(UserInfoTable.attenCountOne, ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value);
 
 
@@ -339,6 +362,52 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
           });
     }
 
+    public float GetKilledEnemyPerMin(Item_Type type)
+    {
+        int currentStageIdx = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value;
+
+        if (currentStageIdx == TableManager.Instance.GetLastStageIdx())
+        {
+            currentStageIdx = TableManager.Instance.GetLastStageIdx();
+        }
+        var stageTableData = TableManager.Instance.StageMapData[currentStageIdx];
+
+        MapInfo mapInfo = BattleObjectManager.GetMapPrefabObject(stageTableData.Mappreset).GetComponent<MapInfo>();
+        var spawnInterval = stageTableData.Spawndelay + ((float)GameBalance.spawnIntervalTime * (float)GameBalance.spawnDivideNum);
+        int platformNum = mapInfo.spawnPlatforms.Count;
+        int plusSpawnNum = GuildManager.Instance.GetGuildSpawnEnemyNum(GuildManager.Instance.guildLevelExp.Value);
+
+        //지옥 추가소환
+        plusSpawnNum += (int)ServerData.goodsTable.GetTableData(GoodsTable.du).Value;
+
+        //천계 추가소환
+        if (PlayerStats.IsChunMonsterSpawnAdd())
+        {
+            plusSpawnNum += 5;
+        }
+#if UNITY_EDITOR
+        plusSpawnNum = 71;
+#endif
+
+        float spawnEnemyNumPerSec = (float)((platformNum * stageTableData.Spawnamountperplatform) + plusSpawnNum) / spawnInterval;
+
+        float killedEnemyPerMin = spawnEnemyNumPerSec * 60f;
+        
+        
+        switch (type)
+        {
+            case Item_Type.GrowthStone:
+                return killedEnemyPerMin * (stageTableData.Magicstoneamount + PlayerStats.GetSmithValue(StatusType.growthStoneUp)) * GameBalance.sleepRewardRatio;
+            case Item_Type.Marble:
+                return killedEnemyPerMin * stageTableData.Marbleamount * GameBalance.sleepRewardRatio;
+            case Item_Type.StageRelic:
+                return killedEnemyPerMin * stageTableData.Relicspawnamount * GameBalance.sleepRewardRatio;
+            case Item_Type.PeachReal:
+                return killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio;
+            default:
+                return 0f;
+        }
+    }
     private IEnumerator SyncLevelUpDataLate()
     {
         yield return new WaitForSeconds(5.0f);

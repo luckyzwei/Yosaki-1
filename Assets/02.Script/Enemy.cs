@@ -186,8 +186,10 @@ public class Enemy : PoolItem
         //눈사람
         GetEventItem();
 
+        //졸업
         GetPeachItem();
         GetHelItem();
+        GetChunItem();
         
 
         //곶감 -> 봄나물
@@ -228,6 +230,12 @@ public class Enemy : PoolItem
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value == 0) return;
 
         ServerData.goodsTable.GetHelItem(GameManager.Instance.CurrentStageData.Helamount);
+    }
+    private void GetChunItem()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value == 0) return;
+
+        ServerData.goodsTable.GetChunItem(GameManager.Instance.CurrentStageData.Chunfloweramount);
     }
 
     private void GetSpringEventItem() 
