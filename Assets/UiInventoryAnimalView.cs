@@ -39,7 +39,7 @@ public class UiInventoryAnimalView : MonoBehaviour
 
     private Coroutine syncRoutine;
 
-    private WaitForSeconds waitDelay = new WaitForSeconds(0.5f);
+    private WaitForSeconds waitDelay = new WaitForSeconds(0.1f);
 
     [SerializeField]
     private GameObject lockObject;
@@ -52,7 +52,7 @@ public class UiInventoryAnimalView : MonoBehaviour
         suhoSuhoPetServerData = ServerData.suhoAnimalServerTable.TableDatas[suhopetTableData.Stringid];
 
         uiAnimalView.Initialize(suhopetTableData);
-        
+
         Subscribe();
     }
 
@@ -64,7 +64,6 @@ public class UiInventoryAnimalView : MonoBehaviour
 
             equipButtonDesc.SetText(suhopetTableData.Id == e ? "장착중" : "장착");
         }).AddTo(this);
-
 
 
         suhoSuhoPetServerData.level.AsObservable().Subscribe(currentLevel =>
@@ -82,17 +81,9 @@ public class UiInventoryAnimalView : MonoBehaviour
 
             abilDescription.SetText(
                 $"보유효과\n{CommonString.GetStatusName(StatusType.SuperCritical11DamPer)} {suhopetTableData.Abilvalue[currentLevel] * 100}%");
+        }).AddTo(this);
 
-        }).AddTo(this);
-        
-        suhoSuhoPetServerData.hasItem.AsObservable().Subscribe(e =>
-        {
-            
-            lockObject.SetActive(e == 0);
-            
-        }).AddTo(this);
-        
-        
+        suhoSuhoPetServerData.hasItem.AsObservable().Subscribe(e => { lockObject.SetActive(e == 0); }).AddTo(this);
     }
 
     public void OnClickLevelUpButton()
@@ -106,7 +97,7 @@ public class UiInventoryAnimalView : MonoBehaviour
         }
 
         int requireGoods = suhopetTableData.Requirevalue[currentLevel];
-        
+
         int currentGoods = (int)ServerData.goodsTable.TableDatas[GoodsTable.SuhoPetFeed].Value;
 
         if (currentGoods < requireGoods)
@@ -116,15 +107,15 @@ public class UiInventoryAnimalView : MonoBehaviour
         }
 
         suhoSuhoPetServerData.level.Value++;
-        
+
         ServerData.goodsTable.TableDatas[GoodsTable.SuhoPetFeed].Value -= requireGoods;
 
         if (syncRoutine != null)
         {
-            StopCoroutine(syncRoutine);
+            CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
         }
 
-        syncRoutine = StartCoroutine(SyncRoutine());
+        syncRoutine = CoroutineExecuter.Instance.StartCoroutine(SyncRoutine());
     }
 
 
@@ -132,17 +123,17 @@ public class UiInventoryAnimalView : MonoBehaviour
     private IEnumerator SyncRoutine()
     {
         yield return waitDelay;
-        
+
         List<TransactionValue> transactions = new List<TransactionValue>();
-        
+
         Param goodsParam = new Param();
         goodsParam.Add(GoodsTable.SuhoPetFeed, ServerData.goodsTable.TableDatas[GoodsTable.SuhoPetFeed].Value);
-        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName,GoodsTable.Indate,goodsParam));
-        
+        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+
         Param suhoPetParam = new Param();
-        suhoPetParam.Add(suhopetTableData.Stringid,suhoSuhoPetServerData.ConvertToString());
-        transactions.Add(TransactionValue.SetUpdate(SuhoAnimalServerTable.tableName,SuhoAnimalServerTable.Indate,suhoPetParam));
-        
+        suhoPetParam.Add(suhopetTableData.Stringid, suhoSuhoPetServerData.ConvertToString());
+        transactions.Add(TransactionValue.SetUpdate(SuhoAnimalServerTable.tableName, SuhoAnimalServerTable.Indate, suhoPetParam));
+
         ServerData.SendTransaction(transactions);
     }
 

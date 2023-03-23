@@ -1310,7 +1310,7 @@ public class UserInfoTable
     public bool IsHotTime()
     {
 #if UNITY_EDITOR
-        return true;
+       // return true;
 #endif
 
         if (currentServerTime.DayOfWeek != DayOfWeek.Sunday && currentServerTime.DayOfWeek != DayOfWeek.Saturday)

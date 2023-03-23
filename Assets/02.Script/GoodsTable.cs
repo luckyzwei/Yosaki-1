@@ -392,8 +392,34 @@ public class GoodsTable
     }
 
     static int growThStoneAddAmount = 0;
-    static float updateRequireNum_GrowthStone = 100000;
+    static float updateRequireNum_GrowthStone_0 = 10000; //1000억 미만
+    static float updateRequireNum_GrowthStone_1 = 100000; //조 미만
+    static float updateRequireNum_GrowthStone_2 = 1000000; //조 이상
+    static float updateRequireNum_GrowthStone_3 = 10000000; // 10조이상
 
+    public float FloatGetUpdateRequireGrowthStone()
+    {
+        //10조이상
+        if (tableDatas[GrowthStone].Value >= 10000000000000f)
+        {
+            return updateRequireNum_GrowthStone_3;
+            
+        }
+        //1조 이상
+        if (tableDatas[GrowthStone].Value >= 1000000000000f)
+        {
+            return updateRequireNum_GrowthStone_2;
+            
+        }
+        //1000억 이상
+        if (tableDatas[GrowthStone].Value >= 100000000000f)
+        {
+            return updateRequireNum_GrowthStone_1; 
+            
+        }
+
+        return updateRequireNum_GrowthStone_0;
+    }
     public void GetMagicStone(float amount)
     {
         amount += PlayerStats.GetSmithValue(StatusType.growthStoneUp);
@@ -406,7 +432,7 @@ public class GoodsTable
 
         growThStoneAddAmount += amount_int;
 
-        if (growThStoneAddAmount < updateRequireNum_GrowthStone)
+        if (growThStoneAddAmount < FloatGetUpdateRequireGrowthStone())
         {
 
         }
