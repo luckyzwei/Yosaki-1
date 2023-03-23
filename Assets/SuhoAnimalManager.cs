@@ -134,7 +134,7 @@ public class SuhoAnimalManager : ContentsManagerBase
     {
         suhopetTableData = TableManager.Instance.suhoPetTable.dataArray[GameManager.Instance.suhoAnimalId];
 
-        var prefab = Resources.Load<GameObject>($"SuhoAnimal/{GameManager.Instance.bossId}");
+        var prefab = Resources.Load<GameObject>($"SuhoAnimal/0");
 
 
         singleRaidEnemy = Instantiate<GameObject>(prefab, bossSpawnParent);

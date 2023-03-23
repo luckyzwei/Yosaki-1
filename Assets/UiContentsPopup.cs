@@ -7,7 +7,7 @@ using UnityEngine;
 public class UiContentsPopup : MonoBehaviour
 {
     [SerializeField]
-    private UiBossContentsView bossContentsView;
+    private List<UiBossContentsView> bossContentsViews;
 
     [SerializeField]
     private List<GameObject> bandit1;
@@ -29,7 +29,10 @@ public class UiContentsPopup : MonoBehaviour
 
     void Start()
     {
-        bossContentsView.Initialize(TableManager.Instance.BossTable.dataArray[0]);
+        foreach (var t in bossContentsViews)
+        {
+            t.Initialize(TableManager.Instance.BossTable.dataArray[0]);
+        }
 
         tower1.ForEach(e => e.gameObject.SetActive(ServerData.userInfoTable.IsLastFloor() == false));
         tower2.ForEach(e => e.gameObject.SetActive(ServerData.userInfoTable.IsLastFloor() && ServerData.userInfoTable.IsLastFloor2() == false));
