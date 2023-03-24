@@ -22,6 +22,7 @@ public class UiMileageRefund : MonoBehaviour
         RefundRoutine();
         
         DolPassRefundRoutine();
+        NewGachaRefundRoutine();
     }
 
     private void RefundRoutine()
@@ -130,6 +131,46 @@ public class UiMileageRefund : MonoBehaviour
         {
             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"주사위 총 {GameBalance.DolPassDiceRefundValue}개 소급됨\n" +
                                                                         $"주사위 소급 완료!", null);
+        });
+        
+    }
+    private void NewGachaRefundRoutine()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.newGachaEnergyRefund).Value != 0)
+        {
+            return;
+        }
+
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.relicKillCount).Value>25000)
+        {
+            //돌패스 구매 x
+            ServerData.userInfoTable.GetTableData(UserInfoTable.newGachaEnergyRefund).Value = 1;
+            ServerData.userInfoTable.UpData(UserInfoTable.newGachaEnergyRefund, false);
+            return;
+        }
+        
+
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value -=
+            (float)ServerData.userInfoTable.GetTableData(UserInfoTable.relicKillCount).Value;
+        if (ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value < 0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value = 0;
+        }
+        ServerData.userInfoTable.GetTableData(UserInfoTable.newGachaEnergyRefund).Value = 1;
+
+        Param goodsParam = new Param();
+        goodsParam.Add(GoodsTable.NewGachaEnergy, ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value);
+
+        Param userInfoParam = new Param();
+        userInfoParam.Add(UserInfoTable.newGachaEnergyRefund, ServerData.userInfoTable.GetTableData(UserInfoTable.newGachaEnergyRefund).Value);
+
+        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
         });
         
     }

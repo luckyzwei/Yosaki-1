@@ -398,7 +398,7 @@ public class UiRewardCollection : MonoBehaviour
                     successCallBack: () =>
                     {
                         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,
-                            $"{CommonString.GetItemName((Item_Type)tabledata[GetDayOfweek()].Rewardtype)} {score * multipleValue}개 획득!",
+                            $"{CommonString.GetItemName((Item_Type)tabledata[GetDayOfweek()].Rewardtype)} {score * multipleValue}개 획득!(반딧불전)",
                             null);
                     });
         }
@@ -1041,6 +1041,13 @@ public class UiRewardCollection : MonoBehaviour
     }
     public void OnClickGetNewGachaButton(bool isPopUp=true)
     {
+
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.relicKillCount).Value < 25000)
+        {
+            return;
+        }
+        
+        
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.getRingGoods).Value == 1)
         {
             if (isPopUp)

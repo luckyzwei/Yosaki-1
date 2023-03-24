@@ -226,6 +226,7 @@ public class UserInfoTable
     public const string marRelicRefund = "marRelicRe3";
 
     public const string purchaseRefund0 = "purchaseRefund0";
+    public const string newGachaEnergyRefund = "newGachaEnergyRefund";
 
     public const string exchangeCount_0_Mileage = "mff";
     public const string exchangeCount_1_Mileage = "mgg";
@@ -464,6 +465,7 @@ public class UserInfoTable
         {mileageRefund,0},
         {marRelicRefund,0},
         {purchaseRefund0,0},
+        {newGachaEnergyRefund,0},
 
         {exchangeCount_0_Mileage,0},
         {exchangeCount_1_Mileage,0},
