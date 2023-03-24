@@ -107,7 +107,9 @@ public class YachaPetAwakeView : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GrowthStone)}이 부족합니다.");
             return;
         }
-
+        
+        LogManager.Instance.SendLogType("PetEquipLevel", $"p", $"{100}회");
+        
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= upgradePrice;
         
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 100;
@@ -160,6 +162,8 @@ public class YachaPetAwakeView : MonoBehaviour
 
         amount = (float)System.Math.Truncate(amount);
 
+        LogManager.Instance.SendLogType("PetEquipLevel", "p",$"{amount}회");
+        
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -=
             (GameBalance.AwakePetUpgradePrice * (int)amount);
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 1 * (int)amount;
