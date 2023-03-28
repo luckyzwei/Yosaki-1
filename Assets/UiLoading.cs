@@ -25,7 +25,7 @@ public class UiLoading : MonoBehaviour
 
             if (asyncOper.progress >= 0.9f)
             {
-                yield return new WaitForSeconds(2.0f);
+                yield return null;
                 asyncOper.allowSceneActivation = true;
                 break;
             }
