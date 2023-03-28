@@ -148,6 +148,12 @@ public static class Utils
                type == Item_Type.weapon90
             ;
     }
+    
+    public static bool IsIgnoreMissionKey(this EventMissionKey type)
+    {
+        int type_int = (int)type;
+        return type_int >= (int)EventMissionKey.ClearBandit && type <= EventMissionKey.ClearSumiFire;
+    }
 
     public static bool IsRegainableItem(this Item_Type type)
     {

@@ -4,13 +4,16 @@ using UnityEngine;
 using UniRx;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System;
+
 //
 public class GameManager : SingletonMono<GameManager>
 {
     public enum InitPlayerPortalPosit
     {
-        Left, Right
+        Left,
+        Right
     }
+
     public enum ContentsType
     {
         NormalField,
@@ -47,15 +50,16 @@ public class GameManager : SingletonMono<GameManager>
         SmithTree,
         SonClone,
         DayOfWeekDungeon,
-	    Online_Tower2,
-	 	OldDokebi2,
-	 	Sumi,
+        Online_Tower2,
+        OldDokebi2,
+        Sumi,
         GyungRockTower,
         NorigaeSoul,
         RoyalTombTower,
         SuhoAnimal,
         SinsuTower,
     }
+
     public bool SpawnMagicStone => IsNormalField;
     public bool IsNormalField => contentsType == ContentsType.NormalField;
 
@@ -82,18 +86,20 @@ public class GameManager : SingletonMono<GameManager>
     public void ResetLastContents()
     {
         lastContentsType = ContentsType.NormalField;
-        
-    }    public void ResetLastContents2()
+    }
+
+    public void ResetLastContents2()
     {
         lastContentsType2 = ContentsType.NormalField;
     }
+
     public void SetBossId(int bossId)
     {
         this.bossId = bossId;
 
         RandomizeKey();
     }
-    
+
     public void SetSuhoAnimalBossId(int bossId)
     {
         this.suhoAnimalId = bossId;
@@ -202,6 +208,7 @@ public class GameManager : SingletonMono<GameManager>
     }
 
     private bool CanMoveStage = true;
+
     public void LoadNextScene()
     {
         UiTutorialManager.Instance.SetClear(TutorialStep.GoNextStage);
@@ -305,8 +312,8 @@ public class GameManager : SingletonMono<GameManager>
         }
 
         contentsType = type;
-        
-        
+
+
         ChangeScene();
     }
 
@@ -314,7 +321,9 @@ public class GameManager : SingletonMono<GameManager>
     {
         lastContentsType2 = type;
     }
+
     private static bool firstLoad = true;
+
     private void ChangeScene()
     {
         IAPManager.Instance.ResetDisableCallbacks();
@@ -345,16 +354,37 @@ public class GameManager : SingletonMono<GameManager>
         whenSceneChanged.Execute();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
-
-
     }
+
     public bool IsLastScene()
     {
         return currentMapIdx.Value == TableManager.Instance.StageMapData.Count - 1;
     }
+
     public bool IsFirstScene()
     {
         return currentMapIdx.Value == 0;
     }
 
+    private void Start()
+    {
+        StartCoroutine(CheckNetworkState());
+    }
+
+    private WaitForSeconds delay = new WaitForSeconds(60f);
+
+    private IEnumerator CheckNetworkState()
+    {
+        while (true)
+        {
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                AutoManager.Instance.SetAuto(false);
+
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "네트워크 연결이 끊겼습니다.\n앱을 종료합니다.", confirmCallBack: () => { Application.Quit(); });
+            }
+
+            yield return delay;
+        }
+    }
 }

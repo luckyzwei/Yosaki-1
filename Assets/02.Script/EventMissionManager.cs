@@ -19,7 +19,7 @@ public enum EventMissionKey
 
     /////
 
-    S_ClearBandit,//반딧불전
+    S_ClearBandit=8,//반딧불전
     S_ClearOni,//도깨비전
     S_ClearFast,//빠른전투
     S_ClearSwordPartial,//검조각 보상 ★
@@ -41,6 +41,10 @@ public static class EventMissionManager
     public static void UpdateEventMissionClear(EventMissionKey missionKey, int count)
     {
         string key = TableManager.Instance.EventMissionDatas[(int)missionKey].Stringid;
+        
+        if (missionKey.IsIgnoreMissionKey()) return;
+        
+        if (ServerData.eventMissionTable.TableDatas[key].clearCount.Value >= 1) return;
 
         //로컬 데이터 갱신
         ServerData.eventMissionTable.UpdateMissionClearCount(key, count);
