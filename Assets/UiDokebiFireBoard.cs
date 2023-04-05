@@ -297,9 +297,9 @@ public class UiDokebiFireBoard : MonoBehaviour
         {
             PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
                 "각성시 도깨비 숲에서 도깨비불 획득이 더이상 불가능 합니다.\n" +
-                $"대신 도깨비불 효과가 강화되고({GameBalance.dokebiGraduatePlusValue*100}%\n" +
-                $"도깨비불 각성시 최고점수가 {GameBalance.dokebiFireFixedScore}로 고정 됩니다. \n" +
-                $"그리고 스테이지 일반요괴 처치시 도깨비불을 자동으로 획득 합니다.\n" +
+                $"대신 도깨비불 효과가 강화되고({GameBalance.dokebiGraduatePlusValue*100}%)\n" +
+                $"도깨비숲 각성시 최고점수가 {GameBalance.dokebiFireFixedScore}로 고정 됩니다. \n" +
+                $"그리고 스테이지 일반요괴 처치시 도깨비불을 자동 획득 합니다.\n" +
                 "각성 하시겠습니까?", () =>
                 {
                     ServerData.userInfoTable.TableDatas[UserInfoTable.graduateDokebiFire].Value = 1;
