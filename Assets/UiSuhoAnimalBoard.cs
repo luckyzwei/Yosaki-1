@@ -22,7 +22,7 @@ public class UiSuhoAnimalBoard : SingletonMono<UiSuhoAnimalBoard>
     {
         Inisitlize();
 
-        SetLastPet();
+        SetStage();
     }
 
     private void Inisitlize()
@@ -38,9 +38,17 @@ public class UiSuhoAnimalBoard : SingletonMono<UiSuhoAnimalBoard>
     }
 
 
-    private void SetLastPet()
+    private void SetStage()
     {
-        int lastId = ServerData.suhoAnimalServerTable.GetLastPetId();
+        var lastId = 0;
+        if (GameManager.Instance.lastContentsType != GameManager.ContentsType.NormalField)
+        {
+            lastId = GameManager.Instance.suhoAnimalId;
+            currentSelectedIdx.Value = lastId;
+            UiSuhoAnimalRewardPopup.Instance.Initialize(lastId);
+            return;
+        }
+        lastId = ServerData.suhoAnimalServerTable.GetLastPetId();
         
         UiSuhoAnimalRewardPopup.Instance.Initialize(lastId);
 

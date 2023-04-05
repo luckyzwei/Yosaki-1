@@ -138,6 +138,11 @@ public class UiPetHomeView : MonoBehaviour
             skeletonGraphic.transform.localScale = new Vector3(0.7f, 0.7f, 1f);
             skeletonGraphic.transform.localPosition = new Vector3(-8f, -86.5f, 1f);
         }
+        else if (idx >= 32 && idx <= 35)
+        {
+            skeletonGraphic.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            skeletonGraphic.transform.localPosition = new Vector3(-8f, -38.75f, 1f);
+        }
     }
 
     public void OnClickGetRewardButton()

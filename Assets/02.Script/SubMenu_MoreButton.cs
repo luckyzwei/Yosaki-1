@@ -56,11 +56,11 @@ public class SubMenu_MoreButton : MonoBehaviour
 
         if (state == State.Opened)
         {
-            redDotBase.ForEach(e => e.GoTargetButton());
+            redDotBase.ForEach(e => e?.GoTargetButton());
         }
         else
         {
-            redDotBase.ForEach(e => e.GoMoreButton());
+            redDotBase.ForEach(e => e?.GoMoreButton());
         }
     }
 

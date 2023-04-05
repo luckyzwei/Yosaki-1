@@ -10,6 +10,7 @@ public enum SkillCastType
     Player,
     Son,
     Four,
+    Vision,
 }
 public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
 {
@@ -30,6 +31,14 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     private string newWeaponKey1 = "weapon23";
     private string newWeaponKey2 = "weapon24";
 
+    public ReactiveProperty<int> visionChargeCount;
+    public ReactiveProperty<bool> useVisionSkill;
+
+    public static bool IsVisionSkill(int idx)
+    {
+        return idx == 46 || idx == 47 || idx == 48 || idx == 49;
+
+    }
     public bool UseSkill(int skillIdx)
     {
         bool canUserSkill = UserSkills[skillIdx].CanUseSkill();
@@ -37,17 +46,55 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         if (canUserSkill)
         {
             UserSkills[skillIdx].UseSkill();
-        }
+            
+            // visionSkill
+            if (useVisionSkill.Value == false &&
+                (TableManager.Instance.SkillTable.dataArray[skillIdx].Requirehit <0) &&
+                (visionChargeCount.Value>0)
+                
+                )
+            {
+                if (GameManager.contentsType == GameManager.ContentsType.NormalField)
+                {
+                    if (!MapInfo.Instance.canSpawnEnemy.Value)
+                    {
+                        visionChargeCount.Value--;
+                    }
+                }
+                else
+                {
+                    visionChargeCount.Value--;
+                }
+            }
 
+            if (IsVisionSkill(skillIdx))
+            {
+                UiUltiSkillEffect.Instance.ShowUltSkillEffect(skillIdx);
+            }
+            
+            //
+        }
+        
         return canUserSkill;
     }
 
+    public void InitializeVisionSkill()
+    {
+        visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[ServerData.goodsTable.GetVisionSkillHasCount() + 45].Requirehit;
+        useVisionSkill.Value = false;
+    }
+    public void SetUseVisionSkill(bool isUsed)
+    {
+        useVisionSkill.Value = isUsed;
+    }
     private void Start()
     {
+        visionChargeCount.Value = 0;
+        useVisionSkill.Value = false;
+        
         InitSkill();
-
         ignoreDamDecrease = ServerData.userInfoTable.TableDatas[UserInfoTable.IgnoreDamDec].Value == 1;
-
+        InitializeVisionSkill();
         Subscribe();
 
     }

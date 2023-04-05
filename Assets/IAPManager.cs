@@ -22,7 +22,13 @@ public enum BuyType
 }
 public enum ShopCategory
 {
-    Gem, Limit1, Limit2, Pet, Costume, Pension, Chuseok, Limit3, Event, Event2, Event3, None, LevelUp, ChunFlower
+    Gem, Limit1, Limit2, Pet, Costume, Pension, Chuseok, Limit3, Event, Event2, Event3, None, LevelUp, ChunFlower,
+    Goods_Week,//도깨비불,수미꽃,영혼석소탕권
+    Goods_PetSoul,//수호환
+    Goods_NewGacha,//영혼석
+    Goods_SpecialGoods,//불멸석,천계꽃,도꺠비불,수미꽃
+    Goods_GrowthStone,//여우구슬,수련의돌,영혼열쇠,검조각
+    Goods_BaseGoods,//여우구슬,수련의돌,영혼열쇠,검조각
 }
 public class IAPManager : SingletonMono<IAPManager>, IStoreListener
 {

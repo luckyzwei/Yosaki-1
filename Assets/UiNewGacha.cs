@@ -30,6 +30,12 @@ public class UiNewGacha : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI freeButtonDesc;
 
+    [SerializeField]
+    private TextMeshProUGUI getRingDesc;
+
+    [SerializeField]
+    private GameObject getRingLockMask;
+
     private void Start()
     {
         Initialize();
@@ -38,9 +44,20 @@ public class UiNewGacha : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(UserInfoTable.freeNewGacha).Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.freeNewGacha).Subscribe(e => { freeButtonDesc.SetText(e == 0 ? "무료 뽑기!" : "내일 다시!"); }).AddTo(this);
+
+        ServerData.userInfoTable.GetTableData(UserInfoTable.gachaNum_NewGacha).Subscribe(e =>
         {
-            freeButtonDesc.SetText(e == 0 ? "무료 뽑기!" : "내일 다시!");
+            if (e >= GameBalance.GraduateSoulRing)
+            {
+                getRingLockMask.SetActive(false);
+                getRingDesc.SetText($"뽑은 횟수 : {Utils.ConvertBigNum(e - GameBalance.GraduateSoulRing)}");
+            }
+            else
+            {
+                getRingLockMask.SetActive(true);
+                getRingDesc.SetText($"-");
+            }
         }).AddTo(this);
     }
 
@@ -124,7 +141,6 @@ public class UiNewGacha : MonoBehaviour
                 ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value += price;
 
                 OnClickOpenButton(2);
-
             });
         });
     }
@@ -225,13 +241,11 @@ public class UiNewGacha : MonoBehaviour
 
         SyncServer(serverUpdateList, price, serverUpdateList.Count);
 
-        UiGachaResultView.Instance.Initialize(gachaResultCellInfos, () =>
-        {
-            OnClickOpenButton(lastGachaIdx);
-        });
+        UiGachaResultView.Instance.Initialize(gachaResultCellInfos, () => { OnClickOpenButton(lastGachaIdx); });
 
         SoundManager.Instance.PlaySound("Reward");
     }
+
     private void SyncServer(List<int> serverUpdateList, int price, int gachaCount)
     {
         List<TransactionValue> transactionList = new List<TransactionValue>();
@@ -266,5 +280,45 @@ public class UiNewGacha : MonoBehaviour
         transactionList.Add(TransactionValue.SetUpdate(NewGachaServerTable.tableName, NewGachaServerTable.Indate, newGachaParam));
 
         ServerData.SendTransaction(transactionList);
+    }
+
+    public void GetRingButton()
+    {
+        
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.gachaNum_NewGacha).Value - GameBalance.GraduateSoulRing < GameBalance.GraduateSoulRingGetInterval)
+        {
+            PopupManager.Instance.ShowAlarmMessage("뽑은 횟수가 부족합니다!");
+            return;
+        }
+
+        //차감
+        ServerData.userInfoTable.GetTableData(UserInfoTable.gachaNum_NewGacha).Value -= GameBalance.GraduateSoulRingGetInterval;
+
+        var localTableData = TableManager.Instance.NewGachaTable.dataArray;
+
+        ServerData.newGachaServerTable.UpData(localTableData[GameBalance.GraduateSoulRingGetIndex], 1);
+
+        List<TransactionValue> transactionList = new List<TransactionValue>();
+
+        Param userInfoParam = new Param();
+
+        userInfoParam.Add(UserInfoTable.gachaNum_NewGacha, ServerData.userInfoTable.GetTableData(UserInfoTable.gachaNum_NewGacha).Value);
+
+        string key = localTableData[GameBalance.GraduateSoulRingGetIndex].Stringid;
+
+        var tableDatas = ServerData.newGachaServerTable.TableDatas;
+
+        Param newGachaParam = new Param();
+
+        newGachaParam.Add(key, tableDatas[key].ConvertToString());
+
+        //가챠횟수
+        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        //반지
+        transactionList.Add(TransactionValue.SetUpdate(NewGachaServerTable.tableName, NewGachaServerTable.Indate, newGachaParam));
+
+        ServerData.SendTransaction(transactionList, successCallBack: () => { PopupManager.Instance.ShowAlarmMessage("전설1 반지 획득!!"); });
+        
     }
 }

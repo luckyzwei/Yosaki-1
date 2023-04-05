@@ -29,6 +29,7 @@ public class UiContentsPopup2 : MonoBehaviour
         SmithBoard,
         SuhoAnimal,
         SinsuTower,
+        VisionBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -81,6 +82,7 @@ public class UiContentsPopup2 : MonoBehaviour
                         break;
                     //강철이
                     case 20:
+                        return;
                         lastBoards[(int)ContentsBoard.GangchulBoard].SetActive(true);
                         break;
                     //수호신
@@ -201,7 +203,17 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 106:
                     case 107:
                     case 108:
+                    case 109:
+                    case 110:
+                    case 111:
+                    case 112:
                         lastBoards[(int)ContentsBoard.UiThiefBoard].SetActive(true);
+                        break;
+                    case 113:
+                    case 114:
+                    case 115:
+                    case 116:
+                        lastBoards[(int)ContentsBoard.VisionBoard].SetActive(true);
                     break;
                 }
                 break;

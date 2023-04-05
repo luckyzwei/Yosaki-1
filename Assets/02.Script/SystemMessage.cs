@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -57,17 +58,44 @@ public class SystemMessage : SingletonMono<SystemMessage>
         rootObject.transform.localScale = mask.enabled ? Vector3.one*1.1f : Vector3.one * 1.1f /*1.2f*/;
     }
 
+    private void Start()
+    {
+        StartCoroutine(messageUpdateRoutine());
+    }
 
+    private WaitForSeconds updateDelay = new WaitForSeconds(0.1f);
+    
+    private IEnumerator messageUpdateRoutine()
+    {
+        while (true)
+        {
+            if (messageQueue.Count != 0)
+            {
+                messagePool[currentIdx].Initialize(messageQueue.Dequeue(), true);
+                messagePool[currentIdx].transform.SetAsFirstSibling();
+                currentIdx++;
+                
+                if (currentIdx == messagePool.Count)
+                {
+                    currentIdx = 0;
+                }
+            }
+         
+            yield return updateDelay;
+        }
+        
+    }
 
+    public static Queue<string> messageQueue = new Queue<string>();
+    
+    private const int messageQueueMaxSize = 10;
+    
+    public static bool IsMessageQueueFull()
+    {
+        return messageQueue.Count >= messageQueueMaxSize;
+    }
     public void SetMessage(string message)
     {
-        messagePool[currentIdx].Initialize(message, true);
-        messagePool[currentIdx].transform.SetAsFirstSibling();
-
-        currentIdx++;
-        if (currentIdx == messagePool.Count)
-        {
-            currentIdx = 0;
-        }
+        messageQueue.Enqueue(message);
     }
 }

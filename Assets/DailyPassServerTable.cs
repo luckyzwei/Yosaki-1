@@ -754,6 +754,8 @@ public class ColdSeasonPassServerTable
     public static string coldseasonAd = "a2";
     public static string seasonFree = "f3";
     public static string seasonAd = "a3";
+    public static string suhoFree = "f4";
+    public static string suhoAd = "a4";
 
     public static string coldseasonFree_Atten = "fa2";
 
@@ -763,7 +765,9 @@ public class ColdSeasonPassServerTable
         { coldseasonAd,string.Empty},
         { coldseasonFree_Atten,string.Empty},
         { seasonFree,string.Empty},
-        { seasonAd,string.Empty}
+        { seasonAd,string.Empty},
+        { suhoFree,string.Empty},
+        { suhoAd,string.Empty}
 
     };
 

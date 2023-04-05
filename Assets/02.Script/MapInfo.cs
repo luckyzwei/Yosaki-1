@@ -23,11 +23,11 @@ public class MapInfo : SingletonMono<MapInfo>
 
     public Dictionary<int, int> spawnedEnemyPlatforms = new Dictionary<int, int>();
 
-    private bool canSpawnEnemy = true;
+    public ReactiveProperty<bool> canSpawnEnemy;
 
     public void SetCanSpawnEnemy(bool canSpawnEnemy)
     {
-        this.canSpawnEnemy = canSpawnEnemy;
+        this.canSpawnEnemy.Value = canSpawnEnemy;
     }
 
 #if UNITY_EDITOR
@@ -172,14 +172,14 @@ public class MapInfo : SingletonMono<MapInfo>
 
             int spawnNum = maxEnemy - spawnedEnemyList.Count + plusSpawnNum + hellPlusSpawnNum + chunPlusSpawnNum;
 
-            while (canSpawnEnemy == false)
+            while (canSpawnEnemy.Value == false)
             {
                 yield return null;
             }
 
             for (int i = 0; i < spawnNum; i++)
             {
-                while (canSpawnEnemy == false)
+                while (canSpawnEnemy.Value == false)
                 {
                     yield return null;
                 }
@@ -315,7 +315,7 @@ public class MapInfo : SingletonMono<MapInfo>
 
         while (spawnGaugeValue.Value < spawnDelay)
         {
-            while (canSpawnEnemy == false)
+            while (canSpawnEnemy.Value == false)
             {
                 yield return null;
             }

@@ -196,4 +196,8 @@ public class SkillTableData
   string indragoodsname;
   public string Indragoodsname { get {return indragoodsname; } set { this.indragoodsname = value;} }
   
+  [SerializeField]
+  int requirehit;
+  public int Requirehit { get {return requirehit; } set { this.requirehit = value;} }
+  
 }

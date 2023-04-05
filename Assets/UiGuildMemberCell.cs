@@ -9,12 +9,16 @@ public class UiGuildMemberCell : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI nickName;
+
     [SerializeField]
     private TextMeshProUGUI lastLogin;
+
     [SerializeField]
     private TextMeshProUGUI donateAmount;
+
     [SerializeField]
     private TextMeshProUGUI grade;
+
     [SerializeField]
     public GuildMemberInfo guildMemberInfo { get; private set; }
 
@@ -29,11 +33,16 @@ public class UiGuildMemberCell : MonoBehaviour
     private GameObject donatedPetExp;
 
     [SerializeField]
-    private GameObject guildBossObejct;
+    private GameObject guildTowerObject;
+
+    [SerializeField]
+    private TextMeshProUGUI guildTowerFloorDesc;
 
     public enum GuildGrade
     {
-        Member, ViceMaster, Master
+        Member,
+        ViceMaster,
+        Master
     }
 
     public class GuildMemberInfo
@@ -48,19 +57,33 @@ public class UiGuildMemberCell : MonoBehaviour
 
         public bool todayDonated { get; private set; } = false;
         public bool todayDonatedPetExp { get; private set; }
-        public bool todayGuildBoss { get; private set; }
+
+        public int guildTowerFloor { get; set; }
 
 
-        public GuildMemberInfo(string nickName, string position, string lastLogin, string gamerIndate, int donateGoods, bool todayDonated, bool todayDonatedPetExp, bool todayGuildBoss, int donateDogFeedAmount)
+        public GuildMemberInfo(string nickName, string position, string lastLogin, string gamerIndate, int donateGoods, bool todayDonated, bool todayDonatedPetExp, int guildTowerFloor, int donateDogFeedAmount)
         {
             this.nickName = nickName;
 
             switch (position)
             {
-                case "master": { guildGrade = GuildGrade.Master; } break;
-                case "member": { guildGrade = GuildGrade.Member; } break;
-                default: { guildGrade = GuildGrade.ViceMaster; } break;
+                case "master":
+                {
+                    guildGrade = GuildGrade.Master;
+                }
+                    break;
+                case "member":
+                {
+                    guildGrade = GuildGrade.Member;
+                }
+                    break;
+                default:
+                {
+                    guildGrade = GuildGrade.ViceMaster;
+                }
+                    break;
             }
+
             this.lastLogin = lastLogin;
 
             this.gamerIndate = gamerIndate;
@@ -71,9 +94,7 @@ public class UiGuildMemberCell : MonoBehaviour
 
             this.todayDonatedPetExp = todayDonatedPetExp;
 
-            this.todayGuildBoss = todayGuildBoss;
-
-            this.todayGuildBoss = todayGuildBoss;
+            this.guildTowerFloor = guildTowerFloor;
 
             this.donateDogFeedAmount = donateDogFeedAmount;
         }
@@ -84,10 +105,11 @@ public class UiGuildMemberCell : MonoBehaviour
         donatedObject.gameObject.SetActive(donated);
     }
 
-    public void UpdateGuildBossObject(bool donated)
+    public void UpdateGuildTowerScore(int score)
     {
-        //강철이 삭제
-        guildBossObejct.gameObject.SetActive(false);
+        guildTowerObject.gameObject.SetActive(score > 0);
+
+        guildTowerFloorDesc.SetText($"(문파동굴:{score}층)");
     }
 
     public void UpdateDonatedObject_PetExp(bool donated)
@@ -115,7 +137,8 @@ public class UiGuildMemberCell : MonoBehaviour
         {
             lastLogin.gameObject.SetActive(false);
         }
-        UpdateGuildBossObject(guildMemberInfo.todayGuildBoss);
+
+        UpdateGuildTowerScore(guildMemberInfo.guildTowerFloor);
 
         UpdateDonatedObject(guildMemberInfo.todayDonated);
 
@@ -186,12 +209,10 @@ public class UiGuildMemberCell : MonoBehaviour
                 PopupManager.Instance.ShowConfirmPopup("오류", $"권한이 없거나 이미 탈퇴한 유저 입니다.\n{bro.GetStatusCode()}", null);
             }
         }, null);
-
     }
 
     public void OnClickChangeGradeButton()
     {
         UiGuildGradeChangeBoard.Instance.Initialize(guildMemberInfo.nickName, guildMemberInfo.gamerIndate);
     }
-
 }

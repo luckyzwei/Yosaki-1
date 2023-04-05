@@ -398,7 +398,11 @@ public class SkillServerTable
         }
 
         float ret = originDamage + originDamage * addDamageValue;
-
+        if (tableData.SKILLCASTTYPE == SkillCastType.Vision)
+        {
+            return ret * (1 + (GameBalance.VisionTreasurePerDamage *
+                               ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value));
+        }
         return ret;
     }
 

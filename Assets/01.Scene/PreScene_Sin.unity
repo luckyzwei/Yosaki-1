@@ -1854,6 +1854,10 @@ MonoBehaviour:
   adRewardTable: {fileID: 11400000, guid: d30db78f72c6a5e4ca4c54d62a695e51, type: 2}
   newSemesterPass: {fileID: 11400000, guid: 3f3b06f2604f01d4cb2c8d525c2393fb, type: 2}
   sinsuTower: {fileID: 11400000, guid: cc506b7d5738c724c8511beadcb8f28b, type: 2}
+  titleStage: {fileID: 11400000, guid: 656ca2d043f2730448290c0f95318961, type: 2}
+  titleLevel: {fileID: 11400000, guid: 8c05bdf8f59163742b55e730a44d8dfc, type: 2}
+  guildTowerTable: {fileID: 11400000, guid: 4f195c9068864f34f97883b764f6af20, type: 2}
+  suhoPass: {fileID: 11400000, guid: 55981bb4c392227458010fe3da51d683, type: 2}
 --- !u!224 &1672999882 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3778453797765526293, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -2134,6 +2138,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0a677264c21a4c84083a0d943714d210, type: 3}
   - {fileID: 21300000, guid: d960554906bfbdf4b8745e4dd4959b3e, type: 3}
   - {fileID: 21300000, guid: aed3414cbc59a874b8f1724da8315302, type: 3}
+  - {fileID: 21300000, guid: 0d105c786b3d52446ac3f57720d77f43, type: 3}
+  - {fileID: 21300000, guid: 569425e4a654e864fbaf190f669dd508, type: 3}
+  - {fileID: 21300000, guid: 358d86d1418eb3241ad0af7329bdc0dd, type: 3}
+  - {fileID: 21300000, guid: 370e95ad9ea82974faccf54c97820ddb, type: 3}
   rankFrame:
   - {fileID: 21300000, guid: 180b014bbd854ff4c8d26a3bc3108a29, type: 3}
   - {fileID: 21300000, guid: 045aff0737bd68d449d44a4a9bb5b849, type: 3}
@@ -2189,43 +2197,88 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.94728756, g: 0, b: 1, a: 1}
-  magicStone: {fileID: 21300000, guid: a04b455a2016d0d4db39dd66b1d507ab, type: 3}
-  blueStone: {fileID: 21300000, guid: 99f2d7ae766e00d4b88b7f2b3f1b81a0, type: 3}
-  gold: {fileID: 21300000, guid: 3746ae3bc982cb34395dac845129215b, type: 3}
-  memory: {fileID: 21300000, guid: 18f2be82b3cbd444f99da3c6e62a1e05, type: 3}
-  ticket: {fileID: 21300000, guid: f92eaf1adf309ac4f9e85ee08ad04eaf, type: 3}
-  marble: {fileID: 21300000, guid: cbd3fa06e1ae69841ac5dd29c19dddb8, type: 3}
-  dokebi: {fileID: 21300000, guid: a46cca1cd24582a42a49643763cd9c0f, type: 3}
-  WeaponUpgradeStone: {fileID: 21300000, guid: 03fc204df054b60488c7d174dd6eabaa, type: 3}
-  YomulExchangeStone: {fileID: 21300000, guid: 41461532e653e644ea3f06470851c42f, type: 3}
-  TigerBossStone: {fileID: 21300000, guid: b41f7241611efa747ad52417376c31fd, type: 3}
-  RabitBossStone: {fileID: 21300000, guid: da694a205dc35064d8ead3e837a6ee90, type: 3}
-  DragonBossStone: {fileID: 21300000, guid: bf1d3189e3b27f34c8bd0d0a0b6cc0dc, type: 3}
-  SnakeStone: {fileID: 21300000, guid: bfc41fe7940494940b4b1307626a4970, type: 3}
-  HorseStone: {fileID: 21300000, guid: 2ed908299577294428285c3c5645e295, type: 3}
-  SheepStone: {fileID: 21300000, guid: 0df214581d91964409de9d4d243f0a46, type: 3}
-  CockStone: {fileID: 21300000, guid: 5626c6414b5c68e44b05812eaa134b9f, type: 3}
-  MonkeyStone: {fileID: 21300000, guid: 9e600acda8c19ef48ad633df8ab2d523, type: 3}
-  DogStone: {fileID: 21300000, guid: e2ad86d6de14ab5469391097fc3dace4, type: 3}
-  PigStone: {fileID: 21300000, guid: 56c8bd377129fe34c969d05a5214c821, type: 3}
-  MiniGameTicket: {fileID: 21300000, guid: 197848c062a3ae94e8ebf32e7f34684d, type: 3}
-  MiniGameTicket2: {fileID: 21300000, guid: f0314456bafb2144f919ac925971861d, type: 3}
-  Songpyeon: {fileID: 21300000, guid: 3c9045590680db442a5478d1e073c2ff, type: 3}
-  EventCollection: {fileID: 21300000, guid: bb555679ad4feb44f86ab3d5fbcf5e0f, type: 3}
-  EventCollection2: {fileID: 21300000, guid: bb555679ad4feb44f86ab3d5fbcf5e0f, type: 3}
-  StageRelic: {fileID: 21300000, guid: 8248959b1ebafea4f8efe043b8f94ac6, type: 3}
-  Peach: {fileID: 21300000, guid: a072bfa8c45555340ae4c2fb4eb7696f, type: 3}
-  relic: {fileID: 21300000, guid: 38717bbcee62a394faef6bfa46e24fef, type: 3}
-  relicEnter: {fileID: 21300000, guid: 7e94a16d2c97db24d86b34a6ea324710, type: 3}
-  SwordPartial: {fileID: 21300000, guid: 4a4a4ca1b86cad9479b150d7159012a8, type: 3}
+  IndraWeapon: {fileID: 21300000, guid: a4d079d3d54cf544e8b32b8afd02a909, type: 3}
+  NataWeapon: {fileID: 21300000, guid: d6fd226ae3f90c2448982cddeb6c8720, type: 3}
+  OrochiWeapon: {fileID: 21300000, guid: da0e6ed49e83c2e4596e90abd9d6b7fc, type: 3}
+  MihoWeapon: {fileID: 21300000, guid: 5177e92c6d767074cbab3120237b4174, type: 3}
+  YeaRaeWeapon: {fileID: 21300000, guid: b11845ff09a466f4b8dade3f1b0d1a6e, type: 3}
+  GangrimWeapon: {fileID: 21300000, guid: d53ad2c8131ba8742bbea575c4242f6a, type: 3}
+  HaeWeapon: {fileID: 21300000, guid: a95d0009ecb8a674da29275545ba5160, type: 3}
+  ChunWeapon0: {fileID: 21300000, guid: e785d28ef5135714bbc245dafaa158e3, type: 3}
+  ChunWeapon1: {fileID: 21300000, guid: 52ad30337e6bb1f4fb00a32d5bb21019, type: 3}
+  ChunWeapon2: {fileID: 21300000, guid: d498a699c7e53b341986b0c35f02e27a, type: 3}
+  ChunWeapon3: {fileID: 21300000, guid: 913588fea0742814e99035f229996d6f, type: 3}
+  DokebiWeapon0: {fileID: 21300000, guid: 9ccbd261bb8f9bc4e83987d3a08a7a9d, type: 3}
+  DokebiWeapon1: {fileID: 21300000, guid: 16182a759216ca14183d71dfe95bd9ab, type: 3}
+  DokebiWeapon2: {fileID: 21300000, guid: ae2711fb8f5a1e541b77d287f3caeec8, type: 3}
+  DokebiWeapon3: {fileID: 21300000, guid: 831d1a4bdcc88c0458cbab50b6a96397, type: 3}
+  DokebiWeapon4: {fileID: 21300000, guid: 588f53af2d5b94a43b20abee29397e2c, type: 3}
+  DokebiWeapon5: {fileID: 21300000, guid: ebb39f8447694104e9119cc8c7253828, type: 3}
+  DokebiWeapon6: {fileID: 21300000, guid: 7f8ecff2a94a7ac4a9c6864cbca1b5e2, type: 3}
+  SasinsuWeapon0: {fileID: 21300000, guid: 67dd94ade483c4b44aee5c156d25a693, type: 3}
+  SasinsuWeapon1: {fileID: 21300000, guid: 17c3ac1d97cc67943950cbc2949bc16b, type: 3}
+  SasinsuWeapon2: {fileID: 21300000, guid: 9b70f07332df7224bb73e780ecab54e5, type: 3}
+  SasinsuWeapon3: {fileID: 21300000, guid: 367d8c373c0e5ad4381e0bdee0776527, type: 3}
+  DokebiWeapon7: {fileID: 21300000, guid: 92ff9046d10d16f49880a11cef452d45, type: 3}
+  DokebiWeapon8: {fileID: 21300000, guid: d244d1d2f0786c148b0cba989d7cd023, type: 3}
+  DokebiWeapon9: {fileID: 21300000, guid: 2d5a3e70124d383489b7509994fd4efc, type: 3}
+  SumisanWeapon0: {fileID: 21300000, guid: c29023c38f40dbe4d980d47dcf7d02be, type: 3}
+  SumisanWeapon1: {fileID: 21300000, guid: 6aa450841a0876c4c8d35a1c54a23e84, type: 3}
+  SumisanWeapon2: {fileID: 21300000, guid: 2ce5223b77f58314faa51a305a5094ad, type: 3}
+  SumisanWeapon3: {fileID: 21300000, guid: e569ad334b967814689486135db1a520, type: 3}
+  SumisanWeapon4: {fileID: 21300000, guid: 9ea12b10e2e4dee41ba07583a4595be3, type: 3}
+  SumisanWeapon5: {fileID: 21300000, guid: 616dc483f9b418e43997b1c50a7c712d, type: 3}
+  SumisanWeapon6: {fileID: 21300000, guid: 283cc84132f8d7a42a4be6277ccd9f7a, type: 3}
+  SahyungWeapon0: {fileID: 21300000, guid: 563bc991d1b944f48b3f225b60e21ec1, type: 3}
+  SahyungWeapon1: {fileID: 21300000, guid: e6bd6ed84a19ce743a44cf5494aa20d4, type: 3}
+  SahyungWeapon2: {fileID: 21300000, guid: 1f5264fb11cf5544eab4d5563de2e26f, type: 3}
+  SahyungWeapon3: {fileID: 21300000, guid: d7936e14266b8ce42aa86bc5147eb744, type: 3}
+  ThiefWeapon0: {fileID: 21300000, guid: fd69ef9c215b1d042bdc71ad34f57a5d, type: 3}
+  ThiefWeapon1: {fileID: 21300000, guid: 57a21678b94efb040a6d90c392ba164d, type: 3}
+  ThiefWeapon2: {fileID: 21300000, guid: 628c198cbf406114d998170c23461136, type: 3}
+  ThiefWeapon3: {fileID: 21300000, guid: 601665f71c1ac514cb648d0493212e3a, type: 3}
+  NinjaWeapon0: {fileID: 21300000, guid: 8ca5889b03c89a84993b5ae13b8c37a3, type: 3}
+  NinjaWeapon1: {fileID: 21300000, guid: 4da7a83df1b986c44af6a167bee97d7b, type: 3}
+  NinjaWeapon2: {fileID: 21300000, guid: cf323c72d816a4b489846852fd6abc46, type: 3}
+  KingWeapon0: {fileID: 21300000, guid: c94b9740afcc427418b24c14999db920, type: 3}
+  KingWeapon1: {fileID: 21300000, guid: a5a1dcaad8e3d0d4ea707d2ad5d46cd7, type: 3}
+  KingWeapon2: {fileID: 21300000, guid: be766c8ca1893ba4fbbd128364402457, type: 3}
+  KingWeapon3: {fileID: 21300000, guid: 204e2b714b426ec4ab5841bfaaeb97fe, type: 3}
+  ChunSun0: {fileID: 21300000, guid: 4f63300c771529e49801fd1615d788fa, type: 3}
+  ChunSun1: {fileID: 21300000, guid: e785d28ef5135714bbc245dafaa158e3, type: 3}
+  ChunSun2: {fileID: 21300000, guid: 52ad30337e6bb1f4fb00a32d5bb21019, type: 3}
+  RecommendWeapon0: {fileID: 21300000, guid: 09294b7d2a3859642ab9a2eb01335f3e, type: 3}
+  RecommendWeapon1: {fileID: 21300000, guid: c202382314bbe4a4b813bb148816fbc1, type: 3}
+  RecommendWeapon2: {fileID: 21300000, guid: a85ebb1c85d0b964a88b7ad90143cf46, type: 3}
+  RecommendWeapon3: {fileID: 21300000, guid: b841a20a758b45d4aaca6d07b9b49b46, type: 3}
+  RecommendWeapon4: {fileID: 21300000, guid: 6bb85abb6bf3ae042abeb5e196180b0d, type: 3}
+  RecommendWeapon5: {fileID: 21300000, guid: 4f6012156016f214184a4b7fc205aef5, type: 3}
+  RecommendWeapon6: {fileID: 21300000, guid: c304109837c50e44b9e52e47f4a4c504, type: 3}
+  RecommendWeapon7: {fileID: 21300000, guid: 90ed1a4d59a0c2149951e93dcaf4d97d, type: 3}
+  RecommendWeapon8: {fileID: 21300000, guid: abd389974e214394a9c5393eb9bb408a, type: 3}
+  RecommendWeapon9: {fileID: 21300000, guid: 5463a64c7fcebc1499b16808077c399e, type: 3}
+  RecommendWeapon10: {fileID: 21300000, guid: efda315c162aaac44914968c5061039c, type: 3}
+  RecommendWeapon11: {fileID: 21300000, guid: 09ff03b465b49224282f55ed4562ac61, type: 3}
+  RecommendWeapon12: {fileID: 21300000, guid: 4d27829568141e8479dd2a27f8fd14f3, type: 3}
+  RecommendWeapon13: {fileID: 21300000, guid: 613a8762e5cb5244f8fb661e7a912c9b, type: 3}
+  RecommendWeapon14: {fileID: 21300000, guid: 39d0f36d103a7634faf7b27269e8ec76, type: 3}
+  RecommendWeapon15: {fileID: 21300000, guid: 5aaa544493c79d24f918cc3f69aaa81b, type: 3}
+  RecommendWeapon16: {fileID: 21300000, guid: 7f367c662ad084b4f9e261fc928341d8, type: 3}
+  RecommendWeapon17: {fileID: 21300000, guid: 94dd2d37c9f326845b43ed21f1dd61c8, type: 3}
+  RecommendWeapon18: {fileID: 21300000, guid: c0de2933b3802d14ea589dea7a9c5669, type: 3}
+  weapon81: {fileID: 21300000, guid: 61f77d3afacf315448f97a5f84d298e1, type: 3}
+  RecommendWeapon19: {fileID: 21300000, guid: 1daab74769b4bcd4bb6144bb05cc05b8, type: 3}
+  RecommendWeapon20: {fileID: 21300000, guid: 97afcb427dfa6af4aa0c5524ae1ac41f, type: 3}
+  weapon90: {fileID: 21300000, guid: 7055ee8367f63c04d96306e8baacde39, type: 3}
+  RecommendWeapon21: {fileID: 21300000, guid: 62dbf0c8d35de4347ae2656a10ee38fa, type: 3}
+  RecommendWeapon22: {fileID: 21300000, guid: 0a59c461f8872c14c813074fac7bc726, type: 3}
   HaeNorigae: {fileID: 21300000, guid: 455ae36d53dcc7e4f8fddd5d71da6258, type: 3}
-  HaePet: {fileID: 21300000, guid: 4b6a19fc4dc8ab04fad7b7ac836ded8d, type: 3}
   SamNorigae: {fileID: 21300000, guid: 038e00f8068e0994db8654f48c6b77a6, type: 3}
-  SamPet: {fileID: 21300000, guid: 2765d4f4025a19d459a2d25aa6885548, type: 3}
   KirinNorigae: {fileID: 21300000, guid: e6c8979ec697c3740a539ad3873970de, type: 3}
-  DogNorigae: {fileID: 21300000, guid: 36ffa7d9fd03a9a4b9fd0e633891557c, type: 3}
-  Kirin_Pet: {fileID: 21300000, guid: 26a840a12ab03ab4b84adc7b47983d27, type: 3}
   RabitNorigae: {fileID: 21300000, guid: a7cb6677e56373e42ba63a203132bcbb, type: 3}
+  DogNorigae: {fileID: 21300000, guid: 36ffa7d9fd03a9a4b9fd0e633891557c, type: 3}
+  MihoNorigae: {fileID: 21300000, guid: ff40ffd653346d54cb86c7d3e27ca750, type: 3}
+  ChunMaNorigae: {fileID: 21300000, guid: 6f223905444b48f40a96f3ced4cac49c, type: 3}
   YeaRaeNorigae: {fileID: 21300000, guid: a2faa18ad3093af40bc7a93dde195110, type: 3}
   GangrimNorigae: {fileID: 21300000, guid: 1a3ae62f65f70cc49a7393bc9b3f5f5f, type: 3}
   ChunNorigae0: {fileID: 21300000, guid: 75c7a6ae45c30294f9759f897ae858d3, type: 3}
@@ -2259,6 +2312,10 @@ MonoBehaviour:
   NinjaNorigae0: {fileID: 21300000, guid: cb3c11753ec6b30418d6642ef9c979bf, type: 3}
   NinjaNorigae1: {fileID: 21300000, guid: 1a7fea9736d943847a6bf819d709b555, type: 3}
   NinjaNorigae2: {fileID: 21300000, guid: 96edee91aa14b0e41852ee7e1c11e6e9, type: 3}
+  KingNorigae0: {fileID: 21300000, guid: 76e08b412b3b5ca4eb9f199df4404d81, type: 3}
+  KingNorigae1: {fileID: 21300000, guid: d0cb47c97f03965438e16acb94703283, type: 3}
+  KingNorigae2: {fileID: 21300000, guid: a3e06ef43be848c4b8ffa571921aa919, type: 3}
+  KingNorigae3: {fileID: 21300000, guid: 16fe7c44aa6350742a5fe0377cc519a6, type: 3}
   MonthNorigae0: {fileID: 21300000, guid: b8e4966468cd428418fa5447c72fabe7, type: 3}
   MonthNorigae1: {fileID: 21300000, guid: 534227b3d8d3ed346912306890c7d5ee, type: 3}
   MonthNorigae2: {fileID: 21300000, guid: e5a11b2c900be0a478a8bef1cd907e2d, type: 3}
@@ -2274,12 +2331,9 @@ MonoBehaviour:
   DokebiHorn7: {fileID: 21300000, guid: 7bfba96bb2b1b3d4181895e47e40a26b, type: 3}
   DokebiHorn8: {fileID: 21300000, guid: 0b690618a91672541856b120cbbad5e5, type: 3}
   DokebiHorn9: {fileID: 21300000, guid: 326e8fe339bdb7c479c68e3a29d28472, type: 3}
-  ChunSun0: {fileID: 21300000, guid: 4f63300c771529e49801fd1615d788fa, type: 3}
-  ChunSun1: {fileID: 21300000, guid: e785d28ef5135714bbc245dafaa158e3, type: 3}
-  ChunSun2: {fileID: 21300000, guid: 52ad30337e6bb1f4fb00a32d5bb21019, type: 3}
-  YeaRaeWeapon: {fileID: 21300000, guid: b11845ff09a466f4b8dade3f1b0d1a6e, type: 3}
-  GangrimWeapon: {fileID: 21300000, guid: d53ad2c8131ba8742bbea575c4242f6a, type: 3}
-  HaeWeapon: {fileID: 21300000, guid: a95d0009ecb8a674da29275545ba5160, type: 3}
+  HaePet: {fileID: 21300000, guid: 4b6a19fc4dc8ab04fad7b7ac836ded8d, type: 3}
+  SamPet: {fileID: 21300000, guid: 2765d4f4025a19d459a2d25aa6885548, type: 3}
+  Kirin_Pet: {fileID: 21300000, guid: 26a840a12ab03ab4b84adc7b47983d27, type: 3}
   RabitPet: {fileID: 21300000, guid: 9d19db9a0d9b6c64f8bad19663ae6967, type: 3}
   DogPet: {fileID: 21300000, guid: fd597b2f0d1d3ac488607a5733dd8129, type: 3}
   ChunMaPet: {fileID: 21300000, guid: b455c23dd2cddce46bfce5fe97a4525c, type: 3}
@@ -2295,15 +2349,69 @@ MonoBehaviour:
   SahyungPet1: {fileID: 21300000, guid: 398afb046f53b134d8f5dbdbe3108704, type: 3}
   SahyungPet2: {fileID: 21300000, guid: 5e56e40ad667d51439ebefb2fd40e475, type: 3}
   SahyungPet3: {fileID: 21300000, guid: c022a89640e104a42b61d0bfdb520391, type: 3}
+  VisionPet0: {fileID: 21300000, guid: 99e3fda636dd0ed4cb97d929db8922cd, type: 3}
+  VisionPet1: {fileID: 21300000, guid: 0fd523d10b1c97c40b033246d36469ef, type: 3}
+  VisionPet2: {fileID: 21300000, guid: 74fc88caf4ca71e4fa09c71669db37e6, type: 3}
+  VisionPet3: {fileID: 21300000, guid: 38bffbc9bec488f4cbc0defcd898cdbd, type: 3}
+  Sun0: {fileID: 21300000, guid: 4fd01523025288c4faee48879efe46ab, type: 3}
+  Sun1: {fileID: 21300000, guid: ceb06399ed4a79c4782fc8436711bc43, type: 3}
+  Sun2: {fileID: 21300000, guid: d1948d105ef8cec49a2516533c1c07a2, type: 3}
+  Sun3: {fileID: 21300000, guid: d1864e77afc4ed74d9c7ed038809a4e1, type: 3}
+  Sun4: {fileID: 21300000, guid: f331ad8ad3ff39c4f8abf10c1ff966a1, type: 3}
+  Chun0: {fileID: 21300000, guid: 3d65fc423b14c27418adb344940612ff, type: 3}
+  Chun1: {fileID: 21300000, guid: 0c3bf5618c4122041b6ef15a4da900a9, type: 3}
+  Chun2: {fileID: 21300000, guid: ec9b5be5d87c3a34f8047fbbc355e965, type: 3}
+  Chun3: {fileID: 21300000, guid: 9cf0edb388b68a44fa40fc1138948601, type: 3}
+  Chun4: {fileID: 21300000, guid: 2d66fb2411c3eb84fa80ae8e211f1b54, type: 3}
+  DokebiSkill0: {fileID: 21300000, guid: 12e5ced68b0b1d947a4231eb31105456, type: 3}
+  DokebiSkill1: {fileID: 21300000, guid: 0600cef266b25b94f87fbb2fbe86b28d, type: 3}
+  DokebiSkill2: {fileID: 21300000, guid: 4c10317a8f3c9db49a639b50377c012e, type: 3}
+  DokebiSkill3: {fileID: 21300000, guid: afdba12bb6035cc478a8f69e7caba3f2, type: 3}
+  DokebiSkill4: {fileID: 21300000, guid: 989f4fa31fa6c7441be711b3ff432bc0, type: 3}
+  FourSkill0: {fileID: 21300000, guid: 6c37920fbf99cc24ca83a1fdaa04401f, type: 3}
+  FourSkill1: {fileID: 21300000, guid: 149bef3000aea4846b8df9269385c525, type: 3}
+  FourSkill2: {fileID: 21300000, guid: 400dad3484e712f4299373545359f736, type: 3}
+  FourSkill3: {fileID: 21300000, guid: ca3ce63b992993e43b7d74e0025fd951, type: 3}
+  FourSkill4: {fileID: 21300000, guid: cea264cfa6a78054f98e845dce1c83d8, type: 3}
+  FourSkill5: {fileID: 21300000, guid: e045517f19d76bd4ca4c23ca055741aa, type: 3}
+  FourSkill6: {fileID: 21300000, guid: c30ad261ee543f642b0c19184f554ef1, type: 3}
+  FourSkill7: {fileID: 21300000, guid: 2b81f11b6f81bac4d8c53809754c8ccb, type: 3}
+  FourSkill8: {fileID: 21300000, guid: 7c8eb90294e42c349b0e74f44058328e, type: 3}
+  VisionSkill0: {fileID: 21300000, guid: 0f5b15f3959cf1248a11b37cc7c1bf38, type: 3}
+  VisionSkill1: {fileID: 21300000, guid: fb00c63ffe06d6b409cc5a5977239f4a, type: 3}
+  VisionSkill2: {fileID: 21300000, guid: 65904a987f2978e4eae03438d46262b8, type: 3}
+  VisionSkill3: {fileID: 21300000, guid: eb234862d1c5e4346920e3e158599a4d, type: 3}
+  magicStone: {fileID: 21300000, guid: a04b455a2016d0d4db39dd66b1d507ab, type: 3}
+  blueStone: {fileID: 21300000, guid: 99f2d7ae766e00d4b88b7f2b3f1b81a0, type: 3}
+  gold: {fileID: 21300000, guid: 3746ae3bc982cb34395dac845129215b, type: 3}
+  memory: {fileID: 21300000, guid: 18f2be82b3cbd444f99da3c6e62a1e05, type: 3}
+  ticket: {fileID: 21300000, guid: f92eaf1adf309ac4f9e85ee08ad04eaf, type: 3}
+  marble: {fileID: 21300000, guid: cbd3fa06e1ae69841ac5dd29c19dddb8, type: 3}
+  dokebi: {fileID: 21300000, guid: a46cca1cd24582a42a49643763cd9c0f, type: 3}
+  WeaponUpgradeStone: {fileID: 21300000, guid: 03fc204df054b60488c7d174dd6eabaa, type: 3}
+  YomulExchangeStone: {fileID: 21300000, guid: 41461532e653e644ea3f06470851c42f, type: 3}
+  TigerBossStone: {fileID: 21300000, guid: b41f7241611efa747ad52417376c31fd, type: 3}
+  RabitBossStone: {fileID: 21300000, guid: da694a205dc35064d8ead3e837a6ee90, type: 3}
+  DragonBossStone: {fileID: 21300000, guid: bf1d3189e3b27f34c8bd0d0a0b6cc0dc, type: 3}
+  SnakeStone: {fileID: 21300000, guid: bfc41fe7940494940b4b1307626a4970, type: 3}
+  HorseStone: {fileID: 21300000, guid: 2ed908299577294428285c3c5645e295, type: 3}
+  SheepStone: {fileID: 21300000, guid: 0df214581d91964409de9d4d243f0a46, type: 3}
+  CockStone: {fileID: 21300000, guid: 5626c6414b5c68e44b05812eaa134b9f, type: 3}
+  MonkeyStone: {fileID: 21300000, guid: 9e600acda8c19ef48ad633df8ab2d523, type: 3}
+  DogStone: {fileID: 21300000, guid: e2ad86d6de14ab5469391097fc3dace4, type: 3}
+  PigStone: {fileID: 21300000, guid: 56c8bd377129fe34c969d05a5214c821, type: 3}
+  MiniGameTicket: {fileID: 21300000, guid: 197848c062a3ae94e8ebf32e7f34684d, type: 3}
+  MiniGameTicket2: {fileID: 21300000, guid: f0314456bafb2144f919ac925971861d, type: 3}
+  relicEnter: {fileID: 21300000, guid: 7e94a16d2c97db24d86b34a6ea324710, type: 3}
+  SwordPartial: {fileID: 21300000, guid: 4a4a4ca1b86cad9479b150d7159012a8, type: 3}
   Hel: {fileID: 21300000, guid: c7d03bb15fb453547ad2ff4daed7704c, type: 3}
   YeoMarble: {fileID: 21300000, guid: 6498147ea05f8e34798fdc10a5f6ab66, type: 3}
   du: {fileID: 21300000, guid: acf360076936dc34f9368e60902cb253, type: 3}
   Fw: {fileID: 21300000, guid: e6873466138c0134abeb39091be2e096, type: 3}
   Cw: {fileID: 21300000, guid: bff428fb78fe93b4ea1dfc4e51aabb1a, type: 3}
-  Event_Fall: {fileID: 21300000, guid: 5ab2824b6a27d1c4fb0a913402f088ae, type: 3}
-  Event_Fall_Gold: {fileID: 21300000, guid: 1d092eb7a781a5b48b0afc61e1055f11, type: 3}
-  Event_XMas: {fileID: 21300000, guid: 88013ee1676187b4db84e6314715c079, type: 3}
-  Event_Mission: {fileID: 21300000, guid: 1f8c887606a5d274ba859c15a44a7262, type: 3}
+  StageRelic: {fileID: 21300000, guid: 8248959b1ebafea4f8efe043b8f94ac6, type: 3}
+  Peach: {fileID: 21300000, guid: a072bfa8c45555340ae4c2fb4eb7696f, type: 3}
+  relic: {fileID: 21300000, guid: 38717bbcee62a394faef6bfa46e24fef, type: 3}
   FoxMaskPartial: {fileID: 21300000, guid: 3a533ea12e235f34c933c4c952e86390, type: 3}
   DokebiFire: {fileID: 21300000, guid: 49f456d0b10e5274dbc4098b38cadbbf, type: 3}
   SuhoPetFeed: {fileID: 21300000, guid: e3f66f5a2cd608142b2c1faefaf4bd5e, type: 3}
@@ -2315,6 +2423,10 @@ MonoBehaviour:
   DokebiFireEnhance: {fileID: 21300000, guid: 0c31b2d7b31d5dd41bc8efb258fda795, type: 3}
   SusanoTreasure: {fileID: 21300000, guid: e6003eb4cf98f1045b30517e1f0e4a32, type: 3}
   SahyungTreasure: {fileID: 21300000, guid: 5eafe4bb3025a5c4ca15663a26f57f39, type: 3}
+  VisionTreasure: {fileID: 21300000, guid: 8cf4b33ff39294544aa0b3b801b6ece8, type: 3}
+  GuildTowerClearTicket: {fileID: 21300000, guid: e1c2800e99ce64542832990a20ea6670,
+    type: 3}
+  GuildTowerHorn: {fileID: 21300000, guid: e0e82948e2df61f439ebca2b7489396a, type: 3}
   SinsuMarble: {fileID: 21300000, guid: 23007cfe7b23eba45be70d9a01d71571, type: 3}
   SumiFire: {fileID: 21300000, guid: 717b0c3f3e20a0c40a1bb756cc7c8a37, type: 3}
   Tresure: {fileID: 21300000, guid: c46bacf669867ab49972c7977a30b0f2, type: 3}
@@ -2322,6 +2434,13 @@ MonoBehaviour:
   NewGachaEnergy: {fileID: 21300000, guid: 9b3fb5643279b8d4892d74d675004783, type: 3}
   DokebiBundle: {fileID: 21300000, guid: 9503904add1118c4ab34afba1f0ccdbd, type: 3}
   SinsuRelic: {fileID: 21300000, guid: b42f2f574639adb4ea943e5f6e4c38c4, type: 3}
+  Songpyeon: {fileID: 21300000, guid: 3c9045590680db442a5478d1e073c2ff, type: 3}
+  EventCollection: {fileID: 21300000, guid: bb555679ad4feb44f86ab3d5fbcf5e0f, type: 3}
+  EventCollection2: {fileID: 21300000, guid: bb555679ad4feb44f86ab3d5fbcf5e0f, type: 3}
+  Event_Fall: {fileID: 21300000, guid: 5ab2824b6a27d1c4fb0a913402f088ae, type: 3}
+  Event_Fall_Gold: {fileID: 21300000, guid: 1d092eb7a781a5b48b0afc61e1055f11, type: 3}
+  Event_XMas: {fileID: 21300000, guid: 88013ee1676187b4db84e6314715c079, type: 3}
+  Event_Mission: {fileID: 21300000, guid: 1f8c887606a5d274ba859c15a44a7262, type: 3}
   EventDice: {fileID: 21300000, guid: 7d7ecd5bea1b6dd4093b17216da70a44, type: 3}
   enemySpineAssets:
   - {fileID: 11400000, guid: d43e1532e76e82d498f78f121b929a76, type: 2}
@@ -2371,102 +2490,11 @@ MonoBehaviour:
   SinSkill2: {fileID: 21300000, guid: 8d2f4f1ee278796479f74b25691532d9, type: 3}
   SinSkill3: {fileID: 21300000, guid: 333b0ce85ea2632459b2d43730441afa, type: 3}
   LeeMuGiStone: {fileID: 21300000, guid: a083e1223f3fe1e4387897d4ecbb1607, type: 3}
-  IndraWeapon: {fileID: 21300000, guid: a4d079d3d54cf544e8b32b8afd02a909, type: 3}
   Event_Item_SnowMan: {fileID: 21300000, guid: 95e572421fae933438402064414e1f60, type: 3}
-  NataWeapon: {fileID: 21300000, guid: d6fd226ae3f90c2448982cddeb6c8720, type: 3}
-  OrochiWeapon: {fileID: 21300000, guid: da0e6ed49e83c2e4596e90abd9d6b7fc, type: 3}
-  ChunWeapon0: {fileID: 21300000, guid: e785d28ef5135714bbc245dafaa158e3, type: 3}
-  ChunWeapon1: {fileID: 21300000, guid: 52ad30337e6bb1f4fb00a32d5bb21019, type: 3}
-  ChunWeapon2: {fileID: 21300000, guid: d498a699c7e53b341986b0c35f02e27a, type: 3}
-  ChunWeapon3: {fileID: 21300000, guid: 913588fea0742814e99035f229996d6f, type: 3}
-  DokebiWeapon0: {fileID: 21300000, guid: 9ccbd261bb8f9bc4e83987d3a08a7a9d, type: 3}
-  DokebiWeapon1: {fileID: 21300000, guid: 16182a759216ca14183d71dfe95bd9ab, type: 3}
-  DokebiWeapon2: {fileID: 21300000, guid: ae2711fb8f5a1e541b77d287f3caeec8, type: 3}
-  DokebiWeapon3: {fileID: 21300000, guid: 831d1a4bdcc88c0458cbab50b6a96397, type: 3}
-  DokebiWeapon4: {fileID: 21300000, guid: 588f53af2d5b94a43b20abee29397e2c, type: 3}
-  DokebiWeapon5: {fileID: 21300000, guid: ebb39f8447694104e9119cc8c7253828, type: 3}
-  DokebiWeapon6: {fileID: 21300000, guid: 7f8ecff2a94a7ac4a9c6864cbca1b5e2, type: 3}
-  DokebiWeapon7: {fileID: 21300000, guid: 92ff9046d10d16f49880a11cef452d45, type: 3}
-  DokebiWeapon8: {fileID: 21300000, guid: d244d1d2f0786c148b0cba989d7cd023, type: 3}
-  DokebiWeapon9: {fileID: 21300000, guid: 2d5a3e70124d383489b7509994fd4efc, type: 3}
-  SumisanWeapon0: {fileID: 21300000, guid: c29023c38f40dbe4d980d47dcf7d02be, type: 3}
-  SumisanWeapon1: {fileID: 21300000, guid: 6aa450841a0876c4c8d35a1c54a23e84, type: 3}
-  SumisanWeapon2: {fileID: 21300000, guid: 2ce5223b77f58314faa51a305a5094ad, type: 3}
-  SumisanWeapon3: {fileID: 21300000, guid: e569ad334b967814689486135db1a520, type: 3}
-  SumisanWeapon4: {fileID: 21300000, guid: 9ea12b10e2e4dee41ba07583a4595be3, type: 3}
-  SumisanWeapon5: {fileID: 21300000, guid: 616dc483f9b418e43997b1c50a7c712d, type: 3}
-  SumisanWeapon6: {fileID: 21300000, guid: 283cc84132f8d7a42a4be6277ccd9f7a, type: 3}
-  ThiefWeapon0: {fileID: 21300000, guid: fd69ef9c215b1d042bdc71ad34f57a5d, type: 3}
-  ThiefWeapon1: {fileID: 21300000, guid: 57a21678b94efb040a6d90c392ba164d, type: 3}
-  ThiefWeapon2: {fileID: 21300000, guid: 628c198cbf406114d998170c23461136, type: 3}
-  ThiefWeapon3: {fileID: 21300000, guid: 601665f71c1ac514cb648d0493212e3a, type: 3}
-  NinjaWeapon0: {fileID: 21300000, guid: 8ca5889b03c89a84993b5ae13b8c37a3, type: 3}
-  NinjaWeapon1: {fileID: 21300000, guid: 4da7a83df1b986c44af6a167bee97d7b, type: 3}
-  NinjaWeapon2: {fileID: 21300000, guid: cf323c72d816a4b489846852fd6abc46, type: 3}
-  SasinsuWeapon0: {fileID: 21300000, guid: 67dd94ade483c4b44aee5c156d25a693, type: 3}
-  SasinsuWeapon1: {fileID: 21300000, guid: 17c3ac1d97cc67943950cbc2949bc16b, type: 3}
-  SasinsuWeapon2: {fileID: 21300000, guid: 9b70f07332df7224bb73e780ecab54e5, type: 3}
-  SasinsuWeapon3: {fileID: 21300000, guid: 367d8c373c0e5ad4381e0bdee0776527, type: 3}
-  SahyungWeapon0: {fileID: 21300000, guid: 563bc991d1b944f48b3f225b60e21ec1, type: 3}
-  SahyungWeapon1: {fileID: 21300000, guid: e6bd6ed84a19ce743a44cf5494aa20d4, type: 3}
-  SahyungWeapon2: {fileID: 21300000, guid: 1f5264fb11cf5544eab4d5563de2e26f, type: 3}
-  SahyungWeapon3: {fileID: 21300000, guid: d7936e14266b8ce42aa86bc5147eb744, type: 3}
   NataSkill: {fileID: 21300000, guid: ffb2316e10d65634eb2778da8e86bfc8, type: 3}
   OrochiSkill: {fileID: 21300000, guid: bb0a7d588821a834289dc833bb262371, type: 3}
   GangrimSkill: {fileID: 21300000, guid: 14eb64f14abdfc54ebbbb7c6705f1e6f, type: 3}
-  MihoWeapon: {fileID: 21300000, guid: 5177e92c6d767074cbab3120237b4174, type: 3}
-  MihoNorigae: {fileID: 21300000, guid: ff40ffd653346d54cb86c7d3e27ca750, type: 3}
   MihoTail: {fileID: 21300000, guid: c238e54b43317304aa32f232aa9c3369, type: 3}
-  ChunMaNorigae: {fileID: 21300000, guid: 6f223905444b48f40a96f3ced4cac49c, type: 3}
-  RecommendWeapon0: {fileID: 21300000, guid: 09294b7d2a3859642ab9a2eb01335f3e, type: 3}
-  RecommendWeapon1: {fileID: 21300000, guid: c202382314bbe4a4b813bb148816fbc1, type: 3}
-  RecommendWeapon2: {fileID: 21300000, guid: a85ebb1c85d0b964a88b7ad90143cf46, type: 3}
-  RecommendWeapon3: {fileID: 21300000, guid: b841a20a758b45d4aaca6d07b9b49b46, type: 3}
-  RecommendWeapon4: {fileID: 21300000, guid: 6bb85abb6bf3ae042abeb5e196180b0d, type: 3}
-  RecommendWeapon5: {fileID: 21300000, guid: 4f6012156016f214184a4b7fc205aef5, type: 3}
-  RecommendWeapon6: {fileID: 21300000, guid: c304109837c50e44b9e52e47f4a4c504, type: 3}
-  RecommendWeapon7: {fileID: 21300000, guid: 90ed1a4d59a0c2149951e93dcaf4d97d, type: 3}
-  RecommendWeapon8: {fileID: 21300000, guid: abd389974e214394a9c5393eb9bb408a, type: 3}
-  RecommendWeapon9: {fileID: 21300000, guid: 5463a64c7fcebc1499b16808077c399e, type: 3}
-  RecommendWeapon10: {fileID: 21300000, guid: efda315c162aaac44914968c5061039c, type: 3}
-  RecommendWeapon11: {fileID: 21300000, guid: 09ff03b465b49224282f55ed4562ac61, type: 3}
-  RecommendWeapon12: {fileID: 21300000, guid: 4d27829568141e8479dd2a27f8fd14f3, type: 3}
-  RecommendWeapon13: {fileID: 21300000, guid: 613a8762e5cb5244f8fb661e7a912c9b, type: 3}
-  RecommendWeapon14: {fileID: 21300000, guid: 39d0f36d103a7634faf7b27269e8ec76, type: 3}
-  RecommendWeapon15: {fileID: 21300000, guid: 5aaa544493c79d24f918cc3f69aaa81b, type: 3}
-  RecommendWeapon16: {fileID: 21300000, guid: 7f367c662ad084b4f9e261fc928341d8, type: 3}
-  RecommendWeapon17: {fileID: 21300000, guid: 94dd2d37c9f326845b43ed21f1dd61c8, type: 3}
-  RecommendWeapon18: {fileID: 21300000, guid: c0de2933b3802d14ea589dea7a9c5669, type: 3}
-  RecommendWeapon19: {fileID: 21300000, guid: 1daab74769b4bcd4bb6144bb05cc05b8, type: 3}
-  RecommendWeapon20: {fileID: 21300000, guid: 97afcb427dfa6af4aa0c5524ae1ac41f, type: 3}
-  RecommendWeapon21: {fileID: 21300000, guid: 62dbf0c8d35de4347ae2656a10ee38fa, type: 3}
-  RecommendWeapon22: {fileID: 21300000, guid: 0a59c461f8872c14c813074fac7bc726, type: 3}
-  weapon81: {fileID: 21300000, guid: 61f77d3afacf315448f97a5f84d298e1, type: 3}
-  weapon90: {fileID: 21300000, guid: 7055ee8367f63c04d96306e8baacde39, type: 3}
-  Sun0: {fileID: 21300000, guid: 4fd01523025288c4faee48879efe46ab, type: 3}
-  Sun1: {fileID: 21300000, guid: ceb06399ed4a79c4782fc8436711bc43, type: 3}
-  Sun2: {fileID: 21300000, guid: d1948d105ef8cec49a2516533c1c07a2, type: 3}
-  Sun3: {fileID: 21300000, guid: d1864e77afc4ed74d9c7ed038809a4e1, type: 3}
-  Sun4: {fileID: 21300000, guid: f331ad8ad3ff39c4f8abf10c1ff966a1, type: 3}
-  Chun0: {fileID: 21300000, guid: 3d65fc423b14c27418adb344940612ff, type: 3}
-  Chun1: {fileID: 21300000, guid: 0c3bf5618c4122041b6ef15a4da900a9, type: 3}
-  Chun2: {fileID: 21300000, guid: ec9b5be5d87c3a34f8047fbbc355e965, type: 3}
-  Chun3: {fileID: 21300000, guid: 9cf0edb388b68a44fa40fc1138948601, type: 3}
-  Chun4: {fileID: 21300000, guid: 2d66fb2411c3eb84fa80ae8e211f1b54, type: 3}
-  DokebiSkill0: {fileID: 21300000, guid: 12e5ced68b0b1d947a4231eb31105456, type: 3}
-  DokebiSkill1: {fileID: 21300000, guid: 0600cef266b25b94f87fbb2fbe86b28d, type: 3}
-  DokebiSkill2: {fileID: 21300000, guid: 4c10317a8f3c9db49a639b50377c012e, type: 3}
-  DokebiSkill3: {fileID: 21300000, guid: afdba12bb6035cc478a8f69e7caba3f2, type: 3}
-  DokebiSkill4: {fileID: 21300000, guid: 989f4fa31fa6c7441be711b3ff432bc0, type: 3}
-  FourSkill0: {fileID: 21300000, guid: 6c37920fbf99cc24ca83a1fdaa04401f, type: 3}
-  FourSkill1: {fileID: 21300000, guid: 149bef3000aea4846b8df9269385c525, type: 3}
-  FourSkill2: {fileID: 21300000, guid: 400dad3484e712f4299373545359f736, type: 3}
-  FourSkill3: {fileID: 21300000, guid: ca3ce63b992993e43b7d74e0025fd951, type: 3}
-  FourSkill4: {fileID: 21300000, guid: cea264cfa6a78054f98e845dce1c83d8, type: 3}
-  FourSkill5: {fileID: 21300000, guid: e045517f19d76bd4ca4c23ca055741aa, type: 3}
-  FourSkill6: {fileID: 21300000, guid: c30ad261ee543f642b0c19184f554ef1, type: 3}
-  FourSkill7: {fileID: 21300000, guid: 2b81f11b6f81bac4d8c53809754c8ccb, type: 3}
-  FourSkill8: {fileID: 21300000, guid: 7c8eb90294e42c349b0e74f44058328e, type: 3}
   HellMark0: {fileID: 21300000, guid: 8152575692431064ead34f72ebdd55f0, type: 3}
   HellMark1: {fileID: 21300000, guid: 8521f1823f0d56640bce58bdd5673fe0, type: 3}
   HellMark2: {fileID: 21300000, guid: 8521f1823f0d56640bce58bdd5673fe0, type: 3}
@@ -2685,6 +2713,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 958b7fb71cc892b419c79031c2a6e138, type: 2}
   - {fileID: 11400000, guid: 9b9511d0dbeec7a4fa356ae5165fe5c9, type: 2}
   - {fileID: 11400000, guid: e3acebe4ff0ac9e46a6223d917766b26, type: 2}
+  - {fileID: 11400000, guid: d4862a01221eab84d8a6ab484633b1ec, type: 2}
+  - {fileID: 11400000, guid: e9194b1d0480d294cbeacd127e847b43, type: 2}
+  - {fileID: 11400000, guid: e3d274173ec6cff4fa8c1ebb09f102fc, type: 2}
+  - {fileID: 11400000, guid: d089f4c0fda0ea64eb0dc0c1d0916153, type: 2}
   petCostumeList:
   - {fileID: 11400000, guid: 3d9145f3f8361c944acb6cd70679d6e2, type: 2}
   - {fileID: 11400000, guid: 206e7bbe5e49e2f4bb8859c83698d1d7, type: 2}
@@ -2718,6 +2750,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ee6840b72534b8444954738442e455b8, type: 2}
   - {fileID: 11400000, guid: 9cb1881dd5eb97247a41d609862973fc, type: 2}
   - {fileID: 11400000, guid: ac90ade9a549cbb42a4db51e45c4f787, type: 2}
+  - {fileID: 11400000, guid: 95baf0dd59dd97943b7577633e2f07b3, type: 2}
+  - {fileID: 11400000, guid: 6904c5a851e04584788b08713f670839, type: 2}
+  - {fileID: 11400000, guid: b7008038353543540ac660e7d34994b6, type: 2}
+  - {fileID: 11400000, guid: 7c0f7ccd3cdc2734db9e0e0856d11cb8, type: 2}
   wingList:
   - {fileID: 1824337048444021639, guid: fa4281d5278f08f4bb6cfbef4bcd93fa, type: 3}
   - {fileID: 8084249260456971432, guid: 40b10dbb47e87d746a73b03ca26b9cfd, type: 3}
@@ -3676,7 +3712,7 @@ PrefabInstance:
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}
       propertyPath: editorLoginId
-      value: g08034088093496174688
+      value: clone6
       objectReference: {fileID: 0}
     - target: {fileID: 1330659541251243652, guid: c80780283cb97bf45b4a3f8e82d68fcc,
         type: 3}

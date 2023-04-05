@@ -107,6 +107,9 @@ public class UiSettingBoard : MonoBehaviour
     
     [SerializeField]
     private Toggle norigaeSize;
+    
+    [SerializeField]
+    private Toggle showVisionSkill;
 
     [SerializeField]
     private Transform playerViewController;
@@ -164,7 +167,7 @@ public class UiSettingBoard : MonoBehaviour
         indra.isOn = PlayerPrefs.GetInt(SettingKey.indra) == 1;
         dragon.isOn = PlayerPrefs.GetInt(SettingKey.dragon) == 1;
         oneSkill.isOn = PlayerPrefs.GetInt(SettingKey.oneSkill) == 1;
-
+        
         //
 
         fourView.isOn = PlayerPrefs.GetInt(SettingKey.fourView) == 1;
@@ -174,6 +177,7 @@ public class UiSettingBoard : MonoBehaviour
         showRingEffect.isOn = PlayerPrefs.GetInt(SettingKey.showRingEffect) == 1;
         newUi.isOn = PlayerPrefs.GetInt(SettingKey.newUi) == 1;
         norigaeSize.isOn = PlayerPrefs.GetInt(SettingKey.norigaeSize) == 1;
+        showVisionSkill.isOn = PlayerPrefs.GetInt(SettingKey.showVisionSkill) == 1;
 
         initialized = true;
 
@@ -580,6 +584,18 @@ public class UiSettingBoard : MonoBehaviour
         }
 
         SettingData.showRingEffect.Value = on ? 1 : 0;
+    } 
+    
+    public void ShowVisionSkillOnOff(bool on)
+    {
+        if (initialized == false) return;
+
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.showVisionSkill.Value = on ? 1 : 0;
     }
     
     public void NewUiOnOff(bool on)
@@ -698,6 +714,9 @@ public static class SettingKey
     public static string newUi = "newUi";
     public static string norigaeSize = "norigaeSize";//수호동물임
 
+    public static string autoVisionSkill = "autoVisionSkill";
+    public static string showVisionSkill = "showVisionSkill";
+
 }
 
 public static class SettingData
@@ -744,6 +763,9 @@ public static class SettingData
     public static ReactiveProperty<int> showRingEffect = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> newUi = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> norigaeSize = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    
+    public static ReactiveProperty<int> autoVisionSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    public static ReactiveProperty<int> showVisionSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
 
     public static int screenWidth = Screen.width;
     public static int screenHeight = Screen.height;
@@ -857,13 +879,19 @@ public static class SettingData
             PlayerPrefs.SetInt(SettingKey.showFoxCup, 1);
 
         if (PlayerPrefs.HasKey(SettingKey.showRingEffect) == false)
-            PlayerPrefs.SetInt(SettingKey.showRingEffect, 1);   
+            PlayerPrefs.SetInt(SettingKey.showRingEffect, 1); 
+        
+        if (PlayerPrefs.HasKey(SettingKey.showVisionSkill) == false)
+            PlayerPrefs.SetInt(SettingKey.showVisionSkill, 1);   
         
         if (PlayerPrefs.HasKey(SettingKey.newUi) == false)
             PlayerPrefs.SetInt(SettingKey.newUi, 1);     
         
         if (PlayerPrefs.HasKey(SettingKey.norigaeSize) == false)
             PlayerPrefs.SetInt(SettingKey.norigaeSize, 1);
+        
+        if (PlayerPrefs.HasKey(SettingKey.autoVisionSkill) == false)
+            PlayerPrefs.SetInt(SettingKey.autoVisionSkill, 1);
 
     }
 
@@ -911,6 +939,10 @@ public static class SettingData
         
         newUi.Value = PlayerPrefs.GetInt(SettingKey.newUi, 1);
         norigaeSize.Value = PlayerPrefs.GetInt(SettingKey.norigaeSize, 1);
+        
+        autoVisionSkill.Value = PlayerPrefs.GetInt(SettingKey.autoVisionSkill, 1);
+        
+        showVisionSkill.Value = PlayerPrefs.GetInt(SettingKey.showVisionSkill, 1);
 
         Subscribe();
     }
@@ -1047,6 +1079,11 @@ public static class SettingData
         showOtherPlayer.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.showOtherPlayer, e);
+        }); 
+        
+        showVisionSkill.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.showVisionSkill, e);
         });
 
         showFoxCup.AsObservable().Subscribe(e =>
@@ -1067,6 +1104,10 @@ public static class SettingData
         norigaeSize.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.norigaeSize, e);
+        });
+        autoVisionSkill.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.autoVisionSkill, e);
         });
 
     }

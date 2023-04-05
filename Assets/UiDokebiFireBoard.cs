@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UniRx;
 using BackEnd;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UiDokebiFireBoard : MonoBehaviour
@@ -17,10 +18,15 @@ public class UiDokebiFireBoard : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI dokebiAbilText1;
 
+    [SerializeField]
+    private TextMeshProUGUI graduateDescription;
+
 
     public Button registerButton;
     
     
+    [SerializeField] private GameObject transBeforeObject;
+    [SerializeField] private GameObject transAfterObject;
     
 
     public TextMeshProUGUI getButtonDesc;
@@ -33,6 +39,7 @@ public class UiDokebiFireBoard : MonoBehaviour
         Subscribe();
         SetFlowerReward();
 
+        graduateDescription.SetText($"각성 효과로 효과 {GameBalance.dokebiGraduatePlusValue*100f}% 증가!");
 
     }
 
@@ -64,6 +71,13 @@ public class UiDokebiFireBoard : MonoBehaviour
             registerButton.interactable = e == 0;
 
             getButtonDesc.SetText(e == 0 ? "획득" : "오늘 획득함");
+        }).AddTo(this);
+        
+        
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).AsObservable().Subscribe(e =>
+        {
+            transBeforeObject.SetActive(e < 1);
+            transAfterObject.SetActive(e >= 1);
         }).AddTo(this);
     }
 
@@ -271,5 +285,43 @@ public class UiDokebiFireBoard : MonoBehaviour
         }
 
 
+    }
+    
+    public void OnClickTransButton()
+    {
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.DokebiFireClear].Value < GameBalance.dokebiFireGraduateScore)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"처치 수 {GameBalance.dokebiFireGraduateScore} 이상일때 각성 가능!");
+        }
+        else
+        {
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
+                "각성시 도깨비 숲에서 도깨비불 획득이 더이상 불가능 합니다.\n" +
+                $"대신 도깨비불 효과가 강화되고({GameBalance.dokebiGraduatePlusValue*100}%\n" +
+                $"도깨비불 각성시 최고점수가 {GameBalance.dokebiFireFixedScore}로 고정 됩니다. \n" +
+                $"그리고 스테이지 일반요괴 처치시 도깨비불을 자동으로 획득 합니다.\n" +
+                "각성 하시겠습니까?", () =>
+                {
+                    ServerData.userInfoTable.TableDatas[UserInfoTable.graduateDokebiFire].Value = 1;
+                    ServerData.userInfoTable.TableDatas[UserInfoTable.DokebiFireClear].Value = GameBalance.dokebiFireFixedScore;
+                    
+                    List<TransactionValue> transactions = new List<TransactionValue>();
+                    
+                    Param userInfoParam = new Param();
+                    userInfoParam.Add(UserInfoTable.graduateDokebiFire, ServerData.userInfoTable.TableDatas[UserInfoTable.graduateDokebiFire].Value);
+                    userInfoParam.Add(UserInfoTable.DokebiFireClear, ServerData.userInfoTable.TableDatas[UserInfoTable.DokebiFireClear].Value);
+
+                    transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName,UserInfoTable.Indate,userInfoParam));
+                    
+                    ServerData.SendTransaction(transactions,successCallBack: () =>
+                    {
+                        UpdateAbilText1((int)ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
+                        Initialize();
+                    });
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
+              
+                    
+                }, null);
+        }
     }
 }

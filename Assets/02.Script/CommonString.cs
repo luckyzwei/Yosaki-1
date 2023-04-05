@@ -27,6 +27,7 @@ public static class CommonString
     public static string ItemGrade_4 = "전설";
     public static string ItemGrade_5 = "요물";
     public static string ItemGrade_6 = "야차";
+    public static string ItemGrade_6_Ring = "신물";
     public static string ItemGrade_7 = "필멸";
     public static string ItemGrade_8 = "필멸(암)";
     public static string ItemGrade_9 = "필멸(천)";
@@ -69,6 +70,7 @@ public static class CommonString
     public static string ItemGrade_10_Skill = "천계검";
     public static string ItemGrade_11_Skill = "도깨비검";
     public static string ItemGrade_12_Skill = "금강검";
+    public static string ItemGrade_13_Skill = "비전검";
 
     public static string GoldItemName = "골드";
     public static string BonusSpinCoin = "복주머니 뽑기권";
@@ -247,6 +249,10 @@ public static class CommonString
             case Item_Type.costume98: return TableManager.Instance.Costume.dataArray[98].Name;
             case Item_Type.costume99: return TableManager.Instance.Costume.dataArray[99].Name;
             case Item_Type.costume100: return TableManager.Instance.Costume.dataArray[100].Name;
+            case Item_Type.costume101: return TableManager.Instance.Costume.dataArray[101].Name;
+            case Item_Type.costume102: return TableManager.Instance.Costume.dataArray[102].Name;
+            case Item_Type.costume103: return TableManager.Instance.Costume.dataArray[103].Name;
+            case Item_Type.costume104: return TableManager.Instance.Costume.dataArray[104].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -355,6 +361,12 @@ public static class CommonString
             case Item_Type.FourSkill6: return "사천왕 기술7";
             case Item_Type.FourSkill7: return "사천왕 기술8";
             case Item_Type.FourSkill8: return "사천왕 기술9";
+            
+            
+            case Item_Type.VisionSkill0: return "궁극 기술1";
+            case Item_Type.VisionSkill1: return "궁극 기술2";
+            case Item_Type.VisionSkill2: return "궁극 기술3";
+            case Item_Type.VisionSkill3: return "궁극 기술4";
             //
             case Item_Type.OrochiTooth0: return "오로치 이빨1";
             case Item_Type.OrochiTooth1: return "오로치 이빨2";
@@ -413,6 +425,7 @@ public static class CommonString
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
             case Item_Type.SahyungTreasure: return "사흉구슬";
+            case Item_Type.VisionTreasure: return "비전서";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
             case Item_Type.SumiFire: return "수미꽃";
             case Item_Type.Tresure: return "도적단 보물";
@@ -427,6 +440,8 @@ public static class CommonString
             case Item_Type.SuhoPetFeed: return "수호환";
             case Item_Type.SuhoPetFeedClear: return "수호환 소탕권";
             case Item_Type.SinsuMarble: return "사신수구슬";
+            case Item_Type.GuildTowerClearTicket: return "전갈굴 소탕권";
+            case Item_Type.GuildTowerHorn: return "독침";
 
         }
 

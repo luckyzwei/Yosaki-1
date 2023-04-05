@@ -30,6 +30,9 @@ public class GoogleManager : SingletonMono<GoogleManager>
 
     public static string email { get; private set; } = "Editor";
 
+    private static string savedId_key;
+    private static string savedPass_Key;
+
     public enum IOS_LoginType
     {
         GameCenter, Custom
@@ -301,8 +304,22 @@ public class GoogleManager : SingletonMono<GoogleManager>
         else
         {
             Debug.Log($"LoginFail bro.GetStatusCode() {bro.GetStatusCode()}");
-
-            if (bro.GetStatusCode() == "403")
+            string message = bro.GetMessage();
+             if (message.Equals("Forbidden blocked user, 금지된 blocked user"))
+             {
+                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 사용자 입니다. 차단 사유 : " + bro.GetErrorCode(), () =>
+                 {
+                     Application.Quit();
+                 });
+             }
+             else if (message.Equals("Forbidden blocked device, 금지된 blocked device"))
+             {
+                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 기기 입니다. 차단 사유 : " + bro.GetErrorCode(), () =>
+                 {
+                     Application.Quit();
+                 });
+             }
+            else if (bro.GetStatusCode() == "403")
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "서버에 문제가 있습니다. 앱을 종료합니다. \n 잠시후 다시 시도해주세요", () =>
                   {

@@ -473,12 +473,30 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.SusanoTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value);
                 }
                 break; 
+            case Item_Type.VisionTreasure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value += amount;
+                    param.Add(GoodsTable.VisionTreasure, ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value);
+                }
+                break;  
+            case Item_Type.GuildTowerClearTicket:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value += amount;
+                    param.Add(GoodsTable.GuildTowerClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value);
+                }
+                break;  
+            case Item_Type.GuildTowerHorn:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerHorn).Value += amount;
+                    param.Add(GoodsTable.GuildTowerHorn, ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerHorn).Value);
+                }
+                break; 
             case Item_Type.SahyungTreasure:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value += amount;
                     param.Add(GoodsTable.SahyungTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SahyungTreasure).Value);
                 }
-                break;   
+                break;    
             case Item_Type.SinsuMarble:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsuMarble).Value += amount;
@@ -746,7 +764,33 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.FourSkill8, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value);
                 }
                 break;
+            // //
+            case Item_Type.VisionSkill0:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value += amount;
+                param.Add(GoodsTable.VisionSkill0, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value);
+            }
+                break;
+            case Item_Type.VisionSkill1:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value += amount;
+                param.Add(GoodsTable.VisionSkill1, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value);
+            }
+                break;
+            case Item_Type.VisionSkill2:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value += amount;
+                param.Add(GoodsTable.VisionSkill2, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value);
+            }
+                break;
+            case Item_Type.VisionSkill3:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value += amount;
+                param.Add(GoodsTable.VisionSkill3, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value);
+            }
+                break;
  
+            //
             //
             case Item_Type.GangrimSkill:
                 {

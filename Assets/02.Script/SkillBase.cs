@@ -8,6 +8,7 @@ public abstract class SkillBase
     public SkillTableData skillInfo { get; private set; }
     protected PlayerSkillCaster playerSkillCaster;
     protected WaitForSeconds damageApplyInterval = new WaitForSeconds(0.05f);
+
     public void Initialize(Transform playerTr, SkillTableData skillInfo, PlayerSkillCaster playerSkillCaster)
     {
         this.playerTr = playerTr;
@@ -20,6 +21,7 @@ public abstract class SkillBase
         //mp계산 뒤에서해야됨.실제 엠피 차감해서
         return !SkillCoolTimeManager.HasSkillCooltime(skillInfo.Id) && PlayerStatusController.Instance.IsPlayerDead() == false;
     }
+
     protected virtual double GetSkillDamage(SkillTableData skillInfo)
     {
         double apDamage = PlayerStats.GetCalculatedAttackPower();
@@ -74,7 +76,7 @@ public abstract class SkillBase
     {
         Transform targetTr = null;
 
-        if (skillInfo.SKILLCASTTYPE == SkillCastType.Player)
+        if (skillInfo.SKILLCASTTYPE == SkillCastType.Player || skillInfo.SKILLCASTTYPE == SkillCastType.Vision)
         {
             targetTr = PlayerMoveController.Instance.transform;
         }
@@ -83,7 +85,7 @@ public abstract class SkillBase
             if (SonSkillCaster.Instance != null)
                 targetTr = SonSkillCaster.Instance.skillSpawnPos;
         }
-        else//사천왕
+        else //사천왕
         {
             if (FourSkillCaster.Instance != null)
                 targetTr = FourSkillCaster.Instance.skillSpawnPos;
@@ -94,17 +96,18 @@ public abstract class SkillBase
         MoveDirection moveDirection = PlayerMoveController.Instance.MoveDirection;
 
         bool showFirstSlotEffect = SettingData.ShowEffect.Value == 0 &&
-                                ServerData.skillServerTable.IsFistSlotSkill(skillInfo.Id) &&
-                                SettingData.showOneSkillEffect.Value == 1;
+                                   ServerData.skillServerTable.IsFistSlotSkill(skillInfo.Id) &&
+                                   SettingData.showOneSkillEffect.Value == 1;
 
         Vector3 activeEffectSpawnPos2 = targetTr.position + Vector3.up * 0.5f - Vector3.forward * 5f;
 
+        bool isVisionSkill = PlayerSkillCaster.IsVisionSkill(skillInfo.Id);
+
         if (string.IsNullOrEmpty(skillInfo.Activeeffectname2) == false)
         {
-
             Transform parent = skillInfo.Iseffectrootplayer ? targetTr : null;
 
-            var effect = EffectManager.SpawnEffectAllTime(skillInfo.Activeeffectname2, activeEffectSpawnPos2, parent, showFirstSlotEffect: showFirstSlotEffect);
+            var effect = EffectManager.SpawnEffectAllTime(skillInfo.Activeeffectname2, activeEffectSpawnPos2, parent, showFirstSlotEffect: showFirstSlotEffect, isVisionSkill: isVisionSkill);
 
             if (effect != null)
             {

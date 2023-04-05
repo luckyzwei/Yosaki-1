@@ -21,6 +21,11 @@ public class UiEventMission2Board : MonoBehaviour
             string key = TableManager.Instance.EventMissionDatas[(int)EventMissionKey.S_ClearChunFlower].Stringid;
             ServerData.eventMissionTable.UpdateMissionClearToCount(key, 1);
         }    
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
+        {
+            string key = TableManager.Instance.EventMissionDatas[(int)EventMissionKey.S_ClearDokebiFire].Stringid;
+            ServerData.eventMissionTable.UpdateMissionClearToCount(key, 1);
+        }    
         CheckEventEnd();
     }
 

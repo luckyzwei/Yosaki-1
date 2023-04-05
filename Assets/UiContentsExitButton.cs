@@ -26,7 +26,8 @@ public class UiContentsExitButton : MonoBehaviour
             GameManager.contentsType == GameManager.ContentsType.SumisanTower||
             GameManager.contentsType == GameManager.ContentsType.GyungRockTower||
             GameManager.contentsType == GameManager.ContentsType.RoyalTombTower ||
-            GameManager.contentsType == GameManager.ContentsType.SinsuTower 
+            GameManager.contentsType == GameManager.ContentsType.SinsuTower ||
+            GameManager.contentsType == GameManager.ContentsType.GuildTower 
             )
         {
             return true;
@@ -145,6 +146,18 @@ public class UiContentsExitButton : MonoBehaviour
                 (TableManager.Instance.sinsuTower.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.SinsuTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.GuildTower)
+        {
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorGuildTower).Value <
+                (TableManager.Instance.guildTowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.GuildTower);
             }
             else
             {

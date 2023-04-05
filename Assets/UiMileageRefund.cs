@@ -23,6 +23,8 @@ public class UiMileageRefund : MonoBehaviour
         
         DolPassRefundRoutine();
         NewGachaRefundRoutine();
+        TitleRefundRoutine();
+        ChunmaDokebiFireRefundRoutine();
     }
 
     private void RefundRoutine()
@@ -173,5 +175,144 @@ public class UiMileageRefund : MonoBehaviour
         {
         });
         
+    }
+
+    private void TitleRefundRoutine()
+    {
+        
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle).Value != 0)
+        {
+            return;
+        }
+        ////////타이틀 재 장착/////////////////
+        ServerData.equipmentTable.ChangeEquip(EquipmentTable.TitleSelectId, -1);
+        PlayerStats.ResetAbilDic();
+        ////////////////////////////////////////
+        ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle).Value = 1;
+        var tableDatas = TableManager.Instance.TitleTable.dataArray;
+        int levelTitleIdx = 0;
+        int stageTitleIdx = 0;
+        for (int i = 0; i < tableDatas.Length; i++)
+        {
+            //레벨
+            if (tableDatas[i].Displaygroup == 0)
+            {
+                if (ServerData.titleServerTable.TableDatas[tableDatas[i].Stringid].rewarded.Value > 0)
+                {
+                    levelTitleIdx = i;
+                }
+            }
+            //스테이지
+            else if (tableDatas[i].Displaygroup == 1)
+            {
+                if (ServerData.titleServerTable.TableDatas[tableDatas[i].Stringid].rewarded.Value > 0)
+                {
+                    stageTitleIdx = i;
+                }
+            }
+        }
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        
+    
+        Param userInfoParam = new Param();
+        if (levelTitleIdx == 0)
+        {
+            //받은게없음
+        }
+        else
+        {
+            var currentTitleLevel = TableManager.Instance.TitleTable.dataArray[levelTitleIdx].Condition;
+            var levelTableData = TableManager.Instance.titleLevel.dataArray;
+            for (int i = 0; i < levelTableData.Length; i++)
+            {
+                if (levelTableData[i].Condition == currentTitleLevel)
+                {
+                    ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value = i;
+                    break;
+                }
+            }
+            
+            userInfoParam.Add(UserInfoTable.titleLevel, ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value);
+        }
+        if (stageTitleIdx == 0)
+        {
+            //받은게 없음
+        }
+        else
+        {
+            var currentTitleStage = TableManager.Instance.TitleTable.dataArray[stageTitleIdx].Condition;
+            var stageTableData = TableManager.Instance.titleStage.dataArray;
+            for (int i = 0; i < stageTableData.Length; i++)
+            {
+                if (stageTableData[i].Condition == currentTitleStage)
+                {
+                    ServerData.userInfoTable.GetTableData(UserInfoTable.titleStage).Value = i;
+                    break;
+                }
+            }
+            userInfoParam.Add(UserInfoTable.titleStage, ServerData.userInfoTable.GetTableData(UserInfoTable.titleStage).Value);
+        }
+        
+
+
+
+        userInfoParam.Add(UserInfoTable.titleConvertNewTitle, ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle).Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            Debug.LogError(
+                $"Lv : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value} / Stage : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleStage).Value}");
+        });
+    }
+    private void ChunmaDokebiFireRefundRoutine()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.chunmaRefund).Value != 0)
+        {
+            return;
+        }
+        ServerData.userInfoTable.GetTableData(UserInfoTable.chunmaRefund).Value = 1;
+        var list = ServerData.bossServerTable.GetChunmaRewardedIdxList();
+        var tableData= TableManager.Instance.TwelveBossTable.dataArray[55];
+        var amount = 0;
+        for (int i = 130; i < 133; i++)
+        {
+            if (list.Contains(i))
+            {
+                amount += (int)tableData.Rewardvalue[i] - 30;
+            }    
+        }
+        
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        
+        if (amount == 0)
+        {        
+            Param userInfoParam = new Param();
+            userInfoParam.Add(UserInfoTable.chunmaRefund, ServerData.userInfoTable.GetTableData(UserInfoTable.chunmaRefund).Value);
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                Debug.LogError("소급 없음");
+            });
+        }
+        else
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += amount;
+        
+            Param userInfoParam = new Param();
+            userInfoParam.Add(UserInfoTable.chunmaRefund, ServerData.userInfoTable.GetTableData(UserInfoTable.chunmaRefund).Value);
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+            Param goodsParam = new Param();
+            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
+            transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                PopupManager.Instance.ShowConfirmPopup("십만대산 도깨비불 소급", $"도깨비불 {amount}개 소급 완료", null);
+            });
+        }
+
     }
 }

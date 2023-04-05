@@ -79,6 +79,12 @@ public class UiGuildPetBoard : MonoBehaviour
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Marble)} {Utils.ConvertBigNum(exchangeGoodsNum * eachMarbleNum)}개를 먹이로 줄까요?\n레벨 {exchangeGoodsNum}상승", () =>
           {
+              if (ServerData.userInfoTable.TableDatas[UserInfoTable.sendPetExp].Value == 1)
+              {
+                  PopupManager.Instance.ShowAlarmMessage("오늘은 이미 먹이를 줬습니다.");
+                  return;
+              }
+              
               recordButton.interactable = false;
 
               //인원체크

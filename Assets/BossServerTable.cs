@@ -194,6 +194,33 @@ public class BossServerTable
 
         return rewards;
     }
+    public List<int> GetChunmaRewardedIdxList()
+    {
+        var rewards = ServerData.bossServerTable.TableDatas["b55"].rewardedId.Value
+            .Split(BossServerTable.rewardSplit)
+            .Where(e => string.IsNullOrEmpty(e) == false)
+            .Select(e => int.Parse(e))
+            .ToList();
+
+        return rewards;
+    }
+
+    public int GetGangChulBossRewardedIdx()
+    {
+        var rewards = ServerData.bossServerTable.TableDatas["boss20"].rewardedId.Value
+            .Split(BossServerTable.rewardSplit)
+            .Where(e => string.IsNullOrEmpty(e) == false)
+            .Select(e => int.Parse(e))
+            .ToList();
+        if (rewards.Count != 0)
+        {
+            return rewards.Max();
+        }
+
+        return -1;
+        
+    }
+
     public List<int> GetHellRelicRewardedIdxList()
     {
         var rewards = ServerData.bossServerTable.TableDatas["b53"].rewardedId.Value

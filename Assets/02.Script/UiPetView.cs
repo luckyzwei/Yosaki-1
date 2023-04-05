@@ -9,7 +9,7 @@ using BackEnd;
 
 public enum PetGetType
 {
-    Ad, Gem, Shop, Evolution, Sasinsu,Sahyungsu
+    Ad, Gem, Shop, Evolution, Sasinsu,Sahyungsu,Vision
 }
 
 public class UiPetView : MonoBehaviour
@@ -90,6 +90,11 @@ public class UiPetView : MonoBehaviour
         skeletonGraphic.skeletonDataAsset = CommonUiContainer.Instance.petCostumeList[idx];
 
         if (idx >= 24 && idx <= 27)
+        {
+            skeletonGraphic.startingAnimation = "idle";
+
+        }
+        if (idx >= 32 && idx <= 35)
         {
             skeletonGraphic.startingAnimation = "idle";
 
@@ -515,6 +520,18 @@ public class UiPetView : MonoBehaviour
                 buttonDescription.SetText($"사흉수 \n컨텐츠에서 획득!");
             }
         }
+        else if (petData.PETGETTYPE == PetGetType.Vision)
+        {
+            //보유
+            if (petServerData.hasItem.Value == 1)
+            {
+                buttonDescription.SetText("장착하기");
+            }
+            else
+            {
+                buttonDescription.SetText($"비전 전수 \n컨텐츠에서 획득!");
+            }
+        }
 
     }
 
@@ -661,6 +678,18 @@ public class UiPetView : MonoBehaviour
             else
             {
                PopupManager.Instance.ShowAlarmMessage($"사흉수 컨텐츠 {petData.Name}에서 획득 가능!");
+            }
+        }
+        else if (petData.PETGETTYPE == PetGetType.Vision)
+        {
+            if (petServerData.hasItem.Value == 1)
+            {
+                ServerData.equipmentTable.ChangeEquip(EquipmentTable.Pet, petData.Id);
+            }
+            //미보유
+            else
+            {
+               PopupManager.Instance.ShowAlarmMessage($"비전전수 컨텐츠 {petData.Name}에서 획득 가능!");
             }
         }
 

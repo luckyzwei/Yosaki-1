@@ -451,6 +451,11 @@ public enum Item_Type
     pet3 = 1304,
 
     costume100 = 1400, //백호 호연    
+    
+    costume101 = 1401,     //왕들
+    costume102 = 1402,     
+    costume103 = 1403,     
+    costume104 = 1404,     
 
 
     gumiho0 = 5000,
@@ -536,6 +541,11 @@ public enum Item_Type
     SahyungPet1 = 7071,
     SahyungPet2 = 7072,
     SahyungPet3 = 7073,
+    
+    VisionPet0 = 7080,
+    VisionPet1 = 7081,
+    VisionPet2 = 7082,
+    VisionPet3 = 7083,
 
     DokebiHorn0 = 7100,
     DokebiHorn1 = 7101,
@@ -581,9 +591,19 @@ public enum Item_Type
     NinjaWeapon1 = 7161,
     NinjaWeapon2 = 7162,
     
+    KingWeapon0 = 7163,
+    KingWeapon1 = 7164,
+    KingWeapon2 = 7165,
+    KingWeapon3 = 7166,
+    
     NinjaNorigae0 = 7170,
     NinjaNorigae1 = 7171,
     NinjaNorigae2 = 7172,
+    
+    KingNorigae0 = 7173,
+    KingNorigae1 = 7174,
+    KingNorigae2 = 7175,
+    KingNorigae3 = 7176,
     
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
@@ -645,7 +665,12 @@ public enum Item_Type
     FourSkill6 = 8726,
     FourSkill7 = 8727,
     FourSkill8 = 8728,
-
+    
+    VisionSkill0 = 8730, //비전
+    VisionSkill1 = 8731, 
+    VisionSkill2 = 8732, 
+    VisionSkill3 = 8733,
+    
     Event_NewYear = 8800, //떡국
     Event_NewYear_All = 8801, // 총 습득량
     
@@ -672,7 +697,10 @@ public enum Item_Type
     Tresure = 9015,
     SuhoPetFeed = 9016,
     SuhoPetFeedClear = 9017,
-    SinsuMarble = 9018
+    SinsuMarble = 9018,
+    VisionTreasure = 9019,
+    GuildTowerClearTicket = 9020,
+    GuildTowerHorn = 9021
 }
 //
 public class DropItem : PoolItem

@@ -34,12 +34,12 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_6_Skill, CommonString.ItemGrade_7_Skill, CommonString.ItemGrade_8_Skill, CommonString.ItemGrade_9_Skill, CommonString.ItemGrade_10_Skill,
         CommonString.ItemGrade_11_Skill,string.Empty,string.Empty,string.Empty,string.Empty,
         string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,
-        string.Empty,CommonString.ItemGrade_12_Skill,string.Empty};
+        string.Empty,CommonString.ItemGrade_12_Skill,CommonString.ItemGrade_13_Skill};
     public List<string> ItemGradeName_Skill => itemGradeName_Skill;
 
     private List<string> itemGradeName_NewGacha= new List<string>() { 
         CommonString.ItemGrade_0,
-        CommonString.ItemGrade_1, CommonString.ItemGrade_2, CommonString.ItemGrade_3, CommonString.ItemGrade_4, CommonString.ItemGrade_5};
+        CommonString.ItemGrade_1, CommonString.ItemGrade_2, CommonString.ItemGrade_3, CommonString.ItemGrade_4, CommonString.ItemGrade_5,CommonString.ItemGrade_6_Ring};
     public List<string> ItemGradeName_NewGacha => itemGradeName_NewGacha;
 
     public List<Color> itemGradeColor;
@@ -63,63 +63,117 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         return costumeThumbnail[idx];
     }
 
-    public Sprite magicStone;
 
-    public Sprite blueStone;
 
-    public Sprite gold;
+[Header ("Weapon")]
 
-    public Sprite memory;
+public Sprite IndraWeapon;
+public Sprite NataWeapon;
+public Sprite OrochiWeapon;
+public Sprite MihoWeapon;
+public Sprite YeaRaeWeapon;
+public Sprite GangrimWeapon;
+public Sprite HaeWeapon;
+public Sprite ChunWeapon0;
+public Sprite ChunWeapon1;
+public Sprite ChunWeapon2;
+public Sprite ChunWeapon3;
 
-    public Sprite ticket;
+public Sprite DokebiWeapon0;
+public Sprite DokebiWeapon1;
+public Sprite DokebiWeapon2;
+public Sprite DokebiWeapon3;
+public Sprite DokebiWeapon4;
+public Sprite DokebiWeapon5;
+public Sprite DokebiWeapon6;
 
-    public Sprite marble;
+public Sprite SasinsuWeapon0;
+public Sprite SasinsuWeapon1;
+public Sprite SasinsuWeapon2;
+public Sprite SasinsuWeapon3;
 
-    public Sprite dokebi;
+public Sprite DokebiWeapon7;
+public Sprite DokebiWeapon8;
+public Sprite DokebiWeapon9;
 
-    public Sprite WeaponUpgradeStone;
 
-    public Sprite YomulExchangeStone;
+public Sprite SumisanWeapon0;
+public Sprite SumisanWeapon1;
+public Sprite SumisanWeapon2;
+public Sprite SumisanWeapon3;
+public Sprite SumisanWeapon4;
+public Sprite SumisanWeapon5;
+public Sprite SumisanWeapon6;
+    
+public Sprite SahyungWeapon0;
+public Sprite SahyungWeapon1;
+public Sprite SahyungWeapon2;
+public Sprite SahyungWeapon3;
 
-    public Sprite TigerBossStone;
+public Sprite ThiefWeapon0;
+public Sprite ThiefWeapon1;
+public Sprite ThiefWeapon2;
+public Sprite ThiefWeapon3;
+        
+public Sprite NinjaWeapon0;
+public Sprite NinjaWeapon1;
+public Sprite NinjaWeapon2;
+    
+public Sprite KingWeapon0;
+public Sprite KingWeapon1;
+public Sprite KingWeapon2;
+public Sprite KingWeapon3;
+    
+[Header ("Weapon_View")]
 
-    public Sprite RabitBossStone;
+public Sprite ChunSun0;
+public Sprite ChunSun1;
+public Sprite ChunSun2;
+public Sprite RecommendWeapon0;
+public Sprite RecommendWeapon1;
+public Sprite RecommendWeapon2;
+public Sprite RecommendWeapon3;
+public Sprite RecommendWeapon4;
 
-    public Sprite DragonBossStone;
-    public Sprite SnakeStone;
-    public Sprite HorseStone;
-    public Sprite SheepStone;
-    public Sprite CockStone;
-    public Sprite MonkeyStone;
-    public Sprite DogStone;
-    public Sprite PigStone;
-    public Sprite MiniGameTicket;
-    public Sprite MiniGameTicket2;
+public Sprite RecommendWeapon5;
+public Sprite RecommendWeapon6;
+public Sprite RecommendWeapon7;
+public Sprite RecommendWeapon8;
+public Sprite RecommendWeapon9;
 
-    public Sprite Songpyeon;
+public Sprite RecommendWeapon10;
+public Sprite RecommendWeapon11;
+public Sprite RecommendWeapon12;
 
-    public Sprite EventCollection;
-    public Sprite EventCollection2;
+public Sprite RecommendWeapon13;
+public Sprite RecommendWeapon14;
+public Sprite RecommendWeapon15;
+public Sprite RecommendWeapon16;
+public Sprite RecommendWeapon17;
+public Sprite RecommendWeapon18;
 
-    public Sprite StageRelic;
+public Sprite weapon81;
 
-    public Sprite Peach;
+public Sprite RecommendWeapon19;
+public Sprite RecommendWeapon20;
 
-    public Sprite relic;
+public Sprite weapon90;
 
-    public Sprite relicEnter;
-    public Sprite SwordPartial;
+public Sprite RecommendWeapon21;
+public Sprite RecommendWeapon22;
+
+    
+[Header ("Norigae")]
+
     public Sprite HaeNorigae;
-    public Sprite HaePet;
     public Sprite SamNorigae;
-    public Sprite SamPet;
     public Sprite KirinNorigae;
-    public Sprite DogNorigae;
-    public Sprite Kirin_Pet;
     public Sprite RabitNorigae;
+    public Sprite DogNorigae;
+    public Sprite MihoNorigae;
+    public Sprite ChunMaNorigae;
     public Sprite YeaRaeNorigae;
     public Sprite GangrimNorigae;
-
     public Sprite ChunNorigae0;
     public Sprite ChunNorigae1;
     public Sprite ChunNorigae2;
@@ -157,12 +211,19 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite NinjaNorigae1;
     public Sprite NinjaNorigae2;
     
+    public Sprite KingNorigae0;
+    public Sprite KingNorigae1;
+    public Sprite KingNorigae2;
+    public Sprite KingNorigae3;
+    
+    [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
     public Sprite MonthNorigae2;
     public Sprite MonthNorigae3;
     public Sprite MonthNorigae4;
     
+    [Header ("DokebiHorn")]
     public Sprite DokebiHorn0;
     public Sprite DokebiHorn1;
     public Sprite DokebiHorn2;
@@ -174,14 +235,10 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite DokebiHorn7;
     public Sprite DokebiHorn8;
     public Sprite DokebiHorn9;
-
-    public Sprite ChunSun0;
-    public Sprite ChunSun1;
-    public Sprite ChunSun2;
-
-    public Sprite YeaRaeWeapon;
-    public Sprite GangrimWeapon;
-    public Sprite HaeWeapon;
+    [Header ("Pet")]
+    public Sprite HaePet;
+    public Sprite SamPet;
+    public Sprite Kirin_Pet;
     public Sprite RabitPet;
     public Sprite DogPet;
     public Sprite ChunMaPet;
@@ -189,163 +246,23 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite ChunPet1;
     public Sprite ChunPet2;
     public Sprite ChunPet3;
-
     public Sprite SasinsuPet0;
     public Sprite SasinsuPet1;
     public Sprite SasinsuPet2;
     public Sprite SasinsuPet3;
     
-
     public Sprite SahyungPet0;
     public Sprite SahyungPet1;
     public Sprite SahyungPet2;
     public Sprite SahyungPet3;
-
-    public Sprite Hel;
-    public Sprite YeoMarble;
-    public Sprite du;
-    public Sprite Fw;
-    public Sprite Cw;
-    public Sprite Event_Fall;
-    public Sprite Event_Fall_Gold;
-    public Sprite Event_XMas;
-    public Sprite Event_Mission;
-    public Sprite FoxMaskPartial;
-    public Sprite DokebiFire;
-    public Sprite SuhoPetFeed;
-    public Sprite SuhoPetFeedClear;
-    public Sprite Mileage;
-    public Sprite HellPower;
-    public Sprite DokebiFireKey;
-    public Sprite DokebiTreasure;
-    public Sprite DokebiFireEnhance;
-    public Sprite SusanoTreasure;
-    public Sprite SahyungTreasure;
-    public Sprite SinsuMarble;
-    public Sprite SumiFire;
-    public Sprite Tresure;
-    public Sprite SumiFireKey;
-    public Sprite NewGachaEnergy;
-    public Sprite DokebiBundle;
-    public Sprite SinsuRelic;
-    public Sprite EventDice;
-
-    public List<SkeletonDataAsset> enemySpineAssets;
-
-    public Sprite GuildReward;
-    public Sprite SulItem;
-    public Sprite FeelMulStone;
-    public Sprite SmithFire;
-    public Sprite AsuraHand0;
-    public Sprite AsuraHand1;
-    public Sprite AsuraHand2;
-    public Sprite AsuraHand3;
-    public Sprite AsuraHand4;
-    public Sprite AsuraHand5;
-
-    public Sprite Indra0;
-    public Sprite Indra1;
-    public Sprite Indra2;
-    public Sprite IndraPower;
-
-    public Sprite OrochiTooth0;
-    public Sprite OrochiTooth1;
-
-    public Sprite springIcon;
-    public Sprite Aduk;
-
-    public Sprite SinSkill0;
-    public Sprite SinSkill1;
-    public Sprite SinSkill2;
-    public Sprite SinSkill3;
-    public Sprite LeeMuGiStone;
-    public Sprite IndraWeapon;
-    public Sprite Event_Item_SnowMan;
-    public Sprite NataWeapon;
-    public Sprite OrochiWeapon;
-    public Sprite ChunWeapon0;
-    public Sprite ChunWeapon1;
-    public Sprite ChunWeapon2;
-    public Sprite ChunWeapon3;
-
-    public Sprite DokebiWeapon0;
-    public Sprite DokebiWeapon1;
-    public Sprite DokebiWeapon2;
-    public Sprite DokebiWeapon3;
-    public Sprite DokebiWeapon4;
-    public Sprite DokebiWeapon5;
-    public Sprite DokebiWeapon6;
-
-    public Sprite DokebiWeapon7;
-    public Sprite DokebiWeapon8;
-    public Sprite DokebiWeapon9;
-
-    public Sprite SumisanWeapon0;
-    public Sprite SumisanWeapon1;
-    public Sprite SumisanWeapon2;
-    public Sprite SumisanWeapon3;
-    public Sprite SumisanWeapon4;
-    public Sprite SumisanWeapon5;
-    public Sprite SumisanWeapon6;
     
-    public Sprite ThiefWeapon0;
-    public Sprite ThiefWeapon1;
-    public Sprite ThiefWeapon2;
-    public Sprite ThiefWeapon3;
-        
-    public Sprite NinjaWeapon0;
-    public Sprite NinjaWeapon1;
-    public Sprite NinjaWeapon2;
-    
+    public Sprite VisionPet0;
+    public Sprite VisionPet1;
+    public Sprite VisionPet2;
+    public Sprite VisionPet3;
 
-    public Sprite SasinsuWeapon0;
-    public Sprite SasinsuWeapon1;
-    public Sprite SasinsuWeapon2;
-    public Sprite SasinsuWeapon3;
-    
-    public Sprite SahyungWeapon0;
-    public Sprite SahyungWeapon1;
-    public Sprite SahyungWeapon2;
-    public Sprite SahyungWeapon3;
-    
 
-    public Sprite NataSkill;
-    public Sprite OrochiSkill;
-    public Sprite GangrimSkill;
-    public Sprite MihoWeapon;
-    public Sprite MihoNorigae;
-    public Sprite MihoTail;
-    public Sprite ChunMaNorigae;
-
-    public Sprite RecommendWeapon0;
-    public Sprite RecommendWeapon1;
-    public Sprite RecommendWeapon2;
-    public Sprite RecommendWeapon3;
-    public Sprite RecommendWeapon4;
-
-    public Sprite RecommendWeapon5;
-    public Sprite RecommendWeapon6;
-    public Sprite RecommendWeapon7;
-    public Sprite RecommendWeapon8;
-    public Sprite RecommendWeapon9;
-
-    public Sprite RecommendWeapon10;
-    public Sprite RecommendWeapon11;
-    public Sprite RecommendWeapon12;
-
-    public Sprite RecommendWeapon13;
-    public Sprite RecommendWeapon14;
-    public Sprite RecommendWeapon15;
-    public Sprite RecommendWeapon16;
-    public Sprite RecommendWeapon17;
-    public Sprite RecommendWeapon18;
-    public Sprite RecommendWeapon19;
-    public Sprite RecommendWeapon20;
-    public Sprite RecommendWeapon21;
-    public Sprite RecommendWeapon22;
-
-    public Sprite weapon81;
-    public Sprite weapon90;
+    [Header ("Skill")]
 
     public Sprite Sun0;
     public Sprite Sun1;
@@ -376,6 +293,116 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     public Sprite FourSkill6;
     public Sprite FourSkill7;
     public Sprite FourSkill8;
+
+    
+    public Sprite VisionSkill0;
+    public Sprite VisionSkill1;
+    public Sprite VisionSkill2;
+    public Sprite VisionSkill3;
+
+    
+    [Header ("Goods")]
+    
+    public Sprite magicStone;
+    public Sprite blueStone;
+    public Sprite gold;
+    public Sprite memory;
+    public Sprite ticket;
+    public Sprite marble;
+    public Sprite dokebi;
+    public Sprite WeaponUpgradeStone;
+    public Sprite YomulExchangeStone;
+    public Sprite TigerBossStone;
+    public Sprite RabitBossStone;
+    public Sprite DragonBossStone;
+    public Sprite SnakeStone;
+    public Sprite HorseStone;
+    public Sprite SheepStone;
+    public Sprite CockStone;
+    public Sprite MonkeyStone;
+    public Sprite DogStone;
+    public Sprite PigStone;
+    public Sprite MiniGameTicket;
+    public Sprite MiniGameTicket2;
+
+
+    public Sprite relicEnter;
+    public Sprite SwordPartial;
+    public Sprite Hel;
+    public Sprite YeoMarble;
+    public Sprite du;
+    public Sprite Fw;
+    public Sprite Cw;
+    public Sprite StageRelic;
+    public Sprite Peach;
+    public Sprite relic;
+    public Sprite FoxMaskPartial;
+    public Sprite DokebiFire;
+    public Sprite SuhoPetFeed;
+    public Sprite SuhoPetFeedClear;
+    public Sprite Mileage;
+    public Sprite HellPower;
+    public Sprite DokebiFireKey;
+    public Sprite DokebiTreasure;
+    public Sprite DokebiFireEnhance;
+    public Sprite SusanoTreasure;
+    public Sprite SahyungTreasure;
+    public Sprite VisionTreasure;
+    public Sprite GuildTowerClearTicket;
+    public Sprite GuildTowerHorn;
+    public Sprite SinsuMarble;
+    public Sprite SumiFire;
+    public Sprite Tresure;
+    public Sprite SumiFireKey;
+    public Sprite NewGachaEnergy;
+    public Sprite DokebiBundle;
+    public Sprite SinsuRelic;
+    [Header ("Goods_Event")]
+    public Sprite Songpyeon;
+    public Sprite EventCollection;
+    public Sprite EventCollection2;
+    public Sprite Event_Fall;
+    public Sprite Event_Fall_Gold;
+    public Sprite Event_XMas;
+    public Sprite Event_Mission;
+    public Sprite EventDice;
+    public List<SkeletonDataAsset> enemySpineAssets;
+
+    public Sprite GuildReward;
+    public Sprite SulItem;
+    public Sprite FeelMulStone;
+    public Sprite SmithFire;
+    public Sprite AsuraHand0;
+    public Sprite AsuraHand1;
+    public Sprite AsuraHand2;
+    public Sprite AsuraHand3;
+    public Sprite AsuraHand4;
+    public Sprite AsuraHand5;
+
+    public Sprite Indra0;
+    public Sprite Indra1;
+    public Sprite Indra2;
+    public Sprite IndraPower;
+
+    public Sprite OrochiTooth0;
+    public Sprite OrochiTooth1;
+
+    public Sprite springIcon;
+    public Sprite Aduk;
+
+    public Sprite SinSkill0;
+    public Sprite SinSkill1;
+    public Sprite SinSkill2;
+    public Sprite SinSkill3;
+    public Sprite LeeMuGiStone;
+    public Sprite Event_Item_SnowMan;
+
+
+    public Sprite NataSkill;
+    public Sprite OrochiSkill;
+    public Sprite GangrimSkill;
+    public Sprite MihoTail;
+
 
     public Sprite HellMark0;
     public Sprite HellMark1;
@@ -686,6 +713,14 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return costumeThumbnail[99];
             case Item_Type.costume100:
                 return costumeThumbnail[100];
+            case Item_Type.costume101:
+                return costumeThumbnail[101];
+            case Item_Type.costume102:
+                return costumeThumbnail[102];
+            case Item_Type.costume103:
+                return costumeThumbnail[103];
+            case Item_Type.costume104:
+                return costumeThumbnail[104];
 
 
             case Item_Type.RankFrame1:
@@ -1077,6 +1112,12 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
  
             case Item_Type.SahyungTreasure:
                 return SahyungTreasure;    
+            case Item_Type.VisionTreasure:
+                return VisionTreasure;   
+            case Item_Type.GuildTowerClearTicket:
+                return GuildTowerClearTicket;  
+            case Item_Type.GuildTowerHorn:
+                return GuildTowerHorn;    
             
             case Item_Type.SinsuMarble:
                 return SinsuMarble;
@@ -1286,6 +1327,15 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
 
             case Item_Type.NinjaNorigae2:
                 return NinjaNorigae2;
+            
+            case Item_Type.KingNorigae0:
+                return KingNorigae0;
+            case Item_Type.KingNorigae1:
+                return KingNorigae1;
+            case Item_Type.KingNorigae2:
+                return KingNorigae2;
+            case Item_Type.KingNorigae3:
+                return KingNorigae3;
 
 
             //
@@ -1422,30 +1472,29 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
 
             case Item_Type.SasinsuPet1:
                 return SasinsuPet1;
-
-
             case Item_Type.SasinsuPet2:
                 return SasinsuPet2;
-
-
             case Item_Type.SasinsuPet3:
                 return SasinsuPet3;
 
 
             case Item_Type.SahyungPet0:
                 return SahyungPet0;
-
-
             case Item_Type.SahyungPet1:
                 return SahyungPet1;
-
-
             case Item_Type.SahyungPet2:
                 return SahyungPet2;
-
-
             case Item_Type.SahyungPet3:
                 return SahyungPet3;
+            
+            case Item_Type.VisionPet0:
+                return VisionPet0;
+            case Item_Type.VisionPet1:
+                return VisionPet1;
+            case Item_Type.VisionPet2:
+                return VisionPet2;
+            case Item_Type.VisionPet3:
+                return VisionPet3;
 
 
 
@@ -1619,20 +1668,12 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
             //
             case Item_Type.FourSkill0:
                 return FourSkill0;
-
-
             case Item_Type.FourSkill1:
                 return FourSkill1;
-
-
             case Item_Type.FourSkill2:
                 return FourSkill2;
-
-
             case Item_Type.FourSkill3:
                 return FourSkill3;
-
-
             //
             case Item_Type.FourSkill4:
                 return FourSkill4;
@@ -1644,6 +1685,15 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return FourSkill7;
             case Item_Type.FourSkill8:
                 return FourSkill8;
+            //
+            case Item_Type.VisionSkill0:
+                return VisionSkill0;
+            case Item_Type.VisionSkill1:
+                return VisionSkill1;
+            case Item_Type.VisionSkill2:
+                return VisionSkill2;
+            case Item_Type.VisionSkill3:
+                return VisionSkill3;
             //
             case Item_Type.GangrimSkill:
                 return GangrimSkill;
@@ -1773,6 +1823,16 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
                 return NinjaWeapon1;
             case Item_Type.NinjaWeapon2:
                 return NinjaWeapon2;
+
+
+            case Item_Type.KingWeapon0:
+                return KingWeapon0;
+            case Item_Type.KingWeapon1:
+                return KingWeapon1;
+            case Item_Type.KingWeapon2:
+                return KingWeapon2;
+            case Item_Type.KingWeapon3:
+                return KingWeapon3;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,10 +5,12 @@ using UniRx;
 using System.Linq;
 using BackEnd;
 using TMPro;
+using UnityEngine.UI.Extensions;
 
-
-public class UiDolPassCell : MonoBehaviour
+public class UiDolPassCell : FancyCell<DolPassData_Fancy>
 {
+    DolPassData_Fancy itemData;
+    
   [SerializeField]
     private Image itemIcon_free;
 
@@ -231,10 +232,6 @@ public class UiDolPassCell : MonoBehaviour
         return seolKillCount >= passInfo.require;
     }
 
-    private void OnEnable()
-    {
-        RefreshParent();
-    }
     private void RefreshParent()
     {
         if (passInfo == null) return;
@@ -255,4 +252,55 @@ public class UiDolPassCell : MonoBehaviour
             }
         }
     }
+    
+
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+    }
+
+    public override void UpdateContent(DolPassData_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+//        Debug.LogError("DolpasS!");
+        
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
+
 }

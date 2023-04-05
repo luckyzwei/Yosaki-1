@@ -212,7 +212,7 @@ public class DokebiFireManager : SingletonMono<DokebiFireManager>
 
         enemyData.Hp = TableManager.Instance.EnemyTable.dataArray[10500].Hp * (System.Math.Pow(calValue, enemyDeadCount.Value + 5000))*10000f;
 
-        Debug.LogError(enemyData.Hp);
+ //       Debug.LogError(enemyData.Hp);
 
         enemyData.Attackpower = 0;
 

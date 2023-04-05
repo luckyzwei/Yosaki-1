@@ -35,8 +35,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         public readonly float peachItem;
         public readonly float helItem;
         public readonly float chunItem;
+        public readonly float dailybootyItem;
+        public readonly float dokebiItem;
 
-        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem, float helItem,float chunItem)
+        public SleepRewardInfo(float gold, float jade, float GrowthStone, float marble, float yoguiMarble, float eventItem, float exp, int elapsedSeconds, int killCount, float stageRelic, float sulItem, float springItem, float peachItem, float helItem,float chunItem,float dailybootyItem,float dokebiItem)
         {
             this.gold = gold;
 
@@ -67,6 +69,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             this.helItem = helItem;
             
             this.chunItem = chunItem;
+
+            this.dailybootyItem = dailybootyItem;
+            
+            this.dokebiItem = dokebiItem;
         }
     }
 
@@ -142,7 +148,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         float enemyKilldailyMissionRequire = TableManager.Instance.DailyMissionDatas[0].Rewardrequire;
         float enemyKilldailyMissionReward = TableManager.Instance.DailyMissionDatas[0].Rewardvalue;
 
-        float jade = killedEnemyPerMin / enemyKilldailyMissionRequire * enemyKilldailyMissionReward * GameBalance.sleepRewardRatio * elapsedMinutes * 1.8f;
+        float jade = 0;
 
         float GrowthStone = killedEnemyPerMin * (stageTableData.Magicstoneamount + PlayerStats.GetSmithValue(StatusType.growthStoneUp)) * GameBalance.sleepRewardRatio * elapsedMinutes;
 
@@ -176,6 +182,15 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             chunItem = killedEnemyPerMin * stageTableData.Chunfloweramount * GameBalance.sleepRewardRatio * elapsedMinutes;
         }
+
+        float dokebiItem = 0;
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value >0)
+        {
+            dokebiItem = killedEnemyPerMin * stageTableData.Dokebifireamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+        }
+
+        float dailybootyItem = killedEnemyPerMin * stageTableData.Dailyitemgetamount* stageTableData.Marbleamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+        
         eventItem = springItem;
 
         float exp = killedEnemyPerMin * spawnedEnemyData.Exp * GameBalance.sleepRewardRatio * elapsedMinutes;
@@ -185,7 +200,8 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             yoguiMarble: yoguimarble, eventItem: eventItem, exp: exp, elapsedSeconds: elapsedSeconds,
             killCount: (int)(elapsedMinutes * killedEnemyPerMin * stageTableData.Marbleamount *
                              GameBalance.sleepRewardRatio), stageRelic: stageRelic, sulItem: sulItem,
-            springItem: springItem, peachItem: peachItem, helItem: helItem, chunItem: chunItem);
+            springItem: springItem, peachItem: peachItem, helItem: helItem, chunItem: chunItem,
+            dailybootyItem: dailybootyItem, dokebiItem: dokebiItem);
 
         UiSleepRewardView.Instance.CheckReward();
     }
@@ -205,7 +221,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         GrowthManager.Instance.GetExpBySleep(sleepRewardInfo.exp);
 
         ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += sleepRewardInfo.gold;
-        ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += sleepRewardInfo.jade;
+       // ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += sleepRewardInfo.jade;
         ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value += sleepRewardInfo.marble;
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value += sleepRewardInfo.GrowthStone;
         //
@@ -222,6 +238,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value >0)
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value += (int)sleepRewardInfo.chunItem;
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value >0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += (int)sleepRewardInfo.dokebiItem;
         }
         //봄나물
         if (ServerData.userInfoTable.CanSpawnSpringEventItem())
@@ -246,6 +266,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value += sleepRewardInfo.stageRelic;
 
         ServerData.userInfoTable.TableDatas[UserInfoTable.dailyEnemyKillCount].Value += sleepRewardInfo.killCount;
+        
+        ServerData.userInfoTable.TableDatas[UserInfoTable.dailybooty].Value += sleepRewardInfo.dailybootyItem;
+        
         ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value = 0;
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
@@ -261,11 +284,12 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value += sleepRewardInfo.killCount;
+        ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value += sleepRewardInfo.killCount;
         //ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value += sleepRewardInfo.killCount;
 
         Param goodsParam = new Param();
         goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
-        goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
+     //   goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
         goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
         goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
@@ -300,12 +324,17 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value); 
         }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value >0)
+        {
+            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value); 
+        }
 
         goodsParam.Add(GoodsTable.StageRelic, ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value);
         goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
 
         Param userInfoParam = new Param();
         userInfoParam.Add(UserInfoTable.dailyEnemyKillCount, ServerData.userInfoTable.TableDatas[UserInfoTable.dailyEnemyKillCount].Value);
+        userInfoParam.Add(UserInfoTable.dailybooty, ServerData.userInfoTable.TableDatas[UserInfoTable.dailybooty].Value);
         userInfoParam.Add(UserInfoTable.sleepRewardSavedTime, ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value);
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
@@ -321,6 +350,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         userInfoParam.Add(UserInfoTable.killCountTotalWinterPass, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value);
+        userInfoParam.Add(UserInfoTable.killCountTotalSeason3, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value);
         // userInfoParam.Add(UserInfoTable.attenCountOne, ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value);
 
 

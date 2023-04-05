@@ -1,6 +1,7 @@
 ﻿using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Permissions;
 using TMPro;
 using UniRx;
 using UnityEngine;
@@ -32,6 +33,15 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
     public ReactiveProperty<int> attenUserNum = new ReactiveProperty<int>();
 
     public GuildMemberInfo myMemberInfo { get; set; }
+
+    public static int myCurrentGuildTowerScore = 0;
+    public static int serverRecordedTowerScore = 0;
+
+    [SerializeField]
+    private ReactiveProperty<int> currentGuildTowerTotalScore = new ReactiveProperty<int>();
+
+    [SerializeField]
+    private TextMeshProUGUI myGuildTotalTowerScore;
 
     public UiGuildMemberCell GetMemberCell(string nickName)
     {
@@ -69,8 +79,8 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
             {
                 return memberCells[i].guildMemberInfo.guildGrade;
             }
-
         }
+
         return GuildGrade.Member;
     }
 
@@ -84,8 +94,8 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
             {
                 return memberCells[i].guildMemberInfo.guildGrade;
             }
-
         }
+
         return GuildGrade.Member;
     }
 
@@ -98,9 +108,15 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
     private void Subscribe()
     {
-        GuildManager.Instance.guildLevelExp.AsObservable().Subscribe(e =>
+        GuildManager.Instance.guildLevelExp.AsObservable().Subscribe(e => { RefreshGuildMemberCountText(); }).AddTo(this);
+
+        currentGuildTowerTotalScore.AsObservable().Subscribe(e =>
         {
-            RefreshGuildMemberCountText();
+            myGuildTotalTowerScore.SetText($"문파 총점:{e}점");
+
+            var rewardServerData = ServerData.bossServerTable.TableDatas[TableManager.Instance.TwelveBossTable.dataArray[117].Stringid];
+
+            rewardServerData.score.Value = $"{e}";
         }).AddTo(this);
     }
 
@@ -114,9 +130,11 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
     private void Initialize()
     {
+        myCurrentGuildTowerScore = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorGuildTower].Value;
+
         memberCells = new List<UiGuildMemberCell>();
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 35; i++)
         {
             var cell = Instantiate<UiGuildMemberCell>(memberCellPrefab, cellParent);
 
@@ -138,6 +156,12 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
     public void RefreshMemberList()
     {
         memberNumText.SetText(string.Empty);
+
+        for (int i = 0; i < memberCells.Count; i++)
+        {
+            if (memberCells[i].guildMemberInfo != null)
+                memberCells[i].guildMemberInfo.guildTowerFloor = 0;
+        }
 
         var bro = Backend.Social.Guild.GetGuildMemberListV3(GuildManager.Instance.myGuildIndate, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value) + 5);
 
@@ -175,15 +199,28 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                     int donateDogFeedAmounts = int.Parse(data["totalGoods5Amount"]["N"].ToString());
                     bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
                     bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    bool todayGuildBoss = int.Parse(data["totalGoods6Amount"]["N"].ToString()) >= 1;
+                    int guildTowerFloor = int.Parse(data["totalGoods6Amount"]["N"].ToString());
+
 
                     if (todayDonated)
                     {
                         attenNum++;
-
                     }
 
-                    var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, todayGuildBoss, donateDogFeedAmounts);
+                    bool isMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
+
+                    if (isMyData)
+                    {
+                        serverRecordedTowerScore = guildTowerFloor;
+                    }
+
+                    if (isMyData && myCurrentGuildTowerScore != guildTowerFloor)
+                    {
+                        UpdateGuildTowerScore(guildTowerFloor);
+                        guildTowerFloor = myCurrentGuildTowerScore;
+                    }
+
+                    var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmounts);
 
                     memberCells[i].Initialize(memberData);
                     memberCells[i].transform.SetAsFirstSibling();
@@ -193,11 +230,10 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                         findMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
                     }
 
-                    if(nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName)) 
+                    if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
                     {
                         this.myMemberInfo = memberData;
                     }
-
                 }
                 else
                 {
@@ -226,16 +262,27 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                     int donateDogFeedAmount = int.Parse(data["totalGoods5Amount"]["N"].ToString());
                     bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
                     bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    bool todayGuildBoss = int.Parse(data["totalGoods6Amount"]["N"].ToString()) >= 1;
+                    int guildTowerFloor = int.Parse(data["totalGoods6Amount"]["N"].ToString());
 
                     //내꺼찾음
                     if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
                     {
-                        var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, todayGuildBoss, donateDogFeedAmount);
+                        //점수추가
+                        if (myCurrentGuildTowerScore != guildTowerFloor)
+                        {
+                            UpdateGuildTowerScore(guildTowerFloor);
+                            guildTowerFloor = myCurrentGuildTowerScore;
+                        }
+
+                        serverRecordedTowerScore = guildTowerFloor;
+
+                        var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmount);
                         memberCells[0].Initialize(memberData);
                         memberCells[0].transform.SetAsFirstSibling();
 
                         this.myMemberInfo = memberData;
+
+
                         break;
                     }
                 }
@@ -247,7 +294,6 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                 {
                     memberCells[i].RefreshKickButton();
                 }
-
             }
 
             PopupManager.Instance.ShowAlarmMessage("갱신 완료");
@@ -259,5 +305,36 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
         }
 
         guildInfoButton.SetActive(GetMyGuildGrade() == GuildGrade.Master);
+
+
+        currentGuildTowerTotalScore.Value = 0;
+
+        int updatedScore = 0;
+
+        for (int i = 0; i < memberCells.Count; i++)
+        {
+            if (memberCells[i].guildMemberInfo != null)
+                updatedScore += memberCells[i].guildMemberInfo.guildTowerFloor;
+        }
+
+        currentGuildTowerTotalScore.Value = updatedScore;
+    }
+
+    public void UpdateGuildTowerScore(int serverScore)
+    {
+        int currentScore = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorGuildTower].Value;
+
+        if (currentScore == serverScore) return;
+
+        int addValue = currentScore - serverScore;
+
+        if (addValue <= 0) return;
+
+        //점수추가
+        var bro = Backend.Social.Guild.ContributeGoodsV3(goodsType.goods6, addValue);
+
+        if (bro.IsSuccess())
+        {
+        }
     }
 }

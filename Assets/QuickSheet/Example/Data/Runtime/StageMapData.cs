@@ -92,4 +92,12 @@ public class StageMapData
   float chunfloweramount;
   public float Chunfloweramount { get {return chunfloweramount; } set { this.chunfloweramount = value;} }
   
+  [SerializeField]
+  float dailyitemgetamount;
+  public float Dailyitemgetamount { get {return dailyitemgetamount; } set { this.dailyitemgetamount = value;} }
+  
+  [SerializeField]
+  float dokebifireamount;
+  public float Dokebifireamount { get {return dokebifireamount; } set { this.dokebifireamount = value;} }
+  
 }

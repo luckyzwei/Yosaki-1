@@ -54,6 +54,8 @@ public class UiRewardCollection : MonoBehaviour
     private GameObject HelObject;
     [SerializeField]
     private GameObject ChunObject;
+    [SerializeField]
+    private GameObject DokebiObject;
 
     private void Start()
     {
@@ -67,7 +69,7 @@ public class UiRewardCollection : MonoBehaviour
             oniButton.interactable = e >= 300;
             baekGuiButton.interactable = e >= 3000;
             sonButton.interactable = e >= 5000;
-            gangChulButton.interactable = e >= 30000;
+            //gangChulButton.interactable = e >= 30000;
             gumGiButton.interactable = e >= 50000;
             hellFireButton.interactable = e >= 50000;
             chunFlowerButton.interactable = e >= 200000;
@@ -103,6 +105,10 @@ public class UiRewardCollection : MonoBehaviour
         ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).AsObservable().Subscribe(e =>
         {
             ChunObject.SetActive(e == 0);
+        }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).AsObservable().Subscribe(e =>
+        {
+            DokebiObject.SetActive(e == 0);
         }).AddTo(this);
     }
 
@@ -844,6 +850,11 @@ public class UiRewardCollection : MonoBehaviour
 
     public void OnClickDokebiReward(bool isPopUp=true)
     {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
+        {
+            //졸업했으면 못받게
+            return;
+        }
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.getDokebiFire).Value == 1)
         {
             if (isPopUp)
@@ -1578,7 +1589,7 @@ public class UiRewardCollection : MonoBehaviour
         OnClickBackGuiReceiveButton(false);
         OnClickSonReceiveButton(false);
         OnClickSmithReward(false);
-        OnClickGangChulReceiveButton(false);
+        //OnClickGangChulReceiveButton(false);
         OnClickGetNewGachaButton(false);
         
         //오른쪽

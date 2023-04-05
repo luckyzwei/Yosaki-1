@@ -273,16 +273,16 @@ public class TwelveDungeonManager : ContentsManagerBase
 
     private void SendScore()
     {
-        //인만 업데이트
-        if (GameManager.Instance.bossId == 11)
-        {
-            // RankManager.Instance.UpdateRealBoss_Score(damageAmount.Value);
-        }
-        //강철이
-        else if (GameManager.Instance.bossId == 20)
-        {
-            RankManager.Instance.UpdateRealBoss_Score_GangChul(damageAmount.Value);
-        }
+        // //인만 업데이트
+        // if (GameManager.Instance.bossId == 11)
+        // {
+        //     // RankManager.Instance.UpdateRealBoss_Score(damageAmount.Value);
+        // }
+        // //강철이
+        // else if (GameManager.Instance.bossId == 20)
+        // {
+        //     //RankManager.Instance.UpdateRealBoss_Score_GangChul(damageAmount.Value);
+        // }
 
         var serverData = ServerData.bossServerTable.TableDatas[twelveBossTable.Stringid];
 

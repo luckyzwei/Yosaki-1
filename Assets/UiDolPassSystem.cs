@@ -1,16 +1,27 @@
 using CodeStage.AntiCheat.ObscuredTypes;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UniRx;
 using UnityEngine;
-using UnityEngine.Purchasing;
 using UnityEngine.UI;
 using BackEnd;
-using UnityEngine.Serialization;
+using UnityEngine.UI.Extensions;
 
-public class UiDolPassSystem : MonoBehaviour
+public class DolPassData_Fancy
 {
+    public PassInfo passInfo { get; private set; }
+    public DolPassData_Fancy(PassInfo passData)
+    {
+        this.passInfo = passData;
+    }
+}
+
+public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
+{
+
+
+
    [SerializeField]
     private UiDolPassCell uiPassCellPrefab;
 
@@ -42,11 +53,6 @@ public class UiDolPassSystem : MonoBehaviour
     }
 #endif
 
-    private void Start()
-    {
-        Initialize();
-        Subscribe();
-    }
 
     private void Subscribe()
     {
@@ -55,6 +61,8 @@ public class UiDolPassSystem : MonoBehaviour
             diceNum.SetText($"주사위 {ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value}개");
         }).AddTo(this);
     }
+
+
     private void Initialize()
     {
         var tableData = TableManager.Instance.dolPass.dataArray;
@@ -332,4 +340,46 @@ public class UiDolPassSystem : MonoBehaviour
 
         return returnValues;
     }
+    
+    //
+        [SerializeField]
+        private Scroller scroller;
+    
+    
+        [SerializeField] GameObject cellPrefab = default;
+
+        protected override GameObject CellPrefab => cellPrefab;
+    
+        private void Start()
+        {
+            Subscribe();
+            
+            scroller.OnValueChanged(UpdatePosition);
+    
+            var tableData = TableManager.Instance.dolPass.dataArray;
+    
+            List<DolPassData_Fancy> passInfos = new List<DolPassData_Fancy>();
+    
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                var passInfo = new PassInfo();
+    
+                passInfo.require = tableData[i].Unlockamount;
+                passInfo.id = tableData[i].Id;
+    
+                passInfo.rewardType_Free = tableData[i].Reward1;
+                passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
+                passInfo.rewardType_Free_Key = SeolPassServerTable.MonthlypassFreeReward_dol;
+    
+                passInfo.rewardType_IAP = tableData[i].Reward2;
+                passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
+                passInfo.rewardType_IAP_Key = SeolPassServerTable.MonthlypassAdReward_dol;
+                passInfos.Add(new DolPassData_Fancy(passInfo));
+    
+            }
+    
+    
+            this.UpdateContents(passInfos.ToArray());
+            scroller.SetTotalCount(passInfos.Count);
+        }
 }

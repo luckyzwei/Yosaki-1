@@ -34,10 +34,12 @@ public class UserInfoTable
     public const string currentFloorIdx5 = "cf5"; //경락마사지
     public const string RoyalTombFloorIdx = "RoyalTombFloorIdx"; //경락마사지
     public const string currentFloorIdx6 = "cf6"; //신수타워
+    public const string currentFloorGuildTower = "cfg0"; //문파 전갈굴
 
     public const string receiveReviewReward = "receiveReviewReward";
 
     public const string dailyEnemyKillCount = "dailyEnemyKillCount";
+    public const string dailybooty = "dailybooty"; //전리품
 
 
     public const string dailyTicketBuyCount = "dailyTicketBuyCount";
@@ -136,9 +138,9 @@ public class UserInfoTable
     public const string DayOfWeekClear = "dowc";
 
 
-
     //짝수 월간훈련(Monthlypass)
     public const string killCountTotal = "k16";
+
     //홀수 월간훈련(Monthlypass2)
     public const string killCountTotal2 = "k15";
     public const string monthAttendCount = "mac";
@@ -146,6 +148,7 @@ public class UserInfoTable
     public const string killCountTotalWinterPass = "KillCountWinterPass"; //가을훈련
     public const string killCountTotalSeason = "ks1"; //봄훈련
     public const string killCountTotalSeason2 = "ks2"; //새학기훈련
+    public const string killCountTotalSeason3 = "ks3"; //수호훈련
     public const string attenCountBok = "kb";
     public const string attenCountSpring = "acs";
     public const string attenCountChuSeok = "kchu";
@@ -227,6 +230,8 @@ public class UserInfoTable
 
     public const string purchaseRefund0 = "purchaseRefund0";
     public const string newGachaEnergyRefund = "newGachaEnergyRefund";
+    public const string titleConvertNewTitle = "titleConvertNewTitle";
+    public const string chunmaRefund = "chunmaRefund";
 
     public const string exchangeCount_0_Mileage = "mff";
     public const string exchangeCount_1_Mileage = "mgg";
@@ -269,9 +274,14 @@ public class UserInfoTable
     public const string graduateHel = "GH";
     public const string graduateChun = "graduateChun";
     public const string graduateGumSoul = "graduateGumSoul";
+    public const string graduateDokebiFire = "graduateDokebiFire";
     public const string getMovingAutoAttack = "GMAA";
     public const string suhoAnimalStart = "Sast";
-
+    public const string titleLevel = "titleLevel";
+    public const string titleStage = "titleStage";
+    public const string guildTowerStart = "gz0";
+    
+    public const string gangchulRewardIdx = "gri";
 
     public double currentServerDate;
     public double attendanceUpdatedTime;
@@ -281,239 +291,251 @@ public class UserInfoTable
 
     private Dictionary<string, double> tableSchema = new Dictionary<string, double>()
     {
-        {Hp,100f},
-        {Mp,100f},
-        {LastMap,0f},
-        {LastLogin,0f},
-        {removeAd,0f},
-        {gachaNum_Weapon,0f},
-        {gachaNum_Norigae,0f},
-        {gachaNum_Skill,0f},
-        {gachaNum_NewGacha,0f},
-        {hackingCount,0f},
-        {passSelectedIdx,0f},
-        {currentFloorIdx,0f},
-        {currentFloorIdx2,0f},
-        {currentFloorIdx3,0f},
-        {currentFloorIdx4,0f},
-        {currentFloorIdx5,0f},
-        {currentFloorIdx6,0f},
-        {RoyalTombFloorIdx,0f},
-        {receiveReviewReward,0f},
-        {dailyEnemyKillCount,0f},
-        {dailyTicketBuyCount,0f},
-        {receivedTicketReward,0f},
-        {bonusDungeonEnterCount,0f},
-        {chatBan,0f},
-        {tutorialCurrentStep,2f},
-        {tutorialClearFlags,0f},
-        {managerDescriptionFlags,0f},
-        {attendanceCount,0f},
-        {marbleAwake,-1f},
-        {resetStat,0f},
+        { Hp, 100f },
+        { Mp, 100f },
+        { LastMap, 0f },
+        { LastLogin, 0f },
+        { removeAd, 0f },
+        { gachaNum_Weapon, 0f },
+        { gachaNum_Norigae, 0f },
+        { gachaNum_Skill, 0f },
+        { gachaNum_NewGacha, 0f },
+        { hackingCount, 0f },
+        { passSelectedIdx, 0f },
+        { currentFloorIdx, 0f },
+        { currentFloorIdx2, 0f },
+        { currentFloorIdx3, 0f },
+        { currentFloorIdx4, 0f },
+        { currentFloorIdx5, 0f },
+        { currentFloorIdx6, 0f },
+        { currentFloorGuildTower, 0f },
+        { RoyalTombFloorIdx, 0f },
+        { receiveReviewReward, 0f },
+        { dailyEnemyKillCount, 0f },
+        { dailyTicketBuyCount, 0f },
+        { receivedTicketReward, 0f },
+        { bonusDungeonEnterCount, 0f },
+        { chatBan, 0f },
+        { tutorialCurrentStep, 2f },
+        { tutorialClearFlags, 0f },
+        { managerDescriptionFlags, 0f },
+        { attendanceCount, 0f },
+        { marbleAwake, -1f },
+        { resetStat, 0f },
         //버프
-        {buff_gold1,0f},
-        {buff_gold2,0f},
-        {buff_exp1,0f},
-        {buff_exp2,0f},
+        { buff_gold1, 0f },
+        { buff_gold2, 0f },
+        { buff_exp1, 0f },
+        { buff_exp2, 0f },
 
-        {guild_buff0,0f},
-        {guild_buff1,0f},
-        {guild_buff2,0f},
-        {guild_buff3,0f},
-        {one_Buff,0f},
-        {mf11_Buff,0f},
-        {ma11_Buff,0f},
+        { guild_buff0, 0f },
+        { guild_buff1, 0f },
+        { guild_buff2, 0f },
+        { guild_buff3, 0f },
+        { one_Buff, 0f },
+        { mf11_Buff, 0f },
+        { ma11_Buff, 0f },
 
-        {mf12_Buff,0f},
-        {ma12_Buff,0f},
+        { mf12_Buff, 0f },
+        { ma12_Buff, 0f },
 
-        {season0_Buff,0f},
-        {season1_Buff,0f},
-        {season2_Buff,0f},
-        {season3_Buff,0f},
+        { season0_Buff, 0f },
+        { season1_Buff, 0f },
+        { season2_Buff, 0f },
+        { season3_Buff, 0f },
 
-        {winter0_Buff,0f},
-        {winter1_Buff,0f},
+        { winter0_Buff, 0f },
+        { winter1_Buff, 0f },
 
-        {bonusDungeonMaxKillCount,0f},
-        {wingPackageRewardReceive,0f},
-        {topClearStageId,-1f},
-        {selectedSkillGroupId,0f},
-        {dokebiEnterCount,0f},
-        {dokebiKillCount0,0f},
-        {dokebiKillCount1,0f},
-        {dokebiKillCount2,0f},
-        {chatFrame,0f},
-        {hellMark,0f},
+        { bonusDungeonMaxKillCount, 0f },
+        { wingPackageRewardReceive, 0f },
+        { topClearStageId, -1f },
+        { selectedSkillGroupId, 0f },
+        { dokebiEnterCount, 0f },
+        { dokebiKillCount0, 0f },
+        { dokebiKillCount1, 0f },
+        { dokebiKillCount2, 0f },
+        { chatFrame, 0f },
+        { hellMark, 0f },
 
-        {freeWeapon,0f},
-        {freeNorigae,0f},
-        {freeSkill,0f},
-        {freeNewGacha,0f},
+        { freeWeapon, 0f },
+        { freeNorigae, 0f },
+        { freeSkill, 0f },
+        { freeNewGacha, 0f },
 
-        {dokebiKillCount3,0f},
+        { dokebiKillCount3, 0f },
 
-        {oakpensionAttendance,0f},
-        {marblepensionAttendance,0f},
-        {hellpensionAttendance,0f},
-        {chunpensionAttendance,0f},
-        {dokebipensionAttendance,0f},
-        {sumipensionAttendance,0f},
-        {ringpensionAttendance,0f},
-        {suhopetfeedclearpensionAttendance,0f},
+        { oakpensionAttendance, 0f },
+        { marblepensionAttendance, 0f },
+        { hellpensionAttendance, 0f },
+        { chunpensionAttendance, 0f },
+        { dokebipensionAttendance, 0f },
+        { sumipensionAttendance, 0f },
+        { ringpensionAttendance, 0f },
+        { suhopetfeedclearpensionAttendance, 0f },
 
-        {marblePackChange,0f},
-        {yoguiSogulLastClear,0f},
-        {oldDokebi2LastClear,0f},
-        {smithClear,0f},
-        {gumGiSoulClear,0f},
-        {smithTreeClear,0f},
-        {sonCloneClear,0f},
-        {gumGiClear,0f},
-        {flowerClear,0f},
-        {DokebiFireClear,0f},
-        {DayOfWeekClear,0f},
-        {getFoxCup,0f},
-        {graduateSon,0f},
-        {graduateHel,0f},
-        {graduateChun,0f},
-        {graduateGumSoul,0f},
-        {getMovingAutoAttack,0f},
+        { marblePackChange, 0f },
+        { yoguiSogulLastClear, 0f },
+        { oldDokebi2LastClear, 0f },
+        { smithClear, 0f },
+        { gumGiSoulClear, 0f },
+        { smithTreeClear, 0f },
+        { sonCloneClear, 0f },
+        { gumGiClear, 0f },
+        { flowerClear, 0f },
+        { DokebiFireClear, 0f },
+        { DayOfWeekClear, 0f },
+        { getFoxCup, 0f },
+        { graduateSon, 0f },
+        { graduateHel, 0f },
+        { graduateChun, 0f },
+        { graduateGumSoul, 0f },
+        { graduateDokebiFire, 0f },
+        { getMovingAutoAttack, 0f },
 
 
-        {yomul0_buff,0f},
-        {yomul1_buff,0f},
-        {yomul2_buff,0f},
-        {yomul3_buff,0f},
-        {killCountTotal,0f},
-        {relicKillCount,0f},
-        {hellRelicKillCount,0f},
-        {usedRelicTicketNum,0f},
-        {relicpensionAttendance,0f},
-        {yomul4_buff,0f},
+        { yomul0_buff, 0f },
+        { yomul1_buff, 0f },
+        { yomul2_buff, 0f },
+        { yomul3_buff, 0f },
+        { killCountTotal, 0f },
+        { relicKillCount, 0f },
+        { hellRelicKillCount, 0f },
+        { usedRelicTicketNum, 0f },
+        { relicpensionAttendance, 0f },
+        { yomul4_buff, 0f },
 
-        {yomul5_buff,0f},
-        {killCountTotal2,0f},
-        {monthAttendCount,1f},
-        {killCountTotalChild,0f},
-        {killCountTotalWinterPass,0f},
-        {killCountTotalSeason,0f},
-        {killCountTotalSeason2,0f},
-        {attenCountBok,1f},
-        {attenCountSpring,1f},
-        {usedCollectionCount,0f},
-        {usedSnowManCollectionCount,0f},
-        {attenCountChuSeok,1f},
-        {attenCountSeason,1f},
-        {yomul6_buff,0f},
-        {sonScore,0f},
-        {hellWarScore,0f},
-        {catScore,0f},
-        {susanoScore,0f},
-        {norigaeScore,0f},
-        {gradeScore,0f},
-        {yumScore,0f},
-        {okScore,0f},
-        {doScore,0f},
-        {sumiScore,0f},
-        {sleepRewardSavedTime,0f},
-        {yomul7_buff,0f},
-        {attendanceCount_100Day,1f},
-        {peachAttendance,0f},
-        {smithpensionAttendance,0f},
-        {weaponpensionAttendance,0f},
-        {buffAwake,0f},
-        {petAwake,0f},
-        {IgnoreDamDec,0f},
-        {SendGuildPoint,0},
-        {cockAwake,0},
-        {attendanceCount_Seol,1},
-        {attendanceCount_Dol,0},
-        {dogAwake,0},
-        {basicPackRefund,0},
-        {dolPassRefund,0},
-        {skillInitialized,0},
-        {smithExp,0},
-        {getSmith,0},
-        {getGumGi,0},
-        {getSumiFire,0},
-        {getFlower,0},
-        {getDokebiFire,0},
-        {getRingGoods,0},
-        {getDayOfWeek,0},
-        {getDokebiBundle,0},
-        {sendPetExp,0},
-        {exchangeCount,0},
-        {exchangeCount_1,0},
-        {exchangeCount_2,0},
-        {exchangeCount_3,0},
+        { yomul5_buff, 0f },
+        { killCountTotal2, 0f },
+        { monthAttendCount, 1f },
+        { killCountTotalChild, 0f },
+        { killCountTotalWinterPass, 0f },
+        { killCountTotalSeason, 0f },
+        { killCountTotalSeason2, 0f },
+        { killCountTotalSeason3, 0f },
+        { attenCountBok, 1f },
+        { attenCountSpring, 1f },
+        { usedCollectionCount, 0f },
+        { usedSnowManCollectionCount, 0f },
+        { attenCountChuSeok, 1f },
+        { attenCountSeason, 1f },
+        { yomul6_buff, 0f },
+        { sonScore, 0f },
+        { hellWarScore, 0f },
+        { catScore, 0f },
+        { susanoScore, 0f },
+        { norigaeScore, 0f },
+        { gradeScore, 0f },
+        { yumScore, 0f },
+        { okScore, 0f },
+        { doScore, 0f },
+        { sumiScore, 0f },
+        { sleepRewardSavedTime, 0f },
+        { yomul7_buff, 0f },
+        { attendanceCount_100Day, 1f },
+        { peachAttendance, 0f },
+        { smithpensionAttendance, 0f },
+        { weaponpensionAttendance, 0f },
+        { buffAwake, 0f },
+        { petAwake, 0f },
+        { IgnoreDamDec, 0f },
+        { SendGuildPoint, 0 },
+        { cockAwake, 0 },
+        { attendanceCount_Seol, 1 },
+        { attendanceCount_Dol, 0 },
+        { dogAwake, 0 },
+        { basicPackRefund, 0 },
+        { dolPassRefund, 0 },
+        { skillInitialized, 0 },
+        { smithExp, 0 },
+        { getSmith, 0 },
+        { getGumGi, 0 },
+        { getSumiFire, 0 },
+        { getFlower, 0 },
+        { getDokebiFire, 0 },
+        { getRingGoods, 0 },
+        { getDayOfWeek, 0 },
+        { getDokebiBundle, 0 },
+        { sendPetExp, 0 },
+        { exchangeCount, 0 },
+        { exchangeCount_1, 0 },
+        { exchangeCount_2, 0 },
+        { exchangeCount_3, 0 },
 
-        {monthreset,0},
-        {refundFox,0},
-        {sendGangChul,0},
-        {foxMask,0},
-        {relicPackReset,0},
-        {hellScore,0},
-        {chunClear,0},
-        {oneAttenEvent,0},
-        {titleRefund,0},
-        {oneAttenEvent_one,0},
-        {relicReset,0},
+        { monthreset, 0 },
+        { refundFox, 0 },
+        { sendGangChul, 0 },
+        { foxMask, 0 },
+        { relicPackReset, 0 },
+        { hellScore, 0 },
+        { chunClear, 0 },
+        { oneAttenEvent, 0 },
+        { titleRefund, 0 },
+        { oneAttenEvent_one, 0 },
+        { relicReset, 0 },
 
-        {canRecommendCount,GameBalance.recommendCountPerWeek},
-        {mileageRefund,0},
-        {marRelicRefund,0},
-        {purchaseRefund0,0},
-        {newGachaEnergyRefund,0},
+        { canRecommendCount, GameBalance.recommendCountPerWeek },
+        { mileageRefund, 0 },
+        { marRelicRefund, 0 },
+        { purchaseRefund0, 0 },
+        { newGachaEnergyRefund, 0 },
+        { titleConvertNewTitle, 0 },
+        { chunmaRefund, 0 },
 
-        {exchangeCount_0_Mileage,0},
-        {exchangeCount_1_Mileage,0},
-        {exchangeCount_2_Mileage,0},
-        {exchangeCount_3_Mileage,0},
-        {exchangeCount_4_Mileage,0},
+        { exchangeCount_0_Mileage, 0 },
+        { exchangeCount_1_Mileage, 0 },
+        { exchangeCount_2_Mileage, 0 },
+        { exchangeCount_3_Mileage, 0 },
+        { exchangeCount_4_Mileage, 0 },
+
+        { exchangeCount_5_Mileage, 0 },
+        { exchangeCount_6_Mileage, 0 },
+        { exchangeCount_7_Mileage, 0 },
+        { exchangeCount_8_Mileage, 0 },
+        { exchangeCount_9_Mileage, 0 },
+
+        { ny_ex_0, 0 },
+        { ny_ex_1, 0 },
+        { ny_ex_2, 0 },
+        { ny_ex_3, 0 },
+        { ny_ex_4, 0 },
+        { ny_ex_5, 0 },
+
+        { eventMission0_0, 0 },
+        { eventMission0_1, 0 },
+        { eventMission0_2, 0 },
+        { eventMission0_3, 0 },
+        { eventMission0_4, 0 },
+        { eventMission0_5, 0 },
+
+        { nickNameChange, 0 },
+        { getPetHome, 0 },
+        { dokebiPensionReset, 0 },
+        { partyTowerRecommend, GameBalance.recommendCountPerWeek_PartyTower },
+        { partyTowerFloor, 0 },
+        { partyTowerFloor2, 0 },
+        { receivedPartyTowerTicket, 0f },
+
+        { snow_exchangeCount_0, 0f },
+        { snow_exchangeCount_1, 0f },
+        { snow_exchangeCount_2, 0f },
+        { snow_exchangeCount_3, 0f },
+        { snow_exchangeCount_4, 0f },
+        { snow_exchangeCount_5, 0f },
+        { dailySleepRewardReceiveCount, 0f },
+        { sumiFireClear, 0f },
+        { suhoAnimalStart, 0f },
+        { dailybooty, 0f },
+        { titleLevel, -1f },
+        { titleStage, -1f },
+        { guildTowerStart, 0f },
         
-        {exchangeCount_5_Mileage,0},
-        {exchangeCount_6_Mileage,0},
-        {exchangeCount_7_Mileage,0},
-        {exchangeCount_8_Mileage,0},
-        {exchangeCount_9_Mileage,0},
-
-        {ny_ex_0,0},
-        {ny_ex_1,0},
-        {ny_ex_2,0},
-        {ny_ex_3,0},
-        {ny_ex_4,0},
-        {ny_ex_5,0},
-
-        {eventMission0_0,0},
-        {eventMission0_1,0},
-        {eventMission0_2,0},
-        {eventMission0_3,0},
-        {eventMission0_4,0},
-        {eventMission0_5,0},
-
-        {nickNameChange,0},
-        {getPetHome,0},
-        {dokebiPensionReset,0},
-        {partyTowerRecommend,GameBalance.recommendCountPerWeek_PartyTower},
-        {partyTowerFloor,0},
-        {partyTowerFloor2,0},
-        {receivedPartyTowerTicket,0f},
-
-        {snow_exchangeCount_0,0f},
-        {snow_exchangeCount_1,0f},
-        {snow_exchangeCount_2,0f},
-        {snow_exchangeCount_3,0f},
-        {snow_exchangeCount_4,0f},
-        {snow_exchangeCount_5,0f},
-        {dailySleepRewardReceiveCount,0f},
-        {sumiFireClear,0f},
-        {suhoAnimalStart,0f},
+        { gangchulRewardIdx, -1f },
     };
 
     private Dictionary<string, ReactiveProperty<double>> tableDatas = new Dictionary<string, ReactiveProperty<double>>();
     public Dictionary<string, ReactiveProperty<double>> TableDatas => tableDatas;
+
     public ReactiveProperty<double> GetTableData(string key)
     {
         return tableDatas[key];
@@ -526,119 +548,121 @@ public class UserInfoTable
         tableDatas.Clear();
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), callback =>
-         {
-             // 이후 처리
-             if (callback.IsSuccess() == false)
-             {
-                 Debug.LogError("LoadStatusFailed");
-                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry, Initialize);
-                 return;
-             }
+        {
+            // 이후 처리
+            if (callback.IsSuccess() == false)
+            {
+                Debug.LogError("LoadStatusFailed");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry, Initialize);
+                return;
+            }
 
-             var rows = callback.Rows();
+            var rows = callback.Rows();
 
-             //맨처음 초기화
-             if (rows.Count <= 0)
-             {
-                 Param defultValues = new Param();
+            //맨처음 초기화
+            if (rows.Count <= 0)
+            {
+                Param defultValues = new Param();
 
-                 var e = tableSchema.GetEnumerator();
+                var e = tableSchema.GetEnumerator();
 
-                 while (e.MoveNext())
-                 {
-                     if (e.Current.Key != LastLogin)
-                     {
-                         defultValues.Add(e.Current.Key, e.Current.Value);
-                         tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
-                     }
-                     else
-                     {
-                         BackendReturnObject servertime = Backend.Utils.GetServerTime();
+                while (e.MoveNext())
+                {
+                    if (e.Current.Key != LastLogin)
+                    {
+                        defultValues.Add(e.Current.Key, e.Current.Value);
+                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                    }
+                    else
+                    {
+                        BackendReturnObject servertime = Backend.Utils.GetServerTime();
 
-                         string time = servertime.GetReturnValuetoJSON()["utcTime"].ToString();
-                         DateTime currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(9);
+                        string time = servertime.GetReturnValuetoJSON()["utcTime"].ToString();
+                        DateTime currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(24);
 
-                         currentServerDate = (double)Utils.ConvertToUnixTimestamp(currentServerTime);
+                        currentServerDate = (double)Utils.ConvertToUnixTimestamp(currentServerTime);
 
-                         defultValues.Add(e.Current.Key, (double)currentServerDate);
-                         tableDatas.Add(e.Current.Key, new ReactiveProperty<double>((double)currentServerDate));
-                     }
+                        defultValues.Add(e.Current.Key, (double)currentServerDate);
+                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>((double)currentServerDate));
+                    }
+                }
 
-                 }
+                var bro = Backend.GameData.Insert(tableName, defultValues);
 
-                 var bro = Backend.GameData.Insert(tableName, defultValues);
+                if (bro.IsSuccess() == false)
+                {
+                    // 이후 처리
+                    ServerData.ShowCommonErrorPopup(bro, Initialize);
+                    return;
+                }
+                else
+                {
+                    var jsonData = bro.GetReturnValuetoJSON();
+                    if (jsonData.Keys.Count > 0)
+                    {
+                        Indate = jsonData[0].ToString();
+                    }
 
-                 if (bro.IsSuccess() == false)
-                 {
-                     // 이후 처리
-                     ServerData.ShowCommonErrorPopup(bro, Initialize);
-                     return;
-                 }
-                 else
-                 {
+                    // data.
+                    // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
+                }
 
-                     var jsonData = bro.GetReturnValuetoJSON();
-                     if (jsonData.Keys.Count > 0)
-                     {
+                return;
+            }
+            //나중에 칼럼 추가됐을때 업데이트
+            else
+            {
+                Param defultValues = new Param();
+                int paramCount = 0;
 
-                         Indate = jsonData[0].ToString();
+                JsonData data = rows[0];
 
-                     }
+                if (data.Keys.Contains(ServerData.inDate_str))
+                {
+                    Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
+                }
 
-                     // data.
-                     // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
-                 }
+                var e = tableSchema.GetEnumerator();
 
-                 return;
-             }
-             //나중에 칼럼 추가됐을때 업데이트
-             else
-             {
-                 Param defultValues = new Param();
-                 int paramCount = 0;
+                for (int i = 0; i < data.Keys.Count; i++)
+                {
+                    while (e.MoveNext())
+                    {
+                        if (data.Keys.Contains(e.Current.Key))
+                        {
+                            //값로드
+                            var value = data[e.Current.Key][ServerData.format_Number].ToString();
 
-                 JsonData data = rows[0];
+                            //기술슬롯 삭제되면서 0번으로 고정
+                            if (e.Current.Key.Equals(selectedSkillGroupId))
+                            {
+                                value = "0";
+                            }
 
-                 if (data.Keys.Contains(ServerData.inDate_str))
-                 {
-                     Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
-                 }
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(double.Parse(value)));
+                        }
+                        else
+                        {
+                            defultValues.Add(e.Current.Key, e.Current.Value);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
 
-                 var e = tableSchema.GetEnumerator();
+                            paramCount++;
+                        }
+                    }
+                }
 
-                 for (int i = 0; i < data.Keys.Count; i++)
-                 {
-                     while (e.MoveNext())
-                     {
-                         if (data.Keys.Contains(e.Current.Key))
-                         {
-                             //값로드
-                             var value = data[e.Current.Key][ServerData.format_Number].ToString();
-                             tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(double.Parse(value)));
-                         }
-                         else
-                         {
-                             defultValues.Add(e.Current.Key, e.Current.Value);
-                             tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                if (paramCount != 0)
+                {
+                    var bro = Backend.GameData.Update(tableName, Indate, defultValues);
 
-                             paramCount++;
-                         }
-                     }
-                 }
-
-                 if (paramCount != 0)
-                 {
-                     var bro = Backend.GameData.Update(tableName, Indate, defultValues);
-
-                     if (bro.IsSuccess() == false)
-                     {
-                         ServerData.ShowCommonErrorPopup(bro, Initialize);
-                         return;//
-                     }
-                 }
-
-             }
-         });
+                    if (bro.IsSuccess() == false)
+                    {
+                        ServerData.ShowCommonErrorPopup(bro, Initialize);
+                        return; //
+                    }
+                }
+            }
+        });
     }
 
     public void UpData(string key, bool LocalOnly)
@@ -659,6 +683,7 @@ public class UserInfoTable
             Debug.Log($"UserInfoTable {key} is not exist");
             return;
         }
+
         tableDatas[key].Value = data;
 
         if (LocalOnly == false)
@@ -683,31 +708,46 @@ public class UserInfoTable
         UpdateLastLoginTime();
         UpdatekillCount();
     }
+
     private void UpdatekillCount()
     {
-        UpData(dailyEnemyKillCount, false);
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        Param userInfoParam = new Param();
+
+        userInfoParam.Add(dailyEnemyKillCount, tableDatas[dailyEnemyKillCount].Value);
+
+
+        userInfoParam.Add(dailybooty, tableDatas[dailybooty].Value);
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
         {
-            UpData(killCountTotal, false);
+            userInfoParam.Add(killCountTotal, tableDatas[killCountTotal].Value);
         }
         else
         {
-            UpData(killCountTotal2, false);
+            userInfoParam.Add(killCountTotal2, tableDatas[killCountTotal2].Value);
         }
 
-        //UpData(killCountTotalChild, false);
-        UpData(killCountTotalWinterPass, false);
-        UpData(killCountTotalSeason, false);
-        UpData(killCountTotalSeason2, false);
-        //UpData(attenCountOne, false);
+        userInfoParam.Add(killCountTotalWinterPass, tableDatas[killCountTotalWinterPass].Value);
+
+        userInfoParam.Add(killCountTotalSeason, tableDatas[killCountTotalSeason].Value);
+
+        userInfoParam.Add(killCountTotalSeason2, tableDatas[killCountTotalSeason2].Value);
+
+        userInfoParam.Add(killCountTotalSeason3, tableDatas[killCountTotalSeason3].Value);
+
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        ServerData.SendTransaction(transactions);
     }
+
     private void UpdatejumpCount()
     {
         // UpData(jumpCount, false);
     }
-    private bool isFirstInit = true;
 
+    private bool isFirstInit = true;
 
 
     public void UpdateLastLoginTime()
@@ -722,7 +762,7 @@ public class UserInfoTable
             {
                 string time = bro.GetReturnValuetoJSON()["utcTime"].ToString();
 
-                currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(9);
+                currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(24);
 
 #if UNITY_EDITOR
                 //currentServerTime = currentServerTime.AddDays(15);
@@ -758,10 +798,7 @@ public class UserInfoTable
 
                         if (returnBro.IsSuccess() == false)
                         {
-                            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "네트워크가 불안정 합니다.\n앱을 재실행 합니다.", () =>
-                            {
-                                Utils.RestartApplication();
-                            });
+                            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "네트워크가 불안정 합니다.\n앱을 재실행 합니다.", () => { Utils.RestartApplication(); });
 
                             return;
                         }
@@ -780,10 +817,12 @@ public class UserInfoTable
                     {
                         Debug.LogError("@@@Week Changed!");
                     }
+
                     if (savedDate.Month != currentServerTime.Month)
                     {
                         Debug.LogError("@@@Month Changed!");
                     }
+
                     //날짜 바뀜
                     DateChanged(currentServerTime.Day, savedWeek != currentWeek, savedDate.Month != currentServerTime.Month);
                     attendanceUpdatedTime = currentServerTime.Day;
@@ -913,10 +952,10 @@ public class UserInfoTable
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
         }
+
         //두번타는거 방지
         if (attendanceUpdatedTime != day)
         {
-
             if (ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount).Value != 0)
             {
                 ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount).Value++;
@@ -1068,14 +1107,13 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.yomul6_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul6_buff).Value);
         userInfoParam.Add(UserInfoTable.yomul7_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul7_buff).Value);
         if (monthChanged)
-        { 
+        {
             userInfoParam.Add(UserInfoTable.nickNameChange, ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value);
         }
 
         //채팅 테두리 초기화
         if (weekChanged)
         {
-            
             ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value = 0f;
             userInfoParam.Add(UserInfoTable.chatFrame, ServerData.userInfoTable.GetTableData(UserInfoTable.chatFrame).Value);
 
@@ -1112,7 +1150,7 @@ public class UserInfoTable
             userInfoParam.Add(UserInfoTable.exchangeCount_2_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_2_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_3_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_3_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_4_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_4_Mileage).Value);
-            
+
             userInfoParam.Add(UserInfoTable.exchangeCount_5_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_5_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_6_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_6_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_7_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_7_Mileage).Value);
@@ -1149,12 +1187,12 @@ public class UserInfoTable
 
         //티켓
         ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value += GameBalance.DailyRelicTicketGetCount;
-        
+
 
         //주사위
         ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += GameBalance.DailyEventDiceGetCount;
         Param goodsParam = new Param();
-        
+
         goodsParam.Add(GoodsTable.RelicTicket, ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value);
         goodsParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
 
@@ -1164,18 +1202,24 @@ public class UserInfoTable
             goodsParam.Add(GoodsTable.SuhoPetFeedClear, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value);
         }
 
+        //문파 소탕권
+        if (tableDatas[guildTowerStart].Value != 0 && ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value < GameBalance.GuildTowerTicketMaxCount)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value++;
+            goodsParam.Add(GoodsTable.GuildTowerClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value);
+        }
+        //
+
         //길드보상 초기화
         ServerData.bossServerTable.TableDatas["boss12"].rewardedId.Value = string.Empty;
-        ServerData.bossServerTable.TableDatas["boss20"].rewardedId.Value = string.Empty;
+        //ServerData.bossServerTable.TableDatas["boss20"].rewardedId.Value = string.Empty; //강철이 초기화 x
         ServerData.bossServerTable.TableDatas["b73"].rewardedId.Value = string.Empty;
-
-
 
 
         Param bossParam = new Param();
 
         bossParam.Add("boss12", ServerData.bossServerTable.TableDatas["boss12"].ConvertToString());
-        bossParam.Add("boss20", ServerData.bossServerTable.TableDatas["boss20"].ConvertToString());
+        //bossParam.Add("boss20", ServerData.bossServerTable.TableDatas["boss20"].ConvertToString()); //강철이 초기화 x
         bossParam.Add("b73", ServerData.bossServerTable.TableDatas["b73"].ConvertToString());
 
 
@@ -1202,13 +1246,15 @@ public class UserInfoTable
         yoguiSogulParam.Add(EtcServerTable.guildAttenReward, ServerData.etcServerTable.TableDatas[EtcServerTable.guildAttenReward].Value);
 
 
-
         //주간초기화
         if (weekChanged)
         {
             ServerData.bossServerTable.TableDatas["b53"].rewardedId.Value = string.Empty;
             bossParam.Add("b53", ServerData.bossServerTable.TableDatas["b53"].ConvertToString());
 
+            //문파 타워보상
+            ServerData.bossServerTable.TableDatas["b117"].rewardedId.Value = string.Empty;
+            bossParam.Add("b117", ServerData.bossServerTable.TableDatas["b117"].ConvertToString());
 
             goodsParam.Add(GoodsTable.DokebiFireKey, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFireKey).Value);
 
@@ -1222,31 +1268,25 @@ public class UserInfoTable
         }
 
 
-
         transactionList.Add(TransactionValue.SetUpdate(EtcServerTable.tableName, EtcServerTable.Indate, yoguiSogulParam));
         transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         transactionList.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
 
 
-
-
         ServerData.SendTransaction(transactionList, false);
     }
+
     private void WeekChanged()
     {
-
     }
+
     private void MonthChanged()
     {
-
     }
 
     public void ClearDailyMission()
     {
         DailyMissionManager.UpdateDailyMission(DailyMissionKey.Attendance, 1);
-
-
-
     }
 
     public bool HasRemoveAd()
@@ -1257,11 +1297,11 @@ public class UserInfoTable
     //2월28일까지
     public bool CanSpawnSnowManItem()
     {
-        
         if (currentServerTime.Month < 3) return true;
 
         return false;
     }
+
     //4월30일까지
     public bool CanSpawnSpringEventItem()
     {
@@ -1269,6 +1309,7 @@ public class UserInfoTable
 
         return false;
     }
+
     public bool CanMakeEventItem()
     {
         //if (currentServerTime.Month == 11) return true;
@@ -1312,7 +1353,7 @@ public class UserInfoTable
     public bool IsHotTime()
     {
 #if UNITY_EDITOR
-       // return true;
+        // return true;
 #endif
 
         if (currentServerTime.DayOfWeek != DayOfWeek.Sunday && currentServerTime.DayOfWeek != DayOfWeek.Saturday)
@@ -1325,8 +1366,6 @@ public class UserInfoTable
             int currentHour = currentServerTime.Hour;
             return currentHour >= GameBalance.HotTime_Start_Weekend && currentHour < GameBalance.HotTime_End;
         }
-
-
     }
 
     public bool IsWeekend()
@@ -1336,13 +1375,13 @@ public class UserInfoTable
 
     static int totalKillCount = 0;
     static double updateRequireNum = 100;
+
     public void GetKillCountTotal()
     {
         totalKillCount += (int)GameManager.Instance.CurrentStageData.Marbleamount;
 
         if (totalKillCount < updateRequireNum)
         {
-
         }
         else
         {
@@ -1361,16 +1400,16 @@ public class UserInfoTable
             tableDatas[killCountTotalWinterPass].Value += updateRequireNum;
             tableDatas[killCountTotalSeason].Value += updateRequireNum;
             tableDatas[killCountTotalSeason2].Value += updateRequireNum;
+            tableDatas[killCountTotalSeason3].Value += updateRequireNum;
             //tableDatas[attenCountOne].Value += updateRequireNum;
         }
-
     }
 
     public bool IsLastFloor()
     {
         return tableDatas[currentFloorIdx].Value == 301;
-    }   
-    
+    }
+
     public bool IsLastFloor2()
     {
         return tableDatas[currentFloorIdx2].Value == 301;
@@ -1379,19 +1418,20 @@ public class UserInfoTable
     public bool CanPlayGangChul()
     {
         return currentServerTime.DayOfWeek == DayOfWeek.Monday ||
-         currentServerTime.DayOfWeek == DayOfWeek.Tuesday ||
-         currentServerTime.DayOfWeek == DayOfWeek.Wednesday ||
-         currentServerTime.DayOfWeek == DayOfWeek.Thursday ||
-         currentServerTime.DayOfWeek == DayOfWeek.Friday;
+               currentServerTime.DayOfWeek == DayOfWeek.Tuesday ||
+               currentServerTime.DayOfWeek == DayOfWeek.Wednesday ||
+               currentServerTime.DayOfWeek == DayOfWeek.Thursday ||
+               currentServerTime.DayOfWeek == DayOfWeek.Friday;
     }
 
     public bool IsMonthlyPass2()
     {
-#if UNITY_EDITOR
-        return false;
-#endif
+// #if UNITY_EDITOR
+//         return false;
+// #endif
         //홀수 달의 경우 true , true면 MonthlyPass2
         return (currentServerTime.Month % 2) == 1;
+        
     }
 
     public ReactiveProperty<bool> SnowCollectionComplete = new ReactiveProperty<bool>(false);
@@ -1414,7 +1454,7 @@ public class UserInfoTable
 
             if (string.IsNullOrEmpty(tableData[i].Exchangekey) == true) continue;
 
-            if(this.tableDatas[tableData[i].Exchangekey].Value < tableData[i].Exchangemaxcount) 
+            if (this.tableDatas[tableData[i].Exchangekey].Value < tableData[i].Exchangemaxcount)
             {
                 allComplete = false;
                 break;

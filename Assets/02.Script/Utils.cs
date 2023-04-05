@@ -115,12 +115,16 @@ public static class Utils
                type == Item_Type.costume92 ||
                type == Item_Type.costume93 ||
                type == Item_Type.costume94 ||
-               type == Item_Type.costume95||
-               type == Item_Type.costume96||
-               type == Item_Type.costume97||
-               type == Item_Type.costume98||
-               type == Item_Type.costume99||
-               type == Item_Type.costume100
+               type == Item_Type.costume95 ||
+               type == Item_Type.costume96 ||
+               type == Item_Type.costume97 ||
+               type == Item_Type.costume98 ||
+               type == Item_Type.costume99 ||
+               type == Item_Type.costume100 ||
+               type == Item_Type.costume101 ||
+               type == Item_Type.costume102 ||
+               type == Item_Type.costume103 ||
+               type == Item_Type.costume104
             ;
     }
 
@@ -137,7 +141,7 @@ public static class Utils
         return type == Item_Type.MonthNorigae0 ||
                type == Item_Type.MonthNorigae1 ||
                type == Item_Type.MonthNorigae2 ||
-               type == Item_Type.MonthNorigae3||
+               type == Item_Type.MonthNorigae3 ||
                type == Item_Type.MonthNorigae4
             ;
     }
@@ -148,7 +152,7 @@ public static class Utils
                type == Item_Type.weapon90
             ;
     }
-    
+
     public static bool IsIgnoreMissionKey(this EventMissionKey type)
     {
         int type_int = (int)type;
@@ -188,7 +192,6 @@ public static class Utils
                type == Item_Type.Indra1 ||
                type == Item_Type.Indra2 ||
                type == Item_Type.IndraPower ||
-
                type == Item_Type.h0 ||
                type == Item_Type.h1 ||
                type == Item_Type.h2 ||
@@ -199,7 +202,6 @@ public static class Utils
                type == Item_Type.h7 ||
                type == Item_Type.h8 ||
                type == Item_Type.h9 ||
-
                type == Item_Type.c0 ||
                type == Item_Type.c1 ||
                type == Item_Type.c2 ||
@@ -207,7 +209,6 @@ public static class Utils
                type == Item_Type.c4 ||
                type == Item_Type.c5 ||
                type == Item_Type.c6;
-
     }
 
     public static bool IsGoodsItem(this Item_Type type)
@@ -243,6 +244,10 @@ public static class Utils
                type == Item_Type.SahyungPet1 ||
                type == Item_Type.SahyungPet2 ||
                type == Item_Type.SahyungPet3 ||
+               type == Item_Type.VisionPet0 ||
+               type == Item_Type.VisionPet1 ||
+               type == Item_Type.VisionPet2 ||
+               type == Item_Type.VisionPet3 ||
                type == Item_Type.RabitPet ||
                type == Item_Type.RabitNorigae ||
                type == Item_Type.YeaRaeNorigae ||
@@ -300,6 +305,8 @@ public static class Utils
                type == Item_Type.FoxMaskPartial ||
                type == Item_Type.SusanoTreasure ||
                type == Item_Type.SahyungTreasure ||
+               type == Item_Type.VisionTreasure ||
+               type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
                type == Item_Type.Event_Collection ||
@@ -315,7 +322,9 @@ public static class Utils
                type == Item_Type.EventDice ||
                type == Item_Type.SuhoPetFeed ||
                type == Item_Type.SuhoPetFeedClear ||
-               type == Item_Type.Tresure
+               type == Item_Type.Tresure ||
+               type == Item_Type.GuildTowerClearTicket ||
+               type == Item_Type.GuildTowerHorn
             ;
     }
 

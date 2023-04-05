@@ -45,7 +45,15 @@ public class UiGoodsIndicator : MonoBehaviour
         {
             ServerData.goodsTable.GetTableData(goodsKey).AsObservable().Subscribe(goods =>
             {
-                goodsText.SetText($"{Utils.ConvertBigNum(goods).ToString()}");
+                if (goodsKey.Equals(GoodsTable.GuildTowerClearTicket))
+                {
+                    goodsText.SetText($"{Utils.ConvertBigNum(goods).ToString()}/{GameBalance.GuildTowerTicketMaxCount}");
+                }
+                else
+                {
+                    goodsText.SetText($"{Utils.ConvertBigNum(goods).ToString()}");
+                }
+        
             }).AddTo(this);
         }
     }

@@ -190,6 +190,7 @@ public class Enemy : PoolItem
         GetPeachItem();
         GetHelItem();
         GetChunItem();
+        GetDokebiItem();
         
 
         //곶감 -> 봄나물
@@ -236,6 +237,12 @@ public class Enemy : PoolItem
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value == 0) return;
 
         ServerData.goodsTable.GetChunItem(GameManager.Instance.CurrentStageData.Chunfloweramount);
+    }
+    private void GetDokebiItem()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value == 0) return;
+
+        ServerData.goodsTable.GetDokebiItem(GameManager.Instance.CurrentStageData.Dokebifireamount);
     }
 
     private void GetSpringEventItem() 

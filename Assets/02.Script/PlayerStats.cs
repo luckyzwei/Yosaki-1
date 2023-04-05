@@ -259,7 +259,8 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.AttackAdd);
         ret += GetSkillHasValue(StatusType.AttackAdd);
         ret += GetYomulUpgradeValue(StatusType.AttackAdd);
-        ret += GetTitleAbilValue(StatusType.AttackAdd);
+        //ret += GetTitleAbilValue(StatusType.AttackAdd);
+        ret += GetTitleLevelAbilValue(StatusType.AttackAdd);
 
         ret += GetBuffValue(StatusType.AttackAdd);
         ret += GetRelicHasEffect(StatusType.AttackAdd);
@@ -881,7 +882,8 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.ExpGainPer);
         ret += ServerData.petTable.GetStatusValue(StatusType.ExpGainPer);
 
-        ret += GetTitleAbilValue(StatusType.ExpGainPer);
+        //ret += GetTitleAbilValue(StatusType.ExpGainPer);
+        ret += GetTitleStageAbilValue(StatusType.ExpGainPer);
         ret += GetGuildPetEffect(StatusType.ExpGainPer);
         ret += GetPetHomeAbilValue(StatusType.ExpGainPer);
         ret += GetMarkBuffAddValue();
@@ -905,7 +907,8 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.ExpGainPer);
         ret += ServerData.petTable.GetStatusValue(StatusType.ExpGainPer);
 
-        ret += GetTitleAbilValue(StatusType.ExpGainPer);
+        //ret += GetTitleAbilValue(StatusType.ExpGainPer);
+        ret += GetTitleStageAbilValue(StatusType.ExpGainPer);
         ret += GetGuildPetEffect(StatusType.ExpGainPer);
         ret += GetPetHomeAbilValue(StatusType.ExpGainPer);
         ret += GetMarkBuffAddValue();
@@ -1434,6 +1437,7 @@ public static class PlayerStats
         return ret;
     }
 
+    //수미베기
     public static float GetSuperCritical7DamPer()
     {
         float ret = 0f;
@@ -1451,7 +1455,7 @@ public static class PlayerStats
         ret += GetRelicHasEffect(StatusType.SuperCritical7DamPer);
 
         ret += GetSumiTowerEffect(StatusType.SuperCritical7DamPer);
-
+        
         ret += GetFoxCupAbilValue(GetCurrentFoxCupIdx(), 2);
 
         ret += ServerData.statusTable.GetStatusValue(StatusTable.Gum_memory);
@@ -1468,8 +1472,8 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetGyungRockEffect(StatusType.SuperCritical8DamPer);
-
-        return ret;
+        
+        return ret + ret * GetGuildTowerChimUpgradeValue();
     }
 
     public static float GetSuperCritical9DamPer()
@@ -1710,6 +1714,7 @@ public static class PlayerStats
         }
         else
         {
+            
             var dicData = TableManager.Instance.TitleAbils[(int)type];
 
             for (int i = 0; i < dicData.Count; i++)
@@ -1724,6 +1729,61 @@ public static class PlayerStats
                 {
                     ret += dicData[i].Abilvalue1;
                 }
+            }
+
+            titleHasValue.Add(type, ret);
+        }
+
+
+        return ret;
+    }
+    public static float GetTitleLevelAbilValue(StatusType type)
+    {
+        float ret = 0f;
+
+        if (titleHasValue.ContainsKey(type))
+        {
+            ret = titleHasValue[type];
+        }
+        else
+        {
+            
+            var tableData = TableManager.Instance.titleLevel.dataArray;
+            var currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value;
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                //현재 레벨 초과시 break;
+                if (currentLevel < i) break;
+                
+                ret += tableData[i].Abilvalue1;
+            }
+
+            titleHasValue.Add(type, ret);
+        }
+
+
+        return ret;
+    }
+
+    public static float GetTitleStageAbilValue(StatusType type)
+    {
+        float ret = 0f;
+
+        if (titleHasValue.ContainsKey(type))
+        {
+            ret = titleHasValue[type];
+        }
+        else
+        {
+            
+            var tableData = TableManager.Instance.titleStage.dataArray;
+            var currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.titleStage).Value;
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                //현재 레벨 초과시 break;
+                if (currentLevel < i) break;
+                
+                ret += tableData[i].Abilvalue1;
             }
 
             titleHasValue.Add(type, ret);
@@ -2052,7 +2112,9 @@ public static class PlayerStats
         {
             ret += GetDokebiFireHasAddValue() * currentLevel;
         }
-
+        var dokebiTransAddValue = GetDokebiTransPlusValue();
+        ret = (ret * dokebiTransAddValue);
+        
         return ret + ret * GetDokebiFireEnhanceAbilPlusValue();
     }
 
@@ -2874,16 +2936,22 @@ public static class PlayerStats
 
     public static float ChunTransAddValue = 2f;
 
-    public static float GetChunTransPlusValue()
+    private static float GetChunTransPlusValue()
     {
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
             return ChunTransAddValue;
         }
-        else
+        return 1f;
+    }
+
+    private static float GetDokebiTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
         {
-            return 1f;
+            return GameBalance.dokebiGraduatePlusValue;
         }
+        return 1f;
     }
 
     public static float GetGumSoulTransPlusValue()
@@ -3344,6 +3412,8 @@ public static class PlayerStats
 
         ret += GetSkillHasValue(StatusType.SumiHasValueUpgrade);
 
+        ret += GetGradeTestAbilValue(StatusType.SumiHasValueUpgrade);
+        
         return ret;
     }
 
@@ -3366,5 +3436,10 @@ public static class PlayerStats
 
 
         return ret;
+    }
+
+    public static float GetGuildTowerChimUpgradeValue()
+    {
+        return ServerData.goodsTable.TableDatas[GoodsTable.GuildTowerHorn].Value * GameBalance.GuildTowerChimAbilUpValue;
     }
 }

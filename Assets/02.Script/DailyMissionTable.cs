@@ -16,6 +16,8 @@ public class DailyMissionTable
 
     public void UpdateMissionData(string key, int amount)
     {
+        //사용안하는 컨텐츠
+        return;
         tableDatas[key].Value += amount;
     }
 
@@ -118,6 +120,9 @@ public class DailyMissionTable
 
     public void SyncToServerEach(string key)
     {
+        //사용안하는 컨텐츠
+        return;
+        
         Param param = new Param();
         param.Add(key, tableDatas[key].Value);
 

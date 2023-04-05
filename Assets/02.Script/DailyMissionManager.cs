@@ -32,7 +32,8 @@ public static class DailyMissionManager
 
     public static void UpdateDailyMission(DailyMissionKey missionKey, int count)
     {
-
+        //안쓰는기능
+        return;
 
         string key = TableManager.Instance.DailyMissionDatas[(int)missionKey].Stringid;
 
@@ -80,7 +81,9 @@ public static class DailyMissionManager
 
     public static void SyncAllMissions()
     {
- 
+        //안쓰는기능
+        return;
+        
         var tableData = TableManager.Instance.DailyMission.dataArray;
 
         for (int i = 0; i < tableData.Length; i++)

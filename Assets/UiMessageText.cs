@@ -13,7 +13,11 @@ public class UiMessageText : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private Animator scaleAnim;
+    
     private static string fadeAnimName = "Fade";
+    private static string scaleAnimName = "Anim";
 
     private string nickName = string.Empty;
 
@@ -44,6 +48,11 @@ public class UiMessageText : MonoBehaviour
         costumeIcon.gameObject.SetActive(isSystem == false);
 
         animator.SetTrigger(fadeAnimName);
+
+        if (scaleAnim != null)
+        {
+            scaleAnim.SetTrigger(scaleAnimName);
+        }
 
         costumeIconFrame.gameObject.SetActive(false);
 

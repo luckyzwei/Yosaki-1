@@ -38,6 +38,10 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         {
             SetDescription();
         }).AddTo(this);
+        ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).AsObservable().Subscribe(e =>
+        {
+            SetDescription();
+        }).AddTo(this);
     }
 
     private void SetDescription()
@@ -68,6 +72,10 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
             desc += $"\n요괴 500마리당 천계꽃 획득량 : {stageData.Chunfloweramount * 1000}";
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
+        {
+            desc += $"\n요괴 500마리당 도깨비불 획득량 : {stageData.Dokebifireamount * 1000}";
         }
         description.SetText(desc);
     }

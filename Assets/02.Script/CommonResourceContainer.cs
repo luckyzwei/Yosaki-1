@@ -144,14 +144,17 @@ public static class CommonResourceContainer
         }
         else
         {
-            Debug.LogError($"Weapon icon {idx} is not exist");
+            Debug.LogError($"Mask icon {idx} is not exist");
             return null;
         }
     }
     public static Sprite GetBeltSprite(int idx)
     {
         idx = idx / 3;
-
+        if (idx > 14)
+        {
+            idx = 14;
+        }
         if (beltSprites == null)
         {
             var beltIcons = Resources.LoadAll<Sprite>("CaveBelt/");
@@ -173,7 +176,7 @@ public static class CommonResourceContainer
         }
         else
         {
-            Debug.LogError($"Weapon icon {idx} is not exist");
+            Debug.LogError($"Belt icon {idx} is not exist");
             return null;
         }
     }
@@ -200,7 +203,7 @@ public static class CommonResourceContainer
         }
         else
         {
-            Debug.LogError($"Weapon icon {idx} is not exist");
+            Debug.LogError($"Horn icon {idx} is not exist");
             return null;
         }
     }

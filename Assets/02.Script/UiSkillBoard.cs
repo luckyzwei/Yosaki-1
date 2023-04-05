@@ -80,17 +80,11 @@ public class UiSkillBoard : SingletonMono<UiSkillBoard>
 
         for (int i = 0; i < skillList.Count; i++)
         {
-            if (skillList[i].SKILLCASTTYPE == SkillCastType.Son)
+            if (skillList[i].SKILLCASTTYPE != SkillCastType.Player)
             {
-                Debug.LogError("Has Son Skill");
+                //Debug.LogError("Hasn't  Player Skill");
                 continue;
             }
-            if (skillList[i].SKILLCASTTYPE == SkillCastType.Four)
-            {
-                Debug.LogError("Has Four Skill");
-                continue;
-            }
-
             if (skillList[i].Id == 18 || skillList[i].Id == 19)
             {
                 continue;

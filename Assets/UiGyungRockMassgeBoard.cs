@@ -16,6 +16,8 @@ public class UiGyungRockMassgeBoard : MonoBehaviour
 
     [SerializeField] private List<Image> markLists;
     [SerializeField] private List<Animator> markList_Anim;
+    [SerializeField] private TextMeshProUGUI dokChimEffect;
+    [SerializeField] private TextMeshProUGUI dokChimAbilPer;
 
     private void Start()
     {
@@ -25,7 +27,7 @@ public class UiGyungRockMassgeBoard : MonoBehaviour
     private void Initialize()
     {
         totalAbil.SetText(
-            ($"{CommonString.GetStatusName((StatusType.SuperCritical8DamPer))} 총 {PlayerStats.GetSuperCritical8DamPer() * 100f}% 적용됨"));
+            ($"{CommonString.GetStatusName((StatusType.SuperCritical8DamPer))} 총 {PlayerStats.GetGyungRockEffect(StatusType.SuperCritical8DamPer) * 100f}% 적용됨"));
 
         int currentFloor = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx5).Value;
 
@@ -48,6 +50,10 @@ public class UiGyungRockMassgeBoard : MonoBehaviour
 
             markList_Anim[i].enabled = currentFloor > i;
         }
+
+        dokChimEffect.SetText($"전갈굴(문파) 독침 효과로 하단전베기 피해량 {Utils.ConvertBigNum(PlayerStats.GetGuildTowerChimUpgradeValue() * 100f)}% 강화됨<color=yellow>(+{PlayerStats.GetGuildTowerChimUpgradeValue() * PlayerStats.GetGyungRockEffect(StatusType.SuperCritical8DamPer) * 100f}%)</color>");
+
+        dokChimAbilPer.SetText($"1개당 단전베기 피해 {Utils.ConvertBigNum(GameBalance.GuildTowerChimAbilUpValue * 100f)}% 강화");
     }
 
     public void OnClickEnterButton()
@@ -60,9 +66,6 @@ public class UiGyungRockMassgeBoard : MonoBehaviour
             return;
         }
 
-        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () =>
-        {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.GyungRockTower);
-        }, () => { });
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () => { GameManager.Instance.LoadContents(GameManager.ContentsType.GyungRockTower); }, () => { });
     }
 }

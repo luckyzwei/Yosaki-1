@@ -60,4 +60,8 @@ public class TitleTableData
   int grade;
   public int Grade { get {return grade; } set { this.grade = value;} }
   
+  [SerializeField]
+  int condition;
+  public int Condition { get {return condition; } set { this.condition = value;} }
+  
 }

@@ -8,7 +8,6 @@ using System;
 using UniRx;
 
 
-
 public class GoodsTable
 {
     public static string Indate;
@@ -47,7 +46,7 @@ public class GoodsTable
     //할로윈 도깨비
     public static string Event_Item_0 = "Event_Item_1";
     public static string Event_Item_1 = "Event2";
-    public static string Event_Item_SnowMan = "SnowMan";//수박이었음
+    public static string Event_Item_SnowMan = "SnowMan"; //수박이었음
     public static string StageRelic = "StageRelic";
     public static string Peach = "PeachReal";
     public static string MiniGameReward = "MiniGameReward";
@@ -109,7 +108,9 @@ public class GoodsTable
     public static string h7 = "h7";
     public static string h8 = "h8";
     public static string h9 = "h9";
+
     public static string Ym = "Ym";
+
     //두루마리
     public static string du = "du";
 
@@ -144,6 +145,11 @@ public class GoodsTable
     public static string FourSkill7 = "FS7";
     public static string FourSkill8 = "FS8";
 
+    public static string VisionSkill0 = "VisionSkill0";
+    public static string VisionSkill1 = "VisionSkill1";
+    public static string VisionSkill2 = "VisionSkill2";
+    public static string VisionSkill3 = "VisionSkill3";
+
     public static string Fw = "Fw";
     public const string Cw = "Cw"; //천계꽃
 
@@ -176,185 +182,195 @@ public class GoodsTable
     public static string DokebiTreasure = "DT";
     public static string DokebiFireEnhance = "DFE";
     public static string SahyungTreasure = "SahyungTreasure";
+    public static string VisionTreasure = "VisionTreasure";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
     public static string DokebiBundle = "DB";
     public static string SinsuRelic = "SinsuRelic";
-    
+
     public static string EventDice = "EventDice";
     public static string Tresure = "Tresure";
     public static string SuhoPetFeed = "SuhoPetFeed";
     public static string SuhoPetFeedClear = "SPFC";
     public static string SinsuMarble = "SinsuMarble";
-
+    public static string GuildTowerClearTicket = "GTCT";
+    public static string GuildTowerHorn = "GuildTowerHorn";
 
 
     private Dictionary<string, float> tableSchema = new Dictionary<string, float>()
     {
-        {Gold,GameBalance.StartingMoney},
-        {Jade,0f},
-        {GrowthStone,0f},
-        {Ticket,0f},
-        {Potion_0,0f},
-        {Potion_1,0f},
-        {Potion_2,0f},
-        {BonusSpinKey,0f},
-        {MarbleKey,0f},
-        {DokebiKey,0f},
-        {SkillPartion,0f},
-        {WeaponUpgradeStone,0f},
-        {PetUpgradeSoul,0f},
-        {YomulExchangeStone,0f},
-       // {Songpyeon,0f},
-        {TigerStone,0f},
-        {Relic,0f},
+        { Gold, GameBalance.StartingMoney },
+        { Jade, 0f },
+        { GrowthStone, 0f },
+        { Ticket, 0f },
+        { Potion_0, 0f },
+        { Potion_1, 0f },
+        { Potion_2, 0f },
+        { BonusSpinKey, 0f },
+        { MarbleKey, 0f },
+        { DokebiKey, 0f },
+        { SkillPartion, 0f },
+        { WeaponUpgradeStone, 0f },
+        { PetUpgradeSoul, 0f },
+        { YomulExchangeStone, 0f },
+        // {Songpyeon,0f},
+        { TigerStone, 0f },
+        { Relic, 0f },
 
-        {RelicTicket,GameBalance.DailyRelicTicketGetCount},
-        {RabitStone,0f},
-        {Event_Item_0,0f},
-        {Event_Item_1,0f},
-        {Event_Item_SnowMan,0f},
-        {DragonStone,0f},
-        {StageRelic,0f},
-        {SnakeStone,0f},
-        {Peach,0f},
-        {HorseStone,0f},
-        {SheepStone,0f},
-        {MonkeyStone,0f},
-        {MiniGameReward,0f},
-        {MiniGameReward2,0f},
-        {GuildReward,0f},
-        {CockStone,0f},
-        {DogStone,0f},
-        {SulItem,0f},
-        {PigStone,0f},
-        {SmithFire,0f},
-        {FeelMulStone,0f},
+        { RelicTicket, GameBalance.DailyRelicTicketGetCount },
+        { RabitStone, 0f },
+        { Event_Item_0, 0f },
+        { Event_Item_1, 0f },
+        { Event_Item_SnowMan, 0f },
+        { DragonStone, 0f },
+        { StageRelic, 0f },
+        { SnakeStone, 0f },
+        { Peach, 0f },
+        { HorseStone, 0f },
+        { SheepStone, 0f },
+        { MonkeyStone, 0f },
+        { MiniGameReward, 0f },
+        { MiniGameReward2, 0f },
+        { GuildReward, 0f },
+        { CockStone, 0f },
+        { DogStone, 0f },
+        { SulItem, 0f },
+        { PigStone, 0f },
+        { SmithFire, 0f },
+        { FeelMulStone, 0f },
 
-        {Asura0,0f},
-        {Asura1,0f},
-        {Asura2,0f},
-        {Asura3,0f},
-        {Asura4,0f},
-        {Asura5,0f},
-        {Aduk,0f},
+        { Asura0, 0f },
+        { Asura1, 0f },
+        { Asura2, 0f },
+        { Asura3, 0f },
+        { Asura4, 0f },
+        { Asura5, 0f },
+        { Aduk, 0f },
 
-        {SinSkill0,0f},
-        {SinSkill1,0f},
-        {SinSkill2,0f},
-        {SinSkill3,0f},
-        {LeeMuGiStone,0f},
-        {ZangStone,0f},
-        {SwordPartial,0f},
+        { SinSkill0, 0f },
+        { SinSkill1, 0f },
+        { SinSkill2, 0f },
+        { SinSkill3, 0f },
+        { LeeMuGiStone, 0f },
+        { ZangStone, 0f },
+        { SwordPartial, 0f },
 
-        {Hae_Norigae,0f},
-        {Hae_Pet,0f},
+        { Hae_Norigae, 0f },
+        { Hae_Pet, 0f },
 
-        {Indra0,0f},
-        {Indra1,0f},
-        {Indra2,0f},
-        {IndraPower,0f},
-        {NataSkill,0f},
-        {OrochiSkill,0f},
-        {GangrimSkill,0f},
-        {OrochiTooth0,0f},
-        {OrochiTooth1,0f},
+        { Indra0, 0f },
+        { Indra1, 0f },
+        { Indra2, 0f },
+        { IndraPower, 0f },
+        { NataSkill, 0f },
+        { OrochiSkill, 0f },
+        { GangrimSkill, 0f },
+        { OrochiTooth0, 0f },
+        { OrochiTooth1, 0f },
         //
-        {gumiho0,0f},
-        {gumiho1,0f},
-        {gumiho2,0f},
-        {gumiho3,0f},
-        {gumiho4,0f},
-        {gumiho5,0f},
-        {gumiho6,0f},
-        {gumiho7,0f},
-        {gumiho8,0f},
+        { gumiho0, 0f },
+        { gumiho1, 0f },
+        { gumiho2, 0f },
+        { gumiho3, 0f },
+        { gumiho4, 0f },
+        { gumiho5, 0f },
+        { gumiho6, 0f },
+        { gumiho7, 0f },
+        { gumiho8, 0f },
         //
-        {Hel,0f},
-        {h0,0f},
-        {h1,0f},
-        {h2,0f},
-        {h3,0f},
-        {h4,0f},
-        {h5,0f},
-        {h6,0f},
-        {h7,0f},
-        {h8,0f},
-        {h9,0f},
-        {Ym,0f},
-        {du,0f},
+        { Hel, 0f },
+        { h0, 0f },
+        { h1, 0f },
+        { h2, 0f },
+        { h3, 0f },
+        { h4, 0f },
+        { h5, 0f },
+        { h6, 0f },
+        { h7, 0f },
+        { h8, 0f },
+        { h9, 0f },
+        { Ym, 0f },
+        { du, 0f },
 
-        {Sun0,0f},
-        {Sun1,0f},
-        {Sun2,0f},
-        {Sun3,0f},
-        {Sun4,0f},
+        { Sun0, 0f },
+        { Sun1, 0f },
+        { Sun2, 0f },
+        { Sun3, 0f },
+        { Sun4, 0f },
 
-        {Chun0,0f},
-        {Chun1,0f},
-        {Chun2,0f},
-        {Chun3,0f},
-        {Chun4,0f},
+        { Chun0, 0f },
+        { Chun1, 0f },
+        { Chun2, 0f },
+        { Chun3, 0f },
+        { Chun4, 0f },
 
-        {DokebiSkill0,0f},
-        {DokebiSkill1,0f},
-        {DokebiSkill2,0f},
-        {DokebiSkill3,0f},
-        {DokebiSkill4,0f},
+        { DokebiSkill0, 0f },
+        { DokebiSkill1, 0f },
+        { DokebiSkill2, 0f },
+        { DokebiSkill3, 0f },
+        { DokebiSkill4, 0f },
 
-        {FourSkill0,0f},
-        {FourSkill1,0f},
-        {FourSkill2,0f},
-        {FourSkill3,0f},
+        { FourSkill0, 0f },
+        { FourSkill1, 0f },
+        { FourSkill2, 0f },
+        { FourSkill3, 0f },
 
-        {FourSkill4,0f},
-        {FourSkill5,0f},
-        {FourSkill6,0f},
-        {FourSkill7,0f},
-        {FourSkill8,0f},
+        { FourSkill4, 0f },
+        { FourSkill5, 0f },
+        { FourSkill6, 0f },
+        { FourSkill7, 0f },
+        { FourSkill8, 0f },
 
-        {Fw,0f},
-        {Cw,0f},
+        { VisionSkill0, 0f },
+        { VisionSkill1, 0f },
+        { VisionSkill2, 0f },
+        { VisionSkill3, 0f },
+
+        { Fw, 0f },
+        { Cw, 0f },
         //
 
-        {c0,0f},
-        {c1,0f},
-        {c2,0f},
-        {c3,0f},
-        {c4,0f},
-        {c5,0f},
-        {c6,0f},
+        { c0, 0f },
+        { c1, 0f },
+        { c2, 0f },
+        { c3, 0f },
+        { c4, 0f },
+        { c5, 0f },
+        { c6, 0f },
 
-        {Event_Collection,0f},
-        {Event_Collection_All,0f},
-        {Event_Fall_Gold,0f},
-        {Event_NewYear,0f},
-        {Event_NewYear_All,0f},
-        {Event_Mission,0f},
-        {Event_Mission_All,0f},
-        {FoxMaskPartial,0f},
+        { Event_Collection, 0f },
+        { Event_Collection_All, 0f },
+        { Event_Fall_Gold, 0f },
+        { Event_NewYear, 0f },
+        { Event_NewYear_All, 0f },
+        { Event_Mission, 0f },
+        { Event_Mission_All, 0f },
+        { FoxMaskPartial, 0f },
 
-        {DokebiFire,0f},
-        {DokebiFireKey,0f},
-        {DokebiFireEnhance,0f},
+        { DokebiFire, 0f },
+        { DokebiFireKey, 0f },
+        { DokebiFireEnhance, 0f },
 
-        {Mileage,0f},
-        {HellPowerUp,0f},
-        {DokebiTreasure,0f},
-        {SahyungTreasure,0f},
-        {SusanoTreasure,0f},
-        {SumiFire,0f},
-        {SumiFireKey,0f},
-        {NewGachaEnergy,0f},
-        {DokebiBundle,0f},
-        {SinsuRelic,0f},
-        
-        {EventDice,0f},
-        {Tresure,0f},
-        {SuhoPetFeed,0f},
-        {SuhoPetFeedClear,0f},
-        {SinsuMarble,0f},
+        { Mileage, 0f },
+        { HellPowerUp, 0f },
+        { DokebiTreasure, 0f },
+        { SahyungTreasure, 0f },
+        { VisionTreasure, 0f },
+        { SusanoTreasure, 0f },
+        { SumiFire, 0f },
+        { SumiFireKey, 0f },
+        { NewGachaEnergy, 0f },
+        { DokebiBundle, 0f },
+        { SinsuRelic, 0f },
+
+        { EventDice, 0f },
+        { Tresure, 0f },
+        { SuhoPetFeed, 0f },
+        { SuhoPetFeedClear, 0f },
+        { SinsuMarble, 0f },
+        { GuildTowerClearTicket, 0f },
+        { GuildTowerHorn, 0f },
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -403,23 +419,23 @@ public class GoodsTable
         if (tableDatas[GrowthStone].Value >= 10000000000000f)
         {
             return updateRequireNum_GrowthStone_3;
-            
         }
+
         //1조 이상
         if (tableDatas[GrowthStone].Value >= 1000000000000f)
         {
             return updateRequireNum_GrowthStone_2;
-            
         }
+
         //1000억 이상
         if (tableDatas[GrowthStone].Value >= 100000000000f)
         {
-            return updateRequireNum_GrowthStone_1; 
-            
+            return updateRequireNum_GrowthStone_1;
         }
 
         return updateRequireNum_GrowthStone_0;
     }
+
     public void GetMagicStone(float amount)
     {
         amount += PlayerStats.GetSmithValue(StatusType.growthStoneUp);
@@ -428,13 +444,13 @@ public class GoodsTable
 
         int amount_int = (int)(amount + amount * magicStonePlusValue);
 
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.GrowthStone)} 획득(+{amount_int})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.GrowthStone)} 획득(+{amount_int})");
 
         growThStoneAddAmount += amount_int;
 
         if (growThStoneAddAmount < FloatGetUpdateRequireGrowthStone())
         {
-
         }
         else
         {
@@ -442,21 +458,23 @@ public class GoodsTable
             growThStoneAddAmount = 0;
         }
     }
+
     static int marbleAddAmount = 0;
     static float updateRequireNum = 100;
+
     public void GetMarble(float amount)
     {
         float magicMarblePlusValue = PlayerStats.GetMarblePlusValue();
 
         int amount_int = (int)(amount + amount * magicMarblePlusValue);
 
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Marble)} 획득(+{amount_int})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Marble)} 획득(+{amount_int})");
 
         marbleAddAmount += amount_int;
 
         if (marbleAddAmount < updateRequireNum)
         {
-
         }
         else
         {
@@ -464,17 +482,18 @@ public class GoodsTable
             marbleAddAmount = 0;
         }
     }
+
     static int soulAddAmount = 0;
 
     public void GetPetUpgradeSoul(float amount)
     {
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.PetUpgradeSoul)} 획득(+{(int)amount})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.PetUpgradeSoul)} 획득(+{(int)amount})");
 
         soulAddAmount += (int)amount;
 
         if (soulAddAmount < updateRequireNum)
         {
-
         }
         else
         {
@@ -484,13 +503,13 @@ public class GoodsTable
     }
 
     static int eventItemAddNum = 0;
+
     public void GetEventItem(float amount)
     {
         eventItemAddNum += (int)amount;
 
         if (eventItemAddNum < updateRequireNum)
         {
-
         }
         else
         {
@@ -498,7 +517,9 @@ public class GoodsTable
             eventItemAddNum = 0;
         }
     }
+
     static float peachItemAddNum = 0;
+
     public void GetPeachItem(float amount)
     {
         peachItemAddNum += amount;
@@ -506,50 +527,64 @@ public class GoodsTable
         //100킬마다 얻게하기 위해서
         if (peachItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount, 1))
         {
-
         }
         else
         {
-            
             tableDatas[Peach].Value += (int)peachItemAddNum;
             peachItemAddNum -= (int)peachItemAddNum;
         }
     }
+
     //
     static float helItemAddNum = 0;
+
     public void GetHelItem(float amount)
     {
         helItemAddNum += amount;
 
         //1개 획득할때마다 얻게하기 위해서
-        if (helItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Helamount,1))
+        if (helItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Helamount, 1))
         {
-
         }
         else
         {
-            
             tableDatas[Hel].Value += (int)helItemAddNum;
             helItemAddNum -= (int)helItemAddNum;
         }
     }
+
     //
     //
     static float chunItemAddNum = 0;
+
     public void GetChunItem(float amount)
     {
         chunItemAddNum += amount;
 
         //1개 획득할때마다 얻게하기 위해서
-        if (chunItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Chunfloweramount,1))
+        if (chunItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Chunfloweramount, 1))
         {
-
         }
         else
         {
-            
             tableDatas[Cw].Value += (int)chunItemAddNum;
             chunItemAddNum -= (int)chunItemAddNum;
+        }
+    }
+    
+    static float dokebiItemAddNum = 0;
+    public void GetDokebiItem(float amount)
+    {
+        dokebiItemAddNum += amount;
+
+        //1개 획득할때마다 얻게하기 위해서
+        if (dokebiItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Dokebifireamount, 1))
+        {
+        }
+        else
+        {
+            tableDatas[DokebiFire].Value += (int)dokebiItemAddNum;
+            dokebiItemAddNum -= (int)dokebiItemAddNum;
         }
     }
     //
@@ -562,31 +597,63 @@ public class GoodsTable
         {
             fourLevel++;
         }
+
         if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill1).Value == 1)
         {
             fourLevel++;
         }
+
         if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill2).Value == 1)
         {
             fourLevel++;
         }
+
         if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill3).Value == 1)
         {
             fourLevel++;
         }
+
         return fourLevel;
     }
 
+    public int GetVisionSkillHasCount()
+    {
+        int visionLevel = 0;
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value == 1)
+        {
+            visionLevel++;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value == 1)
+        {
+            visionLevel++;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value == 1)
+        {
+            visionLevel++;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value == 1)
+        {
+            visionLevel++;
+        }
+
+        return visionLevel;
+    }
+
     static int eventItemAddNum_Spring = 0;
+
     public void GetSpringEventItem(float amount)
     {
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Event_Collection)} 획득(+{(int)amount})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.Event_Collection)} 획득(+{(int)amount})");
 
         eventItemAddNum_Spring += (int)amount;
 
         if (eventItemAddNum_Spring < updateRequireNum)
         {
-
         }
         else
         {
@@ -601,6 +668,7 @@ public class GoodsTable
             {
                 tableDatas[Event_Collection].Value += eventItemAddNum_Spring;
             }
+
             eventItemAddNum_Spring = 0;
         }
     }
@@ -608,15 +676,16 @@ public class GoodsTable
     //
 
     static int sulAddNum = 0;
+
     public void GetsulItem(float amount)
     {
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.SulItem)} 획득(+{(int)amount})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.SulItem)} 획득(+{(int)amount})");
 
         sulAddNum += (int)amount;
 
         if (sulAddNum < updateRequireNum)
         {
-
         }
         else
         {
@@ -626,15 +695,16 @@ public class GoodsTable
     }
 
     static int stageRelicAddNum = 0;
+
     public void GetStageRelic(float amount)
     {
-        SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.StageRelic)} 획득(+{(int)amount})");
+        if (SystemMessage.IsMessageQueueFull() == false)
+            SystemMessage.Instance.SetMessage($"{CommonString.GetItemName(Item_Type.StageRelic)} 획득(+{(int)amount})");
 
         stageRelicAddNum += (int)amount;
 
         if (stageRelicAddNum < updateRequireNum)
         {
-
         }
         else
         {
@@ -648,102 +718,98 @@ public class GoodsTable
         tableDatas.Clear();
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), callback =>
-          {
-              // 이후 처리
-              if (callback.IsSuccess() == false)
-              {
-                  Debug.LogError("LoadStatusFailed");
-                  PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry, Initialize);
-                  return;
-              }
+        {
+            // 이후 처리
+            if (callback.IsSuccess() == false)
+            {
+                Debug.LogError("LoadStatusFailed");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, CommonString.DataLoadFailedRetry, Initialize);
+                return;
+            }
 
-              var rows = callback.Rows();
+            var rows = callback.Rows();
 
-              //맨처음 초기화
-              if (rows.Count <= 0)
-              {
-                  Param defultValues = new Param();
+            //맨처음 초기화
+            if (rows.Count <= 0)
+            {
+                Param defultValues = new Param();
 
-                  var e = tableSchema.GetEnumerator();
+                var e = tableSchema.GetEnumerator();
 
-                  while (e.MoveNext())
-                  {
-                      defultValues.Add(e.Current.Key, e.Current.Value);
-                      tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(e.Current.Value));
-                  }
+                while (e.MoveNext())
+                {
+                    defultValues.Add(e.Current.Key, e.Current.Value);
+                    tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(e.Current.Value));
+                }
 
-                  var bro = Backend.GameData.Insert(tableName, defultValues);
+                var bro = Backend.GameData.Insert(tableName, defultValues);
 
-                  if (bro.IsSuccess() == false)
-                  {
-                      // 이후 처리
-                      ServerData.ShowCommonErrorPopup(bro, Initialize);
-                      return;
-                  }
-                  else
-                  {
+                if (bro.IsSuccess() == false)
+                {
+                    // 이후 처리
+                    ServerData.ShowCommonErrorPopup(bro, Initialize);
+                    return;
+                }
+                else
+                {
+                    var jsonData = bro.GetReturnValuetoJSON();
+                    if (jsonData.Keys.Count > 0)
+                    {
+                        Indate = jsonData[0].ToString();
+                    }
 
-                      var jsonData = bro.GetReturnValuetoJSON();
-                      if (jsonData.Keys.Count > 0)
-                      {
+                    // data.
+                    // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
+                }
 
-                          Indate = jsonData[0].ToString();
+                return;
+            }
+            //나중에 칼럼 추가됐을때 업데이트
+            else
+            {
+                Param defultValues = new Param();
+                int paramCount = 0;
 
-                      }
+                JsonData data = rows[0];
 
-                      // data.
-                      // statusIndate = data[DatabaseManager.inDate_str][DatabaseManager.format_string].ToString();
-                  }
+                if (data.Keys.Contains(ServerData.inDate_str))
+                {
+                    Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
+                }
 
-                  return;
-              }
-              //나중에 칼럼 추가됐을때 업데이트
-              else
-              {
-                  Param defultValues = new Param();
-                  int paramCount = 0;
+                var e = tableSchema.GetEnumerator();
 
-                  JsonData data = rows[0];
+                for (int i = 0; i < data.Keys.Count; i++)
+                {
+                    while (e.MoveNext())
+                    {
+                        if (data.Keys.Contains(e.Current.Key))
+                        {
+                            //값로드
+                            var value = data[e.Current.Key][ServerData.format_Number].ToString();
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(float.Parse(value)));
+                        }
+                        else
+                        {
+                            defultValues.Add(e.Current.Key, e.Current.Value);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(e.Current.Value));
+                            paramCount++;
+                        }
+                    }
+                }
 
-                  if (data.Keys.Contains(ServerData.inDate_str))
-                  {
-                      Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
-                  }
+                if (paramCount != 0)
+                {
+                    var bro = Backend.GameData.Update(tableName, Indate, defultValues);
 
-                  var e = tableSchema.GetEnumerator();
-
-                  for (int i = 0; i < data.Keys.Count; i++)
-                  {
-                      while (e.MoveNext())
-                      {
-                          if (data.Keys.Contains(e.Current.Key))
-                          {
-                              //값로드
-                              var value = data[e.Current.Key][ServerData.format_Number].ToString();
-                              tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(float.Parse(value)));
-                          }
-                          else
-                          {
-                              defultValues.Add(e.Current.Key, e.Current.Value);
-                              tableDatas.Add(e.Current.Key, new ReactiveProperty<float>(e.Current.Value));
-                              paramCount++;
-                          }
-                      }
-                  }
-
-                  if (paramCount != 0)
-                  {
-                      var bro = Backend.GameData.Update(tableName, Indate, defultValues);
-
-                      if (bro.IsSuccess() == false)
-                      {
-                          ServerData.ShowCommonErrorPopup(bro, Initialize);
-                          return;
-                      }
-                  }
-
-              }
-          });
+                    if (bro.IsSuccess() == false)
+                    {
+                        ServerData.ShowCommonErrorPopup(bro, Initialize);
+                        return;
+                    }
+                }
+            }
+        });
     }
 
     public void AddLocalData(string key, float amount)
@@ -769,6 +835,7 @@ public class GoodsTable
             Debug.Log($"Growth {key} is not exist");
             return;
         }
+
         tableDatas[key].Value = data;
 
         if (LocalOnly == false)
@@ -795,8 +862,8 @@ public class GoodsTable
                 if (whenRequestFailed != null)
                 {
                     whenRequestFailed.Invoke();
-
                 }
+
                 Debug.Log($"Growth {key} sync failed");
                 return;
             }
@@ -845,13 +912,19 @@ public class GoodsTable
         {
             goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value);
         }
+
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
             goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
         }
+
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
             goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value);
+        }
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
+        {
+            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
         }
         //if (ServerData.userInfoTable.CanSpawnEventItem())
         //{
@@ -863,15 +936,17 @@ public class GoodsTable
         if (ServerData.userInfoTable.CanSpawnSpringEventItem())
         {
             goodsParam.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
-            if(ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value==0)
+            if (ServerData.iapServerTable.TableDatas[UiCollectionPass0BuyButton.PassKey].buyCount.Value == 0)
             {
                 goodsParam.Add(GoodsTable.Event_Collection_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection_All).Value);
             }
         }
-        if(ServerData.userInfoTable.CanSpawnSnowManItem())
+
+        if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
             goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
         }
+
         goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
 
         goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
@@ -902,507 +977,529 @@ public class GoodsTable
 
         var bro = Backend.GameData.TransactionWrite(transactions);
     }
+
     public ReactiveProperty<float> GetTableData(Item_Type key)
     {
         string stringKey = ItemTypeToServerString(key);
         return tableDatas[stringKey];
     }
+
     public string ItemTypeToServerString(Item_Type type)
     {
         switch (type)
         {
             case Item_Type.Gold:
-                {
-                    return GoodsTable.Gold;
-                }
+            {
+                return GoodsTable.Gold;
+            }
             case Item_Type.Jade:
-                {
-                    return GoodsTable.Jade;
-                }
+            {
+                return GoodsTable.Jade;
+            }
             case Item_Type.GrowthStone:
-                {
-                    return GoodsTable.GrowthStone;
-                }
+            {
+                return GoodsTable.GrowthStone;
+            }
             case Item_Type.Ticket:
-                {
-                    return GoodsTable.Ticket;
-                }
-                
+            {
+                return GoodsTable.Ticket;
+            }
+
             case Item_Type.Marble:
-                {
-                    return GoodsTable.MarbleKey;
-                }
-                
+            {
+                return GoodsTable.MarbleKey;
+            }
+
             case Item_Type.Songpyeon:
-                {
-                    return GoodsTable.Songpyeon;
-                }
-                
+            {
+                return GoodsTable.Songpyeon;
+            }
+
             case Item_Type.RelicTicket:
-                {
-                    return GoodsTable.RelicTicket;
-                }
-                
+            {
+                return GoodsTable.RelicTicket;
+            }
+
             case Item_Type.Event_Item_0:
-                {
-                    return GoodsTable.Event_Item_0;
-                }
-                
+            {
+                return GoodsTable.Event_Item_0;
+            }
+
 
             case Item_Type.Event_Item_1:
-                {
-                    return GoodsTable.Event_Item_1;
-                }
-                
+            {
+                return GoodsTable.Event_Item_1;
+            }
+
             case Item_Type.Event_Item_SnowMan:
-                {
-                    return GoodsTable.Event_Item_SnowMan;
-                }
-                
+            {
+                return GoodsTable.Event_Item_SnowMan;
+            }
+
 
             case Item_Type.SulItem:
-                {
-                    return GoodsTable.SulItem;
-                }
-                
+            {
+                return GoodsTable.SulItem;
+            }
+
 
             case Item_Type.FeelMulStone:
-                {
-                    return GoodsTable.FeelMulStone;
-                }
-                
+            {
+                return GoodsTable.FeelMulStone;
+            }
+
 
             case Item_Type.Asura0:
-                {
-                    return GoodsTable.Asura0;
-                }
-                
+            {
+                return GoodsTable.Asura0;
+            }
+
 
             case Item_Type.Asura1:
-                {
-                    return GoodsTable.Asura1;
-                }
-                
+            {
+                return GoodsTable.Asura1;
+            }
+
 
             case Item_Type.Asura2:
-                {
-                    return GoodsTable.Asura2;
-                }
-                
+            {
+                return GoodsTable.Asura2;
+            }
+
 
             case Item_Type.Asura3:
-                {
-                    return GoodsTable.Asura3;
-                }
-                
+            {
+                return GoodsTable.Asura3;
+            }
+
             case Item_Type.Asura4:
-                {
-                    return GoodsTable.Asura4;
-                }
-                
+            {
+                return GoodsTable.Asura4;
+            }
+
 
             case Item_Type.Asura5:
-                {
-                    return GoodsTable.Asura5;
-                }
-                
+            {
+                return GoodsTable.Asura5;
+            }
+
             case Item_Type.Aduk:
-                {
-                    return GoodsTable.Aduk;
-                }
-                
+            {
+                return GoodsTable.Aduk;
+            }
+
 
             case Item_Type.LeeMuGiStone:
-                {
-                    return GoodsTable.LeeMuGiStone;
-                }
-                
+            {
+                return GoodsTable.LeeMuGiStone;
+            }
+
 
             //
             case Item_Type.SinSkill0:
-                {
-                    return GoodsTable.SinSkill0;
-                }
-                
+            {
+                return GoodsTable.SinSkill0;
+            }
+
             case Item_Type.SinSkill1:
-                {
-                    return GoodsTable.SinSkill1;
-                }
-                
+            {
+                return GoodsTable.SinSkill1;
+            }
+
             case Item_Type.SinSkill2:
-                {
-                    return GoodsTable.SinSkill2;
-                }
-                
+            {
+                return GoodsTable.SinSkill2;
+            }
+
             case Item_Type.SinSkill3:
-                {
-                    return GoodsTable.SinSkill3;
-                }
-                
+            {
+                return GoodsTable.SinSkill3;
+            }
+
             case Item_Type.NataSkill:
-                {
-                    return GoodsTable.NataSkill;
-                }
-                
+            {
+                return GoodsTable.NataSkill;
+            }
+
             case Item_Type.OrochiSkill:
-                {
-                    return GoodsTable.OrochiSkill;
-                }
-                
+            {
+                return GoodsTable.OrochiSkill;
+            }
+
             //
             case Item_Type.Sun0:
-                {
-                    return GoodsTable.Sun0;
-                }
-                
+            {
+                return GoodsTable.Sun0;
+            }
+
             case Item_Type.Sun1:
-                {
-                    return GoodsTable.Sun1;
-                }
-                
+            {
+                return GoodsTable.Sun1;
+            }
+
             case Item_Type.Sun2:
-                {
-                    return GoodsTable.Sun2;
-                }
-                
+            {
+                return GoodsTable.Sun2;
+            }
+
             case Item_Type.Sun3:
-                {
-                    return GoodsTable.Sun3;
-                }
-                
+            {
+                return GoodsTable.Sun3;
+            }
+
             case Item_Type.Sun4:
-                {
-                    return GoodsTable.Sun4;
-                }
-                
+            {
+                return GoodsTable.Sun4;
+            }
+
             //
             case Item_Type.Chun0:
-                {
-                    return GoodsTable.Chun0;
-                }
-                
+            {
+                return GoodsTable.Chun0;
+            }
+
             case Item_Type.Chun1:
-                {
-                    return GoodsTable.Chun1;
-                }
-                
+            {
+                return GoodsTable.Chun1;
+            }
+
             case Item_Type.Chun2:
-                {
-                    return GoodsTable.Chun2;
-                }
-                
+            {
+                return GoodsTable.Chun2;
+            }
+
             case Item_Type.Chun3:
-                {
-                    return GoodsTable.Chun3;
-                }
-                
+            {
+                return GoodsTable.Chun3;
+            }
+
             case Item_Type.Chun4:
-                {
-                    return GoodsTable.Chun4;
-                }
-                
+            {
+                return GoodsTable.Chun4;
+            }
+
             case Item_Type.DokebiSkill0:
-                {
-                    return GoodsTable.DokebiSkill0;
-                }
-                
+            {
+                return GoodsTable.DokebiSkill0;
+            }
+
             case Item_Type.DokebiSkill1:
-                {
-                    return GoodsTable.DokebiSkill1;
-                }
-                
+            {
+                return GoodsTable.DokebiSkill1;
+            }
+
             case Item_Type.DokebiSkill2:
-                {
-                    return GoodsTable.DokebiSkill2;
-                }
-                
+            {
+                return GoodsTable.DokebiSkill2;
+            }
+
             case Item_Type.DokebiSkill3:
-                {
-                    return GoodsTable.DokebiSkill3;
-                }
-                
+            {
+                return GoodsTable.DokebiSkill3;
+            }
+
             case Item_Type.DokebiSkill4:
-                {
-                    return GoodsTable.DokebiSkill4;
-                }
-                
+            {
+                return GoodsTable.DokebiSkill4;
+            }
+
             //            //
             case Item_Type.FourSkill0:
-                {
-                    return GoodsTable.FourSkill0;
-                }
-                
+            {
+                return GoodsTable.FourSkill0;
+            }
+
             case Item_Type.FourSkill1:
-                {
-                    return GoodsTable.FourSkill1;
-                }
-                
+            {
+                return GoodsTable.FourSkill1;
+            }
+
             case Item_Type.FourSkill2:
-                {
-                    return GoodsTable.FourSkill2;
-                }
-                
+            {
+                return GoodsTable.FourSkill2;
+            }
+
             case Item_Type.FourSkill3:
-                {
-                    return GoodsTable.FourSkill3;
-                }
-                
+            {
+                return GoodsTable.FourSkill3;
+            }
+
             //   //
             case Item_Type.FourSkill4:
-                {
-                    return GoodsTable.FourSkill4;
-                }
-                
+            {
+                return GoodsTable.FourSkill4;
+            }
+
             case Item_Type.FourSkill5:
-                {
-                    return GoodsTable.FourSkill5;
-                }
-                
+            {
+                return GoodsTable.FourSkill5;
+            }
+
             case Item_Type.FourSkill6:
-                {
-                    return GoodsTable.FourSkill6;
-                }
-                
+            {
+                return GoodsTable.FourSkill6;
+            }
+
             case Item_Type.FourSkill7:
-                {
-                    return GoodsTable.FourSkill7;
-                }
+            {
+                return GoodsTable.FourSkill7;
+            }
             case Item_Type.FourSkill8:
-                {
-                    return GoodsTable.FourSkill8;
-                }
-                
+            {
+                return GoodsTable.FourSkill8;
+            }
+
+            //            //
+            case Item_Type.VisionSkill0:
+            {
+                return GoodsTable.VisionSkill0;
+            }
+
+            case Item_Type.VisionSkill1:
+            {
+                return GoodsTable.VisionSkill1;
+            }
+
+            case Item_Type.VisionSkill2:
+            {
+                return GoodsTable.VisionSkill2;
+            }
+
+            case Item_Type.VisionSkill3:
+            {
+                return GoodsTable.VisionSkill3;
+            }
+
             //
             case Item_Type.GangrimSkill:
-                {
-                    return GoodsTable.GangrimSkill;
-                }
-                
+            {
+                return GoodsTable.GangrimSkill;
+            }
+
             //
 
             case Item_Type.SmithFire:
-                {
-                    return GoodsTable.SmithFire;
-                }
-                
+            {
+                return GoodsTable.SmithFire;
+            }
+
 
             case Item_Type.StageRelic:
-                {
-                    return GoodsTable.StageRelic;
-                }
-                
+            {
+                return GoodsTable.StageRelic;
+            }
+
 
             case Item_Type.PeachReal:
-                {
-                    return GoodsTable.Peach;
-                }
-                
+            {
+                return GoodsTable.Peach;
+            }
+
             case Item_Type.GuildReward:
-                {
-                    return GoodsTable.GuildReward;
-                }
-                
+            {
+                return GoodsTable.GuildReward;
+            }
+
             case Item_Type.SP:
-                {
-                    return GoodsTable.SwordPartial;
-                }
-                
+            {
+                return GoodsTable.SwordPartial;
+            }
+
             case Item_Type.Hel:
-                {
-                    return GoodsTable.Hel;
-                }
-                
+            {
+                return GoodsTable.Hel;
+            }
+
             case Item_Type.Ym:
-                {
-                    return GoodsTable.Ym;
-                }
-                
+            {
+                return GoodsTable.Ym;
+            }
+
             case Item_Type.Fw:
-                {
-                    return GoodsTable.Fw;
-                }
-                
+            {
+                return GoodsTable.Fw;
+            }
+
 
             case Item_Type.Cw:
-                {
-                    return GoodsTable.Cw;
-                }
-                
+            {
+                return GoodsTable.Cw;
+            }
+
             case Item_Type.SuhoPetFeed:
-                {
-                    return GoodsTable.SuhoPetFeed;
-                } 
+            {
+                return GoodsTable.SuhoPetFeed;
+            }
             case Item_Type.SuhoPetFeedClear:
-                {
-                    return GoodsTable.SuhoPetFeedClear;
-                }
-                
+            {
+                return GoodsTable.SuhoPetFeedClear;
+            }
+
             case Item_Type.SumiFire:
-                {
-                    return GoodsTable.SumiFire;
-                }   
+            {
+                return GoodsTable.SumiFire;
+            }
             case Item_Type.Tresure:
-                {
-                    return GoodsTable.Tresure;
-                } 
+            {
+                return GoodsTable.Tresure;
+            }
             case Item_Type.SinsuRelic:
-                {
-                    return GoodsTable.SinsuRelic;
-                }
-                
+            {
+                return GoodsTable.SinsuRelic;
+            }
+
             case Item_Type.EventDice:
-                {
-                    return GoodsTable.EventDice;
-                }
-                
+            {
+                return GoodsTable.EventDice;
+            }
+
             case Item_Type.NewGachaEnergy:
-                {
-                    return GoodsTable.NewGachaEnergy;
-                }
-                
+            {
+                return GoodsTable.NewGachaEnergy;
+            }
+
             case Item_Type.DokebiBundle:
-                {
-                    return GoodsTable.DokebiBundle;
-                }
-                
+            {
+                return GoodsTable.DokebiBundle;
+            }
+
             case Item_Type.DokebiFireKey:
-                {
-                    return GoodsTable.DokebiFireKey;
-                }
-                
+            {
+                return GoodsTable.DokebiFireKey;
+            }
+
             case Item_Type.SumiFireKey:
-                {
-                    return GoodsTable.SumiFireKey;
-                }
+            {
+                return GoodsTable.SumiFireKey;
+            }
             case Item_Type.Event_Collection:
-                {
-                    return GoodsTable.Event_Collection;
-                }
+            {
+                return GoodsTable.Event_Collection;
+            }
             case Item_Type.Event_Collection_All:
-                {
-                    return GoodsTable.Event_Collection_All;
-                }
+            {
+                return GoodsTable.Event_Collection_All;
+            }
             case Item_Type.Event_Fall_Gold:
-                {
-                    return GoodsTable.Event_Fall_Gold;
-                }
+            {
+                return GoodsTable.Event_Fall_Gold;
+            }
             //
             case Item_Type.WeaponUpgradeStone:
-                {
-                    return GoodsTable.WeaponUpgradeStone;
-                }
+            {
+                return GoodsTable.WeaponUpgradeStone;
+            }
             case Item_Type.YomulExchangeStone:
-                {
-                    return GoodsTable.YomulExchangeStone;
-                }
+            {
+                return GoodsTable.YomulExchangeStone;
+            }
             case Item_Type.TigerBossStone:
-                {
-                    return GoodsTable.TigerStone;
-                }
+            {
+                return GoodsTable.TigerStone;
+            }
             case Item_Type.RabitBossStone:
-                {
-                    return GoodsTable.RabitStone;
-                }
+            {
+                return GoodsTable.RabitStone;
+            }
             case Item_Type.DragonBossStone:
-                {
-                    return GoodsTable.DragonStone;
-                }
+            {
+                return GoodsTable.DragonStone;
+            }
             case Item_Type.SnakeStone:
-                {
-                    return GoodsTable.SnakeStone;
-                }
+            {
+                return GoodsTable.SnakeStone;
+            }
             case Item_Type.HorseStone:
-                {
-                    return GoodsTable.HorseStone;
-                }
+            {
+                return GoodsTable.HorseStone;
+            }
             case Item_Type.SheepStone:
-                {
-                    return GoodsTable.SheepStone;
-                }
+            {
+                return GoodsTable.SheepStone;
+            }
             case Item_Type.MonkeyStone:
-                {
-                    return GoodsTable.MonkeyStone;
-                }   
+            {
+                return GoodsTable.MonkeyStone;
+            }
             case Item_Type.CockStone:
-                {
-                    return GoodsTable.CockStone;
-                }     
+            {
+                return GoodsTable.CockStone;
+            }
             case Item_Type.DogStone:
-                {
-                    return GoodsTable.DogStone;
-                }    
+            {
+                return GoodsTable.DogStone;
+            }
             case Item_Type.PigStone:
-                {
-                    return GoodsTable.PigStone;
-                }
-        
+            {
+                return GoodsTable.PigStone;
+            }
+
             //
             case Item_Type.gumiho0:
-                {
-                    return GoodsTable.gumiho0;
-                }
+            {
+                return GoodsTable.gumiho0;
+            }
             case Item_Type.gumiho1:
-                {
-                    return GoodsTable.gumiho1;
-                }
+            {
+                return GoodsTable.gumiho1;
+            }
             case Item_Type.gumiho2:
-                {
-                    return GoodsTable.gumiho2;
-                }
+            {
+                return GoodsTable.gumiho2;
+            }
             case Item_Type.gumiho3:
-                {
-                    return GoodsTable.gumiho3;
-                }
+            {
+                return GoodsTable.gumiho3;
+            }
             case Item_Type.gumiho4:
-                {
-                    return GoodsTable.gumiho4;
-                }
+            {
+                return GoodsTable.gumiho4;
+            }
             case Item_Type.gumiho5:
-                {
-                    return GoodsTable.gumiho5;
-                }
+            {
+                return GoodsTable.gumiho5;
+            }
             case Item_Type.gumiho6:
-                {
-                    return GoodsTable.gumiho6;
-                }
+            {
+                return GoodsTable.gumiho6;
+            }
             case Item_Type.gumiho7:
-                {
-                    return GoodsTable.gumiho7;
-                }
+            {
+                return GoodsTable.gumiho7;
+            }
             case Item_Type.gumiho8:
-                {
-                    return GoodsTable.gumiho8;
-                }
+            {
+                return GoodsTable.gumiho8;
+            }
             //
             case Item_Type.Indra0:
-                {
-                    return GoodsTable.Indra0;
-                }
+            {
+                return GoodsTable.Indra0;
+            }
 
             case Item_Type.Indra1:
-                {
-                    return GoodsTable.Indra1;
-                }
+            {
+                return GoodsTable.Indra1;
+            }
 
             case Item_Type.Indra2:
-                {
-                    return GoodsTable.Indra2;
-                }
+            {
+                return GoodsTable.Indra2;
+            }
 
             case Item_Type.IndraPower:
-                {
-                    return GoodsTable.IndraPower;
-                }
+            {
+                return GoodsTable.IndraPower;
+            }
 
-            
-            
+
             default:
                 return type.ToString();
         }
     }
+
     public Item_Type ServerStringToItemType(string type)
     {
-
         if (GoodsTable.Gold == type)
         {
             return Item_Type.Gold;
@@ -1508,7 +1605,6 @@ public class GoodsTable
         {
             return Item_Type.LeeMuGiStone;
         }
-
 
         //
         else if (GoodsTable.SinSkill0 == type)
@@ -1664,6 +1760,27 @@ public class GoodsTable
             return Item_Type.FourSkill8;
         }
 
+        //            //
+        else if (GoodsTable.VisionSkill0 == type)
+        {
+            return Item_Type.VisionSkill0;
+        }
+
+        else if (GoodsTable.VisionSkill1 == type)
+        {
+            return Item_Type.VisionSkill1;
+        }
+
+        else if (GoodsTable.VisionSkill2 == type)
+        {
+            return Item_Type.VisionSkill2;
+        }
+
+        else if (GoodsTable.VisionSkill3 == type)
+        {
+            return Item_Type.VisionSkill3;
+        }
+
         //
         else if (GoodsTable.GangrimSkill == type)
         {
@@ -1723,11 +1840,11 @@ public class GoodsTable
         else if (GoodsTable.DokebiFire == type)
         {
             return Item_Type.DokebiFire;
-        }   
+        }
         else if (GoodsTable.SuhoPetFeed == type)
         {
             return Item_Type.SuhoPetFeed;
-        }  
+        }
         else if (GoodsTable.SuhoPetFeedClear == type)
         {
             return Item_Type.SuhoPetFeedClear;
@@ -1736,8 +1853,8 @@ public class GoodsTable
         else if (GoodsTable.SumiFire == type)
         {
             return Item_Type.SumiFire;
-        }  
-        
+        }
+
         else if (GoodsTable.SinsuRelic == type)
         {
             return Item_Type.SinsuRelic;

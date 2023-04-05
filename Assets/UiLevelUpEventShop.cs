@@ -430,7 +430,7 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
                 break;
             case Item_Type.FourSkill7:
                 {
-                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill0).Value += amount;
+                    ServerData.goodsTable.GetTableData(GoodsTable.FourSkill7).Value += amount;
                     param.Add(GoodsTable.FourSkill7, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill7).Value);
                 }
                 break;
@@ -439,6 +439,31 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
                     ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value += amount;
                     param.Add(GoodsTable.FourSkill8, ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value);
                 }
+                break;
+            //            //
+            case Item_Type.VisionSkill0:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value += amount;
+                param.Add(GoodsTable.VisionSkill0, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value);
+            }
+                break;
+            case Item_Type.VisionSkill1:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value += amount;
+                param.Add(GoodsTable.VisionSkill1, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value);
+            }
+                break;
+            case Item_Type.VisionSkill2:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value += amount;
+                param.Add(GoodsTable.VisionSkill2, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value);
+            }
+                break;
+            case Item_Type.VisionSkill3:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value += amount;
+                param.Add(GoodsTable.VisionSkill3, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value);
+            }
                 break;
             //
             case Item_Type.GangrimSkill:

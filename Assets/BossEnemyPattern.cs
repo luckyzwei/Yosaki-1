@@ -34,6 +34,7 @@ public class BossEnemyPattern : BossEnemyBase
     [SerializeField]
     private List<GameObject> gameObjects;
 
+    [SerializeField] private Transform _targetTransform;
     private void Start()
     {
         Initialize();

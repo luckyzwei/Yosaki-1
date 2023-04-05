@@ -30,6 +30,24 @@ public class UiPackageShop : MonoBehaviour
 
     [SerializeField]
     private Transform chunFlower;
+    
+    //
+    [SerializeField]
+    private Transform Goods_BaseGoods; 
+    [SerializeField]
+    private Transform Goods_GrowthStone;
+    
+    [SerializeField]
+    private Transform Goods_SpecialGoods;
+    
+    [SerializeField]
+    private Transform Goods_NewGacha;
+    
+    [SerializeField]
+    private Transform Goods_Week;
+    
+    [SerializeField]
+    private Transform Goods_PetSoul;
 
     private void Start()
     {
@@ -108,6 +126,39 @@ public class UiPackageShop : MonoBehaviour
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, chunFlower);
                 cell.Initialize(e.Current.Value);//
             }
+            //
+            
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_BaseGoods)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_BaseGoods);
+                cell.Initialize(e.Current.Value);//
+            }  
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_GrowthStone)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_GrowthStone);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_SpecialGoods)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_SpecialGoods);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_NewGacha)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_NewGacha);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_Week)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_Week);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_PetSoul)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_PetSoul);
+                cell.Initialize(e.Current.Value);//
+            }
+            
         }
     }
 }

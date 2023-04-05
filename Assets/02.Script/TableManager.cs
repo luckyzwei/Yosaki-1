@@ -616,7 +616,6 @@ public class TableManager : SingletonMono<TableManager>
             return titleAbils;
         }
     }
-
     [SerializeField] private YomulAbil yomulAbilTable;
     public YomulAbil YomulAbilTable => yomulAbilTable;
 
@@ -754,6 +753,10 @@ public class TableManager : SingletonMono<TableManager>
     public AdRewardTable adRewardTable;
     public NewSemesterPass newSemesterPass;
     public TowerTable7 sinsuTower;
+    public Title_Stage titleStage;
+    public Title_Level titleLevel;
+    public GuildTowerTable guildTowerTable;
+    public SuhoPass suhoPass;
 }
 
 

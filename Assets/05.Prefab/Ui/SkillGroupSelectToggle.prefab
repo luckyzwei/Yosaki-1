@@ -65,6 +65,7 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!114 &6052408441823715578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,10 +86,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3837698123765564172}
     m_Modifications:
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4053674488805527915, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_Name
       value: SkillSelectToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053674488805527915, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -113,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -123,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -173,12 +199,12 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -262,6 +288,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
@@ -277,6 +318,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
       propertyPath: m_textInfo.characterCount
       value: 1
       objectReference: {fileID: 0}
@@ -284,6 +330,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillSelectToggle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053674488805527915, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -308,7 +359,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -318,7 +369,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -368,12 +419,12 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 124.1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -464,6 +515,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
       propertyPath: m_textInfo.lineCount
       value: 1
       objectReference: {fileID: 0}
@@ -479,6 +545,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1733468153425776302, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
       propertyPath: m_textInfo.spaceCount
       value: 1
       objectReference: {fileID: 0}
@@ -491,6 +562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkillSelectToggle (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053674488805527915, guid: 74b1d526794477d4d883de360133986d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -515,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -525,7 +601,7 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
@@ -575,12 +651,12 @@ PrefabInstance:
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 168.2
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8647059189521439475, guid: 74b1d526794477d4d883de360133986d,
         type: 3}

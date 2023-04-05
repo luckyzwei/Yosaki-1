@@ -80,7 +80,7 @@ public class UiPlayerSkillInputBoard : SingletonMono<UiPlayerSkillInputBoard>
 
         coolTimeMaskRoutine = StartCoroutine(CoolTimeRoutine());
 
-        currentSelectedSkillGroup = group;
+        currentSelectedSkillGroup = 0;
 
         if (isFirstEnter == false)
         {
@@ -212,6 +212,12 @@ public class UiPlayerSkillInputBoard : SingletonMono<UiPlayerSkillInputBoard>
         PlayerSkillCaster.Instance.UseSkill(selectedSkillIdxList[idx].Value);
 
     }
+    public void OnClickVisionSkillSlot()
+    {
+
+    }
+    
+    
 
     private new void OnDestroy()
     {

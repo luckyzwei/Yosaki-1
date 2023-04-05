@@ -34,6 +34,7 @@ public class UiLoading : MonoBehaviour
 
         UiSusanoBuff.isImmune.Value = false;
         UiDokebiBuff.isImmune.Value = false;
+
         PopupManager.Instance.PlayFade();
     }
 

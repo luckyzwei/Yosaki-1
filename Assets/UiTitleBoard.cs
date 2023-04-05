@@ -21,6 +21,14 @@ public class UiTitleBoard : MonoBehaviour
 
         for (int i = 0; i < tableDatas.Length; i++)
         {
+            if (
+                tableDatas[i].Displaygroup == 0 ||
+                tableDatas[i].Displaygroup == 1
+            )
+            {
+                continue;
+            }
+                
             var cell = Instantiate<UiTitleCell>(titleCellPrefab, cellParents[tableDatas[i].Displaygroup]);
             cell.Initialize(tableDatas[i]);
         }

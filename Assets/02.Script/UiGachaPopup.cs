@@ -24,9 +24,15 @@ public class UiGachaPopup : SingletonMono<UiGachaPopup>
     [SerializeField]
     private List<TextMeshProUGUI> gachaLevelText;
 
+    //천장용
+    [SerializeField]
+    private WeaponView ringView;
+    
     private void Start()
     {
         Subscribe();
+        
+        ringView.Initialize(null,null,null,TableManager.Instance.NewGachaTable.dataArray[GameBalance.GraduateSoulRingGetIndex]);
     }
 
     private void Subscribe()

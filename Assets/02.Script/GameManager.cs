@@ -58,6 +58,7 @@ public class GameManager : SingletonMono<GameManager>
         RoyalTombTower,
         SuhoAnimal,
         SinsuTower,
+        GuildTower,
     }
 
     public bool SpawnMagicStone => IsNormalField;
@@ -88,6 +89,7 @@ public class GameManager : SingletonMono<GameManager>
         lastContentsType = ContentsType.NormalField;
     }
 
+    
     public void ResetLastContents2()
     {
         lastContentsType2 = ContentsType.NormalField;

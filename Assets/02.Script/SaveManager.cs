@@ -202,6 +202,12 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.FourSkill6,
         GoodsTable.FourSkill7,
         GoodsTable.FourSkill8,
+        
+        
+        GoodsTable.VisionSkill0,
+        GoodsTable.VisionSkill1,
+        GoodsTable.VisionSkill2,
+        GoodsTable.VisionSkill3,
 
         GoodsTable.c0,
         GoodsTable.c1,
@@ -217,12 +223,13 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.Mileage,
 
         GoodsTable.HellPowerUp,
-        GoodsTable.DokebiFire,
+        //GoodsTable.DokebiFire,
         GoodsTable.DokebiFireKey,
         GoodsTable.DokebiFireEnhance,
         GoodsTable.DokebiTreasure,
         GoodsTable.SusanoTreasure,
         GoodsTable.SahyungTreasure,
+        GoodsTable.VisionTreasure,
         GoodsTable.SumiFire,
         GoodsTable.SumiFireKey,
         GoodsTable.NewGachaEnergy,
@@ -231,6 +238,10 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.EventDice,
         GoodsTable.Tresure,
         GoodsTable.SinsuMarble,
+        GoodsTable.SuhoPetFeedClear,
+        GoodsTable.SuhoPetFeed,
+        GoodsTable.GuildTowerClearTicket,
+        GoodsTable.GuildTowerHorn,
     };
 
     //SendQueue에서 저장

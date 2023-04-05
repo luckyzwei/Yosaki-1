@@ -4,9 +4,18 @@ using UnityEngine;
 
 public static class EffectManager
 {
-    public static PoolItem SpawnEffectAllTime(string effectName, Vector3 position, Transform parent = null, bool limitSpawnSize = false, int limitNum = 15, bool showFirstSlotEffect = false)
+    public static PoolItem SpawnEffectAllTime(string effectName, Vector3 position, Transform parent = null, bool limitSpawnSize = false, int limitNum = 15, bool showFirstSlotEffect = false, bool isVisionSkill = false)
     {
-        if (SettingData.ShowEffect.Value == 0 && showFirstSlotEffect == false) return null;
+        if (isVisionSkill == false)
+        {
+            if (SettingData.ShowEffect.Value == 0 && showFirstSlotEffect == false) return null;
+            
+        }
+        else
+        {
+            if (SettingData.showVisionSkill.Value == 0 ) return null;
+        }
+
 
         if (limitSpawnSize && BattleObjectManagerAllTime.Instance.HasPool(effectName))
         {
@@ -16,6 +25,7 @@ public static class EffectManager
             }
         }
 
+        
         PoolItem effect = null;
 
         if (parent == null)

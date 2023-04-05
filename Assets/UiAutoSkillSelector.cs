@@ -16,16 +16,25 @@ public class UiAutoSkillSelector : MonoBehaviour
 
     //[SerializeField]
     //private GameObject jumpToggleObject;
-
+    [SerializeField] private List<GameObject> _visionSkills;
 
     void Start()
     {
         SkillCoolTimeManager.LoadSelectedSkill();
-       // Subscribe();
+        Subscribe();
     }
 
     private void Subscribe()
     {
+        ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).AsObservable().Subscribe(e =>
+        {
+            for (int i = 0; i < _visionSkills.Count; i++)
+            {
+                _visionSkills[i].SetActive(e > 0);
+            }
+        }).AddTo(this);
+
+
         //AutoManager.Instance.AutoMode.AsObservable().Subscribe(e =>
         //{
         //    toggleObject.ForEach(element => element.gameObject.SetActive(e));
