@@ -762,7 +762,7 @@ public class UserInfoTable
             {
                 string time = bro.GetReturnValuetoJSON()["utcTime"].ToString();
 
-                currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(24);
+                currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(9);
 
 #if UNITY_EDITOR
                 //currentServerTime = currentServerTime.AddDays(15);

@@ -39,6 +39,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
+    
     private void OnDestroy()
     {
         disposable.Dispose();
