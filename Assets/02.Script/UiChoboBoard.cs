@@ -162,4 +162,9 @@ public class UiChoboBoard : MonoBehaviour
     {
         Application.OpenURL("https://cafe.naver.com/yokiki/7151");
     }
+    
+    public void OnClickDamageGuideButton() 
+    {
+        Application.OpenURL("https://cafe.naver.com/yokiki/23117");
+    }
 }
