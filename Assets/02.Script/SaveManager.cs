@@ -244,6 +244,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.GuildTowerHorn,
     };
 
+    
     //SendQueue에서 저장
     public void SyncDatasInQueue()
     {

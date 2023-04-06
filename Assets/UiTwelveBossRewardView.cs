@@ -90,7 +90,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
         }
 
         //언락돼도 보이게
-        lockDescription.transform.SetParent((this.transform));
+        //lockDescription.transform.SetParent((this.transform));
 
         if (gradeText != null)
         {
