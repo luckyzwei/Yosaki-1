@@ -689,7 +689,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else
             {
-               PopupManager.Instance.ShowAlarmMessage($"비전전수 컨텐츠 {petData.Name}에서 획득 가능!");
+               PopupManager.Instance.ShowAlarmMessage($"사룡전 컨텐츠 {petData.Name}에서 획득 가능!");
             }
         }
 

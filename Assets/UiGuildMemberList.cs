@@ -6,6 +6,8 @@ using TMPro;
 using UniRx;
 using UnityEngine;
 using static UiGuildMemberCell;
+using System;
+using LitJson;
 
 public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 {
@@ -163,6 +165,15 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                 memberCells[i].guildMemberInfo.guildTowerFloor = 0;
         }
 
+        GetGuildGoods6AmountByIndateV3();
+
+        if (goodsDictionary.Count == 0)
+        {
+            memberCells.ForEach(e => e.gameObject.SetActive(false));
+            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "조회 실패\n잠시후 다시 시도해 주세요", null);
+            return;
+        }
+
         var bro = Backend.Social.Guild.GetGuildMemberListV3(GuildManager.Instance.myGuildIndate, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value) + 5);
 
         if (bro.IsSuccess())
@@ -199,7 +210,7 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                     int donateDogFeedAmounts = int.Parse(data["totalGoods5Amount"]["N"].ToString());
                     bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
                     bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    int guildTowerFloor = int.Parse(data["totalGoods6Amount"]["N"].ToString());
+                    int guildTowerFloor = GetGoods6Amount(nickName);
 
 
                     if (todayDonated)
@@ -211,15 +222,23 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
                     if (isMyData)
                     {
-                        serverRecordedTowerScore = guildTowerFloor;
+                        if (guildTowerFloor != int.MaxValue)
+                        {
+                            serverRecordedTowerScore = guildTowerFloor;
+                        }
                     }
 
-                    if (isMyData && myCurrentGuildTowerScore != guildTowerFloor)
+                    if (isMyData && myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
                     {
                         UpdateGuildTowerScore(guildTowerFloor);
                         guildTowerFloor = myCurrentGuildTowerScore;
                     }
 
+                    if (guildTowerFloor == int.MaxValue)
+                    {
+                        guildTowerFloor = 0;
+                    }
+                    
                     var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmounts);
 
                     memberCells[i].Initialize(memberData);
@@ -262,26 +281,33 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                     int donateDogFeedAmount = int.Parse(data["totalGoods5Amount"]["N"].ToString());
                     bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
                     bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    int guildTowerFloor = int.Parse(data["totalGoods6Amount"]["N"].ToString());
+                    int guildTowerFloor = GetGoods6Amount(nickName);
 
                     //내꺼찾음
                     if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
                     {
                         //점수추가
-                        if (myCurrentGuildTowerScore != guildTowerFloor)
+                        if (myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
                         {
                             UpdateGuildTowerScore(guildTowerFloor);
                             guildTowerFloor = myCurrentGuildTowerScore;
                         }
+                        
+                        if (guildTowerFloor == int.MaxValue)
+                        {
+                            guildTowerFloor = 0;
+                        }
+                        else
+                        {
+                            serverRecordedTowerScore = guildTowerFloor;
+                        }
 
-                        serverRecordedTowerScore = guildTowerFloor;
-
+                        
                         var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmount);
                         memberCells[0].Initialize(memberData);
                         memberCells[0].transform.SetAsFirstSibling();
 
                         this.myMemberInfo = memberData;
-
 
                         break;
                     }
@@ -335,6 +361,105 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
         if (bro.IsSuccess())
         {
+        }
+    }
+
+
+    /// <summary>
+    /// //////////////////////////////////////////
+    /// </summary>
+    public class GoodsItem
+    {
+        public int totalGoodsAmount;
+        public List<GoodsUserItem> userList = new List<GoodsUserItem>();
+
+        public override string ToString()
+        {
+            string userString = string.Empty;
+            for (int i = 0; i < userList.Count; i++)
+            {
+                userString += userList[i].ToString() + "\n";
+            }
+
+            return $"[totalGoodsAmount : {totalGoodsAmount}]\n" +
+                   $"{userString}\n";
+        }
+    }
+
+    public class GoodsUserItem
+    {
+        public int usingTotalAmount;
+        public int totalAmount;
+        public string inDate;
+        public string nickname;
+        public string updatedAt;
+
+        public override string ToString()
+        {
+            return $"\tnickname : {nickname}\n" +
+                   $"\tinDate : {inDate}\n" +
+                   $"\ttotalAmount : {totalAmount}\n" +
+                   $"\tusingTotalAmount : {usingTotalAmount}\n" +
+                   $"\tupdatedAt : {updatedAt}\n";
+        }
+    }
+
+    private int GetGoods6Amount(string nickName)
+    {
+        if (goodsDictionary.ContainsKey("goods6") == false) return int.MaxValue;
+
+        var myData = goodsDictionary["goods6"].userList.Find(e => e.nickname.Equals(nickName));
+
+        if (myData == null) return 0;
+
+        return myData.totalAmount;
+    }
+
+    private Dictionary<string, GoodsItem> goodsDictionary = new Dictionary<string, GoodsItem>();
+
+    public void GetGuildGoods6AmountByIndateV3()
+    {
+        goodsDictionary.Clear();
+
+        var bro = Backend.Social.Guild.GetGuildGoodsByIndateV3(GuildManager.Instance.myGuildIndate);
+
+        if (bro.IsSuccess() == false)
+            return;
+
+        var goodsJson = bro.GetFlattenJSON()["goods"];
+        foreach (var column in goodsJson.Keys)
+        {
+            if (column.Contains("totalGoods"))
+            {
+                GoodsItem goodsItem = new GoodsItem();
+
+                goodsItem.totalGoodsAmount = Int32.Parse(goodsJson[column].ToString());
+
+                string goodsNum = column.Replace("totalGoods", "");
+                goodsNum = goodsNum.Replace("Amount", "");
+
+                string goodsName = "goods" + goodsNum + "UserList";
+
+                JsonData userListJson = goodsJson[goodsName];
+                for (int i = 0; i < userListJson.Count; i++)
+                {
+                    GoodsUserItem user = new GoodsUserItem();
+
+                    user.inDate = userListJson[i]["inDate"].ToString();
+                    user.nickname = userListJson[i]["nickname"].ToString();
+                    if (userListJson[i].ContainsKey("usingTotalAmount"))
+                    {
+                        user.usingTotalAmount = Int32.Parse(userListJson[i]["usingTotalAmount"].ToString());
+                    }
+
+                    user.totalAmount = Int32.Parse(userListJson[i]["totalAmount"].ToString());
+                    user.updatedAt = userListJson[i]["updatedAt"].ToString();
+
+                    goodsItem.userList.Add(user);
+                }
+
+                goodsDictionary.Add("goods" + goodsNum, goodsItem);
+            }
         }
     }
 }
