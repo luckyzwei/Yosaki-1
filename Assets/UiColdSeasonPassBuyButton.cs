@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun.Demo.Cockpit;
 using TMPro;
 using UnityEngine;
 using UniRx;
@@ -15,6 +16,9 @@ public class UiColdSeasonPassBuyButton : MonoBehaviour
     public static readonly string seasonPassKey = "seasonpass2";
     
     private Button buyButton;
+
+    [SerializeField]
+    private TextMeshProUGUI fireDescription;
 
     void Start()
     {
@@ -53,6 +57,15 @@ public class UiColdSeasonPassBuyButton : MonoBehaviour
         {
             buyButton.interactable = true;
         }).AddTo(disposable);
+
+        ServerData.goodsTable.TableDatas[GoodsTable.Event_HotTime_Saved].AsObservable().Subscribe(e =>
+        {
+            if (fireDescription != null)
+            {
+                fireDescription.SetText($"불꽃조각 {e}개 획득");
+            }
+            
+        }).AddTo(disposable);
     }
 
     public void OnClickBuyButton()
@@ -90,10 +103,14 @@ public class UiColdSeasonPassBuyButton : MonoBehaviour
 
         if (tableData.Productid != seasonPassKey) return;
 
-        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
+        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!\n{CommonString.GetItemName(Item_Type.Event_HotTime)} {ServerData.goodsTable.TableDatas[GoodsTable.Event_HotTime_Saved].Value}개 획득!", null);
 
         ServerData.iapServerTable.TableDatas[tableData.Productid].buyCount.Value++;
 
         ServerData.iapServerTable.UpData(tableData.Productid);
+
+        ServerData.goodsTable.TableDatas[GoodsTable.Event_HotTime].Value += ServerData.goodsTable.TableDatas[GoodsTable.Event_HotTime_Saved].Value;
+        
+        ServerData.goodsTable.UpData(GoodsTable.Event_HotTime,false);
     }
 }

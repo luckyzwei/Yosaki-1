@@ -50,6 +50,7 @@ public class SaveManager : SingletonMono<SaveManager>
         if (Utils.HasHotTimeEventPass() == false)
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += 1;
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime_Saved).Value += 1;
         }
         else
         {

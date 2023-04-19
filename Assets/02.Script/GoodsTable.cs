@@ -180,6 +180,7 @@ public class GoodsTable
 
     public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체
     public static string Event_HotTime = "Event_HotTime"; //핫타임 불꽃
+    public static string Event_HotTime_Saved = "EHS"; //핫타임 불꽃
     public static string Event_Collection_All = "Event_Collection_All0"; //봄나물 총 획득량
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
     public static string Event_NewYear = "Event_NewYear"; //떡국
@@ -379,6 +380,7 @@ public class GoodsTable
 
         { Event_Collection, 0f },
         { Event_HotTime, 0f },
+        { Event_HotTime_Saved, 0f },
         { Event_Collection_All, 0f },
         { Event_Fall_Gold, 0f },
         { Event_NewYear, 0f },

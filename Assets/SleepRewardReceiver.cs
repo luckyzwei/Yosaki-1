@@ -208,6 +208,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             hotTimeItem *= 2;
         }
 
+
         float dailybootyItem = killedEnemyPerMin * stageTableData.Dailyitemgetamount * stageTableData.Marbleamount * GameBalance.sleepRewardRatio * elapsedMinutes;
 
         eventItem = springItem;
@@ -288,6 +289,11 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += sleepRewardInfo.hotTimeItem;
 
+        if (Utils.HasHotTimeEventPass() == false)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime_Saved).Value += sleepRewardInfo.hotTimeItem;
+        }
+
         ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value += sleepRewardInfo.sulItem;
         ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value += sleepRewardInfo.stageRelic;
 
@@ -320,6 +326,11 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
         goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
         goodsParam.Add(GoodsTable.Event_HotTime, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value);
+
+        if (Utils.HasHotTimeEventPass() == false)
+        {
+            goodsParam.Add(GoodsTable.Event_HotTime_Saved, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime_Saved).Value);
+        }
 
 
         //   goodsParam.Add(GoodsTable.Event_Item_1, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_1).Value);
