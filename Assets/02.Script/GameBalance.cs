@@ -307,9 +307,16 @@ public static class GameBalance
     public static ObscuredDouble dokebiFireFixedScore = 4000; //졸업시 고정되는 수치
     public static ObscuredFloat dokebiGraduatePlusValue = 1.5f; 
     
+     
+    
     public static ObscuredDouble GumSoulGraduateScore = 9000; // 졸업하는 수치
     public static ObscuredDouble GumSoulFixedScore = 11000; //  졸업시 고정되는 수치.
     public static ObscuredFloat GumSoulGraduatePlusValue = 2f; 
+    
+    //노리개 영혼
+    public static ObscuredDouble NorigaeSoulGraduateScore = 1E+101; // 졸업하는 수치
+    public static ObscuredDouble NorigaeSoulFixedScore = 1E+101; //  졸업시 고정되는 수치.
+    public static ObscuredFloat NorigaeSoulGraduatePlusValue = 1.25f; 
     
     public static ObscuredInt DailyPetFeedClearGetValue = 2;
     public static ObscuredInt DolPassDiceRefundValue = 20;
@@ -325,9 +332,28 @@ public static class GameBalance
     
     public static ObscuredFloat GuildTowerChimAbilUpValue = 0.01f; // 
     
-
+    public static ObscuredFloat dokebiExpPlusValue = 4000f;
     
+    public static ObscuredInt suhoAnimalAwakeLevel  = 6;
 
+    //핫타임 이벤트
+    public readonly static ObscuredFloat HotTimeEvent_Exp = 10;
+    public readonly static ObscuredFloat HotTimeEvent_Gold = 10;
+    public readonly static ObscuredFloat HotTimeEvent_GrowthStone = 7;
+    public readonly static ObscuredFloat HotTimeEvent_Marble = 3;
+    
+    public readonly static ObscuredFloat HotTimeEvent_Ad_Exp = 20;
+    public readonly static ObscuredFloat HotTimeEvent_Ad_Gold = 20;
+    public readonly static ObscuredFloat HotTimeEvent_Ad_GrowthStone = 15;
+    public readonly static ObscuredFloat HotTimeEvent_Ad_Marble = 5;
+    public readonly static ObscuredInt HyulVisionSkillDecreaseValue = 100;
+    public readonly static ObscuredBool isOddMonthlyPass = true; // 월간훈련 홀수월, 짝수월
+    
+    public readonly static ObscuredInt fireFlyRequire = 165;
+    public readonly static ObscuredInt fireFlyFixedScore = 173;
+    
+    public readonly static ObscuredInt BlackWolfRingDevideIdx = 40000;
+    //
     public static List<float> warMarkAbils = new List<float>() { 0f, 400f, 500f, 600f, 700f, 800f, 900f, 1000f };
 
     public static int GetSonIdx()

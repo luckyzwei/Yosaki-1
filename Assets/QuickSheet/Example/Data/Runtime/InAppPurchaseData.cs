@@ -80,4 +80,12 @@ public class InAppPurchaseData
   int needlevel;
   public int Needlevel { get {return needlevel; } set { this.needlevel = value;} }
   
+  [SerializeField]
+  PassProductType passproducttype;
+  public PassProductType PASSPRODUCTTYPE { get {return passproducttype; } set { this.passproducttype = value;} }
+  
+  [SerializeField]
+  int absoluteid;
+  public int Absoluteid { get {return absoluteid; } set { this.absoluteid = value;} }
+  
 }

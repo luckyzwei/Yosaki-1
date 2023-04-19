@@ -59,6 +59,7 @@ public class UiNewTitleLevelCell : MonoBehaviour
     
     public void Initialize()
     {
+        PlayerStats.ResetTitleHas();
         var currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value;
 
 
@@ -74,6 +75,8 @@ public class UiNewTitleLevelCell : MonoBehaviour
         rewardAmount.SetText(Utils.ConvertBigNum(requireTableData.Rewardvalue));
         
         currentAbilDescription.SetText($"{CommonString.GetStatusName((StatusType)requireTableData.Abiltype1)} {Utils.ConvertBigNum(PlayerStats.GetTitleLevelAbilValue((StatusType)requireTableData.Abiltype1))} 증가");
+        
+        ButtonInteractableCheck();
     }
 
     private string GetAbilDescription()
@@ -127,7 +130,7 @@ public class UiNewTitleLevelCell : MonoBehaviour
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userinfoParam));
 
         transactions.Add(ServerData.GetItemTypeTransactionValueForAttendance((Item_Type)requireTableData.Rewardtype, requireTableData.Rewardvalue));
-        PlayerStats.ResetTitleHas();
+        
         Initialize();
         
         ServerData.SendTransaction(transactions, successCallBack: () =>

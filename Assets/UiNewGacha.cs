@@ -36,6 +36,8 @@ public class UiNewGacha : MonoBehaviour
     [SerializeField]
     private GameObject getRingLockMask;
 
+    public TMP_InputField inputField;
+    
     private void Start()
     {
         Initialize();
@@ -320,5 +322,74 @@ public class UiNewGacha : MonoBehaviour
 
         ServerData.SendTransaction(transactionList, successCallBack: () => { PopupManager.Instance.ShowAlarmMessage("전설1 반지 획득!!"); });
         
+    }
+    
+    
+    public void OnClickGetManyEnergyButton()
+    {
+
+        if (!string.IsNullOrEmpty(inputField.text))
+        {
+            if (int.TryParse(inputField.text, out int result))
+            {
+                if(result < 1)
+                {
+                    PopupManager.Instance.ShowAlarmMessage("올바른 개수가 아닙니다.");
+                    return;
+                }
+                if (ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value < result)
+                {
+                    PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.SoulRingClear)}이 부족합니다!");
+                    return;
+                }
+
+                int score = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.relicKillCount].Value;
+
+                if (score == 0)
+                {
+                    PopupManager.Instance.ShowAlarmMessage("점수가 등록되지 않았습니다.");
+                    return;
+                }
+                
+
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{score * result}개 획득 합니까?\n<color=red>({score} x {result} 획득 가능)</color>", () =>
+                {
+                    if (result < 1)
+                    {
+                        PopupManager.Instance.ShowAlarmMessage("올바른 개수가 아닙니다.");
+                        return;
+                    }
+                    if (ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value < result)
+                    {
+                        PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.SoulRingClear)}이 부족합니다!");
+                        return;
+                    }
+
+
+                    ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value += score * result;
+                    ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value -= result;
+
+                    List<TransactionValue> transactions = new List<TransactionValue>();
+
+
+                    Param goodsParam = new Param();
+                    goodsParam.Add(GoodsTable.NewGachaEnergy, ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value);
+                    goodsParam.Add(GoodsTable.SoulRingClear, ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value);
+
+                    transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+
+                    ServerData.SendTransaction(transactions, successCallBack: () =>
+                    {
+                        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {score * result}개 획득!", null);
+                    });
+                }, null);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("소탕 횟수를 입력해주세요.");
+            }
+        }
+
+
     }
 }

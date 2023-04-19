@@ -25,6 +25,11 @@ public class UiLEvelPassBuyButton4 : MonoBehaviour
         disposable.Dispose();
     }
 
+    public void SetNewString(string _string)
+    {
+        stagePassKey = _string;
+    }
+    
     private void Subscribe()
     {
         buyButton = GetComponent<Button>();

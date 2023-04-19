@@ -53,11 +53,14 @@ public enum StatusType
     SuperCritical6DamPer, //신수
     SuperCritical7DamPer, //수미베기
     SumiHasValueUpgrade,
-    SuperCritical8DamPer, //단전(?)베기 ->경락마사지에 추가됨 
+    SuperCritical8DamPer, //단전(?)베기 ->경락마사지에 가`됨 
     SuperCritical9DamPer, //흉수베기 
     SuperCritical10DamPer, //도적베기 
     NorigaeGoldAbilUp, //노리개 장착효과중 기본무공 효과 버프 
     SuperCritical11DamPer, //수호동물베기 
+    SuperCritical12DamPer, //암흑베기 
+    SuperCritical13DamPer, //중단전베기 
+    TreasureHasValueUpgrade, // 보물당 섬광베기
 }
 
 
@@ -93,6 +96,7 @@ public static class PlayerStats
         double saHung = GetSuperCritical9DamPer();
         double doJuk = GetSuperCritical10DamPer();
         double suho = GetSuperCritical11DamPer();
+        double dark = GetSuperCritical12DamPer();
 
         double totalPower =
             ((baseAttack + baseAttack * baseAttackPer)
@@ -119,6 +123,7 @@ public static class PlayerStats
         totalPower += (totalPower * saHung);
         totalPower += (totalPower * sumiDam);
         totalPower += (totalPower * doJuk);
+        totalPower += (totalPower * dark);
 
         //     float totalPower =
         //((baseAttack + baseAttack * baseAttackPer)
@@ -711,7 +716,7 @@ public static class PlayerStats
         ret += GetPassiveSkillValue(StatusType.SkillDamage);
         ret += ServerData.petTable.GetStatusValue(StatusType.SkillDamage);
 
-        ret += GetTitleAbilValue(StatusType.SkillDamage);
+        //ret += GetTitleAbilValue(StatusType.SkillDamage);
         ret += GetRelicHasEffect(StatusType.SkillDamage);
 
         ret += GetSinsuEquipEffect(StatusType.SkillDamage);
@@ -719,6 +724,7 @@ public static class PlayerStats
         ret += GetSonAbilHasEffect(StatusType.SkillDamage);
         ret += GetYachaSkillPercentValue();
         ret += GuildManager.abilValue;
+        ret += GetTitleMagicBookAbilValue(StatusType.SkillDamage);
 
         return ret;
     }
@@ -850,8 +856,9 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.GoldGainPer);
         ret += GetMagicBookHasPercentValue(StatusType.GoldGainPer);
 
-        ret += GetTitleAbilValue(StatusType.GoldGainPer);
+        //ret += GetTitleAbilValue(StatusType.GoldGainPer);
         ret += GetHotTimeBuffEffect(StatusType.GoldGainPer);
+        ret += GetHotTimeEventBuffEffect(StatusType.GoldGainPer);
         ret += GetGuildPetEffect(StatusType.GoldGainPer);
 
         return ret;
@@ -866,15 +873,16 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.GoldGainPer);
         ret += GetMagicBookHasPercentValue(StatusType.GoldGainPer);
 
-        ret += GetTitleAbilValue(StatusType.GoldGainPer);
+        //ret += GetTitleAbilValue(StatusType.GoldGainPer);
         ret += GetHotTimeBuffEffect(StatusType.GoldGainPer);
+        ret += GetHotTimeEventBuffEffect(StatusType.GoldGainPer);
         ret += GetGuildPetEffect(StatusType.GoldGainPer);
 
 
         return ret;
     }
 
-    public static float GetExpPlusValue()
+    public static float GetBaseExpPlusValue_BuffAllIgnored()
     {
         float ret = 0f;
         ret += ServerData.statusTable.GetStatusValue(StatusTable.ExpGain_memory);
@@ -882,39 +890,41 @@ public static class PlayerStats
         ret += GetMarbleValue(StatusType.ExpGainPer);
         ret += ServerData.petTable.GetStatusValue(StatusType.ExpGainPer);
 
-        //ret += GetTitleAbilValue(StatusType.ExpGainPer);
         ret += GetTitleStageAbilValue(StatusType.ExpGainPer);
         ret += GetGuildPetEffect(StatusType.ExpGainPer);
         ret += GetPetHomeAbilValue(StatusType.ExpGainPer);
         ret += GetMarkBuffAddValue();
-        //
-        ret += GetBuffValue(StatusType.ExpGainPer);
-        ret += GetHotTimeBuffEffect(StatusType.ExpGainPer);
-        ret += GetOneYearBuffValue(StatusType.ExpGainPer);
-        ret += GetChuSeokBuffValue(StatusType.ExpGainPer);
-        ret += GetChuSeokBuffValue2(StatusType.ExpGainPer);
-        //
+    
         ret += GetWeaponHasPercentValue(StatusType.ExpGainPer);
 
         return ret;
     }
 
-    public static float GetExpPlusValueExclusiveBuff()
+    public static float GetExpPlusValue_WithAllBuff()
     {
         float ret = 0f;
-        ret += ServerData.statusTable.GetStatusValue(StatusTable.ExpGain_memory);
-        ret += ServerData.costumeServerTable.GetCostumeAbility(StatusType.ExpGainPer);
-        ret += GetMarbleValue(StatusType.ExpGainPer);
-        ret += ServerData.petTable.GetStatusValue(StatusType.ExpGainPer);
 
-        //ret += GetTitleAbilValue(StatusType.ExpGainPer);
-        ret += GetTitleStageAbilValue(StatusType.ExpGainPer);
-        ret += GetGuildPetEffect(StatusType.ExpGainPer);
-        ret += GetPetHomeAbilValue(StatusType.ExpGainPer);
-        ret += GetMarkBuffAddValue();
+        ret += GetBaseExpPlusValue_BuffAllIgnored();
+        //
+        ret += GetBuffValue(StatusType.ExpGainPer);
+        ret += GetHotTimeBuffEffect(StatusType.ExpGainPer);
+        ret += GetHotTimeEventBuffEffect(StatusType.ExpGainPer);
+        ret += GetOneYearBuffValue(StatusType.ExpGainPer);
+        ret += GetChuSeokBuffValue(StatusType.ExpGainPer);
+        ret += GetChuSeokBuffValue2(StatusType.ExpGainPer);
+        //
 
-        ret += GetWeaponHasPercentValue(StatusType.ExpGainPer);
+        return ret;
+    }
 
+    public static float GetExpPlusValueIncludeHotTimeBuffOnly()
+    {
+        float ret = 0f;
+        
+        ret += GetBaseExpPlusValue_BuffAllIgnored();
+
+        ret += GetHotTimeEventBuffEffect(StatusType.ExpGainPer);
+        
         return ret;
     }
 
@@ -1078,6 +1088,7 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetHotTimeBuffEffect(StatusType.MagicStoneAddPer);
+        ret += GetHotTimeEventBuffEffect(StatusType.MagicStoneAddPer);
         ret += GetBuffValue(StatusType.MagicStoneAddPer);
         ret += GetOneYearBuffValue(StatusType.MagicStoneAddPer);
         ret += GetChuSeokBuffValue(StatusType.MagicStoneAddPer);
@@ -1095,6 +1106,7 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetHotTimeBuffEffect(StatusType.MarbleAddPer);
+        ret += GetHotTimeEventBuffEffect(StatusType.MarbleAddPer);
         ret += GetBuffValue(StatusType.MarbleAddPer);
 
         ret += GetOneYearBuffValue(StatusType.MarbleAddPer);
@@ -1182,7 +1194,7 @@ public static class PlayerStats
         ret += ServerData.statusTable.GetStatusValue(StatusTable.HpPer_StatPoint);
         ret += GetPassiveSkillValue(StatusType.HpAddPer);
 
-        ret += GetTitleAbilValue(StatusType.HpAddPer);
+        //ret += GetTitleAbilValue(StatusType.HpAddPer);
         ret += GetRelicHasEffect(StatusType.HpAddPer);
 
         ret += GetMagicBookEquipPercentValue(StatusType.HpAddPer);
@@ -1242,7 +1254,7 @@ public static class PlayerStats
         ret += ServerData.costumeServerTable.GetCostumeAbility(StatusType.IgnoreDefense);
         ret += ServerData.petTable.GetStatusValue(StatusType.IgnoreDefense);
 
-        ret += GetTitleAbilValue(StatusType.IgnoreDefense);
+        //ret += GetTitleAbilValue(StatusType.IgnoreDefense);
         ret += GetYomulUpgradeValue(StatusType.IgnoreDefense);
 
         ret += GetBuffValue(StatusType.IgnoreDefense);
@@ -1337,13 +1349,15 @@ public static class PlayerStats
 
         ret += GetRelicHasEffect(StatusType.SuperCritical2DamPer);
 
-        ret += GetTitleAbilValue(StatusType.SuperCritical2DamPer);
+        //ret += GetTitleAbilValue(StatusType.SuperCritical2DamPer);
 
         ret += ServerData.statusTable.GetStatusValue(StatusTable.FeelSlash_memory);
 
         ret += GetPetHomeAbilValue(StatusType.SuperCritical2DamPer);
 
         ret += GetGradeTestAbilValue(StatusType.SuperCritical2DamPer);
+        
+        ret += GetTitleWeaponAbilValue(StatusType.SuperCritical2DamPer);
 
         return ret;
     }
@@ -1462,7 +1476,7 @@ public static class PlayerStats
 
         return ret;
     }
-
+ 
     /// <summary>
     /// 혈자리베기
     /// </summary>
@@ -1474,6 +1488,15 @@ public static class PlayerStats
         ret += GetGyungRockEffect(StatusType.SuperCritical8DamPer);
         
         return ret + ret * GetGuildTowerChimUpgradeValue();
+    } 
+    
+    public static float GetSuperCritical13DamPer()
+    {
+        float ret = 0f;
+
+        ret += GetGyungRockEffect2(StatusType.SuperCritical13DamPer);
+        
+        return ret + ret * GetGuildTowerChimUpgradeValue();
     }
 
     public static float GetSuperCritical9DamPer()
@@ -1483,6 +1506,11 @@ public static class PlayerStats
         ret += GetSahyungTreasureAbilPlusValue();
 
         ret += GetPetHomeAbilValue(StatusType.SuperCritical9DamPer);
+        
+        ret += GetStageRelicHasEffect(StatusType.SuperCritical9DamPer);
+        
+        ret += GetWolfRingAbilValue(GetCurrentWolfRingIdx(), 0);
+        
         return ret;
     }
 
@@ -1496,6 +1524,23 @@ public static class PlayerStats
 
         ret += GetTresureAbilHasEffect(StatusType.SuperCritical10DamPer);
 
+        ret += GetThiefAbil(StatusType.SuperCritical10DamPer);
+        
+        return ret;
+    }
+    //심연베기
+    public static float GetSuperCritical12DamPer()
+    {
+        float ret = 0f;
+        
+        ret += GetWeaponEquipPercentValue(StatusType.SuperCritical12DamPer);
+
+        ret += GetMagicBookEquipPercentValue(StatusType.SuperCritical12DamPer);
+
+        ret += GetDarkTreasureAbilHasEffect(StatusType.SuperCritical12DamPer);
+        
+        ret += GetDarkMarkValue();
+        
         return ret;
     }
 
@@ -1604,7 +1649,55 @@ public static class PlayerStats
 
         return ret;
     }
+    public static float GetDarkMarkValue()
+    {
+        float ret = 0f;
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d0).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[0].Abilbasevalue;
+        }
 
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d1).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[1].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d2).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[2].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d3).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[3].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d4).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[4].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d5).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[5].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d6).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[6].Abilbasevalue;
+        }
+
+        if (ServerData.goodsTable.GetTableData(GoodsTable.d7).Value >0)
+        {
+            ret += TableManager.Instance.DarkAbil.dataArray[7].Abilbasevalue;
+        }
+
+
+        return ret;
+    }
+
+    
+    
     public static float GetChunMarkValue()
     {
         float ret = 0f;
@@ -1701,7 +1794,7 @@ public static class PlayerStats
 
     public static void ResetTitleHas()
     {
-        titleHasValue.Clear();
+        titleHasValue.Clear(); 
     }
 
     public static float GetTitleAbilValue(StatusType type)
@@ -1793,6 +1886,62 @@ public static class PlayerStats
         return ret;
     }
 
+    public static float GetTitleWeaponAbilValue(StatusType type)
+    {
+        float ret = 0f;
+
+        if (titleHasValue.ContainsKey(type))
+        {
+            ret = titleHasValue[type];
+        }
+        else
+        {
+            
+            var tableData = TableManager.Instance.titleWeapon.dataArray;
+            var currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value;
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                //현재 레벨 초과시 break;
+                if (currentLevel < i) break;
+                
+                ret += tableData[i].Abilvalue1;
+            }
+
+            titleHasValue.Add(type, ret);
+        }
+
+
+        return ret;
+    }
+
+    public static float GetTitleMagicBookAbilValue(StatusType type)
+    {
+        float ret = 0f;
+
+        if (titleHasValue.ContainsKey(type))
+        {
+            ret = titleHasValue[type];
+        }
+        else
+        {
+            
+            var tableData = TableManager.Instance.titleMagicBook.dataArray;
+            var currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.titleMagicBook).Value;
+            for (int i = 0; i < tableData.Length; i++)
+            {
+                //현재 레벨 초과시 break;
+                if (currentLevel < i) break;
+                
+                ret += tableData[i].Abilvalue1;
+            }
+
+            titleHasValue.Add(type, ret);
+        }
+
+
+        return ret;
+    }
+
     public static float GetHotTimeBuffEffect(StatusType statusType)
     {
         if (ServerData.userInfoTable.IsWeekend() == false)
@@ -1845,6 +1994,49 @@ public static class PlayerStats
 
             return ret;
         }
+    }
+
+    public static float GetHotTimeEventBuffEffect(StatusType statusType)
+    {
+
+        float ret = 0f;
+
+        if (ServerData.userInfoTable.IsHotTimeEvent() == false) return 0f;
+
+        if (statusType == StatusType.GoldGainPer)
+        {
+            ret = GameBalance.HotTimeEvent_Gold;
+            if (ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0)
+            {
+                ret += GameBalance.HotTimeEvent_Ad_Gold;
+            }
+        }
+        else if (statusType == StatusType.ExpGainPer)
+        {
+            ret = GameBalance.HotTimeEvent_Exp;
+            if (ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0)
+            {
+                ret += GameBalance.HotTimeEvent_Ad_Exp;
+            }
+        }
+        else if (statusType == StatusType.MagicStoneAddPer)
+        {
+            ret = GameBalance.HotTimeEvent_GrowthStone;
+            if (ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0)
+            {
+                ret += GameBalance.HotTimeEvent_Ad_GrowthStone;
+            }
+        }
+        else if (statusType == StatusType.MarbleAddPer)
+        {
+            ret = GameBalance.HotTimeEvent_Marble;
+            if (ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0)
+            {
+                ret += GameBalance.HotTimeEvent_Ad_Marble;
+            }
+        }
+
+        return ret;
     }
 
     private static Dictionary<StatusType, float> sinsuHasValue = new Dictionary<StatusType, float>();
@@ -2168,6 +2360,28 @@ public static class PlayerStats
 
         return ret;
     }
+    public static float GetDarkTreasureAbilHasEffect(StatusType statusType, int addLevel = 0)
+    {
+        if (ServerData.statusTable.GetTableData(StatusTable.Level).Value < 2000000) return 0f;
+
+        float ret = 0f;
+
+        var tableDatas = TableManager.Instance.DarkTreasureAbilBase.dataArray;
+
+        int currentLevel = (int)ServerData.goodsTable.GetTableData(GoodsTable.DarkTreasure).Value + addLevel;
+
+        for (int i = 0; i < tableDatas.Length; i++)
+        {
+            if (currentLevel < tableDatas[i].Unlocklevel) continue;
+            if (statusType != (StatusType)tableDatas[i].Abiltype) continue;
+
+            int calculatedLevel = currentLevel - tableDatas[i].Unlocklevel;
+
+            ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
+        }
+
+        return ret;
+    }
 
     public static float GetSumiTowerEffect(StatusType statusType, int addLevel = 0)
     {
@@ -2200,6 +2414,30 @@ public static class PlayerStats
         var tableDatas = TableManager.Instance.gyungRockTowerTable.dataArray;
 
         int currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx5).Value;
+
+        if (currentLevel == 0)
+        {
+            return 0f;
+        }
+
+        for (int i = 0; i < currentLevel; i++)
+        {
+            if ((StatusType)tableDatas[i].Rewardtype == statusType)
+            {
+                ret += tableDatas[i].Rewardvalue;
+            }
+        }
+
+        return ret;
+    }
+    
+    public static float GetGyungRockEffect2(StatusType statusType, int addLevel = 0)
+    {
+        float ret = 0f;
+
+        var tableDatas = TableManager.Instance.gyungRockTowerTable2.dataArray;
+
+        int currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx7).Value;
 
         if (currentLevel == 0)
         {
@@ -2564,7 +2802,7 @@ public static class PlayerStats
             ret = abilValue;
         }
 
-        return ret;
+        return ret * GetNorigaeSoulTransPlusValue();
     }
 
     public static float GetSpecialAbilRatio()
@@ -2771,6 +3009,25 @@ public static class PlayerStats
 
         return grade;
     }
+    public static int GetThiefKingGrade()
+    {
+        int grade = -1;
+
+        var tableData = TableManager.Instance.ThiefTable.dataArray;
+
+        var score = ServerData.userInfoTable.TableDatas[UserInfoTable.thiefScore].Value *
+                    GameBalance.BossScoreConvertToOrigin;
+
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            if (score >= tableData[i].Score)
+            {
+                grade = i;
+            }
+        }
+
+        return grade;
+    }
 
     public static int GetBlackGrade()
     {
@@ -2889,12 +3146,21 @@ public static class PlayerStats
         {
             return tableData.Abilvalue0;
         }
-        //else if (type == StatusType.PenetrateDefense)
-        //{
 
-        //    return tableData.Abilvalue1;
+        return 0f;
+    }
+    public static float GetThiefAbil(StatusType type)
+    {
+        int grade = GetThiefKingGrade();
 
-        //}
+        if (grade == -1) return 0f;
+
+        var tableData = TableManager.Instance.ThiefTable.dataArray[grade];
+
+        if (type == StatusType.SuperCritical10DamPer)
+        {
+            return tableData.Abilvalue0;
+        }
 
         return 0f;
     }
@@ -2959,6 +3225,17 @@ public static class PlayerStats
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateGumSoul).Value > 0)
         {
             return GameBalance.GumSoulGraduatePlusValue;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
+    public static float GetNorigaeSoulTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateNorigaeSoul).Value > 0)
+        {
+            return GameBalance.NorigaeSoulGraduatePlusValue;
         }
         else
         {
@@ -3030,6 +3307,22 @@ public static class PlayerStats
     public static int GetCurrentFoxCupIdx()
     {
         var tableData = TableManager.Instance.foxCup.dataArray;
+        int currentPetEquipGrade = ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value;
+        int idx = -1;
+
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            if (currentPetEquipGrade >= tableData[i].Require)
+            {
+                idx = i;
+            }
+        }
+
+        return idx;
+    }
+    public static int GetCurrentWolfRingIdx()
+    {
+        var tableData = TableManager.Instance.BlackWolfRing.dataArray;
         int currentPetEquipGrade = ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value;
         int idx = -1;
 
@@ -3122,6 +3415,48 @@ public static class PlayerStats
             case 5:
             {
                 return TableManager.Instance.foxCup.dataArray[idx].Abilvalue5;
+            }
+                break;
+        }
+
+        return 0f;
+    }
+
+    public static float GetWolfRingAbilValue(int idx, int abilIdx)
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.getWolfRing).Value == 0) return 0f;
+        if (idx == -1) return 0f;
+
+        switch (abilIdx)
+        {
+            case 0:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue0;
+            }
+                break;
+            case 1:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue1;
+            }
+                break;
+            case 2:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue2;
+            }
+                break;
+            case 3:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue3;
+            }
+                break;
+            case 4:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue4;
+            }
+                break;
+            case 5:
+            {
+                return TableManager.Instance.BlackWolfRing.dataArray[idx].Abilvalue5;
             }
                 break;
         }
@@ -3413,7 +3748,8 @@ public static class PlayerStats
         ret += GetSkillHasValue(StatusType.SumiHasValueUpgrade);
 
         ret += GetGradeTestAbilValue(StatusType.SumiHasValueUpgrade);
-        
+
+        ret += GetPassiveSkill2Value(StatusType.SumiHasValueUpgrade);
         return ret;
     }
 

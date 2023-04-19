@@ -7,9 +7,11 @@ using UnityEngine.UI.Extensions.EasingCore;
 using System.Collections.Generic;
 using System.Linq;
 using BackEnd;
+using UnityEngine.Serialization;
 
 namespace UnityEngine.UI.Extensions
 {
+
     public class Scroller : UIBehaviour, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IScrollHandler
     {
         [SerializeField] RectTransform viewport = default;
@@ -23,7 +25,6 @@ namespace UnityEngine.UI.Extensions
         public ScrollDirection ScrollDirection => scrollDirection;
 
         [SerializeField] MovementType movementType = MovementType.Elastic;
-
         public MovementType MovementType
         {
             get => movementType;
@@ -83,6 +84,7 @@ namespace UnityEngine.UI.Extensions
             set => draggable = value;
         }
 
+        [SerializeField] PassTypeScroll passType = PassTypeScroll.None;
         [SerializeField] Scrollbar scrollbar = default;
 
         public Scrollbar Scrollbar => scrollbar;
@@ -195,15 +197,79 @@ namespace UnityEngine.UI.Extensions
 
             return returnValues;
         }
-        
-        private void Initialize()
+        public List<int> GetMonthPassSplitData(string key)
         {
-            List<int> splitData_Free = GetDolPassSplitData(SeolPassServerTable.MonthlypassFreeReward_dol);
-            List<int> splitData_Ad = GetDolPassSplitData(SeolPassServerTable.MonthlypassAdReward_dol);
-            int freeMax =  splitData_Free.Max();
-            int AdMax =  splitData_Ad.Max();
+            List<int> returnValues = new List<int>();
+
+            var splits = ServerData.monthlyPassServerTable.TableDatas[key].Value.Split(',');
+
+            for (int i = 0; i < splits.Length; i++)
+            {
+                if (int.TryParse(splits[i], out var result))
+                {
+                    returnValues.Add(result);
+                }
+            }
+
+            return returnValues;
+        }
+        public List<int> GetMonthPass2SplitData(string key)
+        {
+            List<int> returnValues = new List<int>();
+
+            var splits = ServerData.monthlyPassServerTable2.TableDatas[key].Value.Split(',');
+
+            for (int i = 0; i < splits.Length; i++)
+            {
+                if (int.TryParse(splits[i], out var result))
+                {
+                    returnValues.Add(result);
+                }
+            }
+
+            return returnValues;
+        }
+        
+        public void Initialize(PassTypeScroll type=PassTypeScroll.None)
+        {
+            if (passType == PassTypeScroll.None)
+            {
+                passType = type;
+            }
+            List<int> splitData_Free;
+            List<int> splitData_Ad;
+            switch (passType)
+            {
+                case PassTypeScroll.DolPass:
+                splitData_Free = GetDolPassSplitData(SeolPassServerTable.MonthlypassFreeReward_dol);
+                splitData_Ad = GetDolPassSplitData(SeolPassServerTable.MonthlypassAdReward_dol);
+                    break;
+                case PassTypeScroll.MonthPass:
+                    splitData_Free = GetMonthPassSplitData(MonthlyPassServerTable.MonthlypassFreeReward);
+                    splitData_Ad = GetMonthPassSplitData(MonthlyPassServerTable.MonthlypassAdReward);
+                    break;
+                case PassTypeScroll.MonthPass2:
+                    splitData_Free = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassFreeReward);
+                    splitData_Ad = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassAdReward);
+                    break;
+                default:
+                    splitData_Free = null;
+                    splitData_Ad = null;
+                    break;
+            }
+
+            int freeMax = 0;
+            int AdMax = 0;
+            if (splitData_Free != null && splitData_Free.Count != 0)
+            {
+                freeMax =  splitData_Free.Max();
+            }
+            if (splitData_Ad != null && splitData_Ad.Count != 0)
+            {
+                AdMax = splitData_Ad.Max();
+            }
             //int totalCount = TableManager.Instance.dolPass.dataArray.Length;
-            scrollbar.value = Mathf.Clamp01(freeMax / Mathf.Max(totalCount - 1f, 1e-4f));
+            scrollbar.value = Mathf.Clamp01(Mathf.Max(freeMax,3) / Mathf.Max(totalCount - 1f, 1e-4f));
         }
         public void OnValueChanged(Action<float> callback) => onValueChanged = callback;
 

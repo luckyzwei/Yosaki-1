@@ -5,6 +5,7 @@ using BackEnd;
 using BackEnd.Game.GameInfo;
 using LitJson;
 using System;
+using GooglePlayGames.BasicApi;
 using UniRx;
 
 
@@ -108,7 +109,16 @@ public class GoodsTable
     public static string h7 = "h7";
     public static string h8 = "h8";
     public static string h9 = "h9";
-
+        
+    public static string d0 = "d0";
+    public static string d1 = "d1";
+    public static string d2 = "d2";
+    public static string d3 = "d3";
+    public static string d4 = "d4";
+    public static string d5 = "d5";
+    public static string d6 = "d6";
+    public static string d7 = "d7";
+    
     public static string Ym = "Ym";
 
     //두루마리
@@ -149,6 +159,13 @@ public class GoodsTable
     public static string VisionSkill1 = "VisionSkill1";
     public static string VisionSkill2 = "VisionSkill2";
     public static string VisionSkill3 = "VisionSkill3";
+    public static string VisionSkill4 = "VisionSkill4";
+    
+    public static string ThiefSkill0 = "ThiefSkill0";
+    public static string ThiefSkill1 = "ThiefSkill1";
+    public static string ThiefSkill2 = "ThiefSkill2";
+    public static string ThiefSkill3 = "ThiefSkill3";
+    public static string ThiefSkill4 = "ThiefSkill4";
 
     public static string Fw = "Fw";
     public const string Cw = "Cw"; //천계꽃
@@ -162,6 +179,7 @@ public class GoodsTable
     public static string c6 = "c6"; //천계꽃
 
     public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체
+    public static string Event_HotTime = "Event_HotTime"; //핫타임 불꽃
     public static string Event_Collection_All = "Event_Collection_All0"; //봄나물 총 획득량
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
     public static string Event_NewYear = "Event_NewYear"; //떡국
@@ -183,16 +201,19 @@ public class GoodsTable
     public static string DokebiFireEnhance = "DFE";
     public static string SahyungTreasure = "SahyungTreasure";
     public static string VisionTreasure = "VisionTreasure";
+    public static string DarkTreasure = "DarkTreasure";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
     public static string DokebiBundle = "DB";
     public static string SinsuRelic = "SinsuRelic";
+    public static string HyungsuRelic = "HyungsuRelic";
 
     public static string EventDice = "EventDice";
     public static string Tresure = "Tresure";
     public static string SuhoPetFeed = "SuhoPetFeed";
     public static string SuhoPetFeedClear = "SPFC";
+    public static string SoulRingClear = "SRC";
     public static string SinsuMarble = "SinsuMarble";
     public static string GuildTowerClearTicket = "GTCT";
     public static string GuildTowerHorn = "GuildTowerHorn";
@@ -293,6 +314,16 @@ public class GoodsTable
         { Ym, 0f },
         { du, 0f },
 
+        
+        { d0, 0f },
+        { d1, 0f },
+        { d2, 0f },
+        { d3, 0f },
+        { d4, 0f },
+        { d5, 0f },
+        { d6, 0f },
+        { d7, 0f },
+        
         { Sun0, 0f },
         { Sun1, 0f },
         { Sun2, 0f },
@@ -326,6 +357,13 @@ public class GoodsTable
         { VisionSkill1, 0f },
         { VisionSkill2, 0f },
         { VisionSkill3, 0f },
+        { VisionSkill4, 0f },
+
+        { ThiefSkill0, 0f },
+        { ThiefSkill1, 0f },
+        { ThiefSkill2, 0f },
+        { ThiefSkill3, 0f },
+        { ThiefSkill4, 0f },
 
         { Fw, 0f },
         { Cw, 0f },
@@ -340,6 +378,7 @@ public class GoodsTable
         { c6, 0f },
 
         { Event_Collection, 0f },
+        { Event_HotTime, 0f },
         { Event_Collection_All, 0f },
         { Event_Fall_Gold, 0f },
         { Event_NewYear, 0f },
@@ -357,17 +396,20 @@ public class GoodsTable
         { DokebiTreasure, 0f },
         { SahyungTreasure, 0f },
         { VisionTreasure, 0f },
+        { DarkTreasure, 0f },
         { SusanoTreasure, 0f },
         { SumiFire, 0f },
         { SumiFireKey, 0f },
         { NewGachaEnergy, 0f },
         { DokebiBundle, 0f },
         { SinsuRelic, 0f },
+        { HyungsuRelic, 0f },
 
         { EventDice, 0f },
         { Tresure, 0f },
         { SuhoPetFeed, 0f },
         { SuhoPetFeedClear, 0f },
+        { SoulRingClear, 0f },
         { SinsuMarble, 0f },
         { GuildTowerClearTicket, 0f },
         { GuildTowerHorn, 0f },
@@ -616,31 +658,24 @@ public class GoodsTable
         return fourLevel;
     }
 
-    public int GetVisionSkillHasCount()
+    public int GetVisionSkillIdx()
     {
-        int visionLevel = 0;
+        var visionSkillIdxList = PlayerSkillCaster.Instance.GetVisionSkillIdxList();
 
-        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).Value == 1)
+        var idx = 0;
+
+        for (int i = 0; i < visionSkillIdxList.Count; i++)
         {
-            visionLevel++;
+            if (ServerData.goodsTable.GetTableData(TableManager.Instance.SkillTable.dataArray[visionSkillIdxList[i]].Skillclassname).Value >0 )
+            {
+                idx = visionSkillIdxList[i];
+            }
+            else
+            {
+                break;
+            }
         }
-
-        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).Value == 1)
-        {
-            visionLevel++;
-        }
-
-        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).Value == 1)
-        {
-            visionLevel++;
-        }
-
-        if (ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value == 1)
-        {
-            visionLevel++;
-        }
-
-        return visionLevel;
+        return idx;
     }
 
     static int eventItemAddNum_Spring = 0;
@@ -1269,6 +1304,37 @@ public class GoodsTable
             {
                 return GoodsTable.VisionSkill3;
             }
+            case Item_Type.VisionSkill4:
+            {
+                return GoodsTable.VisionSkill4;
+            }
+
+            //
+            //            //
+            case Item_Type.ThiefSkill0:
+            {
+                return GoodsTable.ThiefSkill0;
+            }
+
+            case Item_Type.ThiefSkill1:
+            {
+                return GoodsTable.ThiefSkill1;
+            }
+
+            case Item_Type.ThiefSkill2:
+            {
+                return GoodsTable.ThiefSkill2;
+            }
+
+            case Item_Type.ThiefSkill3:
+            {
+                return GoodsTable.ThiefSkill3;
+            }
+
+            case Item_Type.ThiefSkill4:
+            {
+                return GoodsTable.ThiefSkill4;
+            }
 
             //
             case Item_Type.GangrimSkill:
@@ -1334,6 +1400,10 @@ public class GoodsTable
             {
                 return GoodsTable.SuhoPetFeedClear;
             }
+            case Item_Type.SoulRingClear:
+            {
+                return GoodsTable.SoulRingClear;
+            }
 
             case Item_Type.SumiFire:
             {
@@ -1346,6 +1416,10 @@ public class GoodsTable
             case Item_Type.SinsuRelic:
             {
                 return GoodsTable.SinsuRelic;
+            }
+            case Item_Type.HyungsuRelic:
+            {
+                return GoodsTable.HyungsuRelic;
             }
 
             case Item_Type.EventDice:
@@ -1375,6 +1449,10 @@ public class GoodsTable
             case Item_Type.Event_Collection:
             {
                 return GoodsTable.Event_Collection;
+            }
+            case Item_Type.Event_HotTime:
+            {
+                return GoodsTable.Event_HotTime;
             }
             case Item_Type.Event_Collection_All:
             {
@@ -1780,6 +1858,35 @@ public class GoodsTable
         {
             return Item_Type.VisionSkill3;
         }
+        else if (GoodsTable.VisionSkill4 == type)
+        {
+            return Item_Type.VisionSkill4;
+        }
+
+        // //
+        else if (GoodsTable.ThiefSkill0 == type)
+        {
+            return Item_Type.ThiefSkill0;
+        }
+
+        else if (GoodsTable.ThiefSkill1 == type)
+        {
+            return Item_Type.ThiefSkill1;
+        }
+
+        else if (GoodsTable.ThiefSkill2 == type)
+        {
+            return Item_Type.ThiefSkill2;
+        }
+
+        else if (GoodsTable.ThiefSkill3 == type)
+        {
+            return Item_Type.ThiefSkill3;
+        }
+        else if (GoodsTable.ThiefSkill4 == type)
+        {
+            return Item_Type.ThiefSkill4;
+        }
 
         //
         else if (GoodsTable.GangrimSkill == type)
@@ -1849,6 +1956,10 @@ public class GoodsTable
         {
             return Item_Type.SuhoPetFeedClear;
         }
+        else if (GoodsTable.SoulRingClear == type)
+        {
+            return Item_Type.SoulRingClear;
+        }
 
         else if (GoodsTable.SumiFire == type)
         {
@@ -1858,6 +1969,10 @@ public class GoodsTable
         else if (GoodsTable.SinsuRelic == type)
         {
             return Item_Type.SinsuRelic;
+        }
+        else if (GoodsTable.HyungsuRelic == type)
+        {
+            return Item_Type.HyungsuRelic;
         }
         else if (GoodsTable.EventDice == type)
         {
@@ -1886,6 +2001,10 @@ public class GoodsTable
         else if (GoodsTable.Event_Collection == type)
         {
             return Item_Type.Event_Collection;
+        }
+        else if (GoodsTable.Event_HotTime == type)
+        {
+            return Item_Type.Event_HotTime;
         }
         else if (GoodsTable.Event_Collection_All == type)
         {

@@ -50,9 +50,11 @@ MonoBehaviour:
     - 0.12
     - 0.21
     - 0.31
-    maxlevel: 5
+    - 0.51
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 6a000000d4000000a70100007a020000e4020000
+    requirevalue: 6a000000d4000000a70100007a020000e4020000c8050000
+    awakeskillid: 56
   - id: 1
     stringid: p1
     name: "\uB450\uAEBC\uBE44"
@@ -88,9 +90,11 @@ MonoBehaviour:
     - 0.15
     - 0.27
     - 0.41
-    maxlevel: 5
+    - 0.68
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 8200000004010000070200000a0300008c030000
+    requirevalue: 8200000004010000070200000a0300008c03000018070000
+    awakeskillid: 57
   - id: 2
     stringid: p2
     name: "\uD1A0\uB07C"
@@ -126,9 +130,11 @@ MonoBehaviour:
     - 0.2
     - 0.35
     - 0.53
-    maxlevel: 5
+    - 0.88
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 9c0000003801000070020000a803000044040000
+    requirevalue: 9c0000003801000070020000a80300004404000088080000
+    awakeskillid: 58
   - id: 3
     stringid: p3
     name: "\uB2E4\uB78C\uC950"
@@ -164,9 +170,11 @@ MonoBehaviour:
     - 0.26
     - 0.45
     - 0.67
-    maxlevel: 5
+    - 1.11
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: b900000072010000e4020000550400000e050000
+    requirevalue: b900000072010000e4020000550400000e0500001c0a0000
+    awakeskillid: 59
   - id: 4
     stringid: p4
     name: "\uAC15\uC544\uC9C0"
@@ -202,9 +210,11 @@ MonoBehaviour:
     - 0.31
     - 0.55
     - 0.83
-    maxlevel: 5
+    - 1.38
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: d8000000b00100006003000010050000e8050000
+    requirevalue: d8000000b00100006003000010050000e8050000d00b0000
+    awakeskillid: 60
   - id: 5
     stringid: p5
     name: "\uACE0\uC591\uC774"
@@ -240,9 +250,11 @@ MonoBehaviour:
     - 0.38
     - 0.67
     - 1.01
-    maxlevel: 5
+    - 1.69
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: fa000000f4010000e7030000da050000d4060000
+    requirevalue: fa000000f4010000e7030000da050000d4060000a80d0000
+    awakeskillid: 61
   - id: 6
     stringid: p6
     name: "\uC5EC\uC6B0"
@@ -278,9 +290,11 @@ MonoBehaviour:
     - 0.46
     - 0.81
     - 1.22
-    maxlevel: 5
+    - 2.04
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 1e0100003c02000077040000b2060000d0070000
+    requirevalue: 1e0100003c02000077040000b2060000d0070000a00f0000
+    awakeskillid: 62
   - id: 7
     stringid: p7
     name: "\uB291\uB300"
@@ -316,9 +330,11 @@ MonoBehaviour:
     - 0.53
     - 0.95
     - 1.44
-    maxlevel: 5
+    - 2.42
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 44010000880200001005000098070000dc080000
+    requirevalue: 44010000880200001005000098070000dc080000b8110000
+    awakeskillid: 63
   - id: 8
     stringid: p8
     name: "\uBC31\uD638"
@@ -354,9 +370,11 @@ MonoBehaviour:
     - 0.65
     - 1.15
     - 1.74
-    maxlevel: 5
+    - 2.91
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 6d010000da020000b40500008d080000fa090000
+    requirevalue: 6d010000da020000b40500008d080000fa090000f4130000
+    awakeskillid: 64
   - id: 9
     stringid: p9
     name: "\uBD88\uC5EC\uC6B0"
@@ -392,9 +410,11 @@ MonoBehaviour:
     - 0.75
     - 1.34
     - 2.03
-    maxlevel: 5
+    - 3.41
+    maxlevel: 6
     requireitemtype: 9016
-    requirevalue: 98010000300300006006000090090000280b0000
+    requirevalue: 98010000300300006006000090090000280b000050160000
+    awakeskillid: 65
   - id: 10
     stringid: p10
     name: "\uC6A9"
@@ -430,6 +450,48 @@ MonoBehaviour:
     - 1.1
     - 1.98
     - 3.01
+    - 5.06
+    maxlevel: 6
+    requireitemtype: 9016
+    requirevalue: 44020000880400000f090000960d0000da0f0000b41f0000
+    awakeskillid: 66
+  - id: 11
+    stringid: p11
+    name: "\uD574\uD0DC"
+    title: "\uD574\uD0DC"
+    description: "\uD574\uD0DC"
+    rewardcut:
+    - 1e+105
+    - 2e+105
+    - 5e+105
+    - 2e+106
+    - 1e+107
+    cutstring:
+    - "10\uC2B9"
+    - "20\uC2B9"
+    - "50\uC2B9"
+    - "200\uC2B9"
+    - "1000\uC2B9"
+    rewardtype: 3823000038230000382300003823000038230000
+    rewardvalue:
+    - 320
+    - 320
+    - 320
+    - 320
+    - 320
+    timetype: 2
+    sweeeptype: 9016
+    sweepvalue: 220
+    abiltype: 49
+    abilvalue:
+    - 0.06
+    - 0.22
+    - 0.53
+    - 1.15
+    - 2.08
+    - 3.16
+    - 5.32
     maxlevel: 5
     requireitemtype: 9016
-    requirevalue: 44020000880400000f090000960d0000da0f0000
+    requirevalue: 60020000bf0400007d0900003c0e00009b10000036210000
+    awakeskillid: 67

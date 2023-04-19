@@ -6,9 +6,12 @@ using UniRx;
 using System.Linq;
 using BackEnd;
 using TMPro;
+using UnityEngine.UI.Extensions;
 
-public class UiMonthlyPassCell2 : MonoBehaviour
+public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 {
+    MonthlyPass2Data_Fancy itemData;
+    
     [SerializeField]
     private Image itemIcon_free;
 
@@ -265,6 +268,45 @@ public class UiMonthlyPassCell2 : MonoBehaviour
                 // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
             });
         }
+        else if ((Item_Type)(int)passInfo.rewardType_Free == Item_Type.MonthNorigae5)
+        {
+            //로컬
+            ServerData.monthlyPassServerTable2.TableDatas[passInfo.rewardType_Free_Key].Value += $",{passInfo.id}";
+
+            if (ServerData.magicBookTable.TableDatas["magicBook80"].hasItem.Value == 1)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"이미 보유하고 있습니다.");
+                return;
+            }
+
+            List<TransactionValue> transactionList = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook80"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook80"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook80", ServerData.magicBookTable.TableDatas["magicBook80"].ConvertToString());
+
+            transactionList.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //패스 보상
+            Param passParam = new Param();
+            passParam.Add(passInfo.rewardType_Free_Key, ServerData.monthlyPassServerTable2.TableDatas[passInfo.rewardType_Free_Key].Value);
+            transactionList.Add(TransactionValue.SetUpdate(MonthlyPassServerTable2.tableName, MonthlyPassServerTable2.Indate, passParam));
+
+
+            //킬카운트
+            Param userInfoParam = new Param();
+            userInfoParam.Add(UserInfoTable.killCountTotal, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            ServerData.SendTransaction(transactionList, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "5월 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
         else
         {
 
@@ -330,10 +372,7 @@ public class UiMonthlyPassCell2 : MonoBehaviour
         return killCountTotal2 >= passInfo.require;
     }
 
-    private void OnEnable()
-    {
-        RefreshParent();
-    }
+
 
     public void RefreshParent()
     {
@@ -355,4 +394,55 @@ public class UiMonthlyPassCell2 : MonoBehaviour
             }
         }
     }
+    
+    
+
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+    }
+
+    public override void UpdateContent(MonthlyPass2Data_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+//        Debug.LogError("DolpasS!");
+        
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
 }

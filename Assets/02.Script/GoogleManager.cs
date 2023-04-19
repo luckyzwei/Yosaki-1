@@ -259,6 +259,15 @@ public class GoogleManager : SingletonMono<GoogleManager>
         {
             yield return null;
         }
+        
+        //
+        ServerData.SetTitleServer();
+        
+        while (SendQueue.UnprocessedFuncCount != 0)
+        {
+            yield return null;
+        }
+        
         if (isSignIn == false)
         {
             PlayerData.Instance.LoadUserNickName();

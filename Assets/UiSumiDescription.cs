@@ -39,7 +39,7 @@ public class UiSumiDescription : MonoBehaviour
 
         var tableData = TableManager.Instance.sumiTable.dataArray[idx];
 
-        unlockDesc.SetText($"{Utils.ConvertBigNum(tableData.Score)}");
+        unlockDesc.SetText($"{Utils.ConvertBigNumForRewardCell(tableData.Score)}");
 
         equipFrame.gameObject.SetActive(idx == PlayerStats.GetSumiGrade());
 

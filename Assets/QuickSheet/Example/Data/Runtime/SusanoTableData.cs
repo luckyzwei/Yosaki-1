@@ -48,4 +48,8 @@ public class SusanoTableData
   float buffsec;
   public float Buffsec { get {return buffsec; } set { this.buffsec = value;} }
   
+  [SerializeField]
+  float zibaeupvalue;
+  public float Zibaeupvalue { get {return zibaeupvalue; } set { this.zibaeupvalue = value;} }
+  
 }

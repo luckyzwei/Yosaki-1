@@ -497,6 +497,7 @@ public class OnlineTowerManager : ContentsManagerBase
         ServerData.SendTransaction(transactionList, successCallBack: () =>
         {
             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{ServerData.userInfoTable.GetTableData(UserInfoTable.partyTowerFloor).Value}층 클리어!\n{CommonString.GetItemName((Item_Type)TowerTableData4.Rewardtype)} {Utils.ConvertBigNum(TowerTableData4.Rewardvalue)}개 획득!", null);
+            ServerData.equipmentTable.ChangeEquip(EquipmentTable.CaveBelt, (int)currentFloor);
         });
 
         //추천 1회

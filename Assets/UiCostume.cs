@@ -37,7 +37,7 @@ public class UiCostume : SingletonMono<UiCostume>
         var tableData = TableManager.Instance.Costume.dataArray;
 
         int currentSelectedIdx = ServerData.equipmentTable.TableDatas[EquipmentTable.CostumeSlot].Value;
-
+        
         for (int i = 0; i < tableData.Length; i++)
         {
             var costumeLookCell = Instantiate<UiCostumeCell>(costumeCellPrefab, cellParent);
@@ -53,6 +53,11 @@ public class UiCostume : SingletonMono<UiCostume>
             {
                 uiCostumeAbilityBoard.Initialize(tableData[i]);
             }
+        }
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            uiCostumeCells[i].transform.SetSiblingIndex(tableData[i].Displayorder);
+            uiCostumeSlotCells[i].transform.SetSiblingIndex(tableData[i].Displayorder);
         }
 
         WhenCurrentSelectChanged(currentSelectedIdx);

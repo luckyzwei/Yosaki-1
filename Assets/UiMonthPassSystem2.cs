@@ -7,7 +7,16 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
-public class UiMonthPassSystem2 : MonoBehaviour
+using UnityEngine.UI.Extensions;
+public class MonthlyPass2Data_Fancy
+{
+    public PassInfo passInfo { get; private set; }
+    public MonthlyPass2Data_Fancy(PassInfo passData)
+    {
+        this.passInfo = passData;
+    }
+}
+public class UiMonthPassSystem2 : FancyScrollView<MonthlyPass2Data_Fancy>
 {
     [SerializeField]
     private UiMonthlyPassCell2 uiPassCellPrefab;
@@ -29,10 +38,6 @@ public class UiMonthPassSystem2 : MonoBehaviour
     }
 #endif
 
-    private void Start()
-    {
-        Initialize();
-    }
     private void Initialize()
     {
         var tableData = TableManager.Instance.MonthlyPass2.dataArray;
@@ -286,5 +291,47 @@ public class UiMonthPassSystem2 : MonoBehaviour
         {
             uiPassCellContainer[i].RefreshParent();
         }
+    }
+        
+    //
+    [SerializeField]
+    private Scroller scroller;
+    
+    
+    [SerializeField] GameObject cellPrefab = default;
+
+    protected override GameObject CellPrefab => cellPrefab;
+    private void Start()
+    {
+        scroller.Initialize(PassTypeScroll.MonthPass2);
+        
+        scroller.OnValueChanged(UpdatePosition);
+    
+        
+        var tableData = TableManager.Instance.MonthlyPass2.dataArray;
+    
+        List<MonthlyPass2Data_Fancy> passInfos = new List<MonthlyPass2Data_Fancy>();
+    
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var passInfo = new PassInfo();
+    
+            passInfo.require = tableData[i].Unlockamount;
+            passInfo.id = tableData[i].Id;
+    
+            passInfo.rewardType_Free = tableData[i].Reward1;
+            passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
+            passInfo.rewardType_Free_Key = MonthlyPassServerTable2.MonthlypassFreeReward;
+    
+            passInfo.rewardType_IAP = tableData[i].Reward2;
+            passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
+            passInfo.rewardType_IAP_Key = MonthlyPassServerTable2.MonthlypassAdReward;
+            passInfos.Add(new MonthlyPass2Data_Fancy(passInfo));
+    
+        }
+    
+    
+        this.UpdateContents(passInfos.ToArray());
+        scroller.SetTotalCount(passInfos.Count);
     }
 }

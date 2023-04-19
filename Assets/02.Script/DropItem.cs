@@ -456,6 +456,15 @@ public enum Item_Type
     costume102 = 1402,     
     costume103 = 1403,     
     costume104 = 1404,     
+    
+    costume105 = 1405,     //암흑
+    costume106 = 1406,     
+    costume107 = 1407,     
+    costume108 = 1408,
+    
+    costume109 = 1409, // 5월 월간외형     
+    
+    costume110 = 1410, // 심연보스0     
 
 
     gumiho0 = 5000,
@@ -479,6 +488,16 @@ public enum Item_Type
     h7 = 6007,
     h8 = 6008,
     h9 = 6009,
+
+    //심연 전용템
+    d0 = 6010,
+    d1 = 6011,
+    d2 = 6012,
+    d3 = 6013,
+    d4 = 6014,
+    d5 = 6015,
+    d6 = 6016,
+    d7 = 6017,
 
     //천계 칠션녀 전용템
     c0 = 7000,
@@ -605,6 +624,21 @@ public enum Item_Type
     KingNorigae2 = 7175,
     KingNorigae3 = 7176,
     
+    DarkWeapon0 = 7180,
+    DarkWeapon1 = 7181,
+    DarkWeapon2 = 7182,
+    DarkWeapon3 = 7183,
+    
+    
+    DarkNorigae0 = 7190,
+    DarkNorigae1 = 7191,
+    DarkNorigae2 = 7192,
+    DarkNorigae3 = 7193,
+    
+    MasterWeapon0 = 7200,
+    
+    MasterNorigae0 = 7210,
+    
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
     RecommendWeapon2 = 8002,
@@ -642,6 +676,7 @@ public enum Item_Type
     weapon90 = 8604,//바람개비무기
     MonthNorigae3 = 8605, // 월간노리개
     MonthNorigae4 = 8606, // 월간노리개
+    MonthNorigae5 = 8607, // 월간노리개
 
     Chun0 = 8700, // 천계기술
     Chun1 = 8701,
@@ -670,6 +705,14 @@ public enum Item_Type
     VisionSkill1 = 8731, 
     VisionSkill2 = 8732, 
     VisionSkill3 = 8733,
+    
+    VisionSkill4 = 8734,//심연궁극
+    
+    ThiefSkill0 = 8740, //도적스킬
+    ThiefSkill1 = 8741, 
+    ThiefSkill2 = 8742, 
+    ThiefSkill3 = 8743,
+    ThiefSkill4 = 8744,
     
     Event_NewYear = 8800, //떡국
     Event_NewYear_All = 8801, // 총 습득량
@@ -700,7 +743,11 @@ public enum Item_Type
     SinsuMarble = 9018,
     VisionTreasure = 9019,
     GuildTowerClearTicket = 9020,
-    GuildTowerHorn = 9021
+    GuildTowerHorn = 9021,
+    DarkTreasure = 9022,
+    SoulRingClear = 9023,
+    Event_HotTime = 9024,
+    HyungsuRelic = 9025
 }
 //
 public class DropItem : PoolItem
@@ -821,4 +868,5 @@ public class DropItem : PoolItem
         }
     }
 
+    
 }

@@ -14,8 +14,10 @@ public static class CommonResourceContainer
     private static List<Sprite> hellIcons;
     private static List<Sprite> dragonBall;
     private static List<Sprite> foxCup;
+    private static List<Sprite> wolfRing;
     private static List<Sprite> chunIcons;
     private static List<Sprite> SuhoAnimal;
+    private static List<Sprite> DarkRoomIcon;
 
     public static Sprite GetRandomWeaponSprite()
     {
@@ -265,6 +267,33 @@ public static class CommonResourceContainer
             return null;
         }
     }
+    public static Sprite GetWolfRingSprite(int idx)
+    {
+        
+        if (wolfRing == null)
+        {
+            var maksIcons = Resources.LoadAll<Sprite>("WolfRing/");
+            wolfRing = maksIcons.ToList();
+
+
+            wolfRing.Sort((a, b) =>
+            {
+                if (int.Parse(a.name) < int.Parse(b.name)) return -1;
+
+                return 1;
+
+            });
+        }
+
+        var require = TableManager.Instance.BlackWolfRing.dataArray[idx].Require - TableManager.Instance.BlackWolfRing.dataArray[0].Require;
+        require /= GameBalance.BlackWolfRingDevideIdx;
+        if (require > 4)
+        {
+            require = 4;
+        }
+        return wolfRing[require];
+     
+    }
 
     public static Sprite GetHellIconSprite(int idx)
     {
@@ -286,6 +315,33 @@ public static class CommonResourceContainer
         if (idx < hellIcons.Count)
         {
             return hellIcons[idx];
+        }
+        else
+        {
+            Debug.LogError($"Weapon icon {idx} is not exist");
+            return null;
+        }
+    }
+    public static Sprite GetDarkIconSprite(int idx)
+    {
+        if (DarkRoomIcon == null)
+        {
+            var maksIcons = Resources.LoadAll<Sprite>("DarkIcons/");
+            DarkRoomIcon = maksIcons.ToList();
+
+
+            DarkRoomIcon.Sort((a, b) =>
+            {
+                if (int.Parse(a.name) < int.Parse(b.name)) return -1;
+
+                return 1;
+
+            });
+        }
+
+        if (idx < DarkRoomIcon.Count)
+        {
+            return DarkRoomIcon[idx];
         }
         else
         {

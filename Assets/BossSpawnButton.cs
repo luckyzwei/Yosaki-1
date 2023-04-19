@@ -41,6 +41,7 @@ public class BossSpawnButton : SingletonMono<BossSpawnButton>
         }).AddTo(this);
     }
 
+    
     public void OnClickSpawnButton()
     {
         int lastClearStage = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value;
@@ -81,6 +82,7 @@ public class BossSpawnButton : SingletonMono<BossSpawnButton>
             }
             else 
             {
+                PlayerSkillCaster.Instance.InitializeVisionSkill();
                 MapInfo.Instance.SpawnBossEnemy();
             }
 

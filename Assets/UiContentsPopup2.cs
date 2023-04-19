@@ -30,6 +30,7 @@ public class UiContentsPopup2 : MonoBehaviour
         SuhoAnimal,
         SinsuTower,
         VisionBoard,
+        DarkBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -193,6 +194,7 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 99:
                     case 100:
                     case 101:
+                    case 132:
                         lastBoards[(int)ContentsBoard.SahyungsuBoard].SetActive(true);
                     break;
                     //도둑들
@@ -207,6 +209,7 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 110:
                     case 111:
                     case 112:
+                    case 118:
                         lastBoards[(int)ContentsBoard.UiThiefBoard].SetActive(true);
                         break;
                     case 113:
@@ -214,7 +217,22 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 115:
                     case 116:
                         lastBoards[(int)ContentsBoard.VisionBoard].SetActive(true);
-                    break;
+                        break;
+                    case 119:
+                    case 120:
+                    case 121:
+                    case 122:
+                    case 123:
+                    case 124:
+                    case 125:
+                    case 126:
+                    case 127:
+                    case 128:
+                    case 129:
+                    case 130:
+                    case 131:
+                        lastBoards[(int)ContentsBoard.DarkBoard].SetActive(true);
+                        break;
                 }
                 break;
             case GameManager.ContentsType.YoguiSoGul:
@@ -245,6 +263,7 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.Ok:
             case GameManager.ContentsType.Do:
             case GameManager.ContentsType.Sumi:
+            case GameManager.ContentsType.Thief:
                 lastBoards[(int)ContentsBoard.YumAndOkBoard].SetActive(true);
                 break;
             case GameManager.ContentsType.GradeTest:

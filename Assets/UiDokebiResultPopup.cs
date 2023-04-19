@@ -28,61 +28,24 @@ public class UiDokebiResultPopup : MonoBehaviour
 
     private void SetReward(int defeatEnemiesNum)
     {
-        int dokebiIdx = GameManager.Instance.dokebiIdx;
+        
+//        var prefab = CommonPrefabContainer.Instance.uiRewardViewPrefab;
 
-        var prefab = CommonPrefabContainer.Instance.uiRewardViewPrefab;
+    //    int rewardNum = defeatEnemiesNum;
 
-        int rewardNum = defeatEnemiesNum;
+  //      var rewardPrefab = Instantiate<UiRewardView>(prefab, rewardParent);
 
-        var rewardPrefab = Instantiate<UiRewardView>(prefab, rewardParent);
+        //RewardData rewardData = new RewardData(Item_Type.Dokebi, rewardNum);
 
-        RewardData rewardData = new RewardData(Item_Type.Dokebi, rewardNum);
+       // rewardPrefab.Initialize(rewardData);
 
-        rewardPrefab.Initialize(rewardData);
-
-        RewardManager.Instance.GetReward(Item_Type.Dokebi, rewardNum);
-
-        int prefMaxKillCount = 0;
-
-        if (dokebiIdx == 0) 
-        {
-            prefMaxKillCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount0).Value;
-        }
-        else if (dokebiIdx == 1) 
-        {
-            prefMaxKillCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount1).Value;
-        }
-        else if (dokebiIdx == 2) 
-        {
-            prefMaxKillCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount2).Value;
-        }
-        else if (dokebiIdx == 3)
-        {
-            prefMaxKillCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount3).Value;
-        }
+        int prefMaxKillCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount3).Value;
+        
 
         if (defeatEnemiesNum > prefMaxKillCount)
         {
-            if (dokebiIdx == 0)
-            {
-                ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount0).Value = defeatEnemiesNum;
-                ServerData.userInfoTable.UpData(UserInfoTable.dokebiKillCount0, false);
-            }
-            else if (dokebiIdx == 1)
-            {
-                ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount1).Value = defeatEnemiesNum;
-                ServerData.userInfoTable.UpData(UserInfoTable.dokebiKillCount1, false);
-            }
-            else if (dokebiIdx == 2)
-            {
-                ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount2).Value = defeatEnemiesNum;
-                ServerData.userInfoTable.UpData(UserInfoTable.dokebiKillCount2, false);
-            }
-            else if (dokebiIdx == 3)
-            {
                 ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount3).Value = defeatEnemiesNum;
                 ServerData.userInfoTable.UpData(UserInfoTable.dokebiKillCount3, false);
-            }
         }
     }
 }

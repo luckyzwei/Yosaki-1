@@ -602,6 +602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2290755490700442871}
   - component: {fileID: 1391800773479628061}
+  - component: {fileID: 2991605095922914694}
   m_Layer: 5
   m_Name: UiStoneAttenEvent
   m_TagString: Untagged
@@ -638,6 +639,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383061887694908630}
   m_CullTransparentMesh: 0
+--- !u!114 &2991605095922914694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383061887694908630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 939f6aa4a7d25cb48a5f56f0c4ae3928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1411396294247545852
 GameObject:
   m_ObjectHideFlags: 0
@@ -13125,6 +13138,7 @@ MonoBehaviour:
     Duration: 0.3
     Easing: 24
   draggable: 1
+  passType: 0
   scrollbar: {fileID: 1783969460988364586}
 --- !u!114 &32151389218346274
 MonoBehaviour:

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UiLevelPassBoard : MonoBehaviour
 {
@@ -10,12 +11,42 @@ public class UiLevelPassBoard : MonoBehaviour
     private string iapKey;
     private List<int> splitData_Free;
     private List<int> splitData_Ad;
-
+    [SerializeField] private SeletableTab selectableTab;
+    [SerializeField] private Transform cellParent;
+    [SerializeField] private Transform scrollCellParent;
+    [SerializeField] private SelectableLevelPassButton _selectableLevelPassButton;
+    [SerializeField] private LevelPassCellCreater _levelPassCellCreater;
     private void Start()
     {
         // RefundFox();
+        Initialize();
     }
 
+    private void Initialize()
+    {
+        var inAppPurchaseData = TableManager.Instance.InAppPurchase.dataArray;
+        List<int> ints = new List<int>();
+        int passCount = 0;
+        foreach (var data in inAppPurchaseData)
+        {
+            if (data.PASSPRODUCTTYPE == PassProductType.LevelPass)
+            {   
+                ints.Add(data.Absoluteid);
+                passCount++;
+            }
+        }
+        //자동화 시작하는 인덱스 순서
+        int auto = 43;
+        for (int i = auto; i < ints.Count; i++)
+        {
+            var prefab = Instantiate<SelectableLevelPassButton>(_selectableLevelPassButton, cellParent);
+            prefab.Initialize(ints[i],selectableTab);
+            var prefab2 = Instantiate<LevelPassCellCreater>(_levelPassCellCreater, scrollCellParent);
+            prefab2.Initialize(ints[i],selectableTab);
+        }
+        selectableTab.OnSelect(0);
+
+    }
     private string refundProduct = "levelpass9";
     private void RefundFox()
     {

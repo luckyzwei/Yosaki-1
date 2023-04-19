@@ -61,7 +61,10 @@ public class DayOfWeekDungeonManager : ContentsManagerBase
         base.TimerEnd();
 
         //  UiTutorialManager.Instance.SetClear(TutorialStep._12_ClearGoblin);
-        
+        if (enemyDeadCount.Value >= GameBalance.fireFlyRequire)
+        {
+            enemyDeadCount.Value = GameBalance.fireFlyFixedScore;
+        }
         SendScore();
 
         ShowResultPopup();

@@ -30,6 +30,13 @@ public enum ShopCategory
     Goods_GrowthStone,//여우구슬,수련의돌,영혼열쇠,검조각
     Goods_BaseGoods,//여우구슬,수련의돌,영혼열쇠,검조각
 }
+
+public enum PassProductType
+{
+    None,
+    LevelPass,
+    MonthPass,
+}
 public class IAPManager : SingletonMono<IAPManager>, IStoreListener
 {
     public static IStoreController m_StoreController;          // The Unity Purchasing system.

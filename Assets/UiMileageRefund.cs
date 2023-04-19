@@ -25,6 +25,7 @@ public class UiMileageRefund : MonoBehaviour
         NewGachaRefundRoutine();
         TitleRefundRoutine();
         ChunmaDokebiFireRefundRoutine();
+        TitleRefundRoutine2();
     }
 
     private void RefundRoutine()
@@ -264,6 +265,69 @@ public class UiMileageRefund : MonoBehaviour
         {
             Debug.LogError(
                 $"Lv : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleLevel).Value} / Stage : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleStage).Value}");
+        });
+    }    
+    private void TitleRefundRoutine2()
+    {
+        
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle2).Value != 0)
+        {
+            return;
+        }
+        ////////타이틀 재 장착/////////////////
+        ServerData.equipmentTable.ChangeEquip(EquipmentTable.TitleSelectId, -1);
+        PlayerStats.ResetAbilDic();
+        ////////////////////////////////////////
+        ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle2).Value = 1;
+        var tableDatas = TableManager.Instance.TitleTable.dataArray;
+        int weaponTitleIdx = 0;
+        for (int i = 0; i < tableDatas.Length; i++)
+        {
+            //무기
+            if (tableDatas[i].Displaygroup == 2)
+            {
+                if (ServerData.titleServerTable.TableDatas[tableDatas[i].Stringid].rewarded.Value > 0)
+                {
+                    weaponTitleIdx = i;
+                }
+            }
+        }
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        
+    
+        Param userInfoParam = new Param();
+        if (weaponTitleIdx == 0)
+        {
+            //받은게없음
+        }
+        else if (weaponTitleIdx < 402)
+        {
+            //필멸무기(암) 미만임
+        }
+        else
+        {
+            var weaponId = TableManager.Instance.TitleTable.dataArray[weaponTitleIdx].Id;
+            var levelTableData = TableManager.Instance.titleWeapon.dataArray;
+            for (int i = 0; i < levelTableData.Length; i++)
+            {
+                if (levelTableData[i].Titeid == weaponId)
+                {
+                    ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value = i;
+                    break;
+                }
+            }
+            
+            userInfoParam.Add(UserInfoTable.titleWeapon, ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value);
+        }
+
+        userInfoParam.Add(UserInfoTable.titleConvertNewTitle2, ServerData.userInfoTable.GetTableData(UserInfoTable.titleConvertNewTitle2).Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            Debug.LogError(
+                $"Weapon : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value} ");
         });
     }
     private void ChunmaDokebiFireRefundRoutine()

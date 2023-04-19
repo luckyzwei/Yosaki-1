@@ -16,10 +16,18 @@ public class UiInventoryAnimalView : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI upgradePrice;
-
+    [SerializeField]
+    private TextMeshProUGUI upgradePrice_Awake;
     [SerializeField]
     private TextMeshProUGUI equipButtonDesc;
 
+    [SerializeField]
+    private TextMeshProUGUI levelUpButtonDesc;
+
+    [SerializeField]
+    private TextMeshProUGUI levelUpButtonDesc_2;
+
+    
     [SerializeField]
     private Image levelUpButtonImage;
 
@@ -32,6 +40,11 @@ public class UiInventoryAnimalView : MonoBehaviour
     [SerializeField]
     private Sprite purpleButtonSprite;
 
+    [SerializeField]
+    private ContinueOpenButton continueOpenButton_Continue;
+
+    [SerializeField]
+    private GameObject continueOpenButton_Btn;
 
     private SuhopetTableData suhopetTableData;
 
@@ -72,11 +85,29 @@ public class UiInventoryAnimalView : MonoBehaviour
 
             if (currentLevel >= maxLevel)
             {
-                upgradePrice.SetText("최대레벨");
+                upgradePrice.SetText("<color=red>각성완료</color>");
+                upgradePrice_Awake.SetText("<color=red>각성완료</color>");
             }
             else
             {
                 upgradePrice.SetText(suhopetTableData.Requirevalue[currentLevel].ToString());
+                upgradePrice_Awake.SetText(suhopetTableData.Requirevalue[currentLevel].ToString());
+            }
+
+            if (currentLevel == GameBalance.suhoAnimalAwakeLevel - 1)
+            {
+                continueOpenButton_Continue.gameObject.SetActive(false);
+                continueOpenButton_Continue.StopAutoClickRoutine();
+                continueOpenButton_Btn.SetActive(true);
+                levelUpButtonDesc.SetText("각성");
+                levelUpButtonDesc_2.SetText("각성");
+            }
+            else
+            {
+                continueOpenButton_Continue.gameObject.SetActive(true);
+                continueOpenButton_Btn.SetActive(false);
+                levelUpButtonDesc.SetText("레벨업");
+                levelUpButtonDesc_2.SetText("레벨업");
             }
 
             abilDescription.SetText(
@@ -85,14 +116,27 @@ public class UiInventoryAnimalView : MonoBehaviour
 
         suhoSuhoPetServerData.hasItem.AsObservable().Subscribe(e => { lockObject.SetActive(e == 0); }).AddTo(this);
     }
+    
 
     public void OnClickLevelUpButton()
+    {
+        if (suhoSuhoPetServerData.level.Value != GameBalance.suhoAnimalAwakeLevel - 1)
+        {
+            LevelUpRoutine();
+        }
+        else
+        {
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "수호동물을 각성 할까요?\n수호동물 각성시, 장착된 수호동물이 기술을 사용 합니다.", () => { LevelUpRoutine(); }, null);
+        }
+    }
+
+    private void LevelUpRoutine()
     {
         int currentLevel = suhoSuhoPetServerData.level.Value;
 
         if (currentLevel >= suhopetTableData.Maxlevel)
         {
-            PopupManager.Instance.ShowAlarmMessage("최고레벨 입니다");
+            PopupManager.Instance.ShowAlarmMessage("이미 각성 했습니다.");
             return;
         }
 

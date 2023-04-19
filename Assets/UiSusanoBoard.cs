@@ -29,13 +29,14 @@ public class UiSusanoBoard : MonoBehaviour
         if (grade != -1)
         {
             gradeText.SetText($"{grade + 1}단계");
+            
         }
         else
         {
             gradeText.SetText("없음");
         }
 
-
+        
     }
 
     public void OnClickEnterButton()

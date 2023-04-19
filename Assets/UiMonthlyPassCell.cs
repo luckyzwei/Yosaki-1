@@ -5,10 +5,13 @@ using UnityEngine.UI;
 using UniRx;
 using System.Linq;
 using BackEnd;
+using ExitGames.Client.Photon.StructWrapping;
 using TMPro;
+using UnityEngine.UI.Extensions;
 
-public class UiMonthlyPassCell : MonoBehaviour
+public class UiMonthlyPassCell : FancyCell<MonthlyPassData_Fancy>
 {
+    private MonthlyPassData_Fancy itemData;
     [SerializeField]
     private Image itemIcon_free;
 
@@ -345,10 +348,10 @@ public class UiMonthlyPassCell : MonoBehaviour
         return killCountTotal >= passInfo.require;
     }
 
-    private void OnEnable()
-    {
-        RefreshParent();
-    }
+    // private void OnEnable()
+    // {
+    //     RefreshParent();
+    // }
 
     public void RefreshParent()
     {
@@ -370,4 +373,54 @@ public class UiMonthlyPassCell : MonoBehaviour
             }
         }
     }
+    
+
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+    }
+
+    public override void UpdateContent(MonthlyPassData_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+//        Debug.LogError("DolpasS!");
+        
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
 }

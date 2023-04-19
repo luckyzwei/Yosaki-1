@@ -709,6 +709,7 @@ public class TableManager : SingletonMono<TableManager>
     public DoTable doTable;
 
     public SumiTable sumiTable;
+    public ThiefTable ThiefTable;
 
     //사신수
     public SasinsuTable sasinsuTable;
@@ -718,6 +719,7 @@ public class TableManager : SingletonMono<TableManager>
     public GuildBook guildBook;
     public OneYearAtten oneYearAtten;
     public HellAbil hellAbil;
+    public DarkAbil DarkAbil;
     public HellAbilBase hellAbilBase;
     public HellReward hellReward;
     public DragonBall dragonBall;
@@ -755,12 +757,18 @@ public class TableManager : SingletonMono<TableManager>
     public TowerTable7 sinsuTower;
     public Title_Stage titleStage;
     public Title_Level titleLevel;
+    public Title_Weapon titleWeapon;
+    public Title_MagicBook titleMagicBook;
     public GuildTowerTable guildTowerTable;
     public SuhoPass suhoPass;
+    public DarkTreasureAbilBase DarkTreasureAbilBase;
+    public BlackWolfRing BlackWolfRing;
+    public TowerTable8 gyungRockTowerTable2;
+    
 }
 
 
 public enum CommonTableEventType
 {
-    SnowMan, Namul, Wind, DdukGuk
+    SnowMan, Namul, Wind, DdukGuk,HotTime
 }

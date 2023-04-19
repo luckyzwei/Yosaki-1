@@ -39,7 +39,7 @@ public class UiDoDescription : MonoBehaviour
 
         var tableData = TableManager.Instance.doTable.dataArray[idx];
 
-        unlockDesc.SetText($"{Utils.ConvertBigNum(tableData.Score)}");
+        unlockDesc.SetText($"{Utils.ConvertBigNumForRewardCell(tableData.Score)}");
 
         equipFrame.gameObject.SetActive(idx == PlayerStats.GetDoGrade());
 

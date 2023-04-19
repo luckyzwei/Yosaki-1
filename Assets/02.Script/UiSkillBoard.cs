@@ -34,6 +34,8 @@ public class UiSkillBoard : SingletonMono<UiSkillBoard>
 
     [SerializeField]
     private Transform skillCellParent_Four;
+    [SerializeField]
+    private Transform skillCellParent_Thief;
 
     [SerializeField]
     private UiPassiveSkillCell passiveSkillCellPrefab;
@@ -90,8 +92,19 @@ public class UiSkillBoard : SingletonMono<UiSkillBoard>
                 continue;
             }
 
+            //섬광검술
+            if (skillList[i].Skilltype == 11)
+            {
+
+                var cell = Instantiate<UiSkillCell>(skillCellPrefab_Sin, skillCellParent_Thief);
+
+                cell.Initialize(skillList[i], OnCliCkSlotSettingButton, UpdateSkillDescriptionPopup);
+
+                skillCells.Add(cell);
+                 
+            }    
             //금강검술
-            if (skillList[i].Skilltype == 10)
+            else if (skillList[i].Skilltype == 10)
             {
 
                 var cell = Instantiate<UiSkillCell>(skillCellPrefab_Sin, skillCellParent_Four);

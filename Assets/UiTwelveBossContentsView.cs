@@ -69,7 +69,11 @@ public class UiTwelveBossContentsView : MonoBehaviour
         lockObject.SetActive(bossTableData.Islock);
         buttons.SetActive(bossTableData.Islock == false);
 
-        if (bossTableData.Id < CommonUiContainer.Instance.bossIcon.Count)
+        if (bossTableData.Id>=124&&bossTableData.Id<=131)
+        {
+            bossIcon.sprite = CommonResourceContainer.GetDarkIconSprite(bossTableData.Id - 124);
+        }
+        else if (bossTableData.Id < CommonUiContainer.Instance.bossIcon.Count)
         {
             bossIcon.sprite = CommonUiContainer.Instance.bossIcon[bossTableData.Id];
         }

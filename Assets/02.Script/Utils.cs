@@ -124,7 +124,13 @@ public static class Utils
                type == Item_Type.costume101 ||
                type == Item_Type.costume102 ||
                type == Item_Type.costume103 ||
-               type == Item_Type.costume104
+               type == Item_Type.costume104||
+               type == Item_Type.costume105||
+               type == Item_Type.costume106||
+               type == Item_Type.costume107||
+               type == Item_Type.costume108||
+               type == Item_Type.costume109||
+               type == Item_Type.costume110
             ;
     }
 
@@ -142,7 +148,8 @@ public static class Utils
                type == Item_Type.MonthNorigae1 ||
                type == Item_Type.MonthNorigae2 ||
                type == Item_Type.MonthNorigae3 ||
-               type == Item_Type.MonthNorigae4
+               type == Item_Type.MonthNorigae4||
+               type == Item_Type.MonthNorigae5
             ;
     }
 
@@ -208,7 +215,17 @@ public static class Utils
                type == Item_Type.c3 ||
                type == Item_Type.c4 ||
                type == Item_Type.c5 ||
-               type == Item_Type.c6;
+               type == Item_Type.c6||
+               
+               type == Item_Type.d0 ||
+               type == Item_Type.d1 ||
+               type == Item_Type.d2 ||
+               type == Item_Type.d3 ||
+               type == Item_Type.d4 ||
+               type == Item_Type.d5 ||
+               type == Item_Type.d6 ||
+               type == Item_Type.d7
+            ;
     }
 
     public static bool IsGoodsItem(this Item_Type type)
@@ -275,6 +292,7 @@ public static class Utils
                type == Item_Type.MonthNorigae2 ||
                type == Item_Type.MonthNorigae3 ||
                type == Item_Type.MonthNorigae4 ||
+               type == Item_Type.MonthNorigae5 ||
                type == Item_Type.DokebiHorn0 ||
                type == Item_Type.DokebiHorn1 ||
                type == Item_Type.DokebiHorn2 ||
@@ -306,10 +324,12 @@ public static class Utils
                type == Item_Type.SusanoTreasure ||
                type == Item_Type.SahyungTreasure ||
                type == Item_Type.VisionTreasure ||
+               type == Item_Type.DarkTreasure ||
                type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
                type == Item_Type.Event_Collection ||
+               type == Item_Type.Event_HotTime ||
                type == Item_Type.Event_Collection_All ||
                type == Item_Type.Event_Fall_Gold ||
                type == Item_Type.Event_NewYear ||
@@ -318,10 +338,12 @@ public static class Utils
                type == Item_Type.SumiFireKey ||
                type == Item_Type.RelicTicket ||
                type == Item_Type.SinsuRelic ||
+               type == Item_Type.HyungsuRelic ||
                type == Item_Type.NewGachaEnergy ||
                type == Item_Type.EventDice ||
                type == Item_Type.SuhoPetFeed ||
                type == Item_Type.SuhoPetFeedClear ||
+               type == Item_Type.SoulRingClear ||
                type == Item_Type.Tresure ||
                type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.GuildTowerHorn
@@ -375,7 +397,8 @@ public static class Utils
                type == GameManager.ContentsType.Ok ||
                type == GameManager.ContentsType.Do ||
                type == GameManager.ContentsType.Sumi ||
-               type == GameManager.ContentsType.PartyRaid_Guild; //O
+               type == GameManager.ContentsType.PartyRaid_Guild|| //O
+               type == GameManager.ContentsType.Thief; //O
     }
 
     public static bool IsRankFrameItem(this Item_Type type)
@@ -552,7 +575,7 @@ public static class Utils
     private static string[] goldUnitArr = new string[]
     {
         "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
-        "갈", "라", "가", "언"
+        "갈", "라", "가", "언" ,"승","마"
     };
 
     private static double p = (double)Mathf.Pow(10, 4);
@@ -665,7 +688,7 @@ public static class Utils
             for (int i = numList.Count - 1; i >= numList.Count - 2; i--)
             {
                 if (numList[i] == 0) continue;
-
+                if(numList[i]<1) continue;
                 numStringList.Add(Math.Truncate(numList[i]) + goldUnitArr[i]);
             }
 
@@ -801,4 +824,10 @@ public static class Utils
         FirebaseAnalytics.LogEvent(message);
         Debug.LogError($"Firebase log sended : {message}");
     }
+
+    public static bool HasHotTimeEventPass()
+    {
+        return ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0;
+    }
+
 }

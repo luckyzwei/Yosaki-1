@@ -5,19 +5,23 @@ using System.Linq;
 using UnityEngine;
 using UniRx;
 using CodeStage.AntiCheat.ObscuredTypes;
+
 public enum SkillCastType
 {
     Player,
     Son,
     Four,
     Vision,
+    SuhoAnimal,
+    Indra,
 }
+
+
 public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
 {
-
-
     [SerializeField]
     private PlayerMoveController playerMoveController;
+
     public PlayerMoveController PlayerMoveController => playerMoveController;
 
     public Dictionary<int, SkillBase> UserSkills { get; private set; } = new Dictionary<int, SkillBase>();
@@ -34,10 +38,28 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     public ReactiveProperty<int> visionChargeCount;
     public ReactiveProperty<bool> useVisionSkill;
 
+    private static readonly List<int> _visionSkillIdxList= new List<int>();
+
+    public List<int> GetVisionSkillIdxList()
+    {
+        return _visionSkillIdxList;
+    }
     public static bool IsVisionSkill(int idx)
     {
-        return idx == 46 || idx == 47 || idx == 48 || idx == 49;
+        return _visionSkillIdxList.Contains(idx);
+    }
 
+    private void InitializeVisionSkillIdxList()
+    {
+        var skillData = TableManager.Instance.SkillTable.dataArray;
+        foreach (var data in skillData)
+        {
+            if (data.SKILLCASTTYPE == SkillCastType.Vision)
+            {
+                _visionSkillIdxList.Add(data.Id);
+                
+            }
+        }
     }
     public bool UseSkill(int skillIdx)
     {
@@ -46,13 +68,12 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         if (canUserSkill)
         {
             UserSkills[skillIdx].UseSkill();
-            
+
             // visionSkill
             if (useVisionSkill.Value == false &&
-                (TableManager.Instance.SkillTable.dataArray[skillIdx].Requirehit <0) &&
-                (visionChargeCount.Value>0)
-                
-                )
+                (TableManager.Instance.SkillTable.dataArray[skillIdx].Requirehit < 0) &&
+                (visionChargeCount.Value > 0)
+               )
             {
                 if (GameManager.contentsType == GameManager.ContentsType.NormalField)
                 {
@@ -71,32 +92,51 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             {
                 UiUltiSkillEffect.Instance.ShowUltSkillEffect(skillIdx);
             }
-            
+
             //
         }
-        
+
         return canUserSkill;
     }
 
     public void InitializeVisionSkill()
     {
-        visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[ServerData.goodsTable.GetVisionSkillHasCount() + 45].Requirehit;
+        int visionIdx = ServerData.goodsTable.GetVisionSkillIdx();
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx7].Value >= 10)
+        {
+            visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[visionIdx].Requirehit - GameBalance.HyulVisionSkillDecreaseValue;
+        }
+        else
+        {
+            visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[visionIdx].Requirehit;
+        }
+
         useVisionSkill.Value = false;
+        
+        VisionSkillCaster.Instance.StartSkillRoutine();
     }
+
     public void SetUseVisionSkill(bool isUsed)
     {
         useVisionSkill.Value = isUsed;
     }
+
+    protected virtual void Awake()
+    {
+        base.Awake();
+        InitializeVisionSkillIdxList();
+    }
+
     private void Start()
     {
+        
         visionChargeCount.Value = 0;
         useVisionSkill.Value = false;
-        
+
         InitSkill();
         ignoreDamDecrease = ServerData.userInfoTable.TableDatas[UserInfoTable.IgnoreDamDec].Value == 1;
         InitializeVisionSkill();
         Subscribe();
-
     }
 
     private void Subscribe()
@@ -169,6 +209,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     }
 
     private string wallString = "Wall";
+
     public Vector2 GetRayHitWallPoint(Vector2 origin, Vector2 rayDirection, float length)
     {
         int hitLayer = LayerMasks.PlatformLayerMask_Ray + LayerMasks.EnemyWallLayerMask_Ray;
@@ -182,6 +223,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
                 return rayHits[i].point - rayDirection.normalized * 0.5f;
             }
         }
+
         return Vector2.zero;
     }
 
@@ -218,6 +260,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     {
         return tableData.Activeoffset * Vector2.right * (playerMoveController.MoveDirection == MoveDirection.Right ? 1 : -1);
     }
+
     private Dictionary<int, AgentHpController> agentHpControllers = new Dictionary<int, AgentHpController>();
     private Dictionary<double, double> calculatedDamage = new Dictionary<double, double>();
     private Dictionary<double, double> calculatedDamage_critical = new Dictionary<double, double>();
@@ -234,7 +277,6 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             agentHpControllers.Add(instanceId, hitEnemie.gameObject.GetComponent<AgentHpController>());
 
             agentHpController = agentHpControllers[instanceId];
-
         }
         else
         {
@@ -252,7 +294,6 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         else
         {
             hitCount = skillInfo.Hitcount;
-
         }
 
         double defense = agentHpController.Defense + 1;
@@ -364,10 +405,12 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         {
             calculatedDamage.Clear();
         }
+
         if (calculatedDamage_critical.Count > 1000)
         {
             calculatedDamage_critical.Clear();
         }
+
         if (calculatedDamage_superCritical.Count > 1000)
         {
             calculatedDamage_superCritical.Clear();
@@ -379,6 +422,4 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         base.OnDestroy();
         StopAllCoroutines();
     }
-
-
 }

@@ -32,9 +32,10 @@ public class UserInfoTable
     public const string currentFloorIdx3 = "cf3";
     public const string currentFloorIdx4 = "cf4"; //우마왕
     public const string currentFloorIdx5 = "cf5"; //경락마사지
-    public const string RoyalTombFloorIdx = "RoyalTombFloorIdx"; //경락마사지
+    public const string RoyalTombFloorIdx = "RoyalTombFloorIdx";
     public const string currentFloorIdx6 = "cf6"; //신수타워
     public const string currentFloorGuildTower = "cfg0"; //문파 전갈굴
+    public const string currentFloorIdx7 = "cf7"; //중단전
 
     public const string receiveReviewReward = "receiveReviewReward";
 
@@ -47,9 +48,6 @@ public class UserInfoTable
 
     public const string bonusDungeonEnterCount = "bonudun6";
 
-    public const string dokebiKillCount0 = "dokebiKillCount4";
-    public const string dokebiKillCount1 = "dokebiKillCount5";
-    public const string dokebiKillCount2 = "dokebiKillCount6";
     public const string dokebiKillCount3 = "dokebiKillCount7";
 
 
@@ -106,6 +104,7 @@ public class UserInfoTable
     public const string topClearStageId = "topClearStageId";
     public const string selectedSkillGroupId = "selectedSkillGroupId";
     public const string dokebiEnterCount = "dec3";
+    public const string dokebiNewEnterCount = "dnec3";
     public const string chatFrame = "chatFrame";
     public const string hellMark = "hellMedal";
 
@@ -142,7 +141,7 @@ public class UserInfoTable
     public const string killCountTotal = "k16";
 
     //홀수 월간훈련(Monthlypass2)
-    public const string killCountTotal2 = "k15";
+    public const string killCountTotal2 = "k17";
     public const string monthAttendCount = "mac";
     public const string killCountTotalChild = "fal"; //가을훈련
     public const string killCountTotalWinterPass = "KillCountWinterPass"; //가을훈련
@@ -181,6 +180,7 @@ public class UserInfoTable
     public const string okScore = "okScore";
     public const string doScore = "doScore";
     public const string sumiScore = "sumiScore";
+    public const string thiefScore = "thiefScore";
     public const string sleepRewardSavedTime = "sleepRewardSavedTime";
     public const string buffAwake = "buffAwake";
     public const string petAwake = "petAwake";
@@ -231,6 +231,7 @@ public class UserInfoTable
     public const string purchaseRefund0 = "purchaseRefund0";
     public const string newGachaEnergyRefund = "newGachaEnergyRefund";
     public const string titleConvertNewTitle = "titleConvertNewTitle";
+    public const string titleConvertNewTitle2 = "titleConvertNewTitle2";
     public const string chunmaRefund = "chunmaRefund";
 
     public const string exchangeCount_0_Mileage = "mff";
@@ -257,6 +258,16 @@ public class UserInfoTable
     public const string eventMission0_3 = "em_0_3";
     public const string eventMission0_4 = "em_0_4";
     public const string eventMission0_5 = "em_0_5";
+    public const string eventMission1_0 = "em_1_0";
+    public const string eventMission1_1 = "em_1_1";
+    public const string eventMission1_2 = "em_1_2";
+    public const string eventMission1_3 = "em_1_3";
+    public const string eventMission1_4 = "em_1_4";
+    public const string eventMission1_5 = "em_1_5";
+
+    public const string eventMission1_6 = "em_1_6";
+    public const string eventMission1_7 = "em_1_7";
+    public const string eventMission1_8 = "em_1_8";
 
     public const string nickNameChange = "nickNameChange";
     public const string getPetHome = "gph";
@@ -269,18 +280,22 @@ public class UserInfoTable
     public const string dailySleepRewardReceiveCount = "dss";
 
     public const string getFoxCup = "gfc";
+    public const string getWolfRing = "gwr";
 
     public const string graduateSon = "GS";
     public const string graduateHel = "GH";
     public const string graduateChun = "graduateChun";
     public const string graduateGumSoul = "graduateGumSoul";
+    public const string graduateNorigaeSoul = "graduateNorigaeSoul";
     public const string graduateDokebiFire = "graduateDokebiFire";
     public const string getMovingAutoAttack = "GMAA";
     public const string suhoAnimalStart = "Sast";
     public const string titleLevel = "titleLevel";
     public const string titleStage = "titleStage";
+    public const string titleWeapon = "titleWeapon";
+    public const string titleMagicBook = "titleMagicBook";
     public const string guildTowerStart = "gz0";
-    
+
     public const string gangchulRewardIdx = "gri";
 
     public double currentServerDate;
@@ -308,6 +323,7 @@ public class UserInfoTable
         { currentFloorIdx4, 0f },
         { currentFloorIdx5, 0f },
         { currentFloorIdx6, 0f },
+        { currentFloorIdx7, 0f },
         { currentFloorGuildTower, 0f },
         { RoyalTombFloorIdx, 0f },
         { receiveReviewReward, 0f },
@@ -352,9 +368,7 @@ public class UserInfoTable
         { topClearStageId, -1f },
         { selectedSkillGroupId, 0f },
         { dokebiEnterCount, 0f },
-        { dokebiKillCount0, 0f },
-        { dokebiKillCount1, 0f },
-        { dokebiKillCount2, 0f },
+        { dokebiNewEnterCount, 0f },
         { chatFrame, 0f },
         { hellMark, 0f },
 
@@ -386,10 +400,12 @@ public class UserInfoTable
         { DokebiFireClear, 0f },
         { DayOfWeekClear, 0f },
         { getFoxCup, 0f },
+        { getWolfRing, 0f },
         { graduateSon, 0f },
         { graduateHel, 0f },
         { graduateChun, 0f },
         { graduateGumSoul, 0f },
+        { graduateNorigaeSoul, 0f },
         { graduateDokebiFire, 0f },
         { getMovingAutoAttack, 0f },
 
@@ -430,6 +446,7 @@ public class UserInfoTable
         { okScore, 0f },
         { doScore, 0f },
         { sumiScore, 0f },
+        { thiefScore, 0f },
         { sleepRewardSavedTime, 0f },
         { yomul7_buff, 0f },
         { attendanceCount_100Day, 1f },
@@ -480,6 +497,7 @@ public class UserInfoTable
         { purchaseRefund0, 0 },
         { newGachaEnergyRefund, 0 },
         { titleConvertNewTitle, 0 },
+        { titleConvertNewTitle2, 0 },
         { chunmaRefund, 0 },
 
         { exchangeCount_0_Mileage, 0 },
@@ -508,6 +526,17 @@ public class UserInfoTable
         { eventMission0_4, 0 },
         { eventMission0_5, 0 },
 
+        { eventMission1_0, 0 },
+        { eventMission1_1, 0 },
+        { eventMission1_2, 0 },
+        { eventMission1_3, 0 },
+        { eventMission1_4, 0 },
+        { eventMission1_5, 0 },
+
+        { eventMission1_6, 0 },
+        { eventMission1_7, 0 },
+        { eventMission1_8, 0 },
+
         { nickNameChange, 0 },
         { getPetHome, 0 },
         { dokebiPensionReset, 0 },
@@ -528,8 +557,10 @@ public class UserInfoTable
         { dailybooty, 0f },
         { titleLevel, -1f },
         { titleStage, -1f },
+        { titleWeapon, -1f },
+        { titleMagicBook, -1f },
         { guildTowerStart, 0f },
-        
+
         { gangchulRewardIdx, -1f },
     };
 
@@ -559,7 +590,7 @@ public class UserInfoTable
 
             var rows = callback.Rows();
 
-            //맨처음 초기화
+            //맨처음 초기화(캐릭터생성)
             if (rows.Count <= 0)
             {
                 Param defultValues = new Param();
@@ -570,8 +601,28 @@ public class UserInfoTable
                 {
                     if (e.Current.Key != LastLogin)
                     {
-                        defultValues.Add(e.Current.Key, e.Current.Value);
-                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                        //소급코드들 
+                        if (e.Current.Key == titleConvertNewTitle ||
+                            e.Current.Key == titleConvertNewTitle2 ||
+                            e.Current.Key == dolPassRefund ||
+                            e.Current.Key == mileageRefund ||
+                            e.Current.Key == newGachaEnergyRefund ||
+                            e.Current.Key == chunmaRefund ||
+                            e.Current.Key == purchaseRefund0 ||
+                            e.Current.Key == marRelicRefund ||
+                            e.Current.Key == basicPackRefund ||
+                            e.Current.Key == refundFox ||
+                            e.Current.Key == titleRefund
+                           )
+                        {
+                            defultValues.Add(e.Current.Key, 1);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(1));
+                        }
+                        else
+                        {
+                            defultValues.Add(e.Current.Key, e.Current.Value);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                        }
                     }
                     else
                     {
@@ -892,6 +943,7 @@ public class UserInfoTable
         ServerData.userInfoTable.GetTableData(UserInfoTable.receivedTicketReward).Value = 0;
         ServerData.userInfoTable.GetTableData(UserInfoTable.bonusDungeonEnterCount).Value = 0;
         ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value = 0;
+        ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value = 0;
 
         ServerData.userInfoTable.GetTableData(UserInfoTable.freeWeapon).Value = 0;
         ServerData.userInfoTable.GetTableData(UserInfoTable.freeNorigae).Value = 0;
@@ -1037,6 +1089,7 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.receivedTicketReward, ServerData.userInfoTable.GetTableData(UserInfoTable.receivedTicketReward).Value);
         userInfoParam.Add(UserInfoTable.bonusDungeonEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.bonusDungeonEnterCount).Value);
         userInfoParam.Add(UserInfoTable.dokebiEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value);
+        userInfoParam.Add(UserInfoTable.dokebiNewEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value);
         userInfoParam.Add(UserInfoTable.LastLogin, Math.Truncate(ServerData.userInfoTable.GetTableData(UserInfoTable.LastLogin).Value));
         userInfoParam.Add(UserInfoTable.attendanceCount, ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount).Value);
         userInfoParam.Add(UserInfoTable.attendanceCount_100Day, ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount_100Day).Value);
@@ -1368,6 +1421,17 @@ public class UserInfoTable
         }
     }
 
+    public bool IsHotTimeEvent()
+    {
+// #if UNITY_EDITOR
+//         return true;
+// #endif
+
+        return currentServerTime.Year <= 2023 && 
+               (currentServerTime.Month == 4 ||
+                (currentServerTime.Month == 5 && currentServerTime.Day <= 5));
+    }
+
     public bool IsWeekend()
     {
         return currentServerTime.DayOfWeek == DayOfWeek.Sunday || currentServerTime.DayOfWeek == DayOfWeek.Saturday;
@@ -1426,12 +1490,11 @@ public class UserInfoTable
 
     public bool IsMonthlyPass2()
     {
-// #if UNITY_EDITOR
-//         return false;
-// #endif
+#if UNITY_EDITOR
+        return GameBalance.isOddMonthlyPass;
+#endif
         //홀수 달의 경우 true , true면 MonthlyPass2
         return (currentServerTime.Month % 2) == 1;
-        
     }
 
     public ReactiveProperty<bool> SnowCollectionComplete = new ReactiveProperty<bool>(false);

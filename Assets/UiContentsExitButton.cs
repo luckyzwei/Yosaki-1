@@ -18,40 +18,79 @@ public class UiContentsExitButton : MonoBehaviour
     }
     private bool NextStageCheck()
     {
-        if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower2 || GameManager.contentsType == GameManager.ContentsType.DokebiTower ||
-            GameManager.contentsType == GameManager.ContentsType.FoxMask || GameManager.contentsType == GameManager.ContentsType.Yum ||
-            GameManager.contentsType == GameManager.ContentsType.Ok || GameManager.contentsType == GameManager.ContentsType.Do ||
-            GameManager.contentsType == GameManager.ContentsType.Sumi ||
-            GameManager.contentsType == GameManager.ContentsType.GradeTest || GameManager.contentsType == GameManager.ContentsType.Sasinsu ||
-            GameManager.contentsType == GameManager.ContentsType.SumisanTower||
-            GameManager.contentsType == GameManager.ContentsType.GyungRockTower||
-            GameManager.contentsType == GameManager.ContentsType.RoyalTombTower ||
-            GameManager.contentsType == GameManager.ContentsType.SinsuTower ||
-            GameManager.contentsType == GameManager.ContentsType.GuildTower 
-            )
+                switch (GameManager.contentsType)
+                {
+                    case GameManager.ContentsType.InfiniteTower2 when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value < (TableManager.Instance.TowerTable2.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.InfiniteTower2:
+                        return false;
+                    case GameManager.ContentsType.DokebiTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx3).Value < (TableManager.Instance.towerTable3.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.DokebiTower:
+                        return false;
+                    case GameManager.ContentsType.FoxMask when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxMask).Value <
+                                                               (TableManager.Instance.FoxMask.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.FoxMask:
+                        return false;
+                    case GameManager.ContentsType.RoyalTombTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.RoyalTombFloorIdx).Value <
+                                                                      (TableManager.Instance.royalTombTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.RoyalTombTower:
+                        return false;
+                    case GameManager.ContentsType.SinsuTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx6).Value <
+                                                                  (TableManager.Instance.sinsuTower.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.SinsuTower:
+                        return false;
+                    case GameManager.ContentsType.GuildTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorGuildTower).Value <
+                                                                  (TableManager.Instance.guildTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.GuildTower:
+                        return false;
+                    case GameManager.ContentsType.SumisanTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx4).Value <
+                                                                  (TableManager.Instance.sumisanTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.SumisanTower:
+                        return false;
+                    
+                }
+        switch (GameManager.contentsType)
         {
-            return true;
-        }
-
-        if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)
-        {
-            var tableData = TableManager.Instance.TwelveBossTable.dataArray[GameManager.Instance.bossId];
-            //악귀퇴치 등의 이뮨을 무시하는 컨텐츠라면.
-            if (tableData.NOTIMMUNETYPE != NotImmuneType.Normal)
-            {
+            case GameManager.ContentsType.Yum:
+            case GameManager.ContentsType.Ok:
+            case GameManager.ContentsType.Do:
+            case GameManager.ContentsType.Sumi:
+            case GameManager.ContentsType.Thief:
+            case GameManager.ContentsType.GradeTest:
+            case GameManager.ContentsType.Sasinsu:
+            case GameManager.ContentsType.SumisanTower:
+            case GameManager.ContentsType.GyungRockTower:
+            case GameManager.ContentsType.GyungRockTower2:
                 return true;
+            case GameManager.ContentsType.TwelveDungeon:
+            {
+                var tableData = TableManager.Instance.TwelveBossTable.dataArray[GameManager.Instance.bossId];
+                //악귀퇴치 등의 이뮨을 무시하는 컨텐츠라면.
+                if (tableData.NOTIMMUNETYPE != NotImmuneType.Normal)
+                {
+                    return true;
+                }
+
+                break;
             }
         }
 
         switch (GameManager.contentsType)
         {
-            //산신령 & 서재 & 지키미 & 보도 & 수미산 지키미 
+            //산신령 & 서재 & 지키미 & 보도 & 수미산 지키미  & 도적단지키미
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 57:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 72:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 82:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 83:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 92:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 96:
+            case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 118:
             //도깨비 보스 & 수미산 사천왕
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 85:
             case GameManager.ContentsType.TwelveDungeon when GameManager.Instance.bossId == 86:

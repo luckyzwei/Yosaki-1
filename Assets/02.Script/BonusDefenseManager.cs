@@ -62,9 +62,15 @@ public class BonusDefenseManager : ContentsManagerBase
         //  UiTutorialManager.Instance.SetClear(TutorialStep._12_ClearGoblin);
 
         StopCoroutine(spawnRoutine);
+        
+        //580미만은 600으로 고정 ->기기별 데미지 차이
+        if (enemyDeadCount.Value >= GameBalance.fireFlyRequire)
+        {
+            enemyDeadCount.Value = GameBalance.fireFlyFixedScore;
+        }
 
         resultPopup.Initialize(enemyDeadCount.Value);
-
+        
         resultPopup.gameObject.SetActive(true);
 
         BattleObjectManager.Instance.PoolContainer[poolName].DisableAllObject();

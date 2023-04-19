@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,9 +32,9 @@ public class DokebiEnterView : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).AsObservable().Subscribe(e =>
         {
-            enterCountText.SetText($"오늘 입장({(int)e}/{GameBalance.dokebiEnterCount})");
+            enterCountText.SetText(e < 1 ? "입장가능" : "소탕완료");
         }).AddTo(this);
 
         ServerData.userInfoTable.GetTableData(UserInfoTable.oldDokebi2LastClear).AsObservable().Subscribe(e => 
@@ -45,34 +46,26 @@ public class DokebiEnterView : MonoBehaviour
 
     public void OnClickEnterButton(int idx)
     {
-        int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value;
+        // int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value;
+        //
+        // if (currentEnterCount > 0)
+        // {
+        //     PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 입장할 수 없습니다.");
+        //     return;
+        // }
 
-        if (currentEnterCount >= GameBalance.dokebiEnterCount)
-        {
-            PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 입장할 수 없습니다.");
-            return;
-        }
+        // dokebiEnterButtons.ForEach(e => e.interactable = false);
+        //
+        // ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value++;
+        //
+        // List<TransactionValue> transactionList = new List<TransactionValue>();
+        //
+        // Param userInfoParam = new Param();
+        // userInfoParam.Add(UserInfoTable.dokebiNewEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value);
+        // transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+      GameManager.Instance.SetDokebiId(idx);                                
+      GameManager.Instance.LoadContents(GameManager.ContentsType.Dokebi);   
 
-        dokebiEnterButtons.ForEach(e => e.interactable = false);
-
-        ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value++;
-
-        List<TransactionValue> transactionList = new List<TransactionValue>();
-
-        Param userInfoParam = new Param();
-        userInfoParam.Add(UserInfoTable.dokebiEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value);
-        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
-
-        ServerData.SendTransaction(transactionList,
-          successCallBack: () =>
-          {
-              GameManager.Instance.SetDokebiId(idx);
-              GameManager.Instance.LoadContents(GameManager.ContentsType.Dokebi);
-          },
-          completeCallBack: () =>
-          {
-              dokebiEnterButtons.ForEach(e => e.interactable = true);
-          });
     }
     public void OnClickEnterOldDokebi2Button(int idx)
     {
@@ -119,81 +112,66 @@ public class DokebiEnterView : MonoBehaviour
         enterButton.SetActive(false);
 
     }
-
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value = 0;
+        }
+    }
+#endif
 
     public void OnClickInstantClearButton(int idx)
     {
-        int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value;
+        int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value;
 
-        if (currentEnterCount >= GameBalance.dokebiEnterCount)
+        if (currentEnterCount > 0)
         {
             PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 소탕할 수 없습니다.");
             return;
         }
 
-        int defeatCount = 0;
 
-        int clearCount = GameBalance.dokebiEnterCount - currentEnterCount;
+        int dokebiClear = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount3).Value;
 
-        if (idx == 0)
-        {
-            defeatCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount0).Value;
-        }
-        else if (idx == 1)
-        {
-            defeatCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount1).Value;
-        }
-        else if (idx == 2)
-        {
-            defeatCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount2).Value;
-        }
-        else if (idx == 3)
-        {
-            defeatCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiKillCount3).Value;
-        }
-
-        if (defeatCount == 0)
+        if (dokebiClear == 0)
         {
             PopupManager.Instance.ShowAlarmMessage("플레이 데이터가 없습니다.");
             return;
         }
+        
+        var stageData = GameManager.Instance.CurrentStageData;
+        var enemyTableData = TableManager.Instance.EnemyData[stageData.Monsterid1];
+        var expAmount = dokebiClear * enemyTableData.Exp * GameBalance.dokebiExpPlusValue;
+        expAmount += expAmount * PlayerStats.GetBaseExpPlusValue_BuffAllIgnored() * 1f;
 
-        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Dokebi)} <color=yellow>{defeatCount}</color>개로 <color=yellow>{clearCount}회</color> 소탕 합니까?", () =>
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"도깨비전 <color=yellow>{dokebiClear}</color>단계로 소탕 합니까?\n경험치 획득량 : {Utils.ConvertBigNumForRewardCell(expAmount)}\n현재 스테이지에 비례해 경험치를 획득 합니다.\n모든 시간제 버프 효과는 적용되지 않습니다.", () =>
          {
-             int currentEnterCount = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value;
-
-             if (currentEnterCount >= GameBalance.dokebiEnterCount)
+             if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value > 0)
              {
                  PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 소탕할 수 없습니다.");
                  return;
              }
 
              GuideMissionManager.UpdateGuideMissionClear(GuideMissionKey.ClearOni);
-
-             int rewardNum = defeatCount;
-
-             ServerData.goodsTable.GetTableData(GoodsTable.DokebiKey).Value += rewardNum * clearCount;
-
-             ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value += clearCount;
+             
+             GrowthManager.Instance.GetExpBySleep(expAmount);
+             
+             ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value ++;
 
              List<TransactionValue> transactions = new List<TransactionValue>();
 
-             Param goodsParam = new Param();
-
-             goodsParam.Add(GoodsTable.DokebiKey, ServerData.goodsTable.GetTableData(GoodsTable.DokebiKey).Value);
-
              Param userInfoParam = new Param();
 
-             userInfoParam.Add(UserInfoTable.dokebiEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiEnterCount).Value);
+             userInfoParam.Add(UserInfoTable.dokebiNewEnterCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dokebiNewEnterCount).Value);
 
-             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
              transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
-             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearOni, clearCount);
-             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearOni, clearCount);
+             
+             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearOni, 1);
              ServerData.SendTransaction(transactions, successCallBack: () =>
              {
-                 PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Dokebi)} {rewardNum * clearCount}개 획득!");
-
+                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"경험치{Utils.ConvertBigNumForRewardCell(expAmount)} 획득!", null);
                  //사운드
                  SoundManager.Instance.PlaySound("Reward");
                  //LogManager.Instance.SendLog("DokClear", $"{rewardNum}개 획득 {ServerData.goodsTable.GetTableData(GoodsTable.DokebiKey).Value}");

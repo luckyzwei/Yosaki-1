@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class SaveManager : SingletonMono<SaveManager>
 {
-
     private WaitForSeconds updateDelay = new WaitForSeconds(1000.0f);
 
     private WaitForSeconds updateDelay_DailyMission = new WaitForSeconds(7000.0f);
 
     private WaitForSeconds versionCheckDelay = new WaitForSeconds(1200.0f);
+
+    private WaitForSeconds getHotTimeGoodsdDelay = new WaitForSeconds(600.0f);
 
     //12시간
     private WaitForSeconds tockenRefreshDelay = new WaitForSeconds(43200f);
@@ -21,6 +22,17 @@ public class SaveManager : SingletonMono<SaveManager>
         StartCoroutine(AutoSaveRoutine_Mission());
         StartCoroutine(TockenRefreshRoutine());
         StartCoroutine(VersionCheckRoutine());
+        StartCoroutine(HotTimeGoodsGetRoutine());
+    }
+
+    private IEnumerator HotTimeGoodsGetRoutine()
+    {
+        while (true)
+        {
+            yield return getHotTimeGoodsdDelay;
+
+            GetHotTimeGoods();
+        }
     }
 
     private IEnumerator VersionCheckRoutine()
@@ -30,6 +42,18 @@ public class SaveManager : SingletonMono<SaveManager>
             yield return versionCheckDelay;
 
             CheckClientVersion();
+        }
+    }
+
+    private void GetHotTimeGoods()
+    {
+        if (Utils.HasHotTimeEventPass() == false)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += 1;
+        }
+        else
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += 2;
         }
     }
 
@@ -47,7 +71,6 @@ public class SaveManager : SingletonMono<SaveManager>
                 //버전이 높거나 같음
                 if (clientVersion >= int.Parse(serverVersion))
                 {
-
                 }
                 else
                 {
@@ -91,7 +114,8 @@ public class SaveManager : SingletonMono<SaveManager>
         while (true)
         {
             SyncDatasInQueue();
-            yield return updateDelay; ;
+            yield return updateDelay;
+            ;
         }
     }
 
@@ -174,6 +198,16 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.Ym,
         GoodsTable.du,
 
+
+        GoodsTable.d0,
+        GoodsTable.d1,
+        GoodsTable.d2,
+        GoodsTable.d3,
+        GoodsTable.d4,
+        GoodsTable.d5,
+        GoodsTable.d6,
+        GoodsTable.d7,
+
         GoodsTable.Sun0,
         GoodsTable.Sun1,
         GoodsTable.Sun2,
@@ -185,7 +219,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.Chun2,
         GoodsTable.Chun3,
         GoodsTable.Chun4,
-        
+
         GoodsTable.DokebiSkill0,
         GoodsTable.DokebiSkill1,
         GoodsTable.DokebiSkill2,
@@ -202,12 +236,13 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.FourSkill6,
         GoodsTable.FourSkill7,
         GoodsTable.FourSkill8,
-        
-        
+
+
         GoodsTable.VisionSkill0,
         GoodsTable.VisionSkill1,
         GoodsTable.VisionSkill2,
         GoodsTable.VisionSkill3,
+        GoodsTable.VisionSkill4,
 
         GoodsTable.c0,
         GoodsTable.c1,
@@ -230,21 +265,24 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.SusanoTreasure,
         GoodsTable.SahyungTreasure,
         GoodsTable.VisionTreasure,
+        GoodsTable.DarkTreasure,
         GoodsTable.SumiFire,
         GoodsTable.SumiFireKey,
         GoodsTable.NewGachaEnergy,
         GoodsTable.DokebiBundle,
         GoodsTable.SinsuRelic,
+        GoodsTable.HyungsuRelic,
         GoodsTable.EventDice,
         GoodsTable.Tresure,
         GoodsTable.SinsuMarble,
         GoodsTable.SuhoPetFeedClear,
+        GoodsTable.SoulRingClear,
         GoodsTable.SuhoPetFeed,
         GoodsTable.GuildTowerClearTicket,
         GoodsTable.GuildTowerHorn,
     };
 
-    
+
     //SendQueue에서 저장
     public void SyncDatasInQueue()
     {
@@ -265,9 +303,9 @@ public class SaveManager : SingletonMono<SaveManager>
             ServerData.buffServerTable.SyncAllData();
         }
     }
+
     private void OnApplicationQuit()
     {
-
         SetNotification();
         SyncDatasForce();
         SyncDailyMissions();

@@ -65,34 +65,35 @@ public class UiSkillDescriptionPopup : MonoBehaviour
 
     public void Initialize(SkillTableData skillTableData)
     {
-        //신수스킬용
-        if (
-            skillTableData.Id == 15 ||
-            skillTableData.Id == 16 ||
-            skillTableData.Id == 17 ||
-            skillTableData.Id == 20 ||
-            skillTableData.Id == 21 ||
-            skillTableData.Id == 22 ||
-            skillTableData.Id == 23 ||
-            skillTableData.Id == 24 ||
-            skillTableData.Id == 25 ||
-            skillTableData.Id == 26 ||
-            skillTableData.Id == 27 ||
-            skillTableData.Id == 28 ||
-            skillTableData.Id == 29 ||
-            skillTableData.Id == 30 ||
-            skillTableData.Id == 31 ||
-            skillTableData.Id == 32 ||
-            skillTableData.Id == 33 ||
-            skillTableData.Id == 34 ||
-            skillTableData.Id == 35 ||
-            skillTableData.Id == 36 ||
-            skillTableData.Id == 41 ||
-            skillTableData.Id == 42 ||
-            skillTableData.Id == 43 ||
-            skillTableData.Id == 44 ||
-            skillTableData.Id == 45
-        )
+        if(skillTableData.Id>=15&&skillTableData.SKILLCASTTYPE==SkillCastType.Player)
+        // //신수스킬용
+        // if (
+        //     skillTableData.Id == 15 ||
+        //     skillTableData.Id == 16 ||
+        //     skillTableData.Id == 17 ||
+        //     skillTableData.Id == 20 ||
+        //     skillTableData.Id == 21 ||
+        //     skillTableData.Id == 22 ||
+        //     skillTableData.Id == 23 ||
+        //     skillTableData.Id == 24 ||
+        //     skillTableData.Id == 25 ||
+        //     skillTableData.Id == 26 ||
+        //     skillTableData.Id == 27 ||
+        //     skillTableData.Id == 28 ||
+        //     skillTableData.Id == 29 ||
+        //     skillTableData.Id == 30 ||
+        //     skillTableData.Id == 31 ||
+        //     skillTableData.Id == 32 ||
+        //     skillTableData.Id == 33 ||
+        //     skillTableData.Id == 34 ||
+        //     skillTableData.Id == 35 ||
+        //     skillTableData.Id == 36 ||
+        //     skillTableData.Id == 41 ||
+        //     skillTableData.Id == 42 ||
+        //     skillTableData.Id == 43 ||
+        //     skillTableData.Id == 44 ||
+        //     skillTableData.Id == 45
+        // )
         {
             if (skillTableData.Id == 15)
             {
@@ -321,6 +322,14 @@ public class UiSkillDescriptionPopup : MonoBehaviour
             {
                 //도깨비검 5형 있을때
                 if (ServerData.goodsTable.GetTableData(GoodsTable.FourSkill8).Value != 0)
+                {
+                    ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
+                        1;
+                }
+            }
+            else
+            {
+                if (ServerData.goodsTable.GetTableData(skillTableData.Skillclassname).Value != 0)
                 {
                     ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillTableData.Id].Value =
                         1;

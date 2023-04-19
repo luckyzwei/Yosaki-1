@@ -83,7 +83,7 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
 
         //경험치 추가 획득
         description2 +=
-            $"{CommonString.GetStatusName(StatusType.ExpGainPer)} : {PlayerStats.GetExpPlusValue() * 100f}\n";
+            $"{CommonString.GetStatusName(StatusType.ExpGainPer)} : {PlayerStats.GetExpPlusValue_WithAllBuff() * 100f}\n";
 
         //아이템 획득량
         description2 +=
@@ -102,7 +102,7 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
 
         //방어도 무시
         description1 +=
-            $"{CommonString.GetStatusName(StatusType.IgnoreDefense)} : {PlayerStats.GetIgnoreDefenseValue()}\n";
+            $"{CommonString.GetStatusName(StatusType.IgnoreDefense)} : {Utils.ConvertBigNum(PlayerStats.GetIgnoreDefenseValue())}\n";
 
         //관통
         description1 +=
@@ -129,6 +129,9 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
         //단전베기
         description3 +=
             $"크리티컬 4단계 {CommonString.GetStatusName(StatusType.SuperCritical8DamPer)} : {PlayerStats.GetSuperCritical8DamPer() * 100f}\n";
+        
+        description3 +=
+            $"크리티컬 5단계 {CommonString.GetStatusName(StatusType.SuperCritical13DamPer)} : {PlayerStats.GetSuperCritical13DamPer() * 100f}\n";
 
         
         description1 +=
@@ -153,37 +156,39 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
 #endif
         //지옥베기
         description3 +=
-            $"크리티컬 5단계 {CommonString.GetStatusName(StatusType.SuperCritical3DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical3DamPer() * 100f)}\n";
+            $"크리티컬 6단계 {CommonString.GetStatusName(StatusType.SuperCritical3DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical3DamPer() * 100f)}\n";
 
         description1 += $"요괴 추가소환 : {plusSpawnNum}\n";
         //천상베기
         description3 +=
-            $"크리티컬 6단계 {CommonString.GetStatusName(StatusType.SuperCritical4DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical4DamPer() * 100f)}\n";
+            $"크리티컬 7단계 {CommonString.GetStatusName(StatusType.SuperCritical4DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical4DamPer() * 100f)}\n";
 
         //도깨비참수
         description3 +=
-            $"크리티컬 7단계 {CommonString.GetStatusName(StatusType.SuperCritical5DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical5DamPer() * 100f)}\n";
+            $"크리티컬 8단계 {CommonString.GetStatusName(StatusType.SuperCritical5DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical5DamPer() * 100f)}\n";
 
         
         
         //수호베기
         description3 +=
-            $"크리티컬 8단계 {CommonString.GetStatusName(StatusType.SuperCritical11DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical11DamPer() * 100f)}\n";
+            $"크리티컬 9단계 {CommonString.GetStatusName(StatusType.SuperCritical11DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical11DamPer() * 100f)}\n";
 
         
         //신수베기
         description3 +=
-            $"크리티컬 9단계 {CommonString.GetStatusName(StatusType.SuperCritical6DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical6DamPer() * 100f)}\n";
+            $"크리티컬 10단계 {CommonString.GetStatusName(StatusType.SuperCritical6DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical6DamPer() * 100f)}\n";
 
         //사흉베기
         description3 +=
-            $"크리티컬 10단계 {CommonString.GetStatusName(StatusType.SuperCritical9DamPer)} : {PlayerStats.GetSuperCritical9DamPer() * 100f}\n";
+            $"크리티컬 11단계 {CommonString.GetStatusName(StatusType.SuperCritical9DamPer)} : {PlayerStats.GetSuperCritical9DamPer() * 100f}\n";
         //금강베기
         description3 +=
-            $"크리티컬 11단계 {CommonString.GetStatusName(StatusType.SuperCritical7DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical7DamPer() * 100f)}\n";
+            $"크리티컬 12단계 {CommonString.GetStatusName(StatusType.SuperCritical7DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical7DamPer() * 100f)}\n";
 
         description3 +=
-            $"크리티컬 12단계 {CommonString.GetStatusName(StatusType.SuperCritical10DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical10DamPer() * 100f)}\n";
+            $"크리티컬 13단계 {CommonString.GetStatusName(StatusType.SuperCritical10DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical10DamPer() * 100f)}\n";
+        description3 +=
+            $"크리티컬 14단계 {CommonString.GetStatusName(StatusType.SuperCritical12DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical12DamPer() * 100f)}\n";
 
     
     

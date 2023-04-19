@@ -41,6 +41,11 @@ public class UiUltiSkillEffect : SingletonMono<UiUltiSkillEffect>
         {
             ultSkillEffect[3].SetActive(true);
         }
+        
+        if (idx == 55)
+        {
+            ultSkillEffect[4].SetActive(true);
+        }
     }
 
     public void OffAllUltSkillEffect()
@@ -51,12 +56,13 @@ public class UiUltiSkillEffect : SingletonMono<UiUltiSkillEffect>
         }
     }
     
+    
     #if UNITY_EDITOR
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ShowUltSkillEffect(46);
+            ShowUltSkillEffect(55);
         }
     }
 #endif

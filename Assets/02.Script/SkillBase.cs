@@ -85,10 +85,15 @@ public abstract class SkillBase
             if (SonSkillCaster.Instance != null)
                 targetTr = SonSkillCaster.Instance.skillSpawnPos;
         }
-        else //사천왕
+        else if (skillInfo.SKILLCASTTYPE == SkillCastType.Four)//사천왕
         {
             if (FourSkillCaster.Instance != null)
                 targetTr = FourSkillCaster.Instance.skillSpawnPos;
+        }
+        else if (skillInfo.SKILLCASTTYPE == SkillCastType.SuhoAnimal)//사천왕
+        {
+            if (SuhoAnimalSkillCaster.Instance != null)
+                targetTr = SuhoAnimalSkillCaster.Instance.skillSpawnPos;
         }
 
         if (targetTr == null) return;

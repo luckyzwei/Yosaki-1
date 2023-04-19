@@ -29,6 +29,6 @@ public class UiRewardView : MonoBehaviour
     {
         rewardIcon.sprite = CommonUiContainer.Instance.GetItemIcon(rewardData.itemType);
         var str = Utils.ConvertBigNum(rewardData.amount);
-        amountText.SetText($"{str}개");
+        amountText.SetText($"{str} 처치");
     }
 }

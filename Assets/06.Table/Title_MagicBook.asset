@@ -1,0 +1,829 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 496a1b9841e72404498002ef6321721e, type: 3}
+  m_Name: Title_MagicBook
+  m_EditorClassIdentifier: 
+  SheetName: Assets/06.Table/Title_MagicBook.xlsx
+  WorksheetName: Title_MagicBook
+  dataArray:
+  - id: 0
+    stringid: title0
+    description: "\uD604\uBB34 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 16
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2e+9
+    abiltype1: 4
+    abilvalue1: 3000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD604\uBB34 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 1
+    stringid: title1
+    description: "\uBC31\uD638 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 17
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 4e+9
+    abiltype1: 4
+    abilvalue1: 15000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uBC31\uD638 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 2
+    stringid: title2
+    description: "\uC8FC\uC791 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 18
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6e+9
+    abiltype1: 4
+    abilvalue1: 30000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC8FC\uC791 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 3
+    stringid: title3
+    description: "\uCCAD\uB8E1 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 19
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 8e+9
+    abiltype1: 4
+    abilvalue1: 900000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCCAD\uB8E1 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 4
+    stringid: title4
+    description: "\uD669\uB8E1 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 20
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1e+10
+    abiltype1: 4
+    abilvalue1: 150000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD669\uB8E1 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 5
+    stringid: title5
+    description: "\uD751\uB8E1 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 21
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.2e+10
+    abiltype1: 4
+    abilvalue1: 240000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD751\uB8E1 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 6
+    stringid: title6
+    description: "\uD574\uD0DC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 22
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.4e+10
+    abiltype1: 4
+    abilvalue1: 3000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD574\uD0DC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 7
+    stringid: title7
+    description: "\uC0BC\uC871\uC624 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 24
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.6e+10
+    abiltype1: 4
+    abilvalue1: 4500000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC0BC\uC871\uC624 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 8
+    stringid: title8
+    description: "\uAE30\uB9B0 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 25
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.8e+10
+    abiltype1: 4
+    abilvalue1: 9000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uAE30\uB9B0 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 9
+    stringid: title9
+    description: "\uB2EC\uD1A0\uB07C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 26
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2e+10
+    abiltype1: 4
+    abilvalue1: 13500000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB2EC\uD1A0\uB07C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 10
+    stringid: title10
+    description: "\uC0BC\uBAA9\uAD6C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 27
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2.2e+10
+    abiltype1: 4
+    abilvalue1: 18000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC0BC\uBAA9\uAD6C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 11
+    stringid: title11
+    description: "\uAD6C\uBBF8\uD638 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 28
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2.4e+10
+    abiltype1: 4
+    abilvalue1: 22500000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uAD6C\uBBF8\uD638 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 12
+    stringid: title12
+    description: "\uCC9C\uB9C8 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 29
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2.6e+10
+    abiltype1: 4
+    abilvalue1: 27000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCC9C\uB9C8 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 13
+    stringid: title13
+    description: "\uCC28\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 30
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 2.8e+10
+    abiltype1: 4
+    abilvalue1: 31500000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCC28\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 14
+    stringid: title14
+    description: "\uC5FC\uB77C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 31
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 4e+10
+    abiltype1: 4
+    abilvalue1: 36000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC5FC\uB77C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 15
+    stringid: title15
+    description: "\uC5EC\uB798 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 32
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 5.2e+10
+    abiltype1: 4
+    abilvalue1: 40500000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC5EC\uB798 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 16
+    stringid: title16
+    description: "\uAC15\uB9BC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 33
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 5.4e+10
+    abiltype1: 4
+    abilvalue1: 45000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uAC15\uB9BC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 17
+    stringid: title17
+    description: "\uBD88\uBA78 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 34
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 5.6e+10
+    abiltype1: 4
+    abilvalue1: 60000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uBD88\uBA78 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 18
+    stringid: title18
+    description: "\uC801\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 35
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 5.8e+10
+    abiltype1: 4
+    abilvalue1: 75000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC801\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 19
+    stringid: title19
+    description: "\uB4F1\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 36
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6e+10
+    abiltype1: 4
+    abilvalue1: 90000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB4F1\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 20
+    stringid: title20
+    description: "\uD669\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 37
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6.2e+10
+    abiltype1: 4
+    abilvalue1: 105000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD669\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 21
+    stringid: title21
+    description: "\uB179\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 38
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6.4e+10
+    abiltype1: 4
+    abilvalue1: 120000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB179\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 22
+    stringid: title22
+    description: "\uCCAD\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 39
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6.6e+10
+    abiltype1: 4
+    abilvalue1: 135000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCCAD\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 23
+    stringid: title23
+    description: "\uB0A8\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 40
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 6.8e+10
+    abiltype1: 4
+    abilvalue1: 150000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB0A8\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 24
+    stringid: title24
+    description: "\uC790\uC120\uB140 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 41
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 7e+10
+    abiltype1: 4
+    abilvalue1: 165000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC790\uC120\uB140 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 25
+    stringid: title25
+    description: "\uD608\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 42
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 7.2e+10
+    abiltype1: 4
+    abilvalue1: 180000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD608\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 26
+    stringid: title26
+    description: "\uB1CC\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 43
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 7.4e+10
+    abiltype1: 4
+    abilvalue1: 195000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB1CC\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 27
+    stringid: title27
+    description: "\uC554\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 44
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 7.6e+10
+    abiltype1: 4
+    abilvalue1: 210000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC554\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 28
+    stringid: title28
+    description: "\uD654\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 46
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 7.8e+10
+    abiltype1: 4
+    abilvalue1: 225000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD654\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 29
+    stringid: title29
+    description: "\uC124\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 47
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 8e+10
+    abiltype1: 4
+    abilvalue1: 240000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC124\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 30
+    stringid: title30
+    description: "\uBBF8\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 48
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 9.2e+10
+    abiltype1: 4
+    abilvalue1: 255000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uBBF8\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 31
+    stringid: title31
+    description: "\uD751\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 49
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 9.4e+10
+    abiltype1: 4
+    abilvalue1: 270000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD751\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 32
+    stringid: title32
+    description: "\uB0A8\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 51
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 9.6e+10
+    abiltype1: 4
+    abilvalue1: 285000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB0A8\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 33
+    stringid: title33
+    description: "\uC5EC\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 52
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 9.8e+10
+    abiltype1: 4
+    abilvalue1: 300000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC5EC\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 34
+    stringid: title34
+    description: "\uC6B0\uB7C9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 53
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1e+11
+    abiltype1: 4
+    abilvalue1: 315000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC6B0\uB7C9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 35
+    stringid: title35
+    description: "\uC9C0\uAD6D\uCC9C\uC655 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 54
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.02e+11
+    abiltype1: 4
+    abilvalue1: 330000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC9C0\uAD6D\uCC9C\uC655 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 36
+    stringid: title36
+    description: "\uAD11\uBAA9\uCC9C\uC655 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 55
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.04e+11
+    abiltype1: 4
+    abilvalue1: 345000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uAD11\uBAA9\uCC9C\uC655 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 37
+    stringid: title37
+    description: "\uC99D\uC7A5\uCC9C\uC655 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 57
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.06e+11
+    abiltype1: 4
+    abilvalue1: 360000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC99D\uC7A5\uCC9C\uC655 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 38
+    stringid: title38
+    description: "\uB2E4\uBB38\uCC9C\uC655 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 58
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.08e+11
+    abiltype1: 4
+    abilvalue1: 375000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uB2E4\uBB38\uCC9C\uC655 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 39
+    stringid: title39
+    description: "\uC544\uC218\uB77C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 59
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.1e+11
+    abiltype1: 4
+    abilvalue1: 390000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC544\uC218\uB77C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 40
+    stringid: title40
+    description: "\uC778\uB4DC\uB77C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 60
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.12e+11
+    abiltype1: 4
+    abilvalue1: 405000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC778\uB4DC\uB77C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 41
+    stringid: title41
+    description: "\uC544\uB4DC\uB77C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 61
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.14e+11
+    abiltype1: 4
+    abilvalue1: 420000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC544\uB4DC\uB77C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 42
+    stringid: title42
+    description: "\uC77C\uC9C0\uB9E4 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 63
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.16e+11
+    abiltype1: 4
+    abilvalue1: 435000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC77C\uC9C0\uB9E4 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 43
+    stringid: title43
+    description: "\uC784\uAEBD\uC815 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 64
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.18e+11
+    abiltype1: 4
+    abilvalue1: 450000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC784\uAEBD\uC815 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 44
+    stringid: title44
+    description: "\uC804\uC6B0\uCE58 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 65
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.2e+11
+    abiltype1: 4
+    abilvalue1: 465000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC804\uC6B0\uCE58 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 45
+    stringid: title45
+    description: "\uD64D\uAE38\uB3D9 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 66
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.32e+11
+    abiltype1: 4
+    abilvalue1: 480000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD64D\uAE38\uB3D9 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 46
+    stringid: title46
+    description: "\uCFE0\uB178\uC774\uCE58 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 67
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.34e+11
+    abiltype1: 4
+    abilvalue1: 495000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCFE0\uB178\uC774\uCE58 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 47
+    stringid: title47
+    description: "\uC2DC\uB178\uBE44 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 68
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.36e+11
+    abiltype1: 4
+    abilvalue1: 510000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC2DC\uB178\uBE44 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 48
+    stringid: title48
+    description: "\uCE74\uAC8C \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 69
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.38e+11
+    abiltype1: 4
+    abilvalue1: 525000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCE74\uAC8C \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 49
+    stringid: title49
+    description: "\uCE21\uCC9C\uBB34\uD6C4 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 71
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.6e+11
+    abiltype1: 4
+    abilvalue1: 540000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCE21\uCC9C\uBB34\uD6C4 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 50
+    stringid: title50
+    description: "\uD56D\uC6B0 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 72
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.82e+11
+    abiltype1: 4
+    abilvalue1: 555000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD56D\uC6B0 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 51
+    stringid: title51
+    description: "\uC870\uC870 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 73
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.84e+11
+    abiltype1: 4
+    abilvalue1: 570000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC870\uC870 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 52
+    stringid: title52
+    description: "\uC9C4\uC2DC\uD669 \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 74
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.86e+11
+    abiltype1: 4
+    abilvalue1: 585000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC9C4\uC2DC\uD669 \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 53
+    stringid: title53
+    description: "\uBB34\uBA85\uBB34\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 75
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.88e+11
+    abiltype1: 4
+    abilvalue1: 600000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uBB34\uBA85\uBB34\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 54
+    stringid: title54
+    description: "\uC554\uD751\uBB34\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 76
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.9e+11
+    abiltype1: 4
+    abilvalue1: 615000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uC554\uD751\uBB34\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 55
+    stringid: title55
+    description: "\uCE60\uD751\uBB34\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 77
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.92e+11
+    abiltype1: 4
+    abilvalue1: 630000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uCE60\uD751\uBB34\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 56
+    stringid: title56
+    description: "\uD0C0\uB77D\uBB34\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 78
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.94e+11
+    abiltype1: 4
+    abilvalue1: 645000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD0C0\uB77D\uBB34\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11
+  - id: 57
+    stringid: title57
+    description: "\uD63C\uB3C8\uBB34\uC0AC \uB178\uB9AC\uAC1C \uD68D\uB4DD"
+    condition: 79
+    displaygroup: 3
+    rewardtype: 2
+    rewardvalue: 1.96e+11
+    abiltype1: 4
+    abilvalue1: 660000000
+    abiltype2: 10
+    abilvalue2: 0
+    active: 1
+    title: "\uD63C\uB3C8\uBB34\uC0AC \uB178\uB9AC\uAC1C"
+    grade: 11

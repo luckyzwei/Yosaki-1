@@ -1,3 +1,4 @@
+using System;
 using BackEnd;
 using Spine.Unity;
 using System.Collections;
@@ -45,7 +46,15 @@ public class UiEventMissionShopCell : MonoBehaviour
         Initialize();
         Subscribe();
     }
-
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += 10;
+        }
+    }
+#endif
     private void Subscribe()
     {
         if (string.IsNullOrEmpty(tableData.Exchangekey) == false)
@@ -58,17 +67,17 @@ public class UiEventMissionShopCell : MonoBehaviour
             }).AddTo(this);
         }
 
-        if (tableData.Lastexchange &&
-          tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.DdukGuk &&
-          allExchangeLockMask != null)
-        {
-            ServerData.userInfoTable.DDukGukCollectionComplete.AsObservable().Subscribe(e =>
-            {
-
-                allExchangeLockMask.SetActive(e == false);
-
-            }).AddTo(this);
-        }
+        // if (tableData.Lastexchange &&
+        //   tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.DdukGuk &&
+        //   allExchangeLockMask != null)
+        // {
+        //     ServerData.userInfoTable.DDukGukCollectionComplete.AsObservable().Subscribe(e =>
+        //     {
+        //
+        //         allExchangeLockMask.SetActive(e == false);
+        //
+        //     }).AddTo(this);
+        // }
 
 
         if (IsCostumeItem() == false && IsPassWeaponItem() == false) return;
@@ -197,18 +206,18 @@ public class UiEventMissionShopCell : MonoBehaviour
         }
 
 
-        int currentEventItemNum = (int)ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value;
+        int currentEventItemNum = (int)ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value;
 
         if (currentEventItemNum < tableData.Price)
         {
-            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_NewYear)}이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Event_HotTime)}이 부족합니다.");
             return;
         }
 
         PopupManager.Instance.ShowAlarmMessage("교환 완료");
 
         //로컬
-        ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value -= tableData.Price;
+        ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value -= tableData.Price;
 
 
         if (string.IsNullOrEmpty(tableData.Exchangekey) == false)
@@ -256,7 +265,7 @@ public class UiEventMissionShopCell : MonoBehaviour
 
             Param goodsParam = new Param();
 
-            goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
+            goodsParam.Add(GoodsTable.Event_HotTime, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value);
 
 
 
@@ -274,7 +283,7 @@ public class UiEventMissionShopCell : MonoBehaviour
 
             Param goodsParam = new Param();
 
-            goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
+            goodsParam.Add(GoodsTable.Event_HotTime, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value);
 
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
@@ -293,7 +302,7 @@ public class UiEventMissionShopCell : MonoBehaviour
             Param goodsParam = new Param();
 
 
-            goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
+            goodsParam.Add(GoodsTable.Event_HotTime, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value);
 
 
             goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)tableData.Itemtype), ServerData.goodsTable.GetTableData((Item_Type)tableData.Itemtype).Value);

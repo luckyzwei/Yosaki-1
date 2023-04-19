@@ -98,6 +98,8 @@ public class UiSettingBoard : MonoBehaviour
 
     [SerializeField]
     private Toggle showFoxCup;
+    [SerializeField]
+    private Toggle showWolfRing;
 
     [SerializeField]
     private Toggle showRingEffect; 
@@ -174,6 +176,8 @@ public class UiSettingBoard : MonoBehaviour
         showOtherPlayer.isOn = PlayerPrefs.GetInt(SettingKey.showOtherPlayer) == 1;
 
         showFoxCup.isOn = PlayerPrefs.GetInt(SettingKey.showFoxCup) == 1;
+        showWolfRing.isOn = PlayerPrefs.GetInt(SettingKey.showWolfRing) == 1;
+        
         showRingEffect.isOn = PlayerPrefs.GetInt(SettingKey.showRingEffect) == 1;
         newUi.isOn = PlayerPrefs.GetInt(SettingKey.newUi) == 1;
         norigaeSize.isOn = PlayerPrefs.GetInt(SettingKey.norigaeSize) == 1;
@@ -573,6 +577,17 @@ public class UiSettingBoard : MonoBehaviour
 
         SettingData.showFoxCup.Value = on ? 1 : 0;
     }
+    public void ShowWolfRingOnOff(bool on)
+    {
+        if (initialized == false) return;
+
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.showWolfRing.Value = on ? 1 : 0;
+    }
 
     public void ShowRingEffectOnOff(bool on)
     {
@@ -710,6 +725,7 @@ public static class SettingKey
     public static string showOtherPlayer = "showOtherPlayer";
 
     public static string showFoxCup = "showFoxCup";
+    public static string showWolfRing = "showWolfRing";
     public static string showRingEffect = "showRingEffect";
     public static string newUi = "newUi";
     public static string norigaeSize = "norigaeSize";//수호동물임
@@ -760,6 +776,7 @@ public static class SettingData
     public static ReactiveProperty<int> showOtherPlayer = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
 
     public static ReactiveProperty<int> showFoxCup = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    public static ReactiveProperty<int> showWolfRing = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> showRingEffect = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> newUi = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> norigaeSize = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
@@ -877,6 +894,9 @@ public static class SettingData
 
         if (PlayerPrefs.HasKey(SettingKey.showFoxCup) == false)
             PlayerPrefs.SetInt(SettingKey.showFoxCup, 1);
+        
+        if (PlayerPrefs.HasKey(SettingKey.showWolfRing) == false)
+            PlayerPrefs.SetInt(SettingKey.showWolfRing, 1);
 
         if (PlayerPrefs.HasKey(SettingKey.showRingEffect) == false)
             PlayerPrefs.SetInt(SettingKey.showRingEffect, 1); 
@@ -935,6 +955,7 @@ public static class SettingData
         showOtherPlayer.Value = PlayerPrefs.GetInt(SettingKey.showOtherPlayer, 1);
 
         showFoxCup.Value = PlayerPrefs.GetInt(SettingKey.showFoxCup, 1);
+        showWolfRing.Value = PlayerPrefs.GetInt(SettingKey.showWolfRing, 1);
         showRingEffect.Value = PlayerPrefs.GetInt(SettingKey.showRingEffect, 1);
         
         newUi.Value = PlayerPrefs.GetInt(SettingKey.newUi, 1);
@@ -1089,6 +1110,11 @@ public static class SettingData
         showFoxCup.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.showFoxCup, e);
+        });
+
+        showWolfRing.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.showWolfRing, e);
         });
 
         showRingEffect.AsObservable().Subscribe(e =>

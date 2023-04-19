@@ -37,7 +37,7 @@ public class GrowthManager : SingletonMono<GrowthManager>
 
     private void SetBuffExpValue()
     {
-        expValue = PlayerStats.GetExpPlusValue();
+        expValue = PlayerStats.GetExpPlusValue_WithAllBuff();
     }
 
 
@@ -89,9 +89,9 @@ public class GrowthManager : SingletonMono<GrowthManager>
             }
         }
 
+      
+            exp += exp * expValue;
 
-
-        exp += exp * expValue;
 
 
         this.useEffect = useEffect;
@@ -124,18 +124,20 @@ public class GrowthManager : SingletonMono<GrowthManager>
                 {
                     if (syncToServer)
                     {
-                        currentSyncCount++;
+                    
+                            currentSyncCount++;
 
-                        if (currentSyncCount >= levelUpSyncCount)
-                        {
-                            SyncLevelUpDatas();
-                            currentSyncCount = 0;
-                        }
+                            if (currentSyncCount >= levelUpSyncCount)
+                            {
+                                SyncLevelUpDatas();
+                                currentSyncCount = 0;
+                            }    
+                        
                     }
                 }
             }
         }
-
+  
         if (syncToServer)
         {
             UiExpGauge.Instance.WhenGrowthValueChanged();

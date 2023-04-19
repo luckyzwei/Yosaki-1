@@ -37,8 +37,6 @@ public class PlayerData : SingletonMono<PlayerData>
     {
         if (bro.IsSuccess())
         {
-            Debug.Log("IOS_6");
-            Debug.Log("UserInfo가 존재합니다.");
             var returnData = bro.GetReturnValuetoJSON();
             JsonData row = returnData["row"];
 
@@ -57,7 +55,6 @@ public class PlayerData : SingletonMono<PlayerData>
 #if UNITY_IOS
                     NickName = row["nickname"].ToString().Replace(CommonString.IOS_nick, "");
 #endif
-                    Debug.Log("IOS_8");
                     WhenUserInfoLoadComplete();
                 }
                 else
@@ -72,8 +69,7 @@ public class PlayerData : SingletonMono<PlayerData>
         }
         else
         {
-            Debug.Log("IOS_7");
-            Debug.LogError("User info load Failed");
+            
         }
     }
 

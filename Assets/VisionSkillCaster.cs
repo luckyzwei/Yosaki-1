@@ -11,7 +11,7 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
 
     private Coroutine skillRoutine;
     private SkillTableData _skillTableData;
-    private int _visionCount = 0;
+    private int _visionSkillIdx = 0;
     void Start()
     {
         Subscribe();
@@ -20,8 +20,8 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
 
     private void RefreshSkillData()
     {
-        _visionCount = ServerData.goodsTable.GetVisionSkillHasCount();
-        _skillTableData = TableManager.Instance.SkillTable.dataArray[45 + _visionCount];
+        _visionSkillIdx = ServerData.goodsTable.GetVisionSkillIdx();
+        _skillTableData = TableManager.Instance.SkillTable.dataArray[_visionSkillIdx];
     }
     
     private void Subscribe()
@@ -30,12 +30,7 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
         {
             if (e)
             {
-                if (skillRoutine != null)
-                {
-                    StopCoroutine(skillRoutine);
-                }
-
-                skillRoutine = StartCoroutine(UserSkillRoutine());
+                StartSkillRoutine();
             }
             else
             {
@@ -47,6 +42,15 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
         }).AddTo(this);
     }
 
+
+    public void StartSkillRoutine()
+    {
+        if (skillRoutine != null)
+        {
+            StopCoroutine(skillRoutine);
+        }
+        skillRoutine = StartCoroutine(UserSkillRoutine());
+    }
     
     private IEnumerator UserSkillRoutine()
     {
@@ -54,7 +58,7 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
         {
             if (PlayerSkillCaster.Instance.visionChargeCount.Value < 1 &&
                 !PlayerSkillCaster.Instance.useVisionSkill.Value &&
-                _visionCount > 0 &&
+                _visionSkillIdx > 0 &&
                 SettingData.autoVisionSkill.Value > 0)
             {
                 if (AutoManager.Instance.canAttack == false && GameManager.Instance.IsNormalField == true) continue;
@@ -73,7 +77,7 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
     {
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            StopCoroutine(skillRoutine);
+            PlayerSkillCaster.Instance.UseSkill(55);
         }
 
     }

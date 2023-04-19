@@ -90,6 +90,7 @@ public class VisionSkillButton : MonoBehaviour
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
+        ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         PlayerSkillCaster.Instance.useVisionSkill.AsObservable().Subscribe(e =>
         {
             if (e)
@@ -127,14 +128,16 @@ public class VisionSkillButton : MonoBehaviour
 
     private void SetSkillImage()
     {
-        int visionCount = ServerData.goodsTable.GetVisionSkillHasCount();
-        if (visionCount < 1)
+        int visionSkillIdx = ServerData.goodsTable.GetVisionSkillIdx();
+        if (visionSkillIdx < 1)
         {
             //스킬이없는것
             return;
         }
 
-        _skillTableData = TableManager.Instance.SkillTable.dataArray[45 + visionCount];
+        
+        _skillTableData = TableManager.Instance.SkillTable.dataArray[visionSkillIdx];
+        
 
         _image.sprite = CommonResourceContainer.GetSkillIconSprite(_skillTableData.Id);
     }

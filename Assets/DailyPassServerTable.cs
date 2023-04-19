@@ -146,6 +146,7 @@ public class MonthlyPassServerTable
     public static string MonthlypassAttendFreeReward = "af9";
     public static string MonthlypassAttendAdReward = "aa9";
 
+    
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
         { MonthlypassFreeReward,string.Empty},
@@ -159,6 +160,7 @@ public class MonthlyPassServerTable
 
     public void Initialize()
     {
+        //LoadTable(true);
         tableDatas.Clear();
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), callback =>
@@ -195,7 +197,6 @@ public class MonthlyPassServerTable
                 }
                 else
                 {
-
                     var jsonData = bro.GetReturnValuetoJSON();
                     if (jsonData.Keys.Count > 0)
                     {
@@ -263,25 +264,84 @@ public class MonthlyPassServerTable2
     public const string tableName = "MonthlyPass2";
 
 
-    public static string MonthlypassFreeReward = "f13";
-    public static string MonthlypassAdReward = "a13";
+    public static string MonthlypassFreeReward = "f";
+    public static string MonthlypassAdReward = "a";
 
-    public static string MonthlypassAttendFreeReward = "af13";
-    public static string MonthlypassAttendAdReward = "aa13";
+    public static string MonthlypassAttendFreeReward = "af";
+    public static string MonthlypassAttendAdReward = "aa";
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
-        { MonthlypassFreeReward,string.Empty},
-        { MonthlypassAdReward,string.Empty},
-        { MonthlypassAttendFreeReward,string.Empty},
-        { MonthlypassAttendAdReward,string.Empty}
+        // { MonthlypassFreeReward,string.Empty},
+        // { MonthlypassAdReward,string.Empty},
+        // { MonthlypassAttendFreeReward,string.Empty},
+        // { MonthlypassAttendAdReward,string.Empty}
     };
+    
 
     private ReactiveDictionary<string, ReactiveProperty<string>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<string>>();
     public ReactiveDictionary<string, ReactiveProperty<string>> TableDatas => tableDatas;
-
+    private void LoadTable(bool isOddMonthlypass = false)
+    {
+        var datas= TableManager.Instance.InAppPurchase.dataArray;
+        if (isOddMonthlypass)
+        {
+            List<int> evenList = new List<int>();
+            foreach (var purchaseData in datas)
+            {
+                if (purchaseData.PASSPRODUCTTYPE == PassProductType.MonthPass)
+                {
+                    int num = int.Parse(purchaseData.Productid.Replace("monthpass", ""));
+                    if (num % 2 == 1)
+                    {
+                        //홀수는 짝수월(monthpass2,4,6...)
+                        //oddList.Add(num);
+                    }
+                    else
+                    {
+                        //짝수는 홀수월(1,3,5...)
+                        evenList.Add(num);
+                    }
+                }
+            }
+            MonthlypassFreeReward += "_"+evenList.Last();
+            MonthlypassAdReward += "_"+evenList.Last();
+            MonthlypassAttendFreeReward +="_"+evenList.Last(); 
+            MonthlypassAttendAdReward +="_"+evenList.Last();
+        }
+        else
+        {
+            List<int> oddList = new List<int>();
+            foreach (var purchaseData in datas)
+            {
+                if (purchaseData.PASSPRODUCTTYPE == PassProductType.MonthPass)
+                {
+                    int num = int.Parse(purchaseData.Productid.Replace("monthpass", ""));
+                    if (num % 2 == 1)
+                    {
+                        //홀수는 짝수월(monthpass2,4,6...)
+                        oddList.Add(num);
+                    }
+                    else
+                    {
+                        //짝수는 홀수월(1,3,5...)
+                        //evenList.Add(num);
+                    }
+                }
+            }
+            MonthlypassFreeReward += "_"+oddList.Last();
+            MonthlypassAdReward += "_"+oddList.Last();
+            MonthlypassAttendFreeReward +="_"+oddList.Last(); 
+            MonthlypassAttendAdReward +="_"+oddList.Last();
+        }
+        tableSchema.Add(MonthlypassFreeReward,string.Empty);
+        tableSchema.Add(MonthlypassAdReward,string.Empty);
+        tableSchema.Add(MonthlypassAttendFreeReward,string.Empty);
+        tableSchema.Add(MonthlypassAttendAdReward,string.Empty);
+    }
     public void Initialize()
     {
+        LoadTable(true);
         tableDatas.Clear();
 
         SendQueue.Enqueue(Backend.GameData.GetMyData, tableName, new Where(), callback =>

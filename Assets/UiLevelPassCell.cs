@@ -119,7 +119,17 @@ public class UiLevelPassCell : MonoBehaviour
         itemName_free.SetText(CommonString.GetItemName((Item_Type)(int)passInfo.rewardType_Free));
         itemName_ad.SetText(CommonString.GetItemName((Item_Type)(int)passInfo.rewardType_IAP));
 
-        paidPassBg.sprite = passFrame[passInfo.passGrade];
+        //더이상 색추가 안해도되게 8가지색 로테이션
+        int grade = passInfo.passGrade;
+        if (grade <= 42)
+        {
+            paidPassBg.sprite = passFrame[grade];
+        }
+        else
+        {
+            var imgGrade = grade %= 8;
+            paidPassBg.sprite = passFrame[imgGrade+32];
+        }
     }
 
     private void SetDescriptionText()

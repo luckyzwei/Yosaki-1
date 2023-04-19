@@ -37,7 +37,7 @@ public class UiCostumeSlotView : MonoBehaviour
 
         this.costumeData = costumeData;
 
-        slotNum.SetText((costumeData.Id + 1).ToString());
+        slotNum.SetText((costumeData.Displayorder + 1).ToString());
 
         costumeName.SetText((costumeData.Name));
 

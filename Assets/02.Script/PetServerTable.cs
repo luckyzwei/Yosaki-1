@@ -61,7 +61,10 @@ public class PetServerTable
                     float value = petTableData.Hasvalue1 + e.Current.Value.level.Value * petTableData.Hasaddvalue1;
 
                     if (statusType != StatusType.ExpGainPer && statusType != StatusType.GoldGainPer)
+                    {
                         value += value * ((float)petAwakeLevel * GameBalance.PetAwakeValuePerLevel);
+                        value += value * GetSusanoZibaePlus();
+                    }
 
                     ret += value;
                 }
@@ -71,7 +74,10 @@ public class PetServerTable
                     float value = petTableData.Hasvalue2 + e.Current.Value.level.Value * petTableData.Hasaddvalue2;
 
                     if (statusType != StatusType.ExpGainPer && statusType != StatusType.GoldGainPer)
+                    {
                         value += value * ((float)petAwakeLevel * GameBalance.PetAwakeValuePerLevel);
+                        value += value * GetSusanoZibaePlus();
+                    }
 
                     ret += value;
                 }
@@ -81,7 +87,10 @@ public class PetServerTable
                     float value = petTableData.Hasvalue3 + e.Current.Value.level.Value * petTableData.Hasaddvalue3;
 
                     if (statusType != StatusType.ExpGainPer && statusType != StatusType.GoldGainPer)
+                    {
                         value += value * ((float)petAwakeLevel * GameBalance.PetAwakeValuePerLevel);
+                        value += value * GetSusanoZibaePlus();
+                    }
 
                     ret += value;
                 }
@@ -91,7 +100,10 @@ public class PetServerTable
                     float value = petTableData.Hasvalue4 + e.Current.Value.level.Value * petTableData.Hasaddvalue4;
 
                     if (statusType != StatusType.ExpGainPer && statusType != StatusType.GoldGainPer)
+                    {
                         value += value * ((float)petAwakeLevel * GameBalance.PetAwakeValuePerLevel);
+                        value += value * GetSusanoZibaePlus();
+                    }
 
                     ret += value;
                 }
@@ -104,7 +116,17 @@ public class PetServerTable
 
 
 
-        return ret;
+        return ret ;
+    }
+
+    public float GetSusanoZibaePlus()
+    {
+        var grade = PlayerStats.GetSusanoGrade();
+
+        if (grade < 0)
+            return 0f;
+        
+        return  TableManager.Instance.susanoTable.dataArray[grade].Zibaeupvalue;
     }
 
     public void UpdateData(string key)

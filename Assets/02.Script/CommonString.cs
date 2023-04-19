@@ -48,6 +48,7 @@ public static class CommonString
     public static string ItemGrade_24 = "수미산";
     public static string ItemGrade_25 = "사흉수";
     public static string ItemGrade_26 = "보물";
+    public static string ItemGrade_27 = "암흑";
     public static string ItemGrade_5_Norigae = "신물";
     public static string ItemGrade_6_Norigae = "영물";
     public static string ItemGrade_7_Norigae = "영물";
@@ -60,6 +61,7 @@ public static class CommonString
     public static string ItemGrade_22_Norigae = "도깨비";
     public static string ItemGrade_24_Norigae = "수미산";
     public static string ItemGrade_26_Norigae = "보물";
+    public static string ItemGrade_27_Norigae = "암흑";
 
     public static string ItemGrade_4_Skill = "주작";
     public static string ItemGrade_5_Skill = "청룡";
@@ -71,8 +73,9 @@ public static class CommonString
     public static string ItemGrade_11_Skill = "도깨비검";
     public static string ItemGrade_12_Skill = "금강검";
     public static string ItemGrade_13_Skill = "비전검";
+    public static string ItemGrade_14_Skill = "섬광검";
 
-    public static string GoldItemName = "골드";
+    public static string GoldItemName = "금화";
     public static string BonusSpinCoin = "복주머니 뽑기권";
 
     public static string ContentsName_Boss = "고양이 요괴전";
@@ -253,6 +256,12 @@ public static class CommonString
             case Item_Type.costume102: return TableManager.Instance.Costume.dataArray[102].Name;
             case Item_Type.costume103: return TableManager.Instance.Costume.dataArray[103].Name;
             case Item_Type.costume104: return TableManager.Instance.Costume.dataArray[104].Name;
+            case Item_Type.costume105: return TableManager.Instance.Costume.dataArray[105].Name;
+            case Item_Type.costume106: return TableManager.Instance.Costume.dataArray[106].Name;
+            case Item_Type.costume107: return TableManager.Instance.Costume.dataArray[107].Name;
+            case Item_Type.costume108: return TableManager.Instance.Costume.dataArray[108].Name;
+            case Item_Type.costume109: return TableManager.Instance.Costume.dataArray[109].Name;
+            case Item_Type.costume110: return TableManager.Instance.Costume.dataArray[110].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -367,6 +376,12 @@ public static class CommonString
             case Item_Type.VisionSkill1: return "궁극 기술2";
             case Item_Type.VisionSkill2: return "궁극 기술3";
             case Item_Type.VisionSkill3: return "궁극 기술4";
+            case Item_Type.VisionSkill4: return "궁극 기술5";
+            case Item_Type.ThiefSkill0: return "도적 기술1";
+            case Item_Type.ThiefSkill1: return "도적 기술2";
+            case Item_Type.ThiefSkill2: return "도적 기술3";
+            case Item_Type.ThiefSkill3: return "도적 기술4";
+            case Item_Type.ThiefSkill4: return "도적 기술5";
             //
             case Item_Type.OrochiTooth0: return "오로치 이빨1";
             case Item_Type.OrochiTooth1: return "오로치 이빨2";
@@ -399,6 +414,15 @@ public static class CommonString
             case Item_Type.c4: return TableManager.Instance.hellAbil.dataArray[4].Name;
             case Item_Type.c5: return TableManager.Instance.hellAbil.dataArray[5].Name;
             case Item_Type.c6: return TableManager.Instance.hellAbil.dataArray[6].Name;
+            
+            case Item_Type.d0: return TableManager.Instance.DarkAbil.dataArray[0].Name;
+            case Item_Type.d1: return TableManager.Instance.DarkAbil.dataArray[1].Name;
+            case Item_Type.d2: return TableManager.Instance.DarkAbil.dataArray[2].Name;
+            case Item_Type.d3: return TableManager.Instance.DarkAbil.dataArray[3].Name;
+            case Item_Type.d4: return TableManager.Instance.DarkAbil.dataArray[4].Name;
+            case Item_Type.d5: return TableManager.Instance.DarkAbil.dataArray[5].Name;
+            case Item_Type.d6: return TableManager.Instance.DarkAbil.dataArray[6].Name;
+            case Item_Type.d7: return TableManager.Instance.DarkAbil.dataArray[7].Name;
 
             case Item_Type.Hel: return "불멸석";
             case Item_Type.Ym: return "염주";
@@ -422,10 +446,12 @@ public static class CommonString
             case Item_Type.MonthNorigae2: return "2월 월간 노리개";
             case Item_Type.MonthNorigae3: return "3월 월간 노리개";
             case Item_Type.MonthNorigae4: return "4월 월간 노리개";
+            case Item_Type.MonthNorigae5: return "5월 월간 노리개";
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
             case Item_Type.SahyungTreasure: return "사흉구슬";
             case Item_Type.VisionTreasure: return "비전서";
+            case Item_Type.DarkTreasure: return "심연의 정수";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
             case Item_Type.SumiFire: return "수미꽃";
             case Item_Type.Tresure: return "도적단 보물";
@@ -436,12 +462,15 @@ public static class CommonString
             case Item_Type.DokebiBundle: return "도깨비 보물상자";
 
             case Item_Type.SinsuRelic: return "황룡의 여의주";
+            case Item_Type.HyungsuRelic: return "흑호의 보주";
             case Item_Type.EventDice: return "이벤트 주사위";
             case Item_Type.SuhoPetFeed: return "수호환";
             case Item_Type.SuhoPetFeedClear: return "수호환 소탕권";
             case Item_Type.SinsuMarble: return "사신수구슬";
             case Item_Type.GuildTowerClearTicket: return "전갈굴 소탕권";
+            case Item_Type.SoulRingClear: return "영혼석 소탕권";
             case Item_Type.GuildTowerHorn: return "독침";
+            case Item_Type.Event_HotTime: return "불꽃 조각";
 
         }
 
@@ -521,7 +550,7 @@ public static class CommonString
             case StatusType.MpAddPer:
                 return "마력 증가(%)";
             case StatusType.GoldGainPer:
-                return "골드 획득 증가(%)";
+                return "금화 획득 증가(%)";
             case StatusType.ExpGainPer:
                 return "경험치 획득 증가(%)";
             case StatusType.AttackAdd:
@@ -590,6 +619,8 @@ public static class CommonString
                 return "도깨비 불 레벨당 귀신베기 피해량 증가(%)";
             case StatusType.SumiHasValueUpgrade:
                 return "수미꽃 레벨당 금강베기 피해량 증가(%)";
+            case StatusType.TreasureHasValueUpgrade:
+                return "도적단 보물 레벨당 섬광베기 피해량 증가(%)";
             case StatusType.SuperCritical8DamPer:
                 return "하단전베기 피해(%)";
             case StatusType.SuperCritical9DamPer:
@@ -599,8 +630,12 @@ public static class CommonString
             
             case StatusType.SuperCritical11DamPer:
                 return "수호베기 피해(%)"; 
+            case StatusType.SuperCritical12DamPer:
+                return "심연베기 피해(%)"; 
             case StatusType.NorigaeGoldAbilUp:
                 return "노리개 기본무공 강화효과(%)";
+            case StatusType.SuperCritical13DamPer:
+                return "중단전베기 피해(%)";
         }
 
         return "등록필요";

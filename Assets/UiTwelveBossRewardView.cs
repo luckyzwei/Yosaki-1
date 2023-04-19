@@ -37,9 +37,11 @@ public class UiTwelveBossRewardView : MonoBehaviour
 
     [SerializeField] private GameObject skillObject;
 
+    [SerializeField] private bool showUnlockTextAlways = true;
+
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    
+
     private void OnDestroy()
     {
         disposable.Dispose();
@@ -68,15 +70,16 @@ public class UiTwelveBossRewardView : MonoBehaviour
         itemDescription.SetText($"{CommonString.GetItemName((Item_Type)rewardInfo.rewardType)}");
 
         rewardAmount.SetText($"{Utils.ConvertBigNum(rewardInfo.rewardAmount)}개");
-#if UNITY_EDITOR
-        lockDescription.SetText($"{Utils.ConvertBigNum(rewardInfo.damageCut)}에 해금");
-#else
-        lockDescription.SetText($"{rewardInfo.rewardCutString}에 해금");
-#endif
+
+        lockDescription.SetText($"{Utils.ConvertBigNumForRewardCell(rewardInfo.damageCut)}에 해금");
+
+
         if (skillObject != null && (rewardInfo.rewardType == 8730 ||
                                     rewardInfo.rewardType == 8731 ||
                                     rewardInfo.rewardType == 8732 ||
-                                    rewardInfo.rewardType == 8733)
+                                    rewardInfo.rewardType == 8733 ||
+                                    rewardInfo.rewardType == 8734
+            )
            )
         {
             skillObject.SetActive(true);
@@ -90,7 +93,10 @@ public class UiTwelveBossRewardView : MonoBehaviour
         }
 
         //언락돼도 보이게
-        //lockDescription.transform.SetParent((this.transform));
+        if (showUnlockTextAlways)
+        {
+            lockDescription.transform.SetParent((this.transform));
+        }
 
         if (gradeText != null)
         {
@@ -156,41 +162,43 @@ public class UiTwelveBossRewardView : MonoBehaviour
     {
         disposable.Clear();
 
-        bossServerData.rewardedId.AsObservable().Subscribe(e =>
+        bossServerData.rewardedId.AsObservable().Subscribe(e => { ResetUi(e); }).AddTo(disposable);
+    }
+
+    private void ResetUi(string _rewardedId)
+    {
+        var rewards = _rewardedId.Split(BossServerTable.rewardSplit).ToList();
+
+        bool rewarded = rewards.Contains(rewardInfo.idx.ToString());
+
+        if (IsRegainableItem() == false)
         {
-            var rewards = e.Split(BossServerTable.rewardSplit).ToList();
+            rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
 
-            bool rewarded = rewards.Contains(rewardInfo.idx.ToString());
+            rewardedIcon.SetActive(rewarded);
+        }
+        else
+        {
+            Item_Type type = (Item_Type)rewardInfo.rewardType;
+            string typeStr = ServerData.goodsTable.ItemTypeToServerString(type);
 
-            if (IsRegainableItem() == false)
+            bool hasGoods = false;
+
+            if (ServerData.goodsTable.TableDatas.ContainsKey((typeStr)) == true)
+            {
+                hasGoods = ServerData.goodsTable.TableDatas[typeStr].Value != 0;
+
+                rewardButtonDescription.SetText(rewarded && hasGoods ? "완료" : "받기");
+
+                rewardedIcon.SetActive(rewarded && hasGoods);
+            }
+            else
             {
                 rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
 
                 rewardedIcon.SetActive(rewarded);
             }
-            else
-            {
-                Item_Type type = (Item_Type)rewardInfo.rewardType;
-                string typeStr = ServerData.goodsTable.ItemTypeToServerString(type);
-
-                bool hasGoods = false;
-
-                if (ServerData.goodsTable.TableDatas.ContainsKey((typeStr)) == true)
-                {
-                    hasGoods = ServerData.goodsTable.TableDatas[typeStr].Value != 0;
-
-                    rewardButtonDescription.SetText(rewarded && hasGoods ? "완료" : "받기");
-
-                    rewardedIcon.SetActive(rewarded && hasGoods);
-                }
-                else
-                {
-                    rewardButtonDescription.SetText(rewarded ? "완료" : "받기");
-
-                    rewardedIcon.SetActive(rewarded);
-                }
-            }
-        }).AddTo(disposable);
+        }
     }
 
     private bool IsRegainableItem()
@@ -2337,6 +2345,183 @@ public class UiTwelveBossRewardView : MonoBehaviour
             });
         }
 //
+        else if (type == Item_Type.costume105)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            //
+            var costumeServerData = ServerData.costumeServerTable.TableDatas["costume105"];
+
+            costumeServerData.hasCostume.Value = true;
+
+            Param costumeParam = new Param();
+
+            costumeParam.Add("costume105", costumeServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate,
+                costumeParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+        else if (type == Item_Type.costume106)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            //
+            var costumeServerData = ServerData.costumeServerTable.TableDatas["costume106"];
+
+            costumeServerData.hasCostume.Value = true;
+
+            Param costumeParam = new Param();
+
+            costumeParam.Add("costume106", costumeServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate,
+                costumeParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+        else if (type == Item_Type.costume107)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            //
+            var costumeServerData = ServerData.costumeServerTable.TableDatas["costume107"];
+
+            costumeServerData.hasCostume.Value = true;
+
+            Param costumeParam = new Param();
+
+            costumeParam.Add("costume107", costumeServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate,
+                costumeParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+        else if (type == Item_Type.costume108)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            //
+            var costumeServerData = ServerData.costumeServerTable.TableDatas["costume108"];
+
+            costumeServerData.hasCostume.Value = true;
+
+            Param costumeParam = new Param();
+
+            costumeParam.Add("costume108", costumeServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate,
+                costumeParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+//
+        else if (type == Item_Type.costume110)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            //
+            var costumeServerData = ServerData.costumeServerTable.TableDatas["costume110"];
+
+            costumeServerData.hasCostume.Value = true;
+
+            Param costumeParam = new Param();
+
+            costumeParam.Add("costume110", costumeServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate,
+                costumeParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+//
         //
         else if (type == Item_Type.costume51)
         {
@@ -3780,6 +3965,171 @@ public class UiTwelveBossRewardView : MonoBehaviour
             Param magicBookParam = new Param();
 
             magicBookParam.Add("magicBook74", ServerData.magicBookTable.TableDatas["magicBook74"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+
+        ////////////
+        else if (type == Item_Type.DarkNorigae0)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook76"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook76"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook76", ServerData.magicBookTable.TableDatas["magicBook76"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+
+        else if (type == Item_Type.DarkNorigae1)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook77"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook77"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook77", ServerData.magicBookTable.TableDatas["magicBook77"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+
+        else if (type == Item_Type.DarkNorigae2)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook78"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook78"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook78", ServerData.magicBookTable.TableDatas["magicBook78"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+
+        else if (type == Item_Type.DarkNorigae3)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook79"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook79"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook79", ServerData.magicBookTable.TableDatas["magicBook79"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 노리개 획득!!", null);
+                // LogManager.Instance.SendLog("신수제작", $"신수제작 성공 {needPetId}");
+            });
+        }
+        else if (type == Item_Type.MasterNorigae0)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.magicBookTable.TableDatas["magicBook75"].amount.Value += 1;
+            ServerData.magicBookTable.TableDatas["magicBook75"].hasItem.Value = 1;
+
+            Param magicBookParam = new Param();
+
+            magicBookParam.Add("magicBook75", ServerData.magicBookTable.TableDatas["magicBook75"].ConvertToString());
 
             transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
 
@@ -5267,7 +5617,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
             });
         }
         else if (type == Item_Type.KingWeapon1)
@@ -5298,7 +5648,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
             });
         }
         else if (type == Item_Type.KingWeapon2)
@@ -5329,7 +5679,7 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
             });
         }
         else if (type == Item_Type.KingWeapon3)
@@ -5360,7 +5710,163 @@ public class UiTwelveBossRewardView : MonoBehaviour
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 검 획득!!", null);
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
+            });
+        }
+        ///
+        else if (type == Item_Type.DarkWeapon0)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.weaponTable.TableDatas["weapon109"].amount.Value += 1;
+            ServerData.weaponTable.TableDatas["weapon109"].hasItem.Value = 1;
+
+            Param weaponParam = new Param();
+
+            weaponParam.Add("weapon109", ServerData.weaponTable.TableDatas["weapon109"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(WeaponTable.tableName, WeaponTable.Indate, weaponParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
+            });
+        }
+        else if (type == Item_Type.DarkWeapon1)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.weaponTable.TableDatas["weapon110"].amount.Value += 1;
+            ServerData.weaponTable.TableDatas["weapon110"].hasItem.Value = 1;
+
+            Param weaponParam = new Param();
+
+            weaponParam.Add("weapon110", ServerData.weaponTable.TableDatas["weapon110"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(WeaponTable.tableName, WeaponTable.Indate, weaponParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
+            });
+        }
+        else if (type == Item_Type.DarkWeapon2)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.weaponTable.TableDatas["weapon111"].amount.Value += 1;
+            ServerData.weaponTable.TableDatas["weapon111"].hasItem.Value = 1;
+
+            Param weaponParam = new Param();
+
+            weaponParam.Add("weapon111", ServerData.weaponTable.TableDatas["weapon111"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(WeaponTable.tableName, WeaponTable.Indate, weaponParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
+            });
+        }
+        else if (type == Item_Type.DarkWeapon3)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.weaponTable.TableDatas["weapon112"].amount.Value += 1;
+            ServerData.weaponTable.TableDatas["weapon112"].hasItem.Value = 1;
+
+            Param weaponParam = new Param();
+
+            weaponParam.Add("weapon112", ServerData.weaponTable.TableDatas["weapon112"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(WeaponTable.tableName, WeaponTable.Indate, weaponParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
+            });
+        }
+        else if (type == Item_Type.MasterWeapon0)
+        {
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            ServerData.weaponTable.TableDatas["weapon108"].amount.Value += 1;
+            ServerData.weaponTable.TableDatas["weapon108"].hasItem.Value = 1;
+
+            Param weaponParam = new Param();
+
+            weaponParam.Add("weapon108", ServerData.weaponTable.TableDatas["weapon108"].ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(WeaponTable.tableName, WeaponTable.Indate, weaponParam));
+
+            //
+            Param bossParam = new Param();
+
+            bossServerData.rewardedId.Value += $"{BossServerTable.rewardSplit}{rewardInfo.idx}";
+
+            var localTableData = TableManager.Instance.TwelveBossTable.dataArray[bossServerData.idx];
+
+            bossParam.Add(localTableData.Stringid, bossServerData.ConvertToString());
+
+            transactions.Add(TransactionValue.SetUpdate(BossServerTable.tableName, BossServerTable.Indate, bossParam));
+            //
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                SoundManager.Instance.PlaySound("Reward");
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{localTableData.Name} 무기 획득!!", null);
             });
         }
         ////////////
@@ -6481,6 +6987,8 @@ public class UiTwelveBossRewardView : MonoBehaviour
                 {
                     rewardButton.interactable = true;
                 }
+
+                ResetUi(bossServerData.rewardedId.Value);
             });
         }
     }

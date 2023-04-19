@@ -33,11 +33,8 @@ public class UiNorigaeDescription : MonoBehaviour
         if (idx == -1) idx = 0;
 
         var tableData = TableManager.Instance.norigaeJewel.dataArray[idx];
-#if UNITY_EDITOR
-        unlockDesc.SetText($"{Utils.ConvertBigNum(tableData.Score)}");
-#else
-        unlockDesc.SetText($"{tableData.Scoredescription}");
-#endif
+        unlockDesc.SetText($"{Utils.ConvertBigNumForRewardCell(tableData.Score)}");
+
 
 
         equipFrame.gameObject.SetActive(idx == PlayerStats.GetNorigaeSoulGrade());

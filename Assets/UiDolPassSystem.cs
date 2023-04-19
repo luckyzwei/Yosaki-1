@@ -354,6 +354,8 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
         {
             Subscribe();
             
+            scroller.Initialize(PassTypeScroll.DolPass);
+            
             scroller.OnValueChanged(UpdatePosition);
     
             var tableData = TableManager.Instance.dolPass.dataArray;

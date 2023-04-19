@@ -47,6 +47,8 @@ public class UiPlayerViewController : MonoBehaviour
 
     [SerializeField]
     private GameObject showFoxCup;
+    [SerializeField]
+    private GameObject showWolfRing;
 
     [SerializeField]
     private GameObject showRingEffect; 
@@ -139,6 +141,10 @@ public class UiPlayerViewController : MonoBehaviour
         SettingData.showFoxCup.AsObservable().Subscribe(e =>
         {
             showFoxCup.gameObject.SetActive(e == 1);
+        }).AddTo(this);
+        SettingData.showWolfRing.AsObservable().Subscribe(e =>
+        {
+            showWolfRing.gameObject.SetActive(e == 1);
         }).AddTo(this);
 
         SettingData.showRingEffect.AsObservable().Subscribe(e =>

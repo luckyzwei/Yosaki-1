@@ -59,6 +59,8 @@ public class GameManager : SingletonMono<GameManager>
         SuhoAnimal,
         SinsuTower,
         GuildTower,
+        Thief,
+        GyungRockTower2,
     }
 
     public bool SpawnMagicStone => IsNormalField;

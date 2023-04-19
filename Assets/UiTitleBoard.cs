@@ -12,7 +12,7 @@ public class UiTitleBoard : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     private void Initialize()

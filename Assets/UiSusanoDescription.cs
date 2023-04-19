@@ -38,24 +38,27 @@ public class UiSusanoDescription : MonoBehaviour
         if (idx == -1) idx = 0;
 
         var tableData = TableManager.Instance.susanoTable.dataArray[idx];
-#if UNITY_EDITOR
-        unlockDesc.SetText($"{Utils.ConvertBigNum(tableData.Score)}");
-#else 
-        unlockDesc.SetText($"{tableData.Scoredescription}");
-#endif
+        unlockDesc.SetText($"{Utils.ConvertBigNumForRewardCell(tableData.Score)}");
+
 
 
         equipFrame.gameObject.SetActive(idx == PlayerStats.GetSusanoGrade());
 
         gradeText.SetText($"{idx + 1}단계");
-
+        var addDescription = "";
+        if (tableData.Zibaeupvalue != 0)
+        {
+            addDescription += $"\n지배 효과 강화 {Utils.ConvertBigNumForRewardCell(tableData.Zibaeupvalue * 100f)}%";
+        }
         if (tableData.Abilvalue1 != 0)
         {
-            abilDescription.SetText($"{CommonString.GetStatusName(StatusType.CriticalDam)}{Utils.ConvertBigNum(tableData.Abilvalue0 * 100f)}\n<color=yellow>{CommonString.GetStatusName(StatusType.PenetrateDefense)}{tableData.Abilvalue1 * 100f}</color>");
+            abilDescription.SetText($"{CommonString.GetStatusName(StatusType.CriticalDam)}{Utils.ConvertBigNumForRewardCell(tableData.Abilvalue0 * 100f)}\n<color=yellow>{CommonString.GetStatusName(StatusType.PenetrateDefense)}{tableData.Abilvalue1 * 100f}</color>"+addDescription);
         }
         else
         {
-            abilDescription.SetText($"{CommonString.GetStatusName(StatusType.CriticalDam)}{Utils.ConvertBigNum(tableData.Abilvalue0 * 100f)}");
+            abilDescription.SetText(
+                $"{CommonString.GetStatusName(StatusType.CriticalDam)}{Utils.ConvertBigNum(tableData.Abilvalue0 * 100f)}" +
+                addDescription);
         }
 
         immuneDescription.gameObject.SetActive(tableData.Buffsec != 0);

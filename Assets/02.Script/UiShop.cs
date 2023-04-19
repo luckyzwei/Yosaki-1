@@ -406,6 +406,12 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.SuhoPetFeedClear, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value);
                 }
                 break;  
+            case Item_Type.SoulRingClear:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value += amount;
+                    param.Add(GoodsTable.SoulRingClear, ServerData.goodsTable.GetTableData(GoodsTable.SoulRingClear).Value);
+                }
+                break;  
             
             case Item_Type.Mileage:
                 {
@@ -431,6 +437,12 @@ public class UiShop : SingletonMono<UiShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value += amount;
                     param.Add(GoodsTable.SinsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.SinsuRelic).Value);
+                }
+                break;  
+            case Item_Type.HyungsuRelic:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value += amount;
+                    param.Add(GoodsTable.HyungsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value);
                 }
                 break;  
             case Item_Type.EventDice:
@@ -479,6 +491,12 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.VisionTreasure, ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value);
                 }
                 break;  
+            case Item_Type.DarkTreasure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.DarkTreasure).Value += amount;
+                    param.Add(GoodsTable.DarkTreasure, ServerData.goodsTable.GetTableData(GoodsTable.DarkTreasure).Value);
+                }
+                break;  
             case Item_Type.GuildTowerClearTicket:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value += amount;
@@ -507,6 +525,12 @@ public class UiShop : SingletonMono<UiShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value += amount;
                     param.Add(GoodsTable.Event_Collection, ServerData.goodsTable.GetTableData(GoodsTable.Event_Collection).Value);
+                }
+                break;
+            case Item_Type.Event_HotTime:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += amount;
+                    param.Add(GoodsTable.Event_HotTime, ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value);
                 }
                 break;
                 
@@ -787,6 +811,45 @@ public class UiShop : SingletonMono<UiShop>
             {
                 ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value += amount;
                 param.Add(GoodsTable.VisionSkill3, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).Value);
+            }
+                break;
+            case Item_Type.VisionSkill4:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).Value += amount;
+                param.Add(GoodsTable.VisionSkill4, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).Value);
+            }
+                break;
+ 
+            //
+            case Item_Type.ThiefSkill0:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill0).Value += amount;
+                param.Add(GoodsTable.ThiefSkill0, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill0).Value);
+            }
+                break;
+            case Item_Type.ThiefSkill1:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill1).Value += amount;
+                param.Add(GoodsTable.ThiefSkill1, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill1).Value);
+            }
+                break;
+            case Item_Type.ThiefSkill2:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill2).Value += amount;
+                param.Add(GoodsTable.ThiefSkill2, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill2).Value);
+            }
+                break;
+            case Item_Type.ThiefSkill3:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill3).Value += amount;
+                param.Add(GoodsTable.ThiefSkill3, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill3).Value);
+            }
+                break;
+ 
+            case Item_Type.ThiefSkill4:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value += amount;
+                param.Add(GoodsTable.ThiefSkill4, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value);
             }
                 break;
  

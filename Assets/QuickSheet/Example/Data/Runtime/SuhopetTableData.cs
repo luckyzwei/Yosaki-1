@@ -76,4 +76,8 @@ public class SuhopetTableData
   int[] requirevalue = new int[0];
   public int[] Requirevalue { get {return requirevalue; } set { this.requirevalue = value;} }
   
+  [SerializeField]
+  int awakeskillid;
+  public int Awakeskillid { get {return awakeskillid; } set { this.awakeskillid = value;} }
+  
 }

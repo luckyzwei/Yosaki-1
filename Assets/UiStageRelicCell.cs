@@ -79,7 +79,7 @@ public class UiStageRelicCell : MonoBehaviour
             }
             else
             {
-                if (abilType == StatusType.SuperCritical6DamPer)
+                if (relicLocalData.Parentidx==2)
                 {
                     if (ServerData.goodsTable.GetTableData(relicLocalData.Requiregoods).Value >= relicLocalData.Requiregoodsvalue)
                     {
@@ -94,6 +94,7 @@ public class UiStageRelicCell : MonoBehaviour
                         relicDescription.SetText($"{CommonString.GetStatusName(abilType)} 0%");
                     }
                 }
+
                 else
                 {
                     relicDescription.SetText($"{CommonString.GetStatusName(abilType)} {abilValue * 100f}%");

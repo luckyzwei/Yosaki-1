@@ -16,6 +16,7 @@ public class SetRandomPosition : MonoBehaviour
     [SerializeField] private float _maxY;
 
     [SerializeField] private float _delay = 0;
+    [SerializeField] private float _startDelay = 0;
 
     [SerializeField] private float _moveSpeed = 5f;
     public bool isMove;
@@ -75,7 +76,7 @@ public class SetRandomPosition : MonoBehaviour
     private void Update()
     {
         //조조
-        if (_bossId == 111||_bossId == 112)
+        if (_bossId == 111||_bossId == 112||_bossId == 123)
         {
             if (isMove)
             {
@@ -94,17 +95,27 @@ public class SetRandomPosition : MonoBehaviour
         {
             float x = Random.Range(_minX, _maxX + 1);
             float y = Random.Range(_minY, _maxY + 1);
-            transform.localPosition = new Vector3(x, y, 0);
-            if (_bossId == 111||_bossId == 112)
+            if (_bossId == 109 || _bossId == 110)
             {
+                transform.localPosition = new Vector3(x, y, 0);
+            }
+            if (_bossId == 111||_bossId == 112 ||_bossId == 123)
+            {
+                transform.localPosition = new Vector3(x, y, 0);
                 SetDir();
                 float angle = Mathf.Atan2(moveDir.normalized.y, moveDir.normalized.x) * Mathf.Rad2Deg;
                 projectileTr.transform.localPosition = Vector3.zero;
                 projectileTr.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             }
+            if (_bossId == 119||_bossId==120||_bossId==121||_bossId==122)
+            {
+                SetDir();
+                float angle = Mathf.Atan2(moveDir.normalized.y, moveDir.normalized.x) * Mathf.Rad2Deg;
+                projectileTr.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            }
             
-            yield return new WaitForSeconds(_delay);;
-
+            yield return new WaitForSeconds(_delay+_startDelay);
+            _startDelay = 0;
         }
     }
 }

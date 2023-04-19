@@ -50,6 +50,28 @@ public class SeletableTab : MonoBehaviour
         //OnSelect(0);
     }
 
+    public void AddElement(Image _image = null, TextMeshProUGUI _textMeshProUGUI = null)
+    {
+        if (_image != null)
+        {
+            tabs.Add(_image);
+        }
+
+        if (_textMeshProUGUI != null)
+        {
+            tabTexts.Add(_textMeshProUGUI);
+        }
+
+    }
+    public void AddGameObject(GameObject _gameObject=null)
+    {
+        if (_gameObject != null)
+        {
+            objects.Add(_gameObject);
+        }
+
+
+    }
     public void OnSelect(int select)
     {
         if (select == -1)

@@ -183,4 +183,22 @@ public class SuhoAnimalServerTable
 
         return lastIdx;
     }
+
+    public int GetSuhoAnimalAwakeSkillIdx()
+    {
+        int ret = -1;
+
+        var tableData = TableManager.Instance.suhoPetTable.dataArray;
+        
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            if (tableDatas[tableData[i].Stringid].level.Value >= GameBalance.suhoAnimalAwakeLevel)
+            {
+                ret = tableData[i].Awakeskillid;
+            }
+        }
+        
+        return ret;
+
+    }
 }

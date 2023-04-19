@@ -15,7 +15,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_11, CommonString.ItemGrade_12, CommonString.ItemGrade_13, CommonString.ItemGrade_14, CommonString.ItemGrade_15, 
         CommonString.ItemGrade_16, CommonString.ItemGrade_17, CommonString.ItemGrade_18, CommonString.ItemGrade_19, CommonString.ItemGrade_20 ,
         CommonString.ItemGrade_21 , CommonString.ItemGrade_22 , CommonString.ItemGrade_23 , CommonString.ItemGrade_24, CommonString.ItemGrade_25,
-        CommonString.ItemGrade_26 };
+        CommonString.ItemGrade_26, CommonString.ItemGrade_27 };
     public List<string> ItemGradeName_Weapon => itemGradeName_Weapon;
 
     private List<string> itemGradeName_Norigae = new List<string>() { CommonString.ItemGrade_0, 
@@ -24,7 +24,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,  //11~15
         CommonString.ItemGrade_11_Norigae, CommonString.ItemGrade_12_Norigae, CommonString.ItemGrade_13_Norigae, string.Empty, string.Empty,//16~20
         string.Empty, CommonString.ItemGrade_22_Norigae, string.Empty,CommonString.ItemGrade_24_Norigae ,string.Empty, //21~25,
-        CommonString.ItemGrade_26_Norigae
+        CommonString.ItemGrade_26_Norigae, CommonString.ItemGrade_27_Norigae,
     }; 
     public List<string> ItemGradeName_Norigae => itemGradeName_Norigae;
 
@@ -34,7 +34,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_6_Skill, CommonString.ItemGrade_7_Skill, CommonString.ItemGrade_8_Skill, CommonString.ItemGrade_9_Skill, CommonString.ItemGrade_10_Skill,
         CommonString.ItemGrade_11_Skill,string.Empty,string.Empty,string.Empty,string.Empty,
         string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,
-        string.Empty,CommonString.ItemGrade_12_Skill,CommonString.ItemGrade_13_Skill};
+        string.Empty,CommonString.ItemGrade_12_Skill,CommonString.ItemGrade_13_Skill,CommonString.ItemGrade_14_Skill};
     public List<string> ItemGradeName_Skill => itemGradeName_Skill;
 
     private List<string> itemGradeName_NewGacha= new List<string>() { 
@@ -123,6 +123,12 @@ public Sprite KingWeapon0;
 public Sprite KingWeapon1;
 public Sprite KingWeapon2;
 public Sprite KingWeapon3;
+
+public Sprite DarkWeapon0;
+public Sprite DarkWeapon1;
+public Sprite DarkWeapon2;
+public Sprite DarkWeapon3;
+public Sprite MasterWeapon0;
     
 [Header ("Weapon_View")]
 
@@ -216,12 +222,20 @@ public Sprite RecommendWeapon22;
     public Sprite KingNorigae2;
     public Sprite KingNorigae3;
     
+    public Sprite DarkNorigae0;
+    public Sprite DarkNorigae1;
+    public Sprite DarkNorigae2;
+    public Sprite DarkNorigae3;
+    
+    public Sprite MasterNorigae0;
+    
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
     public Sprite MonthNorigae2;
     public Sprite MonthNorigae3;
     public Sprite MonthNorigae4;
+    public Sprite MonthNorigae5;
     
     [Header ("DokebiHorn")]
     public Sprite DokebiHorn0;
@@ -299,6 +313,13 @@ public Sprite RecommendWeapon22;
     public Sprite VisionSkill1;
     public Sprite VisionSkill2;
     public Sprite VisionSkill3;
+    public Sprite VisionSkill4;
+    
+    public Sprite ThiefSkill0;
+    public Sprite ThiefSkill1;
+    public Sprite ThiefSkill2;
+    public Sprite ThiefSkill3;
+    public Sprite ThiefSkill4;
 
     
     [Header ("Goods")]
@@ -340,6 +361,7 @@ public Sprite RecommendWeapon22;
     public Sprite DokebiFire;
     public Sprite SuhoPetFeed;
     public Sprite SuhoPetFeedClear;
+    public Sprite SoulRingClear;
     public Sprite Mileage;
     public Sprite HellPower;
     public Sprite DokebiFireKey;
@@ -348,6 +370,7 @@ public Sprite RecommendWeapon22;
     public Sprite SusanoTreasure;
     public Sprite SahyungTreasure;
     public Sprite VisionTreasure;
+    public Sprite DarkTreasure;
     public Sprite GuildTowerClearTicket;
     public Sprite GuildTowerHorn;
     public Sprite SinsuMarble;
@@ -357,11 +380,13 @@ public Sprite RecommendWeapon22;
     public Sprite NewGachaEnergy;
     public Sprite DokebiBundle;
     public Sprite SinsuRelic;
+    public Sprite HyungsuRelic;
     [Header ("Goods_Event")]
     public Sprite Songpyeon;
     public Sprite EventCollection;
     public Sprite EventCollection2;
     public Sprite Event_Fall;
+    public Sprite Event_HotTime;
     public Sprite Event_Fall_Gold;
     public Sprite Event_XMas;
     public Sprite Event_Mission;
@@ -721,6 +746,18 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[103];
             case Item_Type.costume104:
                 return costumeThumbnail[104];
+            case Item_Type.costume105:
+                return costumeThumbnail[105];
+            case Item_Type.costume106:
+                return costumeThumbnail[106];
+            case Item_Type.costume107:
+                return costumeThumbnail[107];
+            case Item_Type.costume108:
+                return costumeThumbnail[108];
+            case Item_Type.costume109:
+                return costumeThumbnail[109];
+            case Item_Type.costume110:
+                return costumeThumbnail[110];
 
 
             case Item_Type.RankFrame1:
@@ -1065,6 +1102,8 @@ public Sprite RecommendWeapon22;
                 return SuhoPetFeed;    
             case Item_Type.SuhoPetFeedClear:
                 return SuhoPetFeedClear;
+            case Item_Type.SoulRingClear:
+                return SoulRingClear;
 
    
             case Item_Type.SumiFire:
@@ -1078,6 +1117,8 @@ public Sprite RecommendWeapon22;
             
             case Item_Type.SinsuRelic:
                 return SinsuRelic;
+            case Item_Type.HyungsuRelic:
+                return HyungsuRelic;
 
 
             case Item_Type.EventDice:
@@ -1114,6 +1155,8 @@ public Sprite RecommendWeapon22;
                 return SahyungTreasure;    
             case Item_Type.VisionTreasure:
                 return VisionTreasure;   
+            case Item_Type.DarkTreasure:
+                return DarkTreasure;   
             case Item_Type.GuildTowerClearTicket:
                 return GuildTowerClearTicket;  
             case Item_Type.GuildTowerHorn:
@@ -1137,6 +1180,8 @@ public Sprite RecommendWeapon22;
 
             case Item_Type.Event_Collection:
                 return Event_Fall;
+            case Item_Type.Event_HotTime:
+                return Event_HotTime;
 
 
             case Item_Type.Event_Fall_Gold:
@@ -1336,6 +1381,16 @@ public Sprite RecommendWeapon22;
                 return KingNorigae2;
             case Item_Type.KingNorigae3:
                 return KingNorigae3;
+            case Item_Type.DarkNorigae0:
+                return DarkNorigae0;
+            case Item_Type.DarkNorigae1:
+                return DarkNorigae1;
+            case Item_Type.DarkNorigae2:
+                return DarkNorigae2;
+            case Item_Type.DarkNorigae3:
+                return DarkNorigae3;
+            case Item_Type.MasterNorigae0:
+                return MasterNorigae0;
 
 
             //
@@ -1353,6 +1408,8 @@ public Sprite RecommendWeapon22;
                 return MonthNorigae3;
             case Item_Type.MonthNorigae4:
                 return MonthNorigae4;
+            case Item_Type.MonthNorigae5:
+                return MonthNorigae5;
             //
             //
             case Item_Type.DokebiHorn0:
@@ -1694,6 +1751,20 @@ public Sprite RecommendWeapon22;
                 return VisionSkill2;
             case Item_Type.VisionSkill3:
                 return VisionSkill3;
+            case Item_Type.VisionSkill4:
+                return VisionSkill4;
+            //
+            //
+            case Item_Type.ThiefSkill0:
+                return ThiefSkill0;
+            case Item_Type.ThiefSkill1:
+                return ThiefSkill1;
+            case Item_Type.ThiefSkill2:
+                return ThiefSkill2;
+            case Item_Type.ThiefSkill3:
+                return ThiefSkill3;
+            case Item_Type.ThiefSkill4:
+                return ThiefSkill4;
             //
             case Item_Type.GangrimSkill:
                 return GangrimSkill;
@@ -1833,6 +1904,17 @@ public Sprite RecommendWeapon22;
                 return KingWeapon2;
             case Item_Type.KingWeapon3:
                 return KingWeapon3;
+            
+            case Item_Type.DarkWeapon0:
+                return DarkWeapon0;
+            case Item_Type.DarkWeapon1:
+                return DarkWeapon1;
+            case Item_Type.DarkWeapon2:
+                return DarkWeapon2;
+            case Item_Type.DarkWeapon3:
+                return DarkWeapon3;
+            case Item_Type.MasterWeapon0:
+                return MasterWeapon0;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;
@@ -1992,10 +2074,18 @@ public Sprite RecommendWeapon22;
             case Item_Type.h6: return CommonResourceContainer.GetHellIconSprite(6);
             case Item_Type.h7: return CommonResourceContainer.GetHellIconSprite(7);
             case Item_Type.h8: return CommonResourceContainer.GetHellIconSprite(8);
-            case Item_Type.h9:
-                return CommonResourceContainer.GetHellIconSprite(9);
+            case Item_Type.h9: return CommonResourceContainer.GetHellIconSprite(9);
 
 
+
+            case Item_Type.d0: return CommonResourceContainer.GetDarkIconSprite(0);
+            case Item_Type.d1: return CommonResourceContainer.GetDarkIconSprite(1);
+            case Item_Type.d2: return CommonResourceContainer.GetDarkIconSprite(2);
+            case Item_Type.d3: return CommonResourceContainer.GetDarkIconSprite(3);
+            case Item_Type.d4: return CommonResourceContainer.GetDarkIconSprite(4);
+            case Item_Type.d5: return CommonResourceContainer.GetDarkIconSprite(5);
+            case Item_Type.d6: return CommonResourceContainer.GetDarkIconSprite(6);
+            case Item_Type.d7: return CommonResourceContainer.GetDarkIconSprite(7);
 
             case Item_Type.c0: return CommonResourceContainer.GetChunIconSprite(0);
             case Item_Type.c1: return CommonResourceContainer.GetChunIconSprite(1);

@@ -33,7 +33,7 @@ public class UiGyungRockMassgeBoard : MonoBehaviour
 
         currentFloorDescription.SetText($"{currentFloor}단계");
 
-        currentFloorAbil.SetText($"혈자리 {currentFloor}개 개방됨");
+        currentFloorAbil.SetText($"혈자리(하단전) {currentFloor}개 개방됨");
 
         if (currentFloor >= TableManager.Instance.gyungRockTowerTable.dataArray.Length)
         {

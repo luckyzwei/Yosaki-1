@@ -7,7 +7,16 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
-public class UiMonthPassSystem : MonoBehaviour
+using UnityEngine.UI.Extensions;
+public class MonthlyPassData_Fancy
+{
+    public PassInfo passInfo { get; private set; }
+    public MonthlyPassData_Fancy(PassInfo passData)
+    {
+        this.passInfo = passData;
+    }
+}
+public class UiMonthPassSystem : FancyScrollView<MonthlyPassData_Fancy>
 {
     [SerializeField]
     private UiMonthlyPassCell uiPassCellPrefab;
@@ -29,39 +38,35 @@ public class UiMonthPassSystem : MonoBehaviour
     }
 #endif
 
-    private void Start()
-    {
-        Initialize();
-    }
     private void Initialize()
     {
         var tableData = TableManager.Instance.MonthlyPass.dataArray;
-
+        
         int interval = tableData.Length - uiPassCellContainer.Count;
-
+        
         for (int i = 0; i < interval; i++)
         {
             var prefab = Instantiate<UiMonthlyPassCell>(uiPassCellPrefab, cellParent);
             uiPassCellContainer.Add(prefab);
         }
-
+        
         for (int i = 0; i < uiPassCellContainer.Count; i++)
         {
             if (i < tableData.Length)
             {
                 var passInfo = new PassInfo();
-
+        
                 passInfo.require = tableData[i].Unlockamount;
                 passInfo.id = tableData[i].Id;
-
+        
                 passInfo.rewardType_Free = tableData[i].Reward1;
                 passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
                 passInfo.rewardType_Free_Key = MonthlyPassServerTable.MonthlypassFreeReward;
-
+        
                 passInfo.rewardType_IAP = tableData[i].Reward2;
                 passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
                 passInfo.rewardType_IAP_Key = MonthlyPassServerTable.MonthlypassAdReward;
-
+        
                 uiPassCellContainer[i].gameObject.SetActive(true);
                 uiPassCellContainer[i].Initialize(passInfo);
             }
@@ -71,7 +76,7 @@ public class UiMonthPassSystem : MonoBehaviour
             }
         }
 
-        // cellParent.transform.localPosition = new Vector3(0f, cellParent.transform.localPosition.y, cellParent.transform.localPosition.z);
+        cellParent.transform.localPosition = new Vector3(0f, cellParent.transform.localPosition.y, cellParent.transform.localPosition.z);
     }
 
     public void OnClickAllReceiveButton()
@@ -289,5 +294,47 @@ public class UiMonthPassSystem : MonoBehaviour
         {
             uiPassCellContainer[i].RefreshParent();
         }
+    }
+    
+    //
+    [SerializeField]
+    private Scroller scroller;
+    
+    
+    [SerializeField] GameObject cellPrefab = default;
+
+    protected override GameObject CellPrefab => cellPrefab;
+    private void Start()
+    {
+        scroller.Initialize(PassTypeScroll.MonthPass);
+        
+        scroller.OnValueChanged(UpdatePosition);
+    
+        
+        var tableData = TableManager.Instance.MonthlyPass.dataArray;
+    
+        List<MonthlyPassData_Fancy> passInfos = new List<MonthlyPassData_Fancy>();
+    
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var passInfo = new PassInfo();
+    
+            passInfo.require = tableData[i].Unlockamount;
+            passInfo.id = tableData[i].Id;
+    
+            passInfo.rewardType_Free = tableData[i].Reward1;
+            passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
+            passInfo.rewardType_Free_Key = MonthlyPassServerTable.MonthlypassFreeReward;
+    
+            passInfo.rewardType_IAP = tableData[i].Reward2;
+            passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
+            passInfo.rewardType_IAP_Key = MonthlyPassServerTable.MonthlypassAdReward;
+            passInfos.Add(new MonthlyPassData_Fancy(passInfo));
+    
+        }
+    
+    
+        this.UpdateContents(passInfos.ToArray());
+        scroller.SetTotalCount(passInfos.Count);
     }
 }

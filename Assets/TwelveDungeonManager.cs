@@ -375,6 +375,10 @@ public class TwelveDungeonManager : ContentsManagerBase
             {
                 remainSec *= 0.5f;
             }
+            else if (twelveBossTable.TIMETYPE == TimeType.Quarter)
+            {
+                remainSec *= 0.25f;
+            }
         }
 
         while (remainSec >= 0)

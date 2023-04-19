@@ -157,8 +157,10 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         rewards[13].SetText(Utils.ConvertBigNum(reward.chunItem));  
         //전리품
         rewards[14].SetText(Utils.ConvertBigNum(reward.dailybootyItem));
-        //전리품
+        //도깨비불
         rewards[15].SetText(Utils.ConvertBigNum(reward.dokebiItem));
+        //핫타임
+        rewards[16].SetText(Utils.ConvertBigNum(reward.hotTimeItem));
 
         SleepRewardReceiver.Instance.GetRewardSuccess();
     }
