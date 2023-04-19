@@ -46,14 +46,32 @@ public class UiGyungRockTowerResult : MonoBehaviour
                 stageChangeText.SetText("재도전");
                 return "시간초과!";
             case ContentsState.Clear:
-                if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx5).Value < (TableManager.Instance.gyungRockTowerTable.dataArray.Length))
+
+                if (GameManager.contentsType == GameManager.ContentsType.GyungRockTower)
                 {
-                    stageChangeText.SetText("다음 스테이지");
+                    if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx5).Value < (TableManager.Instance.gyungRockTowerTable.dataArray.Length))
+                    {
+                        stageChangeText.SetText("다음 스테이지");
+                    }
+                    else
+                    {
+                        stageChangeButton.SetActive(false);
+                    }
                 }
-                else
+                
+                if (GameManager.contentsType == GameManager.ContentsType.GyungRockTower2)
                 {
-                    stageChangeButton.SetActive(false);
+                    if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx7).Value < (TableManager.Instance.gyungRockTowerTable2.dataArray.Length))
+                    {
+                        stageChangeText.SetText("다음 스테이지");
+                    }
+                    else
+                    {
+                        stageChangeButton.SetActive(false);
+                    }
                 }
+                
+       
                 return "클리어!!";
         }
 
