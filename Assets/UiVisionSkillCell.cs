@@ -35,14 +35,10 @@ public class UiVisionSkillCell : MonoBehaviour
 
         skillIcon.sprite = CommonResourceContainer.GetSkillIconSprite(skillTableData.Id);
 
-        if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx7].Value >= 10)
-        {
-            activeRequireDescription.SetText($"기술 {this.skillTableData.Requirehit-GameBalance.HyulVisionSkillDecreaseValue}회 사용후 발동");
-        }
-        else
-        {
-            activeRequireDescription.SetText($"기술 {this.skillTableData.Requirehit}회 사용후 발동");
-        }
+        //if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx7].Value >= 10)
+
+        activeRequireDescription.SetText($"기술 {this.skillTableData.Requirehit}회 사용후 발동");
+        
       
 
         Subscribe();

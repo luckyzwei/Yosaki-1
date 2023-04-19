@@ -116,8 +116,8 @@ public class UiInventoryAnimalView : MonoBehaviour
 
         suhoSuhoPetServerData.hasItem.AsObservable().Subscribe(e => { lockObject.SetActive(e == 0); }).AddTo(this);
     }
-    
 
+    
     public void OnClickLevelUpButton()
     {
         if (suhoSuhoPetServerData.level.Value != GameBalance.suhoAnimalAwakeLevel - 1)
@@ -126,7 +126,9 @@ public class UiInventoryAnimalView : MonoBehaviour
         }
         else
         {
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "수호동물을 각성 할까요?\n수호동물 각성시, 장착된 수호동물이 기술을 사용 합니다.", () => { LevelUpRoutine(); }, null);
+            continueOpenButton_Continue.gameObject.SetActive(false);
+            continueOpenButton_Continue.StopAutoClickRoutine();
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "수호동물을 각성 할까요?\n수호동물 각성시,수호동물이 기술을 사용 합니다.\n(각성된 수호동물중 가장 높은 단계 기술 사용)", () => { LevelUpRoutine(); }, null);
         }
     }
 

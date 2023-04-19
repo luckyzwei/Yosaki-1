@@ -19,7 +19,7 @@ public class UiGoldAbilAddDescription : MonoBehaviour
         ServerData.equipmentTable.TableDatas[EquipmentTable.MagicBook].AsObservable().Subscribe(e =>
         {
             description.SetText(
-                ($"노리개,장식 효과로 공격 능력치 {PlayerStats.GetGoldAbilAddRatio() * PlayerStats.GetNorigaeSoulGradeValue()}배 강화됨"));
+                ($"노리개,장식 효과로 공격 능력치 {Utils.ConvertBigNum(PlayerStats.GetGoldAbilAddRatio() * PlayerStats.GetNorigaeSoulGradeValue())}배 강화됨"));
         }).AddTo(this);
     }
     

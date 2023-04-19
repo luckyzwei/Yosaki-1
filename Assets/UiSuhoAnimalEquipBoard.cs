@@ -32,7 +32,7 @@ public class UiSuhoAnimalEquipBoard : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value += 10;
+            ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeed).Value += 1000;
         }
     }
 #endif

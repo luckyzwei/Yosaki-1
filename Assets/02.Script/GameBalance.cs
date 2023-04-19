@@ -346,8 +346,7 @@ public static class GameBalance
     public readonly static ObscuredFloat HotTimeEvent_Ad_Gold = 20;
     public readonly static ObscuredFloat HotTimeEvent_Ad_GrowthStone = 15;
     public readonly static ObscuredFloat HotTimeEvent_Ad_Marble = 5;
-    public readonly static ObscuredInt HyulVisionSkillDecreaseValue = 100;
-    public readonly static ObscuredBool isOddMonthlyPass = true; // 월간훈련 홀수월, 짝수월
+    public readonly static ObscuredBool isOddMonthlyPass = false; // 월간훈련 홀수월, 짝수월
     
     public readonly static ObscuredInt fireFlyRequire = 165;
     public readonly static ObscuredInt fireFlyFixedScore = 173;

@@ -247,7 +247,7 @@ public class UiEventMissionShopCell : MonoBehaviour
 
     private Coroutine syncRoutine;
 
-    private WaitForSeconds syncDelay = new WaitForSeconds(0.5f);
+    private WaitForSeconds syncDelay = new WaitForSeconds(0.1f);
 
     public IEnumerator SyncRoutine()
     {

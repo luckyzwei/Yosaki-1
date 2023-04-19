@@ -40,6 +40,8 @@ public class UiStageNameIndicater : SingletonMono<UiStageNameIndicater>
 
     [SerializeField]
     private GameObject hotTimeBuffObject;
+    [SerializeField]
+    private GameObject hotTimeEventBuffObject;
 
 
 
@@ -114,26 +116,13 @@ public class UiStageNameIndicater : SingletonMono<UiStageNameIndicater>
 
     private void Subscribe()
     {
-        if (ServerData.userInfoTable.IsHotTimeEvent())
-        {
-            hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTimeEvent());
-        }
-        else
-        {
-            hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTime());
-        }
 
+        hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTime());
+        hotTimeEventBuffObject.SetActive(ServerData.userInfoTable.IsHotTimeEvent());
         ServerData.userInfoTable.whenServerTimeUpdated.AsObservable().Subscribe(e =>
         {
-            if (ServerData.userInfoTable.IsHotTimeEvent())
-            {
-                hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTimeEvent());
-            }
-            else
-            {
-                hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTime());
-            }
-
+            hotTimeEventBuffObject.SetActive(ServerData.userInfoTable.IsHotTimeEvent());
+            hotTimeBuffObject.SetActive(ServerData.userInfoTable.IsHotTime());
         }).AddTo(this);
     }
 

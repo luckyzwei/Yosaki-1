@@ -35,6 +35,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     private string newWeaponKey1 = "weapon23";
     private string newWeaponKey2 = "weapon24";
 
+    private int addChargeCount = 1;
     public ReactiveProperty<int> visionChargeCount;
     public ReactiveProperty<bool> useVisionSkill;
 
@@ -79,12 +80,13 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
                 {
                     if (!MapInfo.Instance.canSpawnEnemy.Value)
                     {
-                        visionChargeCount.Value--;
+                            visionChargeCount.Value-=addChargeCount;
+                        
                     }
                 }
                 else
                 {
-                    visionChargeCount.Value--;
+                    visionChargeCount.Value-=addChargeCount;
                 }
             }
 
@@ -102,14 +104,9 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     public void InitializeVisionSkill()
     {
         int visionIdx = ServerData.goodsTable.GetVisionSkillIdx();
-        if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx7].Value >= 10)
-        {
-            visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[visionIdx].Requirehit - GameBalance.HyulVisionSkillDecreaseValue;
-        }
-        else
-        {
-            visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[visionIdx].Requirehit;
-        }
+
+        visionChargeCount.Value = TableManager.Instance.SkillTable.dataArray[visionIdx].Requirehit;
+
 
         useVisionSkill.Value = false;
         
@@ -155,6 +152,16 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             {
                 addRange = 10;
             }
+        }).AddTo(this);
+
+
+        ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx7].AsObservable().Subscribe(e =>
+        {
+            if (e >= 10)
+            {
+                addChargeCount = 2;
+            }
+                        
         }).AddTo(this);
     }
 

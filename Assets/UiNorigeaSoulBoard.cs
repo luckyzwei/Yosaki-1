@@ -75,8 +75,8 @@ public class UiNorigeaSoulBoard : MonoBehaviour
         else
         {
             PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
-                $"노리개 수호령 각성시 최고점수가 {Utils.ConvertBigNumForRewardCell(GameBalance.NorigaeSoulFixedScore)}으로 고정 됩니다. \n" +
-                $"그리고 노리개 수호령 효과가 {GameBalance.NorigaeSoulGraduatePlusValue}배 강화 됩니다.\n" +
+                $"수호령을 각성하려면 점수가 {Utils.ConvertBigNumForRewardCell(GameBalance.NorigaeSoulFixedScore)}이상 이어야 합니다. \n" +
+                $"각성시 수호령 효과가 {(GameBalance.NorigaeSoulGraduatePlusValue-1)*100f}% 강화 됩니다.\n" +
                 "각성 하시겠습니까??", () =>
                 {
                     ServerData.userInfoTable.TableDatas[UserInfoTable.graduateNorigaeSoul].Value = 1;
