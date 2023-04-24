@@ -2358,8 +2358,24 @@ public static class PlayerStats
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
 
+        if (statusType == StatusType.SuperCritical10DamPer)
+        {
+            ret += GetTreasureHasAddValue() * currentLevel;
+        }
+
         return ret;
     }
+    
+    public static float GetTreasureHasAddValue()
+    {
+        float ret = 0f;
+
+        ret += GetSkillHasValue(StatusType.TreasureHasValueUpgrade);
+
+
+        return ret;
+    }
+    
     public static float GetDarkTreasureAbilHasEffect(StatusType statusType, int addLevel = 0)
     {
         if (ServerData.statusTable.GetTableData(StatusTable.Level).Value < 2000000) return 0f;
