@@ -348,7 +348,7 @@ public static class GameBalance
     public readonly static ObscuredFloat HotTimeEvent_Ad_Marble = 5;
     public readonly static ObscuredBool isOddMonthlyPass = false; // 월간훈련 홀수월, 짝수월
     
-    public readonly static ObscuredInt fireFlyRequire = 165;
+    public readonly static ObscuredInt fireFlyRequire = 160;
     public readonly static ObscuredInt fireFlyFixedScore = 173;
     
     public readonly static ObscuredInt BlackWolfRingDevideIdx = 40000;

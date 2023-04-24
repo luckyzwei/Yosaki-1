@@ -61,6 +61,7 @@ public enum StatusType
     SuperCritical12DamPer, //암흑베기 
     SuperCritical13DamPer, //중단전베기 
     TreasureHasValueUpgrade, // 보물당 섬광베기
+    SuperCritical14DamPer, //여우베기 
 }
 
 
@@ -1514,6 +1515,7 @@ public static class PlayerStats
         return ret;
     }
 
+    //섬광베기
     public static float GetSuperCritical10DamPer()
     {
         float ret = 0f;
@@ -1525,6 +1527,7 @@ public static class PlayerStats
         ret += GetTresureAbilHasEffect(StatusType.SuperCritical10DamPer);
 
         ret += GetThiefAbil(StatusType.SuperCritical10DamPer);
+
         
         return ret;
     }
@@ -2357,25 +2360,12 @@ public static class PlayerStats
 
             ret += tableDatas[i].Abilvalue + calculatedLevel * tableDatas[i].Abiladdvalue;
         }
-
         if (statusType == StatusType.SuperCritical10DamPer)
         {
             ret += GetTreasureHasAddValue() * currentLevel;
         }
-
         return ret;
     }
-    
-    public static float GetTreasureHasAddValue()
-    {
-        float ret = 0f;
-
-        ret += GetSkillHasValue(StatusType.TreasureHasValueUpgrade);
-
-
-        return ret;
-    }
-    
     public static float GetDarkTreasureAbilHasEffect(StatusType statusType, int addLevel = 0)
     {
         if (ServerData.statusTable.GetTableData(StatusTable.Level).Value < 2000000) return 0f;
@@ -3753,6 +3743,15 @@ public static class PlayerStats
         ret += GetGradeTestAbilValue(StatusType.DokebiFireHasValueUpgrade);
 
         ret += GetPassiveSkill2Value(StatusType.DokebiFireHasValueUpgrade);
+
+        return ret;
+    }
+
+    public static float GetTreasureHasAddValue()
+    {
+        float ret = 0f;
+
+        ret += GetSkillHasValue(StatusType.TreasureHasValueUpgrade);
 
         return ret;
     }

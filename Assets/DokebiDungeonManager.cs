@@ -57,7 +57,7 @@ public class DokebiDungeonManager : ContentsManagerBase
         GuideMissionManager.UpdateGuideMissionClear(GuideMissionKey.ClearOni);
 
         //580미만은 600으로 고정 ->기기별 데미지 차이
-        if (enemyDeadCount.Value >= 580)
+        if (enemyDeadCount.Value >= 570)
         {
             enemyDeadCount.Value = 600;
         }
