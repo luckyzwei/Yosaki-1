@@ -23,6 +23,10 @@ public class UiGangChulRewardPopup : SingletonMono<UiGangChulRewardPopup>
     private TextMeshProUGUI damRequireText;
 
     private TwelveBossRewardInfo requireRewardInfo;
+
+    [SerializeField]
+    private ContinueOpenButton continueOpenButton;
+    
     private void OnEnable()
     {
         Initialize(20);
@@ -49,6 +53,7 @@ public class UiGangChulRewardPopup : SingletonMono<UiGangChulRewardPopup>
         if (bossTableData.Rewardvalue.Length <= requireIdx)
         {
             // 마지막 단계 도착.
+            continueOpenButton.StopAutoClickRoutine();
             rootObject.SetActive(false);
             EndlockMask.SetActive(true);
             requireIdx = bossTableData.Rewardvalue.Length-1;
@@ -89,7 +94,7 @@ public class UiGangChulRewardPopup : SingletonMono<UiGangChulRewardPopup>
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
         Param goodsParam = new Param();
-        goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)bossTableData.Rewardtype[requireIdx]), ServerData.goodsTable.GetTableData((Item_Type)bossTableData.Rewardtype[requireIdx]).Value);
+        goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString(Item_Type.GrowthStone), ServerData.goodsTable.GetTableData(Item_Type.GrowthStone).Value);
         transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
         
@@ -114,9 +119,18 @@ public class UiGangChulRewardPopup : SingletonMono<UiGangChulRewardPopup>
         }
         //받은 인덱스
         var currentIdx = ServerData.userInfoTable.GetTableData(UserInfoTable.gangchulRewardIdx).Value;
+        
+        
         if (currentIdx >= requireRewardInfo.idx)
         {
             PopupManager.Instance.ShowAlarmMessage("이미 획득한 보상입니다.");
+            continueOpenButton.StopAutoClickRoutine();
+            return;
+        }
+
+        if (currentIdx >= bossTableData.Rewardtype.Length - 1)
+        {
+            PopupManager.Instance.ShowAlarmMessage("최고 단계 입니다");
             return;
         }
 
