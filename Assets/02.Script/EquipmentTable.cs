@@ -42,6 +42,8 @@ public class EquipmentTable
     public static string Pet = "Pet";
     public static string MagicBook = "MagicBook";
     public static string SoulRing = "NG";
+    public static string SealSword = "SS";
+    public static string SealSword_View = "SSV";
     public static string Potion = "Potion";
     public static string CostumeSlot = "CostumeSlot";
     public static string CostumeLook = "CostumeLook";
@@ -68,6 +70,8 @@ public class EquipmentTable
         {Pet,-1},
         {MagicBook,-1},
         {SoulRing,-1},
+        {SealSword,-1},
+        {SealSword_View,-1},
         {Potion,2},
         {CostumeSlot,0},
         {CostumeLook,0},

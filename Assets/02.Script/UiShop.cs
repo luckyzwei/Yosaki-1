@@ -266,6 +266,12 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
                 }
                 break;
+            case Item_Type.Event_Item_SnowMan_All:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value += amount;
+                    param.Add(GoodsTable.Event_Item_SnowMan_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value);
+                }
+                break;
 
             case Item_Type.SulItem:
                 {
@@ -424,6 +430,12 @@ public class UiShop : SingletonMono<UiShop>
                     ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += amount;
                     param.Add(GoodsTable.SumiFire, ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value);
                 }
+                break;  
+            case Item_Type.SealWeaponClear:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += amount;
+                    param.Add(GoodsTable.SealWeaponClear, ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value);
+                }
                 break;   
             
             case Item_Type.Tresure:
@@ -443,6 +455,18 @@ public class UiShop : SingletonMono<UiShop>
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value += amount;
                     param.Add(GoodsTable.HyungsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value);
+                }
+                break;  
+            case Item_Type.FoxRelic:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value += amount;
+                    param.Add(GoodsTable.FoxRelic, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value);
+                }
+                break;  
+            case Item_Type.FoxRelicClearTicket:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value += amount;
+                    param.Add(GoodsTable.FoxRelicClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value);
                 }
                 break;  
             case Item_Type.EventDice:

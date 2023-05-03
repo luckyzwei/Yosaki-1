@@ -436,11 +436,21 @@ public static class CommonResourceContainer
     public static Sprite GetNewGachaIconSprite(int idx)
     {
         return GetNewGachaIconSprite(TableManager.Instance.NewGachaData[idx]);
+    }  
+    
+    public static Sprite GetSealSwordIconSprite(int idx)
+    {
+        return GetIconSpriSealSwordSprite(TableManager.Instance.SealSwordData[idx]);
     }
 
     public static Sprite GetNewGachaIconSprite(NewGachaTableData newGachaData)
     {
         return Resources.Load<Sprite>($"NewGachaIcon/{newGachaData.Skillicon}");
+    } 
+    
+    public static Sprite GetIconSpriSealSwordSprite(SealSwordData sealSwordData)
+    {
+        return Resources.Load<Sprite>($"SealSwordIcon/{sealSwordData.Id}");
     }
 
     public static Sprite GetPassiveSkillIconSprite(int idx)

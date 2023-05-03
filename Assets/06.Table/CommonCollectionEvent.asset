@@ -175,8 +175,8 @@ MonoBehaviour:
     limit: 1
     description: "\uC694\uAD34\uBD88\uAF43"
     price: 7000000
-    exchangekey: co0
-    exchangemaxcount: 0
+    exchangekey: co0_0
+    exchangemaxcount: 100
     lastexchange: 0
     commontableeventtype: 0
     active: 0
@@ -247,12 +247,12 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 21
-    itemtype: 46
-    itemvalue: 1500
-    limit: 0
-    description: "\uAC80\uC870\uAC01"
+    itemtype: 88
+    itemvalue: 600
+    limit: 1
+    description: "\uCC9C\uACC4\uAF43"
     price: 500000
-    exchangekey: co1
+    exchangekey: co0_1
     exchangemaxcount: 200
     lastexchange: 0
     commontableeventtype: 0
@@ -335,12 +335,12 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 29
-    itemtype: 73
-    itemvalue: 500
+    itemtype: 9001
+    itemvalue: 600
     limit: 1
-    description: "\uBD88\uBA78\uC11D"
+    description: "\uB3C4\uAE68\uBE44\uBD88"
     price: 500000
-    exchangekey: co2
+    exchangekey: co0_2
     exchangemaxcount: 200
     lastexchange: 0
     commontableeventtype: 0
@@ -379,65 +379,65 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 33
-    itemtype: 88
-    itemvalue: 300
+    itemtype: 1216
+    itemvalue: 1
     limit: 1
-    description: "\uCC9C\uACC4\uAF43"
-    price: 500000
-    exchangekey: co3
-    exchangemaxcount: 200
+    description: 
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
     lastexchange: 0
     commontableeventtype: 0
     active: 1
   - id: 34
-    itemtype: 9001
-    itemvalue: 300
-    limit: 1
-    description: "\uB3C4\uAE68\uBE44\uBD88"
-    price: 500000
-    exchangekey: co4
-    exchangemaxcount: 200
+    itemtype: 1291
+    itemvalue: 1
+    limit: 0
+    description: "\uB178\uBE44"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
     lastexchange: 0
     commontableeventtype: 0
     active: 1
   - id: 35
-    itemtype: 1278
-    itemvalue: 1
+    itemtype: 9008
+    itemvalue: 500
     limit: 1
-    description: 
-    price: 7000000
-    exchangekey: 
-    exchangemaxcount: 0
+    description: "\uC218\uBBF8\uAF43"
+    price: 500000
+    exchangekey: co0_3
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 0
     active: 1
   - id: 36
-    itemtype: 1270
-    itemvalue: 1
+    itemtype: 9010
+    itemvalue: 2000
     limit: 1
-    description: 
-    price: 7000000
-    exchangekey: 
-    exchangemaxcount: 0
+    description: "\uC601\uD63C\uC11D"
+    price: 500000
+    exchangekey: co0_4
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 0
     active: 1
   - id: 37
-    itemtype: 1264
-    itemvalue: 1
+    itemtype: 9016
+    itemvalue: 50
     limit: 1
-    description: 
-    price: 7000000
-    exchangekey: 
-    exchangemaxcount: 0
+    description: "\uC218\uD638\uD658"
+    price: 500000
+    exchangekey: co0_5
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 0
     active: 1
   - id: 38
-    itemtype: 1263
+    itemtype: 1246
     itemvalue: 1
-    limit: 1
-    description: 
+    limit: 0
+    description: "\uC655\uC790 \uD638\uC5F0"
     price: 7000000
     exchangekey: 
     exchangemaxcount: 0
@@ -445,10 +445,10 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 39
-    itemtype: 1256
+    itemtype: 1250
     itemvalue: 1
-    limit: 1
-    description: 
+    limit: 0
+    description: "\uADC0\uC871 \uD638\uC5F0"
     price: 7000000
     exchangekey: 
     exchangemaxcount: 0
@@ -456,10 +456,10 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 40
-    itemtype: 1255
+    itemtype: 1251
     itemvalue: 1
-    limit: 1
-    description: 
+    limit: 0
+    description: "\uADC0\uC871 \uD638\uC21C"
     price: 7000000
     exchangekey: 
     exchangemaxcount: 0
@@ -467,13 +467,101 @@ MonoBehaviour:
     commontableeventtype: 0
     active: 1
   - id: 41
-    itemtype: 9008
-    itemvalue: 400
+    itemtype: 1253
+    itemvalue: 1
+    limit: 0
+    description: "\uD55C\uAC00\uC704 \uD638\uC21C"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 42
+    itemtype: 1255
+    itemvalue: 1
+    limit: 0
+    description: "\uCC9C\uC0AC \uD638\uC5F0"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 43
+    itemtype: 1256
+    itemvalue: 1
+    limit: 0
+    description: "\uCC9C\uC0AC \uD638\uC21C"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 44
+    itemtype: 1263
+    itemvalue: 1
+    limit: 0
+    description: "\uAC15\uC2DC \uD638\uC21C"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 45
+    itemtype: 1264
+    itemvalue: 1
+    limit: 0
+    description: "\uAC15\uC2DC \uD638\uC5F0"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 46
+    itemtype: 1270
+    itemvalue: 1
+    limit: 0
+    description: "\uC5EC\uD3EC \uD638\uC5F0"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 47
+    itemtype: 1277
+    itemvalue: 1
+    limit: 0
+    description: "\uAC80\uC740\uD1A0\uB07C \uD638\uC21C"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 48
+    itemtype: 1284
+    itemvalue: 1
+    limit: 0
+    description: "\uD604\uBB34\uD638\uC21C"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
+    commontableeventtype: 0
+    active: 1
+  - id: 49
+    itemtype: 1414
+    itemvalue: 1
     limit: 1
-    description: "\uC218\uBBF8\uAF43"
-    price: 500000
-    exchangekey: co5
-    exchangemaxcount: 1000
-    lastexchange: 1
+    description: "\uC5B4\uB9B0\uC774\uB0A0"
+    price: 7000000
+    exchangekey: 
+    exchangemaxcount: 0
+    lastexchange: 0
     commontableeventtype: 0
     active: 1

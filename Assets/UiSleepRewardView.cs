@@ -118,6 +118,7 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
             rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem));
+            snowObject.SetActive(true);
         }
         else//눈사람
         {

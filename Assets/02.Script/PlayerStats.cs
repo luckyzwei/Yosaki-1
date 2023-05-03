@@ -98,6 +98,7 @@ public static class PlayerStats
         double doJuk = GetSuperCritical10DamPer();
         double suho = GetSuperCritical11DamPer();
         double dark = GetSuperCritical12DamPer();
+        double fox = GetSuperCritical14DamPer();
 
         double totalPower =
             ((baseAttack + baseAttack * baseAttackPer)
@@ -120,6 +121,7 @@ public static class PlayerStats
         totalPower += (totalPower * chunSangDam);
         totalPower += (totalPower * dokebiDam);
         totalPower += (totalPower * suho);
+        totalPower += (totalPower * fox);
         totalPower += (totalPower * sinsuDam);
         totalPower += (totalPower * saHung);
         totalPower += (totalPower * sumiDam);
@@ -1527,7 +1529,8 @@ public static class PlayerStats
         ret += GetTresureAbilHasEffect(StatusType.SuperCritical10DamPer);
 
         ret += GetThiefAbil(StatusType.SuperCritical10DamPer);
-
+        
+        ret += GetStageRelicHasEffect(StatusType.SuperCritical10DamPer);
         
         return ret;
     }
@@ -1543,6 +1546,15 @@ public static class PlayerStats
         ret += GetDarkTreasureAbilHasEffect(StatusType.SuperCritical12DamPer);
         
         ret += GetDarkMarkValue();
+        
+        return ret;
+    }
+    //여우
+    public static float GetSuperCritical14DamPer()
+    {
+        float ret = 0f;
+
+        ret += GetFoxFireEffect(StatusType.SuperCritical14DamPer);
         
         return ret;
     }
@@ -2461,6 +2473,30 @@ public static class PlayerStats
         return ret;
     }
 
+    public static float GetFoxFireEffect(StatusType statusType, int addLevel = 0)
+    {
+        float ret = 0f;
+
+        var tableDatas = TableManager.Instance.FoxFire.dataArray;
+
+        int currentLevel = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxFireIdx).Value;
+
+        if (currentLevel == -1)
+        {
+            return 0f;
+        }
+
+        for (int i = 0; i < currentLevel+1; i++)
+        {
+            if ((StatusType)tableDatas[i].Abil_Type == statusType)
+            {
+                ret += tableDatas[i].Abil_Value;
+            }
+        }
+
+        return ret;
+    }
+
     public static float GetSmithValue(StatusType statusType)
     {
         int currentExp = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.smithExp].Value;
@@ -3248,19 +3284,42 @@ public static class PlayerStats
             return 1f;
         }
     }
+    public static float GetEvilSeedTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateEvilSeed).Value > 0)
+        {
+            return GameBalance.EvilSeedGraduatePlusValue;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
+    public static float GetGhostTreeTransPlusValue()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateGhostTree).Value > 0)
+        {
+            return GameBalance.GhostTreeGraduatePlusValue;
+        }
+        else
+        {
+            return 1f;
+        }
+    }
 
     public static float foxMaskPartialValue = 0.02f;
 
     public static float GetFoxMaskAbilPlusValue()
     {
-        return foxMaskPartialValue * ServerData.goodsTable.GetTableData(GoodsTable.FoxMaskPartial).Value;
+        return (foxMaskPartialValue * ServerData.goodsTable.GetTableData(GoodsTable.FoxMaskPartial).Value)*GetGhostTreeTransPlusValue();
     }
 
     public static float susanoUpgradelValue = 0.025f;
 
     public static float GetSusanoUpgradeAbilPlusValue()
     {
-        return susanoUpgradelValue * ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value;
+        return (susanoUpgradelValue * ServerData.goodsTable.GetTableData(GoodsTable.SusanoTreasure).Value) *
+               GetEvilSeedTransPlusValue();
     }
 
     public static float dokebiUpgradeValue = 0.0025f;
@@ -3752,6 +3811,8 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetSkillHasValue(StatusType.TreasureHasValueUpgrade);
+
+        ret += GetGradeTestAbilValue(StatusType.TreasureHasValueUpgrade);
 
         return ret;
     }

@@ -228,4 +228,106 @@ public class UiPetHomeBoard : MonoBehaviour
 
      
     }
+    
+    //무기,노리개,반지와는 살짝 다름
+    public void OnClickRecieveAllReward()
+    {
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        
+        List<int> rewardTypeList = new List<int>();
+        List<string> itemNameList = new List<string>();
+
+        int rewardCount = 0;
+        
+        var tableData = TableManager.Instance.PetTable.dataArray;
+        
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            //꼬맹이들이면 거른다.
+            if (tableData[i].Id <= 7) continue;
+            var serverData = ServerData.petTable.TableDatas[tableData[i].Stringid];
+            //가지고있지 않으면 continue
+            if (serverData.hasItem.Value < 1) continue;
+            //무료보상 안 받은 경우
+
+            if (ServerData.etcServerTable.HasPetHomeReward(tableData[i].Id) == false)
+            {
+                //받음
+                ServerData.etcServerTable.TableDatas[EtcServerTable.PetHomeReward].Value += $"{BossServerTable.rewardSplit}{tableData[i].Id}";
+
+                //보상
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Getrewardtype).Value +=
+                    tableData[i].Getrewardvalue;
+
+                if (rewardTypeList.Contains(tableData[i].Getrewardtype) == false)
+                {
+                    rewardTypeList.Add(tableData[i].Getrewardtype);
+                }
+
+                if (itemNameList.Contains(EtcServerTable.PetHomeReward) == false)
+                {
+                    itemNameList.Add(EtcServerTable.PetHomeReward);
+                }
+
+                rewardCount++;
+            }
+
+            //패스권 안산 경우 continue
+            if (ServerData.iapServerTable.TableDatas[UiEquipmentCollectionPassBuyButton.collectionPassKey].buyCount.Value < 1) continue;
+            //유료보상 안 받은 경우
+            if (ServerData.etcServerTable.HasPetHomeReward1(tableData[i].Id) == false)
+            {
+                ServerData.etcServerTable.TableDatas[EtcServerTable.PetHomeReward1].Value += $"{BossServerTable.rewardSplit}{tableData[i].Id}";
+                
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Getrewardtype1).Value += tableData[i].Getrewardvalue1;
+                
+                if(rewardTypeList.Contains(tableData[i].Getrewardtype1)==false)
+                {
+                    rewardTypeList.Add(tableData[i].Getrewardtype1);
+                }
+
+                if (itemNameList.Contains(EtcServerTable.PetHomeReward1) == false)
+                {
+                    itemNameList.Add(EtcServerTable.PetHomeReward1);
+                }
+                rewardCount++;
+            }
+        }
+        
+        if (rewardCount > 0)
+        {
+            if (rewardTypeList.Count != 0)
+            {
+                using var e = rewardTypeList.GetEnumerator();
+                Param goodsParam = new Param();
+                while(e.MoveNext())
+                {
+                    goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData((Item_Type)e.Current).Value);
+                }
+                transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+            }
+            if (itemNameList.Count != 0)
+            {
+                using var ItemName = itemNameList.GetEnumerator();
+            
+                Param itemParam = new Param();
+                while(ItemName.MoveNext())
+                {
+                    string updateValue = ServerData.etcServerTable.TableDatas[ItemName.Current].Value;
+                    itemParam.Add(ItemName.Current, updateValue);
+                }
+                transactions.Add(TransactionValue.SetUpdate(EtcServerTable.tableName, EtcServerTable.Indate, itemParam));
+    
+            }
+            
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "보상을 전부 수령했습니다", null);
+            });
+        }
+        else
+        {
+            PopupManager.Instance.ShowAlarmMessage("수령가능한 보상이 없습니다");
+        }
+    }
 }

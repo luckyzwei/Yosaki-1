@@ -47,6 +47,10 @@ public class UiMagicBookCollectionView : MonoBehaviour
     private TextMeshProUGUI reward1Description;
 
 
+    public MagicBookData GetMagicBookData()
+    {
+        return magicBookData;
+    }
     public void Initialize(MagicBookData magicBookData)
     {
 

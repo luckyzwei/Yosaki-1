@@ -205,9 +205,17 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
     {
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "모든 여우구슬로 강화 할까요?", () =>
         {
+            
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                    PopupManager.Instance.ShowAlarmMessage("네트워크 연결상태가 좋지 않습니다.\n다음에 다시 시도해 주세요!");
+                    return;
+            }
             int prefDragonBall = PlayerStats.GetCurrentDragonIdx();
 
             int prefFoxCup = PlayerStats.GetCurrentFoxCupIdx();
+            
+            int prefWolfRing = PlayerStats.GetCurrentWolfRingIdx();
 
 
             float currentMarble = ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value;
@@ -251,6 +259,8 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
                 int currentDragonBall = PlayerStats.GetCurrentDragonIdx();
 
                 int currentFoxCup = PlayerStats.GetCurrentFoxCupIdx();
+                
+                int currentWolfRing = PlayerStats.GetCurrentFoxCupIdx();
 
                 if (prefDragonBall < currentDragonBall)
                 {
@@ -260,6 +270,10 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
                 if (prefFoxCup < currentFoxCup)
                 {
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "여우 호리병 단계 상승!", null);
+                }
+                if (prefWolfRing < currentWolfRing)
+                {
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "흑랑 반지 단계 상승!", null);
                 }
             });
         }, null);

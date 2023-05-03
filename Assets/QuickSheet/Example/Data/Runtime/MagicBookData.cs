@@ -136,4 +136,8 @@ public class MagicBookData
   string acquiredescription;
   public string Acquiredescription { get {return acquiredescription; } set { this.acquiredescription = value;} }
   
+  [SerializeField]
+  int displayorder;
+  public int Displayorder { get {return displayorder; } set { this.displayorder = value;} }
+  
 }

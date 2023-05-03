@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters;
 using TMPro;
 using UnityEngine;
 using UniRx;
@@ -9,11 +10,7 @@ public class UiGoodsUsedCountIndicator : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI usedCountText;
 
-    [SerializeField]
-    private string usedGoodsKey;
 
-    [SerializeField]
-    private string usedGoodsName;
 
     void Start()
     {
@@ -24,9 +21,9 @@ public class UiGoodsUsedCountIndicator : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(usedGoodsKey).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.usedSnowManCollectionCount).AsObservable().Subscribe(e =>
         {
-            usedCountText.SetText($"교환한 {usedGoodsName} 수 : {Utils.ConvertBigNum(e)}");
+            usedCountText.SetText($"교환한 {CommonString.GetItemName(ServerData.goodsTable.ServerStringToItemType(GoodsTable.Event_Item_SnowMan))} 수 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);
     }
 }

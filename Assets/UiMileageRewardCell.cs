@@ -51,8 +51,14 @@ public class UiMileageRewardCell : MonoBehaviour
         {
             ServerData.userInfoTable.TableDatas[tableData.Exchangekey].AsObservable().Subscribe(e =>
             {
-
-                buyCountDesc.SetText($"교환 가능 : {e}/{tableData.Exchangemaxcount}");
+                if (ServerData.userInfoTable.IsMileageEvent(tableData))
+                {
+                    buyCountDesc.SetText($"교환 가능 : {e}/{tableData.Exchangemaxcount * tableData.Eventmultiplevalue}");
+                }
+                else
+                {
+                    buyCountDesc.SetText($"교환 가능 : {e}/{tableData.Exchangemaxcount}");
+                }
 
             }).AddTo(this);
         }
@@ -129,11 +135,23 @@ public class UiMileageRewardCell : MonoBehaviour
 
         if (string.IsNullOrEmpty(tableData.Exchangekey) == false)
         {
-            if (ServerData.userInfoTable.TableDatas[tableData.Exchangekey].Value >= tableData.Exchangemaxcount)
+            if (ServerData.userInfoTable.IsMileageEvent(tableData))
             {
-                PopupManager.Instance.ShowAlarmMessage("더이상 교환하실 수 없습니다.");
-                return;
+                if (ServerData.userInfoTable.TableDatas[tableData.Exchangekey].Value >= tableData.Exchangemaxcount * tableData.Eventmultiplevalue)
+                {
+                    PopupManager.Instance.ShowAlarmMessage("더이상 교환하실 수 없습니다.");
+                    return;
+                }
             }
+            else
+            {
+                if (ServerData.userInfoTable.TableDatas[tableData.Exchangekey].Value >= tableData.Exchangemaxcount)
+                {
+                    PopupManager.Instance.ShowAlarmMessage("더이상 교환하실 수 없습니다.");
+                    return;
+                }    
+            }
+            
         }
 
         if (IsCostumeItem())

@@ -9,5 +9,6 @@ namespace UnityEngine.UI.Extensions
         DolPass,
         MonthPass2,
         MonthPass,
+        SnowManPass,
     }
 }

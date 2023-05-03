@@ -66,17 +66,17 @@ public class UiCollectionEventCommonView : MonoBehaviour
             }).AddTo(this);
         }
 
-        if (tableData.Lastexchange &&
-           tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.SnowMan &&
-           allExchangeLockMask != null)
-        {
-            ServerData.userInfoTable.SnowCollectionComplete.AsObservable().Subscribe(e =>
-            {
-
-                allExchangeLockMask.SetActive(e == false);
-
-            }).AddTo(this);
-        }
+        // if (tableData.Lastexchange &&
+        //    tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.SnowMan &&
+        //    allExchangeLockMask != null)
+        // {
+        //     ServerData.userInfoTable.SnowCollectionComplete.AsObservable().Subscribe(e =>
+        //     {
+        //
+        //         allExchangeLockMask.SetActive(e == false);
+        //
+        //     }).AddTo(this);
+        // }
 
         if (IsCostumeItem() == false) return;
 
@@ -208,14 +208,14 @@ public class UiCollectionEventCommonView : MonoBehaviour
             return;
         }
 
-        if (tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.SnowMan &&
-            tableData.Lastexchange == true &&
-            ServerData.userInfoTable.SnowCollectionComplete.Value == false
-            )
-        {
-            PopupManager.Instance.ShowAlarmMessage("다른 재화 상품을 전부 교환해야 합니다.");
-            return;
-        }
+        // if (tableData.COMMONTABLEEVENTTYPE == CommonTableEventType.SnowMan &&
+        //     tableData.Lastexchange == true &&
+        //     ServerData.userInfoTable.SnowCollectionComplete.Value == false
+        //     )
+        // {
+        //     PopupManager.Instance.ShowAlarmMessage("다른 재화 상품을 전부 교환해야 합니다.");
+        //     return;
+        // }
 
 
         if (string.IsNullOrEmpty(tableData.Exchangekey) == false)

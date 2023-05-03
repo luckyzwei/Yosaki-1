@@ -40,4 +40,12 @@ public class MileageRewardData
   int exchangemaxcount;
   public int Exchangemaxcount { get {return exchangemaxcount; } set { this.exchangemaxcount = value;} }
   
+  [SerializeField]
+  string eventperiod;
+  public string Eventperiod { get {return eventperiod; } set { this.eventperiod = value;} }
+  
+  [SerializeField]
+  int eventmultiplevalue;
+  public int Eventmultiplevalue { get {return eventmultiplevalue; } set { this.eventmultiplevalue = value;} }
+  
 }

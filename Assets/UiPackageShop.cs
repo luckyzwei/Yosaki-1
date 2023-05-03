@@ -48,6 +48,9 @@ public class UiPackageShop : MonoBehaviour
     
     [SerializeField]
     private Transform Goods_PetSoul;
+    
+    [SerializeField]
+    private Transform Goods_FoxFire;
 
     private void Start()
     {
@@ -156,6 +159,11 @@ public class UiPackageShop : MonoBehaviour
             else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_PetSoul)
             {
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_PetSoul);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_FoxFire)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_FoxFire);
                 cell.Initialize(e.Current.Value);//
             }
             

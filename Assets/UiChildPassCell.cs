@@ -178,7 +178,7 @@ public class UiChildPassCell : MonoBehaviour
 
     private bool HasPassItem()
     {
-        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.childPassKey].buyCount.Value > 0;
+        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.PassKey].buyCount.Value > 0;
 
         return hasIapProduct;
     }

@@ -75,6 +75,7 @@ public static class ServerData
         new ColdSeasonPassServerTable();
 
     public static SuhoAnimalServerTable suhoAnimalServerTable { get; private set; } = new SuhoAnimalServerTable();
+    public static SealSwordServerTable sealSwordServerTable { get; private set; } = new SealSwordServerTable();
 
     #region string
 
@@ -170,9 +171,9 @@ public static class ServerData
         coldSeasonPassServerTable.Initialize();
 
         suhoAnimalServerTable.Initialize();
-
         
-
+        sealSwordServerTable.Initialize();
+        
     }
 
     public static void SetTitleServer()
@@ -302,6 +303,9 @@ public static class ServerData
                 break;
             case Item_Type.Event_Item_SnowMan:
                 ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += rewardValue;
+                break;
+            case Item_Type.Event_Item_SnowMan_All:
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value += rewardValue;
                 break;
 
             case Item_Type.SulItem:
@@ -550,6 +554,9 @@ public static class ServerData
                 break;
             case Item_Type.SumiFire:
                 ServerData.goodsTable.GetTableData(GoodsTable.SumiFire).Value += rewardValue;
+                break; 
+            case Item_Type.SealWeaponClear:
+                ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += rewardValue;
                 break;
             case Item_Type.Tresure:
                 ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += rewardValue;
@@ -560,6 +567,12 @@ public static class ServerData
                 break;
             case Item_Type.HyungsuRelic:
                 ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value += rewardValue;
+                break;
+            case Item_Type.FoxRelic:
+                ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value += rewardValue;
+                break;
+            case Item_Type.FoxRelicClearTicket:
+                ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value += rewardValue;
                 break;
 
             case Item_Type.EventDice:
@@ -579,6 +592,7 @@ public static class ServerData
             case Item_Type.DokebiBundle:
                 ServerData.goodsTable.GetTableData(GoodsTable.DokebiBundle).Value += rewardValue;
                 break;
+
 
 
             case Item_Type.Mileage:
@@ -729,6 +743,11 @@ public static class ServerData
             case Item_Type.costume108:
             case Item_Type.costume109:
             case Item_Type.costume110:
+            case Item_Type.costume111:
+            case Item_Type.costume112:
+            case Item_Type.costume113:
+            case Item_Type.costume114:
+            case Item_Type.costume115:
                 ServerData.costumeServerTable.TableDatas[type.ToString()].hasCostume.Value = true;
                 break;
             case Item_Type.weapon81:
@@ -894,6 +913,11 @@ public static class ServerData
             case Item_Type.costume108:
             case Item_Type.costume109:
             case Item_Type.costume110:
+            case Item_Type.costume111:
+            case Item_Type.costume112:
+            case Item_Type.costume113:
+            case Item_Type.costume114:
+            case Item_Type.costume115:
                 string costumeKey = type.ToString();
                 passParam.Add(costumeKey, ServerData.costumeServerTable.TableDatas[costumeKey].ConvertToString());
                 return TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate, passParam);
@@ -922,6 +946,10 @@ public static class ServerData
             case Item_Type.Event_Item_SnowMan:
                 passParam.Add(GoodsTable.Event_Item_SnowMan,
                     ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+            case Item_Type.Event_Item_SnowMan_All:
+                passParam.Add(GoodsTable.Event_Item_SnowMan_All,
+                    ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
 
             case Item_Type.SulItem:
@@ -973,12 +1001,22 @@ public static class ServerData
                 passParam.Add(GoodsTable.HyungsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
 
+            case Item_Type.FoxRelic:
+                passParam.Add(GoodsTable.FoxRelic, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+            case Item_Type.FoxRelicClearTicket:
+                passParam.Add(GoodsTable.FoxRelicClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
             case Item_Type.EventDice:
                 passParam.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
 
             case Item_Type.Tresure:
                 passParam.Add(GoodsTable.Tresure, ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+           case Item_Type.SealWeaponClear:
+                passParam.Add(GoodsTable.SealWeaponClear, ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
 
             case Item_Type.SumiFire:
@@ -1473,6 +1511,11 @@ public static class ServerData
                 param.Add(GoodsTable.Event_Item_SnowMan,
                     ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.Event_Item_SnowMan_All:
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value += amount;
+                param.Add(GoodsTable.Event_Item_SnowMan_All,
+                    ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.SulItem:
                 ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value += amount;
@@ -1613,9 +1656,23 @@ public static class ServerData
                 param.Add(GoodsTable.HyungsuRelic, ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
+            case Item_Type.FoxRelic:
+                ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value += amount;
+                param.Add(GoodsTable.FoxRelic, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.FoxRelicClearTicket:
+                ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value += amount;
+                param.Add(GoodsTable.FoxRelicClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
             case Item_Type.EventDice:
                 ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += amount;
                 param.Add(GoodsTable.EventDice, ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            
+     case Item_Type.SealWeaponClear:
+                ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += amount;
+                param.Add(GoodsTable.SealWeaponClear, ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.Tresure:
@@ -3141,6 +3198,12 @@ public static class ServerData
                 case Item_Type.HyungsuRelic:
                     ServerData.goodsTable.GetTableData(GoodsTable.HyungsuRelic).Value += amount;
                     break;
+                case Item_Type.FoxRelic:
+                    ServerData.goodsTable.GetTableData(GoodsTable.FoxRelic).Value += amount;
+                    break;
+                case Item_Type.FoxRelicClearTicket:
+                    ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value += amount;
+                    break;
                 case Item_Type.EventDice:
                     ServerData.goodsTable.GetTableData(GoodsTable.EventDice).Value += amount;
                     break;
@@ -3149,6 +3212,9 @@ public static class ServerData
                     break;
                 case Item_Type.Tresure:
                     ServerData.goodsTable.GetTableData(GoodsTable.Tresure).Value += amount;
+                    break;  
+                case Item_Type.SealWeaponClear:
+                    ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += amount;
                     break;
 
 
@@ -3242,6 +3308,9 @@ public static class ServerData
                     break;
                 case Item_Type.Event_Item_SnowMan:
                     ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += amount;
+                    break;
+                case Item_Type.Event_Item_SnowMan_All:
+                    ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value += amount;
                     break;
                 case Item_Type.HellPower:
                     ServerData.goodsTable.GetTableData(GoodsTable.HellPowerUp).Value += amount;

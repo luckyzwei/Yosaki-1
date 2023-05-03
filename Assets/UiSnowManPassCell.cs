@@ -7,9 +7,12 @@ using System.Linq;
 using BackEnd;
 using TMPro;
 using System;
+using UnityEngine.UI.Extensions;
 
-public class UiSnowManPassCell : MonoBehaviour
+public class UiSnowManPassCell : FancyCell<SnowPassData_Fancy>
 {
+    SnowPassData_Fancy itemData;
+    
     [SerializeField]
     private Image itemIcon_free;
 
@@ -63,7 +66,6 @@ public class UiSnowManPassCell : MonoBehaviour
         {
             bool rewarded = HasReward(passInfo.rewardType_Free_Key, passInfo.id);
             rewardedObject_Free.SetActive(rewarded);
-
         }).AddTo(disposables);
 
         //광고보상 데이터 변경시
@@ -77,7 +79,7 @@ public class UiSnowManPassCell : MonoBehaviour
         //킬카운트 변경될때
         ServerData.userInfoTable.GetTableData(UserInfoTable.usedSnowManCollectionCount).AsObservable().Subscribe(e =>
         {
-
+            RefreshData();
         }).AddTo(disposables);
     }
 
@@ -135,7 +137,7 @@ public class UiSnowManPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"교환한 {CommonString.GetItemName(Item_Type.Event_Item_SnowMan)}가 부족합니다.");
             return;
         }
 
@@ -156,7 +158,7 @@ public class UiSnowManPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("출석이 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"교환한 {CommonString.GetItemName(Item_Type.Event_Item_SnowMan)}가 부족합니다.");
             return;
         }
 
@@ -173,7 +175,7 @@ public class UiSnowManPassCell : MonoBehaviour
         }
         else
         {
-            PopupManager.Instance.ShowAlarmMessage($"눈사람 패스권이 필요합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"어린이날 패스권이 필요합니다.");
             return;
         }
         PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
@@ -245,12 +247,6 @@ public class UiSnowManPassCell : MonoBehaviour
         int killCountTotalBok = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.usedSnowManCollectionCount).Value;
         return killCountTotalBok >= passInfo.require;
     }
-    private void OnEnable()
-    {
-        RefreshParent();
-        RefreshData();
-
-    }
 
     private void RefreshData()
     {
@@ -270,4 +266,53 @@ public class UiSnowManPassCell : MonoBehaviour
         }
     }
 
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+        
+        RefreshData();
+    }
+
+    public override void UpdateContent(SnowPassData_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+        
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
 }

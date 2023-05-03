@@ -7,7 +7,17 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.UI;
-public class UiEventSnowManPass : MonoBehaviour
+using UnityEngine.UI.Extensions;
+
+public class SnowPassData_Fancy
+{
+    public PassInfo passInfo { get; private set; }
+    public SnowPassData_Fancy(PassInfo passData)
+    {
+        this.passInfo = passData;
+    }
+}
+public class UiEventSnowManPass : FancyScrollView<SnowPassData_Fancy>
 {
     [SerializeField]
     private UiSnowManPassCell uiPassCellPrefab;
@@ -29,10 +39,10 @@ public class UiEventSnowManPass : MonoBehaviour
     }
 #endif
 
-    private void Start()
-    {
-        Initialize();
-    }
+    // private void Start()
+    // {
+    //     Initialize();
+    // }
     private void Initialize()
     {
         var tableData = TableManager.Instance.snowManAtten.dataArray;
@@ -82,7 +92,9 @@ public class UiEventSnowManPass : MonoBehaviour
 
         List<int> splitData_Free = GetSplitData(OneYearPassServerTable.childFree_Snow);
         List<int> splitData_Ad = GetSplitData(OneYearPassServerTable.childAd_Snow);
-
+        
+        List<int> rewardTypeList = new List<int>();
+        
         var tableData = TableManager.Instance.snowManAtten.dataArray;
 
         int rewardedNum = 0;
@@ -109,6 +121,10 @@ public class UiEventSnowManPass : MonoBehaviour
 
                 free += $",{tableData[i].Id}";
                 ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward1, tableData[i].Reward1_Value);
+                if (rewardTypeList.Contains(tableData[i].Reward1) == false)
+                {
+                    rewardTypeList.Add(tableData[i].Reward1);
+                }
                 rewardedNum++;
             }
 
@@ -123,6 +139,10 @@ public class UiEventSnowManPass : MonoBehaviour
 
                 ad += $",{tableData[i].Id}";
                 ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward2, tableData[i].Reward2_Value);
+                if (rewardTypeList.Contains(tableData[i].Reward2) == false)
+                {
+                    rewardTypeList.Add(tableData[i].Reward2);
+                }
                 rewardedNum++;
             }
         }
@@ -139,19 +159,14 @@ public class UiEventSnowManPass : MonoBehaviour
             ServerData.oneYearPassServerTable.TableDatas[OneYearPassServerTable.childAd_Snow].Value = ad;
 
             List<TransactionValue> transactions = new List<TransactionValue>();
+            
+            var e = rewardTypeList.GetEnumerator();
 
             Param goodsParam = new Param();
-            goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
-            goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
-            goodsParam.Add(GoodsTable.RelicTicket, ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value);
-            goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value);
-            goodsParam.Add(GoodsTable.SmithFire, ServerData.goodsTable.GetTableData(GoodsTable.SmithFire).Value);
-            goodsParam.Add(GoodsTable.SwordPartial, ServerData.goodsTable.GetTableData(GoodsTable.SwordPartial).Value);
-
-            goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
-            goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value);
-            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
-
+            while (e.MoveNext())
+            {
+                goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData((Item_Type)e.Current).Value);
+            }
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             Param passParam = new Param();
@@ -208,4 +223,43 @@ public class UiEventSnowManPass : MonoBehaviour
     }
 
 
+    [SerializeField]
+    private Scroller scroller;
+    
+    
+    [SerializeField] GameObject cellPrefab = default;
+
+    protected override GameObject CellPrefab => cellPrefab;
+    
+    private void Start()
+    {
+        scroller.Initialize(PassTypeScroll.SnowManPass);
+            
+        scroller.OnValueChanged(UpdatePosition);
+    
+        var tableData = TableManager.Instance.snowManAtten.dataArray;
+    
+        List<SnowPassData_Fancy> passInfos = new List<SnowPassData_Fancy>();
+    
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var passInfo = new PassInfo();
+    
+            passInfo.require = tableData[i].Unlockamount;
+            passInfo.id = tableData[i].Id;
+    
+            passInfo.rewardType_Free = tableData[i].Reward1;
+            passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
+            passInfo.rewardType_Free_Key = OneYearPassServerTable.childFree_Snow;
+
+            passInfo.rewardType_IAP = tableData[i].Reward2;
+            passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
+            passInfo.rewardType_IAP_Key = OneYearPassServerTable.childAd_Snow;
+            passInfos.Add(new SnowPassData_Fancy(passInfo));
+        }
+    
+    
+        this.UpdateContents(passInfos.ToArray());
+        scroller.SetTotalCount(passInfos.Count);
+    }
 }

@@ -76,7 +76,7 @@ public class SetRandomPosition : MonoBehaviour
     private void Update()
     {
         //조조
-        if (_bossId == 111||_bossId == 112||_bossId == 123)
+        if (_bossId == 111||_bossId == 112||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135)
         {
             if (isMove)
             {
@@ -95,11 +95,13 @@ public class SetRandomPosition : MonoBehaviour
         {
             float x = Random.Range(_minX, _maxX + 1);
             float y = Random.Range(_minY, _maxY + 1);
+            //직접이동
             if (_bossId == 109 || _bossId == 110)
             {
                 transform.localPosition = new Vector3(x, y, 0);
             }
-            if (_bossId == 111||_bossId == 112 ||_bossId == 123)
+            //투사체 날아감.
+            if (_bossId == 111||_bossId == 112 ||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135)
             {
                 transform.localPosition = new Vector3(x, y, 0);
                 SetDir();
@@ -107,7 +109,8 @@ public class SetRandomPosition : MonoBehaviour
                 projectileTr.transform.localPosition = Vector3.zero;
                 projectileTr.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
             }
-            if (_bossId == 119||_bossId==120||_bossId==121||_bossId==122)
+            //방향전환
+            if (_bossId == 119||_bossId==120||_bossId==121||_bossId==122||_bossId == 136||_bossId==137||_bossId==138||_bossId==139)
             {
                 SetDir();
                 float angle = Mathf.Atan2(moveDir.normalized.y, moveDir.normalized.x) * Mathf.Rad2Deg;

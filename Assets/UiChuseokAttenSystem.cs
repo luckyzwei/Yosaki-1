@@ -183,11 +183,12 @@ public class UiChuseokAttenSystem : MonoBehaviour
 
     private bool HasPassItem()
     {
-        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.childPassKey].buyCount.Value > 0;
+        bool hasIapProduct = ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.PassKey].buyCount.Value > 0;
 
         return hasIapProduct;
     }
 
+    
     public List<int> GetSplitData(string key)
     {
         List<int> returnValues = new List<int>();

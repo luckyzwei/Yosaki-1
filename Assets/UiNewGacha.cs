@@ -135,14 +135,14 @@ public class UiNewGacha : MonoBehaviour
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
-                this.lastGachaIdx = 2;
-                int amount = gachaAmount[2];
-                int price = gachaPrice[2];
+                this.lastGachaIdx = 1;
+                int amount = gachaAmount[1];
+                int price = gachaPrice[1];
 
                 //무료라
                 ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value += price;
 
-                OnClickOpenButton(2);
+                OnClickOpenButton(1);
             });
         });
     }

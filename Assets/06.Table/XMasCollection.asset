@@ -88,7 +88,7 @@ MonoBehaviour:
     description: "\uAC80\uC870\uAC01"
     price: 1
     exchangekey: em_1_0
-    exchangemaxcount: 300
+    exchangemaxcount: 500
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
     description: "\uBD88\uBA78\uC11D"
     price: 1
     exchangekey: em_1_1
-    exchangemaxcount: 300
+    exchangemaxcount: 500
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -110,7 +110,7 @@ MonoBehaviour:
     description: "\uCC9C\uACC4\uAF43"
     price: 2
     exchangekey: em_1_2
-    exchangemaxcount: 200
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -121,7 +121,7 @@ MonoBehaviour:
     description: "\uB3C4\uAE68\uBE44\uBD88"
     price: 3
     exchangekey: em_1_3
-    exchangemaxcount: 200
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
     description: "\uC218\uBBF8\uAF43"
     price: 4
     exchangekey: em_1_4
-    exchangemaxcount: 200
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
     limit: 0
     description: "\uAC80\uC870\uAC01"
     price: 1
-    exchangekey: em_0_0
+    exchangekey: em_2_0
     exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 2
@@ -164,7 +164,7 @@ MonoBehaviour:
     limit: 1
     description: "\uBD88\uBA78\uC11D"
     price: 1
-    exchangekey: em_0_1
+    exchangekey: em_2_1
     exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 2
@@ -175,8 +175,8 @@ MonoBehaviour:
     limit: 1
     description: "\uCC9C\uACC4\uAF43"
     price: 2
-    exchangekey: em_0_2
-    exchangemaxcount: 200
+    exchangekey: em_2_2
+    exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 2
     active: 1
@@ -186,7 +186,7 @@ MonoBehaviour:
     limit: 1
     description: "\uB3C4\uAE68\uBE44\uBD88"
     price: 3
-    exchangekey: em_0_3
+    exchangekey: em_2_3
     exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 2
@@ -195,9 +195,9 @@ MonoBehaviour:
     itemtype: 9008
     itemvalue: 500
     limit: 1
-    description: "\uC218\uBBF8\uAF43"
+    description: "\uB3C4\uAE68\uBE44\uBD88"
     price: 4
-    exchangekey: em_0_4
+    exchangekey: em_2_4
     exchangemaxcount: 300
     lastexchange: 0
     commontableeventtype: 2
@@ -209,12 +209,12 @@ MonoBehaviour:
     description: "\uC601\uD63C\uC11D"
     price: 5
     exchangekey: em_1_5
-    exchangemaxcount: 100
+    exchangemaxcount: 300
     lastexchange: 1
     commontableeventtype: 4
     active: 1
   - id: 18
-    itemtype: 8604
+    itemtype: 1415
     itemvalue: 1
     limit: 1
     description: "\uBC14\uB78C\uAC1C\uBE44 \uBB34\uAE30"
@@ -230,7 +230,7 @@ MonoBehaviour:
     limit: 1
     description: "\uC601\uD63C\uC11D"
     price: 5
-    exchangekey: em_0_5
+    exchangekey: em_2_5
     exchangemaxcount: 300
     lastexchange: 1
     commontableeventtype: 2
@@ -239,10 +239,10 @@ MonoBehaviour:
     itemtype: 9017
     itemvalue: 1
     limit: 1
-    description: "\uB3C4\uAE68\uBE44\uBD88"
+    description: "\uC218\uD638\uD658\uC18C\uD0D5\uAD8C"
     price: 80
     exchangekey: em_1_6
-    exchangemaxcount: 10
+    exchangemaxcount: 12
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -250,10 +250,10 @@ MonoBehaviour:
     itemtype: 9023
     itemvalue: 1
     limit: 1
-    description: "\uB3C4\uAE68\uBE44\uBD88"
+    description: "\uC601\uD63C\uC11D\uC18C\uD0D5\uAD8C"
     price: 80
     exchangekey: em_1_7
-    exchangemaxcount: 10
+    exchangemaxcount: 12
     lastexchange: 0
     commontableeventtype: 4
     active: 1
@@ -261,10 +261,54 @@ MonoBehaviour:
     itemtype: 9009
     itemvalue: 1
     limit: 1
-    description: "\uB3C4\uAE68\uBE44\uBD88"
+    description: "\uC218\uBBF8\uAF43\uC18C\uD0D5\uAD8C"
     price: 80
     exchangekey: em_1_8
-    exchangemaxcount: 10
+    exchangemaxcount: 12
     lastexchange: 0
     commontableeventtype: 4
+    active: 1
+  - id: 23
+    itemtype: 9009
+    itemvalue: 1
+    limit: 1
+    description: "\uC218\uBBF8\uAF43\uC18C\uD0D5\uAD8C"
+    price: 20
+    exchangekey: em_2_6
+    exchangemaxcount: 10
+    lastexchange: 1
+    commontableeventtype: 2
+    active: 1
+  - id: 24
+    itemtype: 9023
+    itemvalue: 1
+    limit: 1
+    description: "\uC601\uD63C\uC11D\uC18C\uD0D5\uAD8C"
+    price: 20
+    exchangekey: em_2_7
+    exchangemaxcount: 10
+    lastexchange: 1
+    commontableeventtype: 2
+    active: 1
+  - id: 25
+    itemtype: 9017
+    itemvalue: 1
+    limit: 1
+    description: "\uC218\uD638\uD658\uC18C\uD0D5\uAD8C"
+    price: 20
+    exchangekey: em_2_8
+    exchangemaxcount: 10
+    lastexchange: 1
+    commontableeventtype: 2
+    active: 1
+  - id: 26
+    itemtype: 9000
+    itemvalue: 1
+    limit: 1
+    description: "\uB9C8\uC77C\uB9AC\uC9C0"
+    price: 20
+    exchangekey: em_2_9
+    exchangemaxcount: 10
+    lastexchange: 1
+    commontableeventtype: 2
     active: 1

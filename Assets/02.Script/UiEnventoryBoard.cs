@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Photon.Pun.Demo.Cockpit.Forms;
 using UnityEngine;
 
 public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
@@ -79,7 +82,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                 {
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent);
 
-                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                    view.Initialize(e.Current.Value, null, null,null,OnClickWeaponView);
 
                     weaponViewContainer.Add(view);
                 }
@@ -88,7 +91,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                 {
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent_Recommend);
 
-                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                    view.Initialize(e.Current.Value, null, null,null, OnClickWeaponView);
 
                     weaponViewContainer.Add(view);
 
@@ -101,7 +104,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                 {
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent_Sasinsu);
 
-                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                    view.Initialize(e.Current.Value, null, null, null,OnClickWeaponView);
 
                     weaponViewContainer.Add(view);
 
@@ -111,7 +114,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
                 {
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent_Sasinsu);
 
-                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                    view.Initialize(e.Current.Value, null, null,null,OnClickWeaponView);
 
                     weaponViewContainer.Add(view);
 
@@ -121,7 +124,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
             {
                 UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, viewParentWeapon);
 
-                view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                view.Initialize(e.Current.Value, null, null, null,OnClickWeaponView);
 
                 weaponViewContainer.Add(view);
             }
@@ -130,7 +133,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
          
                     UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, viewParentWeapon);
 
-                    view.Initialize(e.Current.Value, null, null, OnClickWeaponView);
+                    view.Initialize(e.Current.Value, null, null, null,OnClickWeaponView);
 
                     weaponViewContainer.Add(view);
             }
@@ -138,6 +141,29 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
      
 
 
+        }
+        var tableData = TableManager.Instance.WeaponTable.dataArray;
+        List<(int displayOrder, UiInventoryWeaponView gameObject)> weapons = new List<(int, UiInventoryWeaponView)>();
+        foreach (var weapon in tableData)
+        {
+            if (weapon.WEAPONTYPE == WeaponType.Basic || weapon.WEAPONTYPE == WeaponType.Normal)
+            {
+                UiInventoryWeaponView gameObject = weaponViewContainer[weapon.Id];
+                weapons.Add((weapon.Displayorder, gameObject));
+            }
+        }
+        weapons.Sort((a, b) => a.displayOrder.CompareTo(b.displayOrder));
+
+        for (int i = 0; i < weapons.Count; i++)
+        {
+            UiInventoryWeaponView weaponObject = weapons[i].gameObject;
+            weaponObject.transform.SetSiblingIndex(i);
+
+            WeaponData weaponData = tableData.FirstOrDefault(data => data.Id == weaponObject.GetWeaponData().Id);
+            if (weaponData != null && ServerData.weaponTable.TableDatas[weaponData.Stringid].hasItem.Value > 0)
+            {
+                weaponObject.transform.SetAsFirstSibling();
+            }
         }
     }
 
@@ -151,7 +177,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
             {
                 UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, equipViewParent);
 
-                view.Initialize(null, e.Current.Value,null, OnClickWeaponView);
+                view.Initialize(null, e.Current.Value,null, null,OnClickWeaponView);
 
                 magicBookViewContainer.Add(view);
             }
@@ -160,11 +186,35 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
                 UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryWeaponViewPrefab, viewParentMagicBook);
 
-                view.Initialize(null, e.Current.Value, null, OnClickWeaponView);
+                view.Initialize(null, e.Current.Value, null,null, OnClickWeaponView);
 
                 magicBookViewContainer.Add(view);
             }
 
+        }
+        
+        var tableData = TableManager.Instance.MagicBookTable.dataArray;
+        List<(int displayOrder, UiInventoryWeaponView gameObject)> magicBooks = new List<(int, UiInventoryWeaponView)>();
+        foreach (var magicBook in tableData)
+        {
+            if (magicBook.MAGICBOOKTYPE == MagicBookType.Basic || magicBook.MAGICBOOKTYPE == MagicBookType.Normal)
+            {
+                UiInventoryWeaponView gameObject = magicBookViewContainer[magicBook.Id];
+                magicBooks.Add((magicBook.Displayorder, gameObject));
+            }
+        }
+        magicBooks.Sort((a, b) => a.displayOrder.CompareTo(b.displayOrder));
+
+        for (int i = 0; i < magicBooks.Count; i++)
+        {
+            UiInventoryWeaponView magicBookObject = magicBooks[i].gameObject;
+            magicBookObject.transform.SetSiblingIndex(i);
+
+            MagicBookData magicBookData = tableData.FirstOrDefault(data => data.Id == magicBookObject.GetMagicBookData().Id);
+            if (magicBookData != null && ServerData.magicBookTable.TableDatas[magicBookData.Stringid].hasItem.Value > 0)
+            {
+                magicBookObject.transform.SetAsFirstSibling();
+            }
         }
     }
     private void MakeNewGachaBoard()
@@ -176,7 +226,7 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
                 UiInventoryWeaponView view = Instantiate<UiInventoryWeaponView>(uiInventoryRingViewPrefab, viewParentNewGacha);
 
-                view.Initialize(null, null, e.Current.Value, OnClickWeaponView);
+                view.Initialize(null, null, e.Current.Value, null,OnClickWeaponView);
 
                 newGachaViewContainer.Add(view);
          

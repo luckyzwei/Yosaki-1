@@ -229,6 +229,22 @@ namespace UnityEngine.UI.Extensions
 
             return returnValues;
         }
+        public List<int> GetSnowAttenPassSplitData(string key)
+        {
+            List<int> returnValues = new List<int>();
+
+            var splits = ServerData.oneYearPassServerTable.TableDatas[key].Value.Split(',');
+
+            for (int i = 0; i < splits.Length; i++)
+            {
+                if (int.TryParse(splits[i], out var result))
+                {
+                    returnValues.Add(result);
+                }
+            }
+
+            return returnValues;
+        }
         
         public void Initialize(PassTypeScroll type=PassTypeScroll.None)
         {
@@ -252,6 +268,10 @@ namespace UnityEngine.UI.Extensions
                     splitData_Free = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassFreeReward);
                     splitData_Ad = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassAdReward);
                     break;
+                case PassTypeScroll.SnowManPass:
+                    splitData_Free = GetSnowAttenPassSplitData(OneYearPassServerTable.childFree_Snow);
+                    splitData_Ad = GetSnowAttenPassSplitData(OneYearPassServerTable.childAd_Snow);
+                    break;
                 default:
                     splitData_Free = null;
                     splitData_Ad = null;
@@ -269,7 +289,10 @@ namespace UnityEngine.UI.Extensions
                 AdMax = splitData_Ad.Max();
             }
             //int totalCount = TableManager.Instance.dolPass.dataArray.Length;
-            scrollbar.value = Mathf.Clamp01(Mathf.Max(freeMax,3) / Mathf.Max(totalCount - 1f, 1e-4f));
+            if (scrollbar != null)
+            {
+                scrollbar.value = Mathf.Clamp01(Mathf.Max(freeMax,3) / Mathf.Max(totalCount - 1f, 1e-4f));
+            }
         }
         public void OnValueChanged(Action<float> callback) => onValueChanged = callback;
 

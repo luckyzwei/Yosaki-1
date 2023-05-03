@@ -486,6 +486,11 @@ public class UiPetView : MonoBehaviour
                     buttonDescription.SetText($"천상계 컨텐츠\n에서 획득!");
                 }
 
+                else if (petData.Id == 36 || petData.Id == 37 || petData.Id == 38 || petData.Id == 39)
+                {
+                    buttonDescription.SetText($"여우굴 컨텐츠\n에서 획득!");
+                }
+
                 else
                 {
                     buttonDescription.SetText($"{prefPetData.Name}\n각성시 획득");

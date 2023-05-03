@@ -262,6 +262,11 @@ public static class CommonString
             case Item_Type.costume108: return TableManager.Instance.Costume.dataArray[108].Name;
             case Item_Type.costume109: return TableManager.Instance.Costume.dataArray[109].Name;
             case Item_Type.costume110: return TableManager.Instance.Costume.dataArray[110].Name;
+            case Item_Type.costume111: return TableManager.Instance.Costume.dataArray[111].Name;
+            case Item_Type.costume112: return TableManager.Instance.Costume.dataArray[112].Name;
+            case Item_Type.costume113: return TableManager.Instance.Costume.dataArray[113].Name;
+            case Item_Type.costume114: return TableManager.Instance.Costume.dataArray[114].Name;
+            case Item_Type.costume115: return TableManager.Instance.Costume.dataArray[115].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -335,7 +340,7 @@ public static class CommonString
             case Item_Type.SP: return "검조각";
             case Item_Type.Hae_Norigae: return "해태 노리개 조각";
             case Item_Type.Hae_Pet: return "아기 해태 구슬";
-            case Item_Type.Event_Item_SnowMan: return "눈사람";
+            case Item_Type.Event_Item_SnowMan: return "팽이";
             case Item_Type.NataSkill: return "나타 베기";
             case Item_Type.OrochiSkill: return "오로치 베기";
             case Item_Type.GangrimSkill: return "강림 베기";
@@ -434,8 +439,8 @@ public static class CommonString
             case Item_Type.Event_Fall_Gold: return "황금 곶감";
             case Item_Type.Event_NewYear: return "떡국";
             case Item_Type.Event_NewYear_All: return "떡국 총 획득량";
-            case Item_Type.Event_Mission: return "바람개비";
-            case Item_Type.Event_Mission_All: return "바람개비 총 획득량";
+            case Item_Type.Event_Mission: return "꽃송이";
+            case Item_Type.Event_Mission_All: return "꽃송이 총 획득량";
             case Item_Type.FoxMaskPartial: return "나무조각";
             case Item_Type.DokebiFire: return "도깨비불";
             case Item_Type.DokebiFireKey: return "도깨비불 소탕권";
@@ -463,6 +468,8 @@ public static class CommonString
 
             case Item_Type.SinsuRelic: return "황룡의 여의주";
             case Item_Type.HyungsuRelic: return "흑호의 보주";
+            case Item_Type.FoxRelic: return "여우불씨";
+            case Item_Type.FoxRelicClearTicket: return "여우불씨 소탕권";
             case Item_Type.EventDice: return "이벤트 주사위";
             case Item_Type.SuhoPetFeed: return "수호환";
             case Item_Type.SuhoPetFeedClear: return "수호환 소탕권";
@@ -471,11 +478,12 @@ public static class CommonString
             case Item_Type.SoulRingClear: return "영혼석 소탕권";
             case Item_Type.GuildTowerHorn: return "독침";
             case Item_Type.Event_HotTime: return "불꽃 조각";
+            case Item_Type.SealWeaponClear: return "요도 해방서";
 
         }
-
         return "미등록";
     }
+    
 
     public static string GetHellMarkAbilName(int grade)
     {
@@ -636,6 +644,8 @@ public static class CommonString
                 return "노리개 기본무공 강화효과(%)";
             case StatusType.SuperCritical13DamPer:
                 return "중단전베기 피해(%)";
+            case StatusType.SuperCritical14DamPer:
+                return "여우베기 피해(%)";
         }
 
         return "등록필요";

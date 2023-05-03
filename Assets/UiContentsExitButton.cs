@@ -54,6 +54,23 @@ public class UiContentsExitButton : MonoBehaviour
                     case GameManager.ContentsType.SumisanTower:
                         return false;
                     
+                    case GameManager.ContentsType.FoxTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxTowerIdx).Value <
+                                                                (TableManager.Instance.FoxTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.FoxTower:
+                        return false;
+                    case GameManager.ContentsType.DarkTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.DarkTowerIdx).Value <
+                                                                (TableManager.Instance.DarkTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.DarkTower:
+                        return false;
+                    
+                    case GameManager.ContentsType.SealSwordTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx9).Value <
+                                                                 (TableManager.Instance.SealTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.SealSwordTower:
+                        return false;
+                    
                 }
         switch (GameManager.contentsType)
         {
@@ -197,6 +214,30 @@ public class UiContentsExitButton : MonoBehaviour
                 (TableManager.Instance.guildTowerTable.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.GuildTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.FoxTower)
+        {
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxTowerIdx).Value <
+                (TableManager.Instance.FoxTowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.FoxTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.DarkTower)
+        {
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.DarkTowerIdx).Value <
+                (TableManager.Instance.DarkTowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.DarkTower);
             }
             else
             {

@@ -10,6 +10,8 @@ public class StarFall : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector3 FirstPosition = Vector3.zero;
+    [SerializeField] private Vector3 moveDirection = Vector3.down;
+    [SerializeField]private float speed = 3f;
     public void Initialize(Vector3 moveDir, float velocity)
     {
         rb.velocity = moveDir.normalized * velocity;
@@ -19,7 +21,7 @@ public class StarFall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Initialize(Vector3.down , 3f);
+        Initialize(moveDirection , speed);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -28,8 +30,9 @@ public class StarFall : MonoBehaviour
         {
             var randX = UnityEngine.Random.Range(-15, 26);
             this.gameObject.transform.position = new Vector3(randX, FirstPosition.y, 0); 
-            rb.velocity = Vector3.down.normalized * 3f;
+            rb.velocity = moveDirection.normalized * speed;
         }
+        
     }
 
     // private void OnCollisionEnter2D(Collision2D col)

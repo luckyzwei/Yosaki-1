@@ -13,7 +13,7 @@ public class UiEventPassBuyButton : MonoBehaviour
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public static readonly string productKey = "pinwheelpass";
+    public static readonly string productKey = "flowerpass";
 
     private Button buyButton;
 
@@ -43,7 +43,7 @@ public class UiEventPassBuyButton : MonoBehaviour
 
         ServerData.iapServerTable.TableDatas[productKey].buyCount.AsObservable().Subscribe(e =>
         {
-            descText.SetText(e >= 1 ? "구매완료" : "바람개비 패스 구매");
+            descText.SetText(e >= 1 ? "구매완료" : $"{CommonString.GetItemName(Item_Type.Event_Mission)} 패스 구매");
             if (e >= 1)
             {
                 GetEventItemCount.SetText(""); 
@@ -103,7 +103,7 @@ public class UiEventPassBuyButton : MonoBehaviour
 
         if (tableData.Productid != productKey) return;
 
-        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!\n 바람개비 {ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_All).Value}개 획득!", null);
+        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!\n {CommonString.GetItemName(Item_Type.Event_Mission)} {ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_All).Value}개 획득!", null);
 
         //소급적용
         ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission).Value += ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_All).Value;

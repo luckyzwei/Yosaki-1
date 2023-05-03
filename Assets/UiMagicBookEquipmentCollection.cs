@@ -30,6 +30,7 @@ public class UiMagicBookEquipmentCollection : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI abilList;
 
+    List<UiMagicBookCollectionView> cellList = new List<UiMagicBookCollectionView>();
 
     private void Start()
     {
@@ -54,7 +55,26 @@ public class UiMagicBookEquipmentCollection : MonoBehaviour
             }
             var cell = Instantiate<UiMagicBookCollectionView>(magicbookCollectionViewPrefab, cellParent);
 
+            
+            cellList.Add(cell);
+            
             cell.Initialize(tableData[i]);
+        }
+        
+        List<(int displayOrder, UiMagicBookCollectionView gameObject)> magicBooks = new List<(int, UiMagicBookCollectionView)>();
+        foreach (var cell in cellList)
+        {
+            if (cell.GetMagicBookData().MAGICBOOKTYPE == MagicBookType.Normal)
+            {
+                magicBooks.Add((cell.GetMagicBookData().Displayorder, cell));
+            }
+        }
+        magicBooks.Sort((a, b) => a.displayOrder.CompareTo(b.displayOrder));
+
+        for (int i = 0; i < magicBooks.Count; i++)
+        {
+            UiMagicBookCollectionView magicBookObject = magicBooks[i].gameObject;
+            magicBookObject.transform.SetSiblingIndex(i);
         }
     }
 
@@ -178,5 +198,95 @@ public class UiMagicBookEquipmentCollection : MonoBehaviour
         }
 
      
+    }
+    
+    public void OnClickRecieveAllReward()
+    {
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        
+        List<int> rewardTypeList = new List<int>();
+        List<string> itemNameList = new List<string>();
+
+        int rewardCount = 0;
+        
+        var tableData = TableManager.Instance.MagicBookTable.dataArray;
+        
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var serverData = ServerData.magicBookTable.TableDatas[tableData[i].Stringid];
+            //가지고있지 않으면 continue
+            if (serverData.hasItem.Value < 1) continue;
+            //무료보상 안 받은 경우
+            if (serverData.getReward0.Value < 1)
+            {
+                serverData.getReward0.Value = 1;
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Rewardtype0).Value += tableData[i].Rewardvalue0;
+                
+                if(rewardTypeList.Contains(tableData[i].Rewardtype0)==false)
+                {
+                    rewardTypeList.Add(tableData[i].Rewardtype0);
+                }
+                if(itemNameList.Contains(tableData[i].Stringid)==false)
+                {
+                    itemNameList.Add(tableData[i].Stringid);
+                }
+                
+                rewardCount++;
+            }
+            //패스권 안산 경우 continue
+            if (ServerData.iapServerTable.TableDatas[UiEquipmentCollectionPassBuyButton.collectionPassKey].buyCount.Value < 1) continue;
+            //유료보상 안 받은 경우
+            if (serverData.getReward1.Value < 1)
+            {
+                serverData.getReward1.Value = 1;
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Rewardtype1).Value += tableData[i].Rewardvalue1;
+                
+                if(rewardTypeList.Contains(tableData[i].Rewardtype1)==false)
+                {
+                    rewardTypeList.Add(tableData[i].Rewardtype1);
+                }
+                if(itemNameList.Contains(tableData[i].Stringid)==false)
+                {
+                    itemNameList.Add(tableData[i].Stringid);
+                }
+                rewardCount++;
+            }
+        }
+        
+        if (rewardCount > 0)
+        {
+            if (rewardTypeList.Count != 0)
+            {
+                using var e = rewardTypeList.GetEnumerator();
+                Param goodsParam = new Param();
+                while(e.MoveNext())
+                {
+                    goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData((Item_Type)e.Current).Value);
+                }
+                transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+            }
+            if (itemNameList.Count != 0)
+            {
+                using var ItemName = itemNameList.GetEnumerator();
+            
+                Param itemParam = new Param();
+                while(ItemName.MoveNext())
+                {
+                    string updateValue = ServerData.magicBookTable.TableDatas[ItemName.Current].ConvertToString();
+                    itemParam.Add(ItemName.Current, updateValue);
+                }
+                transactions.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, itemParam));
+    
+            }
+            
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "보상을 전부 수령했습니다", null);
+            });
+        }
+        else
+        {
+            PopupManager.Instance.ShowAlarmMessage("수령가능한 보상이 없습니다");
+        }
     }
 }

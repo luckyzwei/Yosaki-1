@@ -465,6 +465,11 @@ public enum Item_Type
     costume109 = 1409, // 5월 월간외형     
     
     costume110 = 1410, // 심연보스0     
+    costume111 = 1411, // 주인보스     
+    costume112 = 1412, // 주인보스     
+    costume113 = 1413, // 주인보스     
+    costume114 = 1414, // 어린이날     
+    costume115 = 1415, // 꽃놀이     
 
 
     gumiho0 = 5000,
@@ -566,6 +571,11 @@ public enum Item_Type
     VisionPet2 = 7082,
     VisionPet3 = 7083,
 
+    FoxPet0 = 7090,
+    FoxPet1 = 7091,
+    FoxPet2 = 7092,
+    FoxPet3 = 7093,
+    
     DokebiHorn0 = 7100,
     DokebiHorn1 = 7101,
     DokebiHorn2 = 7102,
@@ -636,8 +646,13 @@ public enum Item_Type
     DarkNorigae3 = 7193,
     
     MasterWeapon0 = 7200,
-    
+    MasterWeapon1 = 7201,
+    MasterWeapon2 = 7202,
+    MasterWeapon3 = 7203,
     MasterNorigae0 = 7210,
+    MasterNorigae1 = 7211,
+    MasterNorigae2 = 7212,
+    MasterNorigae3 = 7213,
     
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
@@ -720,6 +735,7 @@ public enum Item_Type
     Event_Mission = 8802,//바람개비
     Event_Mission_All = 8803, // 총 습득량
     Event_Collection_All =8804,//봄나물 총습득량
+    Event_Item_SnowMan_All=8805,
 
     Mileage = 9000,
     DokebiFire = 9001,
@@ -747,7 +763,11 @@ public enum Item_Type
     DarkTreasure = 9022,
     SoulRingClear = 9023,
     Event_HotTime = 9024,
-    HyungsuRelic = 9025
+    HyungsuRelic = 9025,
+    FoxRelic= 9026, 
+    FoxRelicClearTicket= 9027, 
+    SealWeaponClear= 9028, 
+    
 }
 //
 public class DropItem : PoolItem

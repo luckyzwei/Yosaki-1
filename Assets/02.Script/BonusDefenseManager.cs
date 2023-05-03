@@ -8,9 +8,9 @@ using UniRx;
 
 public class BonusDefenseManager : ContentsManagerBase
 {
-    private ObscuredFloat spawnDelay1 = 0.25f;
+    private ObscuredFloat spawnDelay1 = 0.125f;
     //20초남았을때
-    private ObscuredFloat spawnDelay2 = 0.15f;
+    private ObscuredFloat spawnDelay2 = 0.075f;
 
     [SerializeField]
     private ObscuredFloat enemyHp = 0.3f;

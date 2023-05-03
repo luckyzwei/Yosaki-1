@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,10 +39,13 @@ public class UiBuffPopup : MonoBehaviour
         {
             if (tableDatas[i].Buffseconds < 0) continue;
             if (tableDatas[i].Isactive == false) continue;
+            if(!IsBuffPeriod(tableDatas[i])) continue;
             if (tableDatas[i].BUFFTYPEENUM == BuffTypeEnum.Yomul) continue;
             if (tableDatas[i].BUFFTYPEENUM == BuffTypeEnum.OneYear) continue;
             if (tableDatas[i].BUFFTYPEENUM == BuffTypeEnum.Chuseok) continue;
-
+            
+            //if (tableDatas[i].BUFFTYPEENUM == BuffTypeEnum.Cold) continue;
+            
             var cell = Instantiate<UiBuffPopupView>(uiBuffPopupView, buffViewParent);
 
             cell.Initalize(tableDatas[i]);
@@ -67,6 +71,29 @@ public class UiBuffPopup : MonoBehaviour
         RefreshMonthBuff();
     }
 
+    private bool IsBuffPeriod(BuffTableData buffTableData)
+    {
+        var splitData = buffTableData.Eventperiod.Split('-');
+
+        DateTime buffPeriod =
+            new DateTime(int.Parse(splitData[0]), int.Parse(splitData[1]), int.Parse(splitData[2]));
+        buffPeriod = buffPeriod.AddDays(1);//5월5일을 넣으면 5월6일00시에끝나야함.
+        var result = DateTime.Compare(ServerData.userInfoTable.currentServerTime, buffPeriod);
+
+        
+        switch (result)
+        {
+            //아직 안지남
+            case -1 :
+            case 0:
+                return true;
+            //지남
+            case 1:
+                return false;
+            default:
+                return false;
+        }
+    }
     public void OnClickAllUseButton()
     {
         PopupManager.Instance.SetIgnoreAlarmMessage(true);

@@ -64,4 +64,8 @@ public class BuffTableData
   bool isactive;
   public bool Isactive { get {return isactive; } set { this.isactive = value;} }
   
+  [SerializeField]
+  string eventperiod;
+  public string Eventperiod { get {return eventperiod; } set { this.eventperiod = value;} }
+  
 }

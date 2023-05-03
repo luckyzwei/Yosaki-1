@@ -130,7 +130,12 @@ public static class Utils
                type == Item_Type.costume107||
                type == Item_Type.costume108||
                type == Item_Type.costume109||
-               type == Item_Type.costume110
+               type == Item_Type.costume110||
+               type == Item_Type.costume111||
+               type == Item_Type.costume112||
+               type == Item_Type.costume113||
+               type == Item_Type.costume114||
+               type == Item_Type.costume115
             ;
     }
 
@@ -265,6 +270,10 @@ public static class Utils
                type == Item_Type.VisionPet1 ||
                type == Item_Type.VisionPet2 ||
                type == Item_Type.VisionPet3 ||
+               type == Item_Type.FoxPet0 ||
+               type == Item_Type.FoxPet1 ||
+               type == Item_Type.FoxPet2 ||
+               type == Item_Type.FoxPet3 ||
                type == Item_Type.RabitPet ||
                type == Item_Type.RabitNorigae ||
                type == Item_Type.YeaRaeNorigae ||
@@ -311,6 +320,7 @@ public static class Utils
                type == Item_Type.HaeWeapon ||
                type == Item_Type.SmithFire ||
                type == Item_Type.Event_Item_SnowMan ||
+               type == Item_Type.Event_Item_SnowMan_All ||
                type == Item_Type.MihoNorigae ||
                type == Item_Type.MihoWeapon ||
                type == Item_Type.ChunMaNorigae ||
@@ -335,10 +345,13 @@ public static class Utils
                type == Item_Type.Event_NewYear ||
                type == Item_Type.Event_Mission ||
                type == Item_Type.SumiFire ||
+               type == Item_Type.SealWeaponClear ||
                type == Item_Type.SumiFireKey ||
                type == Item_Type.RelicTicket ||
                type == Item_Type.SinsuRelic ||
                type == Item_Type.HyungsuRelic ||
+               type == Item_Type.FoxRelic ||
+               type == Item_Type.FoxRelicClearTicket ||
                type == Item_Type.NewGachaEnergy ||
                type == Item_Type.EventDice ||
                type == Item_Type.SuhoPetFeed ||
@@ -828,6 +841,10 @@ public static class Utils
     public static bool HasHotTimeEventPass()
     {
         return ServerData.iapServerTable.TableDatas[UiColdSeasonPassBuyButton.seasonPassKey].buyCount.Value > 0;
+    }
+    public static bool HasSnowManEventPass()
+    {
+        return ServerData.iapServerTable.TableDatas[UiSnowManEventBuyButton.fallPassKey].buyCount.Value > 0;
     }
 
 }

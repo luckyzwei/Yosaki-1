@@ -46,7 +46,10 @@ public class UiWeaponCollectionView : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI reward1Description;
 
-
+    public WeaponData GetWeaponData()
+    {
+        return weaponData;
+    }
     public void Initialize(WeaponData weaponData)
     {
 

@@ -116,4 +116,8 @@ public class NewGachaTableData
   float collectioneffectvalue;
   public float Collectioneffectvalue { get {return collectioneffectvalue; } set { this.collectioneffectvalue = value;} }
   
+  [SerializeField]
+  int displayorder;
+  public int Displayorder { get {return displayorder; } set { this.displayorder = value;} }
+  
 }

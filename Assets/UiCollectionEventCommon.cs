@@ -9,9 +9,6 @@ public class UiCollectionEventCommon : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI eventDescription;
 
-    [SerializeField]
-    private string eventGoodsName;
-
     private void Start()
     {
         SetDescriptionText();
@@ -37,11 +34,11 @@ public class UiCollectionEventCommon : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.goodsTable.GetTableData(eventGoodsName).Value += 1000000;
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += 1000000;
         }
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            ServerData.goodsTable.GetTableData(eventGoodsName).Value += 10;
+            ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += 10;
         }
     }
 #endif

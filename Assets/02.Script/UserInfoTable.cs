@@ -33,9 +33,13 @@ public class UserInfoTable
     public const string currentFloorIdx4 = "cf4"; //우마왕
     public const string currentFloorIdx5 = "cf5"; //경락마사지
     public const string RoyalTombFloorIdx = "RoyalTombFloorIdx";
+    public const string DarkTowerIdx = "dti";
     public const string currentFloorIdx6 = "cf6"; //신수타워
     public const string currentFloorGuildTower = "cfg0"; //문파 전갈굴
     public const string currentFloorIdx7 = "cf7"; //중단전
+    public const string currentFloorIdx9 = "cf9"; //봉인검타워
+    public const string foxTowerIdx = "fti"; //여우전
+    public const string foxFireIdx = "ffi"; //여우전
 
     public const string receiveReviewReward = "receiveReviewReward";
 
@@ -121,6 +125,8 @@ public class UserInfoTable
     public const string sumipensionAttendance = "sumipension";
     public const string ringpensionAttendance = "ringpension";
     public const string suhopetfeedclearpensionAttendance = "suhopetfeedclearpension";
+    public const string foxfirepension = "foxfirepension";
+    public const string sealswordpension = "sealswordpension";
 
     public const string marblePackChange = "marblePackChange";
 
@@ -154,7 +160,7 @@ public class UserInfoTable
     public const string attenCountSeason = "as1";
 
     public const string usedCollectionCount = "ufc0"; //곶감사용 => 봄나물 사용
-    public const string usedSnowManCollectionCount = "usc"; //눈사람사용
+    public const string usedSnowManCollectionCount = "uc1"; //어린이날사용 기존 usc
 
 
     public const string relicKillCount = "relicKillCount"; // 영숲
@@ -208,12 +214,12 @@ public class UserInfoTable
     public const string exchangeCount_2 = "ec_2";
     public const string exchangeCount_3 = "ec_3";
 
-    public const string snow_exchangeCount_0 = "co0";
-    public const string snow_exchangeCount_1 = "co1";
-    public const string snow_exchangeCount_2 = "co2";
-    public const string snow_exchangeCount_3 = "co3";
-    public const string snow_exchangeCount_4 = "co4";
-    public const string snow_exchangeCount_5 = "co5";
+    public const string snow_exchangeCount_0 = "co0_0";
+    public const string snow_exchangeCount_1 = "co0_1";
+    public const string snow_exchangeCount_2 = "co0_2";
+    public const string snow_exchangeCount_3 = "co0_3";
+    public const string snow_exchangeCount_4 = "co0_4";
+    public const string snow_exchangeCount_5 = "co0_5";
 
     public const string refundFox = "rf";
     public const string sendGangChul = "sg";
@@ -227,6 +233,7 @@ public class UserInfoTable
     public const string canRecommendCount = "canRecommendCount3";
     public const string mileageRefund = "mr";
     public const string marRelicRefund = "marRelicRe3";
+    public const string growthStoneRefund = "gsRefund";
 
     public const string purchaseRefund0 = "purchaseRefund0";
     public const string newGachaEnergyRefund = "newGachaEnergyRefund";
@@ -263,12 +270,18 @@ public class UserInfoTable
     public const string ny_ex_3 = "ny_ex_3";
     public const string ny_ex_4 = "ny_ex_4";
     public const string ny_ex_5 = "ny_ex_5";
-    public const string eventMission0_0 = "em_0_0";
-    public const string eventMission0_1 = "em_0_1";
-    public const string eventMission0_2 = "em_0_2";
-    public const string eventMission0_3 = "em_0_3";
-    public const string eventMission0_4 = "em_0_4";
-    public const string eventMission0_5 = "em_0_5";
+    public const string eventMission0_0 = "em_2_0";
+    public const string eventMission0_1 = "em_2_1";
+    public const string eventMission0_2 = "em_2_2";
+    public const string eventMission0_3 = "em_2_3";
+    public const string eventMission0_4 = "em_2_4";
+    public const string eventMission0_5 = "em_2_5";
+    public const string eventMission0_6 = "em_2_6";
+    public const string eventMission0_7 = "em_2_7";
+    public const string eventMission0_8 = "em_2_8";
+    public const string eventMission0_9 = "em_2_9";
+    
+    
     public const string eventMission1_0 = "em_1_0";
     public const string eventMission1_1 = "em_1_1";
     public const string eventMission1_2 = "em_1_2";
@@ -299,6 +312,8 @@ public class UserInfoTable
     public const string graduateGumSoul = "graduateGumSoul";
     public const string graduateNorigaeSoul = "graduateNorigaeSoul";
     public const string graduateDokebiFire = "graduateDokebiFire";
+    public const string graduateEvilSeed = "graduateEvilSeed";
+    public const string graduateGhostTree = "graduateGhostTree";
     public const string getMovingAutoAttack = "GMAA";
     public const string suhoAnimalStart = "Sast";
     public const string titleLevel = "titleLevel";
@@ -306,6 +321,8 @@ public class UserInfoTable
     public const string titleWeapon = "titleWeapon";
     public const string titleMagicBook = "titleMagicBook";
     public const string guildTowerStart = "gz0";
+    public const string foxTowerStart = "fts";
+    public const string sealSwordStart = "ssst";
 
     public const string gangchulRewardIdx = "gri";
 
@@ -335,6 +352,10 @@ public class UserInfoTable
         { currentFloorIdx5, 0f },
         { currentFloorIdx6, 0f },
         { currentFloorIdx7, 0f },
+        { currentFloorIdx9, 0f },
+        { foxTowerIdx, 0f },
+        { DarkTowerIdx, 0f },
+        { foxFireIdx, -1f },
         { currentFloorGuildTower, 0f },
         { RoyalTombFloorIdx, 0f },
         { receiveReviewReward, 0f },
@@ -398,6 +419,8 @@ public class UserInfoTable
         { sumipensionAttendance, 0f },
         { ringpensionAttendance, 0f },
         { suhopetfeedclearpensionAttendance, 0f },
+        { foxfirepension, 0f },
+        { sealswordpension, 0f },
 
         { marblePackChange, 0f },
         { yoguiSogulLastClear, 0f },
@@ -419,6 +442,8 @@ public class UserInfoTable
         { graduateNorigaeSoul, 0f },
         { graduateDokebiFire, 0f },
         { getMovingAutoAttack, 0f },
+        { graduateEvilSeed, 0f },
+        { graduateGhostTree, 0f },
 
 
         { yomul0_buff, 0f },
@@ -505,6 +530,7 @@ public class UserInfoTable
         { canRecommendCount, GameBalance.recommendCountPerWeek },
         { mileageRefund, 0 },
         { marRelicRefund, 0 },
+        { growthStoneRefund, 0 },
         { purchaseRefund0, 0 },
         { newGachaEnergyRefund, 0 },
         { titleConvertNewTitle, 0 },
@@ -543,6 +569,10 @@ public class UserInfoTable
         { eventMission0_3, 0 },
         { eventMission0_4, 0 },
         { eventMission0_5, 0 },
+        { eventMission0_6, 0 },
+        { eventMission0_7, 0 },
+        { eventMission0_8, 0 },
+        { eventMission0_9, 0 },
 
         { eventMission1_0, 0 },
         { eventMission1_1, 0 },
@@ -578,6 +608,8 @@ public class UserInfoTable
         { titleWeapon, -1f },
         { titleMagicBook, -1f },
         { guildTowerStart, 0f },
+        { foxTowerStart, 0f },
+        { sealSwordStart, 0f },
 
         { gangchulRewardIdx, -1f },
     };
@@ -628,6 +660,7 @@ public class UserInfoTable
                             e.Current.Key == chunmaRefund ||
                             e.Current.Key == purchaseRefund0 ||
                             e.Current.Key == marRelicRefund ||
+                            e.Current.Key == growthStoneRefund ||
                             e.Current.Key == basicPackRefund ||
                             e.Current.Key == refundFox ||
                             e.Current.Key == titleRefund
@@ -1076,6 +1109,15 @@ public class UserInfoTable
             if (ServerData.iapServerTable.TableDatas[UserInfoTable.suhopetfeedclearpensionAttendance].buyCount.Value > 0f)
             {
                 ServerData.userInfoTable.GetTableData(UserInfoTable.suhopetfeedclearpensionAttendance).Value++;
+            }  
+            
+            if (ServerData.iapServerTable.TableDatas[UserInfoTable.foxfirepension].buyCount.Value > 0f)
+            {
+                ServerData.userInfoTable.GetTableData(UserInfoTable.foxfirepension).Value++;
+            } 
+            if (ServerData.iapServerTable.TableDatas[UserInfoTable.sealswordpension].buyCount.Value > 0f)
+            {
+                ServerData.userInfoTable.GetTableData(UserInfoTable.sealswordpension).Value++;
             }
 
             if (ServerData.iapServerTable.TableDatas[UserInfoTable.relicpensionAttendance].buyCount.Value > 0f)
@@ -1129,6 +1171,9 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.sumipensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.sumipensionAttendance).Value);
         userInfoParam.Add(UserInfoTable.ringpensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.ringpensionAttendance).Value);
         userInfoParam.Add(UserInfoTable.suhopetfeedclearpensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.suhopetfeedclearpensionAttendance).Value);
+        userInfoParam.Add(UserInfoTable.foxfirepension, ServerData.userInfoTable.GetTableData(UserInfoTable.foxfirepension).Value);
+        userInfoParam.Add(UserInfoTable.sealswordpension, ServerData.userInfoTable.GetTableData(UserInfoTable.sealswordpension).Value);
+
 
         userInfoParam.Add(UserInfoTable.freeWeapon, ServerData.userInfoTable.GetTableData(UserInfoTable.freeWeapon).Value);
         userInfoParam.Add(UserInfoTable.freeNorigae, ServerData.userInfoTable.GetTableData(UserInfoTable.freeNorigae).Value);
@@ -1284,9 +1329,22 @@ public class UserInfoTable
             ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value += GameBalance.DailyPetFeedClearGetValue;
             goodsParam.Add(GoodsTable.SuhoPetFeedClear, ServerData.goodsTable.GetTableData(GoodsTable.SuhoPetFeedClear).Value);
         }
+        //여우굴 소탕권
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.foxTowerStart].Value != 0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value += GameBalance.FoxTowerTicketDailyGetAmount;
+            goodsParam.Add(GoodsTable.FoxRelicClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.FoxRelicClearTicket).Value);
+        }  
+        
+        //봉인검
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.sealSwordStart].Value != 0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += GameBalance.SealSwordTicketDailyGetAmount;
+            goodsParam.Add(GoodsTable.SealWeaponClear, ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value);
+        }
 
         //문파 소탕권
-        if (tableDatas[guildTowerStart].Value != 0 && ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value < GameBalance.GuildTowerTicketMaxCount)
+        if (tableDatas[guildTowerStart].Value != 0)
         {
             ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value++;
             goodsParam.Add(GoodsTable.GuildTowerClearTicket, ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value);
@@ -1380,7 +1438,7 @@ public class UserInfoTable
     //2월28일까지
     public bool CanSpawnSnowManItem()
     {
-        if (currentServerTime.Month < 3) return true;
+        if (currentServerTime.Year == 2023 && currentServerTime.Month < 7) return true;
 
         return false;
     }
@@ -1459,7 +1517,67 @@ public class UserInfoTable
 
         return currentServerTime.Year <= 2023 && 
                (currentServerTime.Month == 4 ||
-                (currentServerTime.Month == 5 && currentServerTime.Day <= 5));
+                (currentServerTime.Month == 5 && currentServerTime.Day <= 12));
+    }
+    public bool IsMileageEvent(MileageRewardData rewardData)
+    {
+        if (rewardData == null)
+        {
+            rewardData = TableManager.Instance.mileageReward.dataArray[5];
+        }
+        var splitData = rewardData.Eventperiod.Split('-');
+
+        DateTime eventPeriod =
+            new DateTime(int.Parse(splitData[0]), int.Parse(splitData[1]), int.Parse(splitData[2]));
+        eventPeriod = eventPeriod.AddDays(1);//5월5일을 넣으면 5월6일00시에끝나야함.
+        var result = DateTime.Compare(ServerData.userInfoTable.currentServerTime, eventPeriod);
+
+    
+        switch (result)
+        {
+            //아직 안지남
+            case -1 :
+            case 0:
+                return true;
+            //지남
+            case 1:
+                return false;
+            default:
+                return false;
+        }
+    }
+    public bool IsMileageEvent()
+    {
+        var tableData = TableManager.Instance.mileageReward.dataArray;
+
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var splitData = tableData[i].Eventperiod.Split('-');
+
+            DateTime eventPeriod =
+                new DateTime(int.Parse(splitData[0]), int.Parse(splitData[1]), int.Parse(splitData[2]));
+            eventPeriod = eventPeriod.AddDays(1);//5월5일을 넣으면 5월6일00시에끝나야함.
+            var result = DateTime.Compare(ServerData.userInfoTable.currentServerTime, eventPeriod);
+
+    
+            //안지난게 있으면 true
+            switch (result)
+            {
+                //아직 안지남
+                case -1 :
+                case 0:
+                    return true;
+                //지남
+                case 1:
+                    break;
+                    //return false;
+                default:
+                    break;
+                    //return false;
+            }
+        }
+
+        return false;
     }
 
     public bool IsWeekend()

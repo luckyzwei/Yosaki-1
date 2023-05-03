@@ -31,6 +31,8 @@ public class UiContentsPopup2 : MonoBehaviour
         SinsuTower,
         VisionBoard,
         DarkBoard,
+        FoxTowerBoard,
+        FoxBossBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -231,8 +233,18 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 129:
                     case 130:
                     case 131:
+                    case 133:
+                    case 134:
+                    case 135:
                         lastBoards[(int)ContentsBoard.DarkBoard].SetActive(true);
                         break;
+                    case 136:
+                    case 137:
+                    case 138:
+                    case 139:
+                        lastBoards[(int)ContentsBoard.FoxBossBoard].SetActive(true);
+                        break;
+                        
                 }
                 break;
             case GameManager.ContentsType.YoguiSoGul:
@@ -291,6 +303,12 @@ public class UiContentsPopup2 : MonoBehaviour
                 break;  
             case GameManager.ContentsType.SinsuTower :
                 lastBoards[(int)ContentsBoard.SinsuTower].SetActive(true);
+                break;
+            case GameManager.ContentsType.DarkTower :
+                lastBoards[(int)ContentsBoard.DarkBoard].SetActive(true);
+                break;
+            case GameManager.ContentsType.FoxTower :
+                lastBoards[(int)ContentsBoard.FoxTowerBoard].SetActive(true);
                 break;
 
         }

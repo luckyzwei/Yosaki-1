@@ -38,7 +38,8 @@ public class RelicDungeonManager : ContentsManagerBase
 
     private enum ModeState
     {
-        Playing, End
+        Playing,
+        End
     }
 
     private ModeState modeState = ModeState.Playing;
@@ -69,10 +70,7 @@ public class RelicDungeonManager : ContentsManagerBase
 
     private void Subscribe()
     {
-        enemyDeadCount.AsObservable().Subscribe(e =>
-        {
-            enemyKillCount.SetText($"{Utils.ConvertBigNum(e)} 마리 처치!");
-        }).AddTo(this);
+        enemyDeadCount.AsObservable().Subscribe(e => { enemyKillCount.SetText($"{Utils.ConvertBigNum(e)} 마리 처치!"); }).AddTo(this);
     }
 
     protected override void TimerEnd()
@@ -114,7 +112,6 @@ public class RelicDungeonManager : ContentsManagerBase
 
             // RankManager.Instance.UpdateRelic_Score(enemyDeadCount.Value);
         }
-
     }
 
     private IEnumerator EnemySpawnRoutine()
@@ -183,13 +180,20 @@ public class RelicDungeonManager : ContentsManagerBase
         //최대층
         if (enemyTableIdx >= 12400)
         {
-            return TableManager.Instance.EnemyTable.dataArray[enemyTableIdx].Hp * (System.Math.Pow(1.0015d, addValue));
+            //천장
+            if (spawnCount < 80000)
+            {
+                return TableManager.Instance.EnemyTable.dataArray[enemyTableIdx].Hp * (System.Math.Pow(1.0015d, addValue));
+            }
+            else
+            {
+                return TableManager.Instance.EnemyTable.dataArray[enemyTableIdx].Hp * (System.Math.Pow(1.005d, addValue));
+            }
         }
         else
         {
             return TableManager.Instance.EnemyTable.dataArray[enemyTableIdx].Hp * 1000;
         }
-
     }
 
     public int GetEnemyDefense()

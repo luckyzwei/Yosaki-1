@@ -36,6 +36,7 @@ public class WeaponView : MonoBehaviour
     private MagicBookData magicBookData;
     private SkillTableData skillData;
     private NewGachaTableData newGachaData;
+    private SealSwordData sealSwordData;
 
     private bool initialized = false;
 
@@ -50,7 +51,7 @@ public class WeaponView : MonoBehaviour
     [SerializeField]
     private UIShiny uishiny;
 
-    public void Initialize(WeaponData weaponData, MagicBookData magicBookData, SkillTableData skillData = null, NewGachaTableData newGachaData = null)
+    public void Initialize(WeaponData weaponData, MagicBookData magicBookData, SkillTableData skillData = null, NewGachaTableData newGachaData = null, SealSwordData sealSwordData = null)
     {
         weaponMagicBookObject.SetActive(skillData == null);
 
@@ -60,6 +61,7 @@ public class WeaponView : MonoBehaviour
         this.magicBookData = magicBookData;
         this.skillData = skillData;
         this.newGachaData = newGachaData;
+        this.sealSwordData = sealSwordData;
 
         int grade = 0;
         int id = 0;
@@ -92,7 +94,15 @@ public class WeaponView : MonoBehaviour
             weaponIcon.sprite = CommonResourceContainer.GetNewGachaIconSprite(id);
             this.gradeText.SetText(CommonUiContainer.Instance.ItemGradeName_NewGacha[grade]);
         }
-        if (skillData != null || newGachaData != null)
+        else if (sealSwordData != null)
+        {
+            grade = sealSwordData.Grade;
+            id = sealSwordData.Id;
+            weaponIcon.sprite = CommonResourceContainer.GetSealSwordIconSprite(id);
+            this.gradeText.SetText(CommonUiContainer.Instance.ItemGradeName_SealSword[grade]);
+        }
+
+        if (skillData != null || newGachaData != null || sealSwordData != null)
         {
             lvText.gameObject.SetActive(false);
         }
@@ -103,8 +113,8 @@ public class WeaponView : MonoBehaviour
 
         this.gradeText.color = (CommonUiContainer.Instance.itemGradeColor[grade]);
 
-        
-            int gradeText = 4 - (id % 4);
+
+        int gradeText = 4 - (id % 4);
 
         if (magicBookData != null)
         {
@@ -149,7 +159,7 @@ public class WeaponView : MonoBehaviour
         {
             if (id <= 19)
             {
-                    gradeNumText.SetText($"{gradeText}등급");
+                gradeNumText.SetText($"{gradeText}등급");
             }
             else
             {
@@ -160,10 +170,11 @@ public class WeaponView : MonoBehaviour
             }
         }
         //스킬
-        else if (skillData !=null){
+        else if (skillData != null)
+        {
             if (id <= 14)
             {
-                    gradeNumText.SetText($"{gradeText}등급");
+                gradeNumText.SetText($"{gradeText}등급");
             }
             else
             {
@@ -178,7 +189,8 @@ public class WeaponView : MonoBehaviour
         {
             gradeNumText.SetText($"{gradeText}등급");
         }
-            bg.sprite = CommonUiContainer.Instance.itemGradeFrame[grade];
+
+        bg.sprite = CommonUiContainer.Instance.itemGradeFrame[grade];
 
         if (weaponData != null)
         {
@@ -192,9 +204,13 @@ public class WeaponView : MonoBehaviour
         {
             SubscribeSkill();
         }
-        else
+        else if (newGachaData != null)
         {
             SubscribeNewGacha();
+        }
+        else
+        {
+            SubscribeSealSword();
         }
 
         //uishiny.width = ((float)grade / 3f) * 0.6f;
@@ -209,7 +225,11 @@ public class WeaponView : MonoBehaviour
         ServerData.weaponTable.TableDatas[weaponData.Stringid].amount.AsObservable().Subscribe(WhenCountChanged).AddTo(disposable);
 
         ServerData.weaponTable.TableDatas[weaponData.Stringid].level.AsObservable().Subscribe(WhenLevelChanged).AddTo(disposable);
+    }
 
+    public WeaponData GetWeaponData()
+    {
+        return weaponData;
     }
 
     private void SubscribeMagicBook()
@@ -219,7 +239,6 @@ public class WeaponView : MonoBehaviour
         ServerData.magicBookTable.TableDatas[magicBookData.Stringid].amount.AsObservable().Subscribe(WhenCountChanged).AddTo(disposable);
 
         ServerData.magicBookTable.TableDatas[magicBookData.Stringid].level.AsObservable().Subscribe(WhenLevelChanged).AddTo(disposable);
-
     }
 
     private void SubscribeSkill()
@@ -237,7 +256,15 @@ public class WeaponView : MonoBehaviour
         ServerData.newGachaServerTable.TableDatas[newGachaData.Stringid].amount.AsObservable().Subscribe(WhenCountChanged).AddTo(disposable);
 
         ServerData.newGachaServerTable.TableDatas[newGachaData.Stringid].level.AsObservable().Subscribe(WhenLevelChanged).AddTo(disposable);
+    }
 
+    private void SubscribeSealSword()
+    {
+        disposable.Clear();
+
+        ServerData.sealSwordServerTable.TableDatas[sealSwordData.Stringid].amount.AsObservable().Subscribe(WhenCountChanged).AddTo(disposable);
+
+        ServerData.sealSwordServerTable.TableDatas[sealSwordData.Stringid].level.AsObservable().Subscribe(WhenLevelChanged).AddTo(disposable);
     }
 
     private void WhenLevelChanged(int level)
@@ -268,10 +295,15 @@ public class WeaponView : MonoBehaviour
             int requireNum = skillAwakeNum == 0 ? 1 : 10;
             amountText.SetText($"({ServerData.skillServerTable.TableDatas[SkillServerTable.SkillHasAmount][skillData.Id].Value}/{requireNum})");
         }
-        else if( newGachaData!=null)
+        else if (newGachaData != null)
         {
             int require = newGachaData.Requireupgrade;
             amountText.SetText($"({ServerData.newGachaServerTable.GetCurrentNewGachaCount(newGachaData.Stringid)}/{require})");
+        }
+        else if (sealSwordData != null)
+        {
+            int require = sealSwordData.Requireupgrade;
+            amountText.SetText($"({ServerData.sealSwordServerTable.GetCurrentWeaponCount(sealSwordData.Stringid)}/{require})");
         }
     }
 

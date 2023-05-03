@@ -29,6 +29,7 @@ public enum ShopCategory
     Goods_SpecialGoods,//불멸석,천계꽃,도꺠비불,수미꽃
     Goods_GrowthStone,//여우구슬,수련의돌,영혼열쇠,검조각
     Goods_BaseGoods,//여우구슬,수련의돌,영혼열쇠,검조각
+    Goods_FoxFire,//여우불
 }
 
 public enum PassProductType

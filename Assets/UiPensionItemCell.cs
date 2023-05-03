@@ -139,6 +139,10 @@ public class UiPensionItemCell : MonoBehaviour
         else if (pensionKey == "sumipension")
         {
             itemType = Item_Type.SumiFire;
+        }   
+        else if (pensionKey == "sealWeaponpension")
+        {
+            itemType = Item_Type.SealWeaponClear;
         }
         else if (pensionKey == "ringpension")
         {
@@ -147,6 +151,14 @@ public class UiPensionItemCell : MonoBehaviour
         else if (pensionKey == "suhopetfeedclearpension")
         {
             itemType = Item_Type.SuhoPetFeedClear;
+        }
+        else if (pensionKey == "foxfirepension")
+        {
+            itemType = Item_Type.FoxRelicClearTicket;
+        }
+        else if (pensionKey == "sealswordpension")
+        {
+            itemType = Item_Type.SealWeaponClear;
         }
         else
         {

@@ -7,6 +7,7 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
 {
     [SerializeField] private MainTabButtons _mainTabButtons;
     [SerializeField] private MainTabButtons _GangChulButton;
+    [SerializeField] private MainTabButtons _SealSwordButton;
 
     private void Start()
     {
@@ -44,6 +45,11 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
                 case GameManager.ContentsType.GuildTower:
                 case GameManager.ContentsType.GyungRockTower2:
                     return;
+                case GameManager.ContentsType.SealSwordTower:
+                {
+                    _SealSwordButton.OnClickButton();
+                    return;
+                }
             }
 
             _mainTabButtons.OnClickButton();

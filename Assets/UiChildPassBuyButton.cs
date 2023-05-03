@@ -7,12 +7,14 @@ using UnityEngine.UI;
 
 public class UiChildPassBuyButton : MonoBehaviour
 {
-    [SerializeField]
+  [SerializeField]
     private TextMeshProUGUI descText;
+    [SerializeField]
+    private GameObject plusGoodsObject;
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public static readonly string childPassKey = "fallpass";
+    public static readonly string PassKey = "childpass";
 
     private Button buyButton;
 
@@ -20,6 +22,8 @@ public class UiChildPassBuyButton : MonoBehaviour
     {
         Subscribe();
     }
+    
+    
 
     private void OnDestroy()
     {
@@ -32,10 +36,11 @@ public class UiChildPassBuyButton : MonoBehaviour
 
         disposable.Clear();
 
-        ServerData.iapServerTable.TableDatas[childPassKey].buyCount.AsObservable().Subscribe(e =>
+        ServerData.iapServerTable.TableDatas[PassKey].buyCount.AsObservable().Subscribe(e =>
         {
             descText.SetText(e >= 1 ? "구매완료" : "패스권 구매");
             this.gameObject.SetActive(e <= 0);
+            plusGoodsObject.SetActive(e <= 0);
         }).AddTo(disposable);
 
         IAPManager.Instance.WhenBuyComplete.AsObservable().Subscribe(e =>
@@ -53,22 +58,23 @@ public class UiChildPassBuyButton : MonoBehaviour
         {
             buyButton.interactable = true;
         }).AddTo(disposable);
+
     }
 
     public void OnClickBuyButton()
     {
-        if (ServerData.iapServerTable.TableDatas[childPassKey].buyCount.Value >= 1)
+        if (ServerData.iapServerTable.TableDatas[PassKey].buyCount.Value >= 1)
         {
             PopupManager.Instance.ShowAlarmMessage("이미 구매 했습니다.");
             return;
         }
 
 #if UNITY_EDITOR|| TEST
-        GetPackageItem(childPassKey);
+        GetPackageItem(PassKey);
         return;
 #endif
 
-        IAPManager.Instance.BuyProduct(childPassKey);
+        IAPManager.Instance.BuyProduct(PassKey);
     }
 
     public void GetPackageItem(string productId)
@@ -88,7 +94,10 @@ public class UiChildPassBuyButton : MonoBehaviour
             // PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{tableData.Title} 구매 성공!", null);
         }
 
-        if (tableData.Productid != childPassKey) return;
+        if (tableData.Productid != PassKey) return;
+
+        ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value;
+        ServerData.goodsTable.UpData(GoodsTable.Event_Item_SnowMan, false);
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 

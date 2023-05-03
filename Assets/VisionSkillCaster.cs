@@ -72,15 +72,4 @@ public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
 
     }
 
-#if UNITY_EDITOR
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            PlayerSkillCaster.Instance.UseSkill(55);
-        }
-
-    }
-#endif
-
 }

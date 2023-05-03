@@ -47,7 +47,8 @@ public class GoodsTable
     //할로윈 도깨비
     public static string Event_Item_0 = "Event_Item_1";
     public static string Event_Item_1 = "Event2";
-    public static string Event_Item_SnowMan = "SnowMan"; //수박이었음
+    public static string Event_Item_SnowMan = "Event4_0"; //어린이날.
+    public static string Event_Item_SnowMan_All = "Event4_1"; //어린이날.
     public static string StageRelic = "StageRelic";
     public static string Peach = "PeachReal";
     public static string MiniGameReward = "MiniGameReward";
@@ -185,8 +186,8 @@ public class GoodsTable
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
     public static string Event_NewYear = "Event_NewYear"; //떡국
     public static string Event_NewYear_All = "Event_NewYear_All"; //신년재화 총생산량
-    public static string Event_Mission = "Event_Mission0"; //바람개비
-    public static string Event_Mission_All = "Event_Mission_All0"; //바람개비 총생산량(소급 위한)
+    public static string Event_Mission = "Event_Mission1"; //꽃송이 //바람개비.
+    public static string Event_Mission_All = "Event_Mission_All1"; //꽃송이 //바람개비 총생산량(소급 위한)
 
     public static string FoxMaskPartial = "FoxMaskPartial"; //여우 탈 재화
     public static string SusanoTreasure = "ST"; // 악귀퇴치 재화
@@ -209,6 +210,8 @@ public class GoodsTable
     public static string DokebiBundle = "DB";
     public static string SinsuRelic = "SinsuRelic";
     public static string HyungsuRelic = "HyungsuRelic";
+    public static string FoxRelic = "FR";
+    public static string FoxRelicClearTicket = "FRCT";
 
     public static string EventDice = "EventDice";
     public static string Tresure = "Tresure";
@@ -218,6 +221,7 @@ public class GoodsTable
     public static string SinsuMarble = "SinsuMarble";
     public static string GuildTowerClearTicket = "GTCT";
     public static string GuildTowerHorn = "GuildTowerHorn";
+    public static string SealWeaponClear = "SealWeaponClear";
 
 
     private Dictionary<string, float> tableSchema = new Dictionary<string, float>()
@@ -245,6 +249,7 @@ public class GoodsTable
         { Event_Item_0, 0f },
         { Event_Item_1, 0f },
         { Event_Item_SnowMan, 0f },
+        { Event_Item_SnowMan_All, 0f },
         { DragonStone, 0f },
         { StageRelic, 0f },
         { SnakeStone, 0f },
@@ -406,6 +411,8 @@ public class GoodsTable
         { DokebiBundle, 0f },
         { SinsuRelic, 0f },
         { HyungsuRelic, 0f },
+        { FoxRelic, 0f },
+        { FoxRelicClearTicket, 0f },
 
         { EventDice, 0f },
         { Tresure, 0f },
@@ -415,6 +422,7 @@ public class GoodsTable
         { SinsuMarble, 0f },
         { GuildTowerClearTicket, 0f },
         { GuildTowerHorn, 0f },
+        { SealWeaponClear, 0f },
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -558,6 +566,15 @@ public class GoodsTable
         else
         {
             tableDatas[Event_Item_SnowMan].Value += eventItemAddNum;
+            
+            if (Utils.HasSnowManEventPass() == false)
+            {
+                tableDatas[Event_Item_SnowMan_All].Value += eventItemAddNum;
+            }
+            else
+            {
+                tableDatas[Event_Item_SnowMan].Value += eventItemAddNum;
+            }
             eventItemAddNum = 0;
         }
     }
@@ -982,6 +999,11 @@ public class GoodsTable
         if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
             goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+          
+            if (Utils.HasSnowManEventPass() == false)
+            {
+                goodsParam.Add(GoodsTable.Event_Item_SnowMan_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value);
+            }
         }
 
         goodsParam.Add(GoodsTable.Event_NewYear, ServerData.goodsTable.GetTableData(GoodsTable.Event_NewYear).Value);
@@ -1071,6 +1093,11 @@ public class GoodsTable
             case Item_Type.Event_Item_SnowMan:
             {
                 return GoodsTable.Event_Item_SnowMan;
+            }
+
+            case Item_Type.Event_Item_SnowMan_All:
+            {
+                return GoodsTable.Event_Item_SnowMan_All;
             }
 
 
@@ -1411,9 +1438,10 @@ public class GoodsTable
             {
                 return GoodsTable.SumiFire;
             }
-            case Item_Type.Tresure:
+            
+            case Item_Type.SealWeaponClear:
             {
-                return GoodsTable.Tresure;
+                return GoodsTable.SealWeaponClear;
             }
             case Item_Type.SinsuRelic:
             {
@@ -1422,6 +1450,15 @@ public class GoodsTable
             case Item_Type.HyungsuRelic:
             {
                 return GoodsTable.HyungsuRelic;
+            }
+            case Item_Type.FoxRelic:
+            {
+                return GoodsTable.FoxRelic;
+            }
+
+            case Item_Type.FoxRelicClearTicket:
+            {
+                return GoodsTable.FoxRelicClearTicket;
             }
 
             case Item_Type.EventDice:
@@ -1437,6 +1474,10 @@ public class GoodsTable
             case Item_Type.DokebiBundle:
             {
                 return GoodsTable.DokebiBundle;
+            }
+            case Item_Type.Event_Mission:
+            {
+                return GoodsTable.Event_Mission;
             }
 
             case Item_Type.DokebiFireKey:
@@ -1626,6 +1667,11 @@ public class GoodsTable
         else if (GoodsTable.Event_Item_SnowMan == type)
         {
             return Item_Type.Event_Item_SnowMan;
+        }
+
+        else if (GoodsTable.Event_Item_SnowMan_All == type)
+        {
+            return Item_Type.Event_Item_SnowMan_All;
         }
 
 
@@ -1966,6 +2012,10 @@ public class GoodsTable
         else if (GoodsTable.SumiFire == type)
         {
             return Item_Type.SumiFire;
+        }  
+        else if (GoodsTable.SealWeaponClear == type)
+        {
+            return Item_Type.SealWeaponClear;
         }
 
         else if (GoodsTable.SinsuRelic == type)
@@ -1975,6 +2025,14 @@ public class GoodsTable
         else if (GoodsTable.HyungsuRelic == type)
         {
             return Item_Type.HyungsuRelic;
+        }
+        else if (GoodsTable.FoxRelic == type)
+        {
+            return Item_Type.FoxRelic;
+        }
+        else if (GoodsTable.FoxRelicClearTicket == type)
+        {
+            return Item_Type.FoxRelicClearTicket;
         }
         else if (GoodsTable.EventDice == type)
         {
@@ -1989,6 +2047,10 @@ public class GoodsTable
         else if (GoodsTable.DokebiBundle == type)
         {
             return Item_Type.DokebiBundle;
+        }
+        else if (GoodsTable.Event_Mission == type)
+        {
+            return Item_Type.Event_Mission;
         }
 
         else if (GoodsTable.DokebiFireKey == type)

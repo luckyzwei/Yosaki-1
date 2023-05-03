@@ -66,6 +66,12 @@ public class WeaponTable
         int id = tableDatas[idx].idx;
         level += 1;
 
+        //112 부터는 고정
+        if (id > 112)
+        {
+            id = 112;
+        }
+        
         if (id < 20)
         {
             return Mathf.Pow(level, 3.35f + (float)id * 0.015f);

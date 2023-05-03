@@ -2,6 +2,7 @@ using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CommonUiContainer : SingletonMono<CommonUiContainer>
 {
@@ -40,7 +41,12 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
     private List<string> itemGradeName_NewGacha= new List<string>() { 
         CommonString.ItemGrade_0,
         CommonString.ItemGrade_1, CommonString.ItemGrade_2, CommonString.ItemGrade_3, CommonString.ItemGrade_4, CommonString.ItemGrade_5,CommonString.ItemGrade_6_Ring};
-    public List<string> ItemGradeName_NewGacha => itemGradeName_NewGacha;
+    public List<string> ItemGradeName_NewGacha => itemGradeName_NewGacha;  
+    
+    private List<string> itemGradeName_SealSword= new List<string>() { 
+        CommonString.ItemGrade_0,
+        CommonString.ItemGrade_1, CommonString.ItemGrade_2, CommonString.ItemGrade_3, CommonString.ItemGrade_4, CommonString.ItemGrade_5,CommonString.ItemGrade_6_Ring};
+    public List<string> ItemGradeName_SealSword => itemGradeName_SealSword;
 
     public List<Color> itemGradeColor;
 
@@ -129,6 +135,9 @@ public Sprite DarkWeapon1;
 public Sprite DarkWeapon2;
 public Sprite DarkWeapon3;
 public Sprite MasterWeapon0;
+public Sprite MasterWeapon1;
+public Sprite MasterWeapon2;
+public Sprite MasterWeapon3;
     
 [Header ("Weapon_View")]
 
@@ -228,6 +237,9 @@ public Sprite RecommendWeapon22;
     public Sprite DarkNorigae3;
     
     public Sprite MasterNorigae0;
+    public Sprite MasterNorigae1;
+    public Sprite MasterNorigae2;
+    public Sprite MasterNorigae3;
     
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
@@ -274,6 +286,10 @@ public Sprite RecommendWeapon22;
     public Sprite VisionPet1;
     public Sprite VisionPet2;
     public Sprite VisionPet3;
+    public Sprite FoxPet0;
+    public Sprite FoxPet1;
+    public Sprite FoxPet2;
+    public Sprite FoxPet3;
 
 
     [Header ("Skill")]
@@ -362,6 +378,7 @@ public Sprite RecommendWeapon22;
     public Sprite SuhoPetFeed;
     public Sprite SuhoPetFeedClear;
     public Sprite SoulRingClear;
+    public Sprite SealWeaponClear;
     public Sprite Mileage;
     public Sprite HellPower;
     public Sprite DokebiFireKey;
@@ -381,6 +398,8 @@ public Sprite RecommendWeapon22;
     public Sprite DokebiBundle;
     public Sprite SinsuRelic;
     public Sprite HyungsuRelic;
+    public Sprite FoxRelic;
+    public Sprite FoxRelicClearTicket;
     [Header ("Goods_Event")]
     public Sprite Songpyeon;
     public Sprite EventCollection;
@@ -758,6 +777,16 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[109];
             case Item_Type.costume110:
                 return costumeThumbnail[110];
+            case Item_Type.costume111:
+                return costumeThumbnail[111];
+            case Item_Type.costume112:
+                return costumeThumbnail[112];
+            case Item_Type.costume113:
+                return costumeThumbnail[113];
+            case Item_Type.costume114:
+                return costumeThumbnail[114];
+            case Item_Type.costume115:
+                return costumeThumbnail[115];
 
 
             case Item_Type.RankFrame1:
@@ -1107,7 +1136,9 @@ public Sprite RecommendWeapon22;
 
    
             case Item_Type.SumiFire:
-                return SumiFire;
+                return SumiFire; 
+            case Item_Type.SealWeaponClear:
+                return SealWeaponClear;
 
  
             case Item_Type.Tresure:
@@ -1119,6 +1150,10 @@ public Sprite RecommendWeapon22;
                 return SinsuRelic;
             case Item_Type.HyungsuRelic:
                 return HyungsuRelic;
+            case Item_Type.FoxRelic:
+                return FoxRelic;
+            case Item_Type.FoxRelicClearTicket:
+                return FoxRelicClearTicket;
 
 
             case Item_Type.EventDice:
@@ -1391,6 +1426,12 @@ public Sprite RecommendWeapon22;
                 return DarkNorigae3;
             case Item_Type.MasterNorigae0:
                 return MasterNorigae0;
+            case Item_Type.MasterNorigae1:
+                return MasterNorigae1;
+            case Item_Type.MasterNorigae2:
+                return MasterNorigae2;
+            case Item_Type.MasterNorigae3:
+                return MasterNorigae3;
 
 
             //
@@ -1552,6 +1593,15 @@ public Sprite RecommendWeapon22;
                 return VisionPet2;
             case Item_Type.VisionPet3:
                 return VisionPet3;
+            
+            case Item_Type.FoxPet0:
+                return FoxPet0;
+            case Item_Type.FoxPet1:
+                return FoxPet1;
+            case Item_Type.FoxPet2:
+                return FoxPet2;
+            case Item_Type.FoxPet3:
+                return FoxPet3;
 
 
 
@@ -1915,6 +1965,12 @@ public Sprite RecommendWeapon22;
                 return DarkWeapon3;
             case Item_Type.MasterWeapon0:
                 return MasterWeapon0;
+            case Item_Type.MasterWeapon1:
+                return MasterWeapon1;
+            case Item_Type.MasterWeapon2:
+                return MasterWeapon2;
+            case Item_Type.MasterWeapon3:
+                return MasterWeapon3;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;

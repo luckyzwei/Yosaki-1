@@ -616,6 +616,7 @@ public class TableManager : SingletonMono<TableManager>
             return titleAbils;
         }
     }
+
     [SerializeField] private YomulAbil yomulAbilTable;
     public YomulAbil YomulAbilTable => yomulAbilTable;
 
@@ -764,11 +765,46 @@ public class TableManager : SingletonMono<TableManager>
     public DarkTreasureAbilBase DarkTreasureAbilBase;
     public BlackWolfRing BlackWolfRing;
     public TowerTable8 gyungRockTowerTable2;
+    public FoxTower FoxTowerTable;
+    public FoxFire FoxFire;
+    public DarkTowerTable DarkTowerTable;
+    
+    public SealSword sealSwordTable;
+    
+    private Dictionary<int, SealSwordData> sealSwordData = null;
+
+    public Dictionary<int, SealSwordData> SealSwordData
+    {
+        get
+        {
+            LoadSealSwordData();
+            return sealSwordData;
+        }
+    }
+    
+    private void LoadSealSwordData()
+    {
+        if (sealSwordData != null) return;
+
+        sealSwordData = new Dictionary<int, SealSwordData>();
+
+        for (int i = 0; i < sealSwordTable.dataArray.Length; i++)
+        {
+            sealSwordData.Add(sealSwordTable.dataArray[i].Id, sealSwordTable.dataArray[i]);
+        }
+    }
+    
+    public TowerTable9 SealTowerTable;
     
 }
 
 
 public enum CommonTableEventType
 {
-    SnowMan, Namul, Wind, DdukGuk,HotTime
+    SnowMan,
+    Namul,
+    Flower,
+    DdukGuk,
+    HotTime,
+    Normal
 }

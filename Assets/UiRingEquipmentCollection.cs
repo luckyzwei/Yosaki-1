@@ -180,4 +180,94 @@ public class UiRingEquipmentCollection : MonoBehaviour
 
      
     }
+
+    public void OnClickRecieveAllReward()
+    {
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        
+        List<int> rewardTypeList = new List<int>();
+        List<string> ringNameList = new List<string>();
+
+        int rewardCount = 0;
+        
+        var tableData = TableManager.Instance.NewGachaTable.dataArray;
+        
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var serverData = ServerData.newGachaServerTable.TableDatas[tableData[i].Stringid];
+            //가지고있지 않으면 continue
+            if (serverData.hasItem.Value < 1) continue;
+            //무료보상 안 받은 경우
+            if (serverData.getReward0.Value < 1)
+            {
+                serverData.getReward0.Value = 1;
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Rewardtype0).Value += tableData[i].Rewardvalue0;
+                
+                if(rewardTypeList.Contains(tableData[i].Rewardtype0)==false)
+                {
+                    rewardTypeList.Add(tableData[i].Rewardtype0);
+                }
+                if(ringNameList.Contains(tableData[i].Stringid)==false)
+                {
+                    ringNameList.Add(tableData[i].Stringid);
+                }
+                
+                rewardCount++;
+            }
+            //패스권 안산 경우 continue
+            if (ServerData.iapServerTable.TableDatas[UiEquipmentCollectionPassBuyButton.collectionPassKey].buyCount.Value < 1) continue;
+            //유료보상 안 받은 경우
+            if (serverData.getReward1.Value < 1)
+            {
+                serverData.getReward1.Value = 1;
+                ServerData.goodsTable.GetTableData((Item_Type)tableData[i].Rewardtype1).Value += tableData[i].Rewardvalue1;
+                
+                if(rewardTypeList.Contains(tableData[i].Rewardtype1)==false)
+                {
+                    rewardTypeList.Add(tableData[i].Rewardtype1);
+                }
+                if(ringNameList.Contains(tableData[i].Stringid)==false)
+                {
+                    ringNameList.Add(tableData[i].Stringid);
+                }
+                rewardCount++;
+            }
+        }
+        
+        if (rewardCount > 0)
+        {
+            if (rewardTypeList.Count != 0)
+            {
+                using var e = rewardTypeList.GetEnumerator();
+                Param goodsParam = new Param();
+                while(e.MoveNext())
+                {
+                    goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData((Item_Type)e.Current).Value);
+                }
+                transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+            }
+            if (ringNameList.Count != 0)
+            {
+                using var ring = ringNameList.GetEnumerator();
+            
+                Param newGachaParam = new Param();
+                while(ring.MoveNext())
+                {
+                    string updateValue = ServerData.newGachaServerTable.TableDatas[ring.Current].ConvertToString();
+                    newGachaParam.Add(ring.Current, updateValue);
+                }
+                transactions.Add(TransactionValue.SetUpdate(NewGachaServerTable.tableName, NewGachaServerTable.Indate, newGachaParam));
+    
+            }
+            
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "보상을 전부 수령했습니다", null);
+            });
+        }
+        else
+        {
+            PopupManager.Instance.ShowAlarmMessage("수령가능한 보상이 없습니다");
+        }
+    }
 }

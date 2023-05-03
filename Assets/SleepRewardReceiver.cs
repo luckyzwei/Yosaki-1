@@ -285,7 +285,17 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += sleepRewardInfo.springItem;
+
+            if (Utils.HasSnowManEventPass() == false)
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value += sleepRewardInfo.springItem;
+            }
+            else
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value += sleepRewardInfo.springItem;
+            }
         }
+
 
         ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime).Value += sleepRewardInfo.hotTimeItem;
 
@@ -347,6 +357,10 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
             goodsParam.Add(GoodsTable.Event_Item_SnowMan, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan).Value);
+            if (Utils.HasSnowManEventPass() == false)
+            {
+                goodsParam.Add(GoodsTable.Event_Item_SnowMan_All, ServerData.goodsTable.GetTableData(GoodsTable.Event_Item_SnowMan_All).Value);
+            }
         }
 
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)

@@ -339,7 +339,7 @@ public class UiBuffPopupView : MonoBehaviour
         //추석 유료버프
         if (buffTableData.Stringid.Equals("ch2"))
         {
-            if (ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.childPassKey].buyCount.Value == 0)
+            if (ServerData.iapServerTable.TableDatas[UiChildPassBuyButton.PassKey].buyCount.Value == 0)
             {
                 PopupManager.Instance.ShowAlarmMessage("한가위 패스권이 필요 합니다.");
                 return;

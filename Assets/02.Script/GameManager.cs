@@ -61,6 +61,9 @@ public class GameManager : SingletonMono<GameManager>
         GuildTower,
         Thief,
         GyungRockTower2,
+        DarkTower,
+        FoxTower,
+        SealSwordTower,
     }
 
     public bool SpawnMagicStone => IsNormalField;

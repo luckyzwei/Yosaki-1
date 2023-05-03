@@ -14,8 +14,8 @@ public enum SkillCastType
     Vision,
     SuhoAnimal,
     Indra,
+    SealSword,
 }
-
 
 public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
 {
@@ -39,12 +39,13 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     public ReactiveProperty<int> visionChargeCount;
     public ReactiveProperty<bool> useVisionSkill;
 
-    private static readonly List<int> _visionSkillIdxList= new List<int>();
+    private static readonly List<int> _visionSkillIdxList = new List<int>();
 
     public List<int> GetVisionSkillIdxList()
     {
         return _visionSkillIdxList;
     }
+
     public static bool IsVisionSkill(int idx)
     {
         return _visionSkillIdxList.Contains(idx);
@@ -58,16 +59,23 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             if (data.SKILLCASTTYPE == SkillCastType.Vision)
             {
                 _visionSkillIdxList.Add(data.Id);
-                
             }
         }
     }
+
     public bool UseSkill(int skillIdx)
     {
         bool canUserSkill = UserSkills[skillIdx].CanUseSkill();
 
         if (canUserSkill)
         {
+            //봉인검기술
+            if (TableManager.Instance.SkillTable.dataArray[skillIdx].SKILLCASTTYPE == SkillCastType.Player)
+            {
+                SealSkillCaster.currentHitCount.Value++;
+            }
+
+            
             UserSkills[skillIdx].UseSkill();
 
             // visionSkill
@@ -80,13 +88,12 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
                 {
                     if (!MapInfo.Instance.canSpawnEnemy.Value)
                     {
-                            visionChargeCount.Value-=addChargeCount;
-                        
+                        visionChargeCount.Value -= addChargeCount;
                     }
                 }
                 else
                 {
-                    visionChargeCount.Value-=addChargeCount;
+                    visionChargeCount.Value -= addChargeCount;
                 }
             }
 
@@ -109,7 +116,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
 
 
         useVisionSkill.Value = false;
-        
+
         VisionSkillCaster.Instance.StartSkillRoutine();
     }
 
@@ -126,7 +133,6 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
 
     private void Start()
     {
-        
         visionChargeCount.Value = 0;
         useVisionSkill.Value = false;
 
@@ -161,7 +167,6 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             {
                 addChargeCount = 2;
             }
-                        
         }).AddTo(this);
     }
 

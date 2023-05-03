@@ -64,6 +64,9 @@ public class UiHellTowerResult : MonoBehaviour
                     case GameManager.ContentsType.SinsuTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx6).Value < (TableManager.Instance.sinsuTower.dataArray.Length):
                         stageChangeText.SetText("다음 스테이지");
                         break;
+                    case GameManager.ContentsType.SealSwordTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx9).Value < (TableManager.Instance.sealSwordTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
                     case GameManager.ContentsType.SinsuTower:
                         stageChangeButton.SetActive(false);
                         break;

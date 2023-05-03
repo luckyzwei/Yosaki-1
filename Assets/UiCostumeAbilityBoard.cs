@@ -483,4 +483,88 @@ public class UiCostumeAbilityBoard : SingletonMono<UiCostumeAbilityBoard>
         }, () => { });
 
     }
+    
+    
+    public void OnClickGachaButton_Fixed_PresetAll()
+    {
+     
+
+        // if (CurrentServerData.hasCostume.Value == false)
+        // {
+        //     PopupManager.Instance.ShowAlarmMessage("외형이 없습니다.");
+        //     return;
+        // }
+
+        var tableData = TableManager.Instance.Costume.dataArray;
+
+        List<CostumeServerData> hasCostumeList = new List<CostumeServerData>();
+        
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            if (ServerData.costumeServerTable.TableDatas[tableData[i].Stringid].hasCostume.Value==true)
+            {
+                hasCostumeList.Add(ServerData.costumeServerTable.TableDatas[tableData[i].Stringid]);   
+            }
+        }
+
+        int changeNeedAbilCount = 0;
+        
+        for (int i = 0; i < hasCostumeList.Count; i++)
+        {
+            for (int j = 0; j < hasCostumeList[i].abilityIdx.Count; j++)
+            {
+                if (hasCostumeList[i].abilityIdx[j].Value != currentSelectedFixedDropDownId)
+                {
+                    changeNeedAbilCount++;
+                }
+                
+            }
+        }
+
+        float price = fixedGachaPrice * changeNeedAbilCount;
+        
+        if (ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value < price)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}이 부족합니다.\n슬롯{changeNeedAbilCount}개 변경, 옥 {Utils.ConvertBigNum(price)}개 필요");
+            return;
+        }
+
+        if (price == 0f)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"변경할 슬롯이 없습니다.");
+            return;
+        }
+
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"옥 {Utils.ConvertBigNum(price)}개를 사용해서(슬롯{changeNeedAbilCount}개)\n현재 프리셋의 모든 슬롯의 능력치들을 변경 할까요?", () =>
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= price;
+            
+            for (int i = 0; i < hasCostumeList.Count; i++)
+            {
+                for (int j = 0; j < hasCostumeList[i].abilityIdx.Count; j++)
+                {
+                    if (hasCostumeList[i].abilityIdx[j].Value != currentSelectedFixedDropDownId)
+                    {
+                        hasCostumeList[i].abilityIdx[j].Value = currentSelectedFixedDropDownId;
+                    }
+                }
+            }
+            
+            //
+            ServerData.costumePreset.TableDatas[ServerData.equipmentTable.GetCurrentCostumePresetKey()] = ServerData.costumeServerTable.ConvertAllCostumeDataToString();
+            
+            RefreshUi();
+            
+            //동기화
+            if (syncRoutine != null)
+            {
+                CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
+            }
+        
+            syncRoutine = CoroutineExecuter.Instance.StartCoroutine(SyncServerData());
+        
+        
+        }, () => { });
+
+    }
 }

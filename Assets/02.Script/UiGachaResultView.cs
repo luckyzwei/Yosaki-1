@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class GachaResultCellInfo
+{
+    public WeaponData weaponData;
+    public MagicBookData magicBookData;
+    public SkillTableData skillData;
+    public NewGachaTableData newGachaData;
+    public SealSwordData sealSwordData;
+    public int amount;
+}
+
 public class UiGachaResultView : SingletonMono<UiGachaResultView>
 {
-    public class GachaResultCellInfo
-    {
-        public WeaponData weaponData;
-        public MagicBookData magicBookData;
-        public SkillTableData skillData;
-        public NewGachaTableData newGachaData;
-        public int amount;
-    }
+
 
     [SerializeField]
     private GameObject rootObject;
@@ -144,7 +147,7 @@ public class UiGachaResultView : SingletonMono<UiGachaResultView>
 
                 if (i < results.Count)
                 {
-                    GachaResultViewCellContainer[i].Initialzie(results[i].weaponData, results[i].magicBookData, results[i].skillData, results[i].newGachaData,results[i].amount);
+                    GachaResultViewCellContainer[i].Initialzie(results[i].weaponData, results[i].magicBookData, results[i].skillData, results[i].newGachaData,results[i].sealSwordData,results[i].amount);
                 }
 
                 if (isAuto == false)
@@ -199,7 +202,7 @@ public class UiGachaResultView : SingletonMono<UiGachaResultView>
 
             if (i < results.Count)
             {
-                GachaResultViewCellContainer[i].Initialzie(results[i].weaponData, results[i].magicBookData, results[i].skillData, results[i].newGachaData, results[i].amount);
+                GachaResultViewCellContainer[i].Initialzie(results[i].weaponData, results[i].magicBookData, results[i].skillData, results[i].newGachaData,results[i].sealSwordData, results[i].amount);
             }
         }
 

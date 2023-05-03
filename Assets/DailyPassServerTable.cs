@@ -1096,9 +1096,9 @@ public class OneYearPassServerTable
     public static string childFree = "f5";
     public static string childAd = "a5";
 
-    //2022눈사람 사용중
-    public static string childFree_Snow = "fn0";
-    public static string childAd_Snow = "fn1";
+    //2023 어린이날 //2022눈사람 사용중
+    public static string childFree_Snow = "fs1";
+    public static string childAd_Snow = "as1";
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {

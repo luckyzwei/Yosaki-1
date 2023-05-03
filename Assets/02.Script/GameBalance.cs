@@ -317,6 +317,12 @@ public static class GameBalance
     public static ObscuredDouble NorigaeSoulGraduateScore = 1E+101; // 졸업하는 수치
     public static ObscuredDouble NorigaeSoulFixedScore = 1E+101; //  졸업시 고정되는 수치.
     public static ObscuredFloat NorigaeSoulGraduatePlusValue = 1.25f; 
+    //악의 씨앗
+    public static ObscuredDouble EvilSeedGraduateScore = 1E+98; // 졸업하는 수치
+    public static ObscuredFloat  EvilSeedGraduatePlusValue = 3f; 
+    //귀신나무
+    public static ObscuredDouble GhostTreeGraduateScore = 1E+96; // 졸업하는 수치
+    public static ObscuredFloat  GhostTreeGraduatePlusValue = 1.5f; 
     
     public static ObscuredInt DailyPetFeedClearGetValue = 2;
     public static ObscuredInt DolPassDiceRefundValue = 20;
@@ -327,8 +333,10 @@ public static class GameBalance
     public static ObscuredFloat JadeExchangeValuePerBooty = 1; // 전리품 1개당 획득하는 옥 갯수
     public static ObscuredFloat VisionTreasurePerDamage = 1; // 비전보물 1개당 스킬 데미지 증가량
     
-    public static ObscuredFloat GuildTowerTicketMaxCount = 3; // 비전보물 1개당 스킬 데미지 증가량
+    //public static ObscuredFloat GuildTowerTicketMaxCount = 3; // 비전보물 1개당 스킬 데미지 증가량
     public static ObscuredFloat GuildTowerTicketDailyGetAmount = 1; // 
+    public static ObscuredFloat FoxTowerTicketDailyGetAmount = 2; // 
+    public static ObscuredFloat SealSwordTicketDailyGetAmount = 4; // 
     
     public static ObscuredFloat GuildTowerChimAbilUpValue = 0.01f; // 
     

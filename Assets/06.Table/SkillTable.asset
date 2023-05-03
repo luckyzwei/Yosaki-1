@@ -1990,10 +1990,10 @@ MonoBehaviour:
     skillicon: 40
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 100000
-    damageaddvalue: 80
+    damageaddvalue: 40
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2038,10 +2038,10 @@ MonoBehaviour:
     skillicon: 41
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 120000
-    damageaddvalue: 120
+    damageaddvalue: 60
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2086,10 +2086,10 @@ MonoBehaviour:
     skillicon: 42
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 140000
-    damageaddvalue: 160
+    damageaddvalue: 80
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2134,10 +2134,10 @@ MonoBehaviour:
     skillicon: 43
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 160000
-    damageaddvalue: 200
+    damageaddvalue: 100
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2182,10 +2182,10 @@ MonoBehaviour:
     skillicon: 44
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 180000
-    damageaddvalue: 250
+    damageaddvalue: 125
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2422,10 +2422,10 @@ MonoBehaviour:
     skillicon: 49
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 12000000
-    damageaddvalue: 300
+    damageaddvalue: 150
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2470,10 +2470,10 @@ MonoBehaviour:
     skillicon: 50
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 12200000
-    damageaddvalue: 350
+    damageaddvalue: 175
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2518,10 +2518,10 @@ MonoBehaviour:
     skillicon: 51
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 12400000
-    damageaddvalue: 400
+    damageaddvalue: 200
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2566,10 +2566,10 @@ MonoBehaviour:
     skillicon: 52
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 12600000
-    damageaddvalue: 450
+    damageaddvalue: 225
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -2614,10 +2614,10 @@ MonoBehaviour:
     skillicon: 53
     awakemaxnum: 1
     movedelay: 0
-    cooltime: 2
+    cooltime: 1
     usecost: 0
     damageper: 12800000
-    damageaddvalue: 500
+    damageaddvalue: 250
     targetcount: 100
     hitcount: 9
     activeoffset: 2
@@ -3233,7 +3233,7 @@ MonoBehaviour:
     requirehit: 0
   - id: 67
     skillclassname: SuhoSkill0
-    skillname: "\uC218\uD638\uB3D9\uBB3C\uAE30\uC22010"
+    skillname: "\uC218\uD638\uB3D9\uBB3C\uAE30\uC22011"
     skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
     skillicon: 36
     awakemaxnum: 1
@@ -3279,3 +3279,1299 @@ MonoBehaviour:
     sonunlocklevel: 1
     indragoodsname: i0
     requirehit: 0
+  - id: 68
+    skillclassname: SuhoSkill0
+    skillname: "\uC218\uD638\uB3D9\uBB3C\uAE30\uC22012"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 10
+    usecost: 0
+    damageper: 1.3e+9
+    damageaddvalue: 250
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: Suhoskill0
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 4
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 0
+  - id: 69
+    skillclassname: SuhoSkill0
+    skillname: "\uC218\uD638\uB3D9\uBB3C\uAE30\uC22013"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 10
+    usecost: 0
+    damageper: 1.4e+9
+    damageaddvalue: 250
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: Suhoskill0
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 4
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 0
+  - id: 70
+    skillclassname: SuhoSkill0
+    skillname: "\uC218\uD638\uB3D9\uBB3C\uAE30\uC22014"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 10
+    usecost: 0
+    damageper: 1.5e+9
+    damageaddvalue: 250
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: Suhoskill0
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 4
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 0
+  - id: 71
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 72
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.15e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 73
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.3e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 74
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.45e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 75
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.6e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 76
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.8e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 77
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 78
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.2e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 79
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.4e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 80
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.6e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 81
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.8e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 82
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 4.4e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 83
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 4.8e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 84
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 5.2e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 85
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 5.6e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 86
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 6e+9
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 87
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 1.2e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 88
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 1.6e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 89
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 90
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.4e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 91
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 2.8e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 41
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 92
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.2e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 93
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 3.6e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100
+  - id: 94
+    skillclassname: SealSwordSkill0
+    skillname: "\uBD09\uC778\uAC80\uAE30\uC220"
+    skilldesc: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uAC15\uD558\uAC8C \uBCA4\uB2E4"
+    skillicon: 36
+    awakemaxnum: 1
+    movedelay: 0
+    cooltime: 0
+    usecost: 0
+    damageper: 4e+10
+    damageaddvalue: 0
+    targetcount: 100
+    hitcount: 1
+    activeoffset: 2
+    targetrange: 25
+    skillgrade: 11
+    awakeweaponidx: 4
+    awakeweaponreqcount: 10
+    activeeffectname1: circle1
+    activeeffectname2: a
+    hiteffectname: RedHit
+    skilltype: 9
+    displayorder: 0
+    soundname: 1-4
+    gachalv1: 0
+    gachalv2: 0
+    gachalv3: 0
+    gachalv4: 0
+    gachalv5: 0
+    gachalv6: 0
+    gachalv7: 0
+    gachalv8: 0
+    gachalv9: 0
+    gachalv10: 0
+    requireupgrade: 4
+    iseffectrootplayer: 1
+    name: "\uD2B9\uAE09"
+    haseffecttype: 40
+    haseffectvalue: 0
+    collectionabiltype: 1
+    collectionabiltmaxlevel: 2
+    collectionvalue: 0.05
+    destroyvalue: 600
+    makerequirevalue: 600
+    skillcasttype: 6
+    sonunlocklevel: 1
+    indragoodsname: i0
+    requirehit: 100

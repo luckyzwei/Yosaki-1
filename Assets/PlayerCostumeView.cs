@@ -9,7 +9,10 @@ public class PlayerCostumeView : MonoBehaviour
     private SkeletonGraphic skeletonGraphic;
 
     [SerializeField]
-    private BoneFollowerGraphic boneFollowerGraphic;
+    private BoneFollowerGraphic boneFollowerGraphic; 
+    
+    [SerializeField]
+    private BoneFollowerGraphic boneFollowerGraphic_SealWeapon;
 
     [SerializeField]
     private BoneFollowerGraphic boneFollowerGraphic_Mask;
@@ -32,6 +35,7 @@ public class PlayerCostumeView : MonoBehaviour
         skeletonGraphic.SetMaterialDirty();
 
         boneFollowerGraphic.SetBone("Weapon1");
+        boneFollowerGraphic_SealWeapon.SetBone("bone21");
         boneFollowerGraphic_Mask.SetBone("bone21");
     }
 }

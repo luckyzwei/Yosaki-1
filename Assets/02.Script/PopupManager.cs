@@ -90,6 +90,12 @@ public class PopupManager : SingletonMono<PopupManager>
 
     public void ShowConfirmPopup(string title, string description, Action confirmCallBack, bool closeWhenConfirm = true)
     {
+        #if UNITY_EDITOR
+        
+        Debug.LogError("ShowConfirmPopup");
+        
+        #endif
+        
         var confirmPopup = Instantiate<UiConfirmPopup>(confirmPopupPrefab, this.transform);
         confirmPopup.Initialize(title, description, confirmCallBack, closeWhenConfirm);
     }
