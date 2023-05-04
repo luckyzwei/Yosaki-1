@@ -17,7 +17,7 @@ public class SealWeaponEquipView : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword].AsObservable().Subscribe(WhenEquipIdxChanged).AddTo(this);
+        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword_View].AsObservable().Subscribe(WhenEquipIdxChanged).AddTo(this);
 
     }
 
