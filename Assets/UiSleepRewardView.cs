@@ -117,7 +117,16 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         rewards[5].SetText(Utils.ConvertBigNum(reward.yoguiMarble));
         if (ServerData.userInfoTable.CanSpawnSnowManItem())
         {
-            rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem));
+            
+            if (Utils.HasSnowManEventPass() == false)
+            {
+                rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem));
+            }
+            else
+            {
+                rewards[6].SetText(Utils.ConvertBigNum(reward.eventItem*2f));
+            }
+
             snowObject.SetActive(true);
         }
         else//눈사람
