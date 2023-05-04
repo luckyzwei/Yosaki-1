@@ -260,7 +260,7 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
 
                 int currentFoxCup = PlayerStats.GetCurrentFoxCupIdx();
                 
-                int currentWolfRing = PlayerStats.GetCurrentFoxCupIdx();
+                int currentWolfRing = PlayerStats.GetCurrentWolfRingIdx();
 
                 if (prefDragonBall < currentDragonBall)
                 {
