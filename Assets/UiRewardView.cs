@@ -29,6 +29,16 @@ public class UiRewardView : MonoBehaviour
     {
         rewardIcon.sprite = CommonUiContainer.Instance.GetItemIcon(rewardData.itemType);
         var str = Utils.ConvertBigNum(rewardData.amount);
-        amountText.SetText($"{str} 처치");
+
+        if (GameManager.contentsType == GameManager.ContentsType.FoxTower ||
+            GameManager.contentsType == GameManager.ContentsType.SealSwordTower)
+        {
+            amountText.SetText($"{str}개");
+        }
+        else
+        {
+            amountText.SetText($"{str} 처치");
+        }
+     
     }
 }
