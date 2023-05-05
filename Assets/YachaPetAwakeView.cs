@@ -108,7 +108,7 @@ public class YachaPetAwakeView : MonoBehaviour
             return;
         }
         
-        LogManager.Instance.SendLogType("PetEquipLevel", $"p", $"{100}회");
+       // LogManager.Instance.SendLogType("PetEquipLevel", $"p", $"{100}회");
         
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= upgradePrice;
         
