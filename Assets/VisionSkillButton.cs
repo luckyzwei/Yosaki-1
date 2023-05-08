@@ -77,7 +77,7 @@ public class VisionSkillButton : MonoBehaviour
                 if (count_Real + count_Showing <= count_Max)
                 {
                     gauge.fillAmount = (count_Max - (float)count_Showing) / (float)count_Max;
-                    count_Showing++;
+                    count_Showing += PlayerSkillCaster.Instance.addChargeCount.Value;
                 }
             }
             yield return delay;

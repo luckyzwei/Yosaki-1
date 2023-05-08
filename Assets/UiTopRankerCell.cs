@@ -390,6 +390,13 @@ public class UiTopRankerCell : MonoBehaviour
             petGraphic.transform.localScale = new Vector3(0.28f, 0.28f, 0.28f);
             petGraphic.GetComponent<RectTransform>().anchoredPosition = new Vector3(41.2f, 143.3f, 0.0f);
         }
+        //사룡 이후
+        else if (idx > 35)
+        {
+            petGraphic.startingAnimation = "idle";
+            petGraphic.transform.localScale = new Vector3(0.28f, 0.28f, 0.28f);
+            petGraphic.GetComponent<RectTransform>().anchoredPosition = new Vector3(41.2f, 143.3f, 0.0f);
+        }
 
         petGraphic.gameObject.SetActive(true);
         petGraphic.Clear();

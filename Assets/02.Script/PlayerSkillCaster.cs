@@ -35,7 +35,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     private string newWeaponKey1 = "weapon23";
     private string newWeaponKey2 = "weapon24";
 
-    private int addChargeCount = 1;
+    public ReactiveProperty<int> addChargeCount;
     public ReactiveProperty<int> visionChargeCount;
     public ReactiveProperty<bool> useVisionSkill;
 
@@ -88,12 +88,12 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
                 {
                     if (!MapInfo.Instance.canSpawnEnemy.Value)
                     {
-                        visionChargeCount.Value -= addChargeCount;
+                        visionChargeCount.Value -= addChargeCount.Value;
                     }
                 }
                 else
                 {
-                    visionChargeCount.Value -= addChargeCount;
+                    visionChargeCount.Value -= addChargeCount.Value;
                 }
             }
 
@@ -165,7 +165,11 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         {
             if (e >= 10)
             {
-                addChargeCount = 2;
+                addChargeCount.Value = 2;
+            }
+            else
+            {
+                addChargeCount.Value = 1;
             }
         }).AddTo(this);
     }

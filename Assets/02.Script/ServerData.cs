@@ -76,6 +76,7 @@ public static class ServerData
 
     public static SuhoAnimalServerTable suhoAnimalServerTable { get; private set; } = new SuhoAnimalServerTable();
     public static SealSwordServerTable sealSwordServerTable { get; private set; } = new SealSwordServerTable();
+    public static UserInfoTable2 userInfoTable2 { get; private set; } = new UserInfoTable2();
 
     #region string
 
@@ -174,6 +175,7 @@ public static class ServerData
         
         sealSwordServerTable.Initialize();
         
+        userInfoTable2.Initialize();
     }
 
     public static void SetTitleServer()

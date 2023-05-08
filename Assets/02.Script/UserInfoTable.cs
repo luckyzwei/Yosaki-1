@@ -239,6 +239,7 @@ public class UserInfoTable
     public const string newGachaEnergyRefund = "newGachaEnergyRefund";
     public const string titleConvertNewTitle = "titleConvertNewTitle";
     public const string titleConvertNewTitle2 = "titleConvertNewTitle2";
+    public const string relocateLevelPass = "relocateLevelPass";
     public const string chunmaRefund = "chunmaRefund";
 
     public const string exchangeCount_0_Mileage = "mff";
@@ -535,6 +536,7 @@ public class UserInfoTable
         { newGachaEnergyRefund, 0 },
         { titleConvertNewTitle, 0 },
         { titleConvertNewTitle2, 0 },
+        { relocateLevelPass, 0 },
         { chunmaRefund, 0 },
 
         { exchangeCount_0_Mileage, 0 },
@@ -654,6 +656,7 @@ public class UserInfoTable
                         //소급코드들 
                         if (e.Current.Key == titleConvertNewTitle ||
                             e.Current.Key == titleConvertNewTitle2 ||
+                            e.Current.Key == relocateLevelPass ||
                             e.Current.Key == dolPassRefund ||
                             e.Current.Key == mileageRefund ||
                             e.Current.Key == newGachaEnergyRefund ||
@@ -1054,6 +1057,15 @@ public class UserInfoTable
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
+
+            
+            ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value = 0;
+            
+            Param userInfo2Param = new Param();
+            
+            userInfo2Param.Add(UserInfoTable2.GangChulReset,ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value);
+            
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable2.tableName,UserInfoTable2.Indate,userInfo2Param));
         }
 
         //두번타는거 방지
