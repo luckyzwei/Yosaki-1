@@ -16,7 +16,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_11, CommonString.ItemGrade_12, CommonString.ItemGrade_13, CommonString.ItemGrade_14, CommonString.ItemGrade_15, 
         CommonString.ItemGrade_16, CommonString.ItemGrade_17, CommonString.ItemGrade_18, CommonString.ItemGrade_19, CommonString.ItemGrade_20 ,
         CommonString.ItemGrade_21 , CommonString.ItemGrade_22 , CommonString.ItemGrade_23 , CommonString.ItemGrade_24, CommonString.ItemGrade_25,
-        CommonString.ItemGrade_26, CommonString.ItemGrade_27 };
+        CommonString.ItemGrade_26, CommonString.ItemGrade_27, CommonString.ItemGrade_28 };
     public List<string> ItemGradeName_Weapon => itemGradeName_Weapon;
 
     private List<string> itemGradeName_Norigae = new List<string>() { CommonString.ItemGrade_0, 
@@ -25,7 +25,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,  //11~15
         CommonString.ItemGrade_11_Norigae, CommonString.ItemGrade_12_Norigae, CommonString.ItemGrade_13_Norigae, string.Empty, string.Empty,//16~20
         string.Empty, CommonString.ItemGrade_22_Norigae, string.Empty,CommonString.ItemGrade_24_Norigae ,string.Empty, //21~25,
-        CommonString.ItemGrade_26_Norigae, CommonString.ItemGrade_27_Norigae,
+        CommonString.ItemGrade_26_Norigae, CommonString.ItemGrade_27_Norigae,CommonString.ItemGrade_28_Norigae,
     }; 
     public List<string> ItemGradeName_Norigae => itemGradeName_Norigae;
 
@@ -138,6 +138,9 @@ public Sprite MasterWeapon0;
 public Sprite MasterWeapon1;
 public Sprite MasterWeapon2;
 public Sprite MasterWeapon3;
+public Sprite SinsunWeapon0;
+public Sprite SinsunWeapon1;
+public Sprite SinsunWeapon2;
     
 [Header ("Weapon_View")]
 
@@ -241,6 +244,9 @@ public Sprite RecommendWeapon22;
     public Sprite MasterNorigae2;
     public Sprite MasterNorigae3;
     
+    public Sprite SinsunNorigae0;
+    public Sprite SinsunNorigae1;
+    public Sprite SinsunNorigae2;
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
@@ -248,6 +254,7 @@ public Sprite RecommendWeapon22;
     public Sprite MonthNorigae3;
     public Sprite MonthNorigae4;
     public Sprite MonthNorigae5;
+    public Sprite MonthNorigae6;
     
     [Header ("DokebiHorn")]
     public Sprite DokebiHorn0;
@@ -330,6 +337,7 @@ public Sprite RecommendWeapon22;
     public Sprite VisionSkill2;
     public Sprite VisionSkill3;
     public Sprite VisionSkill4;
+    public Sprite VisionSkill5;
     
     public Sprite ThiefSkill0;
     public Sprite ThiefSkill1;
@@ -388,6 +396,7 @@ public Sprite RecommendWeapon22;
     public Sprite SahyungTreasure;
     public Sprite VisionTreasure;
     public Sprite DarkTreasure;
+    public Sprite SinsunTreasure;
     public Sprite GuildTowerClearTicket;
     public Sprite GuildTowerHorn;
     public Sprite SinsuMarble;
@@ -787,6 +796,14 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[114];
             case Item_Type.costume115:
                 return costumeThumbnail[115];
+            case Item_Type.costume116:
+                return costumeThumbnail[116];
+            case Item_Type.costume117:
+                return costumeThumbnail[117];
+            case Item_Type.costume118:
+                return costumeThumbnail[118];
+            case Item_Type.costume119:
+                return costumeThumbnail[119];
 
 
             case Item_Type.RankFrame1:
@@ -885,6 +902,31 @@ public Sprite RecommendWeapon22;
             case Item_Type.MergePartyRaidRankFrame501_1000:
                 return HellMark0;
             case Item_Type.MergePartyRaidRankFrame1001_5000:
+                return rankFrame[9];
+
+            case Item_Type.MergePartyRaidRankFrame_0_1:
+                return HellMark7;
+            case Item_Type.MergePartyRaidRankFrame_0_2:
+                return HellMark7;
+            case Item_Type.MergePartyRaidRankFrame_0_3:
+                return HellMark7;
+            case Item_Type.MergePartyRaidRankFrame_0_4:
+                return HellMark7;
+            case Item_Type.MergePartyRaidRankFrame_0_5:
+                return HellMark7;
+            case Item_Type.MergePartyRaidRankFrame_0_6_10:
+                return HellMark6;
+            case Item_Type.MergePartyRaidRankFrame_0_11_20:
+                return HellMark4;
+            case Item_Type.MergePartyRaidRankFrame_0_21_50:
+                return HellMark3;
+            case Item_Type.MergePartyRaidRankFrame_0_51_100:
+                return HellMark1;
+            case Item_Type.MergePartyRaidRankFrame_0_101_500:
+                return HellMark5;
+            case Item_Type.MergePartyRaidRankFrame_0_501_1000:
+                return HellMark0;
+            case Item_Type.MergePartyRaidRankFrame_0_1001_5000:
                 return rankFrame[9];
 
             case Item_Type.RankFrame1_relic:
@@ -1192,6 +1234,8 @@ public Sprite RecommendWeapon22;
                 return VisionTreasure;   
             case Item_Type.DarkTreasure:
                 return DarkTreasure;   
+            case Item_Type.SinsunTreasure:
+                return SinsunTreasure;   
             case Item_Type.GuildTowerClearTicket:
                 return GuildTowerClearTicket;  
             case Item_Type.GuildTowerHorn:
@@ -1433,6 +1477,12 @@ public Sprite RecommendWeapon22;
             case Item_Type.MasterNorigae3:
                 return MasterNorigae3;
 
+            case Item_Type.SinsunNorigae0:
+                return SinsunNorigae0;
+            case Item_Type.SinsunNorigae1:
+                return SinsunNorigae1;
+            case Item_Type.SinsunNorigae2:
+                return SinsunNorigae2;
 
             //
             case Item_Type.MonthNorigae0:
@@ -1451,6 +1501,8 @@ public Sprite RecommendWeapon22;
                 return MonthNorigae4;
             case Item_Type.MonthNorigae5:
                 return MonthNorigae5;
+            case Item_Type.MonthNorigae6:
+                return MonthNorigae6;
             //
             //
             case Item_Type.DokebiHorn0:
@@ -1803,6 +1855,8 @@ public Sprite RecommendWeapon22;
                 return VisionSkill3;
             case Item_Type.VisionSkill4:
                 return VisionSkill4;
+            case Item_Type.VisionSkill5:
+                return VisionSkill5;
             //
             //
             case Item_Type.ThiefSkill0:
@@ -1971,6 +2025,12 @@ public Sprite RecommendWeapon22;
                 return MasterWeapon2;
             case Item_Type.MasterWeapon3:
                 return MasterWeapon3;
+            case Item_Type.SinsunWeapon0:
+                return SinsunWeapon0;
+            case Item_Type.SinsunWeapon1:
+                return SinsunWeapon1;
+            case Item_Type.SinsunWeapon2:
+                return SinsunWeapon2;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;

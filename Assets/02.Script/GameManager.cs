@@ -64,6 +64,12 @@ public class GameManager : SingletonMono<GameManager>
         DarkTower,
         FoxTower,
         SealSwordTower,
+        TestMonkey,
+        TestSword,
+        TestHell,
+        TestChun,
+        SealAwake,
+        TaeguekTower,
     }
 
     public bool SpawnMagicStone => IsNormalField;
@@ -310,6 +316,10 @@ public class GameManager : SingletonMono<GameManager>
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, 1);
+            }
         }
 
         if (type != ContentsType.NormalField)

@@ -31,7 +31,7 @@ public class UiGangChulView : SingletonMono<UiGangChulView>
 
     private void Subscribe()
     {
-        ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].AsObservable().Subscribe(e => { resetButton.interactable = e == 0; }).AddTo(this);
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].AsObservable().Subscribe(e => { resetButton.interactable = e == 0; }).AddTo(this);
     }
     private void OnEnable()
     {
@@ -56,7 +56,7 @@ public class UiGangChulView : SingletonMono<UiGangChulView>
             return;
         }
 
-        if (ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value > 0)
+        if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value > 0)
         {
             PopupManager.Instance.ShowAlarmMessage("강철이 보상은 월 1회만 가능 합니다!\n(매월 1일 초기화)");
             return;
@@ -70,25 +70,30 @@ public class UiGangChulView : SingletonMono<UiGangChulView>
                 return;
             }
             
-            if (ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value > 0)
+            if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value > 0)
             {
                 PopupManager.Instance.ShowAlarmMessage("강철이 보상은 월 1회만 가능 합니다!\n(매월 1일 초기화)");
                 return;
             }
             
             ServerData.userInfoTable.TableDatas[UserInfoTable.gangchulRewardIdx].Value = -1;
-            ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value = 1;
-
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value = 1;
+            
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearGangChul, 1);
+            }
+            
             List<TransactionValue> transactions = new List<TransactionValue>();
 
             Param UserInfoParam = new Param();
             UserInfoParam.Add(UserInfoTable.gangchulRewardIdx, ServerData.userInfoTable.TableDatas[UserInfoTable.gangchulRewardIdx].Value);
 
             Param UserInfo2Param = new Param();
-            UserInfo2Param.Add(UserInfoTable2.GangChulReset, ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value);
+            UserInfo2Param.Add(UserInfoTable_2.GangChulReset, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value);
 
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, UserInfoParam));
-            transactions.Add(TransactionValue.SetUpdate(UserInfoTable2.tableName, UserInfoTable2.Indate, UserInfo2Param));
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, UserInfo2Param));
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

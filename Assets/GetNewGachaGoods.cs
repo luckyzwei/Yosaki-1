@@ -94,6 +94,11 @@ public class GetNewGachaGoods : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSoulStone, 1);
+            
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSoulStone, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {amount}개 획득!", null);

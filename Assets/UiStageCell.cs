@@ -50,7 +50,14 @@ public class UiStageCell : MonoBehaviour
         rewardParent.SetActive(UiDeadConfirmPopup.Instance == null);
     }
 
-
+    public bool HasReward(string key, int data)
+    {
+        return ServerData.userInfoTable_2.GetTableData(key).Value >= data;
+    }
+    private bool GetBeforeRewarded(string key,int data)
+    {
+        return ServerData.userInfoTable_2.GetTableData(key).Value == data - 1;
+    }
     private bool HasStagePassItem()
     {
         return ServerData.iapServerTable.TableDatas[UiStagePassBuyButton.stagePassKey].buyCount.Value > 0;
@@ -72,21 +79,26 @@ public class UiStageCell : MonoBehaviour
             return;
         }
 
-        if (ServerData.passServerTable.HasReward(PassServerTable.stagePassReward, stageMapData.Id))
+        if (HasReward(UserInfoTable_2.stagePassFree,stageMapData.Id))
         {
             PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
+            return;
+        }
+        if (GetBeforeRewarded(UserInfoTable_2.stagePassFree,stageMapData.Id)==false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("이전 보상을 받아주세요!");
             return;
         }
 
         //로컬
         ServerData.AddLocalValue((Item_Type)(int)stageMapData.Pre_Bossrewardtype, stageMapData.Pre_Bossrewardvalue);
-        ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].Value += $",{stageMapData.Id}";
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassFree].Value++;
 
         List<TransactionValue> transactions = new List<TransactionValue>();
 
-        Param passParam = new Param();
-        passParam.Add(PassServerTable.stagePassReward, ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].Value);
-        transactions.Add(TransactionValue.SetUpdate(PassServerTable.tableName, PassServerTable.Indate, passParam));
+        Param userInfo2Param = new Param();
+        userInfo2Param.Add(UserInfoTable_2.stagePassFree, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassFree].Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo2Param));
 
         var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)stageMapData.Pre_Bossrewardtype);
         transactions.Add(rewardTransactionValue);
@@ -107,23 +119,30 @@ public class UiStageCell : MonoBehaviour
             return;
         }
 
-        if (ServerData.passServerTable.HasReward(PassServerTable.stagePassAdReward, stageMapData.Id))
+        if (HasReward(UserInfoTable_2.stagePassAd,stageMapData.Id))
         {
             PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
             return;
         }
 
+        if (GetBeforeRewarded(UserInfoTable_2.stagePassAd,stageMapData.Id)==false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("이전 보상을 받아주세요!");
+            return;
+        }
+        
         AdManager.Instance.ShowRewardedReward(() =>
         {
             //로컬
             ServerData.AddLocalValue((Item_Type)(int)stageMapData.Ad_Bossrewardtype, stageMapData.Ad_Bossrewardvalue);
-            ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].Value += $",{stageMapData.Id}";
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassAd].Value++;
+
 
             List<TransactionValue> transactions = new List<TransactionValue>();
 
-            Param passParam = new Param();
-            passParam.Add(PassServerTable.stagePassAdReward, ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].Value);
-            transactions.Add(TransactionValue.SetUpdate(PassServerTable.tableName, PassServerTable.Indate, passParam));
+            Param userInfo2Param = new Param();
+            userInfo2Param.Add(UserInfoTable_2.stagePassAd, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassAd].Value);
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo2Param));
 
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)stageMapData.Ad_Bossrewardtype);
             transactions.Add(rewardTransactionValue);
@@ -149,14 +168,14 @@ public class UiStageCell : MonoBehaviour
             return;
         }
 
-        if (ServerData.passServerTable.HasReward(PassServerTable.stagePassReward, stageMapData.Id))
+        if (HasReward(UserInfoTable_2.stagePassFree, stageMapData.Id))
         {
             return;
         }
 
         //로컬
         ServerData.AddLocalValue((Item_Type)(int)stageMapData.Pre_Bossrewardtype, stageMapData.Pre_Bossrewardvalue);
-        ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].Value += $",{stageMapData.Id}";
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassFree].Value++;
     }
 
     public void OnClickRewardButton_Ad_Script()
@@ -168,14 +187,14 @@ public class UiStageCell : MonoBehaviour
             return;
         }
 
-        if (ServerData.passServerTable.HasReward(PassServerTable.stagePassAdReward, stageMapData.Id))
+        if (HasReward(UserInfoTable_2.stagePassAd, stageMapData.Id))
         {
             return;
         }
 
         //로컬
         ServerData.AddLocalValue((Item_Type)(int)stageMapData.Ad_Bossrewardtype, stageMapData.Ad_Bossrewardvalue);
-        ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].Value += $",{stageMapData.Id}";
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassAd].Value++;
     }
     //
 
@@ -222,18 +241,15 @@ public class UiStageCell : MonoBehaviour
             rewardlockMask.SetActive(e == 0);
 
         }).AddTo(compositDisposable);
-
-        ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].AsObservable().Subscribe(e =>
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassFree].Subscribe(e =>
+            {
+                rewardCompleteObject.SetActive(HasReward(UserInfoTable_2.stagePassFree, stageMapData.Id));    
+            }).AddTo(compositDisposable);
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassAd].Subscribe(e =>
         {
-            rewardCompleteObject.SetActive(ServerData.passServerTable.HasReward(PassServerTable.stagePassReward, stageMapData.Id));
-
+            rewardCompleteObject_Ad.SetActive(HasReward(UserInfoTable_2.stagePassAd, stageMapData.Id));
         }).AddTo(compositDisposable);
-
-        ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].AsObservable().Subscribe(e =>
-        {
-            rewardCompleteObject_Ad.SetActive(ServerData.passServerTable.HasReward(PassServerTable.stagePassAdReward, stageMapData.Id));
-
-        }).AddTo(compositDisposable);
+        
     }
 
     public void DisposeTemp() 

@@ -47,7 +47,12 @@ public class UiRelicCell : MonoBehaviour
     private GameObject lockMask_Dokebi;
     [SerializeField]
     private GameObject lockMask_Sumi;
+    [SerializeField]
+    private GameObject lockMask_Thief;
 
+    [SerializeField] private Image lockMaskImage;
+    [SerializeField]
+    private TextMeshProUGUI lockMaskText;
     private bool subscribed = false;
     private bool IsMaxLevel()
     {
@@ -118,7 +123,7 @@ public class UiRelicCell : MonoBehaviour
             }).AddTo(this);
         }
         //사인검
-        if (relicLocalData.Id == 8)
+        else if (relicLocalData.Id == 8)
         {
             lockMask.SetActive(false);
 
@@ -129,7 +134,7 @@ public class UiRelicCell : MonoBehaviour
             }).AddTo(this);
             
         }
-        if (relicLocalData.Id == 9)
+        else if (relicLocalData.Id == 9)
         {
             lockMask.SetActive(false);
 
@@ -140,7 +145,7 @@ public class UiRelicCell : MonoBehaviour
             }).AddTo(this);
             
         }
-        if (relicLocalData.Id == 10)
+        else if (relicLocalData.Id == 10)
         {
             lockMask.SetActive(false);
 
@@ -151,7 +156,7 @@ public class UiRelicCell : MonoBehaviour
             }).AddTo(this);
             
         }
-        if (relicLocalData.Id == 11)
+        else if (relicLocalData.Id == 11)
         {
             lockMask.SetActive(false);
 
@@ -161,6 +166,18 @@ public class UiRelicCell : MonoBehaviour
                lockMask_Sumi.SetActive(e < 1);
             }).AddTo(this);
             
+        }
+        else if(relicLocalData.Id>=12)
+        {
+            lockMask.SetActive(false);
+
+
+            ServerData.weaponTable.TableDatas[$"{relicLocalData.Requireweaponstringid}"].hasItem.AsObservable().Subscribe(e =>
+            {
+                lockMask_Thief.SetActive(e < 1);
+                lockMaskText.SetText($"{relicLocalData.Description}");
+                lockMaskImage.sprite = CommonUiContainer.Instance.GetItemIcon((Item_Type)relicLocalData.Iconitemtype);
+            }).AddTo(this);
         }
     }
 

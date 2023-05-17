@@ -567,7 +567,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else
             {
-                int currentBlueStone = (int)ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value;
+                float currentBlueStone = ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value;
 
                 if (currentBlueStone >= petData.Price)
                 {

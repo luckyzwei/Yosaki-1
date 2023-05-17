@@ -71,6 +71,12 @@ public class UiContentsExitButton : MonoBehaviour
                     case GameManager.ContentsType.SealSwordTower:
                         return false;
                     
+                    case GameManager.ContentsType.TaeguekTower when (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.taeguekTower).Value <
+                                                                      (TableManager.Instance.taegeukTitle.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.TaeguekTower:
+                        return false;
+                    
                 }
         switch (GameManager.contentsType)
         {
@@ -178,6 +184,18 @@ public class UiContentsExitButton : MonoBehaviour
                 (TableManager.Instance.FoxMask.dataArray.Length))
             {
                 GameManager.Instance.LoadContents(GameManager.ContentsType.FoxMask);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.TaeguekTower)
+        {
+            if ((int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.taeguekTower).Value <
+                (TableManager.Instance.taegeukTitle.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.TaeguekTower);
             }
             else
             {

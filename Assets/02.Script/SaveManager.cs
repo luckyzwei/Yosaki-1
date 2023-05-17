@@ -31,7 +31,10 @@ public class SaveManager : SingletonMono<SaveManager>
         {
             yield return getHotTimeGoodsdDelay;
 
-            GetHotTimeGoods();
+            if (ServerData.userInfoTable.IsHotTimeEvent())
+            {
+                GetHotTimeGoods();
+            }
         }
     }
 
@@ -244,6 +247,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.VisionSkill2,
         GoodsTable.VisionSkill3,
         GoodsTable.VisionSkill4,
+        GoodsTable.VisionSkill5,
 
         GoodsTable.c0,
         GoodsTable.c1,
@@ -267,6 +271,7 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.SahyungTreasure,
         GoodsTable.VisionTreasure,
         GoodsTable.DarkTreasure,
+        GoodsTable.SinsunTreasure,
         GoodsTable.SumiFire,
         GoodsTable.SumiFireKey,
         GoodsTable.NewGachaEnergy,
@@ -297,6 +302,7 @@ public class SaveManager : SingletonMono<SaveManager>
         ServerData.goodsTable.SyncAllData(ignoreSyncGoodsList);
 
         ServerData.userInfoTable.AutoUpdateRoutine();
+        ServerData.userInfoTable_2.AutoUpdateRoutine();
 
         //CollectionManager.Instance.SyncToServer();
 

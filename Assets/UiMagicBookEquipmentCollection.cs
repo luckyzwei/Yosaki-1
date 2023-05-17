@@ -214,6 +214,8 @@ public class UiMagicBookEquipmentCollection : MonoBehaviour
         for (int i = 0; i < tableData.Length; i++)
         {
             var serverData = ServerData.magicBookTable.TableDatas[tableData[i].Stringid];
+            if(tableData[i].MAGICBOOKTYPE==MagicBookType.Basic) continue;
+            if(tableData[i].MAGICBOOKTYPE==MagicBookType.View) continue;
             //가지고있지 않으면 continue
             if (serverData.hasItem.Value < 1) continue;
             //무료보상 안 받은 경우

@@ -8,6 +8,7 @@ using UnityEngine;
 using static UiGuildMemberCell;
 using System;
 using LitJson;
+using UnityEngine.Serialization;
 
 public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 {
@@ -31,24 +32,28 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
     [SerializeField]
     private GameObject guildInfoButton;
-
+    
     public ReactiveProperty<int> attenUserNum = new ReactiveProperty<int>();
-
+    
     public GuildMemberInfo myMemberInfo { get; set; }
-
+    
     public static int myCurrentGuildTowerScore = 0;
     public static int serverRecordedTowerScore = 0;
-
+    
     [SerializeField]
     private ReactiveProperty<int> currentGuildTowerTotalScore = new ReactiveProperty<int>();
-
+    
     [SerializeField]
     private TextMeshProUGUI myGuildTotalTowerScore;
-
+    
+    [FormerlySerializedAs("nowWorkPlayerDescription")] [SerializeField]
+    private TextMeshProUGUI notWorkPlayerDescription;
+    
+    
     public UiGuildMemberCell GetMemberCell(string nickName)
     {
         nickName = nickName.Replace(CommonString.IOS_nick, "");
-
+    
         for (int i = 0; i < memberCells.Count; i++)
         {
             if (memberCells[i].guildMemberInfo != null &&
@@ -57,7 +62,7 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                 return memberCells[i];
             }
         }
-
+    
         return null;
     }
 
@@ -344,6 +349,51 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
         }
 
         currentGuildTowerTotalScore.Value = updatedScore;
+
+        UpdateNotWorkUserText();
+    }
+
+  private List<string> gumihoList = new List<string>();
+  private List<string> petExpList = new List<string>();
+    
+    private void UpdateNotWorkUserText()
+    {
+        string description = string.Empty;
+
+       gumihoList.Clear();
+       petExpList.Clear();
+
+        for (int i = 0; i < memberCells.Count; i++)
+        {
+            if (memberCells[i].gameObject.activeInHierarchy == true)
+            {
+                if (memberCells[i].guildMemberInfo.todayDonated == false)
+                {
+                    gumihoList.Add(memberCells[i].guildMemberInfo.nickName);
+                }
+                
+                if (memberCells[i].guildMemberInfo.todayDonatedPetExp == false)
+                {
+                    petExpList.Add(memberCells[i].guildMemberInfo.nickName);
+                }
+            }
+        }
+
+        description += "<color=red>구미호 미등록</color>\n\n";
+        
+        for (int i = 0; i < gumihoList.Count; i++)
+        {
+            description += $"{Utils.GetOriginNickName(gumihoList[i])},";
+        }
+        
+        description += "\n\n<color=blue>강아지 밥 안준사람</color>\n\n";
+        
+        for (int i = 0; i < petExpList.Count; i++)
+        {
+            description += $"{Utils.GetOriginNickName(petExpList[i])},";
+        }
+        
+        notWorkPlayerDescription.SetText(description);
     }
 
     public void UpdateGuildTowerScore(int serverScore)

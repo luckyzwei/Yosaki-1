@@ -175,6 +175,10 @@ public class UiDokebiFireBoard : MonoBehaviour
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearDokebiFire, 1);
 
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearDokebiFire, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.DokebiFire)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null);

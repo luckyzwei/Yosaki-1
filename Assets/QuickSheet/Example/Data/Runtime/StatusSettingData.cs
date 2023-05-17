@@ -56,4 +56,12 @@ public class StatusSettingData
   int unlocklevel;
   public int Unlocklevel { get {return unlocklevel; } set { this.unlocklevel = value;} }
   
+  [SerializeField]
+  string needgoodskey;
+  public string Needgoodskey { get {return needgoodskey; } set { this.needgoodskey = value;} }
+  
+  [SerializeField]
+  int unlockgoods;
+  public int Unlockgoods { get {return unlockgoods; } set { this.unlockgoods = value;} }
+  
 }

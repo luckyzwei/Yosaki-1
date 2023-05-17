@@ -88,4 +88,8 @@ public class InAppPurchaseData
   int absoluteid;
   public int Absoluteid { get {return absoluteid; } set { this.absoluteid = value;} }
   
+  [SerializeField]
+  string sellperiod;
+  public string Sellperiod { get {return sellperiod; } set { this.sellperiod = value;} }
+  
 }

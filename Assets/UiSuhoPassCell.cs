@@ -6,9 +6,11 @@ using UniRx;
 using System.Linq;
 using BackEnd;
 using TMPro;
+using UnityEngine.UI.Extensions;
 
-public class UiSuhoPassCell : MonoBehaviour
+public class UiSuhoPassCell : FancyCell<SuhoPassData_Fancy>
 {
+    private SuhoPassData_Fancy itemData;
     [SerializeField]
     private Image itemIcon_free;
 
@@ -244,10 +246,10 @@ public class UiSuhoPassCell : MonoBehaviour
         return killCountTotalColdSeason >= passInfo.require;
     }
 
-    private void OnEnable()
-    {
-        RefreshParent();
-    }
+    // private void OnEnable()
+    // {
+    //     RefreshParent();
+    // }
 
     public void RefreshParent()
     {
@@ -269,4 +271,53 @@ public class UiSuhoPassCell : MonoBehaviour
             }
         }
     }
+    
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+    }
+
+    public override void UpdateContent(SuhoPassData_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+//        Debug.LogError("DolpasS!");
+        
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
 }

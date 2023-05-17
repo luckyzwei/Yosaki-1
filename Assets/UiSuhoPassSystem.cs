@@ -2,8 +2,17 @@
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI.Extensions;
 
-public class UiSuhoPassSystem : MonoBehaviour
+public class SuhoPassData_Fancy
+{
+    public PassInfo passInfo { get; private set; }
+    public SuhoPassData_Fancy(PassInfo passData)
+    {
+        this.passInfo = passData;
+    }
+}
+public class UiSuhoPassSystem : FancyScrollView<SuhoPassData_Fancy>
 {
     [SerializeField]
     private UiSuhoPassCell uiPassCellPrefab;
@@ -25,10 +34,10 @@ public class UiSuhoPassSystem : MonoBehaviour
     }
 #endif
 
-    private void Start()
-    {
-        Initialize();
-    }
+    // private void Start()
+    // {
+    //     Initialize();
+    // }
     private void Initialize()
     {
         var tableData = TableManager.Instance.suhoPass.dataArray;
@@ -218,5 +227,47 @@ public class UiSuhoPassSystem : MonoBehaviour
         {
             uiPassCellContainer[i].RefreshParent();
         }
+    }
+    
+    //
+    [SerializeField]
+    private Scroller scroller;
+    
+    
+    [SerializeField] GameObject cellPrefab = default;
+
+    protected override GameObject CellPrefab => cellPrefab;
+    private void Start()
+    {
+        scroller.Initialize(PassTypeScroll.SuhoPass);
+        
+        scroller.OnValueChanged(UpdatePosition);
+    
+        
+        var tableData = TableManager.Instance.suhoPass.dataArray;
+    
+        List<SuhoPassData_Fancy> passInfos = new List<SuhoPassData_Fancy>();
+    
+        for (int i = 0; i < tableData.Length; i++)
+        {
+            var passInfo = new PassInfo();
+    
+            passInfo.require = tableData[i].Unlockamount;
+            passInfo.id = tableData[i].Id;
+    
+            passInfo.rewardType_Free = tableData[i].Reward1;
+            passInfo.rewardTypeValue_Free = tableData[i].Reward1_Value;
+            passInfo.rewardType_Free_Key = ColdSeasonPassServerTable.suhoFree;
+    
+            passInfo.rewardType_IAP = tableData[i].Reward2;
+            passInfo.rewardTypeValue_IAP = tableData[i].Reward2_Value;
+            passInfo.rewardType_IAP_Key = ColdSeasonPassServerTable.suhoAd;
+            passInfos.Add(new SuhoPassData_Fancy(passInfo));
+    
+        }
+    
+    
+        this.UpdateContents(passInfos.ToArray());
+        scroller.SetTotalCount(passInfos.Count);
     }
 }

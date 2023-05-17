@@ -165,6 +165,8 @@ public class AgentHpController : MonoBehaviour
             value += Mathf.Abs(gapDefense) * value * penetrateValue;
         }
 
+        //태극베기
+        value += value * PlayerStats.GetSuperCritical16DamPer();
         //슈퍼크리티컬
 
         if (isSuperCritical)
@@ -210,6 +212,8 @@ public class AgentHpController : MonoBehaviour
         value += value * PlayerStats.GetSuperCritical10DamPer();
         //심연베기
         value += value * PlayerStats.GetSuperCritical12DamPer();
+        //신선베기
+        value += value * PlayerStats.GetSuperCritical15DamPer();
         
         ///
     }
@@ -383,6 +387,7 @@ public class AgentHpController : MonoBehaviour
         ServerData.userInfoTable.GetTableData(UserInfoTable.dailyEnemyKillCount).Value += GameManager.Instance.CurrentStageData.Marbleamount;
         ServerData.userInfoTable.GetTableData(UserInfoTable.dailybooty).Value += GameManager.Instance.CurrentStageData.Dailyitemgetamount*GameManager.Instance.CurrentStageData.Marbleamount;
         ServerData.userInfoTable.GetKillCountTotal();
+        ServerData.userInfoTable_2.GetKillCountTotal();
     }
 
     private void OnEnable()

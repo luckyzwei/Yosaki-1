@@ -27,6 +27,8 @@ MonoBehaviour:
     statustype: 11
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalLevel_Gold
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
     statuswhere: 0
@@ -39,6 +41,8 @@ MonoBehaviour:
     statustype: 1
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalDamLevel_Gold
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
     statuswhere: 0
@@ -51,6 +55,8 @@ MonoBehaviour:
     statustype: 2
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: HpLevel_Gold
     description: "\uCCB4\uB825"
     statuswhere: 0
@@ -63,6 +69,8 @@ MonoBehaviour:
     statustype: 12
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: MpLevel_Gold
     description: "\uB9C8\uB825"
     statuswhere: 0
@@ -75,6 +83,8 @@ MonoBehaviour:
     statustype: 13
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: HpRecover_Gold
     description: "\uCCB4\uB825\uD68C\uBCF5"
     statuswhere: 0
@@ -87,6 +97,8 @@ MonoBehaviour:
     statustype: 14
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: MpRecover_Gold
     description: "\uB9C8\uB825\uD68C\uBCF5"
     statuswhere: 0
@@ -99,10 +111,12 @@ MonoBehaviour:
     statustype: 15
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: IntLevelAddPer_StatPoint
     description: "\uACF5\uACA9\uB825\uC99D\uAC00"
     statuswhere: 1
-    maxlv: 90000000
+    maxlv: 1000000
     active: 1
     ispercent: 1
     basevalue: 10
@@ -111,6 +125,8 @@ MonoBehaviour:
     statustype: 0
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalLevel_StatPoint
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
     statuswhere: 1
@@ -123,6 +139,8 @@ MonoBehaviour:
     statustype: 1
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalDamLevel_StatPoint
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
     statuswhere: 1
@@ -135,6 +153,8 @@ MonoBehaviour:
     statustype: 2
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: GoldGain_memory
     description: "\uACE8\uB4DC \uD68D\uB4DD\uB7C9(\uC801\uCC98\uCE58)"
     statuswhere: 2
@@ -147,6 +167,8 @@ MonoBehaviour:
     statustype: 9
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: ExpGain_memory
     description: "\uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9(\uC801\uCC98\uCE58)"
     statuswhere: 2
@@ -159,6 +181,8 @@ MonoBehaviour:
     statustype: 10
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: HpPer_StatPoint
     description: "\uCCB4\uB825 \uC99D\uAC00(%)"
     statuswhere: 1
@@ -171,6 +195,8 @@ MonoBehaviour:
     statustype: 7
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: MpPer_StatPoint
     description: "\uB9C8\uB825 \uC99D\uAC00(%)"
     statuswhere: 1
@@ -183,6 +209,8 @@ MonoBehaviour:
     statustype: 8
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: DamageBalance_memory
     description: "\uB370\uBBF8\uC9C0 \uBC38\uB7F0\uC2A4"
     statuswhere: 2
@@ -195,6 +223,8 @@ MonoBehaviour:
     statustype: 6
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: SkillDamage_memory
     description: "\uBB34\uACF5\uBE44\uAE09 \uCD94\uAC00\uAE30\uC220 \uB370\uBBF8\uC9C0"
     statuswhere: 2
@@ -207,6 +237,8 @@ MonoBehaviour:
     statustype: 4
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: SkillCoolTime_memory
     description: "\uC2A4\uD0AC\uCFE8\uD0C0\uC784"
     statuswhere: 2
@@ -219,6 +251,8 @@ MonoBehaviour:
     statustype: 3
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalLevel_memory
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
     statuswhere: 2
@@ -231,6 +265,8 @@ MonoBehaviour:
     statustype: 1
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: CriticalDamLevel_memory
     description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
     statuswhere: 2
@@ -243,6 +279,8 @@ MonoBehaviour:
     statustype: 2
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: IgnoreDefense_memory
     description: "\uBC29\uC5B4\uB825\uBB34\uC2DC"
     statuswhere: 2
@@ -255,6 +293,8 @@ MonoBehaviour:
     statustype: 18
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: BossDamage_memory
     description: "\uBCF4\uC2A4\uCD94\uAC00\uD53C\uD574"
     statuswhere: 2
@@ -267,6 +307,8 @@ MonoBehaviour:
     statustype: 21
     needstatuskey: 
     unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
   - key: ChunSlash_memory
     description: "\uCC9C\uACF5\uBCA0\uAE30 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -279,6 +321,8 @@ MonoBehaviour:
     statustype: 25
     needstatuskey: SkillDamage_memory
     unlocklevel: 100000
+    needgoodskey: 
+    unlockgoods: 0
   - key: FeelSlash_memory
     description: "\uD544\uBA78 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -291,6 +335,8 @@ MonoBehaviour:
     statustype: 27
     needstatuskey: ChunSlash_memory
     unlocklevel: 1000000
+    needgoodskey: 
+    unlockgoods: 0
   - key: ZSlash_memory
     description: "\uC9C0\uC625 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -303,6 +349,8 @@ MonoBehaviour:
     statustype: 35
     needstatuskey: FeelSlash_memory
     unlocklevel: 1000000
+    needgoodskey: 
+    unlockgoods: 0
   - key: Cslash_memory
     description: "\uCC9C\uC0C1 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -315,6 +363,8 @@ MonoBehaviour:
     statustype: 36
     needstatuskey: ZSlash_memory
     unlocklevel: 2000000
+    needgoodskey: 
+    unlockgoods: 0
   - key: GiSlash_memory
     description: "\uADC0\uC2E0 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -327,6 +377,8 @@ MonoBehaviour:
     statustype: 39
     needstatuskey: Cslash_memory
     unlocklevel: 2000000
+    needgoodskey: 
+    unlockgoods: 0
   - key: Gum_memory
     description: "\uAE08\uAC15 \uD53C\uD574\uB7C9"
     statuswhere: 2
@@ -339,3 +391,33 @@ MonoBehaviour:
     statustype: 43
     needstatuskey: GiSlash_memory
     unlocklevel: 2000000
+    needgoodskey: 
+    unlockgoods: 0
+  - key: Sin_StatPoint
+    description: "\uC2E0\uC218\uBCA0\uAE30 \uD53C\uD574"
+    statuswhere: 1
+    maxlv: 10000000
+    active: 1
+    ispercent: 1
+    basevalue: 0
+    addvalue: 0.5
+    destable: "\uAD6C\uD604\uC644"
+    statustype: 42
+    needstatuskey: CriticalLevel_StatPoint
+    unlocklevel: 400
+    needgoodskey: SinsuRelic
+    unlockgoods: 3
+  - key: Hyung_StatPoint
+    description: "\uD749\uC218\uBCA0\uAE30 \uD53C\uD574"
+    statuswhere: 1
+    maxlv: 10000000
+    active: 1
+    ispercent: 1
+    basevalue: 0
+    addvalue: 0.5
+    destable: "\uAD6C\uD604\uC644"
+    statustype: 46
+    needstatuskey: Sin_StatPoint
+    unlocklevel: 10000000
+    needgoodskey: HyungsuRelic
+    unlockgoods: 3

@@ -142,10 +142,6 @@ public class UserInfoTable
     public const string DokebiFireClear = "DokebiFireClear";
     public const string DayOfWeekClear = "dowc";
 
-
-    //짝수 월간훈련(Monthlypass)
-    public const string killCountTotal = "k16";
-
     //홀수 월간훈련(Monthlypass2)
     public const string killCountTotal2 = "k17";
     public const string monthAttendCount = "mac";
@@ -154,6 +150,8 @@ public class UserInfoTable
     public const string killCountTotalSeason = "ks1"; //봄훈련
     public const string killCountTotalSeason2 = "ks2"; //새학기훈련
     public const string killCountTotalSeason3 = "ks3"; //수호훈련
+    
+    
     public const string attenCountBok = "kb";
     public const string attenCountSpring = "acs";
     public const string attenCountChuSeok = "kchu";
@@ -239,6 +237,7 @@ public class UserInfoTable
     public const string newGachaEnergyRefund = "newGachaEnergyRefund";
     public const string titleConvertNewTitle = "titleConvertNewTitle";
     public const string titleConvertNewTitle2 = "titleConvertNewTitle2";
+    public const string relocateLevelPass = "relocateLevelPass";
     public const string chunmaRefund = "chunmaRefund";
 
     public const string exchangeCount_0_Mileage = "mff";
@@ -450,7 +449,6 @@ public class UserInfoTable
         { yomul1_buff, 0f },
         { yomul2_buff, 0f },
         { yomul3_buff, 0f },
-        { killCountTotal, 0f },
         { relicKillCount, 0f },
         { hellRelicKillCount, 0f },
         { usedRelicTicketNum, 0f },
@@ -535,6 +533,7 @@ public class UserInfoTable
         { newGachaEnergyRefund, 0 },
         { titleConvertNewTitle, 0 },
         { titleConvertNewTitle2, 0 },
+        { relocateLevelPass, 0 },
         { chunmaRefund, 0 },
 
         { exchangeCount_0_Mileage, 0 },
@@ -654,6 +653,7 @@ public class UserInfoTable
                         //소급코드들 
                         if (e.Current.Key == titleConvertNewTitle ||
                             e.Current.Key == titleConvertNewTitle2 ||
+                            e.Current.Key == relocateLevelPass ||
                             e.Current.Key == dolPassRefund ||
                             e.Current.Key == mileageRefund ||
                             e.Current.Key == newGachaEnergyRefund ||
@@ -824,7 +824,6 @@ public class UserInfoTable
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
         {
-            userInfoParam.Add(killCountTotal, tableDatas[killCountTotal].Value);
         }
         else
         {
@@ -836,7 +835,7 @@ public class UserInfoTable
         userInfoParam.Add(killCountTotalSeason, tableDatas[killCountTotalSeason].Value);
 
         userInfoParam.Add(killCountTotalSeason2, tableDatas[killCountTotalSeason2].Value);
-
+        //수호
         userInfoParam.Add(killCountTotalSeason3, tableDatas[killCountTotalSeason3].Value);
 
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
@@ -973,7 +972,6 @@ public class UserInfoTable
             eventMissionParam.Add(table[i].Stringid, ServerData.eventMissionTable.TableDatas[table[i].Stringid].ConvertToString());
         }
 
-        transactionList.Add(TransactionValue.SetUpdate(EventMissionTable.tableName, EventMissionTable.Indate, eventMissionParam));
 
         //
         ClearDailyMission();
@@ -1054,15 +1052,38 @@ public class UserInfoTable
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
+
             
-            ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value = 0;
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value = 0;
             
             Param userInfo2Param = new Param();
             
-            userInfo2Param.Add(UserInfoTable2.GangChulReset,ServerData.userInfoTable2.TableDatas[UserInfoTable2.GangChulReset].Value);
+            userInfo2Param.Add(UserInfoTable_2.GangChulReset,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value);
             
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable2.tableName,UserInfoTable2.Indate,userInfo2Param));
+            var table2 = TableManager.Instance.MonthMission.dataArray;
+
+            for (int i = 0; i < table2.Length; i++)
+            {
+                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].clearCount.Value = 0;
+                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].rewardCount.Value = 0;
+                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].adrewardCount.Value = 0;
+
+                eventMissionParam.Add(table2[i].Stringid, ServerData.eventMissionTable.TableDatas[table2[i].Stringid].ConvertToString());
+            } 
+            var table3 = TableManager.Instance.MonthMission2.dataArray;
+
+            for (int i = 0; i < table3.Length; i++)
+            {
+                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].clearCount.Value = 0;
+                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].rewardCount.Value = 0;
+                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].adrewardCount.Value = 0;
+
+                eventMissionParam.Add(table3[i].Stringid, ServerData.eventMissionTable.TableDatas[table3[i].Stringid].ConvertToString());
+            }
+
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName,UserInfoTable_2.Indate,userInfo2Param));
         }
+        transactionList.Add(TransactionValue.SetUpdate(EventMissionTable.tableName, EventMissionTable.Indate, eventMissionParam));
 
         //두번타는거 방지
         if (attendanceUpdatedTime != day)
@@ -1609,7 +1630,6 @@ public class UserInfoTable
 
             if (IsMonthlyPass2() == false)
             {
-                tableDatas[killCountTotal].Value += updateRequireNum;
             }
             else
             {

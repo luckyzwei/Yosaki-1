@@ -89,6 +89,10 @@ public class UiStatusBoard : MonoBehaviour
             ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_StatPoint).Value = 1;
             ServerData.statusTable.GetTableData(StatusTable.HpPer_StatPoint).Value = 1;
             ServerData.statusTable.GetTableData(StatusTable.MpPer_StatPoint).Value = 1;
+            ServerData.statusTable.GetTableData(StatusTable.Sin_StatPoint).Value = 1;
+            ServerData.statusTable.GetTableData(StatusTable.Hyung_StatPoint).Value = 1;
+          
+            
             ServerData.statusTable.GetTableData(StatusTable.StatPoint).Value = (ServerData.statusTable.GetTableData(StatusTable.Level).Value - 1) * GameBalance.StatPoint;
 
             ServerData.statusTable.SyncAllData();

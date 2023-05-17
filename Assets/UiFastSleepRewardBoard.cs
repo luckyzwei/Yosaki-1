@@ -127,6 +127,10 @@ public class UiFastSleepRewardBoard : MonoBehaviour
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userinfoParam));
 
         EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearFast, 1);
+        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        {
+            EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearFast, 1);
+        }
         ServerData.SendTransaction(transactions, successCallBack: () =>
         {
             button.interactable = true;

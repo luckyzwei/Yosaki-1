@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class UiMileageRefund : MonoBehaviour
         TitleRefundRoutine();
         ChunmaDokebiFireRefundRoutine();
         TitleRefundRoutine2();
+        RelocateLevelPass();
     }
 
     private void RefundRoutine()
@@ -328,6 +330,69 @@ public class UiMileageRefund : MonoBehaviour
         {
             Debug.LogError(
                 $"Weapon : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value} ");
+        });
+    }
+    
+    private int GetMaxValueFromStringList(List<string> strList)
+    {
+        //문자열 비었으면
+        if (strList == null || strList.Count == 0)
+        {
+            return -1;
+        }
+        List<int> intList = new List<int>();
+    
+        foreach (string str in strList)
+        {
+            int num;
+            if (int.TryParse(str, out num))
+            {
+                intList.Add(num);
+            }
+        }
+        //변환한게 비었으면
+        if (intList.Count == 0)
+        {
+            return -1;
+        }
+        return intList.Max();
+    }
+    private void RelocateLevelPass()
+    {
+        
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.relocateLevelPass).Value != 0)
+        {
+            return;
+        }
+        ServerData.userInfoTable.GetTableData(UserInfoTable.relocateLevelPass).Value = 1;
+
+        // StagePass
+        var stageFreeRewardStr = ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].Value;
+        var stageFreeRewardArr = stageFreeRewardStr.Split(',');
+        var stageFreeMax = GetMaxValueFromStringList(stageFreeRewardArr.ToList());
+
+        var stageAdRewardStr = ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].Value;
+        var stageAdRewardArr = stageAdRewardStr.Split(',');
+        var stageAdMax = GetMaxValueFromStringList(stageAdRewardArr.ToList());
+
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassFree).Value = stageFreeMax;
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassAd).Value = stageAdMax;
+        
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        
+        Param userInfoParam = new Param();
+        userInfoParam.Add(UserInfoTable.relocateLevelPass, ServerData.userInfoTable.GetTableData(UserInfoTable.relocateLevelPass).Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+        
+        Param userInfo2Param = new Param();
+        userInfo2Param.Add(UserInfoTable_2.stagePassFree, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassFree).Value);
+        userInfo2Param.Add(UserInfoTable_2.stagePassAd, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassAd).Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo2Param));
+        
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            Debug.LogError($" stageFree : {ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassFree).Value}" +
+                           $"stageAd : {ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassAd).Value}");
         });
     }
     private void ChunmaDokebiFireRefundRoutine()

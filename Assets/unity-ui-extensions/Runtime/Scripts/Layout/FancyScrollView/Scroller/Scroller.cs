@@ -246,6 +246,23 @@ namespace UnityEngine.UI.Extensions
             return returnValues;
         }
         
+        public List<int> GetSuhoPassSplitData(string key)
+        {
+            List<int> returnValues = new List<int>();
+
+            var splits = ServerData.coldSeasonPassServerTable.TableDatas[key].Value.Split(',');
+
+            for (int i = 0; i < splits.Length; i++)
+            {
+                if (int.TryParse(splits[i], out var result))
+                {
+                    returnValues.Add(result);
+                }
+            }
+
+            return returnValues;
+        }
+        
         public void Initialize(PassTypeScroll type=PassTypeScroll.None)
         {
             if (passType == PassTypeScroll.None)
@@ -271,6 +288,18 @@ namespace UnityEngine.UI.Extensions
                 case PassTypeScroll.SnowManPass:
                     splitData_Free = GetSnowAttenPassSplitData(OneYearPassServerTable.childFree_Snow);
                     splitData_Ad = GetSnowAttenPassSplitData(OneYearPassServerTable.childAd_Snow);
+                    break;
+                case PassTypeScroll.SuhoPass:
+                    splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.suhoFree);
+                    splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.suhoAd);
+                    break;
+                case PassTypeScroll.FoxFirePass:
+                    splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.foxfireFree);
+                    splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.foxfireAd);
+                    break;
+                case PassTypeScroll.SealSwordPass:
+                    splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.sealSwordFree);
+                    splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.sealSwordAd);
                     break;
                 default:
                     splitData_Free = null;

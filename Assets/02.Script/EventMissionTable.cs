@@ -12,10 +12,11 @@ public class EventMissionServerData
     public int idx;
     public ReactiveProperty<int> clearCount;
     public ReactiveProperty<int> rewardCount;
+    public ReactiveProperty<int> adrewardCount;
 
     public string ConvertToString()
     {
-        return $"{idx},{clearCount.Value},{rewardCount.Value}";
+        return $"{idx},{clearCount.Value},{rewardCount.Value},{adrewardCount.Value}";
     }
 }
 
@@ -51,7 +52,10 @@ public class EventMissionTable
     {
         tableDatas[key].rewardCount.Value += amount;
     }
-
+    public void UpdateMissionAdRewardCount(string key, int amount)
+    {
+        tableDatas[key].adrewardCount.Value += amount;
+    }
 
     public void Initialize()
     {
@@ -74,18 +78,49 @@ public class EventMissionTable
             {
                 Param defultValues = new Param();
 
-                var table = TableManager.Instance.EventMission.dataArray;
-
+                //이벤트미션
+                EventMissionData[] table = TableManager.Instance.EventMission.dataArray;
                 for (int i = 0; i < table.Length; i++)
                 {
                     var missionData = new EventMissionServerData();
                     missionData.idx = table[i].Id;
                     missionData.clearCount = new ReactiveProperty<int>(0);
                     missionData.rewardCount = new ReactiveProperty<int>(0);
+                    missionData.adrewardCount = new ReactiveProperty<int>(0);
                    
 
                     tableDatas.Add(table[i].Stringid, missionData);
                     defultValues.Add(table[i].Stringid, missionData.ConvertToString());
+                }
+                //짝수월간 미션
+                MonthMissionData[] table2 = TableManager.Instance.MonthMission.dataArray;
+                for (int i = 0; i < table2.Length; i++)
+                {
+                    var missionData = new EventMissionServerData();
+                    missionData.idx = table2[i].Id;
+                    missionData.clearCount = new ReactiveProperty<int>(0);
+                    missionData.rewardCount = new ReactiveProperty<int>(0);
+                    missionData.adrewardCount = new ReactiveProperty<int>(0);
+
+
+                    tableDatas.Add(table2[i].Stringid, missionData);
+                    defultValues.Add(table2[i].Stringid, missionData.ConvertToString());
+                }
+                //홀수월간미션
+                MonthMission2Data[] table3 = TableManager.Instance.MonthMission2.dataArray;
+
+                for (int i = 0; i < table3.Length; i++)
+                {
+                    var missionData = new EventMissionServerData();
+                    missionData.idx = table3[i].Id;
+                    missionData.clearCount = new ReactiveProperty<int>(0);
+                    missionData.rewardCount = new ReactiveProperty<int>(0);
+                    missionData.adrewardCount = new ReactiveProperty<int>(0);
+
+                   
+
+                    tableDatas.Add(table3[i].Stringid, missionData);
+                    defultValues.Add(table3[i].Stringid, missionData.ConvertToString());
                 }
 
                 var bro = Backend.GameData.Insert(tableName, defultValues);
@@ -122,7 +157,7 @@ public class EventMissionTable
                 {
                     Indate = data[ServerData.inDate_str][ServerData.format_string].ToString();
                 }
-
+                //이벤트미션
                 var table = TableManager.Instance.EventMission.dataArray;
 
                 for (int i = 0; i < table.Length; i++)
@@ -140,7 +175,17 @@ public class EventMissionTable
                         missionData.idx = int.Parse(splitData[0]);
                         missionData.clearCount = new ReactiveProperty<int>(int.Parse(splitData[1]));
                         missionData.rewardCount = new ReactiveProperty<int>(int.Parse(splitData[2]));
-                      
+
+                        if (splitData.Length < 4)
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(0);
+                            paramCount++;
+                            defultValues.Add(table[i].Stringid, missionData.ConvertToString());
+                        }
+                        else
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(int.Parse(splitData[3]));
+                        }
 
 
 
@@ -152,10 +197,107 @@ public class EventMissionTable
                         missionData.idx = table[i].Id;
                         missionData.clearCount = new ReactiveProperty<int>(0);
                         missionData.rewardCount = new ReactiveProperty<int>(0);
+                        missionData.adrewardCount = new ReactiveProperty<int>(0);
                         
 
                         defultValues.Add(table[i].Stringid, missionData.ConvertToString());
                         tableDatas.Add(table[i].Stringid, missionData);
+                        paramCount++;
+                    }
+                }
+                //짝수월간미션
+                var table2 = TableManager.Instance.MonthMission.dataArray;
+
+                for (int i = 0; i < table2.Length; i++)
+                {
+                    if (data.Keys.Contains(table2[i].Stringid))
+                    {
+                        //값로드
+                        var value = data[table2[i].Stringid][ServerData.format_string].ToString();
+
+
+                        var splitData = value.Split(',');
+
+                        var missionData = new EventMissionServerData();
+
+                        missionData.idx = int.Parse(splitData[0]);
+                        missionData.clearCount = new ReactiveProperty<int>(int.Parse(splitData[1]));
+                        missionData.rewardCount = new ReactiveProperty<int>(int.Parse(splitData[2]));
+
+                        if (splitData.Length < 4)
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(0);
+                            paramCount++;
+                            defultValues.Add(table2[i].Stringid, missionData.ConvertToString());
+                        }
+                        else
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(int.Parse(splitData[3]));
+                        }
+
+
+
+                        tableDatas.Add(table2[i].Stringid, missionData);
+                    }
+                    else
+                    {
+                        var missionData = new EventMissionServerData();
+                        missionData.idx = table2[i].Id;
+                        missionData.clearCount = new ReactiveProperty<int>(0);
+                        missionData.rewardCount = new ReactiveProperty<int>(0);
+                        missionData.adrewardCount = new ReactiveProperty<int>(0);
+                        
+
+                        defultValues.Add(table2[i].Stringid, missionData.ConvertToString());
+                        tableDatas.Add(table2[i].Stringid, missionData);
+                        paramCount++;
+                    }
+                }
+                //홀수월간미션
+                var table3 = TableManager.Instance.MonthMission2.dataArray;
+
+                for (int i = 0; i < table3.Length; i++)
+                {
+                    if (data.Keys.Contains(table3[i].Stringid))
+                    {
+                        //값로드
+                        var value = data[table3[i].Stringid][ServerData.format_string].ToString();
+
+
+                        var splitData = value.Split(',');
+
+                        var missionData = new EventMissionServerData();
+
+                        missionData.idx = int.Parse(splitData[0]);
+                        missionData.clearCount = new ReactiveProperty<int>(int.Parse(splitData[1]));
+                        missionData.rewardCount = new ReactiveProperty<int>(int.Parse(splitData[2]));
+
+                        if (splitData.Length < 4)
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(0);
+                            paramCount++;
+                            defultValues.Add(table3[i].Stringid, missionData.ConvertToString());
+                        }
+                        else
+                        {
+                            missionData.adrewardCount = new ReactiveProperty<int>(int.Parse(splitData[3]));
+                        }
+
+
+
+                        tableDatas.Add(table3[i].Stringid, missionData);
+                    }
+                    else
+                    {
+                        var missionData = new EventMissionServerData();
+                        missionData.idx = table3[i].Id;
+                        missionData.clearCount = new ReactiveProperty<int>(0);
+                        missionData.rewardCount = new ReactiveProperty<int>(0);
+                        missionData.adrewardCount = new ReactiveProperty<int>(0);
+                        
+
+                        defultValues.Add(table3[i].Stringid, missionData.ConvertToString());
+                        tableDatas.Add(table3[i].Stringid, missionData);
                         paramCount++;
                     }
                 }

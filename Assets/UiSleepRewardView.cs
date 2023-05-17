@@ -31,12 +31,17 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
     [SerializeField]
     private GameObject springObject;
 
+    [SerializeField]
+    private GameObject hotTimeObject;
+
     //[SerializeField]
     //private GameObject winterObject;
 
     private void Start()
     {
-        Subscribe();    
+        Subscribe();
+
+        HotTimeEventCheck();
     }
     private void Subscribe()
     {
@@ -58,6 +63,11 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
             dokebiObject.SetActive(e == 1);
         }).AddTo(this);
 
+    }
+
+    private void HotTimeEventCheck()
+    {
+        hotTimeObject.SetActive(ServerData.userInfoTable.IsHotTimeEvent());
     }
     public void CheckReward()
     {
@@ -170,7 +180,14 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         //도깨비불
         rewards[15].SetText(Utils.ConvertBigNum(reward.dokebiItem));
         //핫타임
-        rewards[16].SetText(Utils.ConvertBigNum(reward.hotTimeItem));
+        if (ServerData.userInfoTable.IsHotTimeEvent())
+        {
+            rewards[16].SetText(Utils.ConvertBigNum(reward.hotTimeItem));
+        }
+        else
+        {
+            rewards[16].SetText("0");
+        }
 
         SleepRewardReceiver.Instance.GetRewardSuccess();
     }

@@ -35,7 +35,7 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
 
         StartCoroutine(SkillCountAnimRoutine());
 
-        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword_View].AsObservable().Subscribe(e =>
+        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword].AsObservable().Subscribe(e =>
             {
                 if (e != -1)
                 {

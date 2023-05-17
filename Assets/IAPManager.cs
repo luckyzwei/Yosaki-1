@@ -30,6 +30,7 @@ public enum ShopCategory
     Goods_GrowthStone,//여우구슬,수련의돌,영혼열쇠,검조각
     Goods_BaseGoods,//여우구슬,수련의돌,영혼열쇠,검조각
     Goods_FoxFire,//여우불
+    Goods_SealSword,//봉인검
 }
 
 public enum PassProductType

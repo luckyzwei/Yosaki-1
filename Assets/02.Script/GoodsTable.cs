@@ -161,6 +161,7 @@ public class GoodsTable
     public static string VisionSkill2 = "VisionSkill2";
     public static string VisionSkill3 = "VisionSkill3";
     public static string VisionSkill4 = "VisionSkill4";
+    public static string VisionSkill5 = "VisionSkill5";
     
     public static string ThiefSkill0 = "ThiefSkill0";
     public static string ThiefSkill1 = "ThiefSkill1";
@@ -204,6 +205,7 @@ public class GoodsTable
     public static string SahyungTreasure = "SahyungTreasure";
     public static string VisionTreasure = "VisionTreasure";
     public static string DarkTreasure = "DarkTreasure";
+    public static string SinsunTreasure = "SinsunTreasure";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
@@ -364,6 +366,7 @@ public class GoodsTable
         { VisionSkill2, 0f },
         { VisionSkill3, 0f },
         { VisionSkill4, 0f },
+        { VisionSkill5, 0f },
 
         { ThiefSkill0, 0f },
         { ThiefSkill1, 0f },
@@ -404,6 +407,7 @@ public class GoodsTable
         { SahyungTreasure, 0f },
         { VisionTreasure, 0f },
         { DarkTreasure, 0f },
+        { SinsunTreasure, 0f },
         { SusanoTreasure, 0f },
         { SumiFire, 0f },
         { SumiFireKey, 0f },
@@ -583,7 +587,7 @@ public class GoodsTable
 
     public void GetPeachItem(float amount)
     {
-        peachItemAddNum += amount;
+        peachItemAddNum += amount * PlayerStats.GetMonkeyGodAbil1();
 
         //100킬마다 얻게하기 위해서
         if (peachItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount, 1))
@@ -601,7 +605,7 @@ public class GoodsTable
 
     public void GetHelItem(float amount)
     {
-        helItemAddNum += amount;
+        helItemAddNum += amount * PlayerStats.GetHellGodAbil1();
 
         //1개 획득할때마다 얻게하기 위해서
         if (helItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Helamount, 1))
@@ -620,7 +624,7 @@ public class GoodsTable
 
     public void GetChunItem(float amount)
     {
-        chunItemAddNum += amount;
+        chunItemAddNum += amount * PlayerStats.GetChunGodAbil1();
 
         //1개 획득할때마다 얻게하기 위해서
         if (chunItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Chunfloweramount, 1))
@@ -1337,6 +1341,10 @@ public class GoodsTable
             {
                 return GoodsTable.VisionSkill4;
             }
+            case Item_Type.VisionSkill5:
+            {
+                return GoodsTable.VisionSkill5;
+            }
 
             //
             //            //
@@ -1909,6 +1917,10 @@ public class GoodsTable
         else if (GoodsTable.VisionSkill4 == type)
         {
             return Item_Type.VisionSkill4;
+        }
+        else if (GoodsTable.VisionSkill5 == type)
+        {
+            return Item_Type.VisionSkill5;
         }
 
         // //

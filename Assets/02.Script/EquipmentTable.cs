@@ -12,6 +12,7 @@ public enum WeaponType
     Normal,
     HasEffectOnly,
     View,
+    RecommendView,
 }
 public enum MagicBookType
 {

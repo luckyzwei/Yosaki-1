@@ -205,7 +205,50 @@ public class TableManager : SingletonMono<TableManager>
             return eventMissionDatas;
         }
     }
+    
+    [SerializeField] private MonthMission monthMission;
 
+    public MonthMission MonthMission => monthMission;
+    private Dictionary<int, MonthMissionData> monthMissionDatas;
+
+    public Dictionary<int, MonthMissionData> MonthMissionDatas
+    {
+        get
+        {
+            if (monthMissionDatas == null)
+            {
+                monthMissionDatas = new Dictionary<int, MonthMissionData>();
+
+                for (int i = 0; i < monthMission.dataArray.Length; i++)
+                {
+                    monthMissionDatas.Add(monthMission.dataArray[i].Id, monthMission.dataArray[i]);
+                }
+            }
+
+            return monthMissionDatas;
+        }
+    }
+    [SerializeField] private MonthMission2 monthMission2;
+    public MonthMission2 MonthMission2 => monthMission2;
+    private Dictionary<int, MonthMission2Data> monthMission2Datas;
+
+    public Dictionary<int, MonthMission2Data> MonthMission2Datas
+    {
+        get
+        {
+            if (monthMission2Datas == null)
+            {
+                monthMission2Datas = new Dictionary<int, MonthMission2Data>();
+
+                for (int i = 0; i < monthMission2.dataArray.Length; i++)
+                {
+                    monthMission2Datas.Add(monthMission2.dataArray[i].Id, monthMission2.dataArray[i]);
+                }
+            }
+
+            return monthMission2Datas;
+        }
+    }
     [SerializeField] private GuideMission guideMission;
 
     public GuideMission GuideMission => guideMission;
@@ -763,13 +806,19 @@ public class TableManager : SingletonMono<TableManager>
     public GuildTowerTable guildTowerTable;
     public SuhoPass suhoPass;
     public DarkTreasureAbilBase DarkTreasureAbilBase;
+    public SinsunTreasureAbilBase SinsunTreasureAbilBase;
     public BlackWolfRing BlackWolfRing;
     public TowerTable8 gyungRockTowerTable2;
     public FoxTower FoxTowerTable;
     public FoxFire FoxFire;
     public DarkTowerTable DarkTowerTable;
-    
+    public TestChun TestChun;
+    public TestHell TestHell;
+    public TestMonkey TestMonkey;
+    public TestSword TestSword;
     public SealSword sealSwordTable;
+    public SealSwordPass SealSwordPass;
+    public FoxFirePass FoxFirePass;
     
     private Dictionary<int, SealSwordData> sealSwordData = null;
 
@@ -795,7 +844,8 @@ public class TableManager : SingletonMono<TableManager>
     }
     
     public TowerTable9 SealTowerTable;
-    
+    public SealSwordAwakeTable SealSwordAwakeTable;
+    public TaegeukTitle taegeukTitle;
 }
 
 

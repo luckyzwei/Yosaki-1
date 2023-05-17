@@ -258,6 +258,19 @@ public enum Item_Type
     MergePartyRaidRankFrame101_500 = 879,
     MergePartyRaidRankFrame501_1000 = 880,
     MergePartyRaidRankFrame1001_5000 = 881,
+    
+    MergePartyRaidRankFrame_0_1 = 890,
+    MergePartyRaidRankFrame_0_2 = 891,
+    MergePartyRaidRankFrame_0_3 = 892,
+    MergePartyRaidRankFrame_0_4 = 893,
+    MergePartyRaidRankFrame_0_5 = 894,
+    MergePartyRaidRankFrame_0_6_10 = 895,
+    MergePartyRaidRankFrame_0_11_20 = 896,
+    MergePartyRaidRankFrame_0_21_50 = 897,
+    MergePartyRaidRankFrame_0_51_100 = 898,
+    MergePartyRaidRankFrame_0_101_500 = 899,
+    MergePartyRaidRankFrame_0_501_1000 = 900,
+    MergePartyRaidRankFrame_0_1001_5000 = 901,
 
     //1000~1100 무기
     weapon0 = 1000,
@@ -470,6 +483,10 @@ public enum Item_Type
     costume113 = 1413, // 주인보스     
     costume114 = 1414, // 어린이날     
     costume115 = 1415, // 꽃놀이     
+    costume116 = 1416, // 신선     
+    costume117 = 1417, // 신선     
+    costume118 = 1418, // 신선     
+    costume119 = 1419, // 월간     
 
 
     gumiho0 = 5000,
@@ -654,6 +671,14 @@ public enum Item_Type
     MasterNorigae2 = 7212,
     MasterNorigae3 = 7213,
     
+    SinsunWeapon0 = 7220,
+    SinsunWeapon1 = 7221,
+    SinsunWeapon2 = 7222,
+    
+    SinsunNorigae0 = 7230,
+    SinsunNorigae1 = 7231,
+    SinsunNorigae2 = 7232,
+    
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
     RecommendWeapon2 = 8002,
@@ -692,6 +717,7 @@ public enum Item_Type
     MonthNorigae3 = 8605, // 월간노리개
     MonthNorigae4 = 8606, // 월간노리개
     MonthNorigae5 = 8607, // 월간노리개
+    MonthNorigae6 = 8608, // 월간노리개
 
     Chun0 = 8700, // 천계기술
     Chun1 = 8701,
@@ -722,6 +748,7 @@ public enum Item_Type
     VisionSkill3 = 8733,
     
     VisionSkill4 = 8734,//심연궁극
+    VisionSkill5 = 8735,//신선궁극
     
     ThiefSkill0 = 8740, //도적스킬
     ThiefSkill1 = 8741, 
@@ -767,6 +794,7 @@ public enum Item_Type
     FoxRelic= 9026, 
     FoxRelicClearTicket= 9027, 
     SealWeaponClear= 9028, 
+    SinsunTreasure= 9029, 
     
 }
 //

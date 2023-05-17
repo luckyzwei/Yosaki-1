@@ -28,12 +28,7 @@ public class UiAutoBoss : SingletonMono<UiAutoBoss>
 
     private void Subscribe()
     {
-        AutoMode.AsObservable().Subscribe(e =>
-        {
-
-            stopButton.SetActive(e);
-
-        }).AddTo(this);
+        AutoMode.AsObservable().Subscribe(e => { stopButton.SetActive(e); }).AddTo(this);
     }
 
     public void WhenToggleChanged(bool on)
@@ -42,25 +37,17 @@ public class UiAutoBoss : SingletonMono<UiAutoBoss>
         {
             if (AutoMode.Value == false)
             {
-                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "자동으로 진행 합니까?", () =>
-                {
-                    StartBossContents();
-                }, () =>
-                {
-                    StopAutoBoss();
-                });
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "자동으로 진행 합니까?", () => { StartBossContents(); }, () => { StopAutoBoss(); });
             }
             else
             {
                 StartBossContents();
             }
-
         }
         else
         {
             StopAutoBoss();
         }
-
     }
 
     private void StartBossContents()
@@ -77,8 +64,15 @@ public class UiAutoBoss : SingletonMono<UiAutoBoss>
 
     public void StopAutoBoss()
     {
-        toggle.isOn = false;
-        AutoMode.Value = false;
+        if (toggle != null)
+        {
+            toggle.isOn = false;
+        }
+
+        if (AutoMode != null)
+        {
+            AutoMode.Value = false;
+        }
 
         if (autoRoutine != null)
         {
@@ -98,10 +92,6 @@ public class UiAutoBoss : SingletonMono<UiAutoBoss>
 
     public void OnClickAutoStopButton()
     {
-        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "자동 진행을 멈출까요?", () =>
-         {
-             StopAutoBoss();
-         }, () => { });
-
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "자동 진행을 멈출까요?", () => { StopAutoBoss(); }, () => { });
     }
 }

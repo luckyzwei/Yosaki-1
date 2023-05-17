@@ -261,7 +261,7 @@ public class GoogleManager : SingletonMono<GoogleManager>
         }
         
         //
-        ServerData.SetTitleServer();
+        ServerData.SecondLoadTable();
         
         while (SendQueue.UnprocessedFuncCount != 0)
         {

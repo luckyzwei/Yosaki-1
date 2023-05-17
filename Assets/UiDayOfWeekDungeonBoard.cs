@@ -165,6 +165,10 @@ public class UiDayOfWeekDungeonBoard : MonoBehaviour
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
 
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName((Item_Type)tabledata[GetDayOfweek()].Rewardtype)} {score * multipleValue}개 획득!", null);

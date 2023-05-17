@@ -135,7 +135,11 @@ public static class Utils
                type == Item_Type.costume112||
                type == Item_Type.costume113||
                type == Item_Type.costume114||
-               type == Item_Type.costume115
+               type == Item_Type.costume115||
+               type == Item_Type.costume116||
+               type == Item_Type.costume117||
+               type == Item_Type.costume118||
+               type == Item_Type.costume119
             ;
     }
 
@@ -154,7 +158,8 @@ public static class Utils
                type == Item_Type.MonthNorigae2 ||
                type == Item_Type.MonthNorigae3 ||
                type == Item_Type.MonthNorigae4||
-               type == Item_Type.MonthNorigae5
+               type == Item_Type.MonthNorigae5||
+               type == Item_Type.MonthNorigae6
             ;
     }
 
@@ -169,6 +174,11 @@ public static class Utils
     {
         int type_int = (int)type;
         return type_int >= (int)EventMissionKey.ClearBandit && type <= EventMissionKey.ClearSumiFire;
+    }
+    public static bool IsIgnoreMissionKey(this MonthMissionKey type)
+    {
+        int type_int = (int)type;
+        return type_int >= (int)MonthMissionKey.ClearBandit && type <= MonthMissionKey.ClearSumiFire;
     }
 
     public static bool IsRegainableItem(this Item_Type type)
@@ -302,6 +312,7 @@ public static class Utils
                type == Item_Type.MonthNorigae3 ||
                type == Item_Type.MonthNorigae4 ||
                type == Item_Type.MonthNorigae5 ||
+               type == Item_Type.MonthNorigae6 ||
                type == Item_Type.DokebiHorn0 ||
                type == Item_Type.DokebiHorn1 ||
                type == Item_Type.DokebiHorn2 ||
@@ -335,6 +346,7 @@ public static class Utils
                type == Item_Type.SahyungTreasure ||
                type == Item_Type.VisionTreasure ||
                type == Item_Type.DarkTreasure ||
+               type == Item_Type.SinsunTreasure ||
                type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
@@ -402,6 +414,7 @@ public static class Utils
                type == GameManager.ContentsType.TwelveDungeon || //O
                type == GameManager.ContentsType.Son || //O
                type == GameManager.ContentsType.FoxMask || //O
+               type == GameManager.ContentsType.TaeguekTower || //O
                type == GameManager.ContentsType.Susano || //O
                type == GameManager.ContentsType.Hell || //O
                type == GameManager.ContentsType.HellWarMode || //O
@@ -427,6 +440,10 @@ public static class Utils
     public static bool IsMergePartyRaidRankFrameItem(this Item_Type type)
     {
         return type >= Item_Type.MergePartyRaidRankFrame1 && type <= Item_Type.MergePartyRaidRankFrame1001_5000;
+    }
+    public static bool IsMergePartyRaidRankFrameItem_0(this Item_Type type)
+    {
+        return type >= Item_Type.MergePartyRaidRankFrame_0_1 && type <= Item_Type.MergePartyRaidRankFrame_0_1001_5000;
     }
 
     public static bool IsRelicRewardItem(this Item_Type type)
@@ -588,7 +605,7 @@ public static class Utils
     private static string[] goldUnitArr = new string[]
     {
         "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
-        "갈", "라", "가", "언" ,"승","마"
+        "갈", "라", "가", "언" ,"승","마","살","섬","미정","미정"
     };
 
     private static double p = (double)Mathf.Pow(10, 4);

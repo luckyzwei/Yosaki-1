@@ -33,7 +33,7 @@ public class UiMonthPassSystem : FancyScrollView<MonthlyPassData_Fancy>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value += 1000000;
+            ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.evenMonthKillCount).Value += 1000000;
         }
     }
 #endif
@@ -256,7 +256,7 @@ public class UiMonthPassSystem : FancyScrollView<MonthlyPassData_Fancy>
 
     private bool CanGetReward(int require)
     {
-        int killCountTotal = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value;
+        int killCountTotal = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.evenMonthKillCount).Value;
         return killCountTotal >= require;
     }
     public bool HasReward(List<int> splitData, int id)

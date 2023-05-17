@@ -184,6 +184,16 @@ public class BossServerTable
 
         return rewards;
     }
+    public List<int> GetChunmaBossRewardedIdxList()
+    {
+        var rewards = ServerData.bossServerTable.TableDatas["b55"].rewardedId.Value
+            .Split(BossServerTable.rewardSplit)
+            .Where(e => string.IsNullOrEmpty(e) == false)
+            .Select(e => int.Parse(e))
+            .ToList();
+
+        return rewards;
+    }
     public List<int> GetGangChulBossRewardedIdxList()
     {
         var rewards = ServerData.bossServerTable.TableDatas["boss20"].rewardedId.Value

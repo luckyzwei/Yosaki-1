@@ -16,7 +16,7 @@ public class UiMonthPassInsBuyButton : MonoBehaviour
     [SerializeField]
     private ObscuredFloat killAddAmount = 30000000;
 
-    public static readonly string monthInsPassKey = "monthpass19ins";
+    public static readonly string monthInsPassKey = "monthpass21ins";
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
@@ -95,9 +95,9 @@ public class UiMonthPassInsBuyButton : MonoBehaviour
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value += killAddAmount;
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.evenMonthKillCount).Value += killAddAmount;
 
-        ServerData.userInfoTable.UpData(UserInfoTable.killCountTotal, false);
+        ServerData.userInfoTable_2.UpData(UserInfoTable_2.evenMonthKillCount, false);
 
         OnEvent?.Invoke();
     }

@@ -116,6 +116,8 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
         description3 +=
             $"{CommonString.GetStatusName(StatusType.SuperCritical1Prob)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCriticalProb() * 100f)}\n";
 
+    description3 +=
+            $"크리티컬 1단계 {CommonString.GetStatusName(StatusType.SuperCritical16DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical16DamPer() * 100f)}\n";
         //타격수
         description3 +=
             $"크리티컬 2단계 {CommonString.GetStatusName(StatusType.SuperCritical1DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCriticalDamPer() * 100f)}\n";
@@ -195,6 +197,8 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
             $"크리티컬 14단계 {CommonString.GetStatusName(StatusType.SuperCritical10DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical10DamPer() * 100f)}\n";
         description3 +=
             $"크리티컬 15단계 {CommonString.GetStatusName(StatusType.SuperCritical12DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical12DamPer() * 100f)}\n";
+        description3 +=
+            $"크리티컬 16단계 {CommonString.GetStatusName(StatusType.SuperCritical15DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical15DamPer() * 100f)}\n";
 
     
     

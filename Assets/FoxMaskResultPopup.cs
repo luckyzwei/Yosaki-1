@@ -72,6 +72,16 @@ public class FoxMaskResultPopup : MonoBehaviour
                     }
                 }
                 
+                if (GameManager.contentsType == GameManager.ContentsType.TaeguekTower)
+                {
+                    if ((int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.taeguekTower).Value >= (TableManager.Instance.taegeukTitle.dataArray.Length))
+                    {
+                        if (stageChangeButton != null)
+                        {
+                            stageChangeButton.SetActive(false);
+                        }
+                    }
+                }
                 
                 if (GameManager.contentsType == GameManager.ContentsType.GyungRockTower)
                 {
@@ -98,5 +108,6 @@ public class FoxMaskResultPopup : MonoBehaviour
         }
 
         return "미등록";
+        
     }
 }

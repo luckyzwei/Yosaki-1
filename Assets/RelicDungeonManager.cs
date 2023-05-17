@@ -8,7 +8,7 @@ using UniRx;
 
 public class RelicDungeonManager : ContentsManagerBase
 {
-    private ObscuredFloat spawnDelay1 = 0.15f;
+    private ObscuredFloat spawnDelay1 = 0.05f;
 
     [SerializeField]
     private ObscuredInt relicDungeonHp = 30;
@@ -134,7 +134,7 @@ public class RelicDungeonManager : ContentsManagerBase
             }
         }
     }
-
+ 
     private void SpawnEnemy()
     {
         int directionRand = Random.Range(0, 2);

@@ -7,20 +7,48 @@ using System;
 using UniRx;
 using CodeStage.AntiCheat.ObscuredTypes;
 
-public class UserInfoTable2
+public class UserInfoTable_2
 {
     public static string Indate;
     public const string tableName = "UserInfo2";
     
+    public const string monkeyGodScore = "monkeyGodScore";
+    public const string swordGodScore = "swordGodScore";
+    public const string hellGodScore = "hellGodScore";
+    public const string chunGodScore = "chunGodScore";
     public const string GangChulReset = "GangChulReset";
-    public const string levelPassFree = "levelPassFree";
-    public const string levelPassAd = "levelPassAd";
+    public const string stagePassFree = "stagePassFree";
+    public const string stagePassAd = "stagePassAd";
+    public const string foxFirePassKill = "pass0";
+    
 
+    //짝수 월간훈련(Monthlypass)
+    public const string evenMonthKillCount = "even0";
+    //홓수 월간훈련(Monthlypass2)
+    public const string oddMonthKillCount = "odd0";
+    
+    public const string SealSwordAwakeScore = "SSASS";
+    public const string taeguekTower = "tgtw";
+    public const string taeguekLock = "tgll";
+
+
+    public bool isInitialize = false;
     private Dictionary<string, double> tableSchema = new Dictionary<string, double>()
     {
         { GangChulReset, 0f },
-        { levelPassFree, -1f },
-        { levelPassAd, -1f },
+        { stagePassFree, -1f },
+        { stagePassAd, -1f },
+        
+        { monkeyGodScore, 0f },
+        { swordGodScore, 0f },
+        { hellGodScore, 0f },
+        { chunGodScore, 0f },
+        { foxFirePassKill, 0f },
+        { evenMonthKillCount, 0f },
+        { oddMonthKillCount, 0f },
+        { SealSwordAwakeScore, 0f },
+        { taeguekTower, 0f },
+        { taeguekLock, 0f },
     };
 
     private Dictionary<string, ReactiveProperty<double>> tableDatas = new Dictionary<string, ReactiveProperty<double>>();
@@ -128,9 +156,63 @@ public class UserInfoTable2
                     }
                 }
             }
+
+            isInitialize = true;
         });
     }
+    public void AutoUpdateRoutine()
+    {
+        if (isInitialize)
+        {
+            UpdatekillCount();
+        }
+    }
 
+    private void UpdatekillCount()
+    {
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        Param userInfo_2Param = new Param();
+        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        {
+            userInfo_2Param.Add(evenMonthKillCount, tableDatas[evenMonthKillCount].Value);
+        }
+        else
+        {
+            userInfo_2Param.Add(oddMonthKillCount, tableDatas[oddMonthKillCount].Value);
+        }
+        userInfo_2Param.Add(foxFirePassKill, tableDatas[foxFirePassKill].Value);
+
+        
+
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
+
+        ServerData.SendTransaction(transactions);
+    }
+    static int totalKillCount = 0;
+    static double updateRequireNum = 100;
+    public void GetKillCountTotal()
+    {
+        totalKillCount += (int)GameManager.Instance.CurrentStageData.Marbleamount;
+
+        if (totalKillCount < updateRequireNum)
+        {
+        }
+        else
+        {
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                tableDatas[evenMonthKillCount].Value += updateRequireNum;
+            }
+            else
+            {
+                tableDatas[oddMonthKillCount].Value += updateRequireNum;
+            }
+            totalKillCount = 0;
+
+            tableDatas[foxFirePassKill].Value += updateRequireNum;
+        }
+    }
     public void UpData(string key, bool LocalOnly)
     {
         if (tableDatas.ContainsKey(key) == false)

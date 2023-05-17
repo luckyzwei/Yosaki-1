@@ -140,8 +140,8 @@ public class MonthlyPassServerTable
     public const string tableName = "MonthlyPass";
 
 
-    public static string MonthlypassFreeReward = "f9";
-    public static string MonthlypassAdReward = "a9";
+    public static string MonthlypassFreeReward = "f10";
+    public static string MonthlypassAdReward = "a10";
 
     public static string MonthlypassAttendFreeReward = "af9";
     public static string MonthlypassAttendAdReward = "aa9";
@@ -816,6 +816,10 @@ public class ColdSeasonPassServerTable
     public static string seasonAd = "a3";
     public static string suhoFree = "f4";
     public static string suhoAd = "a4";
+    public static string foxfireFree = "f5";
+    public static string foxfireAd = "a5";
+    public static string sealSwordFree = "f6";
+    public static string sealSwordAd = "a6";
 
     public static string coldseasonFree_Atten = "fa2";
 
@@ -827,7 +831,11 @@ public class ColdSeasonPassServerTable
         { seasonFree,string.Empty},
         { seasonAd,string.Empty},
         { suhoFree,string.Empty},
-        { suhoAd,string.Empty}
+        { suhoAd,string.Empty},
+        { foxfireFree,string.Empty},
+        { foxfireAd,string.Empty},
+        { sealSwordFree,string.Empty},
+        { sealSwordAd,string.Empty}
 
     };
 

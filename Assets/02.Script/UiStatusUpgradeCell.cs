@@ -229,11 +229,43 @@ public class UiStatusUpgradeCell : MonoBehaviour
 
         if (statusData.Unlocklevel != 0)
         {
-            lockDescription.SetText($"{ TableManager.Instance.StatusDatas[statusData.Needstatuskey].Description} LV : {statusData.Unlocklevel} 이상 필요");
+            string description = "";
+            bool isHaveGoods = false;
+            if (statusData.Unlockgoods != 0)
+            {
+                ServerData.goodsTable.GetTableData(statusData.Needgoodskey).AsObservable().Subscribe(e =>
+                {
+                    isHaveGoods = statusData.Unlockgoods <= e;
+                }).AddTo(this);
+                
+                var type = ServerData.goodsTable.ServerStringToItemType(statusData.Needgoodskey);
+
+                description += $"{CommonString.GetItemName(type)} {statusData.Unlockgoods} 단계 필요\n";
+            }
+            else
+            {
+                //아래 Mask SetActive 위해 true
+                isHaveGoods = true;
+            }
+
+            description += $"{ TableManager.Instance.StatusDatas[statusData.Needstatuskey].Description} LV : {statusData.Unlocklevel} 이상 필요";
+            lockDescription.SetText(description);
 
             ServerData.statusTable.GetTableData(statusData.Needstatuskey).AsObservable().Subscribe(e =>
             {
-                lockMask.SetActive(statusData.Unlocklevel >= e + 2);
+                lockMask.SetActive((statusData.Unlocklevel >= e + 2) || !isHaveGoods);
+            }).AddTo(this);
+
+        }
+        else if (statusData.Unlockgoods != 0)
+        {
+            var type = ServerData.goodsTable.ServerStringToItemType(statusData.Needgoodskey);
+            
+            lockDescription.SetText($"{CommonString.GetItemName(type)} {statusData.Unlockgoods} 단계 필요");
+
+            ServerData.goodsTable.GetTableData(statusData.Needgoodskey).AsObservable().Subscribe(e =>
+            {
+                lockMask.SetActive(statusData.Unlockgoods > e);
             }).AddTo(this);
         }
         else

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
@@ -91,8 +92,31 @@ public class UiIapItemCell : MonoBehaviour
             }
         }
 
+        this.gameObject.SetActive(IsSellPeriod(productData));
     }
+    private bool IsSellPeriod(InAppPurchaseData inAppPurchaseData)
+    {
+        var splitData = inAppPurchaseData.Sellperiod.Split('-');
 
+        DateTime sellPeriod =
+            new DateTime(int.Parse(splitData[0]), int.Parse(splitData[1]), int.Parse(splitData[2]));
+        sellPeriod = sellPeriod.AddDays(1);//5월5일을 넣으면 5월6일00시에끝나야함.
+        var result = DateTime.Compare(ServerData.userInfoTable.currentServerTime, sellPeriod);
+
+        
+        switch (result)
+        {
+            //아직 안지남
+            case -1 :
+            case 0:
+                return true;
+            //지남
+            case 1:
+                return false;
+            default:
+                return false;
+        }
+    }
     private void SetPackageIcon()
     {
         if (packageIcon != null)

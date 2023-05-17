@@ -41,10 +41,10 @@ public class UiHellTowerResult : MonoBehaviour
         switch (contentsState)
         {
             case ContentsState.Dead:
-                stageChangeText.SetText("재도전");
+                stageChangeText.SetText("다시 도전");
                 return "실패!";
             case ContentsState.TimerEnd:
-                stageChangeText.SetText("재도전");
+                stageChangeText.SetText("다시 도전");
                 return "시간초과!";
             case ContentsState.Clear:
                 switch (GameManager.contentsType)
@@ -64,10 +64,31 @@ public class UiHellTowerResult : MonoBehaviour
                     case GameManager.ContentsType.SinsuTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx6).Value < (TableManager.Instance.sinsuTower.dataArray.Length):
                         stageChangeText.SetText("다음 스테이지");
                         break;
+                    case GameManager.ContentsType.SinsuTower:
+                        stageChangeButton.SetActive(false);
+                        break;
                     case GameManager.ContentsType.SealSwordTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx9).Value < (TableManager.Instance.sealSwordTable.dataArray.Length):
                         stageChangeText.SetText("다음 스테이지");
                         break;
-                    case GameManager.ContentsType.SinsuTower:
+                    case GameManager.ContentsType.SealSwordTower:
+                        stageChangeButton.SetActive(false);
+                        break;
+                    case GameManager.ContentsType.FoxTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.foxTowerIdx).Value < (TableManager.Instance.FoxTowerTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.FoxTower:
+                        stageChangeButton.SetActive(false);
+                        break;
+                    case GameManager.ContentsType.DarkTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.DarkTowerIdx).Value < (TableManager.Instance.DarkTowerTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.DarkTower:
+                        stageChangeButton.SetActive(false);
+                        break;
+                    case GameManager.ContentsType.GuildTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorGuildTower).Value < (TableManager.Instance.guildTowerTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.GuildTower:
                         stageChangeButton.SetActive(false);
                         break;
                 }

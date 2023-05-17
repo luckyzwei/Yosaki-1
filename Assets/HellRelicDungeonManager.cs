@@ -9,7 +9,7 @@ using UniRx;
 
 public class HellRelicDungeonManager : ContentsManagerBase
 {
-    private ObscuredFloat spawnDelay1 = 0.15f;
+    private ObscuredFloat spawnDelay1 = 0.05f;
 
     [SerializeField]
     private ObscuredInt relicDungeonHp = 30;

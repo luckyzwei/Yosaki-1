@@ -6,6 +6,7 @@ using UniRx;
 using UnityEngine.UI;
 using CodeStage.AntiCheat.ObscuredTypes;
 using BackEnd;
+using JetBrains.Annotations;
 
 public class UiMarbleIndicator : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class UiMarbleIndicator : MonoBehaviour
     [SerializeField]
     private Animator marbleAwakeAnimator;
 
+    [SerializeField] private SeletableTab _selectableTab;
     private void OnDestroy()
     {
         disposable.Dispose();
@@ -42,6 +44,10 @@ public class UiMarbleIndicator : MonoBehaviour
     private void Start()
     {
         OnClickMarbleView(0);
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.foxTowerStart).Value > 0)
+        {
+            _selectableTab.OnSelect(1);
+        }
     }
 
     public void OnClickMarbleView(int id)

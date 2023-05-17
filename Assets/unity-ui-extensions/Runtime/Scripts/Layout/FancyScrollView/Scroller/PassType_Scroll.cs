@@ -10,5 +10,8 @@ namespace UnityEngine.UI.Extensions
         MonthPass2,
         MonthPass,
         SnowManPass,
+        SuhoPass,
+        FoxFirePass,
+        SealSwordPass,
     }
 }

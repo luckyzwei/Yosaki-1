@@ -47,7 +47,7 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
 
         for (int i = 0; i < tableData.Length; i++)
         {
-            if ((tableData[i].WEAPONTYPE == WeaponType.View)||
+            if ((tableData[i].WEAPONTYPE == WeaponType.View)||(tableData[i].WEAPONTYPE == WeaponType.RecommendView)||
                 (tableData[i].WEAPONTYPE == WeaponType.Basic) )
             {
                 continue;
@@ -102,6 +102,7 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
         for (int i = 0; i < tableData.Length; i++)
         {
             if (tableData[i].WEAPONTYPE == WeaponType.View) continue;
+            if (tableData[i].WEAPONTYPE == WeaponType.RecommendView) continue;
             if (tableData[i].WEAPONTYPE == WeaponType.Basic) continue;
 
             StatusType abilType = (StatusType)tableData[i].Collectioneffecttype;
@@ -146,6 +147,7 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
         for (int i = 0; i < tableData.Length; i++)
         {
             if (tableData[i].WEAPONTYPE == WeaponType.View) continue;
+            if (tableData[i].WEAPONTYPE == WeaponType.RecommendView) continue;
             if (tableData[i].WEAPONTYPE == WeaponType.Basic) continue;
             if(Utils.IsPercentStat((StatusType)tableData[i].Collectioneffecttype))
             {
@@ -173,6 +175,7 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
         for (int i = 0; i < tableData.Length; i++)
         {
             if (tableData[i].WEAPONTYPE == WeaponType.View) continue;
+            if (tableData[i].WEAPONTYPE == WeaponType.RecommendView) continue;
 
             Item_Type rewardType = (Item_Type)tableData[i].Rewardtype0;
             float rewardValue = tableData[i].Rewardvalue0;
@@ -220,6 +223,10 @@ public class UiWeaponEquipmentCollection : MonoBehaviour
         for (int i = 0; i < tableData.Length; i++)
         {
             var serverData = ServerData.weaponTable.TableDatas[tableData[i].Stringid];
+            //Basic, view는 도감에없으니 제외
+            if(tableData[i].WEAPONTYPE==WeaponType.Basic) continue;
+            if(tableData[i].WEAPONTYPE==WeaponType.View) continue;
+            if(tableData[i].WEAPONTYPE==WeaponType.RecommendView) continue;
             //가지고있지 않으면 continue
             if (serverData.hasItem.Value < 1) continue;
             //무료보상 안 받은 경우

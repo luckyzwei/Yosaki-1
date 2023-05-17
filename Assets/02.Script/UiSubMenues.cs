@@ -46,6 +46,7 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
                 case GameManager.ContentsType.GyungRockTower2:
                     return;
                 case GameManager.ContentsType.SealSwordTower:
+                case GameManager.ContentsType.SealAwake:
                 {
                     GameManager.Instance.ResetLastContents2();
                     _SealSwordButton.OnClickButton();

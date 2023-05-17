@@ -124,21 +124,34 @@ public class UiQuickMoveBoard : MonoBehaviour
     {
         allReceiveButton.interactable = false;
 
-        for (int i = 0; i < stageCellList.Count; i++)
+        //값 가져올때 -1로 가져와서 +1로 보정
+        int lastClearData = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value + 1;
+        var tableData = TableManager.Instance.StageMapTable.dataArray;
+        //현재 index가 -1이라면 0번째 보상을 받아야하기 때문에 +1
+        var passValue = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassFree).Value + 1;
+        var adValue = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassAd).Value + 1;
+
+        //스테이지 패스
+        if (ServerData.iapServerTable.TableDatas[UiStagePassBuyButton.stagePassKey].buyCount.Value > 0)
         {
-            stageCellList[i].DisposeTemp();
-        }
-
-
-        for (int i = 0; i < stageCellList.Count; i++)
-        {
-            stageCellList[i].OnClickRewardButton_Script();
-
-            if (AdManager.Instance.HasRemoveAdProduct())
+            //내가 안받은 보상(value+1)부터 현재 스테이지까지.
+            for (int i = passValue; i < lastClearData; i++)
             {
-                stageCellList[i].OnClickRewardButton_Ad_Script();
+                ServerData.AddLocalValue((Item_Type)(int)tableData[i].Pre_Bossrewardtype, tableData[i].Pre_Bossrewardvalue);
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassFree).Value++;
             }
         }
+
+        //광고
+        if (AdManager.Instance.HasRemoveAdProduct())
+        {
+            for (int i = adValue; i < lastClearData; i++)
+            {
+                ServerData.AddLocalValue((Item_Type)(int)tableData[i].Ad_Bossrewardtype, tableData[i].Ad_Bossrewardvalue);
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.stagePassAd).Value++;
+            }
+        }
+
 
         for (int i = 0; i < stageCellList.Count; i++)
         {
@@ -147,10 +160,10 @@ public class UiQuickMoveBoard : MonoBehaviour
 
         List<TransactionValue> transactions = new List<TransactionValue>();
 
-        Param passParam = new Param();
-        passParam.Add(PassServerTable.stagePassAdReward, ServerData.passServerTable.TableDatas[PassServerTable.stagePassAdReward].Value);
-        passParam.Add(PassServerTable.stagePassReward, ServerData.passServerTable.TableDatas[PassServerTable.stagePassReward].Value);
-        transactions.Add(TransactionValue.SetUpdate(PassServerTable.tableName, PassServerTable.Indate, passParam));
+        Param userInfo2Param = new Param();
+        userInfo2Param.Add(UserInfoTable_2.stagePassAd, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassAd].Value);
+        userInfo2Param.Add(UserInfoTable_2.stagePassFree, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.stagePassFree].Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo2Param));
 
         Param goodsParam = new Param();
         goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);

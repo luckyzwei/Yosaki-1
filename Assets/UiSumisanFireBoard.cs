@@ -160,6 +160,10 @@ public class UiSumisanFireBoard : MonoBehaviour
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
 
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSumiFire, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.SumiFire)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null);

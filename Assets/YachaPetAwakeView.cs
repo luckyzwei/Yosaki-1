@@ -182,7 +182,7 @@ public class YachaPetAwakeView : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value += 1000000000f;
+            ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value += 1000000000000f;
         }
 
         if (Input.GetKeyDown(KeyCode.UpArrow))

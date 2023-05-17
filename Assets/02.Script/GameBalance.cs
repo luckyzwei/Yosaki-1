@@ -123,6 +123,19 @@ public static class GameBalance
     public readonly static ObscuredInt murgePartyRaidRankRewardTicket_101_500 = 3000;
     public readonly static ObscuredInt murgePartyRaidRankRewardTicket_501_1000 = 2000;
     public readonly static ObscuredInt murgePartyRaidRankRewardTicket_1001_5000 = 1000;
+    
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1 = 15;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_2 = 14;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_3 = 13;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_4 = 12;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_5 = 11;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_6_10 = 10;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_11_20 = 9;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_21_50 = 8;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_51_100 = 7;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_101_500 = 6;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_501_1000 = 5;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1001_5000 = 4;
 
     public readonly static ObscuredInt rankRewardTicket_1_relic = 120;
     public readonly static ObscuredInt rankRewardTicket_2_relic = 110;
@@ -360,9 +373,12 @@ public static class GameBalance
     public readonly static ObscuredInt fireFlyFixedScore = 173;
     
     public readonly static ObscuredInt BlackWolfRingDevideIdx = 40000;
+    
+    public readonly static ObscuredFloat Stat_Sin_Slash = 0.00001f;
+    public readonly static ObscuredFloat Stat_Hyung_Slash =  0.000001f;
     //
     public static List<float> warMarkAbils = new List<float>() { 0f, 400f, 500f, 600f, 700f, 800f, 900f, 1000f };
-
+    
     public static int GetSonIdx()
     {
         int level = ServerData.statusTable.GetTableData(StatusTable.Son_Level).Value;

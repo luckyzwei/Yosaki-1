@@ -33,6 +33,9 @@ public class UiContentsPopup2 : MonoBehaviour
         DarkBoard,
         FoxTowerBoard,
         FoxBossBoard,
+        SinsunBoard,
+        GodTrialBoard,
+        TaegeukBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -244,6 +247,11 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 139:
                         lastBoards[(int)ContentsBoard.FoxBossBoard].SetActive(true);
                         break;
+                    case 140:
+                    case 141:
+                    case 142:
+                        lastBoards[(int)ContentsBoard.SinsunBoard].SetActive(true);
+                        break;
                         
                 }
                 break;
@@ -278,6 +286,12 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.Thief:
                 lastBoards[(int)ContentsBoard.YumAndOkBoard].SetActive(true);
                 break;
+            case GameManager.ContentsType.TestMonkey:
+            case GameManager.ContentsType.TestSword:
+            case GameManager.ContentsType.TestHell:
+            case GameManager.ContentsType.TestChun:
+                lastBoards[(int)ContentsBoard.GodTrialBoard].SetActive(true);
+                break;
             case GameManager.ContentsType.GradeTest:
                 lastBoards[(int)ContentsBoard.GradeTestBoard].SetActive(true);
                 break;
@@ -309,6 +323,9 @@ public class UiContentsPopup2 : MonoBehaviour
                 break;
             case GameManager.ContentsType.FoxTower :
                 lastBoards[(int)ContentsBoard.FoxTowerBoard].SetActive(true);
+                break;   
+            case GameManager.ContentsType.TaeguekTower :
+                lastBoards[(int)ContentsBoard.TaegeukBoard].SetActive(true);
                 break;
 
         }

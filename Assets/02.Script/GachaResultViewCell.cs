@@ -84,10 +84,11 @@ public class GachaResultViewCell : MonoBehaviour
             // rareEffect.gameObject.SetActive(magicBookData.Grade == 2);
             //uniqueEffect.gameObject.SetActive(magicBookData.Grade == 3);
 
-      
-            SoundManager.Instance.PlaySound(GetUniqueKey);
-            PopupManager.Instance.ShowWhiteEffect();
-       
+            if (sealSwordData.Grade >= 3)
+            {
+                SoundManager.Instance.PlaySound(GetUniqueKey);
+                PopupManager.Instance.ShowWhiteEffect();
+            }
 
             openMask.color = CommonUiContainer.Instance.itemGradeColor[sealSwordData.Grade];
         }

@@ -126,6 +126,10 @@ public class UiGumGiContentsBoard : MonoBehaviour
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
 
+            if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSwordPartial, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 LogManager.Instance.SendLogType("GumGi", "_", score.ToString());

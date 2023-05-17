@@ -35,7 +35,20 @@ public class MiniBossController : MonoBehaviour
             int randomIndex = Random.Range(i, _gameObjects.Count);
 
             (_gameObjects[i], _gameObjects[randomIndex]) = (_gameObjects[randomIndex], _gameObjects[i]);
-            _gameObjects[i].transform.localPosition = new Vector3(0, -3f + i * 3.4f, 0);
+            if (GameManager.Instance.bossId == 140||GameManager.Instance.bossId == 141)
+            {
+                _gameObjects[i].transform.localPosition = new Vector3(0, -7.87f + i * 5.62f, 0);
+            }
+            else if(GameManager.Instance.bossId == 142)
+            {
+                float randomXIndex = Random.Range(8, 23);
+                _gameObjects[i].transform.localPosition = new Vector3(randomXIndex, -7.87f + i * 5.62f, 0);
+            }
+            else
+            {
+                _gameObjects[i].transform.localPosition = new Vector3(0, -3f + i * 3.4f, 0);
+                
+            }
         }
     }
 }

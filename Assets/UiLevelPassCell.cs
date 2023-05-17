@@ -74,7 +74,6 @@ public class UiLevelPassCell : MonoBehaviour
             rewardedObject_Ad.SetActive(rewarded);
 
         }).AddTo(disposables);
-
         //레벨 변경될때
         ServerData.statusTable.GetTableData(StatusTable.Level).AsObservable().Subscribe(e =>
         {
@@ -83,10 +82,6 @@ public class UiLevelPassCell : MonoBehaviour
                 lockIcon_Free.SetActive(!CanGetReward());
                 lockIcon_Ad.SetActive(!CanGetReward());
             }
-            //itemAmount_free.color = lockIcon_Free.activeInHierarchy == true ? Color.grey : Color.white;
-            //itemName_free.color = lockIcon_Free.activeInHierarchy == true ? Color.grey : Color.white;
-            //itemAmount_ad.color = lockIcon_Ad.activeInHierarchy == true ? Color.grey : Color.white;
-            //itemName_ad.color = lockIcon_Ad.activeInHierarchy == true ? Color.grey : Color.white;
         }).AddTo(disposables);
     }
 
@@ -141,6 +136,7 @@ public class UiLevelPassCell : MonoBehaviour
     {
         return ServerData.newLevelPass.TableDatas[key].Value.Split(',').ToList();
     }
+
 
     public bool HasReward(string key, int data)
     {

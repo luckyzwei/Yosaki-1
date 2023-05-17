@@ -1749,6 +1749,8 @@ MonoBehaviour:
   stageMapTable: {fileID: 11400000, guid: 3b10fdfe3d84c1348af6e483ba61bafe, type: 2}
   dailyMission: {fileID: 11400000, guid: ae340058442db344e86a7c00dd847acd, type: 2}
   eventMission: {fileID: 11400000, guid: 75d70f036c23bee4f9f8b4d1f7c5a60f, type: 2}
+  monthMission: {fileID: 11400000, guid: 3b0fd9fa144a4d744bd5abc77bcf6a75, type: 2}
+  monthMission2: {fileID: 11400000, guid: 3cd6b65abc9b28e44962e389bdf9899b, type: 2}
   guideMission: {fileID: 11400000, guid: f12b1f391dffb614dbc5ce4e84f755a8, type: 2}
   statusTable: {fileID: 11400000, guid: 617c791785eebca4b85763e92bea2883, type: 2}
   weaponEffectTable: {fileID: 11400000, guid: d9971833b3673e84588af90c513dafec, type: 2}
@@ -1864,14 +1866,25 @@ MonoBehaviour:
   suhoPass: {fileID: 11400000, guid: 55981bb4c392227458010fe3da51d683, type: 2}
   DarkTreasureAbilBase: {fileID: 11400000, guid: 9efef5fb49f79dd4c8e39a489b275c1b,
     type: 2}
+  SinsunTreasureAbilBase: {fileID: 11400000, guid: 823c31beb910bf144a940ced09285229,
+    type: 2}
   BlackWolfRing: {fileID: 11400000, guid: e094e4e8bfc78ee42b2f70222ec5d027, type: 2}
   gyungRockTowerTable2: {fileID: 11400000, guid: 8bc8a315b8f3cf843be5e6a18f233576,
     type: 2}
   FoxTowerTable: {fileID: 11400000, guid: 7ae055209589cba46a41ef03faab3d41, type: 2}
   FoxFire: {fileID: 11400000, guid: c2a0f6e0afe1bcf4a97154943f83760b, type: 2}
   DarkTowerTable: {fileID: 11400000, guid: 77f94130f523bed4db2f8b2b235d8876, type: 2}
+  TestChun: {fileID: 11400000, guid: e24a4e325b950e34399f3286c981814b, type: 2}
+  TestHell: {fileID: 11400000, guid: bd4de40e93ef648428342c0aaa4a66fb, type: 2}
+  TestMonkey: {fileID: 11400000, guid: 50f047c781286454f859b5c00c7af5ad, type: 2}
+  TestSword: {fileID: 11400000, guid: 8bda26235912461409c379daa97cb078, type: 2}
   sealSwordTable: {fileID: 11400000, guid: 0de1ad966cef7a1418cacbb5af596a87, type: 2}
+  SealSwordPass: {fileID: 11400000, guid: b25deebbdf72a6f4bb7549a4db745aee, type: 2}
+  FoxFirePass: {fileID: 11400000, guid: 185a1991c26245a4c891d2bf36d6819c, type: 2}
   SealTowerTable: {fileID: 11400000, guid: 639631a794d349c49947e093ccd5a5fa, type: 2}
+  SealSwordAwakeTable: {fileID: 11400000, guid: 5c9b48933332ff74d8a77423e727c4e3,
+    type: 2}
+  taegeukTitle: {fileID: 11400000, guid: bb6017d04b29ca1459bf2d02ecbd48dc, type: 2}
 --- !u!224 &1672999882 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3778453797765526293, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -2023,6 +2036,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 09df15c9c357b3b4883d4209ec91809f, type: 3}
   - {fileID: 21300000, guid: 3783fd68fdf27ba44937cc9488134736, type: 3}
   - {fileID: 21300000, guid: 6d331f281d46eed4285d169abd68841c, type: 3}
+  - {fileID: 21300000, guid: e2b5c2e9b9e472b4db8bbfa1d7cdc97a, type: 3}
   itemGradeColor:
   - {r: 0.42352945, g: 0.34117648, b: 0.24705884, a: 1}
   - {r: 0.36862746, g: 0.8000001, b: 0.23529413, a: 1}
@@ -2052,6 +2066,7 @@ MonoBehaviour:
   - {r: 0, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.43529415, b: 0.4784314, a: 1}
   - {r: 0.6673897, g: 0.4009434, b: 1, a: 1}
+  - {r: 0.84498245, g: 0.8773585, b: 0.13656996, a: 1}
   costumeThumbnail:
   - {fileID: 21300000, guid: e1fdee06b1ace764e99a14c848a213ad, type: 3}
   - {fileID: 21300000, guid: be316b91f67a3bc458b47904aec3c83a, type: 3}
@@ -2169,6 +2184,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ab949c03d17e4da449ccbf0b907b4c82, type: 3}
   - {fileID: 21300000, guid: fe8b00b0608847f418a0b9bfd354a01a, type: 3}
   - {fileID: 21300000, guid: 1c9ea29571cba854c9337ae0010bdb81, type: 3}
+  - {fileID: 21300000, guid: 767a6cf4becb67c4aa5f4e7d4af80bcf, type: 3}
+  - {fileID: 21300000, guid: a959e75891ff68049bfdafd483fc5190, type: 3}
+  - {fileID: 21300000, guid: 065a3c25c503197419f6a56a595e3144, type: 3}
+  - {fileID: 21300000, guid: b25658d99cc8ff445b5861e073725841, type: 3}
   rankFrame:
   - {fileID: 21300000, guid: 180b014bbd854ff4c8d26a3bc3108a29, type: 3}
   - {fileID: 21300000, guid: 045aff0737bd68d449d44a4a9bb5b849, type: 3}
@@ -2279,6 +2298,9 @@ MonoBehaviour:
   MasterWeapon1: {fileID: 21300000, guid: ee90827e5382a8d4cb44ffbdcef14727, type: 3}
   MasterWeapon2: {fileID: 21300000, guid: 928921872a0ccfd41af8ed56fbeca64a, type: 3}
   MasterWeapon3: {fileID: 21300000, guid: f68f9e91d9376be429eb674338eda8ab, type: 3}
+  SinsunWeapon0: {fileID: 21300000, guid: 11bafc627067dc4449d5dde4f7f79783, type: 3}
+  SinsunWeapon1: {fileID: 21300000, guid: 31c906b43a5b0514b935b35fab1a8571, type: 3}
+  SinsunWeapon2: {fileID: 21300000, guid: f449dd897df673a49b3cb2302f0b521a, type: 3}
   ChunSun0: {fileID: 21300000, guid: 4f63300c771529e49801fd1615d788fa, type: 3}
   ChunSun1: {fileID: 21300000, guid: e785d28ef5135714bbc245dafaa158e3, type: 3}
   ChunSun2: {fileID: 21300000, guid: 52ad30337e6bb1f4fb00a32d5bb21019, type: 3}
@@ -2359,12 +2381,16 @@ MonoBehaviour:
   MasterNorigae1: {fileID: 21300000, guid: 5db84fa2acce85343a0110f48410041f, type: 3}
   MasterNorigae2: {fileID: 21300000, guid: 9ea05f2c84e6ccb4fa9b3bcb964d11bc, type: 3}
   MasterNorigae3: {fileID: 21300000, guid: ad7f4b534f2cf6c4586ed855032b59a5, type: 3}
+  SinsunNorigae0: {fileID: 21300000, guid: 37df7d6d7d53f5d40b815b3d309c1d32, type: 3}
+  SinsunNorigae1: {fileID: 21300000, guid: 41ada96012562244b988d6e3769ba71f, type: 3}
+  SinsunNorigae2: {fileID: 21300000, guid: c9935f668d6fd2648aba7b2835ab8d4f, type: 3}
   MonthNorigae0: {fileID: 21300000, guid: b8e4966468cd428418fa5447c72fabe7, type: 3}
   MonthNorigae1: {fileID: 21300000, guid: 534227b3d8d3ed346912306890c7d5ee, type: 3}
   MonthNorigae2: {fileID: 21300000, guid: e5a11b2c900be0a478a8bef1cd907e2d, type: 3}
   MonthNorigae3: {fileID: 21300000, guid: 814e0ca3caa223e41a5854b0de226c6b, type: 3}
   MonthNorigae4: {fileID: 21300000, guid: 6a5d07b563b244a44b794c34546f0184, type: 3}
   MonthNorigae5: {fileID: 21300000, guid: e034ad022c6f5bc49b7735c4b42481ec, type: 3}
+  MonthNorigae6: {fileID: 21300000, guid: 06a44dc7d1fede94f970eb948941c7f0, type: 3}
   DokebiHorn0: {fileID: 21300000, guid: 92f9f58d12795c74ba90cc7fbf939313, type: 3}
   DokebiHorn1: {fileID: 21300000, guid: 6b45cec8b763a8a4dbe42106090790b3, type: 3}
   DokebiHorn2: {fileID: 21300000, guid: b9a7ada2415dc2c41af80d8e59d7a05c, type: 3}
@@ -2430,6 +2456,7 @@ MonoBehaviour:
   VisionSkill2: {fileID: 21300000, guid: 65904a987f2978e4eae03438d46262b8, type: 3}
   VisionSkill3: {fileID: 21300000, guid: eb234862d1c5e4346920e3e158599a4d, type: 3}
   VisionSkill4: {fileID: 21300000, guid: a13a835c5a9383541b87ceba1f7c5873, type: 3}
+  VisionSkill5: {fileID: 21300000, guid: cb2437f5577dfb84aaafc95c68799b5b, type: 3}
   ThiefSkill0: {fileID: 21300000, guid: 7089d44d1ff169d4cba58d00bd5dc1ce, type: 3}
   ThiefSkill1: {fileID: 21300000, guid: d43f2b76532856746908559096f1ea6f, type: 3}
   ThiefSkill2: {fileID: 21300000, guid: 4fc59981684b8874fb0151141ec6c4ea, type: 3}
@@ -2481,6 +2508,7 @@ MonoBehaviour:
   SahyungTreasure: {fileID: 21300000, guid: 5eafe4bb3025a5c4ca15663a26f57f39, type: 3}
   VisionTreasure: {fileID: 21300000, guid: 8cf4b33ff39294544aa0b3b801b6ece8, type: 3}
   DarkTreasure: {fileID: 21300000, guid: 5c7854cdd22e4c349bbac00d79442943, type: 3}
+  SinsunTreasure: {fileID: 21300000, guid: 32893a95ea5172f408f18a4f6f189a08, type: 3}
   GuildTowerClearTicket: {fileID: 21300000, guid: e1c2800e99ce64542832990a20ea6670,
     type: 3}
   GuildTowerHorn: {fileID: 21300000, guid: e0e82948e2df61f439ebca2b7489396a, type: 3}
@@ -2608,8 +2636,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 184852d0c676f5d44b346fd3c4ed2703, type: 3}
   - {fileID: 21300000, guid: 184852d0c676f5d44b346fd3c4ed2703, type: 3}
   - {fileID: 21300000, guid: 247de9137c0558241932d3c2b64b9767, type: 3}
-  - {fileID: 21300000, guid: c045b393c282c424c80d2eae04ea8278, type: 3}
+  - {fileID: 21300000, guid: 219ce4876d343d6499c063f8c4548944, type: 3}
   - {fileID: 21300000, guid: e045517f19d76bd4ca4c23ca055741aa, type: 3}
+  - {fileID: 21300000, guid: 14eb64f14abdfc54ebbbb7c6705f1e6f, type: 3}
+  - {fileID: 21300000, guid: 14eb64f14abdfc54ebbbb7c6705f1e6f, type: 3}
+  - {fileID: 21300000, guid: 14eb64f14abdfc54ebbbb7c6705f1e6f, type: 3}
   loadingTipIcon: []
   bossIcon:
   - {fileID: 21300000, guid: d6dc0f811384f6d40ab29a86c0f4eeb8, type: 3}
@@ -2790,6 +2821,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b08cc4941c5fee4b8b1ca75731d94cf, type: 2}
   - {fileID: 11400000, guid: 9d83b807691fb5c42a920eef93c71917, type: 2}
   - {fileID: 11400000, guid: 4adb57b3f057d61489177f1402601a76, type: 2}
+  - {fileID: 11400000, guid: 035416e5a2b02894ca909b9f1db0238b, type: 2}
+  - {fileID: 11400000, guid: 5aac009484545cc4ebea81769d255a5e, type: 2}
+  - {fileID: 11400000, guid: a35e91d0945215345b886855e53c728d, type: 2}
+  - {fileID: 11400000, guid: 6804f152621c72449b1ec697bfad8d20, type: 2}
   petCostumeList:
   - {fileID: 11400000, guid: 3d9145f3f8361c944acb6cd70679d6e2, type: 2}
   - {fileID: 11400000, guid: 206e7bbe5e49e2f4bb8859c83698d1d7, type: 2}
@@ -2877,6 +2912,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f7231245d9b5a7a4d8112cebd8363b0e, type: 3}
   - {fileID: 21300000, guid: 320dbfbdfafe7284baf3a4f467e9421d, type: 3}
   - {fileID: 21300000, guid: 524062ec1ced53048bd71ed8b33028d7, type: 3}
+  - {fileID: 21300000, guid: ca8b618f731417e4385c283fa5430d82, type: 3}
   stageRelicIconList:
   - {fileID: 21300000, guid: 01f2cba9ff279d543965e05b2fc09adb, type: 3}
   - {fileID: 21300000, guid: 96dac065bf345524a8a3097c18812379, type: 3}

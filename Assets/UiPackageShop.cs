@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -51,12 +52,36 @@ public class UiPackageShop : MonoBehaviour
     
     [SerializeField]
     private Transform Goods_FoxFire;
+    [SerializeField]
+    private Transform Goods_SealSword;
 
     private void Start()
     {
         Initialize();
     }
+    private bool IsSellPeriod(InAppPurchaseData inAppPurchaseData)
+    {
+        var splitData = inAppPurchaseData.Sellperiod.Split('-');
 
+        DateTime sellPeriod =
+            new DateTime(int.Parse(splitData[0]), int.Parse(splitData[1]), int.Parse(splitData[2]));
+        sellPeriod = sellPeriod.AddDays(1);//5월5일을 넣으면 5월6일00시에끝나야함.
+        var result = DateTime.Compare(ServerData.userInfoTable.currentServerTime, sellPeriod);
+
+        
+        switch (result)
+        {
+            //아직 안지남
+            case -1 :
+            case 0:
+                return true;
+            //지남
+            case 1:
+                return false;
+            default:
+                return false;
+        }
+    }
     private void Initialize()
     {
         var e = TableManager.Instance.InAppPurchaseData.GetEnumerator();
@@ -64,7 +89,8 @@ public class UiPackageShop : MonoBehaviour
         while (e.MoveNext())
         {
             if (e.Current.Value.Active == false) continue;
-
+            //기한이 아니면 continue
+            if (IsSellPeriod(e.Current.Value) == false) continue;
             if (e.Current.Value.SHOPCATEGORY == ShopCategory.Gem)
             {
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, gemCategoryParent);
@@ -164,6 +190,11 @@ public class UiPackageShop : MonoBehaviour
             else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_FoxFire)
             {
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_FoxFire);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_SealSword)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_SealSword);
                 cell.Initialize(e.Current.Value);//
             }
             

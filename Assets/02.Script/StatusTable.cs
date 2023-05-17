@@ -55,6 +55,9 @@ public class StatusTable
     public const string Cslash_memory = "Cslash_memory";
     public const string GiSlash_memory = "GiSlash_memory";
     public const string Gum_memory = "Gum_memory";
+    
+    public const string Sin_StatPoint = "Sin_StatPoint";
+    public const string Hyung_StatPoint = "Hyung_StatPoint";
 
 
     public const string Skill0_AddValue = "Sk0_Add";
@@ -106,6 +109,10 @@ public class StatusTable
         { Cslash_memory, 0 },
         { GiSlash_memory, 0 },
         { Gum_memory, 0 },
+        
+        { Sin_StatPoint, 0 },
+        { Hyung_StatPoint, 0 },
+        
         { Skill0_AddValue, 0 },
         { Skill1_AddValue, 0 },
         { Skill2_AddValue, 0 },
@@ -251,6 +258,16 @@ public class StatusTable
                 case MpPer_StatPoint:
                     {
                         return level * 0.005f;
+                    }
+                    break;  
+                case Sin_StatPoint:
+                    {
+                        return level * GameBalance.Stat_Sin_Slash;
+                    }
+                    break;
+                case Hyung_StatPoint:
+                    {
+                        return level * GameBalance.Stat_Hyung_Slash;
                     }
                     break;
 

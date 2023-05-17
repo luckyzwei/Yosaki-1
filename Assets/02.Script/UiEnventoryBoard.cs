@@ -61,9 +61,9 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
     public void Start()
     {
-        MakeWeaponBoard();
-        MakeMagicBookBoard();
-        MakeNewGachaBoard();
+        //MakeWeaponBoard();
+        //MakeMagicBookBoard();
+        //MakeNewGachaBoard();
         MakePetBoard();
     }
 
@@ -137,10 +137,6 @@ public class UiEnventoryBoard : SingletonMono<UiEnventoryBoard>
 
                     weaponViewContainer.Add(view);
             }
-
-     
-
-
         }
         var tableData = TableManager.Instance.WeaponTable.dataArray;
         List<(int displayOrder, UiInventoryWeaponView gameObject)> weapons = new List<(int, UiInventoryWeaponView)>();

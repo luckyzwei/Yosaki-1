@@ -521,6 +521,12 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.DarkTreasure, ServerData.goodsTable.GetTableData(GoodsTable.DarkTreasure).Value);
                 }
                 break;  
+            case Item_Type.SinsunTreasure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value += amount;
+                    param.Add(GoodsTable.SinsunTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value);
+                }
+                break;  
             case Item_Type.GuildTowerClearTicket:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value += amount;
@@ -841,6 +847,12 @@ public class UiShop : SingletonMono<UiShop>
             {
                 ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).Value += amount;
                 param.Add(GoodsTable.VisionSkill4, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).Value);
+            }
+                break;
+            case Item_Type.VisionSkill5:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill5).Value += amount;
+                param.Add(GoodsTable.VisionSkill5, ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill5).Value);
             }
                 break;
  

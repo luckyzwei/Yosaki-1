@@ -259,7 +259,7 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value);
+            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
             transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
@@ -298,7 +298,7 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal).Value);
+            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
             transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {

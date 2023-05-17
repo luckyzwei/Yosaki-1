@@ -283,6 +283,10 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, clearCount);
               EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, clearCount);
+              if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+              {
+                  EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, clearCount);
+              }
               ServerData.SendTransaction(transactionList,
                   successCallBack: () =>
                   {

@@ -179,20 +179,24 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         float peachItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)
         {
-            peachItem = killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+            peachItem =
+                (killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio * elapsedMinutes) *
+                PlayerStats.GetMonkeyGodAbil1();
         }
 
         //복숭아
         float helItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
-            helItem = killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+            helItem = (killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes)*
+                PlayerStats.GetHellGodAbil1();;
         }
 
         float chunItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
-            chunItem = killedEnemyPerMin * stageTableData.Chunfloweramount * GameBalance.sleepRewardRatio * elapsedMinutes;
+            chunItem = (killedEnemyPerMin * stageTableData.Chunfloweramount * GameBalance.sleepRewardRatio *
+                        elapsedMinutes) * PlayerStats.GetChunGodAbil1();
         }
 
         float dokebiItem = 0;
@@ -201,12 +205,17 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             dokebiItem = killedEnemyPerMin * stageTableData.Dokebifireamount * GameBalance.sleepRewardRatio * elapsedMinutes;
         }
 
-        int hotTimeItem = (int)(GameBalance.sleepRewardRatio * elapsedMinutes / 10);
-
-        if (Utils.HasHotTimeEventPass())
+        int hotTimeItem = 0;
+        if (ServerData.userInfoTable.IsHotTimeEvent())
         {
-            hotTimeItem *= 2;
+            hotTimeItem = (int)(GameBalance.sleepRewardRatio * elapsedMinutes / 10);
+            
+            if (Utils.HasHotTimeEventPass())
+            {
+                hotTimeItem *= 2;
+            }
         }
+
 
 
         float dailybootyItem = killedEnemyPerMin * stageTableData.Dailyitemgetamount * stageTableData.Marbleamount * GameBalance.sleepRewardRatio * elapsedMinutes;
@@ -315,18 +324,25 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
         {
-            ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal].Value += sleepRewardInfo.killCount;
         }
         else
         {
             ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal2].Value += sleepRewardInfo.killCount;
         }
-
+        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        {
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.evenMonthKillCount].Value += sleepRewardInfo.killCount;
+        }
+        else
+        {
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.oddMonthKillCount].Value += sleepRewardInfo.killCount;
+        }
         //ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value += sleepRewardInfo.killCount;
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.foxFirePassKill].Value += sleepRewardInfo.killCount;
         //ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value += sleepRewardInfo.killCount;
 
         Param goodsParam = new Param();
@@ -393,7 +409,6 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
         {
-            userInfoParam.Add(UserInfoTable.killCountTotal, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal].Value);
         }
         else
         {
@@ -405,6 +420,19 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         userInfoParam.Add(UserInfoTable.killCountTotalSeason, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason3, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value);
+        
+        Param userInfo_2Param = new Param();
+        
+        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        {
+            userInfo_2Param.Add(UserInfoTable_2.evenMonthKillCount, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.evenMonthKillCount].Value);
+        }
+        else
+        {
+            userInfo_2Param.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.oddMonthKillCount].Value);
+        }
+
+        userInfo_2Param.Add(UserInfoTable_2.foxFirePassKill, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.foxFirePassKill].Value);
         // userInfoParam.Add(UserInfoTable.attenCountOne, ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value);
 
 
@@ -434,6 +462,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //
         transantions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         transantions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+        transantions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
 
         ServerData.SendTransaction(transantions, successCallBack: () =>
         {
