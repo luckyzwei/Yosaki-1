@@ -84,16 +84,7 @@ public class PlayerData : SingletonMono<PlayerData>
         GameManager.Instance.Initialize();
         PushManager.Instance.Initialize();
         Debug.Log("IOS_10");
-#if UNITY_IOS
-        Backend.Chart.GetChartList((callback) =>
-        {
-            HasIOSFlag = callback.Rows().Count == 2;
-            if(HasIOSFlag)
-            {
-                 SRDebug.Init();
-            }
-        });
-#endif
+
     }
 
     private void Subscribe()
