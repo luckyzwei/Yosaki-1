@@ -24,6 +24,9 @@ public class UiIosLoginBoard : SingletonMono<UiIosLoginBoard>
 
     int passWordMinNum = 8;
 
+    [SerializeField]
+    private GameObject guestButton;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,18 @@ public class UiIosLoginBoard : SingletonMono<UiIosLoginBoard>
 #if UNITY_ANDROID
         rootObject.SetActive(false);
 #endif
+        
+
+        Backend.Chart.GetChartList((callback) =>
+        {
+            if (callback.Rows().Count == 1)
+            {
+                guestButton.gameObject.SetActive(false);
+            }
+
+      
+        });
+
     }
 
     public void ShowCustomGuestCreateBoard()
