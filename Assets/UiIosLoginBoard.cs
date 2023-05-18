@@ -36,15 +36,15 @@ public class UiIosLoginBoard : SingletonMono<UiIosLoginBoard>
 #endif
         
 
-        Backend.Chart.GetChartList((callback) =>
-        {
-            if (callback.Rows().Count == 1)
-            {
-                guestButton.gameObject.SetActive(false);
-            }
-
-      
-        });
+        // Backend.Chart.GetChartList((callback) =>
+        // {
+        //     if (callback.Rows().Count == 1)
+        //     {
+        //         guestButton.gameObject.SetActive(false);
+        //     }
+        //
+        //
+        // });
 
     }
 
@@ -110,13 +110,17 @@ public class UiIosLoginBoard : SingletonMono<UiIosLoginBoard>
 
     public void OnClickGuestLogin()
     {
-        Backend.BMember.GuestLogin("게스트 로그인으로 로그인함", callback => {
-            if(callback.IsSuccess())
-            {
-                Debug.Log("게스트 로그인에 성공했습니다");
-                GoogleManager.Instance.LoginSuccess();
-            }
-        });
+        PopupManager.Instance.ShowYesNoPopup("알림","게스트 로그인 후 앱 삭제시 계정 복구가 절대 불가능 합니다.\n그래도 로그인 할까요?", () =>
+        {
+            Backend.BMember.GuestLogin("게스트 로그인으로 로그인함", callback => {
+                if(callback.IsSuccess())
+                {
+                    Debug.Log("게스트 로그인에 성공했습니다");
+                    GoogleManager.Instance.LoginSuccess();
+                }
+            });
+            
+        },null);
     }
     
 }
