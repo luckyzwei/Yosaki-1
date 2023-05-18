@@ -92,4 +92,16 @@ public class UiIosLoginBoard : SingletonMono<UiIosLoginBoard>
 
         loginProcess = true;
     }
+
+    public void OnClickGuestLogin()
+    {
+        Backend.BMember.GuestLogin("게스트 로그인으로 로그인함", callback => {
+            if(callback.IsSuccess())
+            {
+                Debug.Log("게스트 로그인에 성공했습니다");
+                GoogleManager.Instance.LoginSuccess();
+            }
+        });
+    }
+    
 }

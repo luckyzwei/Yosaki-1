@@ -35,7 +35,8 @@ public class GoogleManager : SingletonMono<GoogleManager>
 
     public enum IOS_LoginType
     {
-        GameCenter, Custom
+        GameCenter,
+        Custom
     }
 
     private string iOS_LoginType = string.Empty;
@@ -43,7 +44,6 @@ public class GoogleManager : SingletonMono<GoogleManager>
 
     private new void Awake()
     {
-
         base.Awake();
         Backend.Initialize(HandleBackendCallBack, true);
 
@@ -59,7 +59,6 @@ public class GoogleManager : SingletonMono<GoogleManager>
             return;
 #endif
             CheckCurrentVersion();
-
         }
         else
         {
@@ -118,27 +117,20 @@ public class GoogleManager : SingletonMono<GoogleManager>
             }
             else
             {
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "서버 점검중입니다. 자세한 사항은\n네이버 카페에서 확인 부탁드립니다!", ()=> 
-                {
-                    Application.OpenURL("https://cafe.naver.com/yokiki");
-                });
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "서버 점검중입니다. 자세한 사항은\n네이버 카페에서 확인 부탁드립니다!", () => { Application.OpenURL("https://cafe.naver.com/yokiki"); });
             }
-
         }
-
-
-
     }
 
     private void WhenVersionCheckSuccess()
     {
 #if UNITY_ANDROID
         PlayGamesClientConfiguration config = new PlayGamesClientConfiguration
-    .Builder()
-    .RequestServerAuthCode(false)
-    .RequestEmail()                 // 이메일 요청
-    .RequestIdToken()               // 토큰 요청
-    .Build();
+                .Builder()
+            .RequestServerAuthCode(false)
+            .RequestEmail() // 이메일 요청
+            .RequestIdToken() // 토큰 요청
+            .Build();
 
         //커스텀된 정보로 GPGS 초기화
         PlayGamesPlatform.InitializeInstance(config);
@@ -158,6 +150,7 @@ public class GoogleManager : SingletonMono<GoogleManager>
             LoginBySavedData();
 #endif
     }
+
     public void GameCenterLogin()
     {
         if (Social.localUser.authenticated == true)
@@ -226,10 +219,7 @@ public class GoogleManager : SingletonMono<GoogleManager>
             {
                 if (success == false)
                 {
-                    PopupManager.Instance.ShowYesNoPopup("알림", "구글 로그인 실패 재시도 합니다", GoogleAuth, () =>
-                     {
-                         Application.Quit();
-                     });
+                    PopupManager.Instance.ShowYesNoPopup("알림", "구글 로그인 실패 재시도 합니다", GoogleAuth, () => { Application.Quit(); });
                     return;
                 }
 
@@ -259,15 +249,15 @@ public class GoogleManager : SingletonMono<GoogleManager>
         {
             yield return null;
         }
-        
+
         //
         ServerData.SecondLoadTable();
-        
+
         while (SendQueue.UnprocessedFuncCount != 0)
         {
             yield return null;
         }
-        
+
         if (isSignIn == false)
         {
             PlayerData.Instance.LoadUserNickName();
@@ -286,6 +276,12 @@ public class GoogleManager : SingletonMono<GoogleManager>
                 }
             }
         }
+    }
+
+    public void LoginSuccess()
+    {
+        UiIosLoginBoard.Instance.CloseCustomGuestCreateBoard();
+        StartCoroutine(SceneChangeRoutine());
     }
 
     private void LoginByCustumId(string id = null, string password = null)
@@ -307,33 +303,23 @@ public class GoogleManager : SingletonMono<GoogleManager>
         {
             Debug.Log("Login success");
 
-            UiIosLoginBoard.Instance.CloseCustomGuestCreateBoard();
-            StartCoroutine(SceneChangeRoutine());
+            LoginSuccess();
         }
         else
         {
             Debug.Log($"LoginFail bro.GetStatusCode() {bro.GetStatusCode()}");
             string message = bro.GetMessage();
-             if (message.Equals("Forbidden blocked user, 금지된 blocked user"))
-             {
-                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 사용자 입니다. 차단 사유 : " + bro.GetErrorCode(), () =>
-                 {
-                     Application.Quit();
-                 });
-             }
-             else if (message.Equals("Forbidden blocked device, 금지된 blocked device"))
-             {
-                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 기기 입니다. 차단 사유 : " + bro.GetErrorCode(), () =>
-                 {
-                     Application.Quit();
-                 });
-             }
+            if (message.Equals("Forbidden blocked user, 금지된 blocked user"))
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 사용자 입니다. 차단 사유 : " + bro.GetErrorCode(), () => { Application.Quit(); });
+            }
+            else if (message.Equals("Forbidden blocked device, 금지된 blocked device"))
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "차단된 기기 입니다. 차단 사유 : " + bro.GetErrorCode(), () => { Application.Quit(); });
+            }
             else if (bro.GetStatusCode() == "403")
             {
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "서버에 문제가 있습니다. 앱을 종료합니다. \n 잠시후 다시 시도해주세요", () =>
-                  {
-                      Application.Quit();
-                  });
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "서버에 문제가 있습니다. 앱을 종료합니다. \n 잠시후 다시 시도해주세요", () => { Application.Quit(); });
             }
 
             //구글인경우 id=null
@@ -394,6 +380,7 @@ public class GoogleManager : SingletonMono<GoogleManager>
                     {
                         LoginByCustumId(id, password);
                     }
+
                     break;
 
                 case "403":
@@ -404,10 +391,7 @@ public class GoogleManager : SingletonMono<GoogleManager>
 #if UNITY_ANDROID
             if (id == null)
             {
-                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "로그인 실패 재시도 합니까?", () =>
-                {
-                    SignIn();
-                });
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "로그인 실패 재시도 합니까?", () => { SignIn(); });
             }
 #endif
         }
