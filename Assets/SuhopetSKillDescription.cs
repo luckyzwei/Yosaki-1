@@ -24,6 +24,7 @@ public class SuhopetSKillDescription : MonoBehaviour
 
         for (int i = 0; i < tableData.Length; i++)
         {
+            if(tableData[i].SUHOPETTYPE==SuhoPetType.Special)continue;
             var cell = Instantiate<UiSuhoSkillCell>(suhoSkillCell, cellParent);
             cell.Initialize(tableData[i]);
         }

@@ -124,22 +124,26 @@ public static class Utils
                type == Item_Type.costume101 ||
                type == Item_Type.costume102 ||
                type == Item_Type.costume103 ||
-               type == Item_Type.costume104||
-               type == Item_Type.costume105||
-               type == Item_Type.costume106||
-               type == Item_Type.costume107||
-               type == Item_Type.costume108||
-               type == Item_Type.costume109||
-               type == Item_Type.costume110||
-               type == Item_Type.costume111||
-               type == Item_Type.costume112||
-               type == Item_Type.costume113||
-               type == Item_Type.costume114||
-               type == Item_Type.costume115||
-               type == Item_Type.costume116||
-               type == Item_Type.costume117||
-               type == Item_Type.costume118||
-               type == Item_Type.costume119
+               type == Item_Type.costume104 ||
+               type == Item_Type.costume105 ||
+               type == Item_Type.costume106 ||
+               type == Item_Type.costume107 ||
+               type == Item_Type.costume108 ||
+               type == Item_Type.costume109 ||
+               type == Item_Type.costume110 ||
+               type == Item_Type.costume111 ||
+               type == Item_Type.costume112 ||
+               type == Item_Type.costume113 ||
+               type == Item_Type.costume114 ||
+               type == Item_Type.costume115 ||
+               type == Item_Type.costume116 ||
+               type == Item_Type.costume117 ||
+               type == Item_Type.costume118 ||
+               type == Item_Type.costume119 ||
+               type == Item_Type.costume120 ||
+               type == Item_Type.costume121 ||
+               type == Item_Type.costume122 ||
+               type == Item_Type.costume123
             ;
     }
 
@@ -157,8 +161,8 @@ public static class Utils
                type == Item_Type.MonthNorigae1 ||
                type == Item_Type.MonthNorigae2 ||
                type == Item_Type.MonthNorigae3 ||
-               type == Item_Type.MonthNorigae4||
-               type == Item_Type.MonthNorigae5||
+               type == Item_Type.MonthNorigae4 ||
+               type == Item_Type.MonthNorigae5 ||
                type == Item_Type.MonthNorigae6
             ;
     }
@@ -175,6 +179,7 @@ public static class Utils
         int type_int = (int)type;
         return type_int >= (int)EventMissionKey.ClearBandit && type <= EventMissionKey.ClearSumiFire;
     }
+
     public static bool IsIgnoreMissionKey(this MonthMissionKey type)
     {
         int type_int = (int)type;
@@ -230,8 +235,8 @@ public static class Utils
                type == Item_Type.c3 ||
                type == Item_Type.c4 ||
                type == Item_Type.c5 ||
-               type == Item_Type.c6||
-               
+               type == Item_Type.c6 ||
+
                type == Item_Type.d0 ||
                type == Item_Type.d1 ||
                type == Item_Type.d2 ||
@@ -246,6 +251,7 @@ public static class Utils
     public static bool IsGoodsItem(this Item_Type type)
     {
         return type == Item_Type.Gold ||
+               type == Item_Type.GoldBar ||
                type == Item_Type.Jade ||
                type == Item_Type.GrowthStone ||
                type == Item_Type.Marble ||
@@ -284,6 +290,14 @@ public static class Utils
                type == Item_Type.FoxPet1 ||
                type == Item_Type.FoxPet2 ||
                type == Item_Type.FoxPet3 ||
+               type == Item_Type.TigerPet0 ||
+               type == Item_Type.TigerPet1 ||
+               type == Item_Type.TigerPet2 ||
+               type == Item_Type.TigerPet3 ||
+               type == Item_Type.SpecialSuhoPet0 ||
+               type == Item_Type.SpecialSuhoPet1 ||
+               type == Item_Type.SpecialSuhoPet2 ||
+               type == Item_Type.SpecialSuhoPet3 ||
                type == Item_Type.RabitPet ||
                type == Item_Type.RabitNorigae ||
                type == Item_Type.YeaRaeNorigae ||
@@ -423,8 +437,9 @@ public static class Utils
                type == GameManager.ContentsType.Ok ||
                type == GameManager.ContentsType.Do ||
                type == GameManager.ContentsType.Sumi ||
-               type == GameManager.ContentsType.PartyRaid_Guild|| //O
-               type == GameManager.ContentsType.Thief; //O
+               type == GameManager.ContentsType.PartyRaid_Guild || //O
+               type == GameManager.ContentsType.Thief|| //O
+               type == GameManager.ContentsType.Dark; //O
     }
 
     public static bool IsRankFrameItem(this Item_Type type)
@@ -441,6 +456,7 @@ public static class Utils
     {
         return type >= Item_Type.MergePartyRaidRankFrame1 && type <= Item_Type.MergePartyRaidRankFrame1001_5000;
     }
+
     public static bool IsMergePartyRaidRankFrameItem_0(this Item_Type type)
     {
         return type >= Item_Type.MergePartyRaidRankFrame_0_1 && type <= Item_Type.MergePartyRaidRankFrame_0_1001_5000;
@@ -605,7 +621,8 @@ public static class Utils
     private static string[] goldUnitArr = new string[]
     {
         "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
-        "갈", "라", "가", "언" ,"승","마","살","섬","미정","미정"
+        "갈", "라", "가", "언", "승", "마", "살", "섬", "찰", "교","미정0","미정1","미정2","미정3","미정4","미정5","미정6"
+        
     };
 
     private static double p = (double)Mathf.Pow(10, 4);
@@ -678,8 +695,34 @@ public static class Utils
             return retStr;
         }
     }
+
+//소수점 변환 count= 표시할 자리수
+    public static string ConvertSmallNum(float data, int count)
+    {
+        int smallCount = 1;
+        for (int i = 0; i < count; i++)
+        {
+            smallCount *= 10;
+        }
+
+        var result = Mathf.Round(data * smallCount) / smallCount;
+
+        return result.ToString();
+    }
+
+    public static string ConvertNum(float data, int count = 0)
+    {
+        if (data > 10000)
+        {
+            return ConvertBigNum(data);
+        }
+        else
+        {
+            return ConvertSmallNum(data, count);
+        }
+    }
     
-    //
+//
     
 
     public static string ConvertBigNumForRewardCell(double data)

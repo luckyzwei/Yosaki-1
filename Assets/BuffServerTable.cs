@@ -64,6 +64,7 @@ public class BuffServerTable
         Backend.GameData.Update(tableName, Indate, param);
     }
 
+
     public void SyncAllData()
     {
         Param param = new Param();

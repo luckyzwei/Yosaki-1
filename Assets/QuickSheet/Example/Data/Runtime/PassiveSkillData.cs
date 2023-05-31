@@ -44,4 +44,24 @@ public class PassiveSkillData
   string needgoods;
   public string Needgoods { get {return needgoods; } set { this.needgoods = value;} }
   
+  [SerializeField]
+  int requiremaxabil;
+  public int Requiremaxabil { get {return requiremaxabil; } set { this.requiremaxabil = value;} }
+  
+  [SerializeField]
+  int userinfotabletype;
+  public int Userinfotabletype { get {return userinfotabletype; } set { this.userinfotabletype = value;} }
+  
+  [SerializeField]
+  string needuserinfo;
+  public string Needuserinfo { get {return needuserinfo; } set { this.needuserinfo = value;} }
+  
+  [SerializeField]
+  int requireuserinfo;
+  public int Requireuserinfo { get {return requireuserinfo; } set { this.requireuserinfo = value;} }
+  
+  [SerializeField]
+  string lockmaskdescription;
+  public string Lockmaskdescription { get {return lockmaskdescription; } set { this.lockmaskdescription = value;} }
+  
 }

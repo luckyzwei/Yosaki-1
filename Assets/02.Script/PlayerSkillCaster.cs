@@ -35,10 +35,14 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     private string newWeaponKey1 = "weapon23";
     private string newWeaponKey2 = "weapon24";
 
+    
     public ReactiveProperty<int> addChargeCount;
     public ReactiveProperty<int> visionChargeCount;
+    public ReactiveProperty<float> sealChargeCount;//상단전속도증가
+    public ReactiveProperty<float> sealChargeCount2;//요도해방으로 인한 속도증가
     public ReactiveProperty<bool> useVisionSkill;
-
+    
+    
     private static readonly List<int> _visionSkillIdxList = new List<int>();
 
     public List<int> GetVisionSkillIdxList()
@@ -72,9 +76,8 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             //봉인검기술
             if (TableManager.Instance.SkillTable.dataArray[skillIdx].SKILLCASTTYPE == SkillCastType.Player)
             {
-                SealSkillCaster.currentHitCount.Value++;
+                SealSkillCaster.currentHitCount.Value += sealChargeCount.Value + sealChargeCount2.Value;
             }
-
             
             UserSkills[skillIdx].UseSkill();
 
@@ -172,6 +175,28 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
                 addChargeCount.Value = 1;
             }
         }).AddTo(this);
+        
+        //상단전
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.gyungRockTower3).AsObservable().Subscribe(e =>
+        {
+            if (e >= 10)
+            {
+                sealChargeCount.Value = 1.5f;
+            }
+            else
+            {
+                sealChargeCount.Value = 1;   
+            }
+        }).AddTo(this);
+        ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.SealSwordAwakeScore].AsObservable().Subscribe(e =>
+        {
+            var grade = PlayerStats.GetSealSwordAwakeGrade();
+            if (grade > -1)
+            {
+                sealChargeCount2.Value = TableManager.Instance.SealSwordAwakeTable.dataArray[grade].Addchargevalue;
+            }
+        }).AddTo(this);
+
     }
 
     public void SetMoveRestriction(float time)

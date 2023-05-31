@@ -24,4 +24,8 @@ public class SealSwordAwakeTableData
   float awakevalue;
   public float Awakevalue { get {return awakevalue; } set { this.awakevalue = value;} }
   
+  [SerializeField]
+  float addchargevalue;
+  public float Addchargevalue { get {return addchargevalue; } set { this.addchargevalue = value;} }
+  
 }

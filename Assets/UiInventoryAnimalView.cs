@@ -13,6 +13,8 @@ public class UiInventoryAnimalView : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI abilDescription;
+    [SerializeField]
+    private TextMeshProUGUI acquireDescription;
 
     [SerializeField]
     private TextMeshProUGUI upgradePrice;
@@ -30,6 +32,8 @@ public class UiInventoryAnimalView : MonoBehaviour
     
     [SerializeField]
     private Image levelUpButtonImage;
+    [SerializeField]
+    private Image levelUpButtonAwakeImage;
 
     [SerializeField]
     private Image equipButtonImage;
@@ -63,7 +67,9 @@ public class UiInventoryAnimalView : MonoBehaviour
         this.suhopetTableData = suhopetTableData;
 
         suhoSuhoPetServerData = ServerData.suhoAnimalServerTable.TableDatas[suhopetTableData.Stringid];
-
+            
+        acquireDescription.SetText(this.suhopetTableData.Acquiredescription);
+        
         uiAnimalView.Initialize(suhopetTableData);
 
         Subscribe();
@@ -85,13 +91,26 @@ public class UiInventoryAnimalView : MonoBehaviour
 
             if (currentLevel >= maxLevel)
             {
-                upgradePrice.SetText("<color=red>각성완료</color>");
-                upgradePrice_Awake.SetText("<color=red>각성완료</color>");
+                if (suhopetTableData.SUHOPETTYPE == SuhoPetType.Basic)
+                {
+                    upgradePrice.SetText("<color=red>각성완료</color>");
+                    upgradePrice_Awake.SetText("<color=red>각성완료</color>");
+                }
+                else
+                {
+                    upgradePrice.SetText("<color=red>최대레벨</color>");
+                    upgradePrice_Awake.SetText("<color=red>최대레벨</color>");
+                }
+
+                levelUpButtonImage.sprite = purpleButtonSprite;
+                levelUpButtonAwakeImage.sprite = purpleButtonSprite;
             }
             else
             {
                 upgradePrice.SetText(suhopetTableData.Requirevalue[currentLevel].ToString());
                 upgradePrice_Awake.SetText(suhopetTableData.Requirevalue[currentLevel].ToString());
+                levelUpButtonImage.sprite = greenButtonSprite;
+                levelUpButtonAwakeImage.sprite = greenButtonSprite;
             }
 
             if (currentLevel == GameBalance.suhoAnimalAwakeLevel - 1)
@@ -99,8 +118,16 @@ public class UiInventoryAnimalView : MonoBehaviour
                 continueOpenButton_Continue.gameObject.SetActive(false);
                 continueOpenButton_Continue.StopAutoClickRoutine();
                 continueOpenButton_Btn.SetActive(true);
-                levelUpButtonDesc.SetText("각성");
-                levelUpButtonDesc_2.SetText("각성");
+                if (suhopetTableData.SUHOPETTYPE == SuhoPetType.Basic)
+                {
+                    levelUpButtonDesc.SetText("각성");
+                    levelUpButtonDesc_2.SetText("각성");
+                }
+                else
+                {
+                    levelUpButtonDesc.SetText("최대레벨");
+                    levelUpButtonDesc_2.SetText("최대레벨");
+                }
             }
             else
             {
@@ -128,7 +155,14 @@ public class UiInventoryAnimalView : MonoBehaviour
         {
             continueOpenButton_Continue.gameObject.SetActive(false);
             continueOpenButton_Continue.StopAutoClickRoutine();
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "수호동물을 각성 할까요?\n수호동물 각성시,수호동물이 기술을 사용 합니다.\n(각성된 수호동물중 가장 높은 단계 기술 사용)", () => { LevelUpRoutine(); }, null);
+            if (suhopetTableData.SUHOPETTYPE == SuhoPetType.Basic)
+            {
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "수호동물을 각성 할까요?\n수호동물 각성시,수호동물이 기술을 사용 합니다.\n(각성된 수호동물중 가장 높은 단계 기술 사용)", () => { LevelUpRoutine(); }, null);
+            }
+            else
+            {
+                LevelUpRoutine();
+            }
         }
     }
 
@@ -138,7 +172,15 @@ public class UiInventoryAnimalView : MonoBehaviour
 
         if (currentLevel >= suhopetTableData.Maxlevel)
         {
-            PopupManager.Instance.ShowAlarmMessage("이미 각성 했습니다.");
+            if (suhopetTableData.SUHOPETTYPE == SuhoPetType.Basic)
+            {
+                PopupManager.Instance.ShowAlarmMessage("이미 각성 했습니다.");
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("이미 최대레벨입니다.");
+            }
+
             return;
         }
 

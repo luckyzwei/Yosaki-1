@@ -36,6 +36,7 @@ public class UiContentsPopup2 : MonoBehaviour
         SinsunBoard,
         GodTrialBoard,
         TaegeukBoard,
+        SangunBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -239,6 +240,7 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 133:
                     case 134:
                     case 135:
+                    case 150://심연늪
                         lastBoards[(int)ContentsBoard.DarkBoard].SetActive(true);
                         break;
                     case 136:
@@ -250,7 +252,16 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 140:
                     case 141:
                     case 142:
+                    case 143:
+                    case 144:
+                    case 145:
                         lastBoards[(int)ContentsBoard.SinsunBoard].SetActive(true);
+                        break;
+                    case 146:
+                    case 147:
+                    case 148:
+                    case 149:
+                        lastBoards[(int)ContentsBoard.SangunBoard].SetActive(true);
                         break;
                         
                 }
@@ -284,6 +295,7 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.Do:
             case GameManager.ContentsType.Sumi:
             case GameManager.ContentsType.Thief:
+            case GameManager.ContentsType.Dark:
                 lastBoards[(int)ContentsBoard.YumAndOkBoard].SetActive(true);
                 break;
             case GameManager.ContentsType.TestMonkey:
@@ -326,6 +338,9 @@ public class UiContentsPopup2 : MonoBehaviour
                 break;   
             case GameManager.ContentsType.TaeguekTower :
                 lastBoards[(int)ContentsBoard.TaegeukBoard].SetActive(true);
+                break;
+            case GameManager.ContentsType.SinsunTower :
+                lastBoards[(int)ContentsBoard.SinsunBoard].SetActive(true);
                 break;
 
         }

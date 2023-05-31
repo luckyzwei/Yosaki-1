@@ -77,6 +77,33 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
         }
 
     }
+    private List<RingData_Fancy> SortHasItemList(List<RingData_Fancy> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            RingData_Fancy data = list[i];
+            if (data != null && ServerData.newGachaServerTable.TableDatas[data.RingData.Stringid].hasItem.Value > 0)
+            {
+                if (list[0].RingData.Id < list[i].RingData.Id)
+                {
+                    list.Insert(0, list[i]);
+                    list.RemoveAt(i + 1);
+                }
+            }
+        }
+
+        return list;
+    }
+    private void SortHasItem()
+    {
+        ringDataContainer = SortHasItemList(ringDataContainer);
+        this.UpdateContents(ringDataContainer.ToArray());
+    }
+    
+    private void OnEnable()
+    {
+        SortHasItem();
+    }
     public void AllUpgradeRing(int myIdx)
     {
         for (int i = 0; i <= myIdx; i++)
@@ -86,7 +113,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     }
     private void MakeBasicNormalBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.NewGachaTable.dataArray;
@@ -120,7 +147,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     
     private void MakeViewBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.None);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.NewGachaTable.dataArray;

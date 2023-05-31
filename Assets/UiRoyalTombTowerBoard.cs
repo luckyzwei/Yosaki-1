@@ -41,7 +41,7 @@ public class UiRoyalTombTowerBoard : MonoBehaviour
         }
         else
         {
-            currentStageText.SetText($"업데이트 예정 입니다");
+            currentStageText.SetText($"도전 완료!");
         }
 
     }

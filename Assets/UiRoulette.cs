@@ -48,6 +48,17 @@ public class UiRoulette : MonoBehaviour
 
         return (Item_Type)tableData.Itemtype;
     }
+    private Item_Type GetRewardTypeExcludeGold(int randIdx)
+    {
+        var tableData = tableDataShuffled[randIdx];
+
+        if ((Item_Type)tableData.Itemtype == Item_Type.Gold)
+        {
+            return GetRewardTypeExcludeGold(GetRandomIdx());
+        }
+
+        return (Item_Type)tableData.Itemtype;
+    }
 
     public void OnClickAllUseButton()
     {
@@ -70,8 +81,15 @@ public class UiRoulette : MonoBehaviour
             int randIdx = GetRandomIdx();
 
             float rewardAmount = GetRewardAmount(randIdx);
-
-            Item_Type rewardType = GetRewardType(randIdx);
+            Item_Type rewardType = Item_Type.None;
+            if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+            {
+                rewardType = GetRewardType(randIdx);
+            }
+            else
+            {
+                rewardType = GetRewardTypeExcludeGold(randIdx);
+            }
 
             if (rewards.ContainsKey(rewardType) == false)
             {
@@ -82,7 +100,10 @@ public class UiRoulette : MonoBehaviour
 
             if (rewardType == Item_Type.Gold)
             {
-                ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += rewardAmount;
+                if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += rewardAmount;
+                }
             }
             //티켓
             else if (rewardType == Item_Type.Ticket)
@@ -118,7 +139,10 @@ public class UiRoulette : MonoBehaviour
 
             if (e.Current.Key == Item_Type.Gold)
             {
-                goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+                if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+                {
+                    goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+                }
             }
             //티켓
             else if (e.Current.Key == Item_Type.Ticket)

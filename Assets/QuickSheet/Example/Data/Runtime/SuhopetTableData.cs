@@ -80,4 +80,16 @@ public class SuhopetTableData
   int awakeskillid;
   public int Awakeskillid { get {return awakeskillid; } set { this.awakeskillid = value;} }
   
+  [SerializeField]
+  SuhoPetType suhopettype;
+  public SuhoPetType SUHOPETTYPE { get {return suhopettype; } set { this.suhopettype = value;} }
+  
+  [SerializeField]
+  string acquiredescription;
+  public string Acquiredescription { get {return acquiredescription; } set { this.acquiredescription = value;} }
+  
+  [SerializeField]
+  string gradedescription;
+  public string Gradedescription { get {return gradedescription; } set { this.gradedescription = value;} }
+  
 }

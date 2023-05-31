@@ -283,6 +283,10 @@ public static class ServerData
                 //로컬
                 ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += rewardValue;
                 break;
+            case Item_Type.GoldBar:
+                //로컬
+                ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += rewardValue;
+                break;
             case Item_Type.Jade:
                 ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += rewardValue;
                 break;
@@ -484,6 +488,26 @@ public static class ServerData
                 break;
             case Item_Type.ThiefSkill4:
                 ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value += rewardValue;
+                break;
+
+            //
+            //
+            //
+            //            
+            case Item_Type.DarkSkill0:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value += rewardValue;
+                break;
+            case Item_Type.DarkSkill1:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value += rewardValue;
+                break;
+            case Item_Type.DarkSkill2:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value += rewardValue;
+                break;
+            case Item_Type.DarkSkill3:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value += rewardValue;
+                break;
+            case Item_Type.DarkSkill4:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value += rewardValue;
                 break;
 
             //
@@ -765,6 +789,10 @@ public static class ServerData
             case Item_Type.costume117:
             case Item_Type.costume118:
             case Item_Type.costume119:
+            case Item_Type.costume120:
+            case Item_Type.costume121:
+            case Item_Type.costume122:
+            case Item_Type.costume123:
                 ServerData.costumeServerTable.TableDatas[type.ToString()].hasCostume.Value = true;
                 break;
             case Item_Type.weapon81:
@@ -804,6 +832,10 @@ public static class ServerData
         {
             case Item_Type.Gold:
                 passParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+                break;
+            case Item_Type.GoldBar:
+                passParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
                 break;
             case Item_Type.Jade:
@@ -939,6 +971,10 @@ public static class ServerData
             case Item_Type.costume117:
             case Item_Type.costume118:
             case Item_Type.costume119:
+            case Item_Type.costume120:
+            case Item_Type.costume121:
+            case Item_Type.costume122:
+            case Item_Type.costume123:
                 string costumeKey = type.ToString();
                 passParam.Add(costumeKey, ServerData.costumeServerTable.TableDatas[costumeKey].ConvertToString());
                 return TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate, passParam);
@@ -1368,6 +1404,26 @@ public static class ServerData
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
             case Item_Type.ThiefSkill4:
                 passParam.Add(GoodsTable.ThiefSkill4, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+            //
+            // //
+            case Item_Type.DarkSkill0:
+                passParam.Add(GoodsTable.DarkSkill0, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
+            case Item_Type.DarkSkill1:
+                passParam.Add(GoodsTable.DarkSkill1, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
+            case Item_Type.DarkSkill2:
+                passParam.Add(GoodsTable.DarkSkill2, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
+            case Item_Type.DarkSkill3:
+                passParam.Add(GoodsTable.DarkSkill3, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+            case Item_Type.DarkSkill4:
+                passParam.Add(GoodsTable.DarkSkill4, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
             //
             case Item_Type.LeeMuGiStone:
@@ -2019,6 +2075,28 @@ public static class ServerData
                 param.Add(GoodsTable.ThiefSkill4, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
             //   //
+            //   //            //            //
+            case Item_Type.DarkSkill0:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value += amount;
+                param.Add(GoodsTable.DarkSkill0, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.DarkSkill1:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value += amount;
+                param.Add(GoodsTable.DarkSkill1, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.DarkSkill2:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value += amount;
+                param.Add(GoodsTable.DarkSkill2, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.DarkSkill3:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value += amount;
+                param.Add(GoodsTable.DarkSkill3, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            case Item_Type.DarkSkill4:
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value += amount;
+                param.Add(GoodsTable.DarkSkill4, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            //   //
             case Item_Type.SinSkill0:
                 ServerData.goodsTable.GetTableData(GoodsTable.SinSkill0).Value += amount;
                 param.Add(GoodsTable.SinSkill0, ServerData.goodsTable.GetTableData(GoodsTable.SinSkill0).Value);
@@ -2431,6 +2509,10 @@ public static class ServerData
                 case Item_Type.Gold:
                     if (goodsParam.ContainsKey(GoodsTable.Gold) == false)
                         goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+                    break;
+                case Item_Type.GoldBar:
+                    if (goodsParam.ContainsKey(GoodsTable.GoldBar) == false)
+                        goodsParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
                     break;
                 case Item_Type.Jade:
                     if (goodsParam.ContainsKey(GoodsTable.Jade) == false)
@@ -3298,6 +3380,9 @@ public static class ServerData
             {
                 case Item_Type.Gold:
                     ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += amount;
+                    break;
+                case Item_Type.GoldBar:
+                    ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += amount;
                     break;
                 case Item_Type.Jade:
                     ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += amount;

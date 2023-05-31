@@ -161,7 +161,7 @@ public class UiFoxFireIndicator : MonoBehaviour
 
         if (tableData.Length <= fireIdx + 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정입니다.");
+            PopupManager.Instance.ShowAlarmMessage("업데이트 예정입니다!");
             return;
         }
 

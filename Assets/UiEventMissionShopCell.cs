@@ -43,8 +43,8 @@ public class UiEventMissionShopCell : MonoBehaviour
 
     private void Start()
     {
-        Initialize();
-        Subscribe();
+        //Initialize();
+        //Subscribe();
     }
 #if UNITY_EDITOR
     private void Update()
@@ -114,12 +114,14 @@ public class UiEventMissionShopCell : MonoBehaviour
         }
     }
 
-    private void Initialize()
+    public void Initialize(int _tableId)
     {
         if (button != null)
         {
             button.onEvent.AddListener(OnClickExchangeButton);
         }
+
+        tableId = _tableId;
         tableData = TableManager.Instance.xMasCollection.dataArray[tableId];
 
         itemIcon.gameObject.SetActive(IsCostumeItem() == false);
@@ -153,6 +155,8 @@ public class UiEventMissionShopCell : MonoBehaviour
         itemAmount.SetText(Utils.ConvertBigNum(tableData.Itemvalue) + "개");
 
         itemName.SetText(CommonString.GetItemName((Item_Type)tableData.Itemtype));
+        
+        Subscribe();
     }
 
     public void OnClickExchangeButton()

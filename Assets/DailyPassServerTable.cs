@@ -820,6 +820,8 @@ public class ColdSeasonPassServerTable
     public static string foxfireAd = "a5";
     public static string sealSwordFree = "f6";
     public static string sealSwordAd = "a6";
+    public static string gangChulFree = "f7";
+    public static string gangChuldAd = "a7";
 
     public static string coldseasonFree_Atten = "fa2";
 
@@ -835,7 +837,9 @@ public class ColdSeasonPassServerTable
         { foxfireFree,string.Empty},
         { foxfireAd,string.Empty},
         { sealSwordFree,string.Empty},
-        { sealSwordAd,string.Empty}
+        { sealSwordAd,string.Empty},
+        { gangChulFree,string.Empty},
+        { gangChuldAd,string.Empty}
 
     };
 

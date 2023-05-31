@@ -509,7 +509,7 @@ public class RankManager : SingletonMono<RankManager>
             this.myRankInfo[RankType.Real_Boss] = myRankInfo;
         }
     }
-
+    //십만대산
     public void UpdateRealBoss_Score(double score)
     {
         if (UpdateRank() == false) return;

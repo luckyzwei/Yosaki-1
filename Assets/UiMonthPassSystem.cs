@@ -306,7 +306,7 @@ public class UiMonthPassSystem : FancyScrollView<MonthlyPassData_Fancy>
     protected override GameObject CellPrefab => cellPrefab;
     private void Start()
     {
-        scroller.Initialize(PassTypeScroll.MonthPass);
+        scroller.Initialize(TypeScroll.MonthPass);
         
         scroller.OnValueChanged(UpdatePosition);
     

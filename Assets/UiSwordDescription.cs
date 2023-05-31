@@ -46,7 +46,7 @@ public class UiSwordDescription : MonoBehaviour
         gradeText.SetText($"{idx + 1}단계");
 
 
-      abilDescription.SetText($"검기 능력치 효과 {Utils.ConvertBigNum(tableData.Abilvalue0 * 100f)}% 증가");
+      abilDescription.SetText($"검기 능력치 효과 {(tableData.Abilvalue0 * 100f)}% 증가");
         
 
 
@@ -71,7 +71,7 @@ public class UiSwordDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.TestSword.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

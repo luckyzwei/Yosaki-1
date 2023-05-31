@@ -143,7 +143,7 @@ public class UserInfoTable
     public const string DayOfWeekClear = "dowc";
 
     //홀수 월간훈련(Monthlypass2)
-    public const string killCountTotal2 = "k17";
+    //public const string killCountTotal2 = "k17";
     public const string monthAttendCount = "mac";
     public const string killCountTotalChild = "fal"; //가을훈련
     public const string killCountTotalWinterPass = "KillCountWinterPass"; //가을훈련
@@ -260,6 +260,11 @@ public class UserInfoTable
     public const string exchangeCount_13_Mileage = "mso";
     public const string exchangeCount_14_Mileage = "msm";
     public const string exchangeCount_15_Mileage = "msh";
+    
+    public const string exchangeCount_16_Mileage = "m16";
+    public const string exchangeCount_17_Mileage = "m17";
+    public const string exchangeCount_18_Mileage = "m18";
+    public const string exchangeCount_19_Mileage = "m19";
 
     
 
@@ -281,16 +286,20 @@ public class UserInfoTable
     public const string eventMission0_9 = "em_2_9";
     
     
-    public const string eventMission1_0 = "em_1_0";
-    public const string eventMission1_1 = "em_1_1";
-    public const string eventMission1_2 = "em_1_2";
-    public const string eventMission1_3 = "em_1_3";
-    public const string eventMission1_4 = "em_1_4";
-    public const string eventMission1_5 = "em_1_5";
-
-    public const string eventMission1_6 = "em_1_6";
-    public const string eventMission1_7 = "em_1_7";
-    public const string eventMission1_8 = "em_1_8";
+    public const string eventMission1_0 =  "em_3_0";
+    public const string eventMission1_1 =  "em_3_1";
+    public const string eventMission1_2 =  "em_3_2";
+    public const string eventMission1_3 =  "em_3_3";
+    public const string eventMission1_4 =  "em_3_4";
+    public const string eventMission1_5 =  "em_3_5";
+                                               
+    public const string eventMission1_6 =  "em_3_6";
+    public const string eventMission1_7 =  "em_3_7";
+    public const string eventMission1_8 =  "em_3_8";
+    public const string eventMission1_9 =  "em_3_9";
+    public const string eventMission1_10 = "em_3_10";
+    public const string eventMission1_11 = "em_3_11";
+    
 
     public const string nickNameChange = "nickNameChange";
     public const string getPetHome = "gph";
@@ -456,7 +465,7 @@ public class UserInfoTable
         { yomul4_buff, 0f },
 
         { yomul5_buff, 0f },
-        { killCountTotal2, 0f },
+        //{ killCountTotal2, 0f },
         { monthAttendCount, 1f },
         { killCountTotalChild, 0f },
         { killCountTotalWinterPass, 0f },
@@ -554,6 +563,11 @@ public class UserInfoTable
         { exchangeCount_13_Mileage, 0 },
         { exchangeCount_14_Mileage, 0 },
         { exchangeCount_15_Mileage, 0 },
+        
+        { exchangeCount_16_Mileage, 0 },
+        { exchangeCount_17_Mileage, 0 },
+        { exchangeCount_18_Mileage, 0 },
+        { exchangeCount_19_Mileage, 0 },
 
         { ny_ex_0, 0 },
         { ny_ex_1, 0 },
@@ -583,6 +597,9 @@ public class UserInfoTable
         { eventMission1_6, 0 },
         { eventMission1_7, 0 },
         { eventMission1_8, 0 },
+        { eventMission1_9, 0 },
+        { eventMission1_10, 0 },
+        { eventMission1_11, 0 },
 
         { nickNameChange, 0 },
         { getPetHome, 0 },
@@ -822,13 +839,13 @@ public class UserInfoTable
 
         userInfoParam.Add(dailybooty, tableDatas[dailybooty].Value);
 
-        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
-        {
-        }
-        else
-        {
-            userInfoParam.Add(killCountTotal2, tableDatas[killCountTotal2].Value);
-        }
+        // if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        // {
+        // }
+        // else
+        // {
+        //     userInfoParam.Add(killCountTotal2, tableDatas[killCountTotal2].Value);
+        // }
 
         userInfoParam.Add(killCountTotalWinterPass, tableDatas[killCountTotalWinterPass].Value);
 
@@ -1295,6 +1312,10 @@ public class UserInfoTable
             ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_13_Mileage).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_14_Mileage).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_15_Mileage).Value = 0;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_16_Mileage).Value = 0;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_17_Mileage).Value = 0;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_18_Mileage).Value = 0;
+            ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_19_Mileage).Value = 0;
 
             userInfoParam.Add(UserInfoTable.exchangeCount_0_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_0_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_1_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_1_Mileage).Value);
@@ -1313,6 +1334,10 @@ public class UserInfoTable
             userInfoParam.Add(UserInfoTable.exchangeCount_13_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_13_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_14_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_14_Mileage).Value);
             userInfoParam.Add(UserInfoTable.exchangeCount_15_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_15_Mileage).Value);
+            userInfoParam.Add(UserInfoTable.exchangeCount_16_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_16_Mileage).Value);
+            userInfoParam.Add(UserInfoTable.exchangeCount_17_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_17_Mileage).Value);
+            userInfoParam.Add(UserInfoTable.exchangeCount_18_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_18_Mileage).Value);
+            userInfoParam.Add(UserInfoTable.exchangeCount_19_Mileage, ServerData.userInfoTable.GetTableData(UserInfoTable.exchangeCount_19_Mileage).Value);
         }
 
         Param iapParam = null;
@@ -1544,9 +1569,8 @@ public class UserInfoTable
 //         return true;
 // #endif
 
-        return currentServerTime.Year <= 2023 && 
-               (currentServerTime.Month == 4 ||
-                (currentServerTime.Month == 5 && currentServerTime.Day <= 12));
+        return currentServerTime.Year <= 2023 && currentServerTime.Month <= 5 ||
+               (currentServerTime.Month <= 6 && currentServerTime.Day <= 18);
     }
     public bool IsMileageEvent(MileageRewardData rewardData)
     {
@@ -1628,13 +1652,13 @@ public class UserInfoTable
         {
             totalKillCount = 0;
 
-            if (IsMonthlyPass2() == false)
-            {
-            }
-            else
-            {
-                tableDatas[killCountTotal2].Value += updateRequireNum;
-            }
+            // if (IsMonthlyPass2() == false)
+            // {
+            // }
+            // else
+            // {
+            //     tableDatas[killCountTotal2].Value += updateRequireNum;
+            // }
 
             //tableDatas[killCountTotalChild].Value += updateRequireNum;
             tableDatas[killCountTotalWinterPass].Value += updateRequireNum;

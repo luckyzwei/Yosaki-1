@@ -145,11 +145,29 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         float killedEnemyPerMin = spawnEnemyNumPerSec * 60f;
 
-        float goldBuffRatio = PlayerStats.GetGoldPlusValueExclusiveBuff() * 1f;
+        float goldBuffRatio = 0;
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+        {
+            goldBuffRatio = PlayerStats.GetGoldPlusValueExclusiveBuff() * 1f;
+        }
+        else
+        {
+            goldBuffRatio = PlayerStats.GetGoldBarPlusValueExclusiveBuff() * 1f;
+        }
         float expBuffRatio = PlayerStats.GetExpPlusValueIncludeHotTimeBuffOnly() * 1f;
 
-        float gold = killedEnemyPerMin * spawnedEnemyData.Gold * GameBalance.sleepRewardRatio * elapsedMinutes;
-        gold += gold * goldBuffRatio;
+
+        float gold = 0f;
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+        {
+            gold = killedEnemyPerMin * spawnedEnemyData.Gold * GameBalance.sleepRewardRatio * elapsedMinutes;
+            gold += gold * goldBuffRatio;
+        }
+        else
+        {
+            gold = (killedEnemyPerMin * stageTableData.Goldbar * GameBalance.sleepRewardRatio * elapsedMinutes);
+            gold += gold * goldBuffRatio;
+        }
 
         float enemyKilldailyMissionRequire = TableManager.Instance.DailyMissionDatas[0].Rewardrequire;
         float enemyKilldailyMissionReward = TableManager.Instance.DailyMissionDatas[0].Rewardvalue;
@@ -249,7 +267,14 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         GrowthManager.Instance.GetExpBySleep(sleepRewardInfo.exp);
 
-        ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += sleepRewardInfo.gold;
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += sleepRewardInfo.gold;
+        }
+        else
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += sleepRewardInfo.gold;
+        }
         // ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += sleepRewardInfo.jade;
         ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value += sleepRewardInfo.marble;
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value += sleepRewardInfo.GrowthStone;
@@ -322,13 +347,13 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
 
         ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value = 0;
 
-        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
-        {
-        }
-        else
-        {
-            ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal2].Value += sleepRewardInfo.killCount;
-        }
+        // if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        // {
+        // }
+        // else
+        // {
+        //     ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal2].Value += sleepRewardInfo.killCount;
+        // }
         if (ServerData.userInfoTable.IsMonthlyPass2() == false)
         {
             ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.evenMonthKillCount].Value += sleepRewardInfo.killCount;
@@ -346,7 +371,14 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value += sleepRewardInfo.killCount;
 
         Param goodsParam = new Param();
-        goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+        {
+            goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+        }
+        else
+        {
+            goodsParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
+        }
         //   goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
         goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
         goodsParam.Add(GoodsTable.GrowthStone, ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value);
@@ -407,13 +439,13 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         userInfoParam.Add(UserInfoTable.dailybooty, ServerData.userInfoTable.TableDatas[UserInfoTable.dailybooty].Value);
         userInfoParam.Add(UserInfoTable.sleepRewardSavedTime, ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value);
 
-        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
-        {
-        }
-        else
-        {
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal2].Value);
-        }
+        // if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        // {
+        // }
+        // else
+        // {
+        //     userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotal2].Value);
+        // }
 
         //userInfoParam.Add(UserInfoTable.killCountTotalChild, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalWinterPass, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value);

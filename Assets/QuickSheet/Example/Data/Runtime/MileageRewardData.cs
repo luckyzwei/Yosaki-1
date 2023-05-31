@@ -48,4 +48,8 @@ public class MileageRewardData
   int eventmultiplevalue;
   public int Eventmultiplevalue { get {return eventmultiplevalue; } set { this.eventmultiplevalue = value;} }
   
+  [SerializeField]
+  bool active;
+  public bool Active { get {return active; } set { this.active = value;} }
+  
 }

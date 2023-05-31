@@ -32,10 +32,11 @@ public enum TutorialStep
     Clear = 262144,//★
 }
 
+
 public class UiTutorialManager : SingletonMono<UiTutorialManager>
 {
-    private ObscuredInt rewardGemNum = 5000;
-    private ObscuredInt lastRewardGemNum = 50000;
+    private ObscuredInt rewardGemNum = 50000;
+    private ObscuredInt lastRewardGemNum = 500000;
 
     [SerializeField]
     private GameObject rootObject;
@@ -127,6 +128,11 @@ public class UiTutorialManager : SingletonMono<UiTutorialManager>
             PopupManager.Instance.ShowReviewPopup();
         }
 
+        //로그찍기
+        TutorialStep currentStep = (TutorialStep)(tutorialStep.Value);
+        LogManager.Instance.SendLogType("Funnel_Tutorial", "complete",
+            $"tutorial_{tutorialStep.Value}(" + currentStep.ToString() + ")");
+        //
         animator.SetTrigger("Anim");
 
         SoundManager.Instance.PlaySound("Reward");
@@ -149,7 +155,7 @@ public class UiTutorialManager : SingletonMono<UiTutorialManager>
 
         transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
-
+        
         ServerData.SendTransaction(transactions);
     }
 

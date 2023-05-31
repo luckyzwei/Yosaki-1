@@ -70,6 +70,9 @@ public class GameManager : SingletonMono<GameManager>
         TestChun,
         SealAwake,
         TaeguekTower,
+        SinsunTower,
+        Dark,
+        GyungRockTower3,
     }
 
     public bool SpawnMagicStone => IsNormalField;
@@ -189,6 +192,8 @@ public class GameManager : SingletonMono<GameManager>
 
         CurrentStageData = TableManager.Instance.StageMapData[currentMapIdx.Value];
         MapThemaInfo = Resources.Load<MapThemaInfo>($"MapThema/{CurrentStageData.Mapthema}");
+        
+        PopupManager.Instance.DestroyAllPopup();
     }
 
     public List<EnemyTableData> GetEnemyTableData()

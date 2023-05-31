@@ -29,8 +29,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalLevel_Gold
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960(%)"
     statuswhere: 0
     maxlv: 1000
     active: 1
@@ -43,10 +44,11 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalDamLevel_Gold
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0(%)"
     statuswhere: 0
-    maxlv: 30000
+    maxlv: 7100
     active: 1
     ispercent: 1
     basevalue: 0
@@ -57,6 +59,7 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: HpLevel_Gold
     description: "\uCCB4\uB825"
     statuswhere: 0
@@ -71,6 +74,7 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: MpLevel_Gold
     description: "\uB9C8\uB825"
     statuswhere: 0
@@ -85,8 +89,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: HpRecover_Gold
-    description: "\uCCB4\uB825\uD68C\uBCF5"
+    description: "5\uCD08\uB2F9 \uCCB4\uB825 \uD68C\uBCF5(%)"
     statuswhere: 0
     maxlv: 3000
     active: 1
@@ -99,8 +104,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: MpRecover_Gold
-    description: "\uB9C8\uB825\uD68C\uBCF5"
+    description: "5\uCD08\uB2F9 \uB9C8\uB825 \uD68C\uBCF5(%)"
     statuswhere: 0
     maxlv: 1000
     active: 0
@@ -113,8 +119,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: IntLevelAddPer_StatPoint
-    description: "\uACF5\uACA9\uB825\uC99D\uAC00"
+    description: "\uACF5\uACA9\uB825 \uC99D\uAC00(%)"
     statuswhere: 1
     maxlv: 50000000
     active: 1
@@ -127,8 +134,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalLevel_StatPoint
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960(%)"
     statuswhere: 1
     maxlv: 400
     active: 1
@@ -141,8 +149,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalDamLevel_StatPoint
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0(%)"
     statuswhere: 1
     maxlv: 1000000
     active: 1
@@ -155,8 +164,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: GoldGain_memory
-    description: "\uACE8\uB4DC \uD68D\uB4DD\uB7C9(\uC801\uCC98\uCE58)"
+    description: "\uAE08\uD654 \uD68D\uB4DD \uC99D\uAC00(%)"
     statuswhere: 2
     maxlv: 1
     active: 1
@@ -169,8 +179,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: ExpGain_memory
-    description: "\uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9(\uC801\uCC98\uCE58)"
+    description: "\uACBD\uD5D8\uCE58 \uD68D\uB4DD \uC99D\uAC00(%)"
     statuswhere: 2
     maxlv: 1
     active: 1
@@ -183,6 +194,7 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: HpPer_StatPoint
     description: "\uCCB4\uB825 \uC99D\uAC00(%)"
     statuswhere: 1
@@ -197,6 +209,7 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: MpPer_StatPoint
     description: "\uB9C8\uB825 \uC99D\uAC00(%)"
     statuswhere: 1
@@ -211,8 +224,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: DamageBalance_memory
-    description: "\uB370\uBBF8\uC9C0 \uBC38\uB7F0\uC2A4"
+    description: "\uCD5C\uC18C\uB370\uBBF8\uC9C0 \uBCF4\uC815(%)"
     statuswhere: 2
     maxlv: 100
     active: 0
@@ -225,8 +239,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: SkillDamage_memory
-    description: "\uBB34\uACF5\uBE44\uAE09 \uCD94\uAC00\uAE30\uC220 \uB370\uBBF8\uC9C0"
+    description: "\uCD94\uAC00 \uAE30\uC220 \uB370\uBBF8\uC9C0(%)"
     statuswhere: 2
     maxlv: 100000
     active: 1
@@ -239,8 +254,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: SkillCoolTime_memory
-    description: "\uC2A4\uD0AC\uCFE8\uD0C0\uC784"
+    description: "\uAE30\uC220 \uC2DC\uC804 \uC18D\uB3C4(%)"
     statuswhere: 2
     maxlv: 200
     active: 0
@@ -253,8 +269,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalLevel_memory
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uD655\uB960(%)"
     statuswhere: 2
     maxlv: 300
     active: 1
@@ -267,8 +284,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: CriticalDamLevel_memory
-    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0"
+    description: "\uD06C\uB9AC\uD2F0\uCEEC \uB370\uBBF8\uC9C0(%)"
     statuswhere: 2
     maxlv: 3000
     active: 0
@@ -281,8 +299,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: IgnoreDefense_memory
-    description: "\uBC29\uC5B4\uB825\uBB34\uC2DC"
+    description: "\uBC29\uC5B4\uB825 \uBB34\uC2DC"
     statuswhere: 2
     maxlv: 3000
     active: 1
@@ -295,8 +314,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: BossDamage_memory
-    description: "\uBCF4\uC2A4\uCD94\uAC00\uD53C\uD574"
+    description: "\uBCF4\uC2A4 \uB370\uBBF8\uC9C0 \uC99D\uAC00(%)"
     statuswhere: 2
     maxlv: 100
     active: 0
@@ -309,8 +329,9 @@ MonoBehaviour:
     unlocklevel: 0
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: ChunSlash_memory
-    description: "\uCC9C\uACF5\uBCA0\uAE30 \uD53C\uD574\uB7C9"
+    description: "\uCC9C\uACF5\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 1000000
     active: 1
@@ -323,8 +344,9 @@ MonoBehaviour:
     unlocklevel: 100000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: FeelSlash_memory
-    description: "\uD544\uBA78 \uD53C\uD574\uB7C9"
+    description: "\uD544\uBA78 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 1000000
     active: 1
@@ -337,8 +359,9 @@ MonoBehaviour:
     unlocklevel: 1000000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: ZSlash_memory
-    description: "\uC9C0\uC625 \uD53C\uD574\uB7C9"
+    description: "\uC9C0\uC625\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 2000000
     active: 1
@@ -351,8 +374,9 @@ MonoBehaviour:
     unlocklevel: 1000000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: Cslash_memory
-    description: "\uCC9C\uC0C1 \uD53C\uD574\uB7C9"
+    description: "\uCC9C\uC0C1\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 2000000
     active: 1
@@ -365,8 +389,9 @@ MonoBehaviour:
     unlocklevel: 2000000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: GiSlash_memory
-    description: "\uADC0\uC2E0 \uD53C\uD574\uB7C9"
+    description: "\uADC0\uC2E0\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 2000000
     active: 1
@@ -379,8 +404,9 @@ MonoBehaviour:
     unlocklevel: 2000000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: Gum_memory
-    description: "\uAE08\uAC15 \uD53C\uD574\uB7C9"
+    description: "\uAE08\uAC15\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 2
     maxlv: 20000000
     active: 1
@@ -393,8 +419,9 @@ MonoBehaviour:
     unlocklevel: 2000000
     needgoodskey: 
     unlockgoods: 0
+    upgradeprice: 1
   - key: Sin_StatPoint
-    description: "\uC2E0\uC218\uBCA0\uAE30 \uD53C\uD574"
+    description: "\uC2E0\uC218\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 1
     maxlv: 10000000
     active: 1
@@ -407,8 +434,9 @@ MonoBehaviour:
     unlocklevel: 400
     needgoodskey: SinsuRelic
     unlockgoods: 3
+    upgradeprice: 1
   - key: Hyung_StatPoint
-    description: "\uD749\uC218\uBCA0\uAE30 \uD53C\uD574"
+    description: "\uD749\uC218\uBCA0\uAE30 \uD53C\uD574(%)"
     statuswhere: 1
     maxlv: 10000000
     active: 1
@@ -421,3 +449,49 @@ MonoBehaviour:
     unlocklevel: 10000000
     needgoodskey: HyungsuRelic
     unlockgoods: 3
+    upgradeprice: 1
+  - key: Special0_GoldBar
+    description: "\uC601\uD63C\uBCA0\uAE30 \uD53C\uD574(%) 1"
+    statuswhere: 3
+    maxlv: 500000
+    active: 1
+    ispercent: 1
+    basevalue: 10
+    addvalue: 1
+    destable: "\uAD6C\uD604\uC644"
+    statustype: 58
+    needstatuskey: 
+    unlocklevel: 0
+    needgoodskey: 
+    unlockgoods: 0
+    upgradeprice: 1
+  - key: Special1_GoldBar
+    description: "\uC601\uD63C\uBCA0\uAE30 \uD53C\uD574(%) 2 "
+    statuswhere: 3
+    maxlv: 500000
+    active: 1
+    ispercent: 1
+    basevalue: 10
+    addvalue: 1
+    destable: "\uAD6C\uD604\uC644"
+    statustype: 58
+    needstatuskey: Special0_GoldBar
+    unlocklevel: 500000
+    needgoodskey: 
+    unlockgoods: 0
+    upgradeprice: 2
+  - key: Special2_GoldBar
+    description: "\uC601\uD63C\uBCA0\uAE30 \uD53C\uD574(%) 3"
+    statuswhere: 3
+    maxlv: 500000
+    active: 1
+    ispercent: 1
+    basevalue: 10
+    addvalue: 1
+    destable: "\uAD6C\uD604\uC644"
+    statustype: 58
+    needstatuskey: Special1_GoldBar
+    unlocklevel: 500000
+    needgoodskey: 
+    unlockgoods: 0
+    upgradeprice: 4

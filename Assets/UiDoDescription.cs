@@ -51,7 +51,7 @@ public class UiDoDescription : MonoBehaviour
 
         
 
-        image.sprite = Resources.Load<Sprite>($"Do/{idx / 3}");
+        image.sprite = Resources.Load<Sprite>($"Do/0");
     }
 
     public void OnClickLeftButton()
@@ -72,7 +72,7 @@ public class UiDoDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.doTable.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

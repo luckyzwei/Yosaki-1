@@ -51,7 +51,14 @@ public class UiOkDescription : MonoBehaviour
 
         
 
-        image.sprite = Resources.Load<Sprite>($"Ok/{idx / 3}");
+        if (idx/3 < 5)
+        {
+            image.sprite = Resources.Load<Sprite>($"Ok/{idx / 3}");
+        }
+        else
+        {
+            image.sprite = Resources.Load<Sprite>($"Ok/5");
+        }
     }
 
     public void OnClickLeftButton()
@@ -72,7 +79,7 @@ public class UiOkDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.okTable.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

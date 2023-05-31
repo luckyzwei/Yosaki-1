@@ -42,7 +42,8 @@ public class UiSealSwordAwakeDescription : MonoBehaviour
         var addDescription = "";
 
         //
-        abilDescription.SetText($"요도 피해량 증가 +{Utils.ConvertBigNum(tableData.Awakevalue)}");
+        abilDescription.SetText($"요도 피해량 증가 +{Utils.ConvertBigNum(tableData.Awakevalue)}" +
+                                $"\n요도 시전 속도 증가 +{tableData.Addchargevalue * 100}%");
         //
 
         // if (idx < 109)
@@ -73,7 +74,7 @@ public class UiSealSwordAwakeDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.SealSwordAwakeTable.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

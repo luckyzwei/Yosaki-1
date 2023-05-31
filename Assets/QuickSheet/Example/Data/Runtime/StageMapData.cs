@@ -100,4 +100,8 @@ public class StageMapData
   float dokebifireamount;
   public float Dokebifireamount { get {return dokebifireamount; } set { this.dokebifireamount = value;} }
   
+  [SerializeField]
+  float goldbar;
+  public float Goldbar { get {return goldbar; } set { this.goldbar = value;} }
+  
 }

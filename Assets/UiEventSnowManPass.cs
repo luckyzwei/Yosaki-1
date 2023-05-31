@@ -233,7 +233,7 @@ public class UiEventSnowManPass : FancyScrollView<SnowPassData_Fancy>
     
     private void Start()
     {
-        scroller.Initialize(PassTypeScroll.SnowManPass);
+        scroller.Initialize(TypeScroll.SnowManPass);
             
         scroller.OnValueChanged(UpdatePosition);
     

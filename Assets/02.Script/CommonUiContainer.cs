@@ -35,7 +35,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_6_Skill, CommonString.ItemGrade_7_Skill, CommonString.ItemGrade_8_Skill, CommonString.ItemGrade_9_Skill, CommonString.ItemGrade_10_Skill,
         CommonString.ItemGrade_11_Skill,string.Empty,string.Empty,string.Empty,string.Empty,
         string.Empty,string.Empty,string.Empty,string.Empty,string.Empty,
-        string.Empty,CommonString.ItemGrade_12_Skill,CommonString.ItemGrade_13_Skill,CommonString.ItemGrade_14_Skill};
+        string.Empty,CommonString.ItemGrade_12_Skill,CommonString.ItemGrade_13_Skill,CommonString.ItemGrade_14_Skill,CommonString.ItemGrade_15_Skill};
     public List<string> ItemGradeName_Skill => itemGradeName_Skill;
 
     private List<string> itemGradeName_NewGacha= new List<string>() { 
@@ -141,6 +141,9 @@ public Sprite MasterWeapon3;
 public Sprite SinsunWeapon0;
 public Sprite SinsunWeapon1;
 public Sprite SinsunWeapon2;
+public Sprite SinsunWeapon3;
+public Sprite SinsunWeapon4;
+public Sprite SinsunWeapon5;
     
 [Header ("Weapon_View")]
 
@@ -247,6 +250,9 @@ public Sprite RecommendWeapon22;
     public Sprite SinsunNorigae0;
     public Sprite SinsunNorigae1;
     public Sprite SinsunNorigae2;
+    public Sprite SinsunNorigae3;
+    public Sprite SinsunNorigae4;
+    public Sprite SinsunNorigae5;
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
@@ -297,6 +303,14 @@ public Sprite RecommendWeapon22;
     public Sprite FoxPet1;
     public Sprite FoxPet2;
     public Sprite FoxPet3;
+    public Sprite TigerPet0;
+    public Sprite TigerPet1;
+    public Sprite TigerPet2;
+    public Sprite TigerPet3;
+    public Sprite SpecialSuhoPet0;
+    public Sprite SpecialSuhoPet1;
+    public Sprite SpecialSuhoPet2;
+    public Sprite SpecialSuhoPet3;
 
 
     [Header ("Skill")]
@@ -346,11 +360,19 @@ public Sprite RecommendWeapon22;
     public Sprite ThiefSkill4;
 
     
+    public Sprite DarkSkill0;
+    public Sprite DarkSkill1;
+    public Sprite DarkSkill2;
+    public Sprite DarkSkill3;
+    public Sprite DarkSkill4;
+
+    
     [Header ("Goods")]
     
     public Sprite magicStone;
     public Sprite blueStone;
     public Sprite gold;
+    public Sprite GoldBar;
     public Sprite memory;
     public Sprite ticket;
     public Sprite marble;
@@ -473,6 +495,8 @@ public Sprite RecommendWeapon22;
         {
             case Item_Type.Gold:
                 return gold;
+            case Item_Type.GoldBar:
+                return GoldBar;
 
 
             case Item_Type.Jade:
@@ -804,6 +828,14 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[118];
             case Item_Type.costume119:
                 return costumeThumbnail[119];
+            case Item_Type.costume120:
+                return costumeThumbnail[120];
+            case Item_Type.costume121:
+                return costumeThumbnail[121];
+            case Item_Type.costume122:
+                return costumeThumbnail[122];
+            case Item_Type.costume123:
+                return costumeThumbnail[123];
 
 
             case Item_Type.RankFrame1:
@@ -1483,6 +1515,13 @@ public Sprite RecommendWeapon22;
                 return SinsunNorigae1;
             case Item_Type.SinsunNorigae2:
                 return SinsunNorigae2;
+            case Item_Type.SinsunNorigae3:
+                return SinsunNorigae3;
+            case Item_Type.SinsunNorigae4:
+                return SinsunNorigae4;
+
+            case Item_Type.SinsunNorigae5:
+                return SinsunNorigae5;
 
             //
             case Item_Type.MonthNorigae0:
@@ -1654,6 +1693,24 @@ public Sprite RecommendWeapon22;
                 return FoxPet2;
             case Item_Type.FoxPet3:
                 return FoxPet3;
+            
+            case Item_Type.TigerPet0:
+                return TigerPet0;
+            case Item_Type.TigerPet1:
+                return TigerPet1;
+            case Item_Type.TigerPet2:
+                return TigerPet2;
+            case Item_Type.TigerPet3:
+                return TigerPet3;
+            
+            case Item_Type.SpecialSuhoPet0:
+                return SpecialSuhoPet0;
+            case Item_Type.SpecialSuhoPet1:
+                return SpecialSuhoPet1;
+            case Item_Type.SpecialSuhoPet2:
+                return SpecialSuhoPet2;
+            case Item_Type.SpecialSuhoPet3:
+                return SpecialSuhoPet3;
 
 
 
@@ -1870,6 +1927,17 @@ public Sprite RecommendWeapon22;
             case Item_Type.ThiefSkill4:
                 return ThiefSkill4;
             //
+            case Item_Type.DarkSkill0:
+                return DarkSkill0;
+            case Item_Type.DarkSkill1:
+                return DarkSkill1;
+            case Item_Type.DarkSkill2:
+                return DarkSkill2;
+            case Item_Type.DarkSkill3:
+                return DarkSkill3;
+            case Item_Type.DarkSkill4:
+                return DarkSkill4;
+            //
             case Item_Type.GangrimSkill:
                 return GangrimSkill;
 
@@ -2031,6 +2099,12 @@ public Sprite RecommendWeapon22;
                 return SinsunWeapon1;
             case Item_Type.SinsunWeapon2:
                 return SinsunWeapon2;
+            case Item_Type.SinsunWeapon3:
+                return SinsunWeapon3;
+            case Item_Type.SinsunWeapon4:
+                return SinsunWeapon4;
+            case Item_Type.SinsunWeapon5:
+                return SinsunWeapon5;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;

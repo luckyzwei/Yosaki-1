@@ -82,8 +82,12 @@ public class UiMileageRewardCell : MonoBehaviour
         }).AddTo(this);
     }
 
-    private void Initialize()
+    public void Initialize(int _tableId=-1)
     {
+        if (_tableId != -1)
+        {
+            tableId = _tableId;
+        }
         if (button != null)
         { 
             button.onEvent.AddListener(OnClickExchangeButton);

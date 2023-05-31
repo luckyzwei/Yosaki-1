@@ -122,14 +122,6 @@ public class UiMonthMissionCell : MonoBehaviour
                 lockMaskAd.SetActive(false);
             }
         }).AddTo(this);
-        ServerData.iapServerTable.TableDatas[UiNewYearPassBuyButton.productKey].buyCount.AsObservable().Subscribe(e =>
-        {
-            if (tableData != null)
-            {
-                WhenMissionCountChanged(ServerData.eventMissionTable.TableDatas[tableData.Stringid].clearCount.Value);
-            }
-        }
-        ).AddTo(this);
     }
 
     private void OnEnable()

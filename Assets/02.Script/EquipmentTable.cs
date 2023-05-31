@@ -33,6 +33,12 @@ public enum PetType
     Special,
 }
 
+public enum SuhoPetType
+{
+    Basic,
+    Special,
+}
+
 
 
 public class EquipmentTable

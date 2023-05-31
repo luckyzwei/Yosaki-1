@@ -10,6 +10,8 @@ public class UiSuhoAnimalEquipBoard : MonoBehaviour
 
     [SerializeField]
     private Transform cellParent;
+    [SerializeField]
+    private Transform cellParent_special;
 
     void Start()
     {
@@ -22,9 +24,16 @@ public class UiSuhoAnimalEquipBoard : MonoBehaviour
 
         for (int i = 0; i < tableData.Length; i++)
         {
-            var cell = Instantiate<UiInventoryAnimalView>(uiInventoryAnimalView, cellParent);
-
-            cell.Initialize(tableData[i]);
+            if (tableData[i].SUHOPETTYPE == SuhoPetType.Basic)
+            {
+                var cell = Instantiate<UiInventoryAnimalView>(uiInventoryAnimalView, cellParent);
+                cell.Initialize(tableData[i]);
+            }
+            else if (tableData[i].SUHOPETTYPE == SuhoPetType.Special)
+            {
+                var cell = Instantiate<UiInventoryAnimalView>(uiInventoryAnimalView, cellParent_special);
+                cell.Initialize(tableData[i]);
+            }
         }
     }
 #if UNITY_EDITOR

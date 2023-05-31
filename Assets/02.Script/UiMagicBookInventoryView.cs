@@ -86,10 +86,36 @@ public class UiMagicBookInventoryView : FancyScrollView<MagicBook_Fancy>
             magicBookDataContainer[i].Upgrade();
         }
     }
+    private List<MagicBook_Fancy> SortHasItemList(List<MagicBook_Fancy> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            MagicBook_Fancy data = list[i];
+            if (data != null && ServerData.magicBookTable.TableDatas[data.MagicBookData.Stringid].hasItem.Value > 0)
+            {
+                if (list[0].MagicBookData.Id < list[i].MagicBookData.Id)
+                {
+                    list.Insert(0, list[i]);
+                    list.RemoveAt(i + 1);
+                }
+            }
+        }
 
+        return list;
+    }
+    private void SortHasItem()
+    {
+        magicBookDataContainer = SortHasItemList(magicBookDataContainer);
+        this.UpdateContents(magicBookDataContainer.ToArray());
+    }
+    
+    private void OnEnable()
+    {
+        SortHasItem();
+    }
     private void MakeBasicNormalBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.MagicBookTable.dataArray;
@@ -124,7 +150,7 @@ public class UiMagicBookInventoryView : FancyScrollView<MagicBook_Fancy>
     }
     private void MakeViewBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryOnlyView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.MagicBookTable.dataArray;

@@ -239,7 +239,7 @@ public class UiFoxFirePassSystem : FancyScrollView<FoxFirePassData_Fancy>
     protected override GameObject CellPrefab => cellPrefab;
     private void Start()
     {
-        scroller.Initialize(PassTypeScroll.FoxFirePass);
+        scroller.Initialize(TypeScroll.FoxFirePass);
         
         scroller.OnValueChanged(UpdatePosition);
     

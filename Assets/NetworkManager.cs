@@ -1436,7 +1436,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks, IOnEventCallback
     {
         loadingMask.SetActive(true);
 
-        int startTime = 5;
+        int startTime = 3;
 
         if (IsSinglePlay())
         {

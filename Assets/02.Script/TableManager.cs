@@ -754,6 +754,7 @@ public class TableManager : SingletonMono<TableManager>
 
     public SumiTable sumiTable;
     public ThiefTable ThiefTable;
+    public DarkTable DarkTable;
 
     //사신수
     public SasinsuTable sasinsuTable;
@@ -819,6 +820,7 @@ public class TableManager : SingletonMono<TableManager>
     public SealSword sealSwordTable;
     public SealSwordPass SealSwordPass;
     public FoxFirePass FoxFirePass;
+    public SinsunTowerTable sinsunTowerTable;
     
     private Dictionary<int, SealSwordData> sealSwordData = null;
 
@@ -846,6 +848,8 @@ public class TableManager : SingletonMono<TableManager>
     public TowerTable9 SealTowerTable;
     public SealSwordAwakeTable SealSwordAwakeTable;
     public TaegeukTitle taegeukTitle;
+    public TowerTable10 gyungRockTowerTable3;
+    public GCPass GCPass;
 }
 
 

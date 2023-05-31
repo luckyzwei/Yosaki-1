@@ -62,7 +62,7 @@ public class FoxMaskBoard : MonoBehaviour
 
         if (currentIdx >= TableManager.Instance.FoxMask.dataArray.Length)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("도전 완료!");
             return;
         }
 

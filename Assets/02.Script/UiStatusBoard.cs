@@ -1,4 +1,5 @@
-﻿using BackEnd;
+﻿using System;
+using BackEnd;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class UiStatusBoard : MonoBehaviour
 
     [SerializeField]
     private Transform goldAbilParent;
+    [SerializeField]
+    private Transform goldBarAbilParent;
 
     [SerializeField]
     private Transform skillPointAbilParent;
@@ -22,6 +25,7 @@ public class UiStatusBoard : MonoBehaviour
     [SerializeField]
     private UiTopRankerCell topRankerCell;
 
+    
     private void Awake()
     {
         Initialize();
@@ -40,6 +44,10 @@ public class UiStatusBoard : MonoBehaviour
             {
                 cellParent = goldAbilParent;
             }
+            else if (e.Current.Value.STATUSWHERE == StatusWhere.goldbar)
+            {
+                cellParent = goldBarAbilParent;
+            }
             else if (e.Current.Value.STATUSWHERE == StatusWhere.statpoint)
             {
                 cellParent = skillPointAbilParent;
@@ -55,6 +63,7 @@ public class UiStatusBoard : MonoBehaviour
         }
     }
 
+    
     private UiStatusUpgradeCell MakeCell(Transform parent)
     {
         return Instantiate<UiStatusUpgradeCell>(statusCellPrefab, parent);
@@ -133,4 +142,113 @@ public class UiStatusBoard : MonoBehaviour
             LogManager.Instance.SendLog("기억 능력치 초기화", log);
         }, null);
     }
+    
+    public void OnClickTransButton()
+    {
+        int att = ServerData.statusTable.GetTableData(StatusTable.AttackLevel_Gold).Value;
+        int cri = ServerData.statusTable.GetTableData(StatusTable.CriticalLevel_Gold).Value;
+        int criDam = ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_Gold).Value;
+        int hp = ServerData.statusTable.GetTableData(StatusTable.HpLevel_Gold).Value;
+        int hpRec = ServerData.statusTable.GetTableData(StatusTable.HpRecover_Gold).Value;
+
+        var gold = (int)(ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value / GameBalance.refundGoldBarRatio);
+        
+        int refund = criDam - GameBalance.criticalGraduateRefundStandard;
+        
+        int sum = att + cri + criDam +  hp + hpRec;
+        int reqLv = GameBalance.goldGraduateScore;
+        if (sum < reqLv)
+        {
+            PopupManager.Instance.ShowAlarmMessage(
+                $"기본무공 강화 총 {reqLv} 레벨이 필요합니다!" +
+                $"\n(현재 총 레벨 : {sum})");
+        }
+        else
+        {
+            
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice,
+                "각성 하시겠습니까??\n" +
+                $"각성 후 더 이상 {CommonString.GetItemName(Item_Type.Gold)}를 획득하실 수 없습니다\n" +
+                $"각성 후 {CommonString.GetItemName(Item_Type.GoldBar)}를 획득하실 수 있습니다\n" +
+                $"각성 후 획득한 {CommonString.GetItemName(Item_Type.GoldBar)}를통해 신규 능력치를 강화하실 수 있습니다", () =>
+                {
+                    string desc = "각성완료!!";
+                    //환급
+                    if (refund > 0)
+                    {
+                        refund *= GameBalance.refundCriDamGoldBarRatio;
+                        desc += $"\n초과된 레벨이 {refund} {CommonString.GetItemName(Item_Type.GoldBar)}로 환산되었습니다!";
+                    }
+
+                    if (gold > 0)
+                    {
+                        desc += $"\n보유한 금화가 {gold} {CommonString.GetItemName(Item_Type.GoldBar)}로 환산되었습니다!";
+                    }
+                    
+                    List<TransactionValue> transactionList = new List<TransactionValue>();
+
+                    Param goodsParam = new Param();
+                    ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += refund + gold;
+                    ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value = 0;
+                    goodsParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
+                    transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+                    
+                    
+                    Param userInfo_2Param = new Param();
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.graduateGold].Value = 1;
+                    userInfo_2Param.Add(UserInfoTable_2.graduateGold, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value);
+                    transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
+
+                    Param statusParam = new Param();
+                    ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_Gold).Value = GameBalance.criticalGraduateValue;
+                    statusParam.Add(StatusTable.CriticalDamLevel_Gold, ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_Gold).Value);
+                    transactionList.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
+
+                    ServerData.SendTransaction(transactionList, successCallBack: () =>
+                    {
+                        PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, desc, null);
+                    });
+                    
+
+                }, null);
+        }
+
+    }
+    #if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value++;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 10;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 100;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 1000;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 10000;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 100000;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad7))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += 10000000;
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad9))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value -= 10000000;
+        }
+    }
+#endif
 }

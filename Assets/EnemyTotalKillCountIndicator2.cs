@@ -16,7 +16,7 @@ public class EnemyTotalKillCountIndicator2 : MonoBehaviour
 
     private void Subscribe()
     {
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).AsObservable().Subscribe(e =>
         {
             killCountText.SetText($"처치 : {Utils.ConvertBigNum(e)}");
         }).AddTo(this);

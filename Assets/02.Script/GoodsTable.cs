@@ -14,6 +14,7 @@ public class GoodsTable
     public static string Indate;
     public const string tableName = "Goods";
     public static string Gold = "Gold";
+    public static string GoldBar = "GoldBar";
     public static string Jade = "Jade"; //옥
     public static string GrowthStone = "GrowthStone";
     public static string Ticket = "Ticket";
@@ -169,6 +170,12 @@ public class GoodsTable
     public static string ThiefSkill3 = "ThiefSkill3";
     public static string ThiefSkill4 = "ThiefSkill4";
 
+    public static string DarkSkill0 = "DarkSkill0";
+    public static string DarkSkill1 = "DarkSkill1";
+    public static string DarkSkill2 = "DarkSkill2";
+    public static string DarkSkill3 = "DarkSkill3";
+    public static string DarkSkill4 = "DarkSkill4";
+
     public static string Fw = "Fw";
     public const string Cw = "Cw"; //천계꽃
 
@@ -180,9 +187,9 @@ public class GoodsTable
     public static string c5 = "c5"; //천계꽃
     public static string c6 = "c6"; //천계꽃
 
-    public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체
-    public static string Event_HotTime = "Event_HotTime"; //핫타임 불꽃
-    public static string Event_HotTime_Saved = "EHS"; //핫타임 불꽃
+    public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체 
+    public static string Event_HotTime = "Event_HotTime0"; //핫타임 불꽃
+    public static string Event_HotTime_Saved = "EHS0"; //핫타임 불꽃
     public static string Event_Collection_All = "Event_Collection_All0"; //봄나물 총 획득량
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
     public static string Event_NewYear = "Event_NewYear"; //떡국
@@ -229,6 +236,7 @@ public class GoodsTable
     private Dictionary<string, float> tableSchema = new Dictionary<string, float>()
     {
         { Gold, GameBalance.StartingMoney },
+        { GoldBar, 0 },
         { Jade, 0f },
         { GrowthStone, 0f },
         { Ticket, 0f },
@@ -374,6 +382,12 @@ public class GoodsTable
         { ThiefSkill3, 0f },
         { ThiefSkill4, 0f },
 
+        { DarkSkill0, 0f },
+        { DarkSkill1, 0f },
+        { DarkSkill2, 0f },
+        { DarkSkill3, 0f },
+        { DarkSkill4, 0f },
+
         { Fw, 0f },
         { Cw, 0f },
         //
@@ -461,6 +475,10 @@ public class GoodsTable
     public void GetGold(float amount)
     {
         tableDatas[Gold].Value += amount;
+    }
+    public void GetGoldBar(float amount)
+    {
+        tableDatas[GoldBar].Value += amount;
     }
 
     static int growThStoneAddAmount = 0;
@@ -1055,6 +1073,10 @@ public class GoodsTable
             {
                 return GoodsTable.Gold;
             }
+            case Item_Type.GoldBar:
+            {
+                return GoodsTable.GoldBar;
+            }
             case Item_Type.Jade:
             {
                 return GoodsTable.Jade;
@@ -1374,6 +1396,33 @@ public class GoodsTable
             }
 
             //
+            //            //
+            case Item_Type.DarkSkill0:
+            {
+                return GoodsTable.DarkSkill0;
+            }
+
+            case Item_Type.DarkSkill1:
+            {
+                return GoodsTable.DarkSkill1;
+            }
+
+            case Item_Type.DarkSkill2:
+            {
+                return GoodsTable.DarkSkill2;
+            }
+
+            case Item_Type.DarkSkill3:
+            {
+                return GoodsTable.DarkSkill3;
+            }
+
+            case Item_Type.DarkSkill4:
+            {
+                return GoodsTable.DarkSkill4;
+            }
+
+            //
             case Item_Type.GangrimSkill:
             {
                 return GoodsTable.GangrimSkill;
@@ -1632,6 +1681,10 @@ public class GoodsTable
         if (GoodsTable.Gold == type)
         {
             return Item_Type.Gold;
+        }
+        if (GoodsTable.GoldBar == type)
+        {
+            return Item_Type.GoldBar;
         }
         else if (GoodsTable.Jade == type)
         {
@@ -1946,6 +1999,33 @@ public class GoodsTable
         else if (GoodsTable.ThiefSkill4 == type)
         {
             return Item_Type.ThiefSkill4;
+        }
+
+        //
+
+        // //
+        else if (GoodsTable.DarkSkill0 == type)
+        {
+            return Item_Type.DarkSkill0;
+        }
+
+        else if (GoodsTable.DarkSkill1 == type)
+        {
+            return Item_Type.DarkSkill1;
+        }
+
+        else if (GoodsTable.DarkSkill2 == type)
+        {
+            return Item_Type.DarkSkill2;
+        }
+
+        else if (GoodsTable.DarkSkill3 == type)
+        {
+            return Item_Type.DarkSkill3;
+        }
+        else if (GoodsTable.DarkSkill4 == type)
+        {
+            return Item_Type.DarkSkill4;
         }
 
         //

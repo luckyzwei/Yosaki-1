@@ -14,6 +14,10 @@ namespace UnityEngine.UI.Extensions
 
     public class Scroller : UIBehaviour, IPointerUpHandler, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IScrollHandler
     {
+        private float maxX = 1f;
+        
+        private float viewCount = 1f; //보여지는 셀의 수
+
         [SerializeField] RectTransform viewport = default;
 
         public float ViewportSize => scrollDirection == ScrollDirection.Horizontal
@@ -84,7 +88,7 @@ namespace UnityEngine.UI.Extensions
             set => draggable = value;
         }
 
-        [SerializeField] PassTypeScroll passType = PassTypeScroll.None;
+        [FormerlySerializedAs("passType")] [SerializeField] TypeScroll type = TypeScroll.None;
         [SerializeField] Scrollbar scrollbar = default;
 
         public Scrollbar Scrollbar => scrollbar;
@@ -167,7 +171,7 @@ namespace UnityEngine.UI.Extensions
             
             if (scrollbar)
             {
-                scrollbar.onValueChanged.AddListener(x => UpdatePosition(x * (totalCount - 1f), false));
+                scrollbar.onValueChanged.AddListener(x => UpdatePosition(Mathf.Min(x,maxX) * (totalCount - 1f), false));
                 Initialize();
                 _isInitailze = true;
             }
@@ -263,50 +267,80 @@ namespace UnityEngine.UI.Extensions
             return returnValues;
         }
         
-        public void Initialize(PassTypeScroll type=PassTypeScroll.None)
+        public void Initialize(TypeScroll type=TypeScroll.None)
         {
-            if (passType == PassTypeScroll.None)
+            if (this.type == TypeScroll.None)
             {
-                passType = type;
+                this.type = type;
             }
             List<int> splitData_Free;
             List<int> splitData_Ad;
-            switch (passType)
+            switch (this.type)
             {
-                case PassTypeScroll.DolPass:
+                case TypeScroll.DolPass:
                 splitData_Free = GetDolPassSplitData(SeolPassServerTable.MonthlypassFreeReward_dol);
                 splitData_Ad = GetDolPassSplitData(SeolPassServerTable.MonthlypassAdReward_dol);
+                viewCount = 2.2f;
                     break;
-                case PassTypeScroll.MonthPass:
+                case TypeScroll.MonthPass:
                     splitData_Free = GetMonthPassSplitData(MonthlyPassServerTable.MonthlypassFreeReward);
                     splitData_Ad = GetMonthPassSplitData(MonthlyPassServerTable.MonthlypassAdReward);
+                    viewCount = 6f;
                     break;
-                case PassTypeScroll.MonthPass2:
+                case TypeScroll.MonthPass2:
                     splitData_Free = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassFreeReward);
                     splitData_Ad = GetMonthPass2SplitData(MonthlyPassServerTable2.MonthlypassAdReward);
+                    viewCount = 6f;
                     break;
-                case PassTypeScroll.SnowManPass:
+                case TypeScroll.SnowManPass:
                     splitData_Free = GetSnowAttenPassSplitData(OneYearPassServerTable.childFree_Snow);
                     splitData_Ad = GetSnowAttenPassSplitData(OneYearPassServerTable.childAd_Snow);
+                    viewCount = 6f;
                     break;
-                case PassTypeScroll.SuhoPass:
+                case TypeScroll.SuhoPass:
                     splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.suhoFree);
                     splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.suhoAd);
+                    viewCount = 6f;
                     break;
-                case PassTypeScroll.FoxFirePass:
+                case TypeScroll.FoxFirePass:
                     splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.foxfireFree);
                     splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.foxfireAd);
+                    viewCount = 6f;
                     break;
-                case PassTypeScroll.SealSwordPass:
+                case TypeScroll.SealSwordPass:
                     splitData_Free = GetSuhoPassSplitData(ColdSeasonPassServerTable.sealSwordFree);
                     splitData_Ad = GetSuhoPassSplitData(ColdSeasonPassServerTable.sealSwordAd);
+                    viewCount = 6f;
+                    //0.86f 50개
+                    //0.906f 70
+                    //0.933f
+                    break;
+                case TypeScroll.InventoryView:
+                    splitData_Free = null;
+                    splitData_Ad = null;
+                    viewCount = 7;
+                    break;
+                case TypeScroll.InventoryOnlyView:
+                    splitData_Free = null;
+                    splitData_Ad = null;
+                    viewCount = 4f;
+                    break;
+                case TypeScroll.OnlyEffectView:
+                    splitData_Free = null;
+                    splitData_Ad = null;
+                    viewCount = 4f;
                     break;
                 default:
                     splitData_Free = null;
                     splitData_Ad = null;
+                    viewCount = 2;
                     break;
             }
 
+            if (totalCount != 0)
+            {
+                maxX = (float)(totalCount - viewCount) / (float)totalCount;
+            }
             int freeMax = 0;
             int AdMax = 0;
             if (splitData_Free != null && splitData_Free.Count != 0)
@@ -502,7 +536,8 @@ namespace UnityEngine.UI.Extensions
                 }
             }
 
-            UpdatePosition(position);
+            UpdatePosition(Mathf.Min(position, totalCount-viewCount));
+            //UpdatePosition(position);
         }
 
         /// <inheritdoc/>
@@ -608,6 +643,10 @@ namespace UnityEngine.UI.Extensions
                         velocity = 0f;
                     }
 
+                    if (position > totalCount - viewCount)
+                    {
+                        velocity = 0f;
+                    }
                     position += velocity * deltaTime;
 
                     if (snap.Enable && Mathf.Abs(velocity) < snap.VelocityThreshold)

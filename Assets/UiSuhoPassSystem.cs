@@ -239,7 +239,7 @@ public class UiSuhoPassSystem : FancyScrollView<SuhoPassData_Fancy>
     protected override GameObject CellPrefab => cellPrefab;
     private void Start()
     {
-        scroller.Initialize(PassTypeScroll.SuhoPass);
+        scroller.Initialize(TypeScroll.SuhoPass);
         
         scroller.OnValueChanged(UpdatePosition);
     

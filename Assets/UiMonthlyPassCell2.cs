@@ -77,7 +77,7 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
         }).AddTo(disposables);
 
         //킬카운트 변경될때
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).AsObservable().Subscribe(e =>
         {
             if (this.gameObject.activeInHierarchy) 
             {
@@ -220,8 +220,8 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            userInfoParam.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
@@ -259,8 +259,8 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            userInfoParam.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
@@ -298,8 +298,8 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            userInfoParam.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
                 SoundManager.Instance.PlaySound("Reward");
@@ -327,8 +327,8 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            userInfoParam.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
 
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
@@ -354,8 +354,8 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
             //킬카운트
             Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            userInfoParam.Add(UserInfoTable_2.oddMonthKillCount, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value);
+            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
 
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
@@ -368,7 +368,7 @@ public class UiMonthlyPassCell2 : FancyCell<MonthlyPass2Data_Fancy>
 
     private bool CanGetReward()
     {
-        int killCountTotal2 = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value;
+        int killCountTotal2 = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value;
         return killCountTotal2 >= passInfo.require;
     }
 

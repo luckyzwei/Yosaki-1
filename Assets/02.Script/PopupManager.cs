@@ -32,6 +32,8 @@ public class PopupManager : SingletonMono<PopupManager>
     [SerializeField]
     private GameObject chatBoard;
 
+    private List<GameObject> popupList =new List<GameObject>();
+    
     public bool ignoreAlarmMessage { get; private set; }
 
     public void SetIgnoreAlarmMessage(bool ignore)
@@ -116,6 +118,8 @@ public class PopupManager : SingletonMono<PopupManager>
     {
         var yesNoPopup = Instantiate<UiYesNoPopup>(yesNoPopupPrefab, this.transform);
         yesNoPopup.Initialize(title, description, yesCalLBack, noCallBack);
+        
+        popupList.Add(yesNoPopup.gameObject);
     }
 
     public void ShowReviewPopup()
@@ -128,5 +132,15 @@ public class PopupManager : SingletonMono<PopupManager>
         if (SettingData.GachaWhiteEffect.Value == 0) return;
 
         whiteEffect.SetActive(true);
+    }
+
+    public void DestroyAllPopup()
+    {
+        //우선 YesNo만
+        foreach (var popup in popupList)
+        {
+            Destroy(popup);
+        }
+        popupList.Clear();
     }
 }

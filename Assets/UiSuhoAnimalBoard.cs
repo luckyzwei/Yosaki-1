@@ -31,9 +31,11 @@ public class UiSuhoAnimalBoard : SingletonMono<UiSuhoAnimalBoard>
 
         for (int i = 0; i < tableDatas.Length; i++)
         {
-            var button = Instantiate<UiSuhoPetButton>(uiSuhoPetButton, buttonParents);
-
-            button.Initialize(tableDatas[i]);
+            if (tableDatas[i].SUHOPETTYPE == SuhoPetType.Basic)
+            {
+                var button = Instantiate<UiSuhoPetButton>(uiSuhoPetButton, buttonParents);
+                button.Initialize(tableDatas[i]);
+            }
         }
     }
 

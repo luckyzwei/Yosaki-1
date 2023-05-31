@@ -73,7 +73,7 @@ public class UiSumisanTowerBoard : MonoBehaviour
         }
         else
         {
-            currentStageText.SetText($"업데이트 예정");
+            currentStageText.SetText($"도전 완료!");
         }
 
     }

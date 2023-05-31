@@ -515,6 +515,38 @@ public class UiLevelUpEventShop : SingletonMono<UiLevelUpEventShop>
             }
                 break;
             //
+            //    //            //
+            case Item_Type.DarkSkill0:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value += amount;
+                param.Add(GoodsTable.DarkSkill0, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value);
+            }
+                break;
+            case Item_Type.DarkSkill1:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value += amount;
+                param.Add(GoodsTable.DarkSkill1, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value);
+            }
+                break;
+            case Item_Type.DarkSkill2:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value += amount;
+                param.Add(GoodsTable.DarkSkill2, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value);
+            }
+                break;
+            case Item_Type.DarkSkill3:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value += amount;
+                param.Add(GoodsTable.DarkSkill3, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value);
+            }
+                break;
+            case Item_Type.DarkSkill4:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value += amount;
+                param.Add(GoodsTable.DarkSkill4, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value);
+            }
+                break;
+            //
             case Item_Type.GangrimSkill:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.GangrimSkill).Value += amount;

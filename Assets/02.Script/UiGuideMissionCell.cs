@@ -120,7 +120,11 @@ public class UiGuideMissionCell : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다.");
             return;
         }
-
+    
+        
+        LogManager.Instance.SendLogType("Funnel_Tutorial","complete",$"yorin_{tableData.Id}");
+        
+        
         int rewardGemNum = tableData.Rewardvalue;
 
         getButton.interactable = false;

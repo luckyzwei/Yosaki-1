@@ -51,9 +51,10 @@ public class UiGyungRockMassageBoard2 : MonoBehaviour
             markList_Anim[i].enabled = currentFloor > i;
         }
 
-        // dokChimEffect.SetText($"전갈굴(문파) 독침 효과로 하단전베기 피해량 {Utils.ConvertBigNum(PlayerStats.GetGuildTowerChimUpgradeValue() * 100f)}% 강화됨<color=yellow>(+{PlayerStats.GetGuildTowerChimUpgradeValue() * PlayerStats.GetGyungRockEffect(StatusType.SuperCritical13DamPer) * 100f}%)</color>");
-        //
-        // dokChimAbilPer.SetText($"1개당 단전베기 피해 {Utils.ConvertBigNum(GameBalance.GuildTowerChimAbilUpValue * 100f)}% 강화");
+        dokChimEffect.SetText($"전갈굴(문파) 독침 효과로 중단전베기 피해량 {Utils.ConvertBigNumForRewardCell(Mathf.Round(PlayerStats.GetGuildTowerChimUpgradeValue() * 100f))}% 증폭됨<color=yellow>(+{PlayerStats.GetGuildTowerChimUpgradeValue() * PlayerStats.GetGyungRockEffect2(StatusType.SuperCritical13DamPer) * 100f}%)</color>");
+        
+        dokChimAbilPer.SetText($"1개당 단전베기 피해 {Utils.ConvertBigNum(Mathf.Round(GameBalance.GuildTowerChimAbilUpValue * 100f))}% 강화");
+        
     }
 
     public void OnClickEnterButton()

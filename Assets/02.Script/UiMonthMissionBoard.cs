@@ -31,19 +31,6 @@ public class UiMonthMissionBoard : MonoBehaviour
             string key = TableManager.Instance.MonthMissionDatas[(int)MonthMissionKey.ClearHell].Stringid;
             ServerData.eventMissionTable.UpdateMissionClearToCount(key, 1);
         }    
-        CheckEventEnd();
-    }
-
-    private void CheckEventEnd()
-    {
-        var severTime = ServerData.userInfoTable.currentServerTime;
-
-        if (severTime.Month >= 7)
-        {
-            this.gameObject.SetActive(false);
-            PopupManager.Instance.ShowAlarmMessage("이벤트가 종료됐습니다.");
-            return;
-        }
     }
 
     private void Awake()

@@ -25,7 +25,7 @@ public class UiSuhoPetButton : MonoBehaviour
     {
         this.tableData = tableData;
 
-        nameDescription.SetText($"{this.tableData.Id + 1}단계\n{(tableData.Name)}");
+        nameDescription.SetText($"{this.tableData.Gradedescription}\n{(tableData.Name)}");
 
         Subscribe();
     }

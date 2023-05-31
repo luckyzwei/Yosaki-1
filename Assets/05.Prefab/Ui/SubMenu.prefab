@@ -2353,21 +2353,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1766414135743134703}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4756479750384584289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5531902259258112691}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e75542126430404ab26f04fc92fac08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 2715264375343966749, guid: 61daf33bdcb5a5549ae02c5043ed3bbe,
-    type: 3}
-  popupParents: {fileID: 0}
 --- !u!95 &4412352306834687833
 Animator:
   serializedVersion: 3
@@ -2387,6 +2372,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4756479750384584289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531902259258112691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e75542126430404ab26f04fc92fac08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 2715264375343966749, guid: 61daf33bdcb5a5549ae02c5043ed3bbe,
+    type: 3}
+  popupParents: {fileID: 0}
 --- !u!1001 &2184459850340814667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9497,7 +9497,7 @@ PrefabInstance:
     - target: {fileID: 6072773726618779996, guid: 911612bc446928c48b895dca0397b906,
         type: 3}
       propertyPath: m_Name
-      value: SkillCollect
+      value: Help
       objectReference: {fileID: 0}
     - target: {fileID: 6072773726618779996, guid: 911612bc446928c48b895dca0397b906,
         type: 3}
@@ -9628,7 +9628,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: debb7c25b1706dc45ac5ade52306e2b2,
+      objectReference: {fileID: 21300000, guid: 6038ee40f64da0944a2ddd2588834841,
         type: 3}
     - target: {fileID: 6072773727383386344, guid: 911612bc446928c48b895dca0397b906,
         type: 3}
@@ -9716,7 +9716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e75542126430404ab26f04fc92fac08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 3278355893665727403, guid: 0b08bca254bf62841814e9f8b6f5614e,
+  popupPrefab: {fileID: 8044213533112732660, guid: 38709222da6bd3343bb0ed01762fbdf6,
     type: 3}
   popupParents: {fileID: 0}
 --- !u!1001 &8469872324812808773

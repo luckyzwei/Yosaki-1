@@ -46,6 +46,8 @@ public class UiPackageShop : MonoBehaviour
     
     [SerializeField]
     private Transform Goods_Week;
+    [SerializeField]
+    private Transform Goods_Month;
     
     [SerializeField]
     private Transform Goods_PetSoul;
@@ -192,9 +194,14 @@ public class UiPackageShop : MonoBehaviour
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_FoxFire);
                 cell.Initialize(e.Current.Value);//
             }
-            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_SealSword)
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_InstantClear)
             {
                 var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_SealSword);
+                cell.Initialize(e.Current.Value);//
+            }
+            else if (e.Current.Value.SHOPCATEGORY == ShopCategory.Goods_Month)
+            {
+                var cell = Instantiate<UiIapItemCell>(iapCellPrefab, Goods_Month);
                 cell.Initialize(e.Current.Value);//
             }
             

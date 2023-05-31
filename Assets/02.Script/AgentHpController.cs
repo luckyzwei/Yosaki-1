@@ -14,6 +14,7 @@ public class AgentHpController : MonoBehaviour
     public double maxHp { get; private set; }
 
     private EnemyTableData enemyTableData;
+    private float gainGoldFromStage;
 
     [SerializeField]
     private EnemyHpBar enemyHpBar;
@@ -103,6 +104,8 @@ public class AgentHpController : MonoBehaviour
 
         this.enemyTableData = enemyTableData;
 
+        gainGoldFromStage = TableManager.Instance.StageMapTable.dataArray[enemyTableData.Id].Goldbar;
+        
         this.updateSubHpBar = isFieldBossEnemy || updateSubHpBar;
 
         SetDefense(enemyTableData.Defense);
@@ -183,6 +186,9 @@ public class AgentHpController : MonoBehaviour
         
         //중단전베기
         value += value * PlayerStats.GetSuperCritical13DamPer();
+        
+        //상단전베기
+        value += value * PlayerStats.GetSuperCritical18DamPer();
 
         //지옥 데미지
         value += value * PlayerStats.GetSuperCritical3DamPer();
@@ -214,6 +220,8 @@ public class AgentHpController : MonoBehaviour
         value += value * PlayerStats.GetSuperCritical12DamPer();
         //신선베기
         value += value * PlayerStats.GetSuperCritical15DamPer();
+        //영혼베기
+        value += value * PlayerStats.GetSuperCritical17DamPer();
         
         ///
     }
@@ -375,7 +383,14 @@ public class AgentHpController : MonoBehaviour
 
         AddEnemyDeadCount();
 
-        GetGoldByEnemy(enemyTableData.Gold);
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
+        {
+            GetGoldByEnemy(enemyTableData.Gold);
+        }
+        else
+        {
+            GetGoldBarByEnemy(gainGoldFromStage);
+        }
 
         this.gameObject.SetActive(false);
 
@@ -400,6 +415,12 @@ public class AgentHpController : MonoBehaviour
         gold += gold * PlayerStats.GetGoldPlusValue();
 
         ServerData.goodsTable.GetGold(gold);
+    }
+    private void GetGoldBarByEnemy(float goldbar)
+    {
+        goldbar += goldbar *= PlayerStats.GetGoldBarPlusValue();
+        
+        ServerData.goodsTable.GetGoldBar(goldbar);
     }
 
     private void OnDisable()

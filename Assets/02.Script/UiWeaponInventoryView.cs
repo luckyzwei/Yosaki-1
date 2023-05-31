@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,6 +106,34 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
         }
 
     }
+    
+    private List<WeaponData_Fancy> SortHasItemList(List<WeaponData_Fancy> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            WeaponData_Fancy weaponData = list[i];
+            if (weaponData != null && ServerData.weaponTable.TableDatas[weaponData.WeaponData.Stringid].hasItem.Value > 0)
+            {
+                if (list[0].WeaponData.Id < list[i].WeaponData.Id)
+                {
+                    list.Insert(0, list[i]);
+                    list.RemoveAt(i + 1);
+                }
+            }
+        }
+
+        return list;
+    }
+    private void SortHasItem()
+    {
+        weaponDataContainer = SortHasItemList(weaponDataContainer);
+        this.UpdateContents(weaponDataContainer.ToArray());
+    }
+
+    private void OnEnable()
+    {
+        SortHasItem();
+    }
 
     public void AllUpgradeWeapon(int myIdx)
     {
@@ -116,7 +145,7 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     
     private void MakeBasicNormalBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.WeaponTable.dataArray;
@@ -143,9 +172,11 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
         this.UpdateContents(passInfos.ToArray());
         scroller.SetTotalCount(passInfos.Count);
     }
+
+
     private void MakeViewBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryOnlyView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.WeaponTable.dataArray;
@@ -171,23 +202,9 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
         scroller.SetTotalCount(passInfos.Count);
     }
 
-    private List<WeaponData_Fancy> SortHasItemList(List<WeaponData_Fancy> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            WeaponData_Fancy weaponData = list[i];
-            if (weaponData != null && ServerData.weaponTable.TableDatas[weaponData.WeaponData.Stringid].hasItem.Value > 0)
-            {
-                list.Insert(0, list[i]);
-                list.RemoveAt(i + 1);
-            }
-        }
-
-        return list;
-    }
     private void MakeRecommendViewBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.InventoryOnlyView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.WeaponTable.dataArray;
@@ -214,7 +231,7 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     }
     private void MakeEffectOnlyBoard()
     {
-        scroller.Initialize(PassTypeScroll.None);
+        scroller.Initialize(TypeScroll.OnlyEffectView);
             
         scroller.OnValueChanged(UpdatePosition);
         var tableData = TableManager.Instance.WeaponTable.dataArray;

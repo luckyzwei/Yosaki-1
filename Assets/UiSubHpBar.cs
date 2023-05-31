@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,12 +13,38 @@ public class UiSubHpBar : SingletonMono<UiSubHpBar>
 
     private float fixedLerpSpeed = 5f;
 
+    private TextMeshProUGUI remainDescription;
 
     private void OnEnable()
     {
         ResetGauge();
 
         StartCoroutine(GreyRoutine());
+    }
+
+    private void Awake()
+    {
+        
+        base.Awake();
+        
+        GetTextMeshProObject();
+        
+    }
+
+    private void GetTextMeshProObject()
+    {
+        var findObject = this.transform.Find("Top");
+        
+        if (findObject != null)
+        {
+            remainDescription = findObject.GetComponent<TextMeshProUGUI>();
+            
+            if (remainDescription!=null)
+            {
+                remainDescription.fontSizeMax = 42;
+                remainDescription.fontSizeMin = 1;
+            }
+        }
     }
 
 
@@ -44,5 +71,18 @@ public class UiSubHpBar : SingletonMono<UiSubHpBar>
         if (maxHp == 0f) return;
 
         greenRenderer.fillAmount = (float)(currentHp / maxHp);
+
+        if (remainDescription != null)
+        {
+            if (currentHp > 0)
+            {
+                remainDescription.SetText($"{Utils.ConvertBigNum(currentHp)}");
+            }
+            else
+            {
+                remainDescription.SetText("클리어!");
+            }
+         
+        }
     }
 }

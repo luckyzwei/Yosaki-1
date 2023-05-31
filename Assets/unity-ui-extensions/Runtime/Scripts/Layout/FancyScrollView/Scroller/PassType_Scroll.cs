@@ -3,7 +3,7 @@
 
 namespace UnityEngine.UI.Extensions
 {
-    public enum PassTypeScroll
+    public enum TypeScroll
     {
         None,
         DolPass,
@@ -13,5 +13,8 @@ namespace UnityEngine.UI.Extensions
         SuhoPass,
         FoxFirePass,
         SealSwordPass,
+        InventoryView,
+        InventoryOnlyView,
+        OnlyEffectView,
     }
 }

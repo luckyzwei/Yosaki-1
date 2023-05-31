@@ -487,6 +487,10 @@ public enum Item_Type
     costume117 = 1417, // 신선     
     costume118 = 1418, // 신선     
     costume119 = 1419, // 월간     
+    costume120 = 1420, // 신선     
+    costume121 = 1421, // 신선     
+    costume122 = 1422, // 천선     
+    costume123 = 1423, // 이벤트 외형     
 
 
     gumiho0 = 5000,
@@ -593,6 +597,13 @@ public enum Item_Type
     FoxPet2 = 7092,
     FoxPet3 = 7093,
     
+    TigerPet0 = 7094,
+    TigerPet1 = 7095,
+    TigerPet2 = 7096,
+    TigerPet3 = 7097,
+    
+    
+    
     DokebiHorn0 = 7100,
     DokebiHorn1 = 7101,
     DokebiHorn2 = 7102,
@@ -606,6 +617,11 @@ public enum Item_Type
     DokebiHorn9 = 7109,
 
 
+    SpecialSuhoPet0 = 7110,
+    SpecialSuhoPet1 = 7111,
+    SpecialSuhoPet2 = 7112,
+    SpecialSuhoPet3 = 7113,
+    
     SumisanWeapon0 = 7120,
     SumisanWeapon1 = 7121,
     SumisanWeapon2 = 7122,
@@ -674,10 +690,16 @@ public enum Item_Type
     SinsunWeapon0 = 7220,
     SinsunWeapon1 = 7221,
     SinsunWeapon2 = 7222,
+    SinsunWeapon3 = 7223,
+    SinsunWeapon4 = 7224,
+    SinsunWeapon5 = 7225,
     
     SinsunNorigae0 = 7230,
     SinsunNorigae1 = 7231,
     SinsunNorigae2 = 7232,
+    SinsunNorigae3 = 7233,
+    SinsunNorigae4 = 7234,
+    SinsunNorigae5 = 7235,
     
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
@@ -756,6 +778,12 @@ public enum Item_Type
     ThiefSkill3 = 8743,
     ThiefSkill4 = 8744,
     
+    DarkSkill0 = 8745, //심연스킬
+    DarkSkill1 = 8746, 
+    DarkSkill2 = 8747, 
+    DarkSkill3 = 8748,
+    DarkSkill4 = 8749,
+    
     Event_NewYear = 8800, //떡국
     Event_NewYear_All = 8801, // 총 습득량
     
@@ -795,6 +823,7 @@ public enum Item_Type
     FoxRelicClearTicket= 9027, 
     SealWeaponClear= 9028, 
     SinsunTreasure= 9029, 
+    GoldBar= 9030, 
     
 }
 //

@@ -91,6 +91,12 @@ public class UiHellTowerResult : MonoBehaviour
                     case GameManager.ContentsType.GuildTower:
                         stageChangeButton.SetActive(false);
                         break;
+                    case GameManager.ContentsType.SinsunTower when (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.SansinTowerIdx).Value < (TableManager.Instance.sinsunTowerTable.dataArray.Length):
+                        stageChangeText.SetText("다음 스테이지");
+                        break;
+                    case GameManager.ContentsType.SinsunTower:
+                        stageChangeButton.SetActive(false);
+                        break;
                 }
                 
                 return "클리어!!";

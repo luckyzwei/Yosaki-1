@@ -93,7 +93,7 @@ public class UiNickNameInputBoard : SingletonMono<UiNickNameInputBoard>
 
             Backend.BMember.CreateNickname(nickName, MakeNickNameCallBack);
         }
-
+        LogManager.Instance.SendLogType("Funnel_Tutorial","complete",$"CreateNickname");
         ServerData.userInfoTable.ClearDailyMission();
     }
 

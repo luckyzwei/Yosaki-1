@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UniRx;
+using UnityEngine.UI;
+
 public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
 {
     [SerializeField]
@@ -34,6 +36,7 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
     [SerializeField]
     private GameObject hotTimeObject;
 
+    [SerializeField] private Image GoldIcon;
     //[SerializeField]
     //private GameObject winterObject;
 
@@ -61,6 +64,12 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
         ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).AsObservable().Subscribe(e =>
         {
             dokebiObject.SetActive(e == 1);
+        }).AddTo(this);
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).AsObservable().Subscribe(e =>
+        {
+            GoldIcon.sprite = e < 1
+                ? CommonUiContainer.Instance.GetItemIcon(Item_Type.Gold)
+                : CommonUiContainer.Instance.GetItemIcon(Item_Type.GoldBar);
         }).AddTo(this);
 
     }

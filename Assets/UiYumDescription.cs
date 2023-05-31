@@ -47,10 +47,16 @@ public class UiYumDescription : MonoBehaviour
 
 
       abilDescription.SetText($"{CommonString.GetStatusName(StatusType.SuperCritical3DamPer)}{Utils.ConvertBigNum(tableData.Abilvalue0 * 100f)}");
-        
 
 
-        image.sprite = Resources.Load<Sprite>($"Yum/{idx / 3}");
+      if (idx/3 < 5)
+      {
+          image.sprite = Resources.Load<Sprite>($"Yum/{idx / 3}");
+      }
+      else
+      {
+          image.sprite = Resources.Load<Sprite>($"Yum/5");
+      }
     }
 
     public void OnClickLeftButton()
@@ -71,7 +77,7 @@ public class UiYumDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.yumTable.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

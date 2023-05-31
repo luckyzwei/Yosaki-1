@@ -239,7 +239,7 @@ public class UiSealSwordPassSystem : FancyScrollView<SealSwordPassData_Fancy>
     protected override GameObject CellPrefab => cellPrefab;
     private void Start()
     {
-        scroller.Initialize(PassTypeScroll.SealSwordPass);
+        scroller.Initialize(TypeScroll.SealSwordPass);
         
         scroller.OnValueChanged(UpdatePosition);
     

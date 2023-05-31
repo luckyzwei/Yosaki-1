@@ -72,7 +72,7 @@ public class UiMonkeyDescription : MonoBehaviour
     {
         if (currentIdx == TableManager.Instance.TestMonkey.dataArray.Length - 1)
         {
-            PopupManager.Instance.ShowAlarmMessage("업데이트 예정 입니다!");
+            PopupManager.Instance.ShowAlarmMessage("마지막 단계입니다!");
         }
 
         currentIdx++;

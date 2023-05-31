@@ -19,7 +19,8 @@ public class UiShop : SingletonMono<UiShop>
 #if UNITY_EDITOR
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+        if (Input.GetKeyDown(KeyCode.
+                Keypad2))
         {
             ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value += 100000000000000000000000000000000000000f;
         }
@@ -886,6 +887,40 @@ public class UiShop : SingletonMono<UiShop>
             {
                 ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value += amount;
                 param.Add(GoodsTable.ThiefSkill4, ServerData.goodsTable.GetTableData(GoodsTable.ThiefSkill4).Value);
+            }
+                break;
+ 
+            //
+            //
+            case Item_Type.DarkSkill0:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value += amount;
+                param.Add(GoodsTable.DarkSkill0, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill0).Value);
+            }
+                break;
+            case Item_Type.DarkSkill1:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value += amount;
+                param.Add(GoodsTable.DarkSkill1, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill1).Value);
+            }
+                break;
+            case Item_Type.DarkSkill2:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value += amount;
+                param.Add(GoodsTable.DarkSkill2, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill2).Value);
+            }
+                break;
+            case Item_Type.DarkSkill3:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value += amount;
+                param.Add(GoodsTable.DarkSkill3, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill3).Value);
+            }
+                break;
+ 
+            case Item_Type.DarkSkill4:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value += amount;
+                param.Add(GoodsTable.DarkSkill4, ServerData.goodsTable.GetTableData(GoodsTable.DarkSkill4).Value);
             }
                 break;
  

@@ -74,7 +74,7 @@ public class UiMonthlyPassAttendCell : MonoBehaviour
         }).AddTo(disposables);
 
         //킬카운트 변경될때
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).AsObservable().Subscribe(e =>
         {
             if (this.gameObject.activeInHierarchy) 
             {
@@ -186,10 +186,7 @@ public class UiMonthlyPassAttendCell : MonoBehaviour
 
     private void GetFreeReward()
     {
-        
-
-
-            //로컬
+        //로컬
             ServerData.monthlyPassServerTable.TableDatas[passInfo.rewardType_Free_Key].Value += $",{passInfo.id}";
             ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_Free, passInfo.rewardTypeValue_Free);
 
@@ -202,11 +199,6 @@ public class UiMonthlyPassAttendCell : MonoBehaviour
 
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_Free);
             transactionList.Add(rewardTransactionValue);
-
-            //킬카운트
-            Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {
@@ -229,11 +221,6 @@ public class UiMonthlyPassAttendCell : MonoBehaviour
 
             var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_IAP);
             transactionList.Add(rewardTransactionValue);
-
-            //킬카운트
-            Param userInfoParam = new Param();
-            userInfoParam.Add(UserInfoTable.killCountTotal2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotal2).Value);
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
             ServerData.SendTransaction(transactionList, successCallBack: () =>
             {

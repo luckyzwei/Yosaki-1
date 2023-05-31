@@ -63,17 +63,31 @@ public class UiFastSleepRewardBoard : MonoBehaviour
             return;
         }
 
-        //
+        //두번째부터 봐야됨.
         if (rewardedCount != 0)
         {
             AdManager.Instance.ShowRewardedReward(RewardRoutine);
         }
+        // 첫번째는 광고 안봐도 됨.
         else
         {
-            RewardRoutine();
+            //광고제거시 5개받음
+            if (HasRemoveAd())
+            {
+                RewardRoutine(GameBalance.fastSleepRewardMaxCount - rewardedCount);
+            }
+            else
+            {
+                RewardRoutine();
+            }
         }
     }
 
+    private bool HasRemoveAd()
+    {
+        return ServerData.iapServerTable.TableDatas["removead"].buyCount.Value > 0;
+
+    }
     
     public void OnClickAllReceiveButton()
     {
@@ -131,6 +145,10 @@ public class UiFastSleepRewardBoard : MonoBehaviour
         {
             EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearFast, 1);
         }
+        else
+        {
+            EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearFast, 1);
+        }
         ServerData.SendTransaction(transactions, successCallBack: () =>
         {
             button.interactable = true;
@@ -140,6 +158,62 @@ public class UiFastSleepRewardBoard : MonoBehaviour
             SleepRewardReceiver.Instance.SetComplete = false;
 
             PopupManager.Instance.ShowAlarmMessage("휴식보상이 추가 됐습니다(1시간)");
+        });
+    }
+    private void RewardRoutine(int count)
+    {
+        double currentSleepTime = ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value;
+
+        if (currentSleepTime >= GameBalance.sleepRewardMaxValue)
+        {
+            PopupManager.Instance.ShowAlarmMessage("휴식 보상이 최대 입니다.\n먼저 휴식 보상을 사용 해 주세요!");
+            return;
+        }
+
+        int rewardedCount = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.dailySleepRewardReceiveCount].Value;
+
+        if (rewardedCount >= GameBalance.fastSleepRewardMaxCount)
+        {
+            PopupManager.Instance.ShowAlarmMessage("오늘은 더이상 받으실 수 없습니다.");
+            return;
+        }
+
+
+        button.interactable = false;
+        waitDescription.SetActive(true);
+
+        //24시간 예외처리
+        ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value +=
+            GameBalance.fastSleepRewardTimeValue * count;
+
+        ServerData.userInfoTable.TableDatas[UserInfoTable.dailySleepRewardReceiveCount].Value += count;
+
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        Param userinfoParam = new Param();
+        userinfoParam.Add(UserInfoTable.sleepRewardSavedTime, ServerData.userInfoTable.TableDatas[UserInfoTable.sleepRewardSavedTime].Value);
+        userinfoParam.Add(UserInfoTable.dailySleepRewardReceiveCount, ServerData.userInfoTable.TableDatas[UserInfoTable.dailySleepRewardReceiveCount].Value);
+
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userinfoParam));
+
+        EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearFast, count);
+        if (ServerData.userInfoTable.IsMonthlyPass2() == false)
+        {
+            EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearFast, count);
+        }
+        else
+        {
+            EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearFast, count);
+        }
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            button.interactable = true;
+            waitDescription.SetActive(false);
+
+            UiSleepRewardIndicator.Instance.ActiveButton();
+            SleepRewardReceiver.Instance.SetComplete = false;
+
+            PopupManager.Instance.ShowAlarmMessage($"휴식보상이 추가 됐습니다({count}시간)");
         });
     }
 }

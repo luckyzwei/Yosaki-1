@@ -681,7 +681,8 @@ if (magicBookData != null)
         magicBookParam.Add(magicbook.Stringid, updateValue);
 
         transactionList.Add(TransactionValue.SetUpdate(MagicBookTable.tableName, MagicBookTable.Indate, magicBookParam));
-
+        //버프시간저장
+        SaveManager.Instance.SyncBuffData();
 
         ServerData.SendTransaction(transactionList);
 

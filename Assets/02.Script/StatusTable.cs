@@ -8,7 +8,7 @@ using UniRx;
 
 public enum StatusWhere
 {
-    gold, statpoint, memory
+    gold, statpoint, memory,goldbar
 }
 
 
@@ -55,6 +55,12 @@ public class StatusTable
     public const string Cslash_memory = "Cslash_memory";
     public const string GiSlash_memory = "GiSlash_memory";
     public const string Gum_memory = "Gum_memory";
+    
+    //public const string IgnoreDefense_GoldBar = "IgnoreDefense_GoldBar";
+    //public const string GoldBarGain_GoldBar = "GoldBarGain_GoldBar";
+    public const string Special0_GoldBar = "Special0_GoldBar";
+    public const string Special1_GoldBar = "Special1_GoldBar";
+    public const string Special2_GoldBar = "Special2_GoldBar";
     
     public const string Sin_StatPoint = "Sin_StatPoint";
     public const string Hyung_StatPoint = "Hyung_StatPoint";
@@ -109,6 +115,11 @@ public class StatusTable
         { Cslash_memory, 0 },
         { GiSlash_memory, 0 },
         { Gum_memory, 0 },
+        //{ IgnoreDefense_GoldBar, 0 },
+        //{ GoldBarGain_GoldBar, 0 },
+        { Special0_GoldBar, 0 },
+        { Special1_GoldBar, 0 },
+        { Special2_GoldBar, 0 },
         
         { Sin_StatPoint, 0 },
         { Hyung_StatPoint, 0 },
@@ -349,11 +360,49 @@ public class StatusTable
                     {
                         float spcialAbilRatio = PlayerStats.GetSpecialAbilRatio();
 
-                        return level * 0.00000009f * spcialAbilRatio;
+                        return level * GameBalance.Gum_memory * spcialAbilRatio;
                     }
 
                 #endregion
 
+                #region GoldBar
+
+                //
+                // case IgnoreDefense_GoldBar:
+                // {
+                //     float specialAbilityRatio = Mathf.Max(1, PlayerStats.GetSpecialAbilRatio() / 10000);
+                //     float goldAbilRatio = Mathf.Max(1,PlayerStats.GetGoldAbilAddRatio() / 10000);
+                //     return level * GameBalance.ignoreDefense_GoldBar * specialAbilityRatio * goldAbilRatio;
+                // }
+                
+                
+                // case GoldBarGain_GoldBar:
+                // {
+                //    // float specialAbilityRatio = Mathf.Min(1, PlayerStats.GetSpecialAbilRatio() / 10000);
+                //    float specialAbilityRatio = Mathf.Max(1, PlayerStats.GetSpecialAbilRatio() / 10000);
+                //    float goldAbilRatio = Mathf.Max(1,PlayerStats.GetGoldAbilAddRatio() / 10000);
+                //     return level * GameBalance.GoldBarGain_GoldBar* specialAbilityRatio * goldAbilRatio;
+                // }
+                case Special0_GoldBar:
+                {
+                    float specialAbilityRatio = Mathf.Max(1, PlayerStats.GetNorigaeSoulGradeValue() / 100);
+                    float goldAbilRatio = Mathf.Max(1,PlayerStats.GetGoldAbilAddRatio() / 100);
+                    return level * GameBalance.Special0_GoldBar * specialAbilityRatio * goldAbilRatio;
+                }
+                case Special1_GoldBar:
+                {
+                    float specialAbilityRatio = Mathf.Max(1, PlayerStats.GetNorigaeSoulGradeValue() / 100);
+                    float goldAbilRatio = Mathf.Max(1,PlayerStats.GetGoldAbilAddRatio() / 100);
+                    return level * GameBalance.Special1_GoldBar * specialAbilityRatio * goldAbilRatio;
+                }
+                case Special2_GoldBar:
+                {
+                    float specialAbilityRatio = Mathf.Max(1, PlayerStats.GetNorigaeSoulGradeValue() / 100);
+                    float goldAbilRatio = Mathf.Max(1,PlayerStats.GetGoldAbilAddRatio() / 100);
+                    return level * GameBalance.Special2_GoldBar * specialAbilityRatio * goldAbilRatio;
+                }
+
+                #endregion
                 default:
                     {
                         return 0f;
@@ -392,6 +441,10 @@ public class StatusTable
                     {
                         //7월 12일버전
                         //return Mathf.Pow(level, 3.0f + (level / 100) * 0.1f);
+                        if (data.Maxlv <= level)
+                        {
+                            return 0f;
+                        }
                         return Mathf.Pow(level, 2.9f + (level / 100) * 0.1f);
                     }
                     break;

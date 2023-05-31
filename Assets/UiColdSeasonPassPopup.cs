@@ -57,7 +57,7 @@ public class UiColdSeasonPassPopup : MonoBehaviour
     {
         var severTime = ServerData.userInfoTable.currentServerTime;
 
-        if (severTime.Month >= 5 && severTime.Day > 12)
+        if (ServerData.userInfoTable.IsHotTimeEvent() == false)
         {
             this.gameObject.SetActive(false);
             PopupManager.Instance.ShowAlarmMessage("이벤트가 종료됐습니다.");

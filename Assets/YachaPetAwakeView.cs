@@ -87,7 +87,8 @@ public class YachaPetAwakeView : MonoBehaviour
 
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= GameBalance.AwakePetUpgradePrice;
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 1;
-
+        //버프시간저장
+        SaveManager.Instance.SyncBuffData();
         if (syncRoutine != null)
         {
             CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
@@ -113,7 +114,8 @@ public class YachaPetAwakeView : MonoBehaviour
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -= upgradePrice;
         
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 100;
-
+        //버프시간저장
+        SaveManager.Instance.SyncBuffData();
         if (syncRoutine != null)
         {
             CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
@@ -167,7 +169,8 @@ public class YachaPetAwakeView : MonoBehaviour
         ServerData.goodsTable.GetTableData(GoodsTable.GrowthStone).Value -=
             (GameBalance.AwakePetUpgradePrice * (int)amount);
         ServerData.statusTable.GetTableData(StatusTable.PetAwakeLevel).Value += 1 * (int)amount;
-
+        //버프시간저장
+        SaveManager.Instance.SyncBuffData();
         if (syncRoutine != null)
         {
             CoroutineExecuter.Instance.StopCoroutine(syncRoutine);

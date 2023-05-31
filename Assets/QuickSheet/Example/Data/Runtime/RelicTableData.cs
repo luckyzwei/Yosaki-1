@@ -37,8 +37,8 @@ public class RelicTableData
   public int Requirerelic { get {return requirerelic; } set { this.requirerelic = value;} }
   
   [SerializeField]
-  int requirelevel;
-  public int Requirelevel { get {return requirelevel; } set { this.requirelevel = value;} }
+  float requirelevel;
+  public float Requirelevel { get {return requirelevel; } set { this.requirelevel = value;} }
   
   [SerializeField]
   string name;

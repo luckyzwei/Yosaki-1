@@ -63,12 +63,16 @@ public class UiStatusUpgradeCell : MonoBehaviour
 
     [SerializeField]
     private GameObject memoryIcon;
+    [SerializeField]
+    private GameObject goldBarIcon;
 
     [SerializeField]
     private TextMeshProUGUI upgradeText;
 
     [SerializeField]
     private GameObject allUpgradeButton;
+    [SerializeField]
+    private GameObject _upgradeButton;
 
     [SerializeField]
     private GameObject _100UpgradeButton;
@@ -109,15 +113,26 @@ public class UiStatusUpgradeCell : MonoBehaviour
     {
         this.statusData = statusData;
 
+
+        if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            _upgradeButton.SetActive(false);
+            _100UpgradeButton.SetActive(false);
+            _10000UpgradeButton.SetActive(false);
+        }
+        else
+        {
+            _100UpgradeButton.SetActive(statusData.STATUSWHERE != StatusWhere.gold);
+            _10000UpgradeButton.SetActive(statusData.STATUSWHERE != StatusWhere.gold);
+        }
+
         allUpgradeButton.SetActive(statusData.STATUSWHERE != StatusWhere.gold);
-
-        _100UpgradeButton.SetActive(statusData.STATUSWHERE != StatusWhere.gold);
-
-        _10000UpgradeButton.SetActive(statusData.STATUSWHERE != StatusWhere.gold);
 
         memoryIcon.SetActive(statusData.STATUSWHERE == StatusWhere.memory);
 
         coinIcon.SetActive(statusData.STATUSWHERE == StatusWhere.gold);
+        
+        goldBarIcon.SetActive(statusData.STATUSWHERE == StatusWhere.goldbar);
 
         Subscribe();
 
@@ -125,7 +140,7 @@ public class UiStatusUpgradeCell : MonoBehaviour
 
         if (IsMaxLevel())
         {
-            upgradeText.SetText("최고단계");
+            upgradeText.SetText("최고레벨");
         }
         else
         {
@@ -153,13 +168,18 @@ public class UiStatusUpgradeCell : MonoBehaviour
             price = 1;
             priceText.SetText($"{price}개");
         }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            price = statusData.Upgradeprice;
+            priceText.SetText($"{price}개");
+        }
         else if (statusData.STATUSWHERE == StatusWhere.memory)
         {
             price = 1;
             priceText.SetText($"{price}개");
         }
 
-        statusNameText.SetText(CommonString.GetStatusName((StatusType)statusData.Statustype));
+        statusNameText.SetText(statusData.Description);
 
         if (statusData.Ispercent == false)
         {
@@ -177,15 +197,24 @@ public class UiStatusUpgradeCell : MonoBehaviour
         {
             if (IsMaxLevel() == false)
             {
-                descriptionText.SetText($"{Utils.ConvertBigNum(currentStatusValue * 100f)}%->{Utils.ConvertBigNum(nextStatusValue * 100f)}%");
+                descriptionText.SetText($"{ Utils.ConvertNum(currentStatusValue*100,2)}%->{Utils.ConvertNum(nextStatusValue*100)}%");
             }
             else
             {
-                descriptionText.SetText($"{Utils.ConvertBigNum(currentStatusValue * 100f)}%(MAX)");
+     
+                    descriptionText.SetText($"{ Utils.ConvertNum(currentStatusValue*100,2)}%(MAX)");
             }
         }
 
         levelText.SetText($"Lv : {currentLevel}");
+        if (IsMaxLevel())
+        {
+            upgradeText.SetText("최고레벨");
+        }
+        else
+        {
+            upgradeText.SetText("수련");
+        }
     }
     private void Subscribe()
     {
@@ -222,6 +251,13 @@ public class UiStatusUpgradeCell : MonoBehaviour
         else if (this.statusData.STATUSWHERE == StatusWhere.memory)
         {
             ServerData.statusTable.GetTableData(StatusTable.Memory).AsObservable().Subscribe(e =>
+            {
+                SetUpgradeButtonState(CanUpgrade());
+            }).AddTo(this);
+        }
+        else if (this.statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).AsObservable().Subscribe(e =>
             {
                 SetUpgradeButtonState(CanUpgrade());
             }).AddTo(this);
@@ -373,6 +409,10 @@ public class UiStatusUpgradeCell : MonoBehaviour
         {
             ServerData.statusTable.GetTableData(StatusTable.StatPoint).Value -= 1;
         }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value -= statusData.Upgradeprice;
+        }
         else if (statusData.STATUSWHERE == StatusWhere.memory)
         {
             ServerData.statusTable.GetTableData(StatusTable.Memory).Value -= 1;
@@ -406,6 +446,17 @@ public class UiStatusUpgradeCell : MonoBehaviour
             if (showPopup && ret == false)
             {
                 PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Gold)}가 부족합니다.");
+            }
+
+            return ret;
+        }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            bool ret = ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value >= statusData.Upgradeprice;
+
+            if (showPopup && ret == false)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GoldBar)}가 부족합니다.");
             }
 
             return ret;
@@ -497,6 +548,53 @@ public class UiStatusUpgradeCell : MonoBehaviour
                 ServerData.statusTable.GetTableData(statusData.Key).Value += currentStatPoint;
             }
         }
+        
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            // bool ret = ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value >= upgradePrice_gold;
+            //
+            // if (showPopup && ret == false)
+            // {
+            //     PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GoldBar)}가 부족합니다.");
+            // }
+
+            //return ret;
+            var currentGoldBar = ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value;
+
+            if (IsMaxLevel())
+            {
+                PopupManager.Instance.ShowAlarmMessage("최고레벨 입니다.");
+                return;
+            }
+
+            if (currentGoldBar < statusData.Upgradeprice)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GoldBar)}가 부족합니다.");
+                return;
+            }
+
+
+            int currentLevel = ServerData.statusTable.GetTableData(statusData.Key).Value;
+            int maxLevel = statusData.Maxlv;
+            //업그레이드가능한 레벨 * 코스트
+            //int upgradableAmount = (maxLevel - currentLevel) * statusData.Upgradeprice;
+            int upgradableAmount = (maxLevel - currentLevel);
+
+            //2개당 1개로 전환
+            var upgradableGoldBar = (int)(currentGoldBar / statusData.Upgradeprice);
+            
+            //맥스렙 가능
+            if (currentGoldBar >= upgradableAmount * statusData.Upgradeprice)
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value -= upgradableAmount * statusData.Upgradeprice;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += upgradableAmount;
+            }
+            else
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value -= upgradableGoldBar * statusData.Upgradeprice;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += (int)upgradableGoldBar;
+            }
+        }
         else if (statusData.STATUSWHERE == StatusWhere.memory)
         {
             int currentMemoryPoint = ServerData.statusTable.GetTableData(StatusTable.Memory).Value;
@@ -570,6 +668,44 @@ public class UiStatusUpgradeCell : MonoBehaviour
             {
                 ServerData.statusTable.GetTableData(StatusTable.StatPoint).Value -= currentStatPoint;
                 ServerData.statusTable.GetTableData(statusData.Key).Value += currentStatPoint;
+            }
+        }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            var currentGoldBar = (int)ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value;
+
+            if (currentGoldBar < statusData.Upgradeprice)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GoldBar)}가 부족합니다.");
+                return;
+            }
+
+            if (IsMaxLevel())
+            {
+                PopupManager.Instance.ShowAlarmMessage("최고레벨 입니다.");
+                return;
+            }
+
+            int currentLevel = ServerData.statusTable.GetTableData(statusData.Key).Value;
+            int maxLevel = statusData.Maxlv;
+            //업그레이드가능한 레벨 * 코스트
+            int upgradableAmount = (maxLevel - currentLevel) * statusData.Upgradeprice;
+
+            //2개당 1개로 전환
+            var upgradableGoldBar = currentGoldBar / statusData.Upgradeprice;
+            upgradableAmount = Mathf.Min(upgradableAmount, 100 * statusData.Upgradeprice);
+
+            //맥스렙 가능
+            if (currentGoldBar >= upgradableAmount)
+            {
+                ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value -= upgradableAmount;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += upgradableAmount;
+            }
+            else
+            {
+                //current 20개
+                ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value -= upgradableGoldBar*statusData.Upgradeprice;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += (int)upgradableGoldBar;
             }
         }
         else if (statusData.STATUSWHERE == StatusWhere.memory)
@@ -648,6 +784,44 @@ public class UiStatusUpgradeCell : MonoBehaviour
                 ServerData.statusTable.GetTableData(statusData.Key).Value += currentStatPoint;
             }
         }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            int currentGoldBar = (int)ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value;
+
+            if (currentGoldBar < statusData.Upgradeprice)
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.GoldBar)}가 부족합니다.");
+                return;
+            }
+
+            if (IsMaxLevel())
+            {
+                PopupManager.Instance.ShowAlarmMessage("최고레벨 입니다.");
+                return;
+            }
+
+ 
+            int currentLevel = ServerData.statusTable.GetTableData(statusData.Key).Value;
+            int maxLevel = statusData.Maxlv;
+            //업그레이드가능한 레벨 * 코스트
+            int upgradableAmount = (maxLevel - currentLevel) * statusData.Upgradeprice;
+
+            //2개당 1개로 전환
+            var upgradableGoldBar = currentGoldBar / statusData.Upgradeprice;
+            upgradableAmount = Mathf.Min(upgradableAmount, 10000*statusData.Upgradeprice);
+
+            //맥스렙 가능
+            if (currentGoldBar >= upgradableAmount)
+            {
+                ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value -= upgradableAmount;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += upgradableAmount;
+            }
+            else
+            {
+                ServerData.goodsTable.GetTableData(Item_Type.GoldBar).Value -= upgradableGoldBar*statusData.Upgradeprice;
+                ServerData.statusTable.GetTableData(statusData.Key).Value += upgradableGoldBar;
+            }
+        }
         else if (statusData.STATUSWHERE == StatusWhere.memory)
         {
             int currentMemoryPoint = ServerData.statusTable.GetTableData(StatusTable.Memory).Value;
@@ -721,6 +895,11 @@ public class UiStatusUpgradeCell : MonoBehaviour
         else if (statusData.STATUSWHERE == StatusWhere.gold)
         {
             goodesParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
+            transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodesParam));
+        }
+        else if (statusData.STATUSWHERE == StatusWhere.goldbar)
+        {
+            goodesParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
             transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodesParam));
         }
 

@@ -27,7 +27,7 @@ public class UiAnimalView : MonoBehaviour
 
         int grade = suhoPetTableData.Id / 2;
 
-        gradeDescription.SetText($"{suhoPetTableData.Id + 1}단계");
+        gradeDescription.SetText($"{this.suhoPetTableData.Gradedescription}");
 
         gradeFrame.sprite = CommonUiContainer.Instance.itemGradeFrame[grade];
 

@@ -30,6 +30,11 @@ public class UserInfoTable_2
     public const string SealSwordAwakeScore = "SSASS";
     public const string taeguekTower = "tgtw";
     public const string taeguekLock = "tgll";
+    public const string SansinTowerIdx = "sst";
+    public const string KingTrialGraduateIdx = "ktgi";
+    public const string darkScore = "ds";
+    public const string graduateGold = "gg";
+    public const string gyungRockTower3 = "grt3";
 
 
     public bool isInitialize = false;
@@ -49,6 +54,11 @@ public class UserInfoTable_2
         { SealSwordAwakeScore, 0f },
         { taeguekTower, 0f },
         { taeguekLock, 0f },
+        { SansinTowerIdx, 0f },
+        { KingTrialGraduateIdx, 0f },
+        { darkScore, 0f },
+        { graduateGold, 0f },
+        { gyungRockTower3, 0f },
     };
 
     private Dictionary<string, ReactiveProperty<double>> tableDatas = new Dictionary<string, ReactiveProperty<double>>();

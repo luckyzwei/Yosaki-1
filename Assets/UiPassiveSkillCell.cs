@@ -34,10 +34,7 @@ public class UiPassiveSkillCell : MonoBehaviour
     private GameObject lockMask;
 
     [SerializeField]
-    private GameObject lockMask_Baek;
-
-    [SerializeField]
-    private TextMeshProUGUI baekLockDescription;
+    private TextMeshProUGUI lockDesc;
 
     [SerializeField]
     private WeaponView weaponView;
@@ -56,11 +53,6 @@ public class UiPassiveSkillCell : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI buttonDesc;
 
-    [SerializeField]
-    private GameObject lockMask_Sin;
-
-    [SerializeField]
-    private TextMeshProUGUI lockMask_Sin_Text;
 
 
     public void Refresh(PassiveSkillData passiveSkillData)
@@ -70,21 +62,36 @@ public class UiPassiveSkillCell : MonoBehaviour
         skillIcon.sprite = CommonResourceContainer.GetPassiveSkillIconSprite(passiveSkillData);
 
         skillName.SetText(passiveSkillData.Skillname);
-
+        if (string.IsNullOrEmpty(passiveSkillData.Lockmaskdescription))
+        {
+            lockDesc.SetText("");
+        }
+        else
+        {
+            lockDesc.SetText($"{passiveSkillData.Lockmaskdescription}");
+        }    
+        
+        
         int currentSkillLevel = ServerData.passiveServerTable.TableDatas[passiveSkillData.Stringid].level.Value;
 
         var statusType = (StatusType)passiveSkillData.Abilitytype;
 
         if (statusType.IsPercentStat())
         {
-            if (statusType != StatusType.PenetrateDefense)
+            //방무
+            if (statusType == StatusType.PenetrateDefense)
             {
-
-            skillDesc.SetText($"{CommonString.GetStatusName(statusType)} : {Utils.ConvertBigNum(PlayerStats.GetPassiveSkillValue(statusType) * 100f)}");
+                skillDesc.SetText($"{CommonString.GetStatusName(statusType)} : {(PlayerStats.GetPassiveSkillValue(statusType) * 100f)}");
+            }
+            //단전베기
+            else if(statusType == StatusType.SuperCritical8DamPer||statusType == StatusType.SuperCritical13DamPer||statusType == StatusType.SuperCritical18DamPer)
+            {
+                skillDesc.SetText($"{CommonString.GetStatusName(statusType)} : {Utils.ConvertNum(PlayerStats.GetPassiveSkillValue(statusType) * 100f, 2)}");
+ 
             }
             else
             {
-                skillDesc.SetText($"{CommonString.GetStatusName(statusType)} : {(PlayerStats.GetPassiveSkillValue(statusType) * 100f)}");
+                skillDesc.SetText($"{CommonString.GetStatusName(statusType)} : {Utils.ConvertBigNum(PlayerStats.GetPassiveSkillValue(statusType) * 100f)}");
             }
         }
         else
@@ -109,18 +116,57 @@ public class UiPassiveSkillCell : MonoBehaviour
 
         magicBookServerData = ServerData.magicBookTable.TableDatas[magicBookData.Stringid];
 
-        //
-        if (string.IsNullOrEmpty(passiveSkillData.Needgoods) == true)
+        bool isClearRequireAbil = true;
+        if (passiveSkillData.Requiremaxabil != -1)
         {
-            lockMask_Sin.SetActive(false);
-            lockMask_Baek.SetActive(false);
-
-            if (passiveSkillData.Requiremagicbookidx != 12)
+            //요구스킬
+            var requireSkillData = TableManager.Instance.PassiveSkill.dataArray[passiveSkillData.Requiremaxabil];
+            isClearRequireAbil = ServerData.passiveServerTable.TableDatas[requireSkillData.Stringid].level.Value >= requireSkillData.Maxlevel;
+        }
+        
+        
+        //NeedGoods가 null이 아니면
+        if (string.IsNullOrEmpty(passiveSkillData.Needgoods) == false)
+        {
+            //둘중하나라도 충족하면 Mask.SetActive = true
+            lockMask.SetActive((ServerData.goodsTable.GetTableData(passiveSkillData.Needgoods).Value == 0) ||
+                               isClearRequireAbil == false);
+        }
+        //Needuserinfo가 null이 아니면
+        else if (string.IsNullOrEmpty(passiveSkillData.Needuserinfo)==false)
+        {
+            if (passiveSkillData.Userinfotabletype == 1)
             {
+                lockMask.SetActive(
+                    (ServerData.userInfoTable.GetTableData(passiveSkillData.Needuserinfo).Value <
+                     passiveSkillData.Requireuserinfo) || isClearRequireAbil == false);
+            }
+            else if(passiveSkillData.Userinfotabletype == 2)
+            {
+                lockMask.SetActive(
+                    (ServerData.userInfoTable_2.GetTableData(passiveSkillData.Needuserinfo).Value <
+                     passiveSkillData.Requireuserinfo) || isClearRequireAbil == false);
+            }
+        }
+        else
+        {
+    
+            //백귀패시브
+            if (passiveSkillData.Requiremagicbookidx == 12)
+            {
+                
+                int floor = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.yoguiSogulLastClear].Value;
 
+                lockMask.SetActive(floor < PlayerStats.baekPassiveLock);
+
+            }
+            //일반
+            else
+            {
                 if (magicBookServerData.hasItem.Value == 0)
                 {
                     weaponView.Initialize(null, magicBookData);
+                    weaponView.gameObject.SetActive(true);
                     lockMask.SetActive(true);
                 }
                 else
@@ -128,28 +174,6 @@ public class UiPassiveSkillCell : MonoBehaviour
                     lockMask.SetActive(false);
                 }
             }
-            //백귀패시브
-            else
-            {
-                baekLockDescription.SetText($"백귀야행 {PlayerStats.baekPassiveLock}단계 이상 개방");
-
-                int floor = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.yoguiSogulLastClear].Value;
-
-                lockMask_Baek.SetActive(floor < PlayerStats.baekPassiveLock);
-            }
-        }
-        else
-        {
-            lockMask.SetActive(false);
-
-            if (lockMask_Baek != null)
-            {
-                lockMask_Baek.SetActive(false);
-            }
-
-            lockMask_Sin.SetActive(ServerData.goodsTable.GetTableData(passiveSkillData.Needgoods).Value == 0);
-
-            lockMask_Sin_Text.SetText("환수의 시련에서 획득 가능");
         }
 
 
@@ -179,6 +203,34 @@ public class UiPassiveSkillCell : MonoBehaviour
         if (string.IsNullOrEmpty(passiveSkillData.Needgoods) == false)
         {
             ServerData.goodsTable.GetTableData(passiveSkillData.Needgoods).AsObservable().Subscribe(e =>
+            {
+                Refresh(this.passiveSkillData);
+            }).AddTo(this);
+        }
+        if (string.IsNullOrEmpty(passiveSkillData.Needuserinfo) == false)
+        {
+            if (passiveSkillData.Userinfotabletype == 1)
+            {
+                ServerData.userInfoTable.GetTableData(passiveSkillData.Needuserinfo).AsObservable().Subscribe(e =>
+                {
+                    Refresh(this.passiveSkillData);
+                }).AddTo(this);
+            }
+
+            else if (passiveSkillData.Userinfotabletype == 2)
+            {
+                ServerData.userInfoTable_2.GetTableData(passiveSkillData.Needuserinfo).AsObservable().Subscribe(e =>
+                {
+                    Refresh(this.passiveSkillData);
+                }).AddTo(this);
+            }
+
+        }
+        if (passiveSkillData.Requiremaxabil != -1)
+        {
+            //요구스킬
+            var requireSkillData = TableManager.Instance.PassiveSkill.dataArray[passiveSkillData.Requiremaxabil];
+            ServerData.passiveServerTable.TableDatas[requireSkillData.Stringid].level.AsObservable().Subscribe(e =>
             {
                 Refresh(this.passiveSkillData);
             }).AddTo(this);

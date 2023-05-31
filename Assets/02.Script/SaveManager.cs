@@ -15,7 +15,9 @@ public class SaveManager : SingletonMono<SaveManager>
 
     //12시간
     private WaitForSeconds tockenRefreshDelay = new WaitForSeconds(43200f);
+    
 
+    
     public void StartAutoSave()
     {
         StartCoroutine(AutoSaveRoutine());
@@ -349,4 +351,26 @@ public class SaveManager : SingletonMono<SaveManager>
             GrowthManager.Instance.SyncLevelUpDatas();
         }
     }
+    //버프
+    private WaitForSeconds buffDelay = new WaitForSeconds(30f);
+    private Coroutine buffCoroutine;
+    
+    public void SyncBuffData()
+    {
+        if (buffCoroutine != null)
+        {
+            StopCoroutine(buffCoroutine);
+        }
+        buffCoroutine = StartCoroutine(BuffSyncRoutine());
+    }
+    private IEnumerator BuffSyncRoutine()
+    {
+        while (true)
+        {
+            yield return buffDelay;
+            ServerData.buffServerTable.SyncAllData();
+            StopCoroutine(buffCoroutine);
+        }
+    }
+    
 }

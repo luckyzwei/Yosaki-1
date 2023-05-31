@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SealSkillCaster : SingletonMono<SealSkillCaster>
@@ -11,7 +12,7 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
 
     private Coroutine skillRoutine;
 
-    public static ReactiveProperty<int> currentHitCount = new ReactiveProperty<int>();
+    public static ReactiveProperty<float> currentHitCount = new ReactiveProperty<float>();
 
     private SkillTableData currentSkillData = null;
 
@@ -26,6 +27,8 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
 
     private string maxAnimTrigger = "Play";
 
+    private float chargeCount = 1f;
+    private float chargeCount2 = 0f;
     
     void Start()
     {
@@ -35,31 +38,45 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
 
         StartCoroutine(SkillCountAnimRoutine());
 
-        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword].AsObservable().Subscribe(e =>
-            {
-                if (e != -1)
-                {
-                    gaugeRoot.SetActive(true);
-                }
-                else
-                {
-                    gaugeRoot.SetActive(false);
-                }
-                
-              
-            }).AddTo(this);
-            
+        Subscribe();
+
     }
 
+    private void Subscribe()
+    {
+        ServerData.equipmentTable.TableDatas[EquipmentTable.SealSword].AsObservable().Subscribe(e =>
+        {
+            if (e != -1)
+            {
+                gaugeRoot.SetActive(true);
+            }
+            else
+            {
+                gaugeRoot.SetActive(false);
+            }
+                
+              
+        }).AddTo(this);
+
+        PlayerSkillCaster.Instance.sealChargeCount.AsObservable().Subscribe(e =>
+        {
+            chargeCount = e;
+        }).AddTo(this);
+        PlayerSkillCaster.Instance.sealChargeCount2.AsObservable().Subscribe(e =>
+        {
+            chargeCount2 = e;
+        }).AddTo(this);
+
+    }
 
     private int count_Real;
     private int count_Max = 100;
-    private int count_Showing;
+    private float count_Showing;
 
     private WaitForSeconds delay = new WaitForSeconds(0.01f);
     private WaitForSeconds directionDelay = new WaitForSeconds(0.3f);
 
-    
+
     private IEnumerator SkillCountAnimRoutine()
     {
         while (true)
@@ -68,7 +85,7 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
             {
                 if (count_Showing <= currentHitCount.Value)
                 {
-                    count_Showing++;
+                    count_Showing += chargeCount + chargeCount2;
                 }
 
                 if (count_Showing >= count_Max -10)

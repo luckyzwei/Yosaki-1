@@ -64,4 +64,8 @@ public class StatusSettingData
   int unlockgoods;
   public int Unlockgoods { get {return unlockgoods; } set { this.unlockgoods = value;} }
   
+  [SerializeField]
+  int upgradeprice;
+  public int Upgradeprice { get {return upgradeprice; } set { this.upgradeprice = value;} }
+  
 }

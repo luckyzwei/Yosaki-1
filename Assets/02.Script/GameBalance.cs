@@ -124,18 +124,18 @@ public static class GameBalance
     public readonly static ObscuredInt murgePartyRaidRankRewardTicket_501_1000 = 2000;
     public readonly static ObscuredInt murgePartyRaidRankRewardTicket_1001_5000 = 1000;
     
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1 = 15;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_2 = 14;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_3 = 13;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_4 = 12;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_5 = 11;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_6_10 = 10;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_11_20 = 9;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_21_50 = 8;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_51_100 = 7;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_101_500 = 6;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_501_1000 = 5;
-    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1001_5000 = 4;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1 = 30;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_2 = 28;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_3 = 26;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_4 = 24;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_5 = 22;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_6_10 = 20;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_11_20 = 18;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_21_50 = 16;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_51_100 = 14;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_101_500 = 12;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_501_1000 = 10;
+    public readonly static ObscuredInt murgePartyRaidRankRewardTicket_0_1001_5000 = 8;
 
     public readonly static ObscuredInt rankRewardTicket_1_relic = 120;
     public readonly static ObscuredInt rankRewardTicket_2_relic = 110;
@@ -379,6 +379,32 @@ public static class GameBalance
     //
     public static List<float> warMarkAbils = new List<float>() { 0f, 400f, 500f, 600f, 700f, 800f, 900f, 1000f };
     
+    
+    public static ObscuredDouble yumGraduateScore = 1E+82;
+    public static ObscuredDouble okGraduateScore = 1E+86;
+    public static ObscuredDouble doGraduateScore = 1E+92;
+    public static ObscuredDouble sumiGraduateScore = 1E+101;
+    public static ObscuredDouble thiefGraduateScore = 1E+109;
+    public static ObscuredDouble darkGraduateScore = 1E+119;
+    
+    public static ObscuredFloat yumGraduateValue = 2;
+    public static ObscuredFloat okGraduateValue = 2;
+    public static ObscuredFloat doGraduateValue = 2;
+    public static ObscuredFloat sumiGraduateValue = 2;
+    public static ObscuredFloat thiefGraduateValue = 2;
+    public static ObscuredFloat darkGraduateValue = 2;
+    
+    
+    public static ObscuredDouble refundGoldBarRatio = 1E+34; //보유금화환불단위
+    public static ObscuredInt refundCriDamGoldBarRatio = 4000;//크리티컬데미지환불 
+    public static ObscuredInt criticalGraduateValue = 7500;//각성시 크리티컬레벨
+    public static ObscuredInt criticalGraduateRefundStandard = 6950;//각성시 크리티컬 환불기준레벨
+    public static ObscuredInt goldGraduateScore = 65950;// 금화능력치총합레벨조건
+    
+    public static ObscuredFloat Gum_memory = 0.0000004f;
+    public static ObscuredFloat Special0_GoldBar = 0.0000000004f;
+    public static ObscuredFloat Special1_GoldBar = 0.0000000015f;
+    public static ObscuredFloat Special2_GoldBar = 0.0000000038f;
     public static int GetSonIdx()
     {
         int level = ServerData.statusTable.GetTableData(StatusTable.Son_Level).Value;

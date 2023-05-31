@@ -76,20 +76,32 @@ public class UiContentsExitButton : MonoBehaviour
                         return true;
                     case GameManager.ContentsType.TaeguekTower:
                         return false;
+                    case GameManager.ContentsType.SinsunTower when (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.SansinTowerIdx).Value <
+                                                                      (TableManager.Instance.sinsunTowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.SinsunTower:
+                        return false;
                     
                 }
         switch (GameManager.contentsType)
         {
+            //점수로 측정
             case GameManager.ContentsType.Yum:
             case GameManager.ContentsType.Ok:
             case GameManager.ContentsType.Do:
             case GameManager.ContentsType.Sumi:
             case GameManager.ContentsType.Thief:
+            case GameManager.ContentsType.Dark:
             case GameManager.ContentsType.GradeTest:
             case GameManager.ContentsType.Sasinsu:
             case GameManager.ContentsType.SumisanTower:
             case GameManager.ContentsType.GyungRockTower:
             case GameManager.ContentsType.GyungRockTower2:
+            case GameManager.ContentsType.GyungRockTower3:
+            case GameManager.ContentsType.TestSword:
+            case GameManager.ContentsType.TestMonkey:
+            case GameManager.ContentsType.TestHell:
+            case GameManager.ContentsType.TestChun:
                 return true;
             case GameManager.ContentsType.TwelveDungeon:
             {
@@ -262,13 +274,25 @@ public class UiContentsExitButton : MonoBehaviour
                 PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
             }
         }
+        else if (GameManager.contentsType == GameManager.ContentsType.SealSwordTower)
+        {
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx9).Value <
+                (TableManager.Instance.SealTowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.SealSwordTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
         else
         {
             var type = GameManager.contentsType;
             GameManager.Instance.LoadContents(type);
             if (buttonRootObject != null)
             {
-                buttonRootObject.SetActive(false);
+                buttonRootObject.SetActive(NextStageCheck());
             }
         }
 

@@ -1132,6 +1132,11 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
         // ShowSubDetailView();
     }
 
+    
+
+
+
+
     public void OnClickLevelUpButton()
     {
         if (weaponData != null)
@@ -1142,52 +1147,7 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
                 PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
                 return;
             }
-            //}
 
-            //if (weaponData.Id >= 37 && weaponData.Id <= 42)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id >= 45 && weaponData.Id <= 49)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 52 && weaponData.Id <= 56)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id >= 60 && weaponData.Id <= 62)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 67 && weaponData.Id <= 70)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id >= 71 && weaponData.Id <= 76)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 81 && weaponData.Id < 84)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id == 90)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 레벨업 하실수 없습니다.");
-            //    return;
-            //}
 
             float currentMagicStoneAmount = ServerData.goodsTable.GetCurrentGoods(GoodsTable.GrowthStone);
             float levelUpPrice = ServerData.weaponTable.GetWeaponLevelUpPrice(weaponData.Stringid);
@@ -1213,7 +1173,9 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
             ServerData.weaponTable.TableDatas[weaponData.Stringid].level.Value++;
             //일일 미션
             DailyMissionManager.UpdateDailyMission(DailyMissionKey.WeaponLevelUp, 1);
-
+            //버프시간저장
+            SaveManager.Instance.SyncBuffData();
+            
             //서버에 반영
             SyncServerRoutineWeapon();
         }
