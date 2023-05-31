@@ -282,7 +282,6 @@ GameObject:
   - component: {fileID: 8922718650428468048}
   - component: {fileID: 1240327234109029939}
   - component: {fileID: 5476170102840411811}
-  - component: {fileID: 1859401673737475030}
   - component: {fileID: 8474472367684252976}
   m_Layer: 5
   m_Name: Button
@@ -394,25 +393,9 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1240327234109029939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1859401673737475030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3114199246563469824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ab13a60508f52448fd8995679b984e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clickDelay: 0.05
-  OnEvent:
-    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
+      - m_Target: {fileID: 7096697564089969785}
+        m_TargetAssemblyTypeName: UiMileageRewardCell, Assembly-CSharp
         m_MethodName: OnClickExchangeButton
         m_Mode: 1
         m_Arguments:
@@ -423,9 +406,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  buttonGraphic: {fileID: 1240327234109029939}
-  pressedColor: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
-  canExecute: 1
 --- !u!114 &8474472367684252976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,7 +795,7 @@ MonoBehaviour:
   price: {fileID: 3139995933582911099}
   itemIcon: {fileID: 4125598739822696047}
   tableId: 5
-  button: {fileID: 1859401673737475030}
+  button: {fileID: 0}
   goldButton: {fileID: 0}
   skeletonGraphic: {fileID: 7312353671883390554}
 --- !u!1 &4011885433662529701
