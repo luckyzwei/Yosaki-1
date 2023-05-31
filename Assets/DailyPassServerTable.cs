@@ -143,10 +143,9 @@ public class MonthlyPassServerTable
     public static string MonthlypassFreeReward = "f10";
     public static string MonthlypassAdReward = "a10";
 
-    public static string MonthlypassAttendFreeReward = "af9";
-    public static string MonthlypassAttendAdReward = "aa9";
+    public static string MonthlypassAttendFreeReward = "af11";
+    public static string MonthlypassAttendAdReward = "aa11";
 
-    
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
         { MonthlypassFreeReward,string.Empty},
