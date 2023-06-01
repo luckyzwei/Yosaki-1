@@ -57,6 +57,7 @@ public class UiMagicBookInventoryView : FancyScrollView<MagicBook_Fancy>
     private Scroller scroller;
     
     private List<MagicBook_Fancy> magicBookDataContainer = new List<MagicBook_Fancy>();
+    private List<MagicBook_Fancy> magicBookDataContainer2 = new List<MagicBook_Fancy>();
     
     [SerializeField] GameObject cellPrefab = default;
 
@@ -83,7 +84,7 @@ public class UiMagicBookInventoryView : FancyScrollView<MagicBook_Fancy>
     {
         for (int i = 0; i <= myIdx; i++)
         {
-            magicBookDataContainer[i].Upgrade();
+            magicBookDataContainer2[i].Upgrade();
         }
     }
     private List<MagicBook_Fancy> SortHasItemList(List<MagicBook_Fancy> list)
@@ -131,6 +132,7 @@ public class UiMagicBookInventoryView : FancyScrollView<MagicBook_Fancy>
             
             passInfos.Add(new MagicBook_Fancy(magicBookData,this));
             magicBookDataContainer.Add(new MagicBook_Fancy(magicBookData,this));
+            magicBookDataContainer2.Add(new MagicBook_Fancy(magicBookData,this));
     
         }
         

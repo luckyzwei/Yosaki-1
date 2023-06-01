@@ -56,6 +56,7 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     private Transform viewParentWeapon;
     
     private List<WeaponData_Fancy> weaponDataContainer = new List<WeaponData_Fancy>();
+    private List<WeaponData_Fancy> weaponDataContainer2 = new List<WeaponData_Fancy>();
     
     
     
@@ -139,7 +140,7 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     {
         for (int i = 0; i <= myIdx; i++)
         {
-            weaponDataContainer[i].Upgrade();
+            weaponDataContainer2[i].Upgrade();
         }
     }
     
@@ -164,6 +165,7 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
             
             passInfos.Add(new WeaponData_Fancy(weaponData,this));
             weaponDataContainer.Add(new WeaponData_Fancy(weaponData,this));
+            weaponDataContainer2.Add(new WeaponData_Fancy(weaponData,this));
         }
         
         passInfos.Sort((a, b) => tableData[a.WeaponData.Id].Displayorder.CompareTo(tableData[b.WeaponData.Id].Displayorder));

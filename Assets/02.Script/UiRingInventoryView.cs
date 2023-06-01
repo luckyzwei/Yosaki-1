@@ -56,6 +56,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     private Scroller scroller;
     
     private List<RingData_Fancy> ringDataContainer = new List<RingData_Fancy>();
+    private List<RingData_Fancy> ringDataContainer2 = new List<RingData_Fancy>();
     
     [SerializeField] GameObject cellPrefab = default;
 
@@ -108,7 +109,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     {
         for (int i = 0; i <= myIdx; i++)
         {
-            ringDataContainer[i].Upgrade();
+            ringDataContainer2[i].Upgrade();
         }
     }
     private void MakeBasicNormalBoard()
@@ -128,6 +129,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
             
             passInfos.Add(new RingData_Fancy(ringData,this));
             ringDataContainer.Add(new RingData_Fancy(ringData,this));
+            ringDataContainer2.Add(new RingData_Fancy(ringData,this));
         }
         
         passInfos.Sort((a, b) => tableData[a.RingData.Id].Displayorder.CompareTo(tableData[b.RingData.Id].Displayorder));
