@@ -191,6 +191,7 @@ public class UiStatusBoard : MonoBehaviour
                     ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value += refund + gold;
                     ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value = 0;
                     goodsParam.Add(GoodsTable.GoldBar, ServerData.goodsTable.GetTableData(GoodsTable.GoldBar).Value);
+                    goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
                     transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
                     
                     

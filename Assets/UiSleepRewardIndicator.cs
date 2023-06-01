@@ -20,6 +20,11 @@ public class UiSleepRewardIndicator : SingletonMono<UiSleepRewardIndicator>
     private void Start()
     {
         Subscribe();
+
+        if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.graduateGold].Value >= 1)
+        {
+            ServerData.goodsTable.TableDatas[GoodsTable.Gold].Value = 0;
+        }
     }
 
     private void Subscribe()
