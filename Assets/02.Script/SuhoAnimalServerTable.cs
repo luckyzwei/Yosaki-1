@@ -175,7 +175,8 @@ public class SuhoAnimalServerTable
 
         for (int i = 0; i < tableData.Length; i++)
         {
-            if (ServerData.suhoAnimalServerTable.TableDatas[tableData[i].Stringid].hasItem.Value != 0)
+            if (ServerData.suhoAnimalServerTable.TableDatas[tableData[i].Stringid].hasItem.Value != 0 &&
+                tableData[i].SUHOPETTYPE!=SuhoPetType.Special)
             {
                 lastIdx = i;
             }
