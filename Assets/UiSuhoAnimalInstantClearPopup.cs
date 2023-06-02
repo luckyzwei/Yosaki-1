@@ -37,7 +37,7 @@ public class UiSuhoAnimalInstantClearPopup : MonoBehaviour
         {
             if(tableData[i].SUHOPETTYPE!=SuhoPetType.Basic) continue;
             
-            description += $"{tableData[i].Id+1}단계({tableData[i].Name}) 1회 소탕시 {tableData[i].Sweepvalue}개 획득";
+            description += $"{tableData[i].Gradedescription}({tableData[i].Name}) 1회 소탕시 {tableData[i].Sweepvalue}개 획득";
 
             if (i != tableData.Length - 1)
             {
