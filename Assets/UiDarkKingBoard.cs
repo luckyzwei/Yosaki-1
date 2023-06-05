@@ -74,8 +74,7 @@ public class UiDarkKingBoard : MonoBehaviour
                 $"심연왕 효과가 강화됩니다.({GameBalance.darkGraduateValue * 100}%)\n" +
                 "각성 하시겠습니까??", () =>
                 {
-
-                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 5;
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 6;
                     ServerData.userInfoTable_2.UpData(UserInfoTable_2.KingTrialGraduateIdx, false);
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
 

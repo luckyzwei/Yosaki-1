@@ -112,7 +112,7 @@ public class GrowthManager : SingletonMono<GrowthManager>
             //추가레벨업 가능?
             if (CanLevelUp())
             {
-                GetExp(0, useEffect: useEffect, syncToServer: syncToServer, isSleep: isSleep);
+                GetExp(0, useEffect: false, syncToServer: syncToServer, isSleep: isSleep);
             }
             else
             {
