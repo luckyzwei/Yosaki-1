@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using static UiRewardView;
 
 public class UiInfinityTowerResult : MonoBehaviour
@@ -26,7 +27,7 @@ public class UiInfinityTowerResult : MonoBehaviour
     public void Initialize(ContentsState state, List<RewardData> rewardDatas) 
     {
         resultText.SetText(GetTitleText(state));
-        //NextStageButtonTextChange(state);
+        NextStageButtonTextChange(state);
         successObject.SetActive(state == ContentsState.Clear);
         failObject.SetActive(state != ContentsState.Clear);
 
@@ -40,6 +41,10 @@ public class UiInfinityTowerResult : MonoBehaviour
 
     private void NextStageButtonTextChange(ContentsState contentsState)
     {
+        if (stageChangeText == null)
+        {
+            return;
+        }
         switch (contentsState)
         {
             case ContentsState.Dead:

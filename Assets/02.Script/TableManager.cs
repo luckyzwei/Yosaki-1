@@ -782,6 +782,7 @@ public class TableManager : SingletonMono<TableManager>
     public TowerTable4 towerTableMulti;
     public TowerTable5 sumisanTowerTable;
     public GradeTestTable gradeTestTable;
+    public RelicTest RelicTest;
     public CommonCollectionEvent commoncollectionEvent;
     public SnowManAtten snowManAtten;
     public SumiAbilBase sumiAbilBase;
@@ -808,6 +809,7 @@ public class TableManager : SingletonMono<TableManager>
     public SuhoPass suhoPass;
     public DarkTreasureAbilBase DarkTreasureAbilBase;
     public SinsunTreasureAbilBase SinsunTreasureAbilBase;
+    public GwisalTreasureAbilBase GwisalTreasureAbilBase;
     public BlackWolfRing BlackWolfRing;
     public TowerTable8 gyungRockTowerTable2;
     public FoxTower FoxTowerTable;
@@ -817,10 +819,13 @@ public class TableManager : SingletonMono<TableManager>
     public TestHell TestHell;
     public TestMonkey TestMonkey;
     public TestSword TestSword;
+    public TestDo TestDo;
     public SealSword sealSwordTable;
     public SealSwordPass SealSwordPass;
     public FoxFirePass FoxFirePass;
     public SinsunTowerTable sinsunTowerTable;
+    public SoulForestPass SoulForestPass;
+    
     
     private Dictionary<int, SealSwordData> sealSwordData = null;
 
@@ -850,6 +855,9 @@ public class TableManager : SingletonMono<TableManager>
     public TaegeukTitle taegeukTitle;
     public TowerTable10 gyungRockTowerTable3;
     public GCPass GCPass;
+
+    public DosulTower dosulTowerTable;
+    public Dosul dosulTable;
 }
 
 

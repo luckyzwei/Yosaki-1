@@ -8,6 +8,7 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
     [SerializeField] private MainTabButtons _mainTabButtons;
     [SerializeField] private MainTabButtons _GangChulButton;
     [SerializeField] private MainTabButtons _SealSwordButton;
+    [SerializeField] private MainTabButtons _DosulButton;
 
     private void Start()
     {
@@ -33,7 +34,6 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
                 }
 
                 return;
-                
             }
 
             switch (GameManager.Instance.lastContentsType2)
@@ -51,6 +51,12 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
                 {
                     GameManager.Instance.ResetLastContents2();
                     _SealSwordButton.OnClickButton();
+                    return;
+                } 
+                case GameManager.ContentsType.DosulBoss:
+                {
+                    GameManager.Instance.ResetLastContents2();
+                    _DosulButton.OnClickButton();
                     return;
                 }
             }

@@ -391,10 +391,13 @@ public class SkillServerTable
 
         float addDamageValue = 0f;
 
+        //도술은 제외
         if (applySkillDamAbility)
         {
             addDamageValue = PlayerStats.GetSkillDamagePercentValue();
         }
+
+
         // 추가기술데미지가 적용되기 전에 요도 각성효과 적용
         if (tableData.SKILLCASTTYPE == SkillCastType.SealSword)
         {
@@ -404,18 +407,25 @@ public class SkillServerTable
             {
                 var sealTableData = TableManager.Instance.SealSwordAwakeTable.dataArray[getSealAwakeGrade];
                 //ret->originDamage       
-                originDamage +=  sealTableData.Awakevalue;
+                originDamage += sealTableData.Awakevalue;
             }
         }
+
         //
         float ret = originDamage + originDamage * addDamageValue;
+
+        if (tableData.SKILLCASTTYPE == SkillCastType.Dosul)
+        {
+            float addValue = PlayerStats.GetCurrentDosulAddValue();
+          
+            return ret + ret * addValue;
+        }
 
         if (tableData.SKILLCASTTYPE == SkillCastType.Vision)
         {
             return ret * (1 + (GameBalance.VisionTreasurePerDamage *
                                ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value));
         }
-
 
 
         return ret;

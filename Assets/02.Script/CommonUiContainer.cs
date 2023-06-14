@@ -144,6 +144,9 @@ public Sprite SinsunWeapon2;
 public Sprite SinsunWeapon3;
 public Sprite SinsunWeapon4;
 public Sprite SinsunWeapon5;
+public Sprite SinsunWeapon6;
+public Sprite SinsunWeapon7;
+public Sprite SinsunWeapon8;
     
 [Header ("Weapon_View")]
 
@@ -253,6 +256,9 @@ public Sprite RecommendWeapon22;
     public Sprite SinsunNorigae3;
     public Sprite SinsunNorigae4;
     public Sprite SinsunNorigae5;
+    public Sprite SinsunNorigae6;
+    public Sprite SinsunNorigae7;
+    public Sprite SinsunNorigae8;
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
@@ -261,6 +267,7 @@ public Sprite RecommendWeapon22;
     public Sprite MonthNorigae4;
     public Sprite MonthNorigae5;
     public Sprite MonthNorigae6;
+    public Sprite MonthNorigae7;
     
     [Header ("DokebiHorn")]
     public Sprite DokebiHorn0;
@@ -419,6 +426,7 @@ public Sprite RecommendWeapon22;
     public Sprite VisionTreasure;
     public Sprite DarkTreasure;
     public Sprite SinsunTreasure;
+    [FormerlySerializedAs("BossTreasure")] public Sprite GwiSalTreasure;
     public Sprite GuildTowerClearTicket;
     public Sprite GuildTowerHorn;
     public Sprite SinsuMarble;
@@ -487,6 +495,8 @@ public Sprite RecommendWeapon22;
     public Sprite HellMark5;
     public Sprite HellMark6;
     public Sprite HellMark7;
+    public Sprite DosulGoods;
+    public Sprite DosulClear;
 
 
     public Sprite GetItemIcon(Item_Type type)
@@ -836,6 +846,22 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[122];
             case Item_Type.costume123:
                 return costumeThumbnail[123];
+            case Item_Type.costume124:
+                return costumeThumbnail[124];
+            case Item_Type.costume125:
+                return costumeThumbnail[125];
+            case Item_Type.costume126:
+                return costumeThumbnail[126];
+            case Item_Type.costume127:
+                return costumeThumbnail[127];
+            case Item_Type.costume128:
+                return costumeThumbnail[128];
+            case Item_Type.costume129:
+                return costumeThumbnail[129];
+            case Item_Type.costume130:
+                return costumeThumbnail[130];
+            case Item_Type.costume131:
+                return costumeThumbnail[131];
 
 
             case Item_Type.RankFrame1:
@@ -1268,6 +1294,12 @@ public Sprite RecommendWeapon22;
                 return DarkTreasure;   
             case Item_Type.SinsunTreasure:
                 return SinsunTreasure;   
+            case Item_Type.GwisalTreasure:
+                return GwiSalTreasure;   
+            case Item_Type.DosulGoods:
+                return DosulGoods;   
+            case Item_Type.DosulClear:
+                return DosulClear;   
             case Item_Type.GuildTowerClearTicket:
                 return GuildTowerClearTicket;  
             case Item_Type.GuildTowerHorn:
@@ -1522,6 +1554,12 @@ public Sprite RecommendWeapon22;
 
             case Item_Type.SinsunNorigae5:
                 return SinsunNorigae5;
+            case Item_Type.SinsunNorigae6:
+                return SinsunNorigae6;
+            case Item_Type.SinsunNorigae7:
+                return SinsunNorigae7;
+            case Item_Type.SinsunNorigae8:
+                return SinsunNorigae8;
 
             //
             case Item_Type.MonthNorigae0:
@@ -1542,6 +1580,8 @@ public Sprite RecommendWeapon22;
                 return MonthNorigae5;
             case Item_Type.MonthNorigae6:
                 return MonthNorigae6;
+            case Item_Type.MonthNorigae7:
+                return MonthNorigae7;
             //
             //
             case Item_Type.DokebiHorn0:
@@ -2105,6 +2145,12 @@ public Sprite RecommendWeapon22;
                 return SinsunWeapon4;
             case Item_Type.SinsunWeapon5:
                 return SinsunWeapon5;
+            case Item_Type.SinsunWeapon6:
+                return SinsunWeapon6;
+            case Item_Type.SinsunWeapon7:
+                return SinsunWeapon7;
+            case Item_Type.SinsunWeapon8:
+                return SinsunWeapon8;
 
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;

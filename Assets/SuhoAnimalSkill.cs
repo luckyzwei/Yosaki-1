@@ -10,3 +10,7 @@ public class SealSwordSkill0 : TraceSlash0
 {
 }
 
+public class DosulSkill0 : TraceSlash0
+{
+}
+

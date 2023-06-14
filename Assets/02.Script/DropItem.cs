@@ -491,6 +491,14 @@ public enum Item_Type
     costume121 = 1421, // 신선     
     costume122 = 1422, // 천선     
     costume123 = 1423, // 이벤트 외형     
+    costume124 = 1424, // 천선     
+    costume125 = 1425, // 천선     
+    costume126 = 1426, // 천선     
+    costume127 = 1427, // 귀인곡     
+    costume128 = 1428, // 귀인곡     
+    costume129 = 1429, // 귀인곡     
+    costume130 = 1430, // 귀인곡     
+    costume131 = 1431, // 7월 월간외형     
 
 
     gumiho0 = 5000,
@@ -693,6 +701,9 @@ public enum Item_Type
     SinsunWeapon3 = 7223,
     SinsunWeapon4 = 7224,
     SinsunWeapon5 = 7225,
+    SinsunWeapon6 = 7226,
+    SinsunWeapon7 = 7227,
+    SinsunWeapon8 = 7228,
     
     SinsunNorigae0 = 7230,
     SinsunNorigae1 = 7231,
@@ -700,6 +711,9 @@ public enum Item_Type
     SinsunNorigae3 = 7233,
     SinsunNorigae4 = 7234,
     SinsunNorigae5 = 7235,
+    SinsunNorigae6 = 7236,
+    SinsunNorigae7 = 7237,
+    SinsunNorigae8 = 7238,
     
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
@@ -740,6 +754,7 @@ public enum Item_Type
     MonthNorigae4 = 8606, // 월간노리개
     MonthNorigae5 = 8607, // 월간노리개
     MonthNorigae6 = 8608, // 월간노리개
+    MonthNorigae7 = 8609, // 월간노리개
 
     Chun0 = 8700, // 천계기술
     Chun1 = 8701,
@@ -824,6 +839,10 @@ public enum Item_Type
     SealWeaponClear= 9028, 
     SinsunTreasure= 9029, 
     GoldBar= 9030, 
+    GwisalTreasure= 9031, 
+    
+    DosulGoods= 9032, 
+    DosulClear= 9033, 
     
 }
 //

@@ -551,6 +551,15 @@ public static class ServerData
             case Item_Type.SinsunTreasure:
                 ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value += rewardValue;
                 break;  
+            case Item_Type.GwisalTreasure:
+                ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value += rewardValue;
+                break;  
+            case Item_Type.DosulClear:
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value += rewardValue;
+                break;  
+            case Item_Type.DosulGoods:
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value += rewardValue;
+                break;  
             case Item_Type.GuildTowerClearTicket:
                 ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value += rewardValue;
                 break;  
@@ -793,6 +802,14 @@ public static class ServerData
             case Item_Type.costume121:
             case Item_Type.costume122:
             case Item_Type.costume123:
+            case Item_Type.costume124:
+            case Item_Type.costume125:
+            case Item_Type.costume126:
+            case Item_Type.costume127:
+            case Item_Type.costume128:
+            case Item_Type.costume129:
+            case Item_Type.costume130:
+            case Item_Type.costume131:
                 ServerData.costumeServerTable.TableDatas[type.ToString()].hasCostume.Value = true;
                 break;
             case Item_Type.weapon81:
@@ -975,6 +992,14 @@ public static class ServerData
             case Item_Type.costume121:
             case Item_Type.costume122:
             case Item_Type.costume123:
+            case Item_Type.costume124:
+            case Item_Type.costume125:
+            case Item_Type.costume126:
+            case Item_Type.costume127:
+            case Item_Type.costume128:
+            case Item_Type.costume129:
+            case Item_Type.costume130:
+            case Item_Type.costume131:
                 string costumeKey = type.ToString();
                 passParam.Add(costumeKey, ServerData.costumeServerTable.TableDatas[costumeKey].ConvertToString());
                 return TransactionValue.SetUpdate(CostumeServerTable.tableName, CostumeServerTable.Indate, passParam);
@@ -1452,6 +1477,10 @@ public static class ServerData
                 passParam.Add(GoodsTable.SinsunTreasure,
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);    
+            case Item_Type.GwisalTreasure:
+                passParam.Add(GoodsTable.GwisalTreasure,
+                    ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);    
             case Item_Type.GuildTowerClearTicket:
                 passParam.Add(GoodsTable.GuildTowerClearTicket,
                     ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value);
@@ -1462,6 +1491,17 @@ public static class ServerData
                     ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerHorn).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
             
+            case Item_Type.DosulClear:
+                passParam.Add(GoodsTable.DosulClear,
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
+            
+            case Item_Type.DosulGoods:
+                passParam.Add(GoodsTable.DosulGoods,
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, passParam);
+
         }
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"등록되지 않은 트랜젝션 타입 {type}", null);
@@ -1500,62 +1540,75 @@ public static class ServerData
                 param.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
             case Item_Type.WeaponUpgradeStone:
+                //
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_0");
                 ServerData.goodsTable.GetTableData(GoodsTable.WeaponUpgradeStone).Value += amount;
                 param.Add(GoodsTable.WeaponUpgradeStone,
                     ServerData.goodsTable.GetTableData(GoodsTable.WeaponUpgradeStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.YomulExchangeStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_1");
                 ServerData.goodsTable.GetTableData(GoodsTable.YomulExchangeStone).Value += amount;
                 param.Add(GoodsTable.YomulExchangeStone,
                     ServerData.goodsTable.GetTableData(GoodsTable.YomulExchangeStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.TigerBossStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_2");
                 ServerData.goodsTable.GetTableData(GoodsTable.TigerStone).Value += amount;
                 param.Add(GoodsTable.TigerStone, ServerData.goodsTable.GetTableData(GoodsTable.TigerStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.RabitBossStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_3");
                 ServerData.goodsTable.GetTableData(GoodsTable.RabitStone).Value += amount;
                 param.Add(GoodsTable.RabitStone, ServerData.goodsTable.GetTableData(GoodsTable.RabitStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
             case Item_Type.DragonBossStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_4");
                 ServerData.goodsTable.GetTableData(GoodsTable.DragonStone).Value += amount;
                 param.Add(GoodsTable.DragonStone, ServerData.goodsTable.GetTableData(GoodsTable.DragonStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.SnakeStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_5");
                 ServerData.goodsTable.GetTableData(GoodsTable.SnakeStone).Value += amount;
                 param.Add(GoodsTable.SnakeStone, ServerData.goodsTable.GetTableData(GoodsTable.SnakeStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.HorseStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_6");
                 ServerData.goodsTable.GetTableData(GoodsTable.HorseStone).Value += amount;
                 param.Add(GoodsTable.HorseStone, ServerData.goodsTable.GetTableData(GoodsTable.HorseStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.SheepStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_7");
                 ServerData.goodsTable.GetTableData(GoodsTable.SheepStone).Value += amount;
                 param.Add(GoodsTable.SheepStone, ServerData.goodsTable.GetTableData(GoodsTable.SheepStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.CockStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_9");
                 ServerData.goodsTable.GetTableData(GoodsTable.CockStone).Value += amount;
                 param.Add(GoodsTable.CockStone, ServerData.goodsTable.GetTableData(GoodsTable.CockStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.DogStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_10");
                 ServerData.goodsTable.GetTableData(GoodsTable.DogStone).Value += amount;
                 param.Add(GoodsTable.DogStone, ServerData.goodsTable.GetTableData(GoodsTable.DogStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.PigStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_11");
                 ServerData.goodsTable.GetTableData(GoodsTable.PigStone).Value += amount;
                 param.Add(GoodsTable.PigStone, ServerData.goodsTable.GetTableData(GoodsTable.PigStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
 
             case Item_Type.MonkeyStone:
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"twelveBoss_8");
                 ServerData.goodsTable.GetTableData(GoodsTable.MonkeyStone).Value += amount;
                 param.Add(GoodsTable.MonkeyStone, ServerData.goodsTable.GetTableData(GoodsTable.MonkeyStone).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
@@ -1729,6 +1782,26 @@ public static class ServerData
                 param.Add(GoodsTable.SinsunTreasure,
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value);
                 return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
+            case Item_Type.GwisalTreasure:
+                ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value += amount;
+                param.Add(GoodsTable.GwisalTreasure,
+                    ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+            
+            case Item_Type.DosulClear:
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value += amount;
+                param.Add(GoodsTable.DosulClear,
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
+            
+            case Item_Type.DosulGoods:
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value += amount;
+                param.Add(GoodsTable.DosulGoods,
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value);
+                return TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, param);
+
 
             case Item_Type.Mileage:
                 ServerData.goodsTable.GetTableData(GoodsTable.Mileage).Value += amount;
@@ -3519,6 +3592,15 @@ public static class ServerData
                     break;
                 case Item_Type.SinsunTreasure:
                     ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value += amount;
+                    break;
+                case Item_Type.GwisalTreasure:
+                    ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value += amount;
+                    break;
+                case Item_Type.DosulClear:
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value += amount;
+                    break;
+                case Item_Type.DosulGoods:
+                    ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value += amount;
                     break;
                 case Item_Type.DokebiFireEnhance:
                     ServerData.goodsTable.GetTableData(GoodsTable.DokebiFireEnhance).Value += amount;

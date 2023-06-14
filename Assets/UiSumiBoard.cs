@@ -27,8 +27,8 @@ public class UiSumiBoard : MonoBehaviour
     {
         ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.KingTrialGraduateIdx).AsObservable().Subscribe(e =>
         {
-            transBefore.SetActive(e < 4);
-            transAfter.SetActive(e >= 4);
+            transBefore.SetActive(e < GameBalance.sumiKingGraduate);
+            transAfter.SetActive(e >= GameBalance.sumiKingGraduate);
         }).AddTo(this);
     }
 
@@ -65,7 +65,7 @@ public class UiSumiBoard : MonoBehaviour
         {
             PopupManager.Instance.ShowAlarmMessage($"데미지 {Utils.ConvertBigNum(GameBalance.sumiGraduateScore)} 이상일때 각성 가능!");
         }
-        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < 3)
+        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < GameBalance.sumiKingGraduate-1)
         {
             PopupManager.Instance.ShowAlarmMessage($"이전 각성을 완료해주세요!");
         }
@@ -76,7 +76,7 @@ public class UiSumiBoard : MonoBehaviour
                 "각성 하시겠습니까??", () =>
                 {
 
-                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 4;
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = GameBalance.sumiKingGraduate;
                     ServerData.userInfoTable_2.UpData(UserInfoTable_2.KingTrialGraduateIdx, false);
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
 

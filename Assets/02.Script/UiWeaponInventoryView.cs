@@ -87,24 +87,24 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     private void Start()
     {
             
-        switch (_weaponType)
-        {
-            case WeaponType.Basic:
-            case WeaponType.Normal:
-                MakeBasicNormalBoard();
-                break;
-            case WeaponType.View:
-                MakeViewBoard();
-                break;
-            case WeaponType.RecommendView:
-                MakeRecommendViewBoard();
-                break;
-            case WeaponType.HasEffectOnly:
-                MakeEffectOnlyBoard();
-                break;
-            default:
-                break;
-        }
+        // switch (_weaponType)
+        // {
+        //     case WeaponType.Basic:
+        //     case WeaponType.Normal:
+        //         MakeBasicNormalBoard();
+        //         break;
+        //     case WeaponType.View:
+        //         MakeViewBoard();
+        //         break;
+        //     case WeaponType.RecommendView:
+        //         MakeRecommendViewBoard();
+        //         break;
+        //     case WeaponType.HasEffectOnly:
+        //         MakeEffectOnlyBoard();
+        //         break;
+        //     default:
+        //         break;
+        // }
 
     }
     
@@ -125,17 +125,41 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
 
         return list;
     }
-    private void SortHasItem()
+    public void SortHasItem()
     {
-        weaponDataContainer = SortHasItemList(weaponDataContainer);
-        this.UpdateContents(weaponDataContainer.ToArray());
+        MakeBoard();
+        // weaponDataContainer = SortHasItemList(weaponDataContainer);
+        // this.UpdateContents(weaponDataContainer.ToArray());
     }
 
     private void OnEnable()
     {
-        SortHasItem();
+        MakeBoard();
     }
 
+    private void MakeBoard()
+    {
+        
+        switch (_weaponType)
+        {
+            case WeaponType.Basic:
+            case WeaponType.Normal:
+                MakeBasicNormalBoard();
+                break;
+            case WeaponType.View:
+                MakeViewBoard();
+                break;
+            case WeaponType.RecommendView:
+                MakeRecommendViewBoard();
+                break;
+            case WeaponType.HasEffectOnly:
+                MakeEffectOnlyBoard();
+                break;
+            default:
+                break;
+        }
+    }
+    
     public void AllUpgradeWeapon(int myIdx)
     {
         for (int i = 0; i <= myIdx; i++)
@@ -146,6 +170,9 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
     
     private void MakeBasicNormalBoard()
     {
+        weaponDataContainer.Clear();
+        weaponDataContainer2.Clear();
+        
         scroller.Initialize(TypeScroll.InventoryView);
             
         scroller.OnValueChanged(UpdatePosition);

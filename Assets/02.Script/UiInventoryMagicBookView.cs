@@ -276,6 +276,8 @@ public class UiInventoryMagicBookView : FancyCell<MagicBook_Fancy>
 
                 DailyMissionManager.UpdateDailyMission(DailyMissionKey.MagicbookUpgrade, upgradeNum);
                 ServerData.magicBookTable.SyncToServerAll(new List<int>() { magicBookData.Id, nextMagicBook.Id });
+                
+                itemData.ParentView.SortHasItem();
             }
             else
             {
@@ -319,6 +321,7 @@ public class UiInventoryMagicBookView : FancyCell<MagicBook_Fancy>
            if (magicBookData != null)
             {
                 itemData.ParentView.AllUpgradeMagicBook(magicBookData.Id);
+                itemData.ParentView.SortHasItem();
             }
 
         }, null);

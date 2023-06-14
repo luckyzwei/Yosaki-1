@@ -64,7 +64,13 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     
     private void Start()
     {
-            
+        MakeBoard();
+
+    }
+
+    private void MakeBoard()
+    {
+                    
         switch (_ringType)
         {
             case RingType.Basic:
@@ -76,7 +82,6 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
             default:
                 break;
         }
-
     }
     private List<RingData_Fancy> SortHasItemList(List<RingData_Fancy> list)
     {
@@ -95,7 +100,7 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
 
         return list;
     }
-    private void SortHasItem()
+    public void SortHasItem()
     {
         ringDataContainer = SortHasItemList(ringDataContainer);
         this.UpdateContents(ringDataContainer.ToArray());
@@ -114,6 +119,9 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
     }
     private void MakeBasicNormalBoard()
     {
+        ringDataContainer.Clear();
+        ringDataContainer2.Clear();
+        
         scroller.Initialize(TypeScroll.InventoryView);
             
         scroller.OnValueChanged(UpdatePosition);
@@ -142,43 +150,10 @@ public class UiRingInventoryView : FancyScrollView<RingData_Fancy>
                 passInfos.Insert(0, passInfos[i]);
                 passInfos.RemoveAt(i + 1);
             }
-        }
+        }        
+        passInfos = SortHasItemList(passInfos);
         this.UpdateContents(passInfos.ToArray());
         scroller.SetTotalCount(passInfos.Count);
     }
     
-    private void MakeViewBoard()
-    {
-        scroller.Initialize(TypeScroll.None);
-            
-        scroller.OnValueChanged(UpdatePosition);
-        var tableData = TableManager.Instance.NewGachaTable.dataArray;
-    
-        List<RingData_Fancy> passInfos = new List<RingData_Fancy>();
-    
-        for (int i = 0; i < tableData.Length; i++)
-        {
-            
-            var ringData = new NewGachaTableData();
-
-            ringData = tableData[i];
-            
-            passInfos.Add(new RingData_Fancy(ringData,this));
-    
-        }
-        
-        passInfos.Sort((a, b) => tableData[a.RingData.Id].Displayorder.CompareTo(tableData[b.RingData.Id].Displayorder));
-    
-        for (int i = 0; i < passInfos.Count; i++)
-        {
-            RingData_Fancy ringData = passInfos[i];
-            if (ringData != null && ServerData.newGachaServerTable.TableDatas[ringData.RingData.Stringid].hasItem.Value > 0)
-            {
-                passInfos.Insert(0, passInfos[i]);
-                passInfos.RemoveAt(i + 1);
-            }
-        }
-        this.UpdateContents(passInfos.ToArray());
-        scroller.SetTotalCount(passInfos.Count);
-    }
 }

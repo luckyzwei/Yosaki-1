@@ -37,6 +37,14 @@ public class SeolAttenButton2 : MonoBehaviour
         }
 
         active = (allReceived == false);
+        if (active == false)
+        {
+            if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateSeolEvent).Value < 1)
+            {
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateSeolEvent).Value = 1;
+                ServerData.userInfoTable_2.UpData(UserInfoTable_2.graduateSeolEvent, false);
+            }
+        }
     }
 
     public bool HasReward(List<string> splitData, int data)

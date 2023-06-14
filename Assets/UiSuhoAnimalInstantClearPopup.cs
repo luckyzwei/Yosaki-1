@@ -73,7 +73,7 @@ public class UiSuhoAnimalInstantClearPopup : MonoBehaviour
         petIcon.Initialize(petTableData);
 
         rewardDescription.SetText(
-            $"현재 {petTableData.Id + 1}단계 1회 소탕시 {CommonString.GetItemName(Item_Type.SuhoPetFeed)} {petTableData.Sweepvalue}개 획득!");
+            $"현재 {petTableData.Gradedescription} 1회 소탕시 {CommonString.GetItemName(Item_Type.SuhoPetFeed)} {petTableData.Sweepvalue}개 획득!");
     }
     
 }

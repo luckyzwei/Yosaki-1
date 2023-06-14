@@ -27,8 +27,8 @@ public class UiThiefKingBoard : MonoBehaviour
     {
         ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.KingTrialGraduateIdx).AsObservable().Subscribe(e =>
         {
-            transBefore.SetActive(e < 5);
-            transAfter.SetActive(e >= 5);
+            transBefore.SetActive(e < GameBalance.thiefKingGraduate);
+            transAfter.SetActive(e >= GameBalance.thiefKingGraduate);
         }).AddTo(this);
     }
 
@@ -64,7 +64,7 @@ public class UiThiefKingBoard : MonoBehaviour
         {
             PopupManager.Instance.ShowAlarmMessage($"데미지 {Utils.ConvertBigNum(GameBalance.thiefGraduateScore)} 이상일때 각성 가능!");
         }
-        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < 4)
+        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < GameBalance.thiefKingGraduate-1)
         {
             PopupManager.Instance.ShowAlarmMessage($"이전 각성을 완료해주세요!");
         }
@@ -75,7 +75,7 @@ public class UiThiefKingBoard : MonoBehaviour
                 "각성 하시겠습니까??", () =>
                 {
 
-                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 5;
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = GameBalance.thiefKingGraduate;
                     ServerData.userInfoTable_2.UpData(UserInfoTable_2.KingTrialGraduateIdx, false);
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
 

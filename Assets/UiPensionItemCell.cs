@@ -160,6 +160,10 @@ public class UiPensionItemCell : MonoBehaviour
         {
             itemType = Item_Type.SealWeaponClear;
         }
+        else if (pensionKey == "dosulpension")
+        {
+            itemType = Item_Type.DosulClear;
+        }
         else
         {
             itemType = Item_Type.SmithFire;

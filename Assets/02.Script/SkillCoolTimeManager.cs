@@ -76,7 +76,17 @@ public static class SkillCoolTimeManager
     public static void SetActiveSkillCool(int idx, float coolTime)
     {
         float skillCoolTimeDecValue = PlayerStats.GetSkillCoolTimeDecreaseValue();
+
+        var skillTableData = TableManager.Instance.SkillData[idx];
+        
+        //도술은 쿨감적용 X
+        if (skillTableData.SKILLCASTTYPE == SkillCastType.Dosul)
+        {
+            skillCoolTimeDecValue = 0;
+        }
+        
         float calculatedCoolTime = coolTime - (coolTime * skillCoolTimeDecValue);
+        
         calculatedCoolTime = Mathf.Max(minimumCoolValue, calculatedCoolTime);
 
         if (remainCool.ContainsKey(idx) == false)

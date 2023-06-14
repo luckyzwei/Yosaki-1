@@ -27,9 +27,7 @@ public class UiSeasonPassPopup : MonoBehaviour
 
     private void OnEnable()
     {
-        var severTime = ServerData.userInfoTable.currentServerTime;
-        
-        if (severTime.Month >= 6)
+        if (ServerData.userInfoTable.IsEventPassPeriod()==false)
         {
             this.gameObject.SetActive(false);
             PopupManager.Instance.ShowAlarmMessage("이벤트가 종료됐습니다.");

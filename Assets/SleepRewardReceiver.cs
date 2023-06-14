@@ -137,9 +137,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             plusSpawnNum += 5;
         }
-#if UNITY_EDITOR
-        plusSpawnNum = 71;
-#endif
+// #if UNITY_EDITOR
+//         plusSpawnNum = 71;
+// #endif
 
         float spawnEnemyNumPerSec = (float)((platformNum * stageTableData.Spawnamountperplatform) + plusSpawnNum) / spawnInterval;
 
@@ -199,28 +199,30 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         {
             peachItem =
                 (killedEnemyPerMin * stageTableData.Peachamount * GameBalance.sleepRewardRatio * elapsedMinutes) *
-                PlayerStats.GetMonkeyGodAbil1();
+                (1+PlayerStats.GetMonkeyGodAbil1());
         }
 
         //복숭아
         float helItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
-            helItem = (killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes)*
-                PlayerStats.GetHellGodAbil1();;
+            helItem = (killedEnemyPerMin * stageTableData.Helamount * GameBalance.sleepRewardRatio * elapsedMinutes) *
+                      (1 + PlayerStats.GetHellGodAbil1());
         }
 
         float chunItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
             chunItem = (killedEnemyPerMin * stageTableData.Chunfloweramount * GameBalance.sleepRewardRatio *
-                        elapsedMinutes) * PlayerStats.GetChunGodAbil1();
+                        elapsedMinutes) * (1 + PlayerStats.GetChunGodAbil1());
         }
 
         float dokebiItem = 0;
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
         {
-            dokebiItem = killedEnemyPerMin * stageTableData.Dokebifireamount * GameBalance.sleepRewardRatio * elapsedMinutes;
+            dokebiItem =
+                (killedEnemyPerMin * stageTableData.Dokebifireamount * GameBalance.sleepRewardRatio * elapsedMinutes) *
+                (1 + PlayerStats.GetDoGodAbil1());
         }
 
         int hotTimeItem = 0;
@@ -338,6 +340,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
             ServerData.goodsTable.GetTableData(GoodsTable.Event_HotTime_Saved).Value += sleepRewardInfo.hotTimeItem;
         }
 
+
         ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value += sleepRewardInfo.sulItem;
         ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value += sleepRewardInfo.stageRelic;
 
@@ -365,12 +368,21 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value += sleepRewardInfo.killCount;
-        ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value += sleepRewardInfo.killCount;
+        //ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value += sleepRewardInfo.killCount;
         ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.foxFirePassKill].Value += sleepRewardInfo.killCount;
+        if (ServerData.userInfoTable.IsEventPassPeriod())
+        {
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.killCountTotalSeason0].Value +=
+                sleepRewardInfo.killCount;
+        }
         //ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value += sleepRewardInfo.killCount;
 
         Param goodsParam = new Param();
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateSeolEvent).Value < 1)
+        {
+            goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
+        }
         if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
         {
             goodsParam.Add(GoodsTable.Gold, ServerData.goodsTable.GetTableData(GoodsTable.Gold).Value);
@@ -432,7 +444,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         }
 
         goodsParam.Add(GoodsTable.StageRelic, ServerData.goodsTable.GetTableData(GoodsTable.StageRelic).Value);
-        goodsParam.Add(GoodsTable.SulItem, ServerData.goodsTable.GetTableData(GoodsTable.SulItem).Value);
+
 
         Param userInfoParam = new Param();
         userInfoParam.Add(UserInfoTable.dailyEnemyKillCount, ServerData.userInfoTable.TableDatas[UserInfoTable.dailyEnemyKillCount].Value);
@@ -450,7 +462,7 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         //userInfoParam.Add(UserInfoTable.killCountTotalChild, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalChild].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalWinterPass, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalWinterPass].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason].Value);
-        userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value);
+        //userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason2].Value);
         userInfoParam.Add(UserInfoTable.killCountTotalSeason3, ServerData.userInfoTable.TableDatas[UserInfoTable.killCountTotalSeason3].Value);
         
         Param userInfo_2Param = new Param();
@@ -465,6 +477,11 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         }
 
         userInfo_2Param.Add(UserInfoTable_2.foxFirePassKill, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.foxFirePassKill].Value);
+        if (ServerData.userInfoTable.IsEventPassPeriod())
+        {
+            userInfo_2Param.Add(UserInfoTable_2.killCountTotalSeason0,
+                ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.killCountTotalSeason0].Value);
+        }
         // userInfoParam.Add(UserInfoTable.attenCountOne, ServerData.userInfoTable.TableDatas[UserInfoTable.attenCountOne].Value);
 
 

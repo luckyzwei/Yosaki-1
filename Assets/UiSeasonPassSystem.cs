@@ -26,7 +26,7 @@ public class UiSeasonPassSystem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).Value += 1000000;
+            ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).Value += 1000000;
         }
     }
 #endif
@@ -186,7 +186,7 @@ public class UiSeasonPassSystem : MonoBehaviour
 
     private bool CanGetReward(int require)
     {
-        int killCountTotal = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).Value;
+        int killCountTotal = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).Value;
         return killCountTotal >= require;
     }
     public bool HasReward(List<int> splitData, int id)

@@ -95,6 +95,7 @@ public abstract class SkillBase
             if (SuhoAnimalSkillCaster.Instance != null)
                 targetTr = SuhoAnimalSkillCaster.Instance.skillSpawnPos;
         }
+      
 
         if (targetTr == null) return;
 

@@ -37,6 +37,7 @@ public class UiContentsPopup2 : MonoBehaviour
         GodTrialBoard,
         TaegeukBoard,
         SangunBoard,
+        HyunSanganBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -57,6 +58,7 @@ public class UiContentsPopup2 : MonoBehaviour
                 break;
                 
             case  GameManager.ContentsType.RelicDungeon:
+            case  GameManager.ContentsType.RelicTest:
                 lastBoards[(int)ContentsBoard.UiRelicBoard].SetActive(true);
                 break;
             case GameManager.ContentsType.TwelveDungeon:
@@ -255,6 +257,9 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 143:
                     case 144:
                     case 145:
+                    case 151:
+                    case 152:
+                    case 153:
                         lastBoards[(int)ContentsBoard.SinsunBoard].SetActive(true);
                         break;
                     case 146:
@@ -262,6 +267,12 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 148:
                     case 149:
                         lastBoards[(int)ContentsBoard.SangunBoard].SetActive(true);
+                        break;
+                    case 154:
+                    case 155:
+                    case 156:
+                    case 157:
+                        lastBoards[(int)ContentsBoard.HyunSanganBoard].SetActive(true);
                         break;
                         
                 }
@@ -302,6 +313,7 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.TestSword:
             case GameManager.ContentsType.TestHell:
             case GameManager.ContentsType.TestChun:
+            case GameManager.ContentsType.TestDo:
                 lastBoards[(int)ContentsBoard.GodTrialBoard].SetActive(true);
                 break;
             case GameManager.ContentsType.GradeTest:

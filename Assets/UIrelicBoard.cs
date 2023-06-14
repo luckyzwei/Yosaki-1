@@ -3,6 +3,7 @@ using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,10 +17,23 @@ public class UIrelicBoard : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI bestScoreText;
+    [SerializeField]
+    private TextMeshProUGUI enterButtonText;
 
+    [SerializeField] private GameObject relicTestBoard; 
+    
     private void Start()
     {
         Initialize();
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        ServerData.userInfoTable.TableDatas[UserInfoTable.relicKillCount].AsObservable().Subscribe(e =>
+        {
+            enterButtonText.SetText(e >= GameBalance.RelicDungeonGraduateScore ? "영혼사냥" : "입장");
+        }).AddTo(this);
     }
 
     private void Initialize()
@@ -38,10 +52,17 @@ public class UIrelicBoard : MonoBehaviour
 
     public void OnClickEnterButton()
     {
-        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () =>
+        if (ServerData.userInfoTable.TableDatas[UserInfoTable.relicKillCount].Value < 80000)
         {
-            GameManager.Instance.LoadContents(GameManager.ContentsType.RelicDungeon);
-        }, () => { });
+            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "입장 하시겠습니까?", () =>
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.RelicDungeon);
+            }, () => { });   
+        }
+        else
+        {
+            relicTestBoard.SetActive(true);
+        }
     }
 
 #if UNITY_EDITOR

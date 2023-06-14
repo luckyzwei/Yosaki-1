@@ -28,8 +28,8 @@ public class UiYumBoard : MonoBehaviour
     {
         ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.KingTrialGraduateIdx).AsObservable().Subscribe(e =>
         {
-            transBefore.SetActive(e == 0);
-            transAfter.SetActive(e != 0);
+            transBefore.SetActive(e < GameBalance.yumKingGraduate);
+            transAfter.SetActive(e >= GameBalance.yumKingGraduate);
         }).AddTo(this);
     }
 
@@ -75,7 +75,7 @@ public class UiYumBoard : MonoBehaviour
                 "각성 하시겠습니까??", () =>
                 {
 
-                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 1;
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = GameBalance.yumKingGraduate;
                     ServerData.userInfoTable_2.UpData(UserInfoTable_2.KingTrialGraduateIdx, false);
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
 

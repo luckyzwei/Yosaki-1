@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UniRx;
@@ -35,6 +36,9 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
 
     [SerializeField]
     private GameObject hotTimeObject;
+    
+    [SerializeField]
+    private GameObject seolObject;
 
     [SerializeField] private Image GoldIcon;
     //[SerializeField]
@@ -71,8 +75,13 @@ public class UiSleepRewardView : SingletonMono<UiSleepRewardView>
                 ? CommonUiContainer.Instance.GetItemIcon(Item_Type.Gold)
                 : CommonUiContainer.Instance.GetItemIcon(Item_Type.GoldBar);
         }).AddTo(this);
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateSeolEvent).AsObservable().Subscribe(e =>
+        {
+            seolObject.SetActive(e < 1);
+        }).AddTo(this);
 
     }
+    
 
     private void HotTimeEventCheck()
     {

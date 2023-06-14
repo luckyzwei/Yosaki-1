@@ -143,7 +143,15 @@ public static class Utils
                type == Item_Type.costume120 ||
                type == Item_Type.costume121 ||
                type == Item_Type.costume122 ||
-               type == Item_Type.costume123
+               type == Item_Type.costume123 ||
+               type == Item_Type.costume124 ||
+               type == Item_Type.costume125 ||
+               type == Item_Type.costume126 ||
+               type == Item_Type.costume127 ||
+               type == Item_Type.costume128 ||
+               type == Item_Type.costume129 ||
+               type == Item_Type.costume130||
+               type == Item_Type.costume131
             ;
     }
 
@@ -163,7 +171,8 @@ public static class Utils
                type == Item_Type.MonthNorigae3 ||
                type == Item_Type.MonthNorigae4 ||
                type == Item_Type.MonthNorigae5 ||
-               type == Item_Type.MonthNorigae6
+               type == Item_Type.MonthNorigae6||
+               type == Item_Type.MonthNorigae7
             ;
     }
 
@@ -236,6 +245,11 @@ public static class Utils
                type == Item_Type.c4 ||
                type == Item_Type.c5 ||
                type == Item_Type.c6 ||
+               
+               type == Item_Type.SinSkill0 ||
+               type == Item_Type.SinSkill1 ||
+               type == Item_Type.SinSkill2 ||
+               type == Item_Type.SinSkill3 ||
 
                type == Item_Type.d0 ||
                type == Item_Type.d1 ||
@@ -327,6 +341,7 @@ public static class Utils
                type == Item_Type.MonthNorigae4 ||
                type == Item_Type.MonthNorigae5 ||
                type == Item_Type.MonthNorigae6 ||
+               type == Item_Type.MonthNorigae7 ||
                type == Item_Type.DokebiHorn0 ||
                type == Item_Type.DokebiHorn1 ||
                type == Item_Type.DokebiHorn2 ||
@@ -361,6 +376,7 @@ public static class Utils
                type == Item_Type.VisionTreasure ||
                type == Item_Type.DarkTreasure ||
                type == Item_Type.SinsunTreasure ||
+               type == Item_Type.GwisalTreasure ||
                type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
@@ -385,6 +401,8 @@ public static class Utils
                type == Item_Type.SoulRingClear ||
                type == Item_Type.Tresure ||
                type == Item_Type.GuildTowerClearTicket ||
+               type == Item_Type.DosulGoods ||
+               type == Item_Type.DosulClear ||
                type == Item_Type.GuildTowerHorn
             ;
     }
@@ -621,7 +639,7 @@ public static class Utils
     private static string[] goldUnitArr = new string[]
     {
         "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
-        "갈", "라", "가", "언", "승", "마", "살", "섬", "찰", "교","미정0","미정1","미정2","미정3","미정4","미정5","미정6"
+        "갈", "라", "가", "언", "승", "마", "살", "섬", "찰", "교","위","미정1","미정2","미정3","미정4","미정5","미정6"
         
     };
 

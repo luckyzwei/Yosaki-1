@@ -53,7 +53,9 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
 
         desc += $"체력 : {Utils.ConvertBigNum(enemyTableData.Hp)}\n";
         desc += $"방어력 : {Utils.ConvertBigNum(enemyTableData.Defense)}\n";
-        desc += $"공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower)}\n\n";
+        desc += $"공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower)}\n";
+        desc += $"보스체력 : {Utils.ConvertBigNum(enemyTableData.Hp * enemyTableData.Bosshpratio)}\n";
+        desc += $"보스공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower * enemyTableData.Bossattackratio)}\n\n";
         desc += $"경험치 : {Utils.ConvertBigNum(enemyTableData.Exp)}\n";
         if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.graduateGold).Value < 1)
         {
@@ -67,8 +69,7 @@ public class CurrentStageInfoPopup : SingletonMono<CurrentStageInfoPopup>
         desc += $"{CommonString.GetItemName(Item_Type.GrowthStone)} : {Utils.ConvertBigNum(stageData.Magicstoneamount)}\n";
         desc += $"{CommonString.GetItemName(Item_Type.Marble)} : {Utils.ConvertBigNum(stageData.Marbleamount)}\n";
         desc += $"{CommonString.GetItemName(Item_Type.StageRelic)} : {Utils.ConvertBigNum(stageData.Relicspawnamount)}\n";
-        desc += $"보스체력 : {Utils.ConvertBigNum(enemyTableData.Hp * enemyTableData.Bosshpratio)}\n";
-        desc += $"보스공격력 : {Utils.ConvertBigNum(enemyTableData.Attackpower * enemyTableData.Bossattackratio)}";
+
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateSon).Value > 0)
         {
             desc += $"\n요괴 500마리당 {CommonString.GetItemName(Item_Type.PeachReal)} 획득량 : {stageData.Peachamount * 1000}";

@@ -85,7 +85,7 @@ public class UserInfoTable
     public const string mf12_Buff = "mf12";
     public const string ma12_Buff = "ma12";
 
-    public const string season0_Buff = "season0"; //새학기
+    public const string season0_Buff = "season0"; //혹서기
     public const string season1_Buff = "season1";
     public const string season2_Buff = "season2"; //혹한기버프
     public const string season3_Buff = "season3";
@@ -127,6 +127,7 @@ public class UserInfoTable
     public const string suhopetfeedclearpensionAttendance = "suhopetfeedclearpension";
     public const string foxfirepension = "foxfirepension";
     public const string sealswordpension = "sealswordpension";
+    public const string dosulpension = "dosulpension";
 
     public const string marblePackChange = "marblePackChange";
 
@@ -148,7 +149,7 @@ public class UserInfoTable
     public const string killCountTotalChild = "fal"; //가을훈련
     public const string killCountTotalWinterPass = "KillCountWinterPass"; //가을훈련
     public const string killCountTotalSeason = "ks1"; //봄훈련
-    public const string killCountTotalSeason2 = "ks2"; //새학기훈련
+    //public const string killCountTotalSeason2 = "ks2"; //새학기훈련
     public const string killCountTotalSeason3 = "ks3"; //수호훈련
     
     
@@ -239,7 +240,7 @@ public class UserInfoTable
     public const string titleConvertNewTitle2 = "titleConvertNewTitle2";
     public const string relocateLevelPass = "relocateLevelPass";
     public const string chunmaRefund = "chunmaRefund";
-
+    
     public const string exchangeCount_0_Mileage = "mff";
     public const string exchangeCount_1_Mileage = "mgg";
     public const string exchangeCount_2_Mileage = "mbu";
@@ -429,6 +430,7 @@ public class UserInfoTable
         { suhopetfeedclearpensionAttendance, 0f },
         { foxfirepension, 0f },
         { sealswordpension, 0f },
+        { dosulpension, 0f },
 
         { marblePackChange, 0f },
         { yoguiSogulLastClear, 0f },
@@ -470,7 +472,7 @@ public class UserInfoTable
         { killCountTotalChild, 0f },
         { killCountTotalWinterPass, 0f },
         { killCountTotalSeason, 0f },
-        { killCountTotalSeason2, 0f },
+        //{ killCountTotalSeason2, 0f },
         { killCountTotalSeason3, 0f },
         { attenCountBok, 1f },
         { attenCountSpring, 1f },
@@ -851,7 +853,7 @@ public class UserInfoTable
 
         userInfoParam.Add(killCountTotalSeason, tableDatas[killCountTotalSeason].Value);
 
-        userInfoParam.Add(killCountTotalSeason2, tableDatas[killCountTotalSeason2].Value);
+        //userInfoParam.Add(killCountTotalSeason2, tableDatas[killCountTotalSeason2].Value);
         //수호
         userInfoParam.Add(killCountTotalSeason3, tableDatas[killCountTotalSeason3].Value);
 
@@ -883,6 +885,7 @@ public class UserInfoTable
                 currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(9);
 
 #if UNITY_EDITOR
+                currentServerTime = DateTime.Parse(time).ToUniversalTime().AddDays(GameBalance.addDay);
                 //currentServerTime = currentServerTime.AddDays(15);
 #endif
 
@@ -1069,35 +1072,82 @@ public class UserInfoTable
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
-
-            
-            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value = 0;
             
             Param userInfo2Param = new Param();
-            
-            userInfo2Param.Add(UserInfoTable_2.GangChulReset,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value);
-            
-            var table2 = TableManager.Instance.MonthMission.dataArray;
+           
+            //월간 훈련 보상
 
-            for (int i = 0; i < table2.Length; i++)
+            //홀수면 트루
+            if (IsMonthlyPass2())
             {
-                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].clearCount.Value = 0;
-                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].rewardCount.Value = 0;
-                ServerData.eventMissionTable.TableDatas[table2[i].Stringid].adrewardCount.Value = 0;
+                //홀수
+                Param monthpass2Param = new Param();
+            
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.oddMonthKillCount).Value = 0;
+            
+                ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassFreeReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAdReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAttendFreeReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAttendAdReward].Value = string.Empty;
+            
+                monthpass2Param.Add(MonthlyPassServerTable2.MonthlypassFreeReward, ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassFreeReward].Value);
+                monthpass2Param.Add(MonthlyPassServerTable2.MonthlypassAdReward, ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAdReward].Value);
+                monthpass2Param.Add(MonthlyPassServerTable2.MonthlypassAttendFreeReward, ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAttendFreeReward].Value);
+                monthpass2Param.Add(MonthlyPassServerTable2.MonthlypassAttendAdReward, ServerData.monthlyPassServerTable2.TableDatas[MonthlyPassServerTable2.MonthlypassAttendAdReward].Value);
+            
+                transactionList.Add(TransactionValue.SetUpdate(MonthlyPassServerTable2.tableName,MonthlyPassServerTable2.Indate,monthpass2Param));
+                
+                userInfo2Param.Add(UserInfoTable_2.oddMonthKillCount,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.oddMonthKillCount].Value);
+                var table3 = TableManager.Instance.MonthMission2.dataArray;
 
-                eventMissionParam.Add(table2[i].Stringid, ServerData.eventMissionTable.TableDatas[table2[i].Stringid].ConvertToString());
-            } 
-            var table3 = TableManager.Instance.MonthMission2.dataArray;
+                for (int i = 0; i < table3.Length; i++)
+                {
+                    ServerData.eventMissionTable.TableDatas[table3[i].Stringid].clearCount.Value = 0;
+                    ServerData.eventMissionTable.TableDatas[table3[i].Stringid].rewardCount.Value = 0;
+                    ServerData.eventMissionTable.TableDatas[table3[i].Stringid].adrewardCount.Value = 0;
 
-            for (int i = 0; i < table3.Length; i++)
+                    eventMissionParam.Add(table3[i].Stringid, ServerData.eventMissionTable.TableDatas[table3[i].Stringid].ConvertToString());
+                }
+            }
+            else
             {
-                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].clearCount.Value = 0;
-                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].rewardCount.Value = 0;
-                ServerData.eventMissionTable.TableDatas[table3[i].Stringid].adrewardCount.Value = 0;
+                Param monthpassParam = new Param();
+            
+                //짝수
+                ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassFreeReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAdReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAttendFreeReward].Value = string.Empty;
+                ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAttendAdReward].Value = string.Empty;
+            
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.evenMonthKillCount).Value = 0;
+            
+                monthpassParam.Add(MonthlyPassServerTable.MonthlypassFreeReward, ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassFreeReward].Value);
+                monthpassParam.Add(MonthlyPassServerTable.MonthlypassAdReward, ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAdReward].Value);
+                monthpassParam.Add(MonthlyPassServerTable.MonthlypassAttendFreeReward, ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAttendFreeReward].Value);
+                monthpassParam.Add(MonthlyPassServerTable.MonthlypassAttendAdReward, ServerData.monthlyPassServerTable.TableDatas[MonthlyPassServerTable.MonthlypassAttendAdReward].Value);
+            
+                transactionList.Add(TransactionValue.SetUpdate(MonthlyPassServerTable.tableName,MonthlyPassServerTable.Indate,monthpassParam));
 
-                eventMissionParam.Add(table3[i].Stringid, ServerData.eventMissionTable.TableDatas[table3[i].Stringid].ConvertToString());
+                userInfo2Param.Add(UserInfoTable_2.evenMonthKillCount,
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.evenMonthKillCount].Value);
+                    
+                var table2 = TableManager.Instance.MonthMission.dataArray;
+
+                for (int i = 0; i < table2.Length; i++)
+                {
+                    ServerData.eventMissionTable.TableDatas[table2[i].Stringid].clearCount.Value = 0;
+                    ServerData.eventMissionTable.TableDatas[table2[i].Stringid].rewardCount.Value = 0;
+                    ServerData.eventMissionTable.TableDatas[table2[i].Stringid].adrewardCount.Value = 0;
+
+                    eventMissionParam.Add(table2[i].Stringid, ServerData.eventMissionTable.TableDatas[table2[i].Stringid].ConvertToString());
+                } 
             }
 
+            ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value = 0;
+
+            userInfo2Param.Add(UserInfoTable_2.GangChulReset,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value);
+
+            
             transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName,UserInfoTable_2.Indate,userInfo2Param));
         }
         transactionList.Add(TransactionValue.SetUpdate(EventMissionTable.tableName, EventMissionTable.Indate, eventMissionParam));
@@ -1165,6 +1215,10 @@ public class UserInfoTable
             {
                 ServerData.userInfoTable.GetTableData(UserInfoTable.sealswordpension).Value++;
             }
+            if (ServerData.iapServerTable.TableDatas[UserInfoTable.dosulpension].buyCount.Value > 0f)
+            {
+                ServerData.userInfoTable.GetTableData(UserInfoTable.dosulpension).Value++;
+            }
 
             if (ServerData.iapServerTable.TableDatas[UserInfoTable.relicpensionAttendance].buyCount.Value > 0f)
             {
@@ -1219,6 +1273,7 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.suhopetfeedclearpensionAttendance, ServerData.userInfoTable.GetTableData(UserInfoTable.suhopetfeedclearpensionAttendance).Value);
         userInfoParam.Add(UserInfoTable.foxfirepension, ServerData.userInfoTable.GetTableData(UserInfoTable.foxfirepension).Value);
         userInfoParam.Add(UserInfoTable.sealswordpension, ServerData.userInfoTable.GetTableData(UserInfoTable.sealswordpension).Value);
+        userInfoParam.Add(UserInfoTable.dosulpension, ServerData.userInfoTable.GetTableData(UserInfoTable.dosulpension).Value);
 
 
         userInfoParam.Add(UserInfoTable.freeWeapon, ServerData.userInfoTable.GetTableData(UserInfoTable.freeWeapon).Value);
@@ -1395,6 +1450,12 @@ public class UserInfoTable
         {
             ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value += GameBalance.SealSwordTicketDailyGetAmount;
             goodsParam.Add(GoodsTable.SealWeaponClear, ServerData.goodsTable.GetTableData(GoodsTable.SealWeaponClear).Value);
+        }
+        //도술
+        if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulStart].Value != 0)
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value += GameBalance.dailyDosulClearTicketGetValue;
+            goodsParam.Add(GoodsTable.DosulClear, ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value);
         }
 
         //문파 소탕권
@@ -1663,7 +1724,7 @@ public class UserInfoTable
             //tableDatas[killCountTotalChild].Value += updateRequireNum;
             tableDatas[killCountTotalWinterPass].Value += updateRequireNum;
             tableDatas[killCountTotalSeason].Value += updateRequireNum;
-            tableDatas[killCountTotalSeason2].Value += updateRequireNum;
+            //tableDatas[killCountTotalSeason2].Value += updateRequireNum;
             tableDatas[killCountTotalSeason3].Value += updateRequireNum;
             //tableDatas[attenCountOne].Value += updateRequireNum;
         }
@@ -1671,12 +1732,12 @@ public class UserInfoTable
 
     public bool IsLastFloor()
     {
-        return tableDatas[currentFloorIdx].Value == 301;
+        return tableDatas[currentFloorIdx].Value == 20; //구 301
     }
 
     public bool IsLastFloor2()
     {
-        return tableDatas[currentFloorIdx2].Value == 301;
+        return tableDatas[currentFloorIdx2].Value == 100;
     }
 
     public bool CanPlayGangChul()
@@ -1695,6 +1756,11 @@ public class UserInfoTable
 #endif
         //홀수 달의 경우 true , true면 MonthlyPass2
         return (currentServerTime.Month % 2) == 1;
+    }
+    //혹서기
+    public bool IsEventPassPeriod()
+    {
+        return (currentServerTime.Month < 8);
     }
 
     public ReactiveProperty<bool> SnowCollectionComplete = new ReactiveProperty<bool>(false);

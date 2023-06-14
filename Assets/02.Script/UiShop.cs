@@ -528,6 +528,24 @@ public class UiShop : SingletonMono<UiShop>
                     param.Add(GoodsTable.SinsunTreasure, ServerData.goodsTable.GetTableData(GoodsTable.SinsunTreasure).Value);
                 }
                 break;  
+            case Item_Type.GwisalTreasure:
+                {
+                    ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value += amount;
+                    param.Add(GoodsTable.GwisalTreasure, ServerData.goodsTable.GetTableData(GoodsTable.GwisalTreasure).Value);
+                }
+                break;  
+            case Item_Type.DosulClear:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value += amount;
+                param.Add(GoodsTable.DosulClear, ServerData.goodsTable.GetTableData(GoodsTable.DosulClear).Value);
+            }
+                break;  
+            case Item_Type.DosulGoods:
+            {
+                ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value += amount;
+                param.Add(GoodsTable.DosulGoods, ServerData.goodsTable.GetTableData(GoodsTable.DosulGoods).Value);
+            }
+                break;  
             case Item_Type.GuildTowerClearTicket:
                 {
                     ServerData.goodsTable.GetTableData(GoodsTable.GuildTowerClearTicket).Value += amount;

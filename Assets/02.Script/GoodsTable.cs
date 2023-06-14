@@ -213,6 +213,7 @@ public class GoodsTable
     public static string VisionTreasure = "VisionTreasure";
     public static string DarkTreasure = "DarkTreasure";
     public static string SinsunTreasure = "SinsunTreasure";
+    public static string GwisalTreasure = "GwisalTreasure";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
@@ -231,6 +232,8 @@ public class GoodsTable
     public static string GuildTowerClearTicket = "GTCT";
     public static string GuildTowerHorn = "GuildTowerHorn";
     public static string SealWeaponClear = "SealWeaponClear";
+    public static string DosulGoods = "DosulGoods";
+    public static string DosulClear = "DosulClear";
 
 
     private Dictionary<string, float> tableSchema = new Dictionary<string, float>()
@@ -422,6 +425,7 @@ public class GoodsTable
         { VisionTreasure, 0f },
         { DarkTreasure, 0f },
         { SinsunTreasure, 0f },
+        { GwisalTreasure, 0f },
         { SusanoTreasure, 0f },
         { SumiFire, 0f },
         { SumiFireKey, 0f },
@@ -441,6 +445,8 @@ public class GoodsTable
         { GuildTowerClearTicket, 0f },
         { GuildTowerHorn, 0f },
         { SealWeaponClear, 0f },
+        { DosulGoods, 0f },
+        { DosulClear, 0f },
     };
 
     private ReactiveDictionary<string, ReactiveProperty<float>> tableDatas = new ReactiveDictionary<string, ReactiveProperty<float>>();
@@ -605,7 +611,7 @@ public class GoodsTable
 
     public void GetPeachItem(float amount)
     {
-        peachItemAddNum += amount * PlayerStats.GetMonkeyGodAbil1();
+        peachItemAddNum += amount * (1 + PlayerStats.GetMonkeyGodAbil1());
 
         //100킬마다 얻게하기 위해서
         if (peachItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Peachamount, 1))
@@ -623,7 +629,7 @@ public class GoodsTable
 
     public void GetHelItem(float amount)
     {
-        helItemAddNum += amount * PlayerStats.GetHellGodAbil1();
+        helItemAddNum += amount * (1 + PlayerStats.GetHellGodAbil1());
 
         //1개 획득할때마다 얻게하기 위해서
         if (helItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Helamount, 1))
@@ -642,7 +648,7 @@ public class GoodsTable
 
     public void GetChunItem(float amount)
     {
-        chunItemAddNum += amount * PlayerStats.GetChunGodAbil1();
+        chunItemAddNum += amount * (1 + PlayerStats.GetChunGodAbil1());
 
         //1개 획득할때마다 얻게하기 위해서
         if (chunItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Chunfloweramount, 1))
@@ -658,7 +664,7 @@ public class GoodsTable
     static float dokebiItemAddNum = 0;
     public void GetDokebiItem(float amount)
     {
-        dokebiItemAddNum += amount;
+        dokebiItemAddNum += amount * (1 + PlayerStats.GetDoGodAbil1());
 
         //1개 획득할때마다 얻게하기 위해서
         if (dokebiItemAddNum < Mathf.Max(updateRequireNum * GameManager.Instance.CurrentStageData.Dokebifireamount, 1))

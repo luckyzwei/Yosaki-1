@@ -19,6 +19,8 @@ public class PopupManager : SingletonMono<PopupManager>
 
     [SerializeField]
     private UiAlarmMessage alarmMessagePrefab;
+    [SerializeField]
+    private UiAlarmMessage alarmMessageVer2Prefab;
 
     [SerializeField]
     private UiReviewPopup uiReviewPopup;
@@ -72,6 +74,14 @@ public class PopupManager : SingletonMono<PopupManager>
         if (ignoreAlarmMessage == true) return;
 
         var alarmMessage = Instantiate<UiAlarmMessage>(alarmMessagePrefab, this.transform);
+        alarmMessage.Initialize(description);
+    }
+
+    public void ShowAlarmMessage2(string description)
+    {
+        if (ignoreAlarmMessage == true) return;
+
+        var alarmMessage = Instantiate<UiAlarmMessage>(alarmMessageVer2Prefab, this.transform);
         alarmMessage.Initialize(description);
     }
 

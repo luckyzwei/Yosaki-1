@@ -283,6 +283,7 @@ public class MapInfo : SingletonMono<MapInfo>
 
             enemyObject.transform.position = spawnPos;
         }
+        //보스소환
         else
         {
             UiStageNameIndicater.Instance.SerFieldBossTimerDefault();
@@ -291,8 +292,13 @@ public class MapInfo : SingletonMono<MapInfo>
             PopupManager.Instance.ShowAlarmMessage("필드보스 출현!");
 
             //첫번째 발판에 소환
-            enemyObject.transform.position = spawnPlatforms[GetBossSpawnPlatformIdx()].GetRandomSpawnPos();
+            Vector3 spawnPosition = spawnPlatforms[GetBossSpawnPlatformIdx()].GetRandomSpawnPos();
+            enemyObject.transform.position = spawnPosition;
 
+            //플레이어 이동기능
+            PlayerSkillCaster.Instance.PlayerMoveController.transform.position = spawnPosition;
+            
+            
             EffectManager.SpawnEffectAllTime("FieldBossSpawn", enemyObject.transform.position);
 
             EffectManager.SpawnEffectAllTime("Circle1", enemyObject.transform.position);
@@ -306,6 +312,40 @@ public class MapInfo : SingletonMono<MapInfo>
 
         spawnedEnemyList.Add(enemyObject);
     }
+    //
+    // //Jumping
+    // private void SpawnEnemy(bool isBossEnemy, bool isRandomTurn,int idx)
+    // {
+    //     if (spawnEnemyData.Count == 0)
+    //     {
+    //         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "데이터 없음", null);
+    //         return;
+    //     }
+    //
+    //     var enemyObject = BattleObjectManager.Instance.GetItem($"Enemy/{TableManager.Instance.EnemyData[idx].Prefabname}") as Enemy;
+    //     int spawnedIdx = 0;
+    //
+    //
+    //     UiStageNameIndicater.Instance.SerFieldBossTimerDefault();
+    //     //UiStageNameIndicater.Instance.StartFieldBossTimer(15);
+    //
+    //     PopupManager.Instance.ShowAlarmMessage("필드보스 출현!");
+    //
+    //     //첫번째 발판에 소환
+    //     enemyObject.transform.position = spawnPlatforms[GetBossSpawnPlatformIdx()].GetRandomSpawnPos();
+    //
+    //     EffectManager.SpawnEffectAllTime("FieldBossSpawn", enemyObject.transform.position);
+    //
+    //     EffectManager.SpawnEffectAllTime("Circle1", enemyObject.transform.position);
+    //     SoundManager.Instance.PlaySound("4-1");
+    //
+    //
+    //     enemyObject.SetReturnCallBack(EnemyRemoveCallBack);
+    //
+    //     enemyObject.Initialize(TableManager.Instance.EnemyData[idx], isBossEnemy, spawnedIdx, isJumpStage: true);
+    //
+    //     spawnedEnemyList.Add(enemyObject);
+    // }
 
     private Coroutine gaugeRoutine;
 
@@ -368,6 +408,27 @@ public class MapInfo : SingletonMono<MapInfo>
         SpawnEnemy(true, false);
     }
 
+    // //jumping
+    // private int bossIdx=0;
+    // public void SpawnBossEnemy(int idx)
+    // {
+    //     bossIdx = idx;
+    //     if (GameManager.contentsType != GameManager.ContentsType.NormalField)
+    //     {
+    //         PopupManager.Instance.ShowAlarmMessage("이곳에서는 소환할 수 없습니다.");
+    //         return;
+    //     }
+    //
+    //     //소환된 몹 전부 꺼버림
+    //     var spawnedEnemies = new List<Enemy>(spawnedEnemyList);
+    //
+    //     spawnedEnemies.ForEach(e => e.gameObject.SetActive(false));
+    //     //
+    //     //몹생성 막음
+    //     SetCanSpawnEnemy(false);
+    //     SpawnEnemy(true, false, bossIdx);
+    // }
+
     public bool HasSpawnedBossEnemy()
     {
         for (int i = 0; i < spawnedEnemyList.Count; i++)
@@ -397,37 +458,131 @@ public class MapInfo : SingletonMono<MapInfo>
 
         Param goodsParam = new Param();
 
-        //보상지급
-        int rewardValue = GameManager.Instance.CurrentStageData.Bossrewardvalue;
-        ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += rewardValue;
-        goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
-
-        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-
-        Param stageParam = new Param();
-        ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value = GameManager.Instance.CurrentStageData.Id;
-        stageParam.Add(UserInfoTable.topClearStageId, ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value);
-
-        transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, stageParam));
-
-        ServerData.SendTransaction(transactions, successCallBack: () =>
-          {
-              // LogManager.Instance.SendLog("스테이지클리어", GameManager.Instance.CurrentStageData.Id.ToString());
-              //결과표시
-              UiFieldBossRewardView.Instance.Initialize(rewardValue);
-          });
-
-        if (UiTutorialManager.Instance.HasClearFlag(TutorialStep.ClearBoss1) == false)
+        if (GameManager.Instance.IsJumpBoss)
         {
-            UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss1);
+            GameManager.Instance.IsJumpBoss = false;
+            
+            //보상지급(합산지급해야함)
+            var preStage = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value;
+            float rewardSum = 0f;
+            for (var i = preStage; i <= GameManager.Instance.CurrentStageData.Id; i++)
+            {
+                rewardSum += TableManager.Instance.StageMapData[i].Bossrewardvalue;
+            }
+        
+#if UNITY_EDITOR
+            Debug.LogError($"옥 합계 : {rewardSum}");
+#endif
+            ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += rewardSum;
+            goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
+    
+            transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+    
+            Param stageParam = new Param();
+            ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value = GameManager.Instance.CurrentStageData.Id;
+            stageParam.Add(UserInfoTable.topClearStageId, ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value);
+    
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, stageParam));
+    
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                // LogManager.Instance.SendLog("스테이지클리어", GameManager.Instance.CurrentStageData.Id.ToString());
+                //결과표시
+                UiFieldBossRewardView.Instance.Initialize(rewardSum);
+            });
+    
+            if (UiTutorialManager.Instance.HasClearFlag(TutorialStep.ClearBoss1) == false)
+            {
+                UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss1);
+            }
+            else
+            {
+                UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss2);
+            }
+
         }
         else
         {
-            UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss2);
-        }
+            //보상지급
+            int rewardValue = GameManager.Instance.CurrentStageData.Bossrewardvalue;
+            ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += rewardValue;
+            goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
 
+            transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+
+            Param stageParam = new Param();
+            ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value = GameManager.Instance.CurrentStageData.Id;
+            stageParam.Add(UserInfoTable.topClearStageId, ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value);
+
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, stageParam));
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                // LogManager.Instance.SendLog("스테이지클리어", GameManager.Instance.CurrentStageData.Id.ToString());
+                //결과표시
+                UiFieldBossRewardView.Instance.Initialize(rewardValue);
+            });
+
+            if (UiTutorialManager.Instance.HasClearFlag(TutorialStep.ClearBoss1) == false)
+            {
+                UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss1);
+            }
+            else
+            {
+                UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss2);
+            }
+        }
 
         GameManager.Instance.ResetLastContents();
         PlayerStats.ResetAbilDic();
     }
+    // public void SetFieldJumpClear()
+    // {
+    //     List<TransactionValue> transactions = new List<TransactionValue>();
+    //
+    //     Param goodsParam = new Param();
+    //
+    //     //보상지급(합산지급해야함)
+    //     //int rewardCurrentValue = GameManager.Instance.CurrentStageData.Bossrewardvalue;
+    //     float rewardSum = 0f;
+    //     for (int i = GameManager.Instance.CurrentStageData.Id; i <= bossIdx; i++)
+    //     {
+    //         rewardSum += TableManager.Instance.StageMapData[i].Bossrewardvalue;
+    //     }
+    //     //var rewardValue = TableManager.Instance.StageMapData[bossIdx].Bossrewardvalue;
+    //     
+    //     #if UNITY_EDITOR
+    //     Debug.LogError($"옥 합계 : {rewardSum}");
+    //     #endif
+    //     ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += rewardSum;
+    //     goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
+    //
+    //     transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+    //
+    //     Param stageParam = new Param();
+    //     ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value = bossIdx;
+    //     stageParam.Add(UserInfoTable.topClearStageId, ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value);
+    //
+    //     transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, stageParam));
+    //
+    //     ServerData.SendTransaction(transactions, successCallBack: () =>
+    //       {
+    //           // LogManager.Instance.SendLog("스테이지클리어", GameManager.Instance.CurrentStageData.Id.ToString());
+    //           //결과표시
+    //           UiFieldBossRewardView.Instance.Initialize(rewardSum, true, bossIdx);
+    //       });
+    //
+    //     if (UiTutorialManager.Instance.HasClearFlag(TutorialStep.ClearBoss1) == false)
+    //     {
+    //         UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss1);
+    //     }
+    //     else
+    //     {
+    //         UiTutorialManager.Instance.SetClear(TutorialStep.ClearBoss2);
+    //     }
+    //
+    //
+    //     GameManager.Instance.ResetLastContents();
+    //     PlayerStats.ResetAbilDic();
+    // }
 }

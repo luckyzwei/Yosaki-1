@@ -55,70 +55,100 @@ public class GuildManager : SingletonMono<GuildManager>
     {
         hasGuild.Value = state;
     }
-    public void LoadGuildInfo()
+    public void LoadGuildInfo(bool showDelayPopup=true)
     {
-        var bro = Backend.Social.Guild.GetMyGuildInfoV3();
-
-        if (bro.IsSuccess())
+        if (showDelayPopup)
         {
-            // guildMemberInfos = new List<GuildMemberInfo>();
-
-            var returnValue = bro.GetReturnValuetoJSON();
-
-            guildInfoData.Value = returnValue["guild"];
-
-            this.myGuildIndate = returnValue["guild"]["inDate"]["S"].ToString();
-
-            ChangeHasGuildState(true);
-
-            guildIconIdx.Value = int.Parse(returnValue["guild"]["guildIcon"]["N"].ToString());
-
-            LoadGuildLevelGoods();
+            UiGuildLoadingMask.Instance.Show(true);
         }
-        else
+        
+        SendQueue.Enqueue(Backend.Social.Guild.GetMyGuildInfoV3, (bro) =>
         {
-            ChangeHasGuildState(false);
-
-            switch (bro.GetStatusCode())
+            if (showDelayPopup)
             {
-                //Old guild의 유저가 조회한 경우
-                //statusCode : 412
-                //errorCode: PreconditionFailed
-                //message : guild's version is different 사전 조건을 만족하지 않습니다.
+                UiGuildLoadingMask.Instance.Show(false);
+            }
+            
+            if (bro.IsSuccess())
+            {
+                // guildMemberInfos = new List<GuildMemberInfo>();
 
-                //guild가 없는 유저가 조회한 경우
-                //statusCode : 412
-                //errorCode: PreconditionFailed
-                //message : notGuildMember 사전 조건을 만족하지 않습니다.
-                case "412":
+                var returnValue = bro.GetReturnValuetoJSON();
+
+                guildInfoData.Value = returnValue["guild"];
+
+                this.myGuildIndate = returnValue["guild"]["inDate"]["S"].ToString();
+
+                ChangeHasGuildState(true);
+
+                guildIconIdx.Value = int.Parse(returnValue["guild"]["guildIcon"]["N"].ToString());
+
+                LoadGuildLevelGoods(false);
+            }
+            else
+            {
+                ChangeHasGuildState(false);
+
+                switch (bro.GetStatusCode())
+                {
+                    //Old guild의 유저가 조회한 경우
+                    //statusCode : 412
+                    //errorCode: PreconditionFailed
+                    //message : guild's version is different 사전 조건을 만족하지 않습니다.
+
+                    //guild가 없는 유저가 조회한 경우
+                    //statusCode : 412
+                    //errorCode: PreconditionFailed
+                    //message : notGuildMember 사전 조건을 만족하지 않습니다.
+                    case "412":
                     {
                         bro.GetErrorCode().Equals("PreconditionFailed");
                     }
-                    break;
+                        break;
+                }
             }
-        }
+        });
+        
+        //var bro = Backend.Social.Guild.GetMyGuildInfoV3();
+
+        
 
     }
 
-    public void LoadGuildLevelGoods()
+    public void LoadGuildLevelGoods(bool showLoading=true)
     {
         if (string.IsNullOrEmpty(myGuildIndate))
         {
             return;
         }
 
+        if (showLoading)
+        {
+            UiGuildLoadingMask.Instance.Show(true);
+        }
+
+        SendQueue.Enqueue(Backend.Social.Guild.GetGuildGoodsByIndateV3,myGuildIndate, (guildGoodsBro) =>
+        {
+            if (showLoading)
+            {
+                UiGuildLoadingMask.Instance.Show(false);
+            }
+            
+            if (guildGoodsBro.IsSuccess())
+            {
+                guildLevelExp.Value = int.Parse(guildGoodsBro.GetReturnValuetoJSON()["goods"]["totalGoods4Amount"]["N"].ToString());
+                guildPetExp.Value = int.Parse(guildGoodsBro.GetReturnValuetoJSON()["goods"]["totalGoods5Amount"]["N"].ToString());
+            }
+            else
+            {
+
+            }
+        });
+        
         //굿즈정보 요청
-        var guildGoodsBro = Backend.Social.Guild.GetGuildGoodsByIndateV3(myGuildIndate);
+       // var guildGoodsBro = Backend.Social.Guild.GetGuildGoodsByIndateV3(myGuildIndate);
 
-        if (guildGoodsBro.IsSuccess())
-        {
-            guildLevelExp.Value = int.Parse(guildGoodsBro.GetReturnValuetoJSON()["goods"]["totalGoods4Amount"]["N"].ToString());
-            guildPetExp.Value = int.Parse(guildGoodsBro.GetReturnValuetoJSON()["goods"]["totalGoods5Amount"]["N"].ToString());
-        }
-        else
-        {
-
-        }
+     
     }
 
     public IEnumerator LoadGuildPetExp()

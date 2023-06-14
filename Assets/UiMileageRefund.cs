@@ -28,6 +28,7 @@ public class UiMileageRefund : MonoBehaviour
         ChunmaDokebiFireRefundRoutine();
         TitleRefundRoutine2();
         RelocateLevelPass();
+        TowerFloorAdjust();
     }
 
     private void RefundRoutine()
@@ -330,6 +331,52 @@ public class UiMileageRefund : MonoBehaviour
         {
             Debug.LogError(
                 $"Weapon : {ServerData.userInfoTable.GetTableData(UserInfoTable.titleWeapon).Value} ");
+        });
+    }
+    
+    private void TowerFloorAdjust()
+    {
+        
+        if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.towerFloorAdjust).Value != 0)
+        {
+            return;
+        }
+        ////////////////////////////////////////
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.towerFloorAdjust).Value = 1;
+        
+        List<TransactionValue> transactions = new List<TransactionValue>();
+        Param userInfoParam = new Param();
+
+        var floor1 = ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value;
+
+        if (floor1 > 2)
+        {
+            ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value = Mathf.Max(0, (int)((floor1-1) / 15));
+            userInfoParam.Add(UserInfoTable.currentFloorIdx, ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value);
+        }
+        var floor2 = ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value;
+        if (floor2>2)
+        {
+            ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value = Mathf.Max(0, (int)((floor2-1) / 3));
+            userInfoParam.Add(UserInfoTable.currentFloorIdx2, ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value);
+        }
+
+        if (floor1 > 0 || floor2 > 0)
+        {
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+        }
+        
+
+        Param userInfo_2Param = new Param();
+        
+        userInfo_2Param.Add(UserInfoTable_2.towerFloorAdjust, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.towerFloorAdjust).Value);
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
+
+        
+        ServerData.SendTransaction(transactions, successCallBack: () =>
+        {
+            Debug.LogError($"요괴도장 : {ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value}\n" +
+                           $"상급 요괴도장 : {ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value}");
         });
     }
     

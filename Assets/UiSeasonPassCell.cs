@@ -74,7 +74,7 @@ public class UiSeasonPassCell : MonoBehaviour
         }).AddTo(disposables);
 
         //킬카운트 변경될때
-        ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).AsObservable().Subscribe(e =>
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).AsObservable().Subscribe(e =>
         {
             if (this.gameObject.activeInHierarchy)
             {
@@ -172,7 +172,7 @@ public class UiSeasonPassCell : MonoBehaviour
         }
         else
         {
-            PopupManager.Instance.ShowAlarmMessage($"새학기 훈련 패스권이 필요합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"여름 훈련 패스권이 필요합니다.");
         }
     }
 
@@ -201,8 +201,8 @@ public class UiSeasonPassCell : MonoBehaviour
 
         //킬카운트
         Param userInfoParam = new Param();
-        userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).Value);
-        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+        userInfoParam.Add(UserInfoTable_2.killCountTotalSeason0, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).Value);
+        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
 
         ServerData.SendTransaction(transactionList, successCallBack: () =>
         {
@@ -227,8 +227,8 @@ public class UiSeasonPassCell : MonoBehaviour
 
         //킬카운트
         Param userInfoParam = new Param();
-        userInfoParam.Add(UserInfoTable.killCountTotalSeason2, ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).Value);
-        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+        userInfoParam.Add(UserInfoTable_2.killCountTotalSeason0, ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).Value);
+        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfoParam));
 
         ServerData.SendTransaction(transactionList, successCallBack: () =>
         {
@@ -240,7 +240,7 @@ public class UiSeasonPassCell : MonoBehaviour
 
     private bool CanGetReward()
     {
-        int killCountTotalColdSeason = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.killCountTotalSeason2).Value;
+        int killCountTotalColdSeason = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.killCountTotalSeason0).Value;
         return killCountTotalColdSeason >= passInfo.require;
     }
 

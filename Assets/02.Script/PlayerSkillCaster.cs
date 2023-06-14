@@ -15,6 +15,7 @@ public enum SkillCastType
     SuhoAnimal,
     Indra,
     SealSword,
+    Dosul,
 }
 
 public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
@@ -67,6 +68,11 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         }
     }
 
+    public bool CanUseSkill(int skillId)
+    {
+        return  UserSkills[skillId].CanUseSkill();;
+    }
+
     public bool UseSkill(int skillIdx)
     {
         bool canUserSkill = UserSkills[skillIdx].CanUseSkill();
@@ -78,6 +84,7 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
             {
                 SealSkillCaster.currentHitCount.Value += sealChargeCount.Value + sealChargeCount2.Value;
             }
+
             
             UserSkills[skillIdx].UseSkill();
 
@@ -327,11 +334,11 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         int hitCount = 0;
 
 
-        if (skillInfo.Id != 18)
+        if (skillInfo.Id != 18 && skillInfo.SKILLCASTTYPE!=SkillCastType.Dosul)
         {
             hitCount = skillInfo.Hitcount + PlayerStats.GetSkillHitAddValue();
         }
-        //인드라는 추가타X
+        //인드라는 추가타X + 도술 추가
         else
         {
             hitCount = skillInfo.Hitcount;

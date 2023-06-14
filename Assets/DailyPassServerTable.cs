@@ -271,10 +271,10 @@ public class MonthlyPassServerTable2
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
     {
-        // { MonthlypassFreeReward,string.Empty},
-        // { MonthlypassAdReward,string.Empty},
-        // { MonthlypassAttendFreeReward,string.Empty},
-        // { MonthlypassAttendAdReward,string.Empty}
+        { MonthlypassFreeReward,string.Empty},
+        { MonthlypassAdReward,string.Empty},
+        { MonthlypassAttendFreeReward,string.Empty},
+        { MonthlypassAttendAdReward,string.Empty}
     };
     
 
@@ -811,8 +811,8 @@ public class ColdSeasonPassServerTable
 
     public static string coldseasonFree = "f2";
     public static string coldseasonAd = "a2";
-    public static string seasonFree = "f3";
-    public static string seasonAd = "a3";
+    public static string seasonFree = "f8";
+    public static string seasonAd = "a8";
     public static string suhoFree = "f4";
     public static string suhoAd = "a4";
     public static string foxfireFree = "f5";
@@ -821,6 +821,8 @@ public class ColdSeasonPassServerTable
     public static string sealSwordAd = "a6";
     public static string gangChulFree = "f7";
     public static string gangChuldAd = "a7";
+    public static string SoulForestFree = "f9";
+    public static string SoulForestdAd = "a9";
 
     public static string coldseasonFree_Atten = "fa2";
 
@@ -838,7 +840,9 @@ public class ColdSeasonPassServerTable
         { sealSwordFree,string.Empty},
         { sealSwordAd,string.Empty},
         { gangChulFree,string.Empty},
-        { gangChuldAd,string.Empty}
+        { gangChuldAd,string.Empty},
+        { SoulForestFree,string.Empty},
+        { SoulForestdAd,string.Empty}
 
     };
 

@@ -168,6 +168,10 @@ public class UiPensionObjectView : MonoBehaviour
         {
             itemType = Item_Type.SealWeaponClear;
         }
+        else if (pensionKey == "dosulpension")
+        {
+            itemType = Item_Type.DosulClear;
+        }
 
         List<TransactionValue> transactions = new List<TransactionValue>();
 

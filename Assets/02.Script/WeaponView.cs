@@ -145,6 +145,10 @@ public class WeaponView : MonoBehaviour
                         gradeNumText.SetText($"<color=blue>청룡</color>");
                     }
                 }
+                if (gradeNumObject != null)
+                {
+                    gradeNumObject.SetActive(true);
+                }
             }
             else
             {
@@ -159,6 +163,10 @@ public class WeaponView : MonoBehaviour
         {
             if (id <= 19)
             {
+                if (gradeNumObject != null)
+                {
+                    gradeNumObject.SetActive(true);
+                }
                 gradeNumText.SetText($"{gradeText}등급");
             }
             else
@@ -175,6 +183,10 @@ public class WeaponView : MonoBehaviour
             if (id <= 14)
             {
                 gradeNumText.SetText($"{gradeText}등급");
+                if (gradeNumObject != null)
+                {
+                    gradeNumObject.SetActive(true);
+                }
             }
             else
             {

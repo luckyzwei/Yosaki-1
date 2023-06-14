@@ -91,7 +91,7 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
 
         if (type == ContentsType.InfiniteTower && UiLastContentsFunc.AutoInfiniteTower)
         {
-            if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx].Value == 301)
+            if (ServerData.userInfoTable.IsLastFloor())
             {
                 UiLastContentsFunc.AutoInfiniteTower = false;
                 return;
@@ -101,7 +101,7 @@ public class UiContentsEnterPopup : SingletonMono<UiContentsEnterPopup>
         }
         else if (type == ContentsType.InfiniteTower2 && UiLastContentsFunc.AutoInfiniteTower2)
         {
-            if (ServerData.userInfoTable.TableDatas[UserInfoTable.currentFloorIdx2].Value == 301)
+            if (ServerData.userInfoTable.IsLastFloor2())
             {
                 UiLastContentsFunc.AutoInfiniteTower2 = false;
                 return;

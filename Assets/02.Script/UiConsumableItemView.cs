@@ -72,8 +72,11 @@ public class UiConsumableItemView : MonoBehaviour
 
         if (syncRoutine != null)
         {
-            CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
+            StopCoroutine(syncRoutine);
         }
+        syncRoutine = StartCoroutine(SyncDataRoutineWeapon());
+        
+        
 
         if (goodsId.Equals("Potion_1") || goodsId.Equals("Potion_2"))
         {
@@ -88,6 +91,8 @@ public class UiConsumableItemView : MonoBehaviour
     {
         yield return syncWaitTime;
 
+        ServerData.goodsTable.UpData(GoodsTable.Potion_2,false);
+        
         syncRoutine = null;
     }
 }

@@ -22,21 +22,20 @@ public class UiFieldBossRewardView : SingletonMono<UiFieldBossRewardView>
     [SerializeField]
     private GameObject moreRewardPopup;
 
-
-    public void Initialize(int rewardAmount)
+    public void Initialize(float rewardAmount)
     {
         var stageMapData = GameManager.Instance.CurrentStageData;
         SoundManager.Instance.PlaySound("Reward");
         rootObject.gameObject.SetActive(true);
 
         this.rewardAmount.SetText(Utils.ConvertBigNum(rewardAmount));
-
+        
         rewardIcon.sprite = CommonUiContainer.Instance.GetItemIcon((Item_Type)stageMapData.Bossrewardtype);
 
-        if (UiAutoBoss.AutoMode.Value == true)
-        {
-            GameManager.Instance.LoadNextScene();
-        }
+            if (UiAutoBoss.AutoMode.Value == true)
+            {
+                GameManager.Instance.LoadNextScene();
+            }
 
     }
 
@@ -56,7 +55,6 @@ public class UiFieldBossRewardView : SingletonMono<UiFieldBossRewardView>
         }
 
         buttonClicked = true;
-
         GameManager.Instance.LoadNextScene();
     }
 }

@@ -202,7 +202,9 @@ public class UiStatusBoard : MonoBehaviour
 
                     Param statusParam = new Param();
                     ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_Gold).Value = GameBalance.criticalGraduateValue;
+                    ServerData.statusTable.GetTableData(StatusTable.AttackLevel_Gold).Value = GameBalance.attackGraduateValue;
                     statusParam.Add(StatusTable.CriticalDamLevel_Gold, ServerData.statusTable.GetTableData(StatusTable.CriticalDamLevel_Gold).Value);
+                    statusParam.Add(StatusTable.AttackLevel_Gold, ServerData.statusTable.GetTableData(StatusTable.AttackLevel_Gold).Value);
                     transactionList.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
 
                     ServerData.SendTransaction(transactionList, successCallBack: () =>

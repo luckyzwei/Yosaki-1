@@ -112,6 +112,8 @@ public class UiSettingBoard : MonoBehaviour
     
     [SerializeField]
     private Toggle showVisionSkill;
+    [SerializeField]
+    private Toggle showDosulSkill;
 
     [SerializeField]
     private Transform playerViewController;
@@ -182,6 +184,7 @@ public class UiSettingBoard : MonoBehaviour
         newUi.isOn = PlayerPrefs.GetInt(SettingKey.newUi) == 1;
         norigaeSize.isOn = PlayerPrefs.GetInt(SettingKey.norigaeSize) == 1;
         showVisionSkill.isOn = PlayerPrefs.GetInt(SettingKey.showVisionSkill) == 1;
+        showDosulSkill.isOn = PlayerPrefs.GetInt(SettingKey.showDosulSkill) == 1;
 
         initialized = true;
 
@@ -612,6 +615,17 @@ public class UiSettingBoard : MonoBehaviour
 
         SettingData.showVisionSkill.Value = on ? 1 : 0;
     }
+    public void ShowDosulSkillOnOff(bool on)
+    {
+        if (initialized == false) return;
+
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.showDosulSkill.Value = on ? 1 : 0;
+    }
     
     public void NewUiOnOff(bool on)
     {
@@ -732,6 +746,7 @@ public static class SettingKey
 
     public static string autoVisionSkill = "autoVisionSkill";
     public static string showVisionSkill = "showVisionSkill";
+    public static string showDosulSkill = "showDosulSkill";
 
 }
 
@@ -783,6 +798,7 @@ public static class SettingData
     
     public static ReactiveProperty<int> autoVisionSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> showVisionSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    public static ReactiveProperty<int> showDosulSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
 
     public static int screenWidth = Screen.width;
     public static int screenHeight = Screen.height;
@@ -904,6 +920,9 @@ public static class SettingData
         if (PlayerPrefs.HasKey(SettingKey.showVisionSkill) == false)
             PlayerPrefs.SetInt(SettingKey.showVisionSkill, 1);   
         
+        if (PlayerPrefs.HasKey(SettingKey.showDosulSkill) == false)
+            PlayerPrefs.SetInt(SettingKey.showDosulSkill, 1);   
+        
         if (PlayerPrefs.HasKey(SettingKey.newUi) == false)
             PlayerPrefs.SetInt(SettingKey.newUi, 1);     
         
@@ -964,6 +983,8 @@ public static class SettingData
         autoVisionSkill.Value = PlayerPrefs.GetInt(SettingKey.autoVisionSkill, 1);
         
         showVisionSkill.Value = PlayerPrefs.GetInt(SettingKey.showVisionSkill, 1);
+        
+        showDosulSkill.Value = PlayerPrefs.GetInt(SettingKey.showDosulSkill, 1);
 
         Subscribe();
     }
@@ -1105,6 +1126,10 @@ public static class SettingData
         showVisionSkill.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.showVisionSkill, e);
+        });
+        showDosulSkill.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.showDosulSkill, e);
         });
 
         showFoxCup.AsObservable().Subscribe(e =>

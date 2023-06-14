@@ -73,10 +73,14 @@ public class GameManager : SingletonMono<GameManager>
         SinsunTower,
         Dark,
         GyungRockTower3,
+        TestDo,
+        RelicTest,
+        DosulBoss,
     }
 
     public bool SpawnMagicStone => IsNormalField;
     public bool IsNormalField => contentsType == ContentsType.NormalField;
+    public bool IsJumpBoss = false;
 
     public StageMapData CurrentStageData { get; private set; }
     public MapThemaInfo MapThemaInfo { get; private set; }
@@ -241,6 +245,18 @@ public class GameManager : SingletonMono<GameManager>
         }
     }
 
+    public void JumpNextScene(int bossIdx)
+    {
+        if (IsLastScene() == false && CanMoveStage)
+        {
+            CanMoveStage = false;
+
+            currentMapIdx.Value = bossIdx;
+
+            LoadNormalField();
+        }
+    }
+
     public void MoveMapByIdx(int idx)
     {
         currentMapIdx.Value = idx;
@@ -255,7 +271,7 @@ public class GameManager : SingletonMono<GameManager>
     {
         if (guildInfoLoadComplete == false)
         {
-            GuildManager.Instance.LoadGuildInfo();
+            GuildManager.Instance.LoadGuildInfo(false);
             guildInfoLoadComplete = true;
         }
 

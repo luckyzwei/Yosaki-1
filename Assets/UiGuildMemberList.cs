@@ -32,28 +32,28 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
 
     [SerializeField]
     private GameObject guildInfoButton;
-    
+
     public ReactiveProperty<int> attenUserNum = new ReactiveProperty<int>();
-    
+
     public GuildMemberInfo myMemberInfo { get; set; }
-    
+
     public static int myCurrentGuildTowerScore = 0;
     public static int serverRecordedTowerScore = 0;
-    
+
     [SerializeField]
     private ReactiveProperty<int> currentGuildTowerTotalScore = new ReactiveProperty<int>();
-    
+
     [SerializeField]
     private TextMeshProUGUI myGuildTotalTowerScore;
-    
+
     [FormerlySerializedAs("nowWorkPlayerDescription")] [SerializeField]
     private TextMeshProUGUI notWorkPlayerDescription;
-    
-    
+
+
     public UiGuildMemberCell GetMemberCell(string nickName)
     {
         nickName = nickName.Replace(CommonString.IOS_nick, "");
-    
+
         for (int i = 0; i < memberCells.Count; i++)
         {
             if (memberCells[i].guildMemberInfo != null &&
@@ -62,7 +62,7 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                 return memberCells[i];
             }
         }
-    
+
         return null;
     }
 
@@ -178,190 +178,197 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "조회 실패\n잠시후 다시 시도해 주세요", null);
             return;
         }
+        
+        
+        UiGuildLoadingMask.Instance.Show(true);
 
-        var bro = Backend.Social.Guild.GetGuildMemberListV3(GuildManager.Instance.myGuildIndate, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value) + 5);
-
-        if (bro.IsSuccess())
+        SendQueue.Enqueue(Backend.Social.Guild.GetGuildMemberListV3, GuildManager.Instance.myGuildIndate, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value) + 5, (bro) =>
         {
-            var returnValue = bro.GetReturnValuetoJSON();
-
-            var rows = returnValue["rows"];
-
-            guildMemberCount = rows.Count;
-            guildMemberCount = Mathf.Min(guildMemberCount, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value));
-
-            memberNumText.SetText($"문파 인원 : {guildMemberCount}/{GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value)}");
-
-            bool findMyData = false;
-            string myNickName = PlayerData.Instance.NickName.Replace(CommonString.IOS_nick, "");
-
-            attenUserNum.Value = 0;
-
-            int attenNum = 0;
-
-            for (int i = 0; i < memberCells.Count; i++)
+            UiGuildLoadingMask.Instance.Show(false);
+            
+            if (bro.IsSuccess())
             {
-                if (i < guildMemberCount)
+                var returnValue = bro.GetReturnValuetoJSON();
+
+                var rows = returnValue["rows"];
+
+                guildMemberCount = rows.Count;
+                guildMemberCount = Mathf.Min(guildMemberCount, GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value));
+
+                memberNumText.SetText($"문파 인원 : {guildMemberCount}/{GuildManager.Instance.GetGuildMemberMaxNum(GuildManager.Instance.guildLevelExp.Value)}");
+
+                bool findMyData = false;
+                string myNickName = PlayerData.Instance.NickName.Replace(CommonString.IOS_nick, "");
+
+                attenUserNum.Value = 0;
+
+                int attenNum = 0;
+
+                for (int i = 0; i < memberCells.Count; i++)
                 {
-                    memberCells[i].gameObject.SetActive(true);
-
-                    var data = rows[i];
-
-                    string nickName = data["nickname"]["S"].ToString();
-                    string position = data["position"]["S"].ToString();
-                    string lastLogin = data["lastLogin"]["S"].ToString();
-                    string gamerIndate = data["gamerInDate"]["S"].ToString();
-                    int donateGoods = int.Parse(data["totalGoods3Amount"]["N"].ToString());
-                    int donateDogFeedAmounts = int.Parse(data["totalGoods5Amount"]["N"].ToString());
-                    bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
-                    bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    int guildTowerFloor = GetGoods6Amount(nickName);
-
-
-                    if (todayDonated)
+                    if (i < guildMemberCount)
                     {
-                        attenNum++;
-                    }
+                        memberCells[i].gameObject.SetActive(true);
 
-                    bool isMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
+                        var data = rows[i];
 
-                    if (isMyData)
-                    {
-                        if (guildTowerFloor != int.MaxValue)
+                        string nickName = data["nickname"]["S"].ToString();
+                        string position = data["position"]["S"].ToString();
+                        string lastLogin = data["lastLogin"]["S"].ToString();
+                        string gamerIndate = data["gamerInDate"]["S"].ToString();
+                        int donateGoods = int.Parse(data["totalGoods3Amount"]["N"].ToString());
+                        int donateDogFeedAmounts = int.Parse(data["totalGoods5Amount"]["N"].ToString());
+                        bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
+                        bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
+                        int guildTowerFloor = GetGoods6Amount(nickName);
+
+
+                        if (todayDonated)
                         {
-                            serverRecordedTowerScore = guildTowerFloor;
+                            attenNum++;
                         }
-                    }
 
-                    if (isMyData && myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
-                    {
-                        UpdateGuildTowerScore(guildTowerFloor);
-                        guildTowerFloor = myCurrentGuildTowerScore;
-                    }
+                        bool isMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
 
-                    if (guildTowerFloor == int.MaxValue)
-                    {
-                        guildTowerFloor = 0;
-                    }
-                    
-                    var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmounts);
+                        if (isMyData)
+                        {
+                            if (guildTowerFloor != int.MaxValue)
+                            {
+                                serverRecordedTowerScore = guildTowerFloor;
+                            }
+                        }
 
-                    memberCells[i].Initialize(memberData);
-                    memberCells[i].transform.SetAsFirstSibling();
-
-                    if (findMyData == false)
-                    {
-                        findMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
-                    }
-
-                    if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
-                    {
-                        this.myMemberInfo = memberData;
-                    }
-                }
-                else
-                {
-                    memberCells[i].gameObject.SetActive(false);
-                }
-            }
-
-            attenUserNum.Value = attenNum;
-
-#if UNITY_EDITOR
-            attenUserNum.Value = 29;
-#endif
-
-            if (findMyData == false)
-            {
-                for (int i = 0; i < rows.Count; i++)
-                {
-                    var data = rows[i];
-
-                    string nickName = data["nickname"]["S"].ToString();
-
-                    string position = data["position"]["S"].ToString();
-                    string lastLogin = data["lastLogin"]["S"].ToString();
-                    string gamerIndate = data["gamerInDate"]["S"].ToString();
-                    int donateGoods = int.Parse(data["totalGoods3Amount"]["N"].ToString());
-                    int donateDogFeedAmount = int.Parse(data["totalGoods5Amount"]["N"].ToString());
-                    bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
-                    bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
-                    int guildTowerFloor = GetGoods6Amount(nickName);
-
-                    //내꺼찾음
-                    if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
-                    {
-                        //점수추가
-                        if (myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
+                        if (isMyData && myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
                         {
                             UpdateGuildTowerScore(guildTowerFloor);
                             guildTowerFloor = myCurrentGuildTowerScore;
                         }
-                        
+
                         if (guildTowerFloor == int.MaxValue)
                         {
                             guildTowerFloor = 0;
                         }
-                        else
+
+                        var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmounts);
+
+                        memberCells[i].Initialize(memberData);
+                        memberCells[i].transform.SetAsFirstSibling();
+
+                        if (findMyData == false)
                         {
-                            serverRecordedTowerScore = guildTowerFloor;
+                            findMyData = nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName);
                         }
 
-                        
-                        var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmount);
-                        memberCells[0].Initialize(memberData);
-                        memberCells[0].transform.SetAsFirstSibling();
-
-                        this.myMemberInfo = memberData;
-
-                        break;
+                        if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
+                        {
+                            this.myMemberInfo = memberData;
+                        }
+                    }
+                    else
+                    {
+                        memberCells[i].gameObject.SetActive(false);
                     }
                 }
+
+                attenUserNum.Value = attenNum;
+
+#if UNITY_EDITOR
+                attenUserNum.Value = 29;
+#endif
+
+                if (findMyData == false)
+                {
+                    for (int i = 0; i < rows.Count; i++)
+                    {
+                        var data = rows[i];
+
+                        string nickName = data["nickname"]["S"].ToString();
+
+                        string position = data["position"]["S"].ToString();
+                        string lastLogin = data["lastLogin"]["S"].ToString();
+                        string gamerIndate = data["gamerInDate"]["S"].ToString();
+                        int donateGoods = int.Parse(data["totalGoods3Amount"]["N"].ToString());
+                        int donateDogFeedAmount = int.Parse(data["totalGoods5Amount"]["N"].ToString());
+                        bool todayDonated = int.Parse(data["totalGoods9Amount"]["N"].ToString()) >= 1;
+                        bool todayDonatedPetExp = int.Parse(data["totalGoods8Amount"]["N"].ToString()) >= 1;
+                        int guildTowerFloor = GetGoods6Amount(nickName);
+
+                        //내꺼찾음
+                        if (nickName.Replace(CommonString.IOS_nick, "").Equals(myNickName))
+                        {
+                            //점수추가
+                            if (myCurrentGuildTowerScore != guildTowerFloor && guildTowerFloor != int.MaxValue)
+                            {
+                                UpdateGuildTowerScore(guildTowerFloor);
+                                guildTowerFloor = myCurrentGuildTowerScore;
+                            }
+
+                            if (guildTowerFloor == int.MaxValue)
+                            {
+                                guildTowerFloor = 0;
+                            }
+                            else
+                            {
+                                serverRecordedTowerScore = guildTowerFloor;
+                            }
+
+
+                            var memberData = new GuildMemberInfo(nickName, position, lastLogin, gamerIndate, donateGoods, todayDonated, todayDonatedPetExp, guildTowerFloor, donateDogFeedAmount);
+                            memberCells[0].Initialize(memberData);
+                            memberCells[0].transform.SetAsFirstSibling();
+
+                            this.myMemberInfo = memberData;
+
+                            break;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < memberCells.Count; i++)
+                {
+                    if (i < guildMemberCount)
+                    {
+                        memberCells[i].RefreshKickButton();
+                    }
+                }
+
+                PopupManager.Instance.ShowAlarmMessage("갱신 완료");
             }
+            else
+            {
+                memberCells.ForEach(e => e.gameObject.SetActive(false));
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "조회 실패\n잠시후 다시 시도해 주세요", null);
+            }
+
+            guildInfoButton.SetActive(GetMyGuildGrade() == GuildGrade.Master);
+
+
+            currentGuildTowerTotalScore.Value = 0;
+
+            int updatedScore = 0;
 
             for (int i = 0; i < memberCells.Count; i++)
             {
-                if (i < guildMemberCount)
-                {
-                    memberCells[i].RefreshKickButton();
-                }
+                if (memberCells[i].guildMemberInfo != null)
+                    updatedScore += memberCells[i].guildMemberInfo.guildTowerFloor;
             }
 
-            PopupManager.Instance.ShowAlarmMessage("갱신 완료");
-        }
-        else
-        {
-            memberCells.ForEach(e => e.gameObject.SetActive(false));
-            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "조회 실패\n잠시후 다시 시도해 주세요", null);
-        }
+            currentGuildTowerTotalScore.Value = updatedScore;
 
-        guildInfoButton.SetActive(GetMyGuildGrade() == GuildGrade.Master);
-
-
-        currentGuildTowerTotalScore.Value = 0;
-
-        int updatedScore = 0;
-
-        for (int i = 0; i < memberCells.Count; i++)
-        {
-            if (memberCells[i].guildMemberInfo != null)
-                updatedScore += memberCells[i].guildMemberInfo.guildTowerFloor;
-        }
-
-        currentGuildTowerTotalScore.Value = updatedScore;
-
-        UpdateNotWorkUserText();
+            UpdateNotWorkUserText();
+        });
+        // var bro = Backend.Social.Guild.GetGuildMemberListV3();
     }
 
-  private List<string> gumihoList = new List<string>();
-  private List<string> petExpList = new List<string>();
-    
+    private List<string> gumihoList = new List<string>();
+    private List<string> petExpList = new List<string>();
+
     private void UpdateNotWorkUserText()
     {
         string description = string.Empty;
 
-       gumihoList.Clear();
-       petExpList.Clear();
+        gumihoList.Clear();
+        petExpList.Clear();
 
         for (int i = 0; i < memberCells.Count; i++)
         {
@@ -371,7 +378,7 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
                 {
                     gumihoList.Add(memberCells[i].guildMemberInfo.nickName);
                 }
-                
+
                 if (memberCells[i].guildMemberInfo.todayDonatedPetExp == false)
                 {
                     petExpList.Add(memberCells[i].guildMemberInfo.nickName);
@@ -380,19 +387,19 @@ public class UiGuildMemberList : SingletonMono<UiGuildMemberList>
         }
 
         description += "<color=red>구미호 미등록</color>\n\n";
-        
+
         for (int i = 0; i < gumihoList.Count; i++)
         {
             description += $"{Utils.GetOriginNickName(gumihoList[i])},";
         }
-        
+
         description += "\n\n<color=blue>강아지 밥 안준사람</color>\n\n";
-        
+
         for (int i = 0; i < petExpList.Count; i++)
         {
             description += $"{Utils.GetOriginNickName(petExpList[i])},";
         }
-        
+
         notWorkPlayerDescription.SetText(description);
     }
 

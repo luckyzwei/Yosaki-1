@@ -289,6 +289,8 @@ public class SaveManager : SingletonMono<SaveManager>
         GoodsTable.SuhoPetFeed,
         GoodsTable.GuildTowerClearTicket,
         GoodsTable.GuildTowerHorn,
+        GoodsTable.DosulClear,
+        GoodsTable.DosulGoods,
     };
 
 

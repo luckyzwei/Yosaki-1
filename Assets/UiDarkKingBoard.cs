@@ -27,8 +27,8 @@ public class UiDarkKingBoard : MonoBehaviour
     {
         ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.KingTrialGraduateIdx).AsObservable().Subscribe(e =>
         {
-            transBefore.SetActive(e < 6);
-            transAfter.SetActive(e >= 6);
+            transBefore.SetActive(e < GameBalance.darkKingGraduate);
+            transAfter.SetActive(e >= GameBalance.darkKingGraduate);
         }).AddTo(this);
     }
 
@@ -64,7 +64,7 @@ public class UiDarkKingBoard : MonoBehaviour
         {
             PopupManager.Instance.ShowAlarmMessage($"데미지 {Utils.ConvertBigNum(GameBalance.darkGraduateScore)} 이상일때 각성 가능!");
         }
-        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < 5)
+        else if (ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value < GameBalance.darkKingGraduate-1)
         {
             PopupManager.Instance.ShowAlarmMessage($"이전 각성을 완료해주세요!");
         }
@@ -74,7 +74,7 @@ public class UiDarkKingBoard : MonoBehaviour
                 $"심연왕 효과가 강화됩니다.({GameBalance.darkGraduateValue * 100}%)\n" +
                 "각성 하시겠습니까??", () =>
                 {
-                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = 6;
+                    ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.KingTrialGraduateIdx].Value = GameBalance.darkKingGraduate;
                     ServerData.userInfoTable_2.UpData(UserInfoTable_2.KingTrialGraduateIdx, false);
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "각성 완료!!", null);
 

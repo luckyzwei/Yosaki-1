@@ -206,11 +206,6 @@ public class UiGangChulPassCell : MonoBehaviour
         var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_Free);
         transactionList.Add(rewardTransactionValue);
 
-        //킬카운트
-        Param userInfoParam = new Param();
-        userInfoParam.Add(UserInfoTable.dailyEnemyKillCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dailyEnemyKillCount).Value);
-        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
-
         ServerData.SendTransaction(transactionList);
     }
     private void GetAdReward()
@@ -228,11 +223,6 @@ public class UiGangChulPassCell : MonoBehaviour
 
         var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_IAP);
         transactionList.Add(rewardTransactionValue);
-
-        //킬카운트
-        Param userInfoParam = new Param();
-        userInfoParam.Add(UserInfoTable.dailyEnemyKillCount, ServerData.userInfoTable.GetTableData(UserInfoTable.dailyEnemyKillCount).Value);
-        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
         ServerData.SendTransaction(transactionList, successCallBack: () =>
           {

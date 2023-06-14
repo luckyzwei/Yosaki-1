@@ -14,6 +14,11 @@ public class BossSpawnButton : SingletonMono<BossSpawnButton>
     private void Start()
     {
         Subscribe();
+
+        if (GameManager.Instance.IsJumpBoss)
+        {
+            OnClickSpawnButton();
+        }
     }
 
     private void Subscribe()
@@ -71,7 +76,7 @@ public class BossSpawnButton : SingletonMono<BossSpawnButton>
                 return;
             }
 
-            if (UiAutoBoss.AutoMode.Value == false) 
+            if (GameManager.Instance.IsJumpBoss)
             {
                 //확인팝업
                 PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "스테이지 보스를 소환합니까?\n\n<color=red>(1층에 소환됩니다.)</color>", () =>
@@ -80,11 +85,24 @@ public class BossSpawnButton : SingletonMono<BossSpawnButton>
                     MapInfo.Instance.SpawnBossEnemy();
                 }, null);
             }
-            else 
+            else
             {
-                PlayerSkillCaster.Instance.InitializeVisionSkill();
-                MapInfo.Instance.SpawnBossEnemy();
+                if (UiAutoBoss.AutoMode.Value == false) 
+                {
+                    //확인팝업
+                    PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "스테이지 보스를 소환합니까?\n\n<color=red>(1층에 소환됩니다.)</color>", () =>
+                    {
+                        PlayerSkillCaster.Instance.InitializeVisionSkill();
+                        MapInfo.Instance.SpawnBossEnemy();
+                    }, null);
+                }
+                else 
+                {
+                    PlayerSkillCaster.Instance.InitializeVisionSkill();
+                    MapInfo.Instance.SpawnBossEnemy();
+                }
             }
+
 
             return;
         }

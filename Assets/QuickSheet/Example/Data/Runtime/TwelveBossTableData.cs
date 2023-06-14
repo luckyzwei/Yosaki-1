@@ -80,4 +80,8 @@ public class TwelveBossTableData
   NotImmuneType notimmunetype;
   public NotImmuneType NOTIMMUNETYPE { get {return notimmunetype; } set { this.notimmunetype = value;} }
   
+  [SerializeField]
+  int[] displayskeletondata = new int[0];
+  public int[] Displayskeletondata { get {return displayskeletondata; } set { this.displayskeletondata = value;} }
+  
 }

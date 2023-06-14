@@ -2,6 +2,7 @@
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
 using System.Collections.Generic;
+using Spine.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,6 +35,11 @@ public class UiTwelveBossContentsView : MonoBehaviour
     [SerializeField]
     private int bossId = 0;
 
+    [SerializeField]
+    private SkeletonGraphic costumeGraphic;
+
+    [SerializeField]
+    private SkeletonGraphic petGraphic;
     private void Start()
     {
         InitByInspector();
@@ -76,6 +82,29 @@ public class UiTwelveBossContentsView : MonoBehaviour
         else if (bossTableData.Id < CommonUiContainer.Instance.bossIcon.Count)
         {
             bossIcon.sprite = CommonUiContainer.Instance.bossIcon[bossTableData.Id];
+        }
+
+        var costume = bossTableData.Displayskeletondata[0];
+        if (costume != -1)
+        {
+            costumeGraphic.Clear();
+
+            petGraphic.gameObject.SetActive(false);
+            costumeGraphic.gameObject.SetActive(true);
+            costumeGraphic.skeletonDataAsset = CommonUiContainer.Instance.costumeList[costume];
+            costumeGraphic.Initialize(true);
+            costumeGraphic.SetMaterialDirty();
+        }
+        
+        var pet = bossTableData.Displayskeletondata[1];
+        if (pet != -1)
+        {
+            costumeGraphic.gameObject.SetActive(false);
+            petGraphic.gameObject.SetActive(true);
+            petGraphic.Clear();
+            petGraphic.skeletonDataAsset = CommonUiContainer.Instance.petCostumeList[pet];
+            petGraphic.Initialize(true);
+            petGraphic.SetMaterialDirty();
         }
     }
 

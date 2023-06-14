@@ -278,6 +278,14 @@ public static class CommonString
             case Item_Type.costume121: return TableManager.Instance.Costume.dataArray[121].Name;
             case Item_Type.costume122: return TableManager.Instance.Costume.dataArray[122].Name;
             case Item_Type.costume123: return TableManager.Instance.Costume.dataArray[123].Name;
+            case Item_Type.costume124: return TableManager.Instance.Costume.dataArray[124].Name;
+            case Item_Type.costume125: return TableManager.Instance.Costume.dataArray[125].Name;
+            case Item_Type.costume126: return TableManager.Instance.Costume.dataArray[126].Name;
+            case Item_Type.costume127: return TableManager.Instance.Costume.dataArray[127].Name;
+            case Item_Type.costume128: return TableManager.Instance.Costume.dataArray[128].Name;
+            case Item_Type.costume129: return TableManager.Instance.Costume.dataArray[129].Name;
+            case Item_Type.costume130: return TableManager.Instance.Costume.dataArray[130].Name;
+            case Item_Type.costume131: return TableManager.Instance.Costume.dataArray[131].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -470,12 +478,14 @@ public static class CommonString
             case Item_Type.MonthNorigae4: return "4월 월간 노리개";
             case Item_Type.MonthNorigae5: return "5월 월간 노리개";
             case Item_Type.MonthNorigae6: return "6월 월간 노리개";
+            case Item_Type.MonthNorigae7: return "7월 월간 노리개";
             case Item_Type.DokebiTreasure: return "도깨비 보물";
             case Item_Type.SusanoTreasure: return "악의 씨앗";
             case Item_Type.SahyungTreasure: return "사흉구슬";
             case Item_Type.VisionTreasure: return "비전서";
             case Item_Type.DarkTreasure: return "심연의 정수";
             case Item_Type.SinsunTreasure: return "신선의 보옥";
+            case Item_Type.GwisalTreasure: return "귀인의 정수";
             case Item_Type.GoldBar: return "백금화";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
             case Item_Type.SumiFire: return "수미꽃";
@@ -499,6 +509,8 @@ public static class CommonString
             case Item_Type.GuildTowerHorn: return "독침";
             case Item_Type.Event_HotTime: return "불꽃 조각";
             case Item_Type.SealWeaponClear: return "요도 해방서";
+            case Item_Type.DosulGoods: return "도술꽃";
+            case Item_Type.DosulClear: return "도술꽃 소탕권";
 
         }
         return "미등록";
@@ -678,6 +690,8 @@ public static class CommonString
                 return "영혼베기 피해(%)";
             case StatusType.GoldBarGainPer:
                 return "백금화 획득 증가(%)";
+            case StatusType.SuperCritical19DamPer:
+                return "귀살베기 피해(%)";
         }
 
         return "등록필요";

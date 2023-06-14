@@ -106,6 +106,7 @@ public class Enemy : PoolItem
 
         this.isFieldBossEnemy = isFieldBossEnemy;
 
+        
         this.tableData = enemyTableData;
 
         agentHpController.Initialize(enemyTableData, isFieldBossEnemy, updateSubHpBar);
@@ -269,8 +270,7 @@ public class Enemy : PoolItem
         //보상처리
         MapInfo.Instance.SetFieldClear();
         //
-
-        UiStageNameIndicater.Instance.StopFieldBossTimer();
+        UiStageNameIndicater.Instance.StopFieldBossTimer();    
     }
 
     //private void UpdateCollection()

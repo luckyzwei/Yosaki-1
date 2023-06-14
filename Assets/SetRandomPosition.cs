@@ -76,7 +76,7 @@ public class SetRandomPosition : MonoBehaviour
     private void Update()
     {
         //조조
-        if (_bossId == 111||_bossId == 112||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135)
+        if (_bossId == 111||_bossId == 112||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135||_bossId==154||_bossId==155||_bossId==156)
         {
             if (isMove)
             {
@@ -96,12 +96,12 @@ public class SetRandomPosition : MonoBehaviour
             float x = Random.Range(_minX, _maxX + 1);
             float y = Random.Range(_minY, _maxY + 1);
             //직접이동
-            if (_bossId == 109 || _bossId == 110)
+            if (_bossId == 109 || _bossId == 110||_bossId==154)
             {
                 transform.localPosition = new Vector3(x, y, 0);
             }
             //투사체 날아감.
-            if (_bossId == 111||_bossId == 112 ||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135)
+            if (_bossId == 111||_bossId == 112 ||_bossId == 123||_bossId == 133||_bossId == 134||_bossId == 135||_bossId ==154||_bossId ==155||_bossId==156)
             {
                 transform.localPosition = new Vector3(x, y, 0);
                 SetDir();

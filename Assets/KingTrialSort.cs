@@ -27,7 +27,14 @@ public class KingTrialSort : MonoBehaviour
                     }
                 }
 
-                _seletableTab.OnSelect((int)e);
+                if (e >= GameBalance.darkKingGraduate)
+                {
+                    _seletableTab.OnSelect(0);
+                }
+                else
+                {
+                    _seletableTab.OnSelect((int)e);
+                }
             }).AddTo(this);
     }
 }

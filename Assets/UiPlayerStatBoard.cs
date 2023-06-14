@@ -165,12 +165,12 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
             chunPlusSpawnNum = 5;
         }
 
-#if  UNITY_EDITOR
-        int plusSpawnNum = 71;
-#else
+// #if  UNITY_EDITOR
+//         int plusSpawnNum = 71;
+// #else
         int plusSpawnNum = GuildManager.Instance.GetGuildSpawnEnemyNum(GuildManager.Instance.guildLevelExp.Value) +
                            hellPlusSpawnNum + chunPlusSpawnNum;
-#endif
+//#endif
         //지옥베기
         description3 +=
             $"크리티컬 7단계 {CommonString.GetStatusName(StatusType.SuperCritical3DamPer)} : {Utils.ConvertBigNum(PlayerStats.GetSuperCritical3DamPer() * 100f)}\n";
@@ -217,7 +217,13 @@ public class UiPlayerStatBoard : SingletonMono<UiPlayerStatBoard>
         description3 +=
             $"크리티컬 18단계 {CommonString.GetStatusName(StatusType.SuperCritical17DamPer)} : {Utils.ConvertNum(PlayerStats.GetSuperCritical17DamPer() * 100f,1)}\n";
 
-    
+        description3 +=
+            $"크리티컬 19단계 {CommonString.GetStatusName(StatusType.SuperCritical19DamPer)} : {Utils.ConvertNum(PlayerStats.GetSuperCritical19DamPer() * 100f,1)}\n";
+
+            //도술
+            description1 +=
+                $"도술 피해량 증가 : {(PlayerStats.GetCurrentDosulAddValue() * 100f).ToString("F3")}\n";
+
     
         descriptionBoard1.SetText(description1);
 

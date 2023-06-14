@@ -376,12 +376,12 @@ public class UiBuffPopupView : MonoBehaviour
             }
         }
 
-        //새학기 유료버프
+        //패스 유료버프
         if (buffTableData.Stringid.Equals("season1"))
         {
             if (ServerData.iapServerTable.TableDatas[UiSeasonPassBuyButton.seasonPassKey].buyCount.Value == 0)
             {
-                PopupManager.Instance.ShowAlarmMessage("새학기 훈련 패스권이 필요 합니다.");
+                PopupManager.Instance.ShowAlarmMessage("여름 훈련 패스권이 필요 합니다.");
                 return;
             }
 

@@ -624,6 +624,7 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
 
                 DailyMissionManager.UpdateDailyMission(DailyMissionKey.WeaponUpgrade, upgradeNum);
                 ServerData.weaponTable.SyncToServerAll(new List<int>() { weaponData.Id, nextWeaponData.Id });
+                itemData.ParentView.SortHasItem();
             }
             else
             {
@@ -722,6 +723,7 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
             if (weaponData != null)
             {
                 itemData.ParentView.AllUpgradeWeapon(weaponData.Id);
+                itemData.ParentView.SortHasItem();
                 //parentBoard.AllUpgradeWeapon(weaponData.Id);
                 
                 //UiEnventoryBoard.Instance.AllUpgradeWeapon(weaponData.Id);

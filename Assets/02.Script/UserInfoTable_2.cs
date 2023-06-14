@@ -16,6 +16,8 @@ public class UserInfoTable_2
     public const string swordGodScore = "swordGodScore";
     public const string hellGodScore = "hellGodScore";
     public const string chunGodScore = "chunGodScore";
+    public const string doGodScore = "dokebiGodScore";
+    public const string relicTestScore = "relicTestScore";
     public const string GangChulReset = "GangChulReset";
     public const string stagePassFree = "stagePassFree";
     public const string stagePassAd = "stagePassAd";
@@ -27,6 +29,8 @@ public class UserInfoTable_2
     //홓수 월간훈련(Monthlypass2)
     public const string oddMonthKillCount = "odd0";
     
+    public const string killCountTotalSeason0 = "ks0"; //혹서기 훈련
+    
     public const string SealSwordAwakeScore = "SSASS";
     public const string taeguekTower = "tgtw";
     public const string taeguekLock = "tgll";
@@ -35,19 +39,28 @@ public class UserInfoTable_2
     public const string darkScore = "ds";
     public const string graduateGold = "gg";
     public const string gyungRockTower3 = "grt3";
+    public const string graduateSeolEvent = "gse";
+    
+    public const string towerFloorAdjust = "ta";
+    public const string dosulScore = "dss";
+    public const string dosulLevel = "dll";
 
-
+    public const string dosulRewardIdx = "dri";
+    public const string dosulStart = "dst";
     public bool isInitialize = false;
     private Dictionary<string, double> tableSchema = new Dictionary<string, double>()
     {
         { GangChulReset, 0f },
         { stagePassFree, -1f },
         { stagePassAd, -1f },
+        { killCountTotalSeason0, 0f },
         
         { monkeyGodScore, 0f },
         { swordGodScore, 0f },
         { hellGodScore, 0f },
         { chunGodScore, 0f },
+        { doGodScore, 0f },
+        { relicTestScore, 0f },
         { foxFirePassKill, 0f },
         { evenMonthKillCount, 0f },
         { oddMonthKillCount, 0f },
@@ -59,6 +72,12 @@ public class UserInfoTable_2
         { darkScore, 0f },
         { graduateGold, 0f },
         { gyungRockTower3, 0f },
+        { graduateSeolEvent, 0f },
+        { towerFloorAdjust, 0f },
+        { dosulScore, 0f },
+        { dosulLevel, -1f },
+        { dosulRewardIdx, -1f },
+        { dosulStart, 0f },
     };
 
     private Dictionary<string, ReactiveProperty<double>> tableDatas = new Dictionary<string, ReactiveProperty<double>>();
@@ -88,14 +107,24 @@ public class UserInfoTable_2
             //맨처음 초기화(캐릭터생성)
             if (rows.Count <= 0)
             {
+                
                 Param defultValues = new Param();
 
                 var e = tableSchema.GetEnumerator();
 
                 while (e.MoveNext())
-                {
-                    defultValues.Add(e.Current.Key, e.Current.Value);
-                    tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                {                        
+                    //소급코드들 
+                    if (e.Current.Key == towerFloorAdjust)
+                    {
+                        defultValues.Add(e.Current.Key, 1);
+                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(1));
+                    }
+                    else
+                    {
+                        defultValues.Add(e.Current.Key, e.Current.Value);
+                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+                    }
                 }
 
                 var bro = Backend.GameData.Insert(tableName, defultValues);
@@ -192,8 +221,12 @@ public class UserInfoTable_2
             userInfo_2Param.Add(oddMonthKillCount, tableDatas[oddMonthKillCount].Value);
         }
         userInfo_2Param.Add(foxFirePassKill, tableDatas[foxFirePassKill].Value);
-
         
+        if (ServerData.userInfoTable.IsEventPassPeriod())
+        {
+            userInfo_2Param.Add(killCountTotalSeason0, tableDatas[killCountTotalSeason0].Value);
+        }
+
 
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
 
@@ -217,6 +250,11 @@ public class UserInfoTable_2
             else
             {
                 tableDatas[oddMonthKillCount].Value += updateRequireNum;
+            }
+
+            if (ServerData.userInfoTable.IsEventPassPeriod())
+            {
+                tableDatas[killCountTotalSeason0].Value += updateRequireNum;
             }
             totalKillCount = 0;
 

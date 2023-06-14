@@ -170,6 +170,7 @@ public class UiInventoryRingView : FancyCell<RingData_Fancy>
                 ServerData.newGachaServerTable.UpData(nextNewGacha, upgradeNum);
 
                 ServerData.newGachaServerTable.SyncToServerAll(new List<int>() { newGachaData.Id, nextNewGacha.Id });
+                itemData.ParentView.SortHasItem();
             }
             else
             {
@@ -187,6 +188,7 @@ public class UiInventoryRingView : FancyCell<RingData_Fancy>
             if (newGachaData != null)
             {
                 itemData.ParentView.AllUpgradeRing(newGachaData.Id);
+                itemData.ParentView.SortHasItem();
             }
 
         }, null);
