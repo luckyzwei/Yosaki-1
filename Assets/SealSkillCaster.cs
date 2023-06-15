@@ -133,7 +133,7 @@ public class SealSkillCaster : SingletonMono<SealSkillCaster>
 
                 if (currentSkillData.Requirehit <= currentHitCount.Value)
                 {
-                    Debug.LogError("Use Mini Ult SKill");
+                 //   Debug.LogError("Use Mini Ult SKill");
                     
                     PlayerSkillCaster.Instance.UseSkill(skillIdx);
 

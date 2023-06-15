@@ -117,7 +117,7 @@ public class DosulCaster : MonoBehaviour
             {
                 if (PlayerSkillCaster.Instance.CanUseSkill(myDosulSkillId))
                 {
-                    Debug.LogError("@@@Do sul active");
+                    //Debug.LogError("@@@Do sul active");
                     PlayerSkillCaster.Instance.UseSkill(myDosulSkillId);
                 }
             }
