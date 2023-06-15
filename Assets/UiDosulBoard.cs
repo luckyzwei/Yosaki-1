@@ -37,24 +37,24 @@ public class UiDosulBoard : MonoBehaviour
 
     [SerializeField] private GameObject dosulPopup;
 
-        private void Start()
+    private void Start()
     {
         Initialize();
 
         Subscribe();
     }
 
-        private void OnEnable()
+    private void OnEnable()
+    {
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value < 298)
         {
-            if (ServerData.userInfoTable.GetTableData(UserInfoTable.topClearStageId).Value < 298)
-            {
-                PopupManager.Instance.ShowAlarmMessage("300 스테이지 달성시 개방!");
-                dosulPopup.SetActive(false);
-                return;
-            }
+            PopupManager.Instance.ShowAlarmMessage("300 스테이지 달성시 개방!");
+            dosulPopup.SetActive(false);
+            return;
         }
+    }
 
-        private void Subscribe()
+    private void Subscribe()
     {
         ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulLevel].AsObservable().Subscribe(e =>
         {
@@ -67,10 +67,10 @@ public class UiDosulBoard : MonoBehaviour
             }
             else
             {
-                currentDosulLevel.SetText($"LV : {(int)e+1}");
-                
-                currentDosulAddValue.SetText($"도술 추가 피해량\n{Utils.ConvertBigNum(TableManager.Instance.dosulTable.dataArray[(int)e].Abil_Value*100f)}% 증가");
-                
+                currentDosulLevel.SetText($"LV : {(int)e + 1}");
+
+                currentDosulAddValue.SetText($"도술 추가 피해량\n{Utils.ConvertBigNum(TableManager.Instance.dosulTable.dataArray[(int)e].Abil_Value * 100f)}% 증가");
+
                 if (isMaxLevel)
                 {
                     levelUpPrice.SetText("최고단계");
@@ -83,7 +83,6 @@ public class UiDosulBoard : MonoBehaviour
 
 
             levelUpButton.sprite = isMaxLevel ? maxLevelSprite : normalSprite;
-            
         }).AddTo(this);
     }
 
@@ -122,7 +121,14 @@ public class UiDosulBoard : MonoBehaviour
 
         ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulLevel].Value++;
 
+        int currentDosulLevel = (int)ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulLevel].Value;
+
         PopupManager.Instance.ShowAlarmMessage($"도술 레벨이 올랐습니다!");
+
+        if (TableManager.Instance.dosulTable.dataArray[currentDosulLevel].Unlock_Skill_Id != 0)
+        {
+            PopupManager.Instance.ShowConfirmPopup("알림", "신규 도술이 해금됐습니다!", null);
+        }
 
         if (syncRoutine != null)
         {

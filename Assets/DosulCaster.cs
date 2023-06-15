@@ -13,11 +13,11 @@ public class DosulCaster : MonoBehaviour
     private int myDosulSkillId = 0;
 
     [SerializeField]
-    private GameObject dosulEffect;
+    private List<GameObject> dosulEffect;
 
     [SerializeField]
     private GameObject dosulParent;
-
+    
     void Start()
     {
         StartCoroutine(UseDosulSkillRoutine());
@@ -29,10 +29,32 @@ public class DosulCaster : MonoBehaviour
     {
         ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulLevel].AsObservable().Subscribe(e =>
         {
-            
-            UpdateMyDosulSkillId();
 
-            dosulEffect.SetActive(myDosulSkillId != 0);
+            if (e != -1)
+            {
+                UpdateMyDosulSkillId();
+
+                int effectId = (int)e / 20;
+
+                if (effectId > 5)
+                {
+                    effectId = 5;
+                }
+
+                for (int i = 0; i < dosulEffect.Count; i++)
+                {
+                    dosulEffect[i].SetActive(effectId == i);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < dosulEffect.Count; i++)
+                {
+                    dosulEffect[i].SetActive(false);
+                }
+            }
+            
+         
             
         }).AddTo(this);
 
