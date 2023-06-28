@@ -92,7 +92,7 @@ public class UiFoxFirePassBuyButton : MonoBehaviour
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 
-        ServerData.goodsTable.TableDatas[GoodsTable.FoxRelic].Value += 15000;
+        ServerData.goodsTable.TableDatas[GoodsTable.FoxRelic].Value += 50000;
         
         ServerData.goodsTable.UpData(GoodsTable.FoxRelic,false);
 

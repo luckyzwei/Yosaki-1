@@ -266,8 +266,7 @@ public class SingleRaidManager : ContentsManagerBase
     private void RewardItem()
     {
         DailyMissionManager.UpdateDailyMission(DailyMissionKey.RewardedBossContents, 1);
-        EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearCat, 1);
-
+  
         double damagedHp = damageAmount.Value;
 
         List<RewardData> rewardDatas = GetRewawrdData(bossTableData, damagedHp);

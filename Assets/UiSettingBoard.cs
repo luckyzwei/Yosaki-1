@@ -37,6 +37,8 @@ public class UiSettingBoard : MonoBehaviour
 
     [SerializeField]
     private Toggle showSleepPushToggle;
+    [SerializeField]
+    private Toggle batterySafeModeToggle;
 
     [SerializeField]
     private Toggle yachaEffectToggle;
@@ -150,6 +152,8 @@ public class UiSettingBoard : MonoBehaviour
         shakeCameraToggle.isOn = PlayerPrefs.GetInt(SettingKey.GlowEffect) == 1;
 
         showSleepPushToggle.isOn = PlayerPrefs.GetInt(SettingKey.ShowSleepPush) == 1;
+        
+        batterySafeModeToggle.isOn = PlayerPrefs.GetInt(SettingKey.batterySafeMode) == 1;
 
         yachaEffectToggle.isOn = PlayerPrefs.GetInt(SettingKey.YachaEffect) == 1;
 
@@ -359,6 +363,17 @@ public class UiSettingBoard : MonoBehaviour
         }
 
         SettingData.ShowSleepPush.Value = on ? 1 : 0;
+    }
+    public void BatterySafeMode(bool on)
+    {
+        if (initialized == false) return;
+
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.batterySafeMode.Value = on ? 1 : 0;
     }
 
     public void YachaEffect(bool on)
@@ -716,6 +731,7 @@ public static class SettingKey
     public static string PotionUseHpOption = "PotionUseHpOption";
     public static string GachaWhiteEffect = "GachaWhiteEffect";
     public static string ShowSleepPush = "ShowSleepPush";
+    public static string batterySafeMode = "batterySafeMode";
     public static string YachaEffect = "YachaEffect";
     public static string HpBar = "HpBar";
     public static string ViewEnemy = "ViewEnemy";
@@ -742,6 +758,7 @@ public static class SettingKey
     public static string showWolfRing = "showWolfRing";
     public static string showRingEffect = "showRingEffect";
     public static string newUi = "newUi";
+    public static string towerAutoMode = "towerAutoMode";
     public static string norigaeSize = "norigaeSize";//수호동물임
 
     public static string autoVisionSkill = "autoVisionSkill";
@@ -766,6 +783,8 @@ public static class SettingData
     public static ReactiveProperty<int> PotionUseHpOption = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> GachaWhiteEffect = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> ShowSleepPush = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    public static ReactiveProperty<int> batterySafeMode = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    
     public static ReactiveProperty<int> YachaEffect = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> HpBar = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> ViewEnemy = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
@@ -794,6 +813,7 @@ public static class SettingData
     public static ReactiveProperty<int> showWolfRing = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> showRingEffect = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> newUi = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
+    public static ReactiveProperty<int> towerAutoMode = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     public static ReactiveProperty<int> norigaeSize = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
     
     public static ReactiveProperty<int> autoVisionSkill = new ReactiveProperty<int>();//x이하일떄 (3개옵션)
@@ -848,6 +868,9 @@ public static class SettingData
 
         if (PlayerPrefs.HasKey(SettingKey.ShowSleepPush) == false)
             PlayerPrefs.SetInt(SettingKey.ShowSleepPush, 1);
+        
+        if (PlayerPrefs.HasKey(SettingKey.batterySafeMode) == false)
+            PlayerPrefs.SetInt(SettingKey.batterySafeMode, 0);
 
         if (PlayerPrefs.HasKey(SettingKey.YachaEffect) == false)
             PlayerPrefs.SetInt(SettingKey.YachaEffect, 1);
@@ -926,6 +949,9 @@ public static class SettingData
         if (PlayerPrefs.HasKey(SettingKey.newUi) == false)
             PlayerPrefs.SetInt(SettingKey.newUi, 1);     
         
+        if (PlayerPrefs.HasKey(SettingKey.towerAutoMode) == false)
+            PlayerPrefs.SetInt(SettingKey.towerAutoMode, 1);     
+        
         if (PlayerPrefs.HasKey(SettingKey.norigaeSize) == false)
             PlayerPrefs.SetInt(SettingKey.norigaeSize, 1);
         
@@ -949,6 +975,7 @@ public static class SettingData
         joyStick.Value = PlayerPrefs.GetFloat(SettingKey.joyStick, 0f);
         GachaWhiteEffect.Value = PlayerPrefs.GetInt(SettingKey.GachaWhiteEffect, 1);
         ShowSleepPush.Value = PlayerPrefs.GetInt(SettingKey.ShowSleepPush, 1);
+        batterySafeMode.Value = PlayerPrefs.GetInt(SettingKey.batterySafeMode, 1);
         YachaEffect.Value = PlayerPrefs.GetInt(SettingKey.YachaEffect, 1);
         HpBar.Value = PlayerPrefs.GetInt(SettingKey.HpBar, 1);
         ViewEnemy.Value = PlayerPrefs.GetInt(SettingKey.ViewEnemy, 1);
@@ -978,6 +1005,9 @@ public static class SettingData
         showRingEffect.Value = PlayerPrefs.GetInt(SettingKey.showRingEffect, 1);
         
         newUi.Value = PlayerPrefs.GetInt(SettingKey.newUi, 1);
+        
+        towerAutoMode.Value = PlayerPrefs.GetInt(SettingKey.towerAutoMode, 1);
+        
         norigaeSize.Value = PlayerPrefs.GetInt(SettingKey.norigaeSize, 1);
         
         autoVisionSkill.Value = PlayerPrefs.GetInt(SettingKey.autoVisionSkill, 1);
@@ -1042,6 +1072,10 @@ public static class SettingData
         ShowSleepPush.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.ShowSleepPush, e);
+        });
+        batterySafeMode.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.batterySafeMode, e);
         });
 
         YachaEffect.AsObservable().Subscribe(e =>
@@ -1150,6 +1184,10 @@ public static class SettingData
         newUi.AsObservable().Subscribe(e =>
         {
             PlayerPrefs.SetInt(SettingKey.newUi, e);
+        }); 
+        towerAutoMode.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.towerAutoMode, e);
         }); 
         
         norigaeSize.AsObservable().Subscribe(e =>

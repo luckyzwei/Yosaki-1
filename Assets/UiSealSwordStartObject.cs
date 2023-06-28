@@ -46,6 +46,7 @@ public class UiSealSwordStartObject : MonoBehaviour
         ServerData.SendTransaction(transactions,
             successCallBack: () =>
             {
+                LogManager.Instance.SendLogType("Funnel_Tutorial", "complete", $"SealSwordStart");
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,
                     $"시작됐습니다!\n매일 자동으로 {CommonString.GetItemName(Item_Type.SealWeaponClear)}를 {GameBalance.SealSwordTicketDailyGetAmount}개씩 획득 합니다!", null);
             });

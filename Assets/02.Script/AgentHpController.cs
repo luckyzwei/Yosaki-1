@@ -224,6 +224,8 @@ public class AgentHpController : MonoBehaviour
         value += value * PlayerStats.GetSuperCritical17DamPer();
         //귀살베기
         value += value * PlayerStats.GetSuperCritical19DamPer();
+        //천구베기
+        value += value * PlayerStats.GetSuperCritical20DamPer();
         
         ///
     }

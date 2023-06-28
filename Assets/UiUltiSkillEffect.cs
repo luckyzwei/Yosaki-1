@@ -51,6 +51,17 @@ public class UiUltiSkillEffect : SingletonMono<UiUltiSkillEffect>
         {
             ultSkillEffect[5].SetActive(true);
         }
+        
+        if (idx == 141)
+        {
+            ultSkillEffect[6].SetActive(true);
+        }
+        
+                
+        if (idx == 142)
+        {
+            ultSkillEffect[7].SetActive(true);
+        }
     }
 
     public void OffAllUltSkillEffect()

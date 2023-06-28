@@ -130,7 +130,6 @@ public class UiBossContentsView : MonoBehaviour
         //티켓차감
         ServerData.goodsTable.GetTableData(GoodsTable.Ticket).Value -= clearAmount;
 
-        EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearCat, clearAmount);
         ServerData.SendTransaction(rewardList, addValue: null,
          completeCallBack: () =>
          {

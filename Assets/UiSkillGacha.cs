@@ -53,7 +53,7 @@ public class UiSkillGacha : MonoBehaviour
 
         for (int i = 0; i < priceTexts.Count; i++)
         {
-            priceTexts[i].SetText($"{gachaPrice[i]}");
+            priceTexts[i].SetText($"{Utils.ConvertNum(gachaPrice[i])}");
         }
     }
 
@@ -114,16 +114,18 @@ public class UiSkillGacha : MonoBehaviour
 
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
 
+            int freeGachaIdx = 1;
+            
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
-                this.lastGachaIdx = 2;
-                int amount = gachaAmount[2];
-                int price = gachaPrice[2];
+                this.lastGachaIdx = freeGachaIdx;
+                int amount = gachaAmount[freeGachaIdx];
+                int price = gachaPrice[freeGachaIdx];
 
                 //무료라
                 ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += price;
 
-                OnClickOpenButton(2);
+                OnClickOpenButton(freeGachaIdx);
 
              //   LogManager.Instance.SendLogType("FreeGacha", "Skill", "");
             });

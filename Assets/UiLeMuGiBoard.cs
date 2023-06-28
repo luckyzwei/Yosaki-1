@@ -50,6 +50,8 @@ public class UiLeMuGiBoard : SingletonMono<UiLeMuGiBoard>
     private List<UiPetView> uiPetViewPrefeab_Fox;
     [SerializeField]
     private List<UiPetView> uiPetViewPrefeab_Tiger;
+    [SerializeField]
+    private List<UiPetView> uiPetViewPrefeab_ChunGu;
 
     [SerializeField]
     private Transform petViewParent;
@@ -320,6 +322,42 @@ public class UiLeMuGiBoard : SingletonMono<UiLeMuGiBoard>
                     petView43.transform.localPosition = Vector3.zero;
 
                     petView43.Initialize(e.Current.Value);
+                    break;
+                case 44:
+                    var petView44 = Instantiate<UiPetView>(uiPetViewPrefeab_ChunGu[0], petViewParent);
+
+                    petView44.gameObject.SetActive(true);
+
+                    petView44.transform.localPosition = Vector3.zero;
+
+                    petView44.Initialize(e.Current.Value);
+                    break;
+                case 45:
+                    var petView45 = Instantiate<UiPetView>(uiPetViewPrefeab_ChunGu[1], petViewParent);
+
+                    petView45.gameObject.SetActive(true);
+
+                    petView45.transform.localPosition = Vector3.zero;
+
+                    petView45.Initialize(e.Current.Value);
+                    break;
+                case 46:
+                    var petView46 = Instantiate<UiPetView>(uiPetViewPrefeab_ChunGu[2], petViewParent);
+
+                    petView46.gameObject.SetActive(true);
+
+                    petView46.transform.localPosition = Vector3.zero;
+
+                    petView46.Initialize(e.Current.Value);
+                    break;
+                case 47:
+                    var petView47 = Instantiate<UiPetView>(uiPetViewPrefeab_ChunGu[3], petViewParent);
+
+                    petView47.gameObject.SetActive(true);
+
+                    petView47.transform.localPosition = Vector3.zero;
+
+                    petView47.Initialize(e.Current.Value);
                     break;
             }
         }

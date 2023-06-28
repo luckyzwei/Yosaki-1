@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI.Extensions;
 
@@ -84,30 +85,6 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
 
     protected override GameObject CellPrefab => cellPrefab;
     
-    private void Start()
-    {
-            
-        // switch (_weaponType)
-        // {
-        //     case WeaponType.Basic:
-        //     case WeaponType.Normal:
-        //         MakeBasicNormalBoard();
-        //         break;
-        //     case WeaponType.View:
-        //         MakeViewBoard();
-        //         break;
-        //     case WeaponType.RecommendView:
-        //         MakeRecommendViewBoard();
-        //         break;
-        //     case WeaponType.HasEffectOnly:
-        //         MakeEffectOnlyBoard();
-        //         break;
-        //     default:
-        //         break;
-        // }
-
-    }
-    
     private List<WeaponData_Fancy> SortHasItemList(List<WeaponData_Fancy> list)
     {
         for (int i = 0; i < list.Count; i++)
@@ -124,6 +101,27 @@ public class UiWeaponInventoryView : FancyScrollView<WeaponData_Fancy>
         }
 
         return list;
+    }
+
+    private void Start()
+    {
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        ServerData.weaponTable.TableDatas["weapon20"].hasItem.AsObservable().Subscribe(e =>
+        {
+            SortHasItem();
+        }).AddTo(this);
+        ServerData.weaponTable.TableDatas["weapon21"].hasItem.AsObservable().Subscribe(e =>
+        {
+            SortHasItem();
+        }).AddTo(this);
+        ServerData.weaponTable.TableDatas["weapon22"].hasItem.AsObservable().Subscribe(e =>
+        {
+            SortHasItem();
+        }).AddTo(this);
     }
     public void SortHasItem()
     {

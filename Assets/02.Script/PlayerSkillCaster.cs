@@ -59,12 +59,21 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
     private void InitializeVisionSkillIdxList()
     {
         var skillData = TableManager.Instance.SkillTable.dataArray;
+
+        List<SkillTableData> skillTableDatas = new List<SkillTableData>();
         foreach (var data in skillData)
         {
             if (data.SKILLCASTTYPE == SkillCastType.Vision)
             {
-                _visionSkillIdxList.Add(data.Id);
+                skillTableDatas.Add(data);
             }
+        }
+
+        skillTableDatas.Sort((x, y) => x.Damageper.CompareTo(y.Damageper));
+
+        for (int i = 0; i < skillTableDatas.Count; i++)
+        {
+            _visionSkillIdxList.Add(skillTableDatas[i].Id);
         }
     }
 
@@ -411,6 +420,9 @@ public class PlayerSkillCaster : SingletonMono<PlayerSkillCaster>
         }
         else
         {
+            #if UNITY_EDITOR
+            DamageCalculateManager.Instance.AddDamage(skillInfo.SKILLCASTTYPE,totalDamage);
+            #endif
             agentHpController.UpdateHp(-totalDamage);
         }
 

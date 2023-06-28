@@ -404,10 +404,19 @@ public class UiInventoryRingView : FancyCell<RingData_Fancy>
         
         if (newGachaData != null)
         {
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "정말로 반지를 변경 할까요?", () =>
+            //현재 장비가 더 높음
+            if (ServerData.equipmentTable.TableDatas[EquipmentTable.SoulRing].Value > newGachaData.Id)
+            {
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "<color=red>현재 장착중인 반지보다 낮은 등급의 반지입니다.</color>\n정말로 반지를 변경 할까요?", () =>
+                {
+                    ServerData.equipmentTable.ChangeEquip(EquipmentTable.SoulRing, newGachaData.Id);
+                }, () => { });
+            }
+            else
             {
                 ServerData.equipmentTable.ChangeEquip(EquipmentTable.SoulRing, newGachaData.Id);
-            }, () => { });
+            }
+
         }
 
         UpdateEquipButton();

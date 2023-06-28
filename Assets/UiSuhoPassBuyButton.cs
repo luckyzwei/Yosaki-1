@@ -92,7 +92,7 @@ public class UiSuhoPassBuyButton : MonoBehaviour
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 
-        ServerData.goodsTable.TableDatas[GoodsTable.SuhoPetFeed].Value += 1000;
+        ServerData.goodsTable.TableDatas[GoodsTable.SuhoPetFeed].Value += 3000;
         
         ServerData.goodsTable.UpData(GoodsTable.SuhoPetFeed,false);
 

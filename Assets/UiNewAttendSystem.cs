@@ -84,79 +84,62 @@ public class UiNewAttendSystem : MonoBehaviour
 
     public void OnClickAllReceiveButton()
     {
-        string freeKey = AttendanceServerTable.attendFree;
-        string adKey = AttendanceServerTable.attendAd;
-
-        List<int> splitData_Free = GetSplitData(AttendanceServerTable.attendFree);
-        List<int> splitData_Ad = GetSplitData(AttendanceServerTable.attendAd);
-
+        int attendIdx = (int)ServerData.userInfoTable.GetTableData(UserInfoTable.attendanceCount).Value;
+        
+        int freeIdx = int.Parse(ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendFree].Value);
+        
+        int adIdx = int.Parse(ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendAd].Value);
+        
         var tableData = TableManager.Instance.AttendanceReward.dataArray;
 
         int rewardedNum = 0;
 
-        string free = ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendFree].Value;
-        string ad = ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendAd].Value;
+        List<int> ItemTypeList = new List<int>();
 
-        bool hasCostumeItem = false;
-
-        for (int i = 0; i < tableData.Length; i++)
+        if (attendIdx > freeIdx)
         {
-            bool canGetReward = CanGetReward(tableData[i].Id);
-
-            if (canGetReward == false) break;
-
-            //무료보상
-            if (HasReward(splitData_Free, tableData[i].Id) == false)
+            for (int i = freeIdx+1; i <= attendIdx; i++)
             {
-                if (((Item_Type)(tableData[i].Reward_Type)).IsCostumeItem())
-                {
-                    hasCostumeItem = true;
-                    break;
-                }
-
-                free += $",{tableData[i].Id}";
                 ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward_Type, tableData[i].Reward_Value);
                 rewardedNum++;
+                if (ItemTypeList.Contains(tableData[i].Reward_Type) == false)
+                {
+                    ItemTypeList.Add(tableData[i].Reward_Type);
+                }
             }
 
-            //유료보상
-            if (HasPassItem() && HasReward(splitData_Ad, tableData[i].Id) == false)
+            ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendFree].Value= $"{attendIdx}";
+        }
+
+        if (HasPassItem())
+        {
+            if (attendIdx > adIdx)
             {
-                if (((Item_Type)(tableData[i].Reward_Type1)).IsCostumeItem())
+                for (int i = adIdx+1; i <= attendIdx; i++)
                 {
-                    hasCostumeItem = true;
-                    break;
+                    ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward_Type1, tableData[i].Reward_Value1);
+                    rewardedNum++;
+                    if (ItemTypeList.Contains(tableData[i].Reward_Type1) == false)
+                    {
+                        ItemTypeList.Add(tableData[i].Reward_Type1);
+                    }
                 }
 
-                ad += $",{tableData[i].Id}";
-                ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward_Type1, tableData[i].Reward_Value1);
-                rewardedNum++;
+                ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendAd].Value= $"{attendIdx}";
             }
         }
-
-        if (hasCostumeItem)
-        {
-            PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "외형 아이템은 직접 수령해야 합니다.", null);
-            return;
-        }
+        
 
         if (rewardedNum > 0)
         {
-            ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendFree].Value = free;
-            ServerData.attendanceServerTable.TableDatas[AttendanceServerTable.attendAd].Value = ad;
-
             List<TransactionValue> transactions = new List<TransactionValue>();
 
+            var e = ItemTypeList.GetEnumerator();
             Param goodsParam = new Param();
-            goodsParam.Add(GoodsTable.Jade, ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value);
-            goodsParam.Add(GoodsTable.MarbleKey, ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value);
-            goodsParam.Add(GoodsTable.RelicTicket, ServerData.goodsTable.GetTableData(GoodsTable.RelicTicket).Value);
-            goodsParam.Add(GoodsTable.Peach, ServerData.goodsTable.GetTableData(GoodsTable.Peach).Value);
-            goodsParam.Add(GoodsTable.SmithFire, ServerData.goodsTable.GetTableData(GoodsTable.SmithFire).Value);
-            goodsParam.Add(GoodsTable.SwordPartial, ServerData.goodsTable.GetTableData(GoodsTable.SwordPartial).Value);
-            goodsParam.Add(GoodsTable.Hel, ServerData.goodsTable.GetTableData(GoodsTable.Hel).Value);
-            goodsParam.Add(GoodsTable.Cw, ServerData.goodsTable.GetTableData(GoodsTable.Cw).Value);
-            goodsParam.Add(GoodsTable.DokebiFire, ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
+            while (e.MoveNext())
+            {
+                goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current)).Value);
+            }
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 

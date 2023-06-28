@@ -423,8 +423,18 @@ public class SkillServerTable
 
         if (tableData.SKILLCASTTYPE == SkillCastType.Vision)
         {
-            return ret * (1 + (GameBalance.VisionTreasurePerDamage *
-                               ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value));
+            
+            var grade = PlayerStats.GetVisionTowerGrade();
+            if (grade > -1)
+            {
+                var data = TableManager.Instance.visionTowerTable.dataArray[grade];
+                return ret * (1 + (GameBalance.VisionTreasurePerDamage * ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value)+data.Abilvalue0);    
+            }
+            else
+            {
+                return ret * (1 + (GameBalance.VisionTreasurePerDamage * ServerData.goodsTable.GetTableData(GoodsTable.VisionTreasure).Value));
+            }
+            
         }
 
 

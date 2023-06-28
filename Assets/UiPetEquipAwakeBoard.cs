@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UniRx;
 using BackEnd;
+using Random = UnityEngine.Random;
 
 public class UiPetEquipAwakeBoard : MonoBehaviour
 {
@@ -66,6 +68,15 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
 
         return true;
     }
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value += 100000000;
+        }   
+    }
+#endif
 
     private void Initialize()
     {
@@ -336,4 +347,82 @@ public class UiPetEquipAwakeBoard : MonoBehaviour
             }
         });
     }
+    
+    public void OnClickYoguiMarbleAwakeButton_All()
+    {
+        PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "모든 요괴구슬로 강화 할까요?", () =>
+        {
+            
+            if (Application.internetReachability == NetworkReachability.NotReachable)
+            {
+                    PopupManager.Instance.ShowAlarmMessage("네트워크 연결상태가 좋지 않습니다.\n다음에 다시 시도해 주세요!");
+                    return;
+            }
+            int prefDragonBall = PlayerStats.GetCurrentDragonIdx();
+
+            int prefFoxCup = PlayerStats.GetCurrentFoxCupIdx();
+            
+            int prefWolfRing = PlayerStats.GetCurrentWolfRingIdx();
+
+
+            float currentMarble = ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value;
+
+            if (currentMarble < GetYoguiMarbleUpgradePrice())
+            {
+                PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.PetUpgradeSoul)}이 부족합니다.");
+                return;
+            }
+
+            upgradeBlockMask.SetActive(true);
+
+            int upgradableNum = (int)(ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value / GetYoguiMarbleUpgradePrice());
+
+            ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value -= (GetYoguiMarbleUpgradePrice() * upgradableNum);
+
+            List<TransactionValue> transactions = new List<TransactionValue>();
+
+            Param goodsParam = new Param();
+            goodsParam.Add(GoodsTable.PetUpgradeSoul, ServerData.goodsTable.GetTableData(GoodsTable.PetUpgradeSoul).Value);
+            transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+
+
+            ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value += upgradableNum;
+
+            Param statusParam = new Param();
+            statusParam.Add(StatusTable.PetEquip_Level, ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value);
+            transactions.Add(TransactionValue.SetUpdate(StatusTable.tableName, StatusTable.Indate, statusParam));
+
+            LogManager.Instance.SendLogType("PetEquip", "all", $"pref {ServerData.statusTable.GetTableData(StatusTable.PetEquip_Level).Value - upgradableNum} +{upgradableNum}");
+
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                LogManager.Instance.SendLogType("PetEquip", "complete", "complete");
+
+                upgradeBlockMask.SetActive(false);
+
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"+{upgradableNum} 강화 성공!", null);
+                
+                int currentDragonBall = PlayerStats.GetCurrentDragonIdx();
+
+                int currentFoxCup = PlayerStats.GetCurrentFoxCupIdx();
+                
+                int currentWolfRing = PlayerStats.GetCurrentWolfRingIdx();
+
+                if (prefDragonBall < currentDragonBall)
+                {
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "용보주 단계 상승!", null);
+                }
+
+                if (prefFoxCup < currentFoxCup)
+                {
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "여우 호리병 단계 상승!", null);
+                }
+                if (prefWolfRing < currentWolfRing)
+                {
+                    PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "흑랑 반지 단계 상승!", null);
+                }
+            });
+        }, null);
+    }
+    //
 }

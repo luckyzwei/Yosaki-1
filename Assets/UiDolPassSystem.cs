@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using BackEnd;
 using UnityEngine.UI.Extensions;
+using static UiRewardView;
 
 public class DolPassData_Fancy
 {
@@ -204,6 +205,8 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,$"주사위 {amount}개 사용\n 주사위 눈 {diceNumAmount}획득!", null);
         });
     }
+    [SerializeField]
+    private UiRewardResultView uiRewardResultView;
     
     public void OnClickAllReceiveButton()
     {
@@ -213,7 +216,7 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
         List<int> splitData_Free = GetSplitData(SeolPassServerTable.MonthlypassFreeReward_dol);
         List<int> splitData_Ad = GetSplitData(SeolPassServerTable.MonthlypassAdReward_dol);
 
-        List<int> rewardTypeList = new List<int>();
+        Dictionary<Item_Type,float> rewardTypeList = new Dictionary<Item_Type,float>();
 
         var tableData = TableManager.Instance.dolPass.dataArray;
 
@@ -241,9 +244,14 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
 
                 free += $",{tableData[i].Id}";
                 ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward1, tableData[i].Reward1_Value);
-                if (rewardTypeList.Contains(tableData[i].Reward1) == false)
+                
+                if (rewardTypeList.ContainsKey((Item_Type)tableData[i].Reward1) == false)
                 {
-                    rewardTypeList.Add(tableData[i].Reward1);
+                    rewardTypeList.Add((Item_Type)tableData[i].Reward1,tableData[i].Reward1_Value);
+                }
+                else
+                {
+                    rewardTypeList[(Item_Type)tableData[i].Reward1] += tableData[i].Reward1_Value;
                 }
                 rewardedNum++;
             }
@@ -259,9 +267,13 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
 
                 ad += $",{tableData[i].Id}";
                 ServerData.AddLocalValue((Item_Type)(int)tableData[i].Reward2, tableData[i].Reward2_Value);
-                if (rewardTypeList.Contains(tableData[i].Reward2) == false)
+                if (rewardTypeList.ContainsKey((Item_Type)tableData[i].Reward2) == false)
                 {
-                    rewardTypeList.Add(tableData[i].Reward2);
+                    rewardTypeList.Add((Item_Type)tableData[i].Reward2,tableData[i].Reward2_Value);
+                }
+                else
+                {
+                    rewardTypeList[(Item_Type)tableData[i].Reward2] += tableData[i].Reward2_Value;
                 }
                 rewardedNum++;
             }
@@ -282,11 +294,14 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
 
             var e = rewardTypeList.GetEnumerator();
 
+            List<RewardData> rewardDatas = new List<RewardData>();
             Param goodsParam = new Param();
             while (e.MoveNext())
             {
-                goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString((Item_Type)e.Current), ServerData.goodsTable.GetTableData((Item_Type)e.Current).Value);
+                rewardDatas.Add(new RewardData(e.Current.Key,e.Current.Value));
+                goodsParam.Add(ServerData.goodsTable.ItemTypeToServerString(e.Current.Key), ServerData.goodsTable.GetTableData(e.Current.Key).Value);
             }
+            
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
@@ -300,6 +315,9 @@ public class UiDolPassSystem : FancyScrollView<DolPassData_Fancy>
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "보상을 전부 수령했습니다", null);
+                // uiRewardResultView.gameObject.SetActive(true);
+                //
+                // uiRewardResultView.Initialize(rewardDatas);
                 //LogManager.Instance.SendLogType("ChildPass", "A", "A");
             });
         }

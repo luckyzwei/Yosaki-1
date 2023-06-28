@@ -88,11 +88,6 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
     [SerializeField]
     private TextMeshProUGUI magicBookViewEquipDesc;
 
-    [SerializeField]
-    private Image newGachaViewEquipButton;
-
-    [SerializeField]
-    private TextMeshProUGUI newGachaViewEquipDesc;
 
     [SerializeField]
     private Sprite weaponViewEquipDisable;
@@ -1028,53 +1023,28 @@ public class UiInventoryWeaponNewView : FancyCell<WeaponData_Fancy>
                 return;
             }
 
-            //if (weaponData.Id >= 37 && weaponData.Id <= 41)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 45 && weaponData.Id <= 49)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 52 && weaponData.Id <= 56)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id >= 60 && weaponData.Id <= 62)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-
-            //if (weaponData.Id >= 71 && weaponData.Id <= 76)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-            //if (weaponData.Id >= 81 && weaponData.Id < 84)
-            //{
-            //    PopupManager.Instance.ShowAlarmMessage("외형 아이템은 장착 하실수 없습니다.");
-            //    return;
-            //}
-
-
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "정말로 무기를 변경 할까요?\n(외형도 함께 변경 됩니다.)", () =>
+            //현재 장비가 더 높음
+            if (ServerData.equipmentTable.TableDatas[EquipmentTable.Weapon].Value > weaponData.Id)
+            {
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "<color=red>현재 장착중인 무기보다 낮은 등급의 무기입니다.</color>\n정말로 무기를 변경 할까요?", () =>
+                {
+        
+                    ServerData.equipmentTable.ChangeEquip(EquipmentTable.Weapon, weaponData.Id);
+                    //ServerData.equipmentTable.ChangeEquip(EquipmentTable.Weapon_View, weaponData.Id);
+                }, () => { });
+            }
+            else
             {
                 ServerData.equipmentTable.ChangeEquip(EquipmentTable.Weapon, weaponData.Id);
-                ServerData.equipmentTable.ChangeEquip(EquipmentTable.Weapon_View, weaponData.Id);
-            }, () => { });
-            //   UiTutorialManager.Instance.SetClear(TutorialStep._10_EquipWeapon);
+            }
+
         }
         else if (magicBookData != null)
         {
             PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "정말로 노리개를 변경 할까요?\n(외형도 함께 변경 됩니다.)", () =>
             {
                 ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook, magicBookData.Id);
-                ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook_View, magicBookData.Id);
+                //ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook_View, magicBookData.Id);
             }, () => { });
         }
         else if (newGachaData != null)

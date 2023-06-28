@@ -123,12 +123,16 @@ public class UiGumGiContentsBoard : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-            EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
+            
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
 
             if (ServerData.userInfoTable.IsMonthlyPass2() == false)
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSwordPartial, 1);
+            }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSwordPartial, 1);
             }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

@@ -18,17 +18,17 @@ public class UiMonthMission2Board : MonoBehaviour
     {
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateChun).Value > 0)
         {
-            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMissionKey.ClearChunFlower].Stringid;
+            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMission2Key.ClearChunFlower].Stringid;
             ServerData.eventMissionTable.UpdateMissionClearToCount(key, 10);
         }    
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateDokebiFire).Value > 0)
         {
-            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMissionKey.ClearDokebiFire].Stringid;
+            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMission2Key.ClearDokebiFire].Stringid;
             ServerData.eventMissionTable.UpdateMissionClearToCount(key, 10);
         }    
         if (ServerData.userInfoTable.GetTableData(UserInfoTable.graduateHel).Value > 0)
         {
-            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMissionKey.ClearHell].Stringid;
+            string key = TableManager.Instance.MonthMission2Datas[(int)MonthMission2Key.ClearHell].Stringid;
             ServerData.eventMissionTable.UpdateMissionClearToCount(key, 1);
         }    
     }

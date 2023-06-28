@@ -1,3 +1,4 @@
+using System;
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
@@ -74,7 +75,12 @@ public class TwelveDungeonManager : ContentsManagerBase
     {
         StartCoroutine(RandomizeRoutine());
     }
-
+    #if UNITY_EDITOR
+    private void OnDisable()
+    {
+        DamageCalculateManager.Instance.StopCalculate();
+    }
+    #endif
     private IEnumerator RandomizeRoutine()
     {
         var delay = new WaitForSeconds(1.0f);
@@ -85,6 +91,7 @@ public class TwelveDungeonManager : ContentsManagerBase
             yield return delay;
         }
     }
+
 
     private void OnApplicationPause(bool pause)
     {

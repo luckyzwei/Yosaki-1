@@ -70,6 +70,7 @@ public class UiGuildPetBoard : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage("오늘은 이미 먹이를 줬습니다.");
             return;
         }
+        
 
         if (ServerData.goodsTable.GetTableData(GoodsTable.MarbleKey).Value < exchangeGoodsNum * eachMarbleNum)
         {
@@ -144,11 +145,13 @@ public class UiGuildPetBoard : MonoBehaviour
 
                       if (broForGuildLevel.IsSuccess())
                       {
+                          YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission7_3, 1);
                           recordButton.interactable = true;
                           GuildManager.Instance.guildPetExp.Value += (int)exchangeGoodsNum;
                           PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"레벨 {exchangeGoodsNum}증가,\n{CommonString.GetItemName(Item_Type.GrowthStone)} {Utils.ConvertBigNum(exchangeGoodsNum * eachGrowthStoneNum)}개 획득!", null);
                           GuildManager.Instance.LoadGuildLevelGoods();
 
+                          EventMissionManager.UpdateEventMissionClear(EventMissionKey.MISSION2, 1);
 
                           var memberCell = UiGuildMemberList.Instance.GetMemberCell(PlayerData.Instance.NickName);
 

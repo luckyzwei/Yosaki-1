@@ -460,7 +460,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else
             {
-                buttonDescription.SetText("상점에서\n구매가능");
+                buttonDescription.SetText($"{petData.Getspecialdescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Evolution)
@@ -477,24 +477,7 @@ public class UiPetView : MonoBehaviour
 
                 var prefPetData = TableManager.Instance.PetTable.dataArray[prefPetId];
 
-                if (petData.Id == 14 || petData.Id == 15 || petData.Id == 16 || petData.Id == 17 || petData.Id == 18 || petData.Id == 19)
-                {
-                    buttonDescription.SetText($"수호신 컨텐츠\n에서 획득!");
-                }
-                else if (petData.Id == 20 || petData.Id == 21 || petData.Id == 22 || petData.Id == 23)
-                {
-                    buttonDescription.SetText($"천상계 컨텐츠\n에서 획득!");
-                }
-
-                else if (petData.Id == 36 || petData.Id == 37 || petData.Id == 38 || petData.Id == 39)
-                {
-                    buttonDescription.SetText($"여우굴 컨텐츠\n에서 획득!");
-                }
-
-                else
-                {
-                    buttonDescription.SetText($"{prefPetData.Name}\n각성시 획득");
-                }
+                buttonDescription.SetText($"{petData.Getspecialdescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Sasinsu)
@@ -507,10 +490,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else if (petData.Id == 24 || petData.Id == 25 || petData.Id == 26 || petData.Id == 27)
             {
-                //int prefPetId = petData.Id - 16;
-                //var prefPetData = TableManager.Instance.PetTable.dataArray[prefPetId];
-                //buttonDescription.SetText($"{prefPetData.Name} 각성 후 \n 별자리 컨텐츠에서 획득!");
-                buttonDescription.SetText($"사신수 별자리\n컨텐츠에서 획득!");
+                buttonDescription.SetText($"{petData.Getspecialdescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Sahyungsu)
@@ -522,7 +502,7 @@ public class UiPetView : MonoBehaviour
             }
             else
             {
-                buttonDescription.SetText($"사흉수 \n컨텐츠에서 획득!");
+                buttonDescription.SetText($"{petData.Getspecialdescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Vision)
@@ -534,7 +514,7 @@ public class UiPetView : MonoBehaviour
             }
             else
             {
-                buttonDescription.SetText($"비전 전수 \n컨텐츠에서 획득!");
+                buttonDescription.SetText($"{petData.Getspecialdescription}");
             }
         }
 
@@ -575,7 +555,7 @@ public class UiPetView : MonoBehaviour
                 }
                 else
                 {
-                    PopupManager.Instance.ShowAlarmMessage($"{CommonString.GetItemName(Item_Type.Jade)}이 부족합니다.");
+                    PopupManager.Instance.ShowAlarmMessage($"{petData.Onclickbuttondescription}");
                 }
             }
         }
@@ -588,7 +568,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else
             {
-                PopupManager.Instance.ShowAlarmMessage("상점에서 구매 가능합니다.\n(외형&환수)");
+                PopupManager.Instance.ShowAlarmMessage($"{petData.Onclickbuttondescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Evolution)
@@ -600,21 +580,7 @@ public class UiPetView : MonoBehaviour
             //미보유
             else
             {
-                if (petServerData.idx == 14 || petServerData.idx == 15 || petServerData.idx == 16 || petServerData.idx == 17 || petServerData.idx == 18 || petServerData.idx == 19)
-                {
-                    PopupManager.Instance.ShowAlarmMessage("수호신 컨텐츠에서 획득 가능");
-
-                }
-                else if (petServerData.idx == 20 || petServerData.idx == 21 || petServerData.idx == 22 || petServerData.idx == 23)
-                {
-                    PopupManager.Instance.ShowAlarmMessage("천상계 컨텐츠에서 획득 가능");
-                }
-                else
-                {
-
-                    PopupManager.Instance.ShowAlarmMessage("환수를 각성시켜 획득 가능합니다.");
-                }
-
+                    PopupManager.Instance.ShowAlarmMessage($"{petData.Onclickbuttondescription}");
             }
         }
         else if (petData.PETGETTYPE == PetGetType.Sasinsu)

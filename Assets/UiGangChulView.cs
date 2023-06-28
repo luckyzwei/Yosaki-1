@@ -83,6 +83,10 @@ public class UiGangChulView : SingletonMono<UiGangChulView>
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearGangChul, 1);
             }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearGangChul, 1);
+            }
             
             List<TransactionValue> transactions = new List<TransactionValue>();
 

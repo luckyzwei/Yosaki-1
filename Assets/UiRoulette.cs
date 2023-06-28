@@ -148,7 +148,7 @@ public class UiRoulette : MonoBehaviour
         }
 
         transactionList.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-
+        YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission5_5, 1);
         ServerData.SendTransaction(transactionList);
 
         //결과화면

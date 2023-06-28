@@ -99,6 +99,10 @@ public class GetNewGachaGoods : MonoBehaviour
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSoulStone, 1);
             }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSoulStone, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {amount}개 획득!", null);

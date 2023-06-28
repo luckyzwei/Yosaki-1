@@ -549,21 +549,23 @@ if (magicBookData != null)
 
         if (magicBookData != null)
         {
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "정말로 노리개를 변경 할까요?\n(외형도 함께 변경 됩니다.)", () =>
+            
+            
+            //현재 장비가 더 높음
+            if (ServerData.equipmentTable.TableDatas[EquipmentTable.MagicBook].Value > magicBookData.Id)
+            {
+                PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "<color=red>현재 장착중인 노리개보다 낮은 등급의 노리개입니다.</color>\n정말로 노리개를 변경 할까요?", () =>
+                {
+        
+                    ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook, magicBookData.Id);
+                }, () => { });
+            }
+            else
             {
                 ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook, magicBookData.Id);
-                ServerData.equipmentTable.ChangeEquip(EquipmentTable.MagicBook_View, magicBookData.Id);
-            }, () => { });
-
+            }
+            
         }
-        else
-        {
-            PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, "정말로 반지를 변경 할까요?", () =>
-            {
-                ServerData.equipmentTable.ChangeEquip(EquipmentTable.SoulRing, newGachaData.Id);
-            }, () => { });
-        }
-
         UpdateEquipButton();
     }
 

@@ -18,6 +18,10 @@ public static class Utils
         return (self & flag) == flag;
     }
 
+    public static bool IsSleepItem(this Item_Type type)
+    {
+        return type == Item_Type.SleepRewardItem;
+    }
     public static bool IsCostumeItem(this Item_Type type)
     {
         return type == Item_Type.costume0 ||
@@ -151,7 +155,13 @@ public static class Utils
                type == Item_Type.costume128 ||
                type == Item_Type.costume129 ||
                type == Item_Type.costume130||
-               type == Item_Type.costume131
+               type == Item_Type.costume131||
+               type == Item_Type.costume132||
+               type == Item_Type.costume133||
+               type == Item_Type.costume134||
+               type == Item_Type.costume135||
+               type == Item_Type.costume136||
+               type == Item_Type.costume137
             ;
     }
 
@@ -183,16 +193,16 @@ public static class Utils
             ;
     }
 
-    public static bool IsIgnoreMissionKey(this EventMissionKey type)
-    {
-        int type_int = (int)type;
-        return type_int >= (int)EventMissionKey.ClearBandit && type <= EventMissionKey.ClearSumiFire;
-    }
 
     public static bool IsIgnoreMissionKey(this MonthMissionKey type)
     {
         int type_int = (int)type;
         return type_int >= (int)MonthMissionKey.ClearBandit && type <= MonthMissionKey.ClearSumiFire;
+    }
+    public static bool IsDailyEventMissionKey(this EventMissionKey type)
+    {
+        int type_int = (int)type;
+        return type_int >= (int)EventMissionKey.S_ClearBandit && type <= EventMissionKey.S_ClearSoulStone;
     }
 
     public static bool IsRegainableItem(this Item_Type type)
@@ -308,10 +318,18 @@ public static class Utils
                type == Item_Type.TigerPet1 ||
                type == Item_Type.TigerPet2 ||
                type == Item_Type.TigerPet3 ||
+               type == Item_Type.ChunGuPet0 ||
+               type == Item_Type.ChunGuPet1 ||
+               type == Item_Type.ChunGuPet2 ||
+               type == Item_Type.ChunGuPet3 ||
                type == Item_Type.SpecialSuhoPet0 ||
                type == Item_Type.SpecialSuhoPet1 ||
                type == Item_Type.SpecialSuhoPet2 ||
                type == Item_Type.SpecialSuhoPet3 ||
+               type == Item_Type.SpecialSuhoPet4 ||
+               type == Item_Type.SpecialSuhoPet5 ||
+               type == Item_Type.SpecialSuhoPet6 ||
+               type == Item_Type.SpecialSuhoPet7 ||
                type == Item_Type.RabitPet ||
                type == Item_Type.RabitNorigae ||
                type == Item_Type.YeaRaeNorigae ||
@@ -377,6 +395,7 @@ public static class Utils
                type == Item_Type.DarkTreasure ||
                type == Item_Type.SinsunTreasure ||
                type == Item_Type.GwisalTreasure ||
+               type == Item_Type.ChunguTreasure ||
                type == Item_Type.GuildTowerClearTicket ||
                type == Item_Type.SinsuMarble ||
                type == Item_Type.Mileage ||
@@ -639,7 +658,7 @@ public static class Utils
     private static string[] goldUnitArr = new string[]
     {
         "", "만", "억", "조", "경", "해", "자", "양", "구", "간", "정", "재", "극", "항", "아", "나", "불", "무", "대", "겁", "업", "긍",
-        "갈", "라", "가", "언", "승", "마", "살", "섬", "찰", "교","위","미정1","미정2","미정3","미정4","미정5","미정6"
+        "갈", "라", "가", "언", "승", "마", "살", "섬", "찰", "교","위","미정1","미정2","미정3","미정4","미정5","미정6","미정7","미정8","미정9","미정10","미정11","미정12","미정13","미정14","미정15","미정16","미정17","미정18","미정19","미정20","미정16","미정16","미정16","미정16","미정16","미정16","미정16","미정16","미정16","미정16","미정16","미정16",
         
     };
 
@@ -728,7 +747,7 @@ public static class Utils
         return result.ToString();
     }
 
-    public static string ConvertNum(float data, int count = 0)
+    public static string ConvertNum(double data, int count = 0)
     {
         if (data > 10000)
         {
@@ -736,7 +755,7 @@ public static class Utils
         }
         else
         {
-            return ConvertSmallNum(data, count);
+            return ConvertSmallNum((float)data, count);
         }
     }
     

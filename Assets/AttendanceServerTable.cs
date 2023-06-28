@@ -23,8 +23,8 @@ public class AttendanceServerTable
     {
         {rewardKey,""},
         {rewardKey_100,""},
-        {attendFree,""},
-        {attendAd,""},
+        {attendFree,"0"},
+        {attendAd,"0"},
     };
 
     private Dictionary<string, ReactiveProperty<string>> tableDatas = new Dictionary<string, ReactiveProperty<string>>();

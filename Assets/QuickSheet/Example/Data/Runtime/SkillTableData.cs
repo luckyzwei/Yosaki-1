@@ -200,4 +200,8 @@ public class SkillTableData
   int requirehit;
   public int Requirehit { get {return requirehit; } set { this.requirehit = value;} }
   
+  [SerializeField]
+  string acquireskilldesc;
+  public string Acquireskilldesc { get {return acquireskilldesc; } set { this.acquireskilldesc = value;} }
+  
 }

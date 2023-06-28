@@ -512,7 +512,9 @@ public class SleepRewardReceiver : SingletonMono<SleepRewardReceiver>
         transantions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
         transantions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
         transantions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo_2Param));
-
+        
+        YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission2_6, 1);
+        
         ServerData.SendTransaction(transantions, successCallBack: () =>
         {
             successCallBack?.Invoke();

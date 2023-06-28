@@ -116,6 +116,21 @@ public class KingBossMoveController : MonoBehaviour
                 initialized = true;
             }
         }
+        else if (_bossId == 162||_bossId == 163||_bossId == 164||_bossId == 165)
+        {
+            isMoving = true;
+
+            SetMoveDir(playerTr.position - transform.position);
+            _skeletonAnimation.AnimationState.SetAnimation(0, "walk", true);
+            if (initialized == false)
+            {
+                initialized = true;
+            }
+        }
+        else if (_bossId == 158||_bossId == 159||_bossId == 160||_bossId == 161)
+        {
+            MoveToPlayerVer2();
+        }
 
     }
 
@@ -141,7 +156,7 @@ public class KingBossMoveController : MonoBehaviour
             }
         }
 
-         else if (_bossId == 154||_bossId == 155||_bossId == 157)
+         else if (_bossId == 154||_bossId == 155||_bossId == 157||_bossId == 162||_bossId == 163||_bossId == 164||_bossId == 165)
          {
              if (isMoving)
              {
@@ -162,6 +177,10 @@ public class KingBossMoveController : MonoBehaviour
             {
                 viewTr.transform.localScale = new Vector3(rb.velocity.x < 0 ? -1 : 1, 1, 1);   
             }
+            else if(_bossId == 162||_bossId == 163||_bossId == 164||_bossId == 165)
+            {
+                viewTr.transform.localScale = new Vector3(rb.velocity.x < 0 ? 3 : -3, 3, 1);   
+            }
             else
             {
                 viewTr.transform.localScale = new Vector3(rb.velocity.x > 0 ? -1 : 1, 1, 1);
@@ -175,8 +194,12 @@ public class KingBossMoveController : MonoBehaviour
     {
         moveCoroutine = StartCoroutine(MoveAttackToPlayer());
     }
+    
+    private void MoveToPlayerVer2()
+    {
+        moveCoroutine = StartCoroutine(MoveAttackToPlayerVer2());
+    }
 
-    // ReSharper disable Unity.PerformanceAnalysis
     private IEnumerator MoveAttackToPlayer()
     {
         while (true)
@@ -189,6 +212,44 @@ public class KingBossMoveController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
             _capsuleCollider2D.enabled = true;   
             _skeletonAnimation.AnimationState.SetAnimation(0, "attack3", false);
+        }
+    }
+
+    [SerializeField] private float idleDelay = 1.2f;
+    [SerializeField] private float continuelAttackDelay = 0.2f;
+    [SerializeField] private float attack1Delay = 0f;
+    [SerializeField] private float attack2Delay = 0f;
+    [SerializeField] private float attack3Delay = 0f;
+    private IEnumerator MoveAttackToPlayerVer2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(idleDelay);
+            
+            _capsuleCollider2D.enabled = false;
+            transform.position = playerTr.position;
+            _skeletonAnimation.AnimationState.SetAnimation(0, "idle", true);
+            yield return new WaitForSeconds(attack1Delay);
+            _capsuleCollider2D.enabled = true;   
+            _skeletonAnimation.AnimationState.SetAnimation(0, "attack1", false);
+            
+            if(attack2Delay==0)continue;
+            yield return new WaitForSeconds(continuelAttackDelay);
+            _capsuleCollider2D.enabled = false;
+            yield return new WaitForSeconds(attack2Delay);
+            transform.position = playerTr.position;
+            _skeletonAnimation.AnimationState.SetAnimation(0, "attack2", false);
+            yield return new WaitForSeconds(continuelAttackDelay);
+            _capsuleCollider2D.enabled = true;   
+            
+            if(attack3Delay==0)continue;
+            yield return new WaitForSeconds(continuelAttackDelay);
+            _capsuleCollider2D.enabled = false;
+            yield return new WaitForSeconds(attack3Delay);
+            transform.position = playerTr.position;
+            _skeletonAnimation.AnimationState.SetAnimation(0, "attack3", false);
+            yield return new WaitForSeconds(continuelAttackDelay);
+            _capsuleCollider2D.enabled = true;   
         }
     }
 

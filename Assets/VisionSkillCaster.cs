@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UniRx;
 using UnityEngine;
 
-public class VisionSkillCaster : SingletonMono<VisionSkillCaster>
+public class  VisionSkillCaster : SingletonMono<VisionSkillCaster>
 {
     public Transform skillSpawnPos;
 

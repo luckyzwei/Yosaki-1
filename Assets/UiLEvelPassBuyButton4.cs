@@ -17,7 +17,7 @@ public class UiLEvelPassBuyButton4 : MonoBehaviour
 
     void Start()
     {
-        Subscribe();
+       // Subscribe();
     }
 
     private void OnDestroy()
@@ -28,6 +28,7 @@ public class UiLEvelPassBuyButton4 : MonoBehaviour
     public void SetNewString(string _string)
     {
         stagePassKey = _string;
+        Subscribe();
     }
     
     private void Subscribe()
@@ -86,7 +87,9 @@ public class UiLEvelPassBuyButton4 : MonoBehaviour
         if (tableData.Productid != stagePassKey) return;
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
-
+        
+        Debug.LogError($"{stagePassKey} 구매");
+        
         ServerData.iapServerTable.TableDatas[tableData.Productid].buyCount.Value++;
 
         ServerData.iapServerTable.UpData(tableData.Productid);

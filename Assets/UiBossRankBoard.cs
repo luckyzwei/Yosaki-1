@@ -2,11 +2,13 @@
 using LitJson;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UniRx;
 using TMPro;
 
-
+//지옥탈환
 public class UiBossRankBoard : MonoBehaviour
 {
     [SerializeField]
@@ -76,13 +78,14 @@ public class UiBossRankBoard : MonoBehaviour
     {
         if (bro.IsSuccess())
         {
-            var rows = bro.Rows();
+            JObject json_data = JObject.Parse(bro.GetReturnValue());
+            //var rows = bro.Rows();
 
-            if (rows.Count > 0)
+            if (json_data["rows"].Count() > 0)
             {
                 rankViewParent.gameObject.SetActive(true);
 
-                int interval = rows.Count - rankViewContainer.Count;
+                int interval = json_data["rows"].Count() - rankViewContainer.Count;
 
                 for (int i = 0; i < interval; i++)
                 {
@@ -92,19 +95,17 @@ public class UiBossRankBoard : MonoBehaviour
 
                 for (int i = 0; i < rankViewContainer.Count; i++)
                 {
-                    if (i < rows.Count)
+                    if (i < json_data["rows"].Count())
                     {
-                        JsonData data = rows[i];
-
-                        var splitData = data["NickName"][ServerData.format_string].ToString().Split(CommonString.ChatSplitChar);
+                        var splitData = json_data["rows"][i]["NickName"][ServerData.format_string].ToString().Split(CommonString.ChatSplitChar);
 
                         rankViewContainer[i].gameObject.SetActive(true);
-                        string nickName = data["nickname"][ServerData.format_string].ToString();
-                        int rank = int.Parse(data["rank"][ServerData.format_Number].ToString());
+                        string nickName = json_data["rows"][i]["nickname"][ServerData.format_string].ToString();
+                        int rank = int.Parse(json_data["rows"][i]["rank"][ServerData.format_Number].ToString());
 
-                        var test = data["score"][ServerData.format_Number].ToString();
+                        var test = json_data["rows"][i]["score"][ServerData.format_Number].ToString();
 
-                        double score = double.Parse(data["score"][ServerData.format_Number].ToString());
+                        double score = double.Parse(json_data["rows"][i]["score"][ServerData.format_Number].ToString());
                         score *= GameBalance.BossScoreConvertToOrigin;
                         int costumeId = int.Parse(splitData[0]);
                         int petId = int.Parse(splitData[1]);

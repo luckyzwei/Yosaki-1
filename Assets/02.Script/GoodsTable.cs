@@ -163,6 +163,8 @@ public class GoodsTable
     public static string VisionSkill3 = "VisionSkill3";
     public static string VisionSkill4 = "VisionSkill4";
     public static string VisionSkill5 = "VisionSkill5";
+    public static string VisionSkill6 = "VisionSkill6";
+    public static string VisionSkill7 = "VisionSkill7";
     
     public static string ThiefSkill0 = "ThiefSkill0";
     public static string ThiefSkill1 = "ThiefSkill1";
@@ -187,15 +189,15 @@ public class GoodsTable
     public static string c5 = "c5"; //천계꽃
     public static string c6 = "c6"; //천계꽃
 
-    public static string Event_Collection = "Event_Collection0"; //곶감 - > 봄나물로 대체 
+    public static string Event_Collection = "EC0"; //곶감 - > 봄나물로 대체 -> 수박 
+    public static string Event_Collection_All = "ECA0"; //봄나물 총 획득량
     public static string Event_HotTime = "Event_HotTime0"; //핫타임 불꽃
     public static string Event_HotTime_Saved = "EHS0"; //핫타임 불꽃
-    public static string Event_Collection_All = "Event_Collection_All0"; //봄나물 총 획득량
     public static string Event_Fall_Gold = "Event_Fall_Gold"; //황금 곶감
     public static string Event_NewYear = "Event_NewYear"; //떡국
     public static string Event_NewYear_All = "Event_NewYear_All"; //신년재화 총생산량
-    public static string Event_Mission = "Event_Mission1"; //꽃송이 //바람개비.
-    public static string Event_Mission_All = "Event_Mission_All1"; //꽃송이 //바람개비 총생산량(소급 위한)
+    public static string Event_Mission = "Event_Mission2";//발리볼 //꽃송이 //바람개비.
+    public static string Event_Mission_All = "Event_Mission_All2"; //꽃송이 //바람개비 총생산량(소급 위한)
 
     public static string FoxMaskPartial = "FoxMaskPartial"; //여우 탈 재화
     public static string SusanoTreasure = "ST"; // 악귀퇴치 재화
@@ -214,6 +216,7 @@ public class GoodsTable
     public static string DarkTreasure = "DarkTreasure";
     public static string SinsunTreasure = "SinsunTreasure";
     public static string GwisalTreasure = "GwisalTreasure";
+    public static string ChunguTreasure = "CT";
     public static string SumiFire = "SumiFire";
     public static string SumiFireKey = "SumiFireKey";
     public static string NewGachaEnergy = "NGE";
@@ -378,6 +381,8 @@ public class GoodsTable
         { VisionSkill3, 0f },
         { VisionSkill4, 0f },
         { VisionSkill5, 0f },
+        { VisionSkill6, 0f },
+        { VisionSkill7, 0f },
 
         { ThiefSkill0, 0f },
         { ThiefSkill1, 0f },
@@ -426,6 +431,7 @@ public class GoodsTable
         { DarkTreasure, 0f },
         { SinsunTreasure, 0f },
         { GwisalTreasure, 0f },
+        { ChunguTreasure, 0f },
         { SusanoTreasure, 0f },
         { SumiFire, 0f },
         { SumiFireKey, 0f },
@@ -705,6 +711,7 @@ public class GoodsTable
         return fourLevel;
     }
 
+    //보유비전스킬개수
     public int GetVisionSkillIdx()
     {
         var visionSkillIdxList = PlayerSkillCaster.Instance.GetVisionSkillIdxList();
@@ -717,10 +724,10 @@ public class GoodsTable
             {
                 idx = visionSkillIdxList[i];
             }
-            else
-            {
-                break;
-            }
+            // else
+            // {
+            //     break;
+            // }
         }
         return idx;
     }
@@ -1373,6 +1380,14 @@ public class GoodsTable
             {
                 return GoodsTable.VisionSkill5;
             }
+            case Item_Type.VisionSkill6:
+            {
+                return GoodsTable.VisionSkill6;
+            }
+            case Item_Type.VisionSkill7:
+            {
+                return GoodsTable.VisionSkill7;
+            }
 
             //
             //            //
@@ -1980,6 +1995,14 @@ public class GoodsTable
         else if (GoodsTable.VisionSkill5 == type)
         {
             return Item_Type.VisionSkill5;
+        }
+        else if (GoodsTable.VisionSkill6 == type)
+        {
+            return Item_Type.VisionSkill6;
+        }
+        else if (GoodsTable.VisionSkill7 == type)
+        {
+            return Item_Type.VisionSkill7;
         }
 
         // //

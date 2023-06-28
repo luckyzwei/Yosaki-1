@@ -16,7 +16,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         CommonString.ItemGrade_11, CommonString.ItemGrade_12, CommonString.ItemGrade_13, CommonString.ItemGrade_14, CommonString.ItemGrade_15, 
         CommonString.ItemGrade_16, CommonString.ItemGrade_17, CommonString.ItemGrade_18, CommonString.ItemGrade_19, CommonString.ItemGrade_20 ,
         CommonString.ItemGrade_21 , CommonString.ItemGrade_22 , CommonString.ItemGrade_23 , CommonString.ItemGrade_24, CommonString.ItemGrade_25,
-        CommonString.ItemGrade_26, CommonString.ItemGrade_27, CommonString.ItemGrade_28 };
+        CommonString.ItemGrade_26, CommonString.ItemGrade_27, CommonString.ItemGrade_28, CommonString.ItemGrade_29 };
     public List<string> ItemGradeName_Weapon => itemGradeName_Weapon;
 
     private List<string> itemGradeName_Norigae = new List<string>() { CommonString.ItemGrade_0, 
@@ -25,7 +25,7 @@ public class CommonUiContainer : SingletonMono<CommonUiContainer>
         string.Empty, string.Empty, string.Empty, string.Empty, string.Empty,  //11~15
         CommonString.ItemGrade_11_Norigae, CommonString.ItemGrade_12_Norigae, CommonString.ItemGrade_13_Norigae, string.Empty, string.Empty,//16~20
         string.Empty, CommonString.ItemGrade_22_Norigae, string.Empty,CommonString.ItemGrade_24_Norigae ,string.Empty, //21~25,
-        CommonString.ItemGrade_26_Norigae, CommonString.ItemGrade_27_Norigae,CommonString.ItemGrade_28_Norigae,
+        CommonString.ItemGrade_26_Norigae, CommonString.ItemGrade_27_Norigae,CommonString.ItemGrade_28_Norigae,CommonString.ItemGrade_29_Norigae,
     }; 
     public List<string> ItemGradeName_Norigae => itemGradeName_Norigae;
 
@@ -147,6 +147,9 @@ public Sprite SinsunWeapon5;
 public Sprite SinsunWeapon6;
 public Sprite SinsunWeapon7;
 public Sprite SinsunWeapon8;
+
+public Sprite HyunSangWeapon0;
+public Sprite HyunSangWeapon1;
     
 [Header ("Weapon_View")]
 
@@ -259,6 +262,9 @@ public Sprite RecommendWeapon22;
     public Sprite SinsunNorigae6;
     public Sprite SinsunNorigae7;
     public Sprite SinsunNorigae8;
+    public Sprite HyunSangNorigae0;
+    public Sprite HyunSangNorigae1;
+    
     [Header ("Norigae_View")]
     public Sprite MonthNorigae0;
     public Sprite MonthNorigae1;
@@ -314,10 +320,18 @@ public Sprite RecommendWeapon22;
     public Sprite TigerPet1;
     public Sprite TigerPet2;
     public Sprite TigerPet3;
+    public Sprite ChunGuPet0;
+    public Sprite ChunGuPet1;
+    public Sprite ChunGuPet2;
+    public Sprite ChunGuPet3;
     public Sprite SpecialSuhoPet0;
     public Sprite SpecialSuhoPet1;
     public Sprite SpecialSuhoPet2;
     public Sprite SpecialSuhoPet3;
+    public Sprite SpecialSuhoPet4;
+    public Sprite SpecialSuhoPet5;
+    public Sprite SpecialSuhoPet6;
+    public Sprite SpecialSuhoPet7;
 
 
     [Header ("Skill")]
@@ -359,6 +373,8 @@ public Sprite RecommendWeapon22;
     public Sprite VisionSkill3;
     public Sprite VisionSkill4;
     public Sprite VisionSkill5;
+    public Sprite VisionSkill6;
+    public Sprite VisionSkill7;
     
     public Sprite ThiefSkill0;
     public Sprite ThiefSkill1;
@@ -427,6 +443,7 @@ public Sprite RecommendWeapon22;
     public Sprite DarkTreasure;
     public Sprite SinsunTreasure;
     [FormerlySerializedAs("BossTreasure")] public Sprite GwiSalTreasure;
+    public Sprite ChunguTreasure;
     public Sprite GuildTowerClearTicket;
     public Sprite GuildTowerHorn;
     public Sprite SinsuMarble;
@@ -497,6 +514,7 @@ public Sprite RecommendWeapon22;
     public Sprite HellMark7;
     public Sprite DosulGoods;
     public Sprite DosulClear;
+    public Sprite SleepRewardItem;
 
 
     public Sprite GetItemIcon(Item_Type type)
@@ -862,6 +880,18 @@ public Sprite RecommendWeapon22;
                 return costumeThumbnail[130];
             case Item_Type.costume131:
                 return costumeThumbnail[131];
+            case Item_Type.costume132:
+                return costumeThumbnail[132];
+            case Item_Type.costume133:
+                return costumeThumbnail[133];
+            case Item_Type.costume134:
+                return costumeThumbnail[134];
+            case Item_Type.costume135:
+                return costumeThumbnail[135];
+            case Item_Type.costume136:
+                return costumeThumbnail[136];
+            case Item_Type.costume137:
+                return costumeThumbnail[137];
 
 
             case Item_Type.RankFrame1:
@@ -1296,6 +1326,8 @@ public Sprite RecommendWeapon22;
                 return SinsunTreasure;   
             case Item_Type.GwisalTreasure:
                 return GwiSalTreasure;   
+            case Item_Type.ChunguTreasure:
+                return ChunguTreasure;   
             case Item_Type.DosulGoods:
                 return DosulGoods;   
             case Item_Type.DosulClear:
@@ -1305,6 +1337,8 @@ public Sprite RecommendWeapon22;
             case Item_Type.GuildTowerHorn:
                 return GuildTowerHorn;    
             
+            case Item_Type.SleepRewardItem:
+                return SleepRewardItem;   
             case Item_Type.SinsuMarble:
                 return SinsuMarble;
 
@@ -1560,7 +1594,12 @@ public Sprite RecommendWeapon22;
                 return SinsunNorigae7;
             case Item_Type.SinsunNorigae8:
                 return SinsunNorigae8;
-
+//
+            
+            case Item_Type.HyunSangNorigae0:
+                return HyunSangNorigae0;
+            case Item_Type.HyunSangNorigae1:
+                return HyunSangNorigae1;
             //
             case Item_Type.MonthNorigae0:
                 return MonthNorigae0;
@@ -1743,6 +1782,15 @@ public Sprite RecommendWeapon22;
             case Item_Type.TigerPet3:
                 return TigerPet3;
             
+            case Item_Type.ChunGuPet0:
+                return ChunGuPet0;
+            case Item_Type.ChunGuPet1:
+                return ChunGuPet1;
+            case Item_Type.ChunGuPet2:
+                return ChunGuPet2;
+            case Item_Type.ChunGuPet3:
+                return ChunGuPet3;
+            
             case Item_Type.SpecialSuhoPet0:
                 return SpecialSuhoPet0;
             case Item_Type.SpecialSuhoPet1:
@@ -1751,6 +1799,14 @@ public Sprite RecommendWeapon22;
                 return SpecialSuhoPet2;
             case Item_Type.SpecialSuhoPet3:
                 return SpecialSuhoPet3;
+            case Item_Type.SpecialSuhoPet4:
+                return SpecialSuhoPet4;
+            case Item_Type.SpecialSuhoPet5:
+                return SpecialSuhoPet5;
+            case Item_Type.SpecialSuhoPet6:
+                return SpecialSuhoPet6;
+            case Item_Type.SpecialSuhoPet7:
+                return SpecialSuhoPet7;
 
 
 
@@ -1954,6 +2010,10 @@ public Sprite RecommendWeapon22;
                 return VisionSkill4;
             case Item_Type.VisionSkill5:
                 return VisionSkill5;
+            case Item_Type.VisionSkill6:
+                return VisionSkill6;
+            case Item_Type.VisionSkill7:
+                return VisionSkill7;
             //
             //
             case Item_Type.ThiefSkill0:
@@ -2152,6 +2212,12 @@ public Sprite RecommendWeapon22;
             case Item_Type.SinsunWeapon8:
                 return SinsunWeapon8;
 
+            
+            case Item_Type.HyunSangWeapon0:
+                return HyunSangWeapon0;
+            case Item_Type.HyunSangWeapon1:
+                return HyunSangWeapon1;
+            
             case Item_Type.SasinsuWeapon0:
                 return SasinsuWeapon0;
 

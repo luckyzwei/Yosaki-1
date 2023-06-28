@@ -54,7 +54,11 @@ public class UiEventMission2ShopCell : MonoBehaviour
 
             }).AddTo(this);
         }
+        else
+        {
+            buyCountDesc.SetText("");
 
+        }
         if (IsCostumeItem() == false && IsPassWeaponItem()==false) return;
 
         string itemKey = ((Item_Type)tableData.Itemtype).ToString();
@@ -97,8 +101,8 @@ public class UiEventMission2ShopCell : MonoBehaviour
         }
         tableData = TableManager.Instance.xMasCollection.dataArray[tableId];
 
-        itemIcon.gameObject.SetActive(IsCostumeItem() == false);
-        skeletonGraphic.gameObject.SetActive(IsCostumeItem());
+        //itemIcon.gameObject.SetActive(IsCostumeItem() == false);
+        //skeletonGraphic.gameObject.SetActive(IsCostumeItem());
 
         if (IsCostumeItem() == false)
         {
@@ -110,10 +114,52 @@ public class UiEventMission2ShopCell : MonoBehaviour
         {
             string itemKey = ((Item_Type)tableData.Itemtype).ToString();
             var idx = ServerData.costumeServerTable.TableDatas[itemKey].idx;
-            skeletonGraphic.Clear();
-            skeletonGraphic.skeletonDataAsset = CommonUiContainer.Instance.costumeList[idx];
-            skeletonGraphic.Initialize(true);
-            skeletonGraphic.SetMaterialDirty();
+            //skeletonGraphic.Clear();
+            //skeletonGraphic.skeletonDataAsset = CommonUiContainer.Instance.costumeList[idx];
+            //skeletonGraphic.Initialize(true);
+            //skeletonGraphic.SetMaterialDirty();
+
+            var costumeTable = TableManager.Instance.Costume.dataArray[idx];
+
+            if (itemAmount_Costume != null)
+            {
+                itemAmount_Costume.SetText($"(능력치 슬롯{costumeTable.Slotnum}개)");
+            }
+        }
+
+        itemIcon.sprite = CommonUiContainer.Instance.GetItemIcon((Item_Type)tableData.Itemtype);
+
+        itemAmount.SetText(Utils.ConvertBigNum(tableData.Itemvalue) + "개");
+
+        itemName.SetText(CommonString.GetItemName((Item_Type)tableData.Itemtype));
+    }    
+    public void Initialize(int tableIdx)
+    {
+        if (button != null)
+        { 
+            button.onEvent.AddListener(OnClickExchangeButton);
+        }
+
+        tableId = tableIdx;
+        tableData = TableManager.Instance.xMasCollection.dataArray[tableId];
+
+        //itemIcon.gameObject.SetActive(IsCostumeItem() == false);
+        //skeletonGraphic.gameObject.SetActive(IsCostumeItem());
+
+        if (IsCostumeItem() == false)
+        {
+            price.SetText(Utils.ConvertBigNum(tableData.Price));
+        }
+
+        //스파인
+        if (IsCostumeItem())
+        {
+            string itemKey = ((Item_Type)tableData.Itemtype).ToString();
+            var idx = ServerData.costumeServerTable.TableDatas[itemKey].idx;
+            //skeletonGraphic.Clear();
+            //skeletonGraphic.skeletonDataAsset = CommonUiContainer.Instance.costumeList[idx];
+            //skeletonGraphic.Initialize(true);
+            //skeletonGraphic.SetMaterialDirty();
 
             var costumeTable = TableManager.Instance.Costume.dataArray[idx];
 

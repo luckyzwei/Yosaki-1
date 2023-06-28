@@ -8,14 +8,14 @@ public enum EventMissionType
 }
 public enum EventMissionKey
 {
-    ClearBandit,//반딧불전
-    ClearOni,//도깨비전
-    ClearCat,//고양이 요괴전
-    ClearSwordPartial,//검조각 보상 ★
-    ClearHell,//불멸석 보상 ★
-    ClearChunFlower,//천계꽃 보상 ★
-    ClearDokebiFire,//도깨비나라 보상 ★
-    ClearSumiFire,//수미산 보상 ★
+    MISSION1,//문파점수
+    MISSION2,//견공
+    MISSION3,//십만대산
+    MISSION4,//
+    MISSION5,//
+    MISSION6,//
+    MISSION7,//
+    MISSION8,//
 
     /////
 
@@ -69,10 +69,10 @@ public static class EventMissionManager
     public static void UpdateEventMissionClear(EventMissionKey missionKey, int count)
     {
         string key = TableManager.Instance.EventMissionDatas[(int)missionKey].Stringid;
+
         
-        if (missionKey.IsIgnoreMissionKey()) return;
         
-        if (ServerData.eventMissionTable.TableDatas[key].clearCount.Value >= 1) return;
+        if (ServerData.eventMissionTable.TableDatas[key].clearCount.Value >= 1&&Utils.IsDailyEventMissionKey(missionKey)==true) return;
 
         //로컬 데이터 갱신
         ServerData.eventMissionTable.UpdateMissionClearCount(key, count);

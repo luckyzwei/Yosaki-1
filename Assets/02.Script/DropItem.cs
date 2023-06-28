@@ -499,6 +499,12 @@ public enum Item_Type
     costume129 = 1429, // 귀인곡     
     costume130 = 1430, // 귀인곡     
     costume131 = 1431, // 7월 월간외형     
+    costume132 = 1432, // 현상수배     
+    costume133 = 1433, // 현상수배     
+    costume134 = 1434, // 현상수배     
+    costume135 = 1435, // 현상수배     
+    costume136 = 1436, // 수박이벤트외형     
+    costume137 = 1437, // 이벤트외형     
 
 
     gumiho0 = 5000,
@@ -629,6 +635,10 @@ public enum Item_Type
     SpecialSuhoPet1 = 7111,
     SpecialSuhoPet2 = 7112,
     SpecialSuhoPet3 = 7113,
+    SpecialSuhoPet4 = 7114,
+    SpecialSuhoPet5 = 7115,
+    SpecialSuhoPet6 = 7116,
+    SpecialSuhoPet7 = 7117,
     
     SumisanWeapon0 = 7120,
     SumisanWeapon1 = 7121,
@@ -715,6 +725,18 @@ public enum Item_Type
     SinsunNorigae7 = 7237,
     SinsunNorigae8 = 7238,
     
+    
+    HyunSangWeapon0 = 7240,
+    HyunSangWeapon1 = 7241,
+    
+    HyunSangNorigae0 = 7250,
+    HyunSangNorigae1 = 7251,
+    
+    ChunGuPet0 = 7600,
+    ChunGuPet1 = 7601,
+    ChunGuPet2 = 7602,
+    ChunGuPet3 = 7603,
+
     RecommendWeapon0 = 8000,
     RecommendWeapon1 = 8001,
     RecommendWeapon2 = 8002,
@@ -786,6 +808,8 @@ public enum Item_Type
     
     VisionSkill4 = 8734,//심연궁극
     VisionSkill5 = 8735,//신선궁극
+    VisionSkill6 = 8736,//비전타워신규궁극
+    VisionSkill7 = 8737,//비전타워신규궁극
     
     ThiefSkill0 = 8740, //도적스킬
     ThiefSkill1 = 8741, 
@@ -802,7 +826,7 @@ public enum Item_Type
     Event_NewYear = 8800, //떡국
     Event_NewYear_All = 8801, // 총 습득량
     
-    Event_Mission = 8802,//바람개비
+    Event_Mission = 8802,//꽃송이
     Event_Mission_All = 8803, // 총 습득량
     Event_Collection_All =8804,//봄나물 총습득량
     Event_Item_SnowMan_All=8805,
@@ -844,6 +868,9 @@ public enum Item_Type
     DosulGoods= 9032, 
     DosulClear= 9033, 
     
+    ChunguTreasure= 9034,
+    
+    SleepRewardItem=9035,
 }
 //
 public class DropItem : PoolItem

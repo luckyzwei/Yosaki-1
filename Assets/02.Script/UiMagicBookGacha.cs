@@ -53,7 +53,7 @@ public class UiMagicBookGacha : MonoBehaviour
 
         for (int i = 0; i < priceTexts.Count; i++)
         {
-            priceTexts[i].SetText($"{gachaPrice[i]}");
+            priceTexts[i].SetText($"{Utils.ConvertNum(gachaPrice[i])}");
         }
     }
 
@@ -109,14 +109,14 @@ public class UiMagicBookGacha : MonoBehaviour
 
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
-                this.lastGachaIdx = 2;
-                int amount = gachaAmount[2];
-                int price = gachaPrice[2];
+                this.lastGachaIdx = 1;
+                int amount = gachaAmount[1];
+                int price = gachaPrice[1];
 
                 //무료라
                 ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value += price;
 
-                OnClickOpenButton(2);
+                OnClickOpenButton(1);
 
                // LogManager.Instance.SendLogType("FreeGacha", "Norigae", "");
             });

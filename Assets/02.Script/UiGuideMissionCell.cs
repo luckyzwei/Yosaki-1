@@ -122,8 +122,6 @@ public class UiGuideMissionCell : MonoBehaviour
         }
     
         
-        LogManager.Instance.SendLogType("Funnel_Tutorial","complete",$"yorin_{tableData.Id}");
-        
         
         int rewardGemNum = tableData.Rewardvalue;
 

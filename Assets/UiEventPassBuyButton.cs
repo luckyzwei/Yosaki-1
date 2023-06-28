@@ -13,7 +13,7 @@ public class UiEventPassBuyButton : MonoBehaviour
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public static readonly string productKey = "flowerpass";
+    public static readonly string productKey = "vacationpass";
 
     private Button buyButton;
 

@@ -35,6 +35,7 @@ public class UiSusanoBuff : SingletonMono<UiSusanoBuff>
         if (GameManager.contentsType == GameManager.ContentsType.TestHell) return;
         if (GameManager.contentsType == GameManager.ContentsType.TestChun) return;
         if (GameManager.contentsType == GameManager.ContentsType.TestDo) return;
+        if (GameManager.contentsType == GameManager.ContentsType.TestSumi) return;
         //산신령
         
         if (GameManager.contentsType == GameManager.ContentsType.TwelveDungeon)

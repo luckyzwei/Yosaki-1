@@ -120,4 +120,12 @@ public class PetTableData
   PetType pettype;
   public PetType PETTYPE { get {return pettype; } set { this.pettype = value;} }
   
+  [SerializeField]
+  string getspecialdescription;
+  public string Getspecialdescription { get {return getspecialdescription; } set { this.getspecialdescription = value;} }
+  
+  [SerializeField]
+  string onclickbuttondescription;
+  public string Onclickbuttondescription { get {return onclickbuttondescription; } set { this.onclickbuttondescription = value;} }
+  
 }

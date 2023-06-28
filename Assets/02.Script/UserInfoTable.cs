@@ -208,10 +208,13 @@ public class UserInfoTable
 
     public const string sendPetExp = "sendPetExp";
 
+    public const string collectionEventInitialize = "cei0";
+    
     public const string exchangeCount = "ec_0";
     public const string exchangeCount_1 = "ec_1";
     public const string exchangeCount_2 = "ec_2";
     public const string exchangeCount_3 = "ec_3";
+    public const string exchangeCount_4 = "ec_4";
 
     public const string snow_exchangeCount_0 = "co0_0";
     public const string snow_exchangeCount_1 = "co0_1";
@@ -231,6 +234,7 @@ public class UserInfoTable
 
     public const string canRecommendCount = "canRecommendCount3";
     public const string mileageRefund = "mr";
+    public const string RefundIdx = "RI";
     public const string marRelicRefund = "marRelicRe3";
     public const string growthStoneRefund = "gsRefund";
 
@@ -275,6 +279,9 @@ public class UserInfoTable
     public const string ny_ex_3 = "ny_ex_3";
     public const string ny_ex_4 = "ny_ex_4";
     public const string ny_ex_5 = "ny_ex_5";
+
+    public const string eventMissionInitialize = "emi_0";
+    
     public const string eventMission0_0 = "em_2_0";
     public const string eventMission0_1 = "em_2_1";
     public const string eventMission0_2 = "em_2_2";
@@ -519,10 +526,12 @@ public class UserInfoTable
         { getDayOfWeek, 0 },
         { getDokebiBundle, 0 },
         { sendPetExp, 0 },
+        { collectionEventInitialize, 0 },
         { exchangeCount, 0 },
         { exchangeCount_1, 0 },
         { exchangeCount_2, 0 },
         { exchangeCount_3, 0 },
+        { exchangeCount_4, 0 },
 
         { monthreset, 0 },
         { refundFox, 0 },
@@ -538,6 +547,7 @@ public class UserInfoTable
 
         { canRecommendCount, GameBalance.recommendCountPerWeek },
         { mileageRefund, 0 },
+        { RefundIdx, 0 },
         { marRelicRefund, 0 },
         { growthStoneRefund, 0 },
         { purchaseRefund0, 0 },
@@ -577,6 +587,7 @@ public class UserInfoTable
         { ny_ex_3, 0 },
         { ny_ex_4, 0 },
         { ny_ex_5, 0 },
+        { eventMissionInitialize, 0 },
 
         { eventMission0_0, 0 },
         { eventMission0_1, 0 },
@@ -682,11 +693,18 @@ public class UserInfoTable
                             e.Current.Key == growthStoneRefund ||
                             e.Current.Key == basicPackRefund ||
                             e.Current.Key == refundFox ||
-                            e.Current.Key == titleRefund
+                            e.Current.Key == titleRefund||
+                            e.Current.Key == eventMissionInitialize||
+                            e.Current.Key == collectionEventInitialize
                            )
                         {
                             defultValues.Add(e.Current.Key, 1);
                             tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(1));
+                        }
+                        else if (e.Current.Key == RefundIdx)
+                        {
+                            defultValues.Add(e.Current.Key, 3);
+                            tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(3));
                         }
                         else
                         {
@@ -986,6 +1004,8 @@ public class UserInfoTable
         Param eventMissionParam = new Param();
         for (int i = 0; i < table.Length; i++)
         {
+            //일일이 아니면 초기화 안함.
+            if(table[i].EVENTMISSIONTYPE != EventMissionType.SECOND) continue;
             ServerData.eventMissionTable.TableDatas[table[i].Stringid].clearCount.Value = 0;
             ServerData.eventMissionTable.TableDatas[table[i].Stringid].rewardCount.Value = 0;
 
@@ -1065,15 +1085,16 @@ public class UserInfoTable
 
         //
 
-
         ServerData.userInfoTable.GetTableData(UserInfoTable.LastLogin).Value = (double)currentServerDate;
+        
+        Param userInfo2Param = new Param();
         //월간 초기화
         if (monthChanged)
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value = 0;
             ServerData.userInfoTable.GetTableData(UserInfoTable.monthAttendCount).Value = 0;
             
-            Param userInfo2Param = new Param();
+            
            
             //월간 훈련 보상
 
@@ -1148,7 +1169,7 @@ public class UserInfoTable
             userInfo2Param.Add(UserInfoTable_2.GangChulReset,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.GangChulReset].Value);
 
             
-            transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName,UserInfoTable_2.Indate,userInfo2Param));
+
         }
         transactionList.Add(TransactionValue.SetUpdate(EventMissionTable.tableName, EventMissionTable.Indate, eventMissionParam));
 
@@ -1240,6 +1261,14 @@ public class UserInfoTable
             {
                 ServerData.userInfoTable.GetTableData(UserInfoTable.weaponpensionAttendance).Value++;
             }
+            
+            //바캉스 이벤트 출석
+            if (ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.commonAttendCount).Value != 0)
+            {
+                ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.commonAttendCount).Value++;
+            }            
+                
+
         }
 
         attendanceUpdatedTime = ServerData.userInfoTable.GetTableData(UserInfoTable.LastLogin).Value;
@@ -1323,6 +1352,10 @@ public class UserInfoTable
         userInfoParam.Add(UserInfoTable.yomul5_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul5_buff).Value);
         userInfoParam.Add(UserInfoTable.yomul6_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul6_buff).Value);
         userInfoParam.Add(UserInfoTable.yomul7_buff, ServerData.userInfoTable.GetTableData(UserInfoTable.yomul7_buff).Value);
+        
+        userInfo2Param.Add(UserInfoTable_2.commonAttendCount,ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.commonAttendCount].Value);
+        transactionList.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName,UserInfoTable_2.Indate,userInfo2Param));
+        
         if (monthChanged)
         {
             userInfoParam.Add(UserInfoTable.nickNameChange, ServerData.userInfoTable.GetTableData(UserInfoTable.nickNameChange).Value);
@@ -1558,10 +1591,10 @@ public class UserInfoTable
         return false;
     }
 
-    //4월30일까지
+    //8월31일까지
     public bool CanSpawnSpringEventItem()
     {
-        if (currentServerTime.Month < 5) return true;
+        if (currentServerTime.Month < 9) return true;
 
         return false;
     }
@@ -1738,6 +1771,10 @@ public class UserInfoTable
     public bool IsLastFloor2()
     {
         return tableDatas[currentFloorIdx2].Value == 100;
+    }
+    public bool IsLastFloor3()
+    {
+        return tableDatas[currentFloorIdx6].Value >= TableManager.Instance.sinsuTower.dataArray.Length;
     }
 
     public bool CanPlayGangChul()

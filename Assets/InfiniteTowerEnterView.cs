@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using static UiRewardView;
+
+using UnityEngine.UI;
+using UnityEngine.UI.Extensions;
 
 public class InfiniteTowerEnterView : MonoBehaviour
 {
@@ -21,9 +25,29 @@ public class InfiniteTowerEnterView : MonoBehaviour
     [SerializeField]
     private GameObject startButtonRoot;
 
+    [SerializeField]
+    private Toggle towerAutoMode;
+
     public void OnAutoToggleChanged(bool onOff)
     {
         UiLastContentsFunc.AutoInfiniteTower = onOff;
+    }
+
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey(SettingKey.towerAutoMode) == false)
+            PlayerPrefs.SetInt(SettingKey.towerAutoMode, 1);     
+        
+        towerAutoMode.isOn = PlayerPrefs.GetInt(SettingKey.towerAutoMode) == 1;
+    }
+    public void AutoModeOnOff(bool on)
+    {
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.towerAutoMode.Value = on ? 1 : 0;
     }
 
     void OnEnable()

@@ -14,7 +14,7 @@ public class UiCollectionPass0BuyButton : MonoBehaviour
 
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public static readonly string PassKey = "bomnamulpass0";
+    public static readonly string PassKey = "watermelonpass0";
 
     private Button buyButton;
 

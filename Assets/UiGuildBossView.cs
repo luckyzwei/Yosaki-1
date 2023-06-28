@@ -188,6 +188,8 @@ public class UiGuildBossView : SingletonMono<UiGuildBossView>
                             recordButton.interactable = true;
 
                             PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, "점수 추가 완료!", null);
+                            
+                            EventMissionManager.UpdateEventMissionClear(EventMissionKey.MISSION1, 1);
 
                             var time = ServerData.userInfoTable.currentServerTime;
 

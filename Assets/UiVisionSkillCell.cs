@@ -72,7 +72,7 @@ public class UiVisionSkillCell : MonoBehaviour
             else
             {
                 lockMask.SetActive(true);
-                lockDescription.SetText($"궁극 기술 획득시 개방");
+                lockDescription.SetText($"{skillTableData.Acquireskilldesc}");
                 description.SetText(skillTableData.Skilldesc + $"\n피해량 : {0}%");
                 levelDescription.SetText($"LV : {0}");
             }

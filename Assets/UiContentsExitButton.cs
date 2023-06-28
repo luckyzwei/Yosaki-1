@@ -20,6 +20,10 @@ public class UiContentsExitButton : MonoBehaviour
     {
                 switch (GameManager.contentsType)
                 {
+                    case GameManager.ContentsType.InfiniteTower when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value < (TableManager.Instance.TowerTable.dataArray.Length):
+                        return true;
+                    case GameManager.ContentsType.InfiniteTower:
+                        return false;
                     case GameManager.ContentsType.InfiniteTower2 when (int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value < (TableManager.Instance.TowerTable2.dataArray.Length):
                         return true;
                     case GameManager.ContentsType.InfiniteTower2:
@@ -103,6 +107,7 @@ public class UiContentsExitButton : MonoBehaviour
             case GameManager.ContentsType.TestHell:
             case GameManager.ContentsType.TestChun:
             case GameManager.ContentsType.TestDo:
+            case GameManager.ContentsType.TestSumi:
             case GameManager.ContentsType.RelicTest:
                 return true;
             case GameManager.ContentsType.TwelveDungeon:
@@ -170,7 +175,19 @@ public class UiContentsExitButton : MonoBehaviour
         //    }
         //}
         //다음스테이지가 있는 타워인 경우
-        if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower2)
+        
+        if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower)
+        {
+            if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx).Value < (TableManager.Instance.TowerTable.dataArray.Length))
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.InfiniteTower);
+            }
+            else
+            {
+                PopupManager.Instance.ShowAlarmMessage("최종 단계 입니다.");
+            }
+        }
+        else if (GameManager.contentsType == GameManager.ContentsType.InfiniteTower2)
         {
             if ((int)ServerData.userInfoTable.GetTableData(UserInfoTable.currentFloorIdx2).Value < (TableManager.Instance.TowerTable2.dataArray.Length))
             {

@@ -40,7 +40,14 @@ public class UiEventMission2Cell : MonoBehaviour
 
         this.tableData = tableData;
 
-        exchangeNum.SetText($"매일 교환 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+        if (tableData.EVENTMISSIONTYPE == EventMissionType.SECOND)
+        {
+            exchangeNum.SetText($"매일 교환 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+        }
+        else
+        {
+            exchangeNum.SetText($"이벤트 기간 내 1회 획득 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+        }
 
         title.SetText(tableData.Title);
 
@@ -52,7 +59,15 @@ public class UiEventMission2Cell : MonoBehaviour
         ServerData.eventMissionTable.TableDatas[tableData.Stringid].clearCount.AsObservable().Subscribe(WhenMissionCountChanged).AddTo(this);
         ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount.AsObservable().Subscribe(e=>
         {
-             exchangeNum.SetText($"매일 교환 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+            if (tableData.EVENTMISSIONTYPE == EventMissionType.SECOND)
+            {
+                exchangeNum.SetText($"매일 교환 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+            }
+            else
+            {
+                exchangeNum.SetText($"이벤트 기간 내 1회 획득 : {ServerData.eventMissionTable.TableDatas[tableData.Stringid].rewardCount}/{TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear}");
+            }
+             
             if(e>=TableManager.Instance.EventMission.dataArray[tableData.Id].Dailymaxclear)
             {
                 lockMask.SetActive(true);

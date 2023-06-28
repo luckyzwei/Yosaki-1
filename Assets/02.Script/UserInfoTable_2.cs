@@ -17,17 +17,22 @@ public class UserInfoTable_2
     public const string hellGodScore = "hellGodScore";
     public const string chunGodScore = "chunGodScore";
     public const string doGodScore = "dokebiGodScore";
+    public const string sumiGodScore = "sumiGodScore";
     public const string relicTestScore = "relicTestScore";
     public const string GangChulReset = "GangChulReset";
     public const string stagePassFree = "stagePassFree";
     public const string stagePassAd = "stagePassAd";
     public const string foxFirePassKill = "pass0";
     
+    
 
     //짝수 월간훈련(Monthlypass)
     public const string evenMonthKillCount = "even0";
     //홓수 월간훈련(Monthlypass2)
     public const string oddMonthKillCount = "odd0";
+
+    public const string commonAttendCount = "cac0";
+    public const string yorinAttendRewarded = "yar";
     
     public const string killCountTotalSeason0 = "ks0"; //혹서기 훈련
     
@@ -36,6 +41,7 @@ public class UserInfoTable_2
     public const string taeguekLock = "tgll";
     public const string SansinTowerIdx = "sst";
     public const string KingTrialGraduateIdx = "ktgi";
+    public const string GodTrialGraduateIdx = "gtgi";
     public const string darkScore = "ds";
     public const string graduateGold = "gg";
     public const string gyungRockTower3 = "grt3";
@@ -47,6 +53,9 @@ public class UserInfoTable_2
 
     public const string dosulRewardIdx = "dri";
     public const string dosulStart = "dst";
+    
+    public const string visionTowerScore = "vts";
+
     public bool isInitialize = false;
     private Dictionary<string, double> tableSchema = new Dictionary<string, double>()
     {
@@ -54,12 +63,15 @@ public class UserInfoTable_2
         { stagePassFree, -1f },
         { stagePassAd, -1f },
         { killCountTotalSeason0, 0f },
+        { commonAttendCount, 0f },
+        { yorinAttendRewarded, 0f },
         
         { monkeyGodScore, 0f },
         { swordGodScore, 0f },
         { hellGodScore, 0f },
         { chunGodScore, 0f },
         { doGodScore, 0f },
+        { sumiGodScore, 0f },
         { relicTestScore, 0f },
         { foxFirePassKill, 0f },
         { evenMonthKillCount, 0f },
@@ -69,6 +81,7 @@ public class UserInfoTable_2
         { taeguekLock, 0f },
         { SansinTowerIdx, 0f },
         { KingTrialGraduateIdx, 0f },
+        { GodTrialGraduateIdx, 0f },
         { darkScore, 0f },
         { graduateGold, 0f },
         { gyungRockTower3, 0f },
@@ -78,6 +91,7 @@ public class UserInfoTable_2
         { dosulLevel, -1f },
         { dosulRewardIdx, -1f },
         { dosulStart, 0f },
+        { visionTowerScore, 0f },
     };
 
     private Dictionary<string, ReactiveProperty<double>> tableDatas = new Dictionary<string, ReactiveProperty<double>>();

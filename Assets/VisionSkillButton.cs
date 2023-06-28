@@ -39,6 +39,7 @@ public class VisionSkillButton : MonoBehaviour
         return GameManager.contentsType == GameManager.ContentsType.NormalField;
     }
 
+
     private bool CheckCanSpawnEnemy()
     {
         if (!CheckNormalField()) return false;
@@ -86,12 +87,14 @@ public class VisionSkillButton : MonoBehaviour
 
     void Subscribe()
     {
+        ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill6).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill0).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill1).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill2).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill3).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill4).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill5).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
+        ServerData.goodsTable.GetTableData(GoodsTable.VisionSkill7).AsObservable().Subscribe(e => { SetSkillImage(); }).AddTo(this);
         PlayerSkillCaster.Instance.useVisionSkill.AsObservable().Subscribe(e =>
         {
             if (e)

@@ -173,6 +173,10 @@ public class DokebiEnterView : MonoBehaviour
              {
                  EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearOni, 1);
              }
+             else
+             {
+                 EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearOni, 1);
+             }
              ServerData.SendTransaction(transactions, successCallBack: () =>
              {
                  PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"경험치{Utils.ConvertBigNumForRewardCell(expAmount)} 획득!", null);

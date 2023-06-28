@@ -120,22 +120,16 @@ public class UiNewAttendCell : MonoBehaviour
         descriptionText.SetText($"{Utils.ConvertBigNum(passInfo.require)}일차");
     }
 
-    public List<string> GetSplitData(string key)
-    {
-        return ServerData.attendanceServerTable.TableDatas[key].Value.Split(',').ToList();
-    }
-
     public bool HasReward(string key, int data)
     {
-        var splitData = GetSplitData(key);
-        return splitData.Contains(data.ToString());
+        return int.Parse(ServerData.attendanceServerTable.TableDatas[key].Value) >= data;
     }
 
     public void OnClickFreeRewardButton()
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("몹 처치가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("출석 일 수가 부족합니다.");
             return;
         }
 
@@ -144,7 +138,11 @@ public class UiNewAttendCell : MonoBehaviour
             PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다!");
             return;
         }
-
+        if (IsReceivePreItem(passInfo.rewardType_Free_Key) == false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("이전 보상을 받아주세요!");
+            return;
+        }
         PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
 
         GetFreeReward();
@@ -156,7 +154,7 @@ public class UiNewAttendCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("몹 처치가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("출석 일 수가 부족합니다.");
             return;
         }
 
@@ -166,6 +164,11 @@ public class UiNewAttendCell : MonoBehaviour
             return;
         }
 
+        if (IsReceivePreItem(passInfo.rewardType_IAP_Key) == false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("이전 보상을 받아주세요!");
+            return;
+        }
         if (HasPassItem())
         {
             GetAdReward();
@@ -183,10 +186,15 @@ public class UiNewAttendCell : MonoBehaviour
         return hasIapProduct;
     }
 
+    private bool IsReceivePreItem(string key)
+    {
+        return int.Parse(ServerData.attendanceServerTable.TableDatas[key].Value) + 1 == passInfo.id;
+    }
+
     private void GetFreeReward()
     {
         //로컬
-        ServerData.attendanceServerTable.TableDatas[passInfo.rewardType_Free_Key].Value += $",{passInfo.id}";
+        ServerData.attendanceServerTable.TableDatas[passInfo.rewardType_Free_Key].Value = $"{passInfo.id}";
         ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_Free, passInfo.rewardTypeValue_Free);
 
         List<TransactionValue> transactionList = new List<TransactionValue>();
@@ -212,7 +220,7 @@ public class UiNewAttendCell : MonoBehaviour
     private void GetAdReward()
     {
         //로컬
-        ServerData.attendanceServerTable.TableDatas[passInfo.rewardType_IAP_Key].Value += $",{passInfo.id}";
+        ServerData.attendanceServerTable.TableDatas[passInfo.rewardType_IAP_Key].Value = $"{passInfo.id}";
         ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_IAP, passInfo.rewardTypeValue_IAP);
 
         List<TransactionValue> transactionList = new List<TransactionValue>();

@@ -135,7 +135,7 @@ public class UiOneYearPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("봄나물 교환 수가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("서핑 보드 교환 수가 부족합니다.");
             return;
         }
 
@@ -156,7 +156,7 @@ public class UiOneYearPassCell : MonoBehaviour
     {
         if (CanGetReward() == false)
         {
-            PopupManager.Instance.ShowAlarmMessage("봄나물 교환 수가 부족합니다.");
+            PopupManager.Instance.ShowAlarmMessage("서핑 보드 교환 수가 부족합니다.");
             return;
         }
 
@@ -173,7 +173,7 @@ public class UiOneYearPassCell : MonoBehaviour
         }
        else
         {
-            PopupManager.Instance.ShowAlarmMessage($"봄나물 패스권이 필요합니다.");
+            PopupManager.Instance.ShowAlarmMessage($"수박 패스권이 필요합니다.");
             return;
         }
         PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");

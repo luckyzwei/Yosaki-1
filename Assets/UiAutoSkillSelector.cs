@@ -16,7 +16,7 @@ public class UiAutoSkillSelector : MonoBehaviour
 
     //[SerializeField]
     //private GameObject jumpToggleObject;
-    [SerializeField] private List<GameObject> _visionSkills;
+    [SerializeField] private List<GameObject> _visionSkills; //버튼과 토글
 
     void Start()
     {
@@ -30,27 +30,11 @@ public class UiAutoSkillSelector : MonoBehaviour
         {
             for (int i = 0; i < _visionSkills.Count; i++)
             {
-                _visionSkills[i].SetActive(e > 0);
+                _visionSkills[i].SetActive(ServerData.goodsTable.GetVisionSkillIdx()>0);
             }
         }).AddTo(this);
 
 
-        //AutoManager.Instance.AutoMode.AsObservable().Subscribe(e =>
-        //{
-        //    toggleObject.ForEach(element => element.gameObject.SetActive(e));
-        //    //jumpAutoObject.gameObject.SetActive(e);
-        //}).AddTo(this);
-
-        //var list = SkillCoolTimeManager.registeredSkillIdx;
-
-        //for (int i = 0; i < list.Count; i++)
-        //{
-        //    int idx = i;
-        //    list[i].AsObservable().Subscribe(id =>
-        //    {
-        //        toggleCheckBoxObject[idx].SetActive(id == 1);
-        //    }).AddTo(this);
-        //}
     }
 
 }

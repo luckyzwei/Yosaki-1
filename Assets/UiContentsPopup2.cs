@@ -38,6 +38,9 @@ public class UiContentsPopup2 : MonoBehaviour
         TaegeukBoard,
         SangunBoard,
         HyunSanganBoard,
+        ChunGuBoard,
+        VisionTowerBoard,
+        SinSkillBoard,
     }
     [SerializeField]
     private List<GameObject> lastBoards;
@@ -78,6 +81,13 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 10:
                     case 11:
                         uiContentsEnterButtons[0].OnClickButton();
+                        break;
+                    //신수스킬
+                    case 15:
+                    case 16:
+                    case 17:
+                    case 18:
+                        lastBoards[(int)ContentsBoard.SinSkillBoard].SetActive(true);
                         break;
                     //신요괴
                     case 13:
@@ -272,7 +282,18 @@ public class UiContentsPopup2 : MonoBehaviour
                     case 155:
                     case 156:
                     case 157:
+                    case 158:
+                    case 159:
+                    case 160:
+                    case 161:
                         lastBoards[(int)ContentsBoard.HyunSanganBoard].SetActive(true);
+                        break;
+                    
+                    case 162:
+                    case 163:
+                    case 164:
+                    case 165:
+                        lastBoards[(int)ContentsBoard.ChunGuBoard].SetActive(true);
                         break;
                         
                 }
@@ -314,6 +335,7 @@ public class UiContentsPopup2 : MonoBehaviour
             case GameManager.ContentsType.TestHell:
             case GameManager.ContentsType.TestChun:
             case GameManager.ContentsType.TestDo:
+            case GameManager.ContentsType.TestSumi:
                 lastBoards[(int)ContentsBoard.GodTrialBoard].SetActive(true);
                 break;
             case GameManager.ContentsType.GradeTest:
@@ -353,6 +375,9 @@ public class UiContentsPopup2 : MonoBehaviour
                 break;
             case GameManager.ContentsType.SinsunTower :
                 lastBoards[(int)ContentsBoard.SinsunBoard].SetActive(true);
+                break;
+            case GameManager.ContentsType.VisionTower :
+                lastBoards[(int)ContentsBoard.VisionTowerBoard].SetActive(true);
                 break;
 
         }

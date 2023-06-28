@@ -1,3 +1,4 @@
+using System;
 using BackEnd;
 using CodeStage.AntiCheat.ObscuredTypes;
 using System.Collections;
@@ -125,6 +126,14 @@ public class SinsuTowerManager : ContentsManagerBase
         //RankManager.Instance.UpdatInfinityTower_Score(currentScore);
     }
 
+    private void OnDisable()
+    {
+        if (autoCoroutine != null)
+        {
+            StopCoroutine(autoCoroutine);
+        }
+    }
+
     private void EndInfiniteTower()
     {
         //몹 꺼줌
@@ -144,10 +153,34 @@ public class SinsuTowerManager : ContentsManagerBase
 
     private void ShowResultPopup()
     {
+
         //클리어 팝업출력
         uiInfinityTowerResult.gameObject.SetActive(true);
-        uiInfinityTowerResult.Initialize((ContentsState)(int)contentsState.Value, rewardDatas);
+        uiInfinityTowerResult.Initialize((ContentsState)(int)contentsState.Value, rewardDatas);   
+        
         //
+        if(SettingData.towerAutoMode.Value>0)
+        {
+            autoCoroutine = StartCoroutine(StartAutoStart());
+        }
+    }
+
+    private readonly WaitForSeconds toNextStage = new WaitForSeconds(2f);
+    private Coroutine autoCoroutine;
+    private IEnumerator StartAutoStart()
+    {
+        yield return toNextStage;
+        if (contentsState.Value == (int)ContentsState.Clear)
+        {
+            if (ServerData.userInfoTable.IsLastFloor3() == false)
+            {
+                GameManager.Instance.LoadContents(GameManager.contentsType);
+            }
+            else
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.NormalField);
+            }
+        }
     }
 
     private IEnumerator ContentsRoutine()

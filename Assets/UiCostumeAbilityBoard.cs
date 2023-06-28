@@ -350,7 +350,8 @@ public class UiCostumeAbilityBoard : SingletonMono<UiCostumeAbilityBoard>
         //재화 차감
         ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= price;
 
-
+        
+        YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission5_4, 1);
         if (syncRoutine != null)
         {
             CoroutineExecuter.Instance.StopCoroutine(syncRoutine);
@@ -460,7 +461,8 @@ public class UiCostumeAbilityBoard : SingletonMono<UiCostumeAbilityBoard>
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"옥 {Utils.ConvertBigNum(FixedGachaPrice())}개를 사용해서\n선택된 슬롯의 능력치들을 변경 할까요?", () =>
         {
-
+            YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission5_4, 1);
+            
             ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= FixedGachaPrice();
 
             for (int i = 0; i < CurrentServerData.abilityIdx.Count; i++)
@@ -537,6 +539,9 @@ public class UiCostumeAbilityBoard : SingletonMono<UiCostumeAbilityBoard>
 
         PopupManager.Instance.ShowYesNoPopup(CommonString.Notice, $"옥 {Utils.ConvertBigNum(price)}개를 사용해서(슬롯{changeNeedAbilCount}개)\n현재 프리셋의 모든 슬롯의 능력치들을 변경 할까요?", () =>
         {
+            
+            YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission5_4, 1);
+            
             ServerData.goodsTable.GetTableData(GoodsTable.Jade).Value -= price;
             
             for (int i = 0; i < hasCostumeList.Count; i++)

@@ -16,5 +16,6 @@ namespace UnityEngine.UI.Extensions
         InventoryView,
         InventoryOnlyView,
         OnlyEffectView,
+        LevelPass,
     }
 }

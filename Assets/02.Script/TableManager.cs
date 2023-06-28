@@ -182,6 +182,28 @@ public class TableManager : SingletonMono<TableManager>
         }
     }
 
+    [SerializeField] private YorinMission yorinMission;
+    public YorinMission YorinMission => yorinMission;
+    private Dictionary<int, YorinMissionData> yorinMissionDatas;
+    
+    public Dictionary<int, YorinMissionData> YorinMissionDatas
+    {
+        get
+        {
+            if (yorinMissionDatas == null)
+            {
+                yorinMissionDatas = new Dictionary<int, YorinMissionData>();
+
+                for (int i = 0; i < yorinMission.dataArray.Length; i++)
+                {
+                    yorinMissionDatas.Add(yorinMission.dataArray[i].Id, yorinMission.dataArray[i]);
+                }
+            }
+
+            return yorinMissionDatas;
+        }
+    }
+
     [SerializeField] private EventMission eventMission;
 
     public EventMission EventMission => eventMission;
@@ -699,6 +721,9 @@ public class TableManager : SingletonMono<TableManager>
 
     [SerializeField] private MonthlyPassAttend2 monthlyPassAttend2;
     public MonthlyPassAttend2 MonthlyPassAttend2 => monthlyPassAttend2;
+    
+    [SerializeField] private YorinAttend yorinAttend;
+    public YorinAttend YorinAttend => yorinAttend;
 
     [SerializeField] private SonReward sonReward;
 
@@ -784,6 +809,7 @@ public class TableManager : SingletonMono<TableManager>
     public GradeTestTable gradeTestTable;
     public RelicTest RelicTest;
     public CommonCollectionEvent commoncollectionEvent;
+    public CommonEventAttend CommonEventAttend;
     public SnowManAtten snowManAtten;
     public SumiAbilBase sumiAbilBase;
     public FoxCup foxCup;
@@ -820,6 +846,7 @@ public class TableManager : SingletonMono<TableManager>
     public TestMonkey TestMonkey;
     public TestSword TestSword;
     public TestDo TestDo;
+    public TestSumi TestSumi;
     public SealSword sealSwordTable;
     public SealSwordPass SealSwordPass;
     public FoxFirePass FoxFirePass;
@@ -858,6 +885,8 @@ public class TableManager : SingletonMono<TableManager>
 
     public DosulTower dosulTowerTable;
     public Dosul dosulTable;
+    public VisionTowerTable visionTowerTable;
+
 }
 
 

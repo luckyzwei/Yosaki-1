@@ -40,4 +40,8 @@ public class FallCollectionData
   int exchangemaxcount;
   public int Exchangemaxcount { get {return exchangemaxcount; } set { this.exchangemaxcount = value;} }
   
+  [SerializeField]
+  bool active;
+  public bool Active { get {return active; } set { this.active = value;} }
+  
 }

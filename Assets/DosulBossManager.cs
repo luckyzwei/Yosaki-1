@@ -45,7 +45,7 @@ public class DosulBossManager : ContentsManagerBase
     private ReactiveProperty<ObscuredInt> contentsState = new ReactiveProperty<ObscuredInt>((int)ContentsState.Fight);
 
     [SerializeField]
-    private UiSonBossResultPopup uiBossResultPopup;
+    private UiDosulBossResultPopup uiBossResultPopup;
 
     [SerializeField]
     private GameObject statusUi;
@@ -134,6 +134,61 @@ public class DosulBossManager : ContentsManagerBase
         singleRaidEnemy.gameObject.SetActive(false);
         bossHpController = singleRaidEnemy.GetComponent<AgentHpController>();
         bossHpController.SetRaidEnemy();
+    }
+
+    private float AchiveAmount=0f;
+    
+    public void GetAchieveReward()
+    {
+        var rewardedIdx = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.dosulRewardIdx).Value;
+
+        int currentGradeId = PlayerStats.GetDosulGrade();
+        //플레이 X
+        if (currentGradeId < 0)
+        {
+            //PopupManager.Instance.ShowAlarmMessage("등록된 점수가 없습니다");
+            return;
+        }
+
+        if (currentGradeId <= rewardedIdx)
+        {
+            //PopupManager.Instance.ShowAlarmMessage("받을 보상이 없습니다!");
+            return;
+        }
+
+        var tableData = TableManager.Instance.dosulTowerTable.dataArray;
+
+        float sumValue = 0f;
+        //받보상 +1부터 현재 단계까지
+        for (int i = rewardedIdx + 1; i <= currentGradeId; i++)
+        {
+            sumValue += tableData[i].Rewardvalue;
+        }
+        int rewarededindex = (int)ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.dosulRewardIdx).Value;
+
+        if (currentGradeId <= rewarededindex)
+        {
+            PopupManager.Instance.ShowAlarmMessage("받을 보상이 없습니다!");
+            return;
+        }
+
+        ServerData.goodsTable.TableDatas[GoodsTable.DosulGoods].Value += sumValue;
+
+        ServerData.userInfoTable_2.GetTableData(UserInfoTable_2.dosulRewardIdx).Value = currentGradeId;
+
+        List<TransactionValue> transactions = new List<TransactionValue>();
+
+        Param goodsParam = new Param();
+        goodsParam.Add(GoodsTable.DosulGoods, ServerData.goodsTable.TableDatas[GoodsTable.DosulGoods].Value);
+
+        Param userInfo2Param = new Param();
+        userInfo2Param.Add(UserInfoTable_2.dosulRewardIdx, ServerData.userInfoTable_2.TableDatas[UserInfoTable_2.dosulRewardIdx].Value);
+
+        transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
+        transactions.Add(TransactionValue.SetUpdate(UserInfoTable_2.tableName, UserInfoTable_2.Indate, userInfo2Param));
+
+        ServerData.SendTransaction(transactions);
+        AchiveAmount = sumValue;
     }
 
     private void whenDamageAmountChanged(ObscuredDouble hp)
@@ -230,9 +285,10 @@ public class DosulBossManager : ContentsManagerBase
     private void ShowResultPopup()
     {
         //결과 UI
+        GetAchieveReward();
         uiBossResultPopup.gameObject.SetActive(true);
         statusUi.SetActive(false);
-        uiBossResultPopup.Initialize(damageAmount.Value);
+        uiBossResultPopup.Initialize(damageAmount.Value,AchiveAmount);
     }
 
     protected override IEnumerator ModeTimer()

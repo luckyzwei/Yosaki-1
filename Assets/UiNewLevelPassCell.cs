@@ -1,0 +1,336 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UniRx;
+using System.Linq;
+using BackEnd;
+using TMPro;
+using UnityEngine.UI.Extensions;
+
+public class UiNewLevelPassCell : FancyCell<PassData_Fancy>
+{
+    PassData_Fancy itemData;
+    
+    [SerializeField]
+    private Image itemIcon_free;
+
+    [SerializeField]
+    private Image itemIcon_ad;
+
+    [SerializeField]
+    private TextMeshProUGUI itemAmount_free;
+
+    [SerializeField]
+    private TextMeshProUGUI itemName_free;
+
+    [SerializeField]
+    private TextMeshProUGUI itemAmount_ad;
+
+    [SerializeField]
+    private TextMeshProUGUI itemName_ad;
+
+    [SerializeField]
+    private GameObject lockIcon_Free;
+
+    [SerializeField]
+    private GameObject lockIcon_Ad;
+
+    private PassInfo passInfo;
+
+    [SerializeField]
+    private GameObject rewardedObject_Free;
+
+    [SerializeField]
+    private GameObject rewardedObject_Ad;
+
+    [SerializeField]
+    private TextMeshProUGUI descriptionText;
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    [SerializeField]
+    private Image paidPassBg;
+
+    [SerializeField]
+    private List<Sprite> passFrame;
+
+    private void OnDestroy()
+    {
+        disposables.Dispose();
+    }
+    private void Subscribe()
+    {
+        disposables.Clear();
+
+        //무료보상 데이터 변경시
+        ServerData.newLevelPass.TableDatas[passInfo.rewardType_Free_Key].Subscribe(e =>
+        {
+            bool rewarded = HasReward(passInfo.rewardType_Free_Key, passInfo.id);
+            rewardedObject_Free.SetActive(rewarded);
+
+        }).AddTo(disposables);
+
+        //유료보상 데이터 변경시
+        ServerData.newLevelPass.TableDatas[passInfo.rewardType_IAP_Key].Subscribe(e =>
+        {
+            bool rewarded = HasReward(passInfo.rewardType_IAP_Key, passInfo.id);
+            rewardedObject_Ad.SetActive(rewarded);
+
+        }).AddTo(disposables);
+        //레벨 변경될때
+        ServerData.statusTable.GetTableData(StatusTable.Level).AsObservable().Subscribe(e =>
+        {
+            if (this.gameObject.activeInHierarchy == true) 
+            {
+                lockIcon_Free.SetActive(!CanGetReward());
+                lockIcon_Ad.SetActive(!CanGetReward());
+            }
+        }).AddTo(disposables);
+    }
+
+    public void Initialize(PassInfo passInfo)
+    {
+        // this.passInfo = passInfo;
+        //
+        // SetAmount();
+        //
+        // SetItemIcon();
+        //
+        // SetDescriptionText();
+        //
+        // Subscribe();
+
+        //RefreshParent();
+    }
+
+    private void SetAmount()
+    {
+        itemAmount_free.SetText(Utils.ConvertBigNum(passInfo.rewardTypeValue_Free));
+        itemAmount_ad.SetText(Utils.ConvertBigNum(passInfo.rewardTypeValue_IAP));
+    }
+
+    private void SetItemIcon()
+    {
+        itemIcon_free.sprite = CommonUiContainer.Instance.GetItemIcon((Item_Type)(int)passInfo.rewardType_Free);
+        itemIcon_ad.sprite = CommonUiContainer.Instance.GetItemIcon((Item_Type)(int)passInfo.rewardType_IAP);
+
+        itemName_free.SetText(CommonString.GetItemName((Item_Type)(int)passInfo.rewardType_Free));
+        itemName_ad.SetText(CommonString.GetItemName((Item_Type)(int)passInfo.rewardType_IAP));
+
+        //더이상 색추가 안해도되게 8가지색 로테이션
+        int grade = passInfo.passGrade;
+        if (grade <= 5)
+        {
+            paidPassBg.sprite = passFrame[grade];
+        }
+        else
+        {
+            var imgGrade = grade %= 8;
+            paidPassBg.sprite = passFrame[imgGrade+32];
+        }
+    }
+
+    private void SetDescriptionText()
+    {
+        descriptionText.SetText($"{passInfo.require}");
+    }
+
+    public List<string> GetSplitData(string key)
+    {
+        return ServerData.newLevelPass.TableDatas[key].Value.Split(',').ToList();
+    }
+
+
+    public bool HasReward(string key, int data)
+    {
+        var splitData = GetSplitData(key);
+        return splitData.Contains(data.ToString());
+    }
+
+    public void OnClickFreeRewardButton()
+    {
+        if (CanGetReward() == false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("레벨이 부족합니다.");
+            return;
+        }
+
+        if (HasReward(passInfo.rewardType_Free_Key, passInfo.id))
+        {
+            PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다!");
+            return;
+        }
+
+        GetFreeReward();
+    }
+
+    //광고아님
+    public void OnClickAdRewardButton()
+    {
+        if (CanGetReward() == false)
+        {
+            PopupManager.Instance.ShowAlarmMessage("레벨이 부족합니다.");
+            return;
+        }
+
+        if (HasLevelPassProduct() == false)
+        {
+            PopupManager.Instance.ShowAlarmMessage($"여우패스{passInfo.passGrade + 1}이 필요합니다!");
+            return;
+        }
+
+        if (HasReward(passInfo.rewardType_IAP_Key, passInfo.id))
+        {
+            PopupManager.Instance.ShowAlarmMessage("이미 보상을 받았습니다!");
+            return;
+        }
+
+        GetPassReward();
+    }
+
+    private bool HasLevelPassProduct()
+    {
+        bool hasIapProduct = false;
+
+        if (passInfo.passGrade == 0)
+        {
+            return ServerData.iapServerTable.TableDatas["levelpass"].buyCount.Value > 0;
+        }
+        else if (passInfo.passGrade > 0)
+        {
+            return ServerData.iapServerTable.TableDatas[$"levelpass{passInfo.passGrade+1}"].buyCount.Value > 0;
+        }
+
+        return hasIapProduct;
+    }
+
+
+
+    private void GetFreeReward()
+    {
+        //로컬
+        ServerData.newLevelPass.TableDatas[passInfo.rewardType_Free_Key].Value += $",{passInfo.id}";
+        ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_Free, passInfo.rewardTypeValue_Free);
+
+        List<TransactionValue> transactionList = new List<TransactionValue>();
+
+        //패스 보상
+        Param passParam = new Param();
+        passParam.Add(passInfo.rewardType_Free_Key, ServerData.newLevelPass.TableDatas[passInfo.rewardType_Free_Key].Value);
+        transactionList.Add(TransactionValue.SetUpdate(NewLevelPass.tableName, NewLevelPass.Indate, passParam));
+
+        var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_Free);
+        transactionList.Add(rewardTransactionValue);
+
+        ServerData.SendTransaction(transactionList, successCallBack: () =>
+          {
+              SoundManager.Instance.PlaySound("Reward");
+          //    LogManager.Instance.SendLogType("Fox", "Normal", $"보상 {passInfo.id}");
+              PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
+          });
+    }
+    private void GetPassReward()
+    {
+        //로컬
+        ServerData.newLevelPass.TableDatas[passInfo.rewardType_IAP_Key].Value += $",{passInfo.id}";
+        ServerData.AddLocalValue((Item_Type)(int)passInfo.rewardType_IAP, passInfo.rewardTypeValue_IAP);
+
+        List<TransactionValue> transactionList = new List<TransactionValue>();
+
+        //패스 보상
+        Param passParam = new Param();
+        passParam.Add(passInfo.rewardType_IAP_Key, ServerData.newLevelPass.TableDatas[passInfo.rewardType_IAP_Key].Value);
+        transactionList.Add(TransactionValue.SetUpdate(NewLevelPass.tableName, NewLevelPass.Indate, passParam));
+
+        var rewardTransactionValue = ServerData.GetItemTypeTransactionValue((Item_Type)(int)passInfo.rewardType_IAP);
+        transactionList.Add(rewardTransactionValue);
+
+        ServerData.SendTransaction(transactionList, successCallBack: () =>
+        {
+            SoundManager.Instance.PlaySound("Reward");
+          //  LogManager.Instance.SendLogType("Fox", "Premium", $"보상 {passInfo.id}");
+            PopupManager.Instance.ShowAlarmMessage("보상을 수령했습니다!");
+        });
+    }
+
+    private bool CanGetReward()
+    {
+        int currentLevel = (int)ServerData.statusTable.GetTableData(StatusTable.Level).Value;
+        return currentLevel >= passInfo.require;
+    }
+    //
+    // private void OnEnable()
+    // {
+    //     RefreshParent();
+    // }
+
+    private void RefreshParent()
+    {
+        if (passInfo == null) return;
+
+        if (HasLevelPassProduct() == false)
+        {
+            if (CanGetReward() == true && HasReward(passInfo.rewardType_Free_Key, passInfo.id) == false)
+            {
+                this.transform.SetAsFirstSibling();
+            }
+        }
+        else
+        {
+            if (CanGetReward() == true &&
+                (HasReward(passInfo.rewardType_Free_Key, passInfo.id) == false || HasReward(passInfo.rewardType_IAP_Key, passInfo.id)==false))
+            {
+                this.transform.SetAsFirstSibling();
+            }
+        }
+    }
+    
+    public void UpdateUi(PassInfo passInfo)
+    {
+        this.passInfo = passInfo;
+
+        SetAmount();
+
+        SetItemIcon();
+
+        SetDescriptionText();
+
+        Subscribe();
+    }
+    
+    public override void UpdateContent(PassData_Fancy itemData)
+    {
+        if (this.itemData != null && this.itemData.passInfo.id == itemData.passInfo.id)
+        {
+            return;
+        }
+
+        this.itemData = itemData;
+
+        UpdateUi(this.itemData.passInfo);
+    }
+
+    float currentPosition = 0;
+    [SerializeField] Animator animator = default;
+
+    static class AnimatorHash
+    {
+        public static readonly int Scroll = Animator.StringToHash("scroll");
+    }
+
+    public override void UpdatePosition(float position)
+    {
+        currentPosition = position;
+
+        if (animator.isActiveAndEnabled)
+        {
+            animator.Play(AnimatorHash.Scroll, -1, position);
+        }
+
+        animator.speed = 0;
+    }
+
+    void OnEnable() => UpdatePosition(currentPosition);
+
+}

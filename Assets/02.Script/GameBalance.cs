@@ -369,6 +369,7 @@ public static class GameBalance
     public readonly static ObscuredFloat HotTimeEvent_Ad_Gold = 20;
     public readonly static ObscuredFloat HotTimeEvent_Ad_GrowthStone = 15;
     public readonly static ObscuredFloat HotTimeEvent_Ad_Marble = 5;
+    //
     public readonly static ObscuredBool isOddMonthlyPass = true; // 월간훈련 홀수월, 짝수월
     
     public readonly static ObscuredInt fireFlyRequire = 160;
@@ -381,7 +382,7 @@ public static class GameBalance
     //
     public static List<float> warMarkAbils = new List<float>() { 0f, 400f, 500f, 600f, 700f, 800f, 900f, 1000f };
     
-    
+    //왕의시련
     public static ObscuredDouble yumGraduateScore = 1E+82;
     public static ObscuredDouble okGraduateScore = 1E+86;
     public static ObscuredDouble doGraduateScore = 1E+92;
@@ -396,6 +397,35 @@ public static class GameBalance
     public static ObscuredFloat thiefGraduateValue = 2;
     public static ObscuredFloat darkGraduateValue = 2;
     
+        
+    public static ObscuredInt yumKingGraduate = 1;
+    public static ObscuredInt okKingGraduate = 2;
+    public static ObscuredInt doKingGraduate = 3;
+    public static ObscuredInt sumiKingGraduate = 4;
+    public static ObscuredInt thiefKingGraduate = 5;
+    public static ObscuredInt darkKingGraduate = 6;
+    // 신의 시련
+
+    public static ObscuredInt swordGodGraduate = 1;
+    public static ObscuredInt monkeyGodGraduate = 2;
+    public static ObscuredInt hellGodGraduate = 3;
+    public static ObscuredInt chunGodGraduate = 4;
+    public static ObscuredInt doGodGraduate = 5;
+    public static ObscuredInt sumiGodGraduate = 6;
+    
+    public static ObscuredFloat swordGodGraduateValue = 1.5f;
+    public static ObscuredFloat monkeyGodGraduateValue = 1.3f;
+    public static ObscuredFloat hellGodGraduateValue = 2f;
+    public static ObscuredFloat doGodGraduateValue = 2f;
+    public static ObscuredFloat sumiGodGraduateValue = 2f;
+        
+    public static ObscuredDouble swordGodGraduateScore = 2E+122;
+    public static ObscuredDouble monkeyGodGraduateScore = 5E+122;
+    public static ObscuredDouble hellGodGraduateScore = 1E+119;
+    public static ObscuredDouble chunGodGraduateScore = 1E+119;
+    public static ObscuredDouble doGodGraduateScore = 1E+119;
+    public static ObscuredDouble sumiGodGraduateScore = 1E+119;
+    //
     
     public static ObscuredDouble refundGoldBarRatio = 1E+34; //보유금화환불단위
     public static ObscuredInt refundCriDamGoldBarRatio = 4000;//크리티컬데미지환불 
@@ -404,12 +434,12 @@ public static class GameBalance
     public static ObscuredInt criticalGraduateRefundStandard = 6950;//각성시 크리티컬 환불기준레벨
     public static ObscuredInt goldGraduateScore = 65950;// 금화능력치총합레벨조건
     
-    public static ObscuredFloat Gum_memory = 0.0000004f;
+    public static ObscuredFloat Gum_memory = 0.0000010f;
     public static ObscuredFloat Special0_GoldBar = 0.0000000004f;
     public static ObscuredFloat Special1_GoldBar = 0.0000000015f;
     public static ObscuredFloat Special2_GoldBar = 0.0000000038f;
     
-    public static ObscuredInt JumpStageStartValue = 100;//시작 가능 스테이지
+    public static ObscuredInt JumpStageStartValue = 1;//시작 가능 스테이지
     public static ObscuredInt JumpStageAdjustValue = 10;//강철이 데미지 스테이지 계산(스테이지보스체력x2<강철이체력)의 인덱스 -50짜리 보스
     public static ObscuredInt JumpStageLimit = 50;//최종스테이지 -JumpStageLimit이 점핑한계 ex)100일 경우  18000스테이지시가 최종일 때 17900~ 점핑불가능
     public static ObscuredInt JumpPoint = 1;//점프 단위
@@ -419,18 +449,24 @@ public static class GameBalance
     public static ObscuredInt TwelveBoss_155_RequireTower10 = 2;
     public static ObscuredInt TwelveBoss_156_RequireTower10 = 4;
     public static ObscuredInt TwelveBoss_157_RequireTower10 = 6;
-    
-    public static ObscuredInt yumKingGraduate = 1;
-    public static ObscuredInt okKingGraduate = 2;
-    public static ObscuredInt doKingGraduate = 3;
-    public static ObscuredInt sumiKingGraduate = 4;
-    public static ObscuredInt thiefKingGraduate = 5;
-    public static ObscuredInt darkKingGraduate = 6;
+
     
     public static ObscuredInt addDay = 0;
     
     public static ObscuredInt dosulUnlockStage = 300;
     public static ObscuredInt dailyDosulClearTicketGetValue = 2;
+
+    public static ObscuredFloat batterySafeCount = 100f; // 절전모드
+
+    //사흉구슬
+    public static ObscuredFloat sahyungUpgradeValue = 0.03f;
+    //사신수구슬
+    public static ObscuredFloat sinsuUpgradeValue = 0.15f;
+    //천구재화
+    public static ObscuredFloat chunguAbil = 0.015f;
+    
+    public static ObscuredInt visionSkill6GainIdx = 0;
+    public static ObscuredInt visionSkill7GainIdx = 112;
     
     public static int GetSonIdx()
     {

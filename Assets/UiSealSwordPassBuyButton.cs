@@ -92,7 +92,7 @@ public class UiSealSwordPassBuyButton : MonoBehaviour
 
         PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"구매 성공!", null);
 
-        ServerData.goodsTable.TableDatas[GoodsTable.SealWeaponClear].Value += 10;
+        ServerData.goodsTable.TableDatas[GoodsTable.SealWeaponClear].Value += 30;
         
         ServerData.goodsTable.UpData(GoodsTable.SealWeaponClear,false);
 

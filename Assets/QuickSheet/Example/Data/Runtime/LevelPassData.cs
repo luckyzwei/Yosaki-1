@@ -44,4 +44,8 @@ public class LevelPassData
   float wrongbefore;
   public float Wrongbefore { get {return wrongbefore; } set { this.wrongbefore = value;} }
   
+  [SerializeField]
+  int[] idminmax = new int[0];
+  public int[] Idminmax { get {return idminmax; } set { this.idminmax = value;} }
+  
 }

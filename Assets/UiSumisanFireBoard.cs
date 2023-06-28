@@ -157,12 +157,16 @@ public class UiSumisanFireBoard : MonoBehaviour
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
             
-            EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
+            
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
 
             if (ServerData.userInfoTable.IsMonthlyPass2() == false)
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSumiFire, 1);
+            }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSumiFire, 1);
             }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

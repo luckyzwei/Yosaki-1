@@ -75,7 +75,7 @@ public class UiNewDailyMissionBoard : MonoBehaviour
 
         transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
         transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-
+        YorinMissionManager.UpdateYorinMissionClear(YorinMissionKey.YMission6_5, 1);
         ServerData.SendTransaction(transactions);
 
         PopupManager.Instance.ShowAlarmMessage($"옥 {Utils.ConvertBigNum(JadeGetAmount)}개 획득!");

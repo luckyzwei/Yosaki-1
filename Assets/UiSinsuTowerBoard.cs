@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -19,9 +21,38 @@ public class UiSinsuTowerBoard : MonoBehaviour
 
     [SerializeField]
     private GameObject allClearRoot;
-
+    
+    [SerializeField]
+    private Toggle towerAutoMode;
+    
+    private bool initialized = false;
+    
+    private void Start()
+    {
+        Subscribe();
+        //Initialize();
+    }
+    
+    private void Subscribe()
+    {
+        SettingData.towerAutoMode.AsObservable().Subscribe(e =>
+        {
+            PlayerPrefs.SetInt(SettingKey.towerAutoMode, e);
+            Initialize();
+        }); 
+    }
+    private void Initialize()
+    {
+        if (PlayerPrefs.HasKey(SettingKey.towerAutoMode) == false)
+            PlayerPrefs.SetInt(SettingKey.towerAutoMode, 1);     
+        
+        towerAutoMode.isOn = PlayerPrefs.GetInt(SettingKey.towerAutoMode) == 1;
+        
+        initialized = true;
+    }
     void OnEnable()
     {
+        Initialize();
         SetStageText();
         SetReward();
     }
@@ -32,7 +63,19 @@ public class UiSinsuTowerBoard : MonoBehaviour
 
         return currentFloor >= TableManager.Instance.sinsuTower.dataArray.Length;
     }
+    
+    public void AutoModeOnOff(bool on)
+    {
+        if (initialized == false) return;
 
+        if (on)
+        {
+            SoundManager.Instance.PlayButtonSound();
+        }
+
+        SettingData.towerAutoMode.Value = on ? 1 : 0;
+    }
+    
     private void SetStageText()
     {
         if (IsAllClear() == false)

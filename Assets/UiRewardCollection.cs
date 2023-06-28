@@ -196,12 +196,15 @@ public class UiRewardCollection : MonoBehaviour
                             // enterButton.interactable = true;
                         });
 
-                    EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, clearCount);
                     EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, clearCount);
 
                     if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                     {
                         EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, clearCount);
+                    }
+                    else
+                    {
+                        EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearBandit, clearCount);
                     }
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,
                         $"{clearCount}회 소탕 완료!\n{CommonString.GetItemName(Item_Type.Jade)} {rewardNumJade}개\n{CommonString.GetItemName(Item_Type.Marble)} {rewardNumMarble}개 획득!",
@@ -262,12 +265,15 @@ public class UiRewardCollection : MonoBehaviour
                             // enterButton.interactable = true;
                         });
 
-                    EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, clearCount);
                     EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, clearCount);
 
                     if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                     {
                         EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, clearCount);
+                    }
+                    else
+                    {
+                        EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearBandit, clearCount);
                     }
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice,
                         $"{clearCount}회 소탕 완료!\n{CommonString.GetItemName(Item_Type.Jade)} {rewardNumJade}개\n{CommonString.GetItemName(Item_Type.Marble)} {rewardNumMarble}개 획득!",
@@ -362,12 +368,15 @@ public class UiRewardCollection : MonoBehaviour
 
                 DailyMissionManager.UpdateDailyMission(DailyMissionKey.ClearBonusDungeon, 10);
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
 
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearBandit, 1);
                 }
                 ServerData.SendTransaction(transactions,
                     successCallBack: () =>
@@ -409,12 +418,16 @@ public class UiRewardCollection : MonoBehaviour
 
                 DailyMissionManager.UpdateDailyMission(DailyMissionKey.ClearBonusDungeon, 10);
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearBandit, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearBandit, 1);
 
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearBandit, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearBandit, 1);
+
                 }
                 ServerData.SendTransaction(transactions,
                     successCallBack: () =>
@@ -482,6 +495,10 @@ public class UiRewardCollection : MonoBehaviour
                  {
                      EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearOni, 1);
                  }
+                 else
+                 {
+                     EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearOni, 1);
+                 }
                  ServerData.SendTransaction(transactions, successCallBack: () =>
                  {
                      PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"경험치{Utils.ConvertBigNumForRewardCell(expAmount)} 획득!", null);
@@ -540,6 +557,9 @@ public class UiRewardCollection : MonoBehaviour
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearOni, 1);
             }
+            else{
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearOni, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"경험치{Utils.ConvertBigNumForRewardCell(expAmount)} 획득!", null);
@@ -597,11 +617,15 @@ public class UiRewardCollection : MonoBehaviour
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
+
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSwordPartial, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSwordPartial, 1);
                 }
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -632,11 +656,14 @@ public class UiRewardCollection : MonoBehaviour
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSwordPartial, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSwordPartial, 1);
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSwordPartial, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSwordPartial, 1);
                 }
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -701,9 +728,9 @@ public class UiRewardCollection : MonoBehaviour
 
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearChunFlower, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearChunFlower, 1);
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearChunFlower, 1);
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearChunFlower, 1);
 
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -732,10 +759,9 @@ public class UiRewardCollection : MonoBehaviour
 
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearChunFlower, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearChunFlower, 1);
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearChunFlower, 1);
-
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearChunFlower, 1);
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
                     PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Cw)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null);
@@ -910,11 +936,15 @@ public class UiRewardCollection : MonoBehaviour
                         userInfoParam));
                     transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                    EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
+
                     EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearDokebiFire, 1);
                     if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                     {
                         EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearDokebiFire, 1);
+                    }
+                    else
+                    {
+                        EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearDokebiFire, 1);
                     }
                     ServerData.SendTransaction(transactions,
                         successCallBack: () =>
@@ -951,11 +981,15 @@ public class UiRewardCollection : MonoBehaviour
                     userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
+                //EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearDokebiFire, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearDokebiFire, 1);
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearDokebiFire, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearDokebiFire, 1);
                 }
                 ServerData.SendTransaction(transactions,
                     successCallBack: () =>
@@ -1013,11 +1047,15 @@ public class UiRewardCollection : MonoBehaviour
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSumiFire, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSumiFire, 1);
+                    
                 }
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -1046,12 +1084,15 @@ public class UiRewardCollection : MonoBehaviour
                 transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
                 transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-                EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearSumiFire, 1);
                 EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearSumiFire, 1);
 
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSumiFire, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSumiFire, 1);
                 }
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -1126,6 +1167,10 @@ public class UiRewardCollection : MonoBehaviour
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSoulStone, 1);
             }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSoulStone, 1);
+            }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
                 PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {amount}개 획득!", null);
@@ -1158,6 +1203,10 @@ public class UiRewardCollection : MonoBehaviour
                 if (ServerData.userInfoTable.IsMonthlyPass2() == false)
                 {
                     EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearSoulStone, 1);
+                }
+                else
+                {
+                    EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearSoulStone, 1);
                 }
                 ServerData.SendTransaction(transactions, successCallBack: () =>
                 {
@@ -1579,12 +1628,15 @@ public class UiRewardCollection : MonoBehaviour
 
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
 
-            EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearHell, 1);
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearHell, 1);
 
             if (ServerData.userInfoTable.IsMonthlyPass2() == false)
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearHell, 1);
+            }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearHell, 1);
             }
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {

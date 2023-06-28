@@ -18,7 +18,14 @@ public class UiSogulResultPopup : MonoBehaviour
     {
         this.gameObject.SetActive(true);
 
-        lastClearStageDesc.SetText($"{lastClearStage}{defix}");
+        if (GameManager.contentsType == GameManager.ContentsType.VisionTower)
+        {
+            lastClearStageDesc.SetText($"{lastClearStage}등급 돌파!!");
+        }
+        else
+        {
+            lastClearStageDesc.SetText($"{lastClearStage}{defix}");
+        }
 
         deadGameObject.SetActive(isPlayerDead);
 

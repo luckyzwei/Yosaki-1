@@ -12,6 +12,9 @@ public class UiSubMenues : SingletonMono<UiSubMenues>
 
     private void Start()
     {
+        //ui는 뜨고 자동절전활성
+        //BatterySafeManager.Instance.SetSleepMode(true);
+        
         if ((GameManager.Instance.lastContentsType2 != GameManager.ContentsType.NormalField) &&
             (GameManager.contentsType == GameManager.ContentsType.NormalField))
         {

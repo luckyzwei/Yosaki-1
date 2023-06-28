@@ -153,11 +153,15 @@ public class UiChunFlowerBoard : MonoBehaviour
 
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
             transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
-            EventMissionManager.UpdateEventMissionClear(EventMissionKey.ClearChunFlower, 1);
+            
             EventMissionManager.UpdateEventMissionClear(EventMissionKey.S_ClearChunFlower, 1);
             if (ServerData.userInfoTable.IsMonthlyPass2() == false)
             {
                 EventMissionManager.UpdateEventMissionClear(MonthMissionKey.ClearChunFlower, 1);
+            }
+            else
+            {
+                EventMissionManager.UpdateEventMissionClear(MonthMission2Key.ClearChunFlower, 1);
             }
 
             ServerData.SendTransaction(transactions, successCallBack: () => { PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"{CommonString.GetItemName(Item_Type.Cw)} {score + Utils.GetDokebiTreasureAddValue()}개 획득!", null); });

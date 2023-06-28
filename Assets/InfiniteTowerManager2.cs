@@ -147,6 +147,28 @@ public class InfiniteTowerManager2 : ContentsManagerBase
         uiInfinityTowerResult.gameObject.SetActive(true);
         uiInfinityTowerResult.Initialize((ContentsState)(int)contentsState.Value, rewardDatas);
         //
+        if(SettingData.towerAutoMode.Value>0)
+        {
+            
+                StartCoroutine(StartAutoStart());
+        }
+    }
+    private readonly WaitForSeconds toNextStage = new WaitForSeconds(2f);
+
+    private IEnumerator StartAutoStart()
+    {
+        yield return toNextStage;
+        if (contentsState.Value == (int)ContentsState.Clear)
+        {
+            if (ServerData.userInfoTable.IsLastFloor2() == false)
+            {
+                GameManager.Instance.LoadContents(GameManager.contentsType);
+            }
+            else
+            {
+                GameManager.Instance.LoadContents(GameManager.ContentsType.NormalField);
+            }
+        }
     }
 
     private IEnumerator ContentsRoutine()

@@ -50,6 +50,7 @@ public static class CommonString
     public static string ItemGrade_26 = "보물";
     public static string ItemGrade_27 = "암흑";
     public static string ItemGrade_28 = "신선";
+    public static string ItemGrade_29 = "현상";
     public static string ItemGrade_5_Norigae = "신물";
     public static string ItemGrade_6_Norigae = "영물";
     public static string ItemGrade_7_Norigae = "영물";
@@ -64,6 +65,7 @@ public static class CommonString
     public static string ItemGrade_26_Norigae = "보물";
     public static string ItemGrade_27_Norigae = "암흑";
     public static string ItemGrade_28_Norigae = "신선";
+    public static string ItemGrade_29_Norigae = "현상";
 
     public static string ItemGrade_4_Skill = "주작";
     public static string ItemGrade_5_Skill = "청룡";
@@ -286,6 +288,12 @@ public static class CommonString
             case Item_Type.costume129: return TableManager.Instance.Costume.dataArray[129].Name;
             case Item_Type.costume130: return TableManager.Instance.Costume.dataArray[130].Name;
             case Item_Type.costume131: return TableManager.Instance.Costume.dataArray[131].Name;
+            case Item_Type.costume132: return TableManager.Instance.Costume.dataArray[132].Name;
+            case Item_Type.costume133: return TableManager.Instance.Costume.dataArray[133].Name;
+            case Item_Type.costume134: return TableManager.Instance.Costume.dataArray[134].Name;
+            case Item_Type.costume135: return TableManager.Instance.Costume.dataArray[135].Name;
+            case Item_Type.costume136: return TableManager.Instance.Costume.dataArray[136].Name;
+            case Item_Type.costume137: return TableManager.Instance.Costume.dataArray[137].Name;
 
             case Item_Type.pet0: return TableManager.Instance.PetDatas[0].Name;
             case Item_Type.pet1: return TableManager.Instance.PetDatas[1].Name;
@@ -402,6 +410,8 @@ public static class CommonString
             case Item_Type.VisionSkill3: return "궁극 기술4";
             case Item_Type.VisionSkill4: return "궁극 기술5";
             case Item_Type.VisionSkill5: return "궁극 기술6";
+            case Item_Type.VisionSkill6: return "궁극 기술7";
+            case Item_Type.VisionSkill7: return "궁극 기술8";
             case Item_Type.ThiefSkill0: return "도적 기술1";
             case Item_Type.ThiefSkill1: return "도적 기술2";
             case Item_Type.ThiefSkill2: return "도적 기술3";
@@ -459,12 +469,12 @@ public static class CommonString
             case Item_Type.du: return "저승 명부";
             case Item_Type.Fw: return "분홍 꽃";
             case Item_Type.Cw: return "천계 꽃";
-            case Item_Type.Event_Collection: return "봄나물";
-            case Item_Type.Event_Collection_All: return "봄나물 총 획득량";
+            case Item_Type.Event_Collection: return "수박";//봄나물
+            case Item_Type.Event_Collection_All: return "수박 총 획득량";
             case Item_Type.Event_Fall_Gold: return "황금 곶감";
             case Item_Type.Event_NewYear: return "떡국";
             case Item_Type.Event_NewYear_All: return "떡국 총 획득량";
-            case Item_Type.Event_Mission: return "꽃송이";
+            case Item_Type.Event_Mission: return "서핑 보드";
             case Item_Type.Event_Mission_All: return "꽃송이 총 획득량";
             case Item_Type.FoxMaskPartial: return "나무조각";
             case Item_Type.DokebiFire: return "도깨비불";
@@ -486,6 +496,8 @@ public static class CommonString
             case Item_Type.DarkTreasure: return "심연의 정수";
             case Item_Type.SinsunTreasure: return "신선의 보옥";
             case Item_Type.GwisalTreasure: return "귀인의 정수";
+            case Item_Type.ChunguTreasure: return "천구구슬";
+            case Item_Type.SleepRewardItem: return "휴식보상(24시간)";
             case Item_Type.GoldBar: return "백금화";
             case Item_Type.DokebiFireEnhance: return "우두머리 불꽃";
             case Item_Type.SumiFire: return "수미꽃";
@@ -692,6 +704,8 @@ public static class CommonString
                 return "백금화 획득 증가(%)";
             case StatusType.SuperCritical19DamPer:
                 return "귀살베기 피해(%)";
+            case StatusType.SuperCritical20DamPer:
+                return "천구베기 피해(%)";
         }
 
         return "등록필요";

@@ -12,6 +12,7 @@ public class UiVisionSkillBoard : SingletonMono<UiSkillBoard>
     [SerializeField]
     private Transform skillCellParent;
 
+    private List<SkillTableData> visionSkillData = new List<SkillTableData>();
     private void Start()
     {
         Initialize();
@@ -25,9 +26,18 @@ public class UiVisionSkillBoard : SingletonMono<UiSkillBoard>
         {
             if (tableData[i].SKILLCASTTYPE != SkillCastType.Vision) continue;
 
+            visionSkillData.Add(tableData[i]);
+        }
+
+        //데미지 순으로 정렬
+        visionSkillData.Sort((x, y) => x.Damageper.CompareTo(y.Damageper));
+        
+        for (int i = 0; i < visionSkillData.Count; i++)
+        {
             var cell = Instantiate<UiVisionSkillCell>(uiSkillCell, skillCellParent);
 
-            cell.Initialize(tableData[i]);
+            cell.Initialize(visionSkillData[i]);
         }
+        
     }
 }
