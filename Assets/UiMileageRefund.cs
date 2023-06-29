@@ -299,6 +299,7 @@ public class UiMileageRefund : MonoBehaviour
             goodsParam.Add(GoodsTable.NewGachaEnergy,ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value);
             
             transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            transactions.Add(TransactionValue.SetUpdate(GoodsTable.tableName, GoodsTable.Indate, goodsParam));
             
             ServerData.SendTransaction(transactions, successCallBack: () =>
             {
