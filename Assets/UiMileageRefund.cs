@@ -279,7 +279,7 @@ public class UiMileageRefund : MonoBehaviour
         {
             ServerData.userInfoTable.GetTableData(UserInfoTable.RefundIdx).Value++;
 
-            var flowerSum =ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_Refund).Value/2;
+            var flowerSum = (ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_Refund).Value + 200) / 2;
 
             var dokebifireSum = flowerSum*170;
             var newGachaEnergySum = flowerSum*300;
