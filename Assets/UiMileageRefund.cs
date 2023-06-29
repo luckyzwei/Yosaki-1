@@ -274,6 +274,39 @@ public class UiMileageRefund : MonoBehaviour
                 Debug.LogError("출석 초기화 완료");
             });
         }
+        //꽃송이
+        if (ServerData.userInfoTable.GetTableData(UserInfoTable.RefundIdx).Value < 4)
+        {
+            ServerData.userInfoTable.GetTableData(UserInfoTable.RefundIdx).Value++;
+
+            var flowerSum =ServerData.goodsTable.GetTableData(GoodsTable.Event_Mission_Refund).Value/2;
+
+            var dokebifireSum = flowerSum*170;
+            var newGachaEnergySum = flowerSum*300;
+            
+            ServerData.AddLocalValue(Item_Type.DokebiFire,dokebifireSum);
+            ServerData.AddLocalValue(Item_Type.NewGachaEnergy,newGachaEnergySum);
+           
+            
+            List<TransactionValue> transactions = new List<TransactionValue>();
+            
+            Param userInfoParam = new Param();
+            
+            userInfoParam.Add(UserInfoTable.RefundIdx, ServerData.userInfoTable.GetTableData(UserInfoTable.RefundIdx).Value);
+
+            Param goodsParam = new Param();
+            goodsParam.Add(GoodsTable.DokebiFire,ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value);
+            goodsParam.Add(GoodsTable.NewGachaEnergy,ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value);
+            
+            transactions.Add(TransactionValue.SetUpdate(UserInfoTable.tableName, UserInfoTable.Indate, userInfoParam));
+            
+            ServerData.SendTransaction(transactions, successCallBack: () =>
+            {
+                PopupManager.Instance.ShowConfirmPopup(CommonString.Notice, $"꽃송이 재화 일괄 소급\n" +
+                                                                            $"{CommonString.GetItemName(Item_Type.DokebiFire)} {dokebifireSum}개 환급\n" +
+                                                                            $"{CommonString.GetItemName(Item_Type.NewGachaEnergy)} {newGachaEnergySum}개 환급 ", null);
+            });
+        }
         else
         {
             return;

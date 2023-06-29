@@ -198,7 +198,7 @@ public class StatusTable
 
                 case HpLevel_Gold:
                     {
-                        return GameBalance.initHp + level * 50f;
+                        return GameBalance.initHp + level * GameBalance.HpLevel_Gold;
                     }
                     break;
                 case MpLevel_Gold:
@@ -263,7 +263,7 @@ public class StatusTable
                     break;
                 case HpPer_StatPoint:
                     {
-                        return level * 0.005f;
+                        return level * GameBalance.HpPer_StatPoint;
                     }
                     break;
                 case MpPer_StatPoint:

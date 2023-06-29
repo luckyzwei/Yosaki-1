@@ -197,6 +197,7 @@ public class GoodsTable
     public static string Event_NewYear = "Event_NewYear"; //떡국
     public static string Event_NewYear_All = "Event_NewYear_All"; //신년재화 총생산량
     public static string Event_Mission = "Event_Mission2";//발리볼 //꽃송이 //바람개비.
+    public static string Event_Mission_Refund = "Event_Mission1";//발리볼 //꽃송이 //바람개비.
     public static string Event_Mission_All = "Event_Mission_All2"; //꽃송이 //바람개비 총생산량(소급 위한)
 
     public static string FoxMaskPartial = "FoxMaskPartial"; //여우 탈 재화
@@ -417,6 +418,7 @@ public class GoodsTable
         { Event_NewYear_All, 0f },
         { Event_Mission, 0f },
         { Event_Mission_All, 0f },
+        { Event_Mission_Refund, 0f },
         { FoxMaskPartial, 0f },
 
         { DokebiFire, 0f },

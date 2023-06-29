@@ -128,17 +128,10 @@ public class UserInfoTable_2
 
                 while (e.MoveNext())
                 {                        
-                    //소급코드들 
-                    if (e.Current.Key == towerFloorAdjust)
-                    {
-                        defultValues.Add(e.Current.Key, 1);
-                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(1));
-                    }
-                    else
-                    {
-                        defultValues.Add(e.Current.Key, e.Current.Value);
-                        tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
-                    }
+               
+                    defultValues.Add(e.Current.Key, e.Current.Value);
+                    tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(e.Current.Value));
+               
                 }
 
                 var bro = Backend.GameData.Insert(tableName, defultValues);

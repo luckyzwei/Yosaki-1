@@ -377,6 +377,8 @@ public static class GameBalance
     
     public readonly static ObscuredInt BlackWolfRingDevideIdx = 40000;
     
+    public readonly static ObscuredFloat HpLevel_Gold = 5000f;
+    public readonly static ObscuredFloat HpPer_StatPoint = 0.005f;
     public readonly static ObscuredFloat Stat_Sin_Slash = 0.00001f;
     public readonly static ObscuredFloat Stat_Hyung_Slash =  0.000001f;
     //

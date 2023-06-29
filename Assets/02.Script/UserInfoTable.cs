@@ -1765,12 +1765,12 @@ public class UserInfoTable
 
     public bool IsLastFloor()
     {
-        return tableDatas[currentFloorIdx].Value == 20; //구 301
+        return tableDatas[currentFloorIdx].Value >= 20; //구 301
     }
 
     public bool IsLastFloor2()
     {
-        return tableDatas[currentFloorIdx2].Value == 100;
+        return tableDatas[currentFloorIdx2].Value >= 100;
     }
     public bool IsLastFloor3()
     {
