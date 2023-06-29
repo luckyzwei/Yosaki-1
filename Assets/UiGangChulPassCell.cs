@@ -234,7 +234,15 @@ public class UiGangChulPassCell : MonoBehaviour
 
     private bool CanGetReward()
     {
-        var gangChulScore = double.Parse(ServerData.bossServerTable.TableDatas["boss20"].score.Value);
-        return gangChulScore >= (double)passInfo.require;
+        if (string.IsNullOrEmpty(ServerData.bossServerTable.TableDatas["boss20"].score.Value))
+        {
+            return 0d >= (double)passInfo.require;    
+        }
+        else
+        {
+            var gangChulScore = double.Parse(ServerData.bossServerTable.TableDatas["boss20"].score.Value);
+            return gangChulScore >= (double)passInfo.require;    
+        }
+        
     }
 }

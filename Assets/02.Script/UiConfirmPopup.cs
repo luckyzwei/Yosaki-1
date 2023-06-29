@@ -41,7 +41,8 @@ public class UiConfirmPopup : MonoBehaviour
 
     public void OnClickBackStageButton()
     {
-        GameManager.Instance.LoadBackScene();
+        int myStageid = (int)ServerData.userInfoTable.TableDatas[UserInfoTable.topClearStageId].Value;
+        GameManager.Instance.MoveMapByIdx(myStageid + 1);
         GameObject.Destroy(this.gameObject);
     }
 }

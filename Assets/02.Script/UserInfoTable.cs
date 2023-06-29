@@ -717,7 +717,7 @@ public class UserInfoTable
                         BackendReturnObject servertime = Backend.Utils.GetServerTime();
 
                         string time = servertime.GetReturnValuetoJSON()["utcTime"].ToString();
-                        DateTime currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(24);
+                        DateTime currentServerTime = DateTime.Parse(time).ToUniversalTime().AddHours(9);
 
                         currentServerDate = (double)Utils.ConvertToUnixTimestamp(currentServerTime);
 

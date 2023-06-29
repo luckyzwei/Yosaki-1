@@ -15,8 +15,8 @@ public class AttendanceServerTable
     public const string rewardKey_100 = "rewardKey_100";
 
 
-    public static string attendFree = "free0";
-    public static string attendAd = "ad0";
+    public static string attendFree = "f00";
+    public static string attendAd = "a00";
 
 
     private Dictionary<string, string> tableSchema = new Dictionary<string, string>()
