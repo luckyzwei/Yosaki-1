@@ -703,7 +703,7 @@ public class UserInfoTable
                         }
                         else if (e.Current.Key == RefundIdx)
                         {
-                            defultValues.Add(e.Current.Key, 3);
+                            defultValues.Add(e.Current.Key, 4);
                             tableDatas.Add(e.Current.Key, new ReactiveProperty<double>(3));
                         }
                         else

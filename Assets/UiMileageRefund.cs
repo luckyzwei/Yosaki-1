@@ -284,8 +284,8 @@ public class UiMileageRefund : MonoBehaviour
             var dokebifireSum = flowerSum*170;
             var newGachaEnergySum = flowerSum*300;
             
-            ServerData.AddLocalValue(Item_Type.DokebiFire,dokebifireSum);
-            ServerData.AddLocalValue(Item_Type.NewGachaEnergy,newGachaEnergySum);
+            ServerData.goodsTable.GetTableData(GoodsTable.DokebiFire).Value += dokebifireSum;
+            ServerData.goodsTable.GetTableData(GoodsTable.NewGachaEnergy).Value += newGachaEnergySum;
            
             
             List<TransactionValue> transactions = new List<TransactionValue>();
