@@ -57,7 +57,7 @@ public class UiSonBoard : MonoBehaviour
 
         ServerData.goodsTable.GetTableData(GoodsTable.Peach).AsObservable().Subscribe(amount =>
         {
-            upgradePriceText.SetText($"+{amount}");
+            upgradePriceText.SetText($"+{Utils.ConvertNum(amount)}");
 
         }).AddTo(this);
 

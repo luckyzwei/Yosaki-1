@@ -1685,6 +1685,8 @@ public static class PlayerStats
         float ret = 0f;
 
         ret += GetChunguTreasureAbilHasEffect();
+        
+        ret += GetPetHomeAbilValue(StatusType.SuperCritical20DamPer);
 
         return ret;
     }
